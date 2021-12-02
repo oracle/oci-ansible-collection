@@ -24,6 +24,7 @@ short_description: Fetches details about one or multiple EnterpriseManagerBridge
 description:
     - Fetches details about one or multiple EnterpriseManagerBridge resources in Oracle Cloud Infrastructure
     - Gets a list of Operations Insights Enterprise Manager bridges. Either compartmentId or id must be specified.
+      When both compartmentId and compartmentIdInSubtree are specified, a list of bridges in that compartment and in all sub-compartments will be returned.
     - If I(enterprise_manager_bridge_id) is specified, the details of a single EnterpriseManagerBridge will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -71,17 +72,29 @@ options:
         choices:
             - "timeCreated"
             - "displayName"
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List enterprise_manager_bridges
-  oci_opsi_enterprise_manager_bridge_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific enterprise_manager_bridge
   oci_opsi_enterprise_manager_bridge_facts:
+    # required
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List enterprise_manager_bridges
+  oci_opsi_enterprise_manager_bridge_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    lifecycle_state: [ "$p.getValue()" ]
+    sort_order: ASC
+    sort_by: timeCreated
+    compartment_id_in_subtree: true
 
 """
 
@@ -240,6 +253,7 @@ class EnterpriseManagerBridgeFactsHelperGen(OCIResourceFactsHelperBase):
             "lifecycle_state",
             "sort_order",
             "sort_by",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -284,6 +298,7 @@ def main():
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

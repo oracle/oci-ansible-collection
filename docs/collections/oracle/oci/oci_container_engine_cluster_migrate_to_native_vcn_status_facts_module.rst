@@ -30,13 +30,9 @@ oracle.oci.oci_container_engine_cluster_migrate_to_native_vcn_status_facts -- Fe
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_container_engine_cluster_migrate_to_native_vcn_status_facts`.
 
@@ -270,6 +266,7 @@ Examples
     
     - name: Get a specific cluster_migrate_to_native_vcn_status
       oci_container_engine_cluster_migrate_to_native_vcn_status_facts:
+        # required
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 
@@ -306,7 +303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>ClusterMigrateToNativeVcnStatus resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;state&#x27;: &#x27;IN_PROGRESS&#x27;, &#x27;time_decommission_scheduled&#x27;: &#x27;2017-07-21T16:11:29Z&#x27;}</div>
                                     </td>
             </tr>
@@ -324,7 +321,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current migration status of the cluster.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IN_PROGRESS</div>
                                     </td>
             </tr>
@@ -342,7 +339,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the non-native VCN is due to be decommissioned.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2017-07-21T16:11:29Z</div>
                                     </td>
             </tr>

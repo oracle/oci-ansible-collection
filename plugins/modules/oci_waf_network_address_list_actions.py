@@ -53,6 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on network_address_list
   oci_waf_network_address_list_actions:
+    # required
     network_address_list_id: "ocid1.networkaddresslist.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

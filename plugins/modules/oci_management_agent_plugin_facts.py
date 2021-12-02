@@ -76,7 +76,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List management_agent_plugins
   oci_management_agent_plugin_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: displayName
+    lifecycle_state: CREATING
+    platform_type: [ "$p.getValue()" ]
 
 """
 

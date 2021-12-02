@@ -76,13 +76,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List metastores
-  oci_data_catalog_metastore_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific metastore
   oci_data_catalog_metastore_facts:
+    # required
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List metastores
+  oci_data_catalog_metastore_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 

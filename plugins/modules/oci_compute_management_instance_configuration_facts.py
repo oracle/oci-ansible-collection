@@ -64,13 +64,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List instance_configurations
-  oci_compute_management_instance_configuration_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific instance_configuration
   oci_compute_management_instance_configuration_facts:
+    # required
     instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List instance_configurations
+  oci_compute_management_instance_configuration_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 
@@ -98,7 +104,8 @@ instance_configurations:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the instance configuration.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -143,7 +150,8 @@ instance_configurations:
                             contains:
                                 display_name:
                                     description:
-                                        - A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
+                                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                                          Avoid entering confidential information.
                                     returned: on success
                                     type: str
                                     sample: display_name_example
@@ -309,7 +317,9 @@ instance_configurations:
                             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
                         compartment_id:
                             description:
-                                - The OCID of the compartment.
+                                - The OCID of the compartment containing the instance.
+                                  Instances created from instance configurations are placed in the same compartment
+                                  as the instance that was used to create the instance configuration.
                             returned: on success
                             type: str
                             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -346,7 +356,7 @@ instance_configurations:
                                     sample: {'Operations': {'CostCenter': 'US'}}
                                 display_name:
                                     description:
-                                        - A user-friendly name for the VNIC. Does not have to be unique.
+                                        - A user-friendly name. Does not have to be unique, and it's changeable.
                                           Avoid entering confidential information.
                                     returned: on success
                                     type: str
@@ -413,10 +423,9 @@ instance_configurations:
                             description:
                                 - A user-friendly name. Does not have to be unique, and it's changeable.
                                   Avoid entering confidential information.
-                                - "Example: `My bare metal instance`"
                             returned: on success
                             type: str
-                            sample: My bare metal instance
+                            sample: display_name_example
                         extended_metadata:
                             description:
                                 - Additional metadata key/value pairs that you provide. They serve the same purpose and
@@ -891,7 +900,7 @@ instance_configurations:
                                     sample: {'Operations': {'CostCenter': 'US'}}
                                 display_name:
                                     description:
-                                        - A user-friendly name for the VNIC. Does not have to be unique.
+                                        - A user-friendly name. Does not have to be unique, and it's changeable.
                                           Avoid entering confidential information.
                                     returned: on success
                                     type: str
@@ -947,7 +956,8 @@ instance_configurations:
                                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
-                                - A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.
+                                - A user-friendly name. Does not have to be unique, and it's changeable.
+                                  Avoid entering confidential information.
                             returned: on success
                             type: str
                             sample: display_name_example
@@ -1028,7 +1038,7 @@ instance_configurations:
                     "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 },
                 "defined_tags": {'Operations': {'CostCenter': 'US'}},
-                "display_name": "My bare metal instance",
+                "display_name": "display_name_example",
                 "extended_metadata": {},
                 "freeform_tags": {'Department': 'Finance'},
                 "ipxe_script": "ipxe_script_example",

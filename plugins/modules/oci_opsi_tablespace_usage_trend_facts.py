@@ -71,7 +71,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific tablespace_usage_trend
   oci_opsi_tablespace_usage_trend_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

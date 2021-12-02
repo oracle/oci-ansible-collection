@@ -111,27 +111,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action list on metric
   oci_monitoring_metric_actions:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    group_by:
-    - "namespace"
-    action: "list"
+    # required
+    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
+    action: list
 
-- name: Perform action list on metric
-  oci_monitoring_metric_actions:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    group_by:
-    - "resourceGroup"
-    namespace: "my_namespace"
-    action: "list"
-
-- name: Perform action list on metric
-  oci_monitoring_metric_actions:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    group_by:
-    - "name"
-    namespace: "my_namespace"
-    resource_group: "my_resourcegroup"
-    action: "list"
+    # optional
+    name: CpuUtilization
+    namespace: oci_computeagent
+    resource_group: frontend-fleet
+    dimension_filters: null
+    group_by: [ "null" ]
+    sort_by: NAMESPACE
+    sort_order: ASC
+    compartment_id_in_subtree: true
 
 """
 

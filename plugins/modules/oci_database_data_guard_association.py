@@ -31,7 +31,8 @@ description:
       You can also retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the
       resource in the Console. For more information, see
       L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-    - "This resource has the following action operations in the M(oci_data_guard_association_actions) module: failover, reinstate, switchover."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_data_guard_association_actions) module: failover, reinstate,
+      switchover."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -194,27 +195,77 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create data_guard_association
+- name: Create data_guard_association with creation_type = NewDbSystem
   oci_database_data_guard_association:
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    database_admin_password: database_admin_password_example
+    # required
+    database_admin_password: example-password
+    protection_mode: MAXIMUM_AVAILABILITY
+    transport_type: SYNC
+    creation_type: NewDbSystem
+
+    # optional
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_db_unique_name: peer_db_unique_name_example
+    peer_sid_prefix: peer_sid_prefix_example
+    display_name: display_name_example
+    availability_domain: Uocm:PHX-AD-1
+    shape: shape_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    hostname: hostname_example
+
+- name: Create data_guard_association with creation_type = ExistingVmCluster
+  oci_database_data_guard_association:
+    # required
+    database_admin_password: example-password
+    protection_mode: MAXIMUM_AVAILABILITY
+    transport_type: SYNC
+    creation_type: ExistingVmCluster
+
+    # optional
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_db_unique_name: peer_db_unique_name_example
+    peer_sid_prefix: peer_sid_prefix_example
+    peer_vm_cluster_id: "ocid1.peervmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create data_guard_association with creation_type = ExistingDbSystem
+  oci_database_data_guard_association:
+    # required
+    database_admin_password: example-password
     protection_mode: MAXIMUM_AVAILABILITY
     transport_type: SYNC
     creation_type: ExistingDbSystem
 
-- name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_data_guard_association:
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    database_admin_password: database_admin_password_example
-    protection_mode: MAXIMUM_AVAILABILITY
-    transport_type: SYNC
-    display_name: display_name_example
+    # optional
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_db_unique_name: peer_db_unique_name_example
+    peer_sid_prefix: peer_sid_prefix_example
+    peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_db_system_id: "ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update data_guard_association
   oci_database_data_guard_association:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    database_admin_password: database_admin_password_example
     data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    database_admin_password: example-password
+    protection_mode: MAXIMUM_AVAILABILITY
+    transport_type: SYNC
+
+- name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_data_guard_association:
+    # required
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    database_admin_password: example-password
+    protection_mode: MAXIMUM_AVAILABILITY
+    transport_type: SYNC
 
 """
 

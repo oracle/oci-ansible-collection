@@ -79,13 +79,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List datasets
-  oci_data_labeling_service_dataset_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific dataset
   oci_data_labeling_service_dataset_facts:
+    # required
     dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List datasets
+  oci_data_labeling_service_dataset_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    annotation_format: annotation_format_example
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

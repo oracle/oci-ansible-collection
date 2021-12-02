@@ -88,13 +88,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List users
-  oci_identity_user_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific user
   oci_identity_user_facts:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List users
+  oci_identity_user_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
+    external_identifier: external_identifier_example
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -206,7 +216,7 @@ users:
                         - Indicates if the user can log in to the console.
                     returned: on success
                     type: bool
-                    sample: true
+                    sample: example-password
                 can_use_api_keys:
                     description:
                         - Indicates if the user can use API keys.
@@ -278,7 +288,7 @@ users:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "capabilities": {
-            "can_use_console_password": true,
+            "can_use_console_password": example-password,
             "can_use_api_keys": true,
             "can_use_auth_tokens": true,
             "can_use_smtp_credentials": true,

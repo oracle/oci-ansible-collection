@@ -30,13 +30,9 @@ oracle.oci.oci_database_pluggable_database_actions -- Perform actions on a Plugg
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_pluggable_database_actions`.
 
@@ -250,7 +246,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A strong password for PDB Admin of the newly cloned PDB. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, #, or -.</div>
-                                            <div>Required for <em>action=local_clone</em>, <em>action=remote_clone</em>.</div>
+                                            <div>Applicable only for <em>action=local_clone</em><em>action=remote_clone</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -282,6 +278,26 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-should_pdb_admin_account_be_locked"></div>
+                    <b>should_pdb_admin_account_be_locked</b>
+                    <a class="ansibleOptionLink" href="#parameter-should_pdb_admin_account_be_locked" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The locked mode of the pluggable database admin account. If false, the user needs to provide the PDB Admin Password to connect to it. If true, the pluggable database will be locked and user cannot login to it.</div>
+                                            <div>Applicable only for <em>action=local_clone</em><em>action=remote_clone</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -329,7 +345,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The existing TDE wallet password of the target CDB.</div>
-                                            <div>Required for <em>action=local_clone</em>, <em>action=remote_clone</em>.</div>
+                                            <div>Applicable only for <em>action=local_clone</em><em>action=remote_clone</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -408,29 +424,39 @@ Examples
     
     - name: Perform action local_clone on pluggable_database
       oci_database_pluggable_database_actions:
-        cloned_pdb_name: "NewSalesPdb"
-        target_tde_wallet_password: "TDE_password"
-        pdb_admin_password: "password"
+        # required
+        cloned_pdb_name: cloned_pdb_name_example
         pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
-        action: "local_clone"
+        action: local_clone
+
+        # optional
+        pdb_admin_password: example-password
+        target_tde_wallet_password: example-password
+        should_pdb_admin_account_be_locked: true
 
     - name: Perform action remote_clone on pluggable_database
       oci_database_pluggable_database_actions:
-        cloned_pdb_name: "NewSalesPdb"
-        target_container_database_id: "ocid1.database.oc1..aaaaaaaah2sauv373xyfrpcnaed2ptfy67fnspzyda2hacgdbrkijhffugaa"
-        source_container_db_admin_password: "password"
-        target_tde_wallet_password: "TDE_password"
-        pdb_admin_password: "password"
+        # required
+        cloned_pdb_name: cloned_pdb_name_example
         pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
-        action: "remote_clone"
+        target_container_database_id: "ocid1.targetcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        source_container_db_admin_password: example-password
+        action: remote_clone
+
+        # optional
+        pdb_admin_password: example-password
+        target_tde_wallet_password: example-password
+        should_pdb_admin_account_be_locked: true
 
     - name: Perform action start on pluggable_database
       oci_database_pluggable_database_actions:
+        # required
         pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on pluggable_database
       oci_database_pluggable_database_actions:
+        # required
         pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
@@ -468,7 +494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the PluggableDatabase resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;pdb_default&#x27;: &#x27;pdb_default_example&#x27;, &#x27;pdb_ip_default&#x27;: &#x27;pdb_ip_default_example&#x27;}, &#x27;container_database_id&#x27;: &#x27;ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_restricted&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
@@ -486,7 +512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -504,7 +530,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -521,7 +547,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>All connection strings to use to connect to the pluggable database.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -538,7 +564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A host name-based PDB connection string.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_default_example</div>
                                     </td>
             </tr>
@@ -557,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An IP-based PDB connection string.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_ip_default_example</div>
                                     </td>
             </tr>
@@ -576,7 +602,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the CDB.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -594,7 +620,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -613,7 +639,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -631,7 +657,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the pluggable database.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -649,7 +675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The restricted mode of the pluggable database. If a pluggable database is opened in restricted mode, the user needs both create a session and have restricted session privileges to connect to it.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -667,7 +693,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Detailed message for the lifecycle state.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -685,7 +711,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the pluggable database.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -703,7 +729,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle Database software).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">READ_ONLY</div>
                                     </td>
             </tr>
@@ -721,7 +747,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name for the pluggable database (PDB). The name is unique in the context of a <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/Database/'>container database</a>. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters. Special characters are not permitted. The pluggable database name should not be same as the container database name.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_name_example</div>
                                     </td>
             </tr>
@@ -739,7 +765,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the pluggable database was created.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>

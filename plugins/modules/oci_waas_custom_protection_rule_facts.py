@@ -88,13 +88,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List custom_protection_rules
-  oci_waas_custom_protection_rule_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific custom_protection_rule
   oci_waas_custom_protection_rule_facts:
+    # required
     custom_protection_rule_id: "ocid1.customprotectionrule.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List custom_protection_rules
+  oci_waas_custom_protection_rule_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: id
+    sort_order: ASC
+    display_name: [ "$p.getValue()" ]
+    lifecycle_state: [ "$p.getValue()" ]
+    time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_created_less_than: 2013-10-20T19:20:30+01:00
 
 """
 

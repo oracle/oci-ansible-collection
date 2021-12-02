@@ -56,9 +56,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration_actions:
-    compartment_id: "ocid1.compartment.oc1..<unique_ID>"
+    # required
     auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 

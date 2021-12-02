@@ -26,8 +26,8 @@ description:
     - For I(state=present), creates a new Managed Instance Group on the management system.
       This will not contain any managed instances after it is first created,
       and they must be added later.
-    - "This resource has the following action operations in the M(oci_managed_instance_group_actions) module: attach_managed_instance, change_compartment,
-      detach_managed_instance, install_all_updates."
+    - "This resource has the following action operations in the M(oracle.oci.oci_os_management_managed_instance_group_actions) module: attach_managed_instance,
+      change_compartment, detach_managed_instance, install_all_updates."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -94,30 +94,47 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create managed_instance_group
   oci_os_management_managed_instance_group:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_os_management_managed_instance_group:
-    display_name: display_name_example
+    # optional
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    os_family: LINUX
 
 - name: Update managed_instance_group
   oci_os_management_managed_instance_group:
+    # required
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_os_management_managed_instance_group:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete managed_instance_group
   oci_os_management_managed_instance_group:
+    # required
     managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_managed_instance_group:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -104,31 +104,72 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create deploy_pipeline
   oci_devops_deploy_pipeline:
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update deploy_pipeline using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_devops_deploy_pipeline:
+    # optional
     description: description_example
     display_name: display_name_example
     deploy_pipeline_parameters:
+      # required
       items:
-      - name: name_example
+      - # required
+        name: name_example
+
+        # optional
+        default_value: default_value_example
+        description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deploy_pipeline
   oci_devops_deploy_pipeline:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     display_name: display_name_example
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_pipeline_parameters:
+      # required
+      items:
+      - # required
+        name: name_example
+
+        # optional
+        default_value: default_value_example
+        description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_pipeline using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_devops_deploy_pipeline:
+    # required
+    display_name: display_name_example
+
+    # optional
+    description: description_example
+    deploy_pipeline_parameters:
+      # required
+      items:
+      - # required
+        name: name_example
+
+        # optional
+        default_value: default_value_example
+        description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete deploy_pipeline
   oci_devops_deploy_pipeline:
+    # required
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deploy_pipeline using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_devops_deploy_pipeline:
+    # required
     display_name: display_name_example
     state: absent
 

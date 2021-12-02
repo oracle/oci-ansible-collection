@@ -30,13 +30,9 @@ oracle.oci.oci_identity_customer_secret_key -- Manage a CustomerSecretKey resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_identity_customer_secret_key`.
 
@@ -397,28 +393,35 @@ Examples
     
     - name: Create customer_secret_key
       oci_identity_customer_secret_key:
-        display_name: display_name_example
-        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-
-    - name: Update customer_secret_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_identity_customer_secret_key:
+        # required
         display_name: display_name_example
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update customer_secret_key
       oci_identity_customer_secret_key:
-        display_name: display_name_example
+        # required
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         customer_secret_key_id: "ocid1.customersecretkey.oc1..xxxxxxEXAMPLExxxxxx"
 
+        # optional
+        display_name: display_name_example
+
+    - name: Update customer_secret_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_identity_customer_secret_key:
+        # required
+        display_name: display_name_example
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
     - name: Delete customer_secret_key
       oci_identity_customer_secret_key:
+        # required
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         customer_secret_key_id: "ocid1.customersecretkey.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete customer_secret_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_customer_secret_key:
+        # required
         display_name: display_name_example
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
@@ -457,8 +460,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the CustomerSecretKey resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;key&#x27;: &#x27;example-key&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_expires&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_expires&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -473,9 +476,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The displayName you assign to the secret key. Does not have to be unique, and it&#x27;s changeable.</div>
+                                            <div>The display name you assign to the secret key. Does not have to be unique, and it&#x27;s changeable.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -491,9 +494,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the secret key.</div>
+                                            <div>The access key portion of the key pair.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -511,7 +514,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The detailed status of INACTIVE lifecycleState.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -529,8 +532,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The secret key. Key will be returned only for create operation.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example-key</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -547,7 +550,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The secret key&#x27;s current state. After creating a secret key, make sure its `lifecycleState` changes from CREATING to ACTIVE before using it.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
@@ -566,7 +569,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Date and time the `CustomerSecretKey` object was created, in the format defined by RFC3339.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -585,7 +588,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Date and time when this password will expire, in the format defined by RFC3339. Null if it never expires.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -603,7 +606,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the user the password belongs to.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.user.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

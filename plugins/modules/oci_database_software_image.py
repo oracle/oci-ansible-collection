@@ -24,7 +24,7 @@ short_description: Manage a DatabaseSoftwareImage resource in Oracle Cloud Infra
 description:
     - This module allows the user to create, update and delete a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
     - For I(state=present), create database software image in the specified compartment.
-    - "This resource has the following action operations in the M(oci_database_software_image_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_software_image_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -115,24 +115,50 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create database_software_image
   oci_database_software_image:
+    # required
     compartment_id: "ocid.compartment.oc1..unique_ID"
     display_name: image2
 
-- name: Update database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_software_image:
-    display_name: "image2"
+    # optional
+    database_version: database_version_example
+    image_shape_family: VM_BM_SHAPE
+    image_type: GRID_IMAGE
+    patch_set: patch_set_example
+    database_software_image_one_off_patches: [ "null" ]
+    ls_inventory: ls_inventory_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    source_db_home_id: "ocid1.sourcedbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update database_software_image
   oci_database_software_image:
+    # required
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: image2
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_software_image:
+    # required
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+    display_name: image2
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete database_software_image
   oci_database_software_image:
+    # required
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:
+    # required
     compartment_id: "ocid.compartment.oc1..unique_ID"
     display_name: image2
     state: absent

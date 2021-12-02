@@ -24,7 +24,7 @@ short_description: Manage a Backup resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Backup resource in Oracle Cloud Infrastructure
     - For I(state=present), create a backup of a DB System.
-    - "This resource has the following action operations in the M(oci_backup_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_mysql_backup_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -98,31 +98,50 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create backup
   oci_mysql_backup:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    display_name: display_name_example
+    description: description_example
+    backup_type: FULL
+    retention_in_days: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update backup
   oci_mysql_backup:
+    # required
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
     retention_in_days: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_mysql_backup:
+    # required
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update backup
-  oci_mysql_backup:
-    display_name: display_name_example
+    # optional
     description: description_example
-    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+    retention_in_days: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete backup
   oci_mysql_backup:
+    # required
     backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_backup:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -43,14 +43,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List db_home_patches
-  oci_database_db_home_patch_facts:
-    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific db_home_patch
   oci_database_db_home_patch_facts:
+    # required
     db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List db_home_patches
+  oci_database_db_home_patch_facts:
+    # required
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

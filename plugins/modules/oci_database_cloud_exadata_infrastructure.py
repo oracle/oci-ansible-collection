@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a cloud Exadata infrastructure resource. This resource is used to create an L(Exadata Cloud
       Service,https://docs.cloud.oracle.com/Content/Database/Concepts/exaoverview.htm) instance.
-    - "This resource has the following action operations in the M(oci_cloud_exadata_infrastructure_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_cloud_exadata_infrastructure_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -193,29 +193,105 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure:
-    compartment_id: "ocid1.tenancy.oc1.unique_ID"
-    display_name: "tstExaInfra"
-    shape: "Exadata.X8M"
-    compute_count: "2"
-    storage_count: "3"
+    # required
+    availability_domain: Uocm:PHX-AD-1
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: tstExaInfra
+    shape: Exadata.X8M
 
-- name: Update cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_cloud_exadata_infrastructure:
-    compute_count: "3"
-    storage_count: "4"
-    display_name: "displayName"
+    # optional
+    compute_count: 2
+    storage_count: 3
+    maintenance_window:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    customer_contacts:
+    - # optional
+      email: email_example
 
 - name: Update cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure:
+    # required
     cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: tstExaInfra
+    compute_count: 2
+    storage_count: 3
+    maintenance_window:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    customer_contacts:
+    - # optional
+      email: email_example
+
+- name: Update cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_cloud_exadata_infrastructure:
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: tstExaInfra
+
+    # optional
+    compute_count: 2
+    storage_count: 3
+    maintenance_window:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    customer_contacts:
+    - # optional
+      email: email_example
 
 - name: Delete cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure:
+    # required
     cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    is_delete_vm_clusters: true
+
 - name: Delete cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_exadata_infrastructure:
+    # required
     compartment_id: ocid1.tenancy.oc1.unique_ID
     display_name: tstExaInfra
     state: absent

@@ -23,7 +23,7 @@ module: oci_database_migration_agent
 short_description: Manage an Agent resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an Agent resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_agent_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_migration_agent_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -87,28 +87,41 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Update agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Update agent
   oci_database_migration_agent:
+    # required
+    agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     version: version_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_migration_agent:
+    # required
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update agent
-  oci_database_migration_agent:
-    agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
+    stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
+    public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    version: version_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete agent
   oci_database_migration_agent:
+    # required
     agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_agent:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on stream
   oci_streaming_stream_actions:
+    # required
     stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

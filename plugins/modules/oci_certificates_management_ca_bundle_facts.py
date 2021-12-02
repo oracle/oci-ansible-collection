@@ -73,13 +73,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List ca_bundles
-  oci_certificates_management_ca_bundle_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific ca_bundle
   oci_certificates_management_ca_bundle_facts:
+    # required
     ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List ca_bundles
+  oci_certificates_management_ca_bundle_facts:
+
+    # optional
+    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: CREATING
+    name: name_example
+    sort_by: NAME
+    sort_order: ASC
 
 """
 

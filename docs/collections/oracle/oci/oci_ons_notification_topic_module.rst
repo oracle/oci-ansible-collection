@@ -30,13 +30,9 @@ oracle.oci.oci_ons_notification_topic -- Manage a NotificationTopic resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_ons_notification_topic`.
 
@@ -62,7 +58,7 @@ Synopsis
 - You must specify a display name for the topic.
 - All Oracle Cloud Infrastructure resources, including topics, get an Oracle-assigned, unique ID called an Oracle Cloud Identifier (OCID). When you create a resource, you can find its OCID in the response. You can also retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the Console. For more information, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
 - Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
-- This resource has the following action operations in the M(oci_notification_topic_actions) module: change_compartment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_ons_notification_topic_actions <ansible_collections.oracle.oci.oci_ons_notification_topic_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -417,26 +413,45 @@ Examples
     
     - name: Create notification_topic
       oci_ons_notification_topic:
-        name: "Admins"
-        compartment_id: "compartment_OCID"
-        description: "Channel for admin messages"
+        # required
+        name: Admins
+        compartment_id: compartment_OCID
 
-    - name: Update notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_ons_notification_topic:
-        description: "Channel for admin messages"
+        # optional
+        description: Channel for admin messages
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update notification_topic
       oci_ons_notification_topic:
-        description: "Channel for admin messages"
+        # required
+        description: Channel for admin messages
         topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_ons_notification_topic:
+        # required
+        name: Admins
+        compartment_id: compartment_OCID
+
+        # optional
+        description: Channel for admin messages
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete notification_topic
       oci_ons_notification_topic:
+        # required
         topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_ons_notification_topic:
+        # required
         name: Admins
         compartment_id: compartment_OCID
         state: absent
@@ -475,7 +490,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the NotificationTopic resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;api_endpoint&#x27;: &#x27;api_endpoint_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;short_topic_id&#x27;: &#x27;ocid1.shorttopic.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -493,7 +508,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The endpoint for managing subscriptions or publishing messages to the topic.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">api_endpoint_example</div>
                                     </td>
             </tr>
@@ -511,7 +526,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment for the topic.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -530,7 +545,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -548,7 +563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The description of the topic.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -566,7 +581,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For optimistic concurrency control. See `if-match`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">etag_example</div>
                                     </td>
             </tr>
@@ -585,7 +600,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -603,7 +618,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The lifecycle state of the topic.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
                                     </td>
             </tr>
@@ -621,7 +636,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the topic.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -639,7 +654,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A unique short topic Id. This is used only for SMS subscriptions.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.shorttopic.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -657,7 +672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the topic was created.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -675,7 +690,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the topic.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

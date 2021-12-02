@@ -83,9 +83,18 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List job_executions_status_summaries
   oci_database_management_job_executions_status_summary_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     start_time: start_time_example
     end_time: end_time_example
+
+    # optional
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

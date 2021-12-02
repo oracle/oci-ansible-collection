@@ -51,7 +51,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List log_analytics_preference_collection
   oci_log_analytics_preferences_management_facts:
+    # required
     namespace_name: namespace_name_example
+
+    # optional
+    sort_order: ASC
+    sort_by: name
 
 """
 

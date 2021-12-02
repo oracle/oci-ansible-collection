@@ -30,13 +30,9 @@ oracle.oci.oci_opsi_host_insight_resource_utilization_insight_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_host_insight_resource_utilization_insight_facts`.
 
@@ -57,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about a HostInsightResourceUtilizationInsight resource in Oracle Cloud Infrastructure
-- Gets resources with current utilization (high and low) and projected utilization (high and low) for a resource type over specified time period.
+- Gets resources with current utilization (high and low) and projected utilization (high and low) for a resource type over specified time period. If compartmentIdInSubtree is specified, aggregates resources in a compartment and in all sub-compartments.
 
 
 .. Aliases
@@ -199,6 +195,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id_in_subtree"></div>
+                    <b>compartment_id_in_subtree</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id_in_subtree" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A flag to search all resources within a given compartment and all sub-compartments.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -255,6 +270,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned. Each item in the list has the format &quot;{namespace}.{tagName}.true&quot; (for checking existence of a defined tag) or &quot;{namespace}.true&quot;.  All inputs are case-insensitive. Currently, only existence (&quot;true&quot; at the end) is supported. Absence (&quot;false&quot; at the end) is not supported. Multiple values for the same key (i.e. same namespace and tag name) are interpreted as &quot;OR&quot;. Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exadata_insight_id"></div>
+                    <b>exadata_insight_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-exadata_insight_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional list of exadata insight resource <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -437,8 +467,23 @@ Examples
     
     - name: Get a specific host_insight_resource_utilization_insight
       oci_opsi_host_insight_resource_utilization_insight_facts:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resource_metric: resource_metric_example
+
+        # optional
+        analysis_time_interval: analysis_time_interval_example
+        time_interval_start: 2013-10-20T19:20:30+01:00
+        time_interval_end: 2013-10-20T19:20:30+01:00
+        platform_type: [ "$p.getValue()" ]
+        id: [ "$p.getValue()" ]
+        exadata_insight_id: [ "$p.getValue()" ]
+        forecast_days: 56
+        defined_tag_equals: [ "$p.getValue()" ]
+        freeform_tag_equals: [ "$p.getValue()" ]
+        defined_tag_exists: [ "$p.getValue()" ]
+        freeform_tag_exists: [ "$p.getValue()" ]
+        compartment_id_in_subtree: true
 
 
 
@@ -474,7 +519,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>HostInsightResourceUtilizationInsight resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;current_utilization&#x27;: {&#x27;high&#x27;: [], &#x27;low&#x27;: []}, &#x27;projected_utilization&#x27;: {&#x27;high&#x27;: [{&#x27;days_to_reach&#x27;: 5, &#x27;id&#x27;: &#x27;id1&#x27;}], &#x27;low&#x27;: [{&#x27;days_to_reach&#x27;: 5, &#x27;id&#x27;: &#x27;id1&#x27;}]}, &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;}</div>
                                     </td>
             </tr>
@@ -492,7 +537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -509,7 +554,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of db ids with high usage</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -526,7 +571,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of db ids with low usage</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                     
                                 <tr>
@@ -543,7 +588,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -560,7 +605,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of db ids with high usage</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -578,7 +623,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Days to reach projected utilization</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">5</div>
                                     </td>
             </tr>
@@ -598,7 +643,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Db id</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">id1</div>
                                     </td>
             </tr>
@@ -618,7 +663,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of db ids with low usage</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -636,7 +681,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Days to reach projected utilization</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">5</div>
                                     </td>
             </tr>
@@ -656,7 +701,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Db id</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">id1</div>
                                     </td>
             </tr>
@@ -676,7 +721,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defines the type of resource metric (CPU, Physical Memory, Logical Memory)</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU</div>
                                     </td>
             </tr>
@@ -694,7 +739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The end timestamp that was passed into the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-12-06T00:00:00.000Z</div>
                                     </td>
             </tr>
@@ -712,7 +757,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The start timestamp that was passed into the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-12-06T00:00:00.000Z</div>
                                     </td>
             </tr>

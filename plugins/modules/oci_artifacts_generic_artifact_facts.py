@@ -91,14 +91,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific generic_artifact
+  oci_artifacts_generic_artifact_facts:
+    # required
+    artifact_id: "ocid1.genericartifact.oc1..exampleuniqueID"
+
 - name: List generic_artifacts
   oci_artifacts_generic_artifact_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific generic_artifact
-  oci_artifacts_generic_artifact_facts:
-    artifact_id: "ocid1.genericartifact.oc1..exampleuniqueID"
+    # optional
+    display_name: display_name_example
+    artifact_path: artifact_path_example
+    version: version_example
+    sha256: sha256_example
+    lifecycle_state: lifecycle_state_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

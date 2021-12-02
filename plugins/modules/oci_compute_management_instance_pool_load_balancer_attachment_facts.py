@@ -44,6 +44,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific instance_pool_load_balancer_attachment
   oci_compute_management_instance_pool_load_balancer_attachment_facts:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     instance_pool_load_balancer_attachment_id: "ocid1.instancepoolloadbalancerattachment.oc1..xxxxxxEXAMPLExxxxxx"
 

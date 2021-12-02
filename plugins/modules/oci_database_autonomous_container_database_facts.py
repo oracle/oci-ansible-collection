@@ -105,13 +105,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List autonomous_container_databases
-  oci_database_autonomous_container_database_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific autonomous_container_database
   oci_database_autonomous_container_database_facts:
+    # required
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List autonomous_container_databases
+  oci_database_autonomous_container_database_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    infrastructure_type: infrastructure_type_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    availability_domain: Uocm:PHX-AD-1
+    display_name: display_name_example
+    service_level_agreement_type: service_level_agreement_type_example
 
 """
 
@@ -365,7 +378,7 @@ autonomous_container_databases:
                                 - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
                             returned: on success
                             type: str
-                            sample: vpc_password_example
+                            sample: example-password
                         internet_proxy:
                             description:
                                 - Proxy URL to connect to object store.
@@ -434,7 +447,7 @@ autonomous_container_databases:
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "vpc_user": "vpc_user_example",
-                "vpc_password": "vpc_password_example",
+                "vpc_password": "example-password",
                 "internet_proxy": "internet_proxy_example"
             }],
             "recovery_window_in_days": 56

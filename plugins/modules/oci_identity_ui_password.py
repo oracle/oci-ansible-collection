@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create ui_password
   oci_identity_ui_password:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -70,7 +71,7 @@ ui_password:
                 - The user's password for the Console.
             returned: on success
             type: str
-            sample: password_example
+            sample: example-password
         user_id:
             description:
                 - The OCID of the user.
@@ -98,7 +99,7 @@ ui_password:
             type: int
             sample: 56
     sample: {
-        "password": "password_example",
+        "password": "example-password",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
         "lifecycle_state": "CREATING",

@@ -44,13 +44,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List announcements_preferences
-  oci_announcements_service_announcements_preferences_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific announcements_preferences
   oci_announcements_service_announcements_preferences_facts:
+    # required
     preference_id: "ocid1.preference.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List announcements_preferences
+  oci_announcements_service_announcements_preferences_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

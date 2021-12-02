@@ -96,8 +96,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_database_clones
   oci_database_autonomous_database_clones_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    display_name: display_name_example
+    lifecycle_state: lifecycle_state_example
+    sort_by: NONE
+    clone_type: REFRESHABLE_CLONE
 
 """
 

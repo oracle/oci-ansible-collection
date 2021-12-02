@@ -124,14 +124,33 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List data_assets
-  oci_data_catalog_data_asset_facts:
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific data_asset
   oci_data_catalog_data_asset_facts:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
+
+    # optional
+    fields: [ "$p.getValue()" ]
+
+- name: List data_assets
+  oci_data_catalog_data_asset_facts:
+    # required
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    fields: [ "$p.getValue()" ]
+    display_name: display_name_example
+    display_name_contains: display_name_contains_example
+    lifecycle_state: CREATING
+    time_created: 2013-10-20T19:20:30+01:00
+    time_updated: 2013-10-20T19:20:30+01:00
+    created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+    updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+    external_key: external_key_example
+    type_key: type_key_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

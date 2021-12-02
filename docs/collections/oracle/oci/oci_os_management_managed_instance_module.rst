@@ -30,13 +30,9 @@ oracle.oci.oci_os_management_managed_instance -- Manage a ManagedInstance resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_os_management_managed_instance`.
 
@@ -57,7 +53,7 @@ Synopsis
 .. Description
 
 - This module allows the user to update a ManagedInstance resource in Oracle Cloud Infrastructure
-- This resource has the following action operations in the M(oci_managed_instance_actions) module: attach_child_software_source, attach_parent_software_source, detach_child_software_source, detach_parent_software_source, install_all_package_updates, install_all_windows_updates, install_package, install_package_update, install_windows_update, remove_package.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_os_management_managed_instance_actions <ansible_collections.oracle.oci.oci_os_management_managed_instance_actions_module>` module: attach_child_software_source, attach_parent_software_source, detach_child_software_source, detach_parent_software_source, install_all_package_updates, install_all_windows_updates, install_package, install_package_update, install_windows_update, remove_package.
 
 
 .. Aliases
@@ -325,8 +321,12 @@ Examples
     
     - name: Update managed_instance
       oci_os_management_managed_instance:
+        # required
         managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
         notification_topic_id: "ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx"
+        is_data_collection_authorized: true
 
 
 
@@ -362,7 +362,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the ManagedInstance resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous&#x27;: {&#x27;is_auto_update_enabled&#x27;: True}, &#x27;bug_updates_available&#x27;: 56, &#x27;child_software_sources&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;enhancement_updates_available&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_data_collection_authorized&#x27;: True, &#x27;is_reboot_required&#x27;: True, &#x27;ksplice_effective_kernel_version&#x27;: &#x27;ksplice_effective_kernel_version_example&#x27;, &#x27;last_boot&#x27;: &#x27;last_boot_example&#x27;, &#x27;last_checkin&#x27;: &#x27;last_checkin_example&#x27;, &#x27;managed_instance_groups&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;notification_topic_id&#x27;: &#x27;ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;os_family&#x27;: &#x27;LINUX&#x27;, &#x27;os_kernel_version&#x27;: &#x27;os_kernel_version_example&#x27;, &#x27;os_name&#x27;: &#x27;os_name_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;other_updates_available&#x27;: 56, &#x27;parent_software_source&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;scheduled_job_count&#x27;: 56, &#x27;security_updates_available&#x27;: 56, &#x27;status&#x27;: &#x27;NORMAL&#x27;, &#x27;updates_available&#x27;: 56, &#x27;work_request_count&#x27;: 56}</div>
                                     </td>
             </tr>
@@ -380,7 +380,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>if present, indicates the Managed Instance is an autonomous instance. Holds all the Autonomous specific information</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -397,7 +397,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>True if daily updates are enabled</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -416,7 +416,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of bug fix type updates available to be installed</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -434,7 +434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>list of child Software Sources attached to the Managed Instance</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -451,7 +451,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>software source identifier</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -470,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>software source name</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -489,7 +489,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID for the Compartment</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -507,7 +507,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Information specified by the user about the managed instance</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -525,7 +525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Managed Instance identifier</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -543,7 +543,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of enhancement type updates available to be installed</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -561,7 +561,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID for the managed instance</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -579,7 +579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>True if user allow data collection for this instance</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -597,7 +597,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether a reboot is required to complete installation of updates.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -615,7 +615,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ksplice effective kernel version</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ksplice_effective_kernel_version_example</div>
                                     </td>
             </tr>
@@ -633,7 +633,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Time at which the instance last booted</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">last_boot_example</div>
                                     </td>
             </tr>
@@ -651,7 +651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Time at which the instance last checked in</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">last_checkin_example</div>
                                     </td>
             </tr>
@@ -669,7 +669,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ids of the managed instance groups of which this instance is a member.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -686,7 +686,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>User friendly name</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -705,7 +705,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>unique identifier that is immutable on creation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -724,7 +724,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the ONS topic used to send notification to users</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -742,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Operating System type of the managed instance.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LINUX</div>
                                     </td>
             </tr>
@@ -760,7 +760,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Operating System Kernel Version</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">os_kernel_version_example</div>
                                     </td>
             </tr>
@@ -778,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Operating System Name</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">os_name_example</div>
                                     </td>
             </tr>
@@ -796,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Operating System Version</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">os_version_example</div>
                                     </td>
             </tr>
@@ -814,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of non-classified updates available to be installed</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -832,7 +832,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the parent (base) Software Source attached to the Managed Instance</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -849,7 +849,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>software source identifier</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -868,7 +868,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>software source name</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -887,7 +887,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of scheduled jobs associated with this instance</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -905,7 +905,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of security type updates available to be installed</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -923,7 +923,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>status of the managed instance.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NORMAL</div>
                                     </td>
             </tr>
@@ -941,7 +941,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of updates available to be installed</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -959,7 +959,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of work requests associated with this instance</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

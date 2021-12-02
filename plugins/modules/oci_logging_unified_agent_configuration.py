@@ -24,7 +24,7 @@ short_description: Manage an UnifiedAgentConfiguration resource in Oracle Cloud 
 description:
     - This module allows the user to create, update and delete an UnifiedAgentConfiguration resource in Oracle Cloud Infrastructure
     - For I(state=present), create unified agent configuration registration.
-    - "This resource has the following action operations in the M(oci_unified_agent_configuration_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_logging_unified_agent_configuration_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -334,37 +334,103 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create unified_agent_configuration
   oci_logging_unified_agent_configuration:
+    # required
     is_enabled: true
     service_configuration:
+      # required
       configuration_type: LOGGING
+
+      # optional
+      sources:
+      - # required
+        name: name_example
+        source_type: WINDOWS_EVENT_LOG
+
+        # optional
+        channels: [ "null" ]
+      destination:
+        # required
+        log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_logging_unified_agent_configuration:
+    # optional
     display_name: display_name_example
-    is_enabled: true
-    service_configuration:
-      configuration_type: LOGGING
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
+    group_association:
+      # optional
+      group_list: [ "null" ]
 
 - name: Update unified_agent_configuration
   oci_logging_unified_agent_configuration:
+    # required
     display_name: display_name_example
     is_enabled: true
     service_configuration:
+      # required
       configuration_type: LOGGING
+
+      # optional
+      sources:
+      - # required
+        name: name_example
+        source_type: WINDOWS_EVENT_LOG
+
+        # optional
+        channels: [ "null" ]
+      destination:
+        # required
+        log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
     unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    description: description_example
+    group_association:
+      # optional
+      group_list: [ "null" ]
+
+- name: Update unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_logging_unified_agent_configuration:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    is_enabled: true
+    service_configuration:
+      # required
+      configuration_type: LOGGING
+
+      # optional
+      sources:
+      - # required
+        name: name_example
+        source_type: WINDOWS_EVENT_LOG
+
+        # optional
+        channels: [ "null" ]
+      destination:
+        # required
+        log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    description: description_example
+    group_association:
+      # optional
+      group_list: [ "null" ]
 
 - name: Delete unified_agent_configuration
   oci_logging_unified_agent_configuration:
+    # required
     unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_unified_agent_configuration:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

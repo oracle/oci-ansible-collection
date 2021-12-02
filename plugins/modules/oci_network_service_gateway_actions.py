@@ -84,18 +84,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action attach_service_id on service_gateway
   oci_network_service_gateway_actions:
+    # required
     service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
     service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_service_id
 
 - name: Perform action change_compartment on service_gateway
   oci_network_service_gateway_actions:
+    # required
     service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action detach_service_id on service_gateway
   oci_network_service_gateway_actions:
+    # required
     service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
     service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_service_id
@@ -162,7 +165,7 @@ service_gateway:
             sample: PROVISIONING
         route_table_id:
             description:
-                - "The OCID of the route table the service gateway is using.
+                - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the service gateway is using.
                   For information about why you would associate a route table with a service gateway, see
                   L(Transit Routing: Private Access to Oracle
                   Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)."

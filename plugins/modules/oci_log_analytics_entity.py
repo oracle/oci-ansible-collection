@@ -24,8 +24,8 @@ short_description: Manage a LogAnalyticsEntity resource in Oracle Cloud Infrastr
 description:
     - This module allows the user to create, update and delete a LogAnalyticsEntity resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new log analytics entity.
-    - "This resource has the following action operations in the M(oci_log_analytics_entity_actions) module: add_entity_association, change_compartment,
-      remove_entity_associations."
+    - "This resource has the following action operations in the M(oracle.oci.oci_log_analytics_entity_actions) module: add_entity_association,
+      change_compartment, remove_entity_associations."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -118,36 +118,62 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create log_analytics_entity
   oci_log_analytics_entity:
+    # required
     namespace_name: namespace_name_example
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     entity_type_name: entity_type_name_example
 
-- name: Update log_analytics_entity using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_log_analytics_entity:
-    namespace_name: namespace_name_example
-    name: name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+    cloud_resource_id: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
     timezone_region: timezone_region_example
     hostname: hostname_example
+    source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+    properties: null
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update log_analytics_entity
   oci_log_analytics_entity:
+    # required
+    namespace_name: namespace_name_example
+    log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+    timezone_region: timezone_region_example
+    hostname: hostname_example
+    properties: null
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update log_analytics_entity using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_log_analytics_entity:
+    # required
     namespace_name: namespace_name_example
     name: name_example
-    log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+    timezone_region: timezone_region_example
+    hostname: hostname_example
+    properties: null
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete log_analytics_entity
   oci_log_analytics_entity:
+    # required
     namespace_name: namespace_name_example
     log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete log_analytics_entity using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_entity:
+    # required
     namespace_name: namespace_name_example
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

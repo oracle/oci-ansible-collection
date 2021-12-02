@@ -34,7 +34,8 @@ options:
         type: str
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
@@ -85,18 +86,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create boot_volume_attachment
   oci_compute_boot_volume_attachment:
+    # required
     boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    encryption_in_transit_type: NONE
 
 - name: Delete boot_volume_attachment
   oci_compute_boot_volume_attachment:
+    # required
     boot_volume_attachment_id: "ocid1.bootvolumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete boot_volume_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_boot_volume_attachment:
+    # required
     display_name: display_name_example
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -132,12 +138,11 @@ boot_volume_attachment:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it cannot be changed.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My boot volume`"
             returned: on success
             type: str
-            sample: My boot volume
+            sample: display_name_example
         id:
             description:
                 - The OCID of the boot volume attachment.
@@ -180,7 +185,7 @@ boot_volume_attachment:
         "availability_domain": "Uocm:PHX-AD-1",
         "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My boot volume",
+        "display_name": "display_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ATTACHING",

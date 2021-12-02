@@ -24,13 +24,14 @@ short_description: Manage a LocalPeeringGateway resource in Oracle Cloud Infrast
 description:
     - This module allows the user to create, update and delete a LocalPeeringGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new local peering gateway (LPG) for the specified VCN.
-    - "This resource has the following action operations in the M(oci_local_peering_gateway_actions) module: change_compartment, connect."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_local_peering_gateway_actions) module: change_compartment, connect."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment containing the local peering gateway (LPG).
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the local peering gateway
+              (LPG).
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -44,8 +45,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-              entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -60,7 +61,7 @@ options:
         type: dict
     route_table_id:
         description:
-            - The OCID of the route table the LPG will use.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the LPG will use.
             - If you don't specify a route table here, the LPG is created without an associated route
               table. The Networking service does NOT automatically associate the attached VCN's default route table
               with the LPG.
@@ -70,7 +71,7 @@ options:
         type: str
     vcn_id:
         description:
-            - The OCID of the VCN the LPG belongs to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the LPG belongs to.
             - Required for create using I(state=present).
         type: str
     local_peering_gateway_id:
@@ -95,12 +96,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create local_peering_gateway
   oci_network_local_peering_gateway:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update local_peering_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_local_peering_gateway:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -108,17 +108,35 @@ EXAMPLES = """
 
 - name: Update local_peering_gateway
   oci_network_local_peering_gateway:
+    # required
+    local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update local_peering_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_local_peering_gateway:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete local_peering_gateway
   oci_network_local_peering_gateway:
+    # required
     local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete local_peering_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_local_peering_gateway:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -134,7 +152,7 @@ local_peering_gateway:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the LPG.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the LPG.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -148,8 +166,8 @@ local_peering_gateway:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -164,7 +182,7 @@ local_peering_gateway:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The LPG's Oracle ID (OCID).
+                - The LPG's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -222,7 +240,7 @@ local_peering_gateway:
             sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         route_table_id:
             description:
-                - The OCID of the route table the LPG is using.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the LPG is using.
                 - "For information about why you would associate a route table with an LPG, see
                   L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)."
             returned: on success

@@ -63,13 +63,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List private_applications
-  oci_service_catalog_private_application_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific private_application
   oci_service_catalog_private_application_facts:
+    # required
     private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List private_applications
+  oci_service_catalog_private_application_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
+    display_name: display_name_example
 
 """
 

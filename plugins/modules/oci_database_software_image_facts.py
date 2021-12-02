@@ -95,13 +95,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List database_software_images
-  oci_database_software_image_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific database_software_image
   oci_database_software_image_facts:
+    # required
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List database_software_images
+  oci_database_software_image_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    image_type: image_type_example
+    image_shape_family: image_shape_family_example
+    is_upgrade_supported: true
 
 """
 

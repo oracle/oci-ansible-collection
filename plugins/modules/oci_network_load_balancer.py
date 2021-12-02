@@ -24,7 +24,7 @@ short_description: Manage a NetworkLoadBalancer resource in Oracle Cloud Infrast
 description:
     - This module allows the user to create, update and delete a NetworkLoadBalancer resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a network load balancer.
-    - "This resource has the following action operations in the M(oci_network_load_balancer_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_load_balancer_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -119,25 +119,51 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create network_load_balancer
   oci_network_load_balancer:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: example_network_load_balancer
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update network_load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_load_balancer:
-    display_name: "example_network_load_balancer"
+    # optional
+    is_preserve_source_destination: true
+    reserved_ips:
+    - # optional
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    is_private: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update network_load_balancer
   oci_network_load_balancer:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: example_network_load_balancer
+    is_preserve_source_destination: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update network_load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_load_balancer:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: example_network_load_balancer
+
+    # optional
+    is_preserve_source_destination: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete network_load_balancer
   oci_network_load_balancer:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete network_load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_load_balancer:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: example_network_load_balancer
     state: absent
@@ -480,7 +506,7 @@ network_load_balancer:
                                 - "Example: `^((?!false).|\\\\s)*$`"
                             returned: on success
                             type: str
-                            sample: "^((?!false).|\\\\s)*$"
+                            sample: response_body_regex_example
                         return_code:
                             description:
                                 - "The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol,
@@ -570,7 +596,7 @@ network_load_balancer:
                 "timeout_in_millis": 3000,
                 "interval_in_millis": 10000,
                 "url_path": "/healthcheck",
-                "response_body_regex": "^((?!false).|\\\\s)*$",
+                "response_body_regex": "response_body_regex_example",
                 "return_code": 0,
                 "request_data": UNKNOWN TYPE - str,
                 "response_data": UNKNOWN TYPE - str

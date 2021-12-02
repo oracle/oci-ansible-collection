@@ -74,15 +74,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific instance_pool_instance
+  oci_compute_management_instance_pool_instance_facts:
+    # required
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List instance_pool_instances
   oci_compute_management_instance_pool_instance_facts:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific instance_pool_instance
-  oci_compute_management_instance_pool_instance_facts:
-    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
-    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 
@@ -126,7 +133,8 @@ instance_pool_instances:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

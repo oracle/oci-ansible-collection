@@ -132,20 +132,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action bulk_delete on tag
   oci_identity_tag_actions:
-    tag_definition_ids:
-    - "ocid1.tagdefinition.oc1..unique_ID_1"
-    - "ocid1.tagdefinition.oc1..unique_ID_2"
-    - "ocid1.tagdefinition.oc1..unique_ID_3"
-    action: "bulk_delete"
+    # required
+    tag_definition_ids: [ "null" ]
+    action: bulk_delete
 
 - name: Perform action bulk_edit on tag
   oci_identity_tag_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
-    - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       resource_type: resource_type_example
+
+      # optional
+      metadata: null
     bulk_edit_operations:
-    - operation_type: ADD_WHERE_ABSENT
+    - # required
+      operation_type: ADD_WHERE_ABSENT
       defined_tags: {'Operations': {'CostCenter': 'US'}}
     action: bulk_edit
 

@@ -68,14 +68,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List compute_global_image_capability_schema_versions
-  oci_compute_global_image_capability_schema_version_facts:
-    compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific compute_global_image_capability_schema_version
   oci_compute_global_image_capability_schema_version_facts:
+    # required
     compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
     compute_global_image_capability_schema_version_name: compute_global_image_capability_schema_version_name_example
+
+- name: List compute_global_image_capability_schema_versions
+  oci_compute_global_image_capability_schema_version_facts:
+    # required
+    compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 
@@ -100,7 +107,8 @@ compute_global_image_capability_schema_versions:
             sample: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly name for the compute global image capability schema
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

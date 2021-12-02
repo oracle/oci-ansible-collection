@@ -30,13 +30,9 @@ oracle.oci.oci_key_management_verified_data -- Manage a VerifiedData resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_key_management_verified_data`.
 
@@ -429,10 +425,15 @@ Examples
     
     - name: Create verified_data
       oci_key_management_verified_data:
-        key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
-        key_version_id: "ocid1.keyversion.oc1.iad.exampledaaeug.xd5q23tteidhj4q2c6qfauxm32i577yuamplestkvmbjdnbickxasfaf"
-        signature: "dsdfsljfnsjnfsnfdsnf"
-        signing_algorithm: "SHA256_RSA_PKCS_PSS"
+        # required
+        key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
+        key_version_id: ocid1.keyversion.oc1.iad.exampledaaeug.xd5q23tteidhj4q2c6qfauxm32i577yuamplestkvmbjdnbickxasfaf
+        signature: dsdfsljfnsjnfsnfdsnf
+        message: message_example
+        signing_algorithm: SHA256_RSA_PKCS_PSS
+
+        # optional
+        message_type: RAW
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 
@@ -469,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the VerifiedData resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;is_signature_valid&#x27;: True}</div>
                                     </td>
             </tr>
@@ -487,7 +488,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A Boolean value that indicates whether the signature was verified.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>

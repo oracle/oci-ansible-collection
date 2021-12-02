@@ -24,7 +24,8 @@ short_description: Manage a Deployment resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Deployment.
-    - "This resource has the following action operations in the M(oci_deployment_actions) module: change_compartment, start, stop, upgrade."
+    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_actions) module: change_compartment, start, stop,
+      upgrade."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -169,6 +170,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create deployment
   oci_golden_gate_deployment:
+    # required
     display_name: display_name_example
     license_model: LICENSE_INCLUDED
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -177,33 +179,81 @@ EXAMPLES = """
     is_auto_scaling_enabled: true
     deployment_type: OGG
 
-- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    fqdn: fqdn_example
+    nsg_ids: [ "null" ]
+    is_public: true
+    ogg_data:
+      # optional
+      deployment_name: deployment_name_example
+      admin_username: oggadmin
+      admin_password: example-password
+      certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+      key: key_example
+
+- name: Update deployment
   oci_golden_gate_deployment:
+    # required
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     license_model: LICENSE_INCLUDED
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     fqdn: fqdn_example
+    nsg_ids: [ "null" ]
     is_public: true
     cpu_core_count: 56
     is_auto_scaling_enabled: true
+    ogg_data:
+      # optional
+      deployment_name: deployment_name_example
+      admin_username: oggadmin
+      admin_password: example-password
+      certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+      key: key_example
 
-- name: Update deployment
+- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment:
+    # required
     display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     license_model: LICENSE_INCLUDED
-    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    fqdn: fqdn_example
+    nsg_ids: [ "null" ]
+    is_public: true
+    cpu_core_count: 56
+    is_auto_scaling_enabled: true
+    ogg_data:
+      # optional
+      deployment_name: deployment_name_example
+      admin_username: oggadmin
+      admin_password: example-password
+      certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+      key: key_example
 
 - name: Delete deployment
   oci_golden_gate_deployment:
+    # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

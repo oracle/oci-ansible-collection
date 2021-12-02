@@ -69,8 +69,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create model_artifact
   oci_data_science_model_artifact:
+    # required
     model_artifact_file: model.zip
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    content_length: 789
+    model_artifact: B
+    content_disposition: content_disposition_example
 
 """
 

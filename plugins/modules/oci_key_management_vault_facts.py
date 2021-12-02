@@ -63,13 +63,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List vaults
-  oci_key_management_vault_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific vault
   oci_key_management_vault_facts:
+    # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List vaults
+  oci_key_management_vault_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

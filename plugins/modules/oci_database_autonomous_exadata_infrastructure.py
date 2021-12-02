@@ -24,8 +24,8 @@ short_description: Manage an AutonomousExadataInfrastructure resource in Oracle 
 description:
     - This module allows the user to create, update and delete an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
-    - "This resource has the following action operations in the M(oci_autonomous_exadata_infrastructure_actions) module: change_compartment, rotate_ords_certs,
-      rotate_ssl_certs."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_autonomous_exadata_infrastructure_actions) module: change_compartment,
+      rotate_ords_certs, rotate_ssl_certs."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -202,28 +202,93 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure:
-    availability_domain: "Uocm:PHX-AD-1"
-    compartment_id: "ocid1.tenancy.oc1.unique_ID"
-    display_name: "tst3dbsys"
-    domain: "my.company.com"
-    shape: "Exadata.Half1.168"
-    subnet_id: "ocid1.subnet.oc1.unique_ID"
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    availability_domain: Uocm:PHX-AD-1
+    subnet_id: ocid1.subnet.oc1.unique_ID
+    shape: Exadata.Half1.168
 
-- name: Update autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_autonomous_exadata_infrastructure:
-    display_name: "new displayname"
+    # optional
+    display_name: tst3dbsys
+    nsg_ids: [ "null" ]
+    domain: my.company.com
+    license_model: LICENSE_INCLUDED
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure:
+    # required
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: tst3dbsys
+    nsg_ids: [ "null" ]
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_autonomous_exadata_infrastructure:
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: tst3dbsys
+
+    # optional
+    nsg_ids: [ "null" ]
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure:
+    # required
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_exadata_infrastructure:
+    # required
     compartment_id: ocid1.tenancy.oc1.unique_ID
     display_name: tst3dbsys
     state: absent

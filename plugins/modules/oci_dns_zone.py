@@ -28,7 +28,7 @@ description:
       not supported for private zones. Query parameter scope with a value of `PRIVATE` is required when creating a
       private zone. Private zones must have a zone type of `PRIMARY`. Creating a private zone at or under
       `oraclevcn.com` within the default protected view of a VCN-dedicated resolver is not permitted.
-    - "This resource has the following action operations in the M(oci_zone_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_dns_zone_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -177,27 +177,101 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create zone
+- name: Create zone with migration_source = NONE
   oci_dns_zone:
+    # required
+    name: example.com
     compartment_id: "ocid1.compartment.oc1.."
-    name: "example.com"
-    zone_type: "PRIMARY"
 
-- name: Update zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    migration_source: NONE
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    zone_type: PRIMARY
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    scope: GLOBAL
+    external_masters:
+    - # required
+      address: address_example
+
+      # optional
+      port: 56
+      tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create zone with migration_source = DYNECT
   oci_dns_zone:
-    freeform_tags: "{'Department': 'Finance'}"
+    # required
+    migration_source: DYNECT
+    name: example.com
+    compartment_id: "ocid1.compartment.oc1.."
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    dynect_migration_details:
+      # required
+      customer_name: customer_name_example
+      username: username_example
+      password: example-password
+
+      # optional
+      http_redirect_replacements: null
 
 - name: Update zone
   oci_dns_zone:
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1.."
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    scope: GLOBAL
+    external_masters:
+    - # required
+      address: address_example
+
+      # optional
+      port: 56
+      tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+    if_unmodified_since: if_unmodified_since_example
+
+- name: Update zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_dns_zone:
+    # required
+    name: example.com
+    compartment_id: "ocid1.compartment.oc1.."
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    scope: GLOBAL
+    external_masters:
+    - # required
+      address: address_example
+
+      # optional
+      port: 56
+      tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+    if_unmodified_since: if_unmodified_since_example
 
 - name: Delete zone
   oci_dns_zone:
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1.."
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
+
 - name: Delete zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_zone:
+    # required
     name: example.com
     compartment_id: "ocid1.compartment.oc1.."
     state: absent

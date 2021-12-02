@@ -30,13 +30,9 @@ oracle.oci.oci_container_engine_kubeconfig -- Manage a Kubeconfig resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_container_engine_kubeconfig`.
 
@@ -372,7 +368,13 @@ Examples
     
     - name: Create kubeconfig
       oci_container_engine_kubeconfig:
+        # required
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        token_version: 2.0.0
+        expiration: 56
+        endpoint: PUBLIC_ENDPOINT
 
 
 
@@ -408,7 +410,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Kubeconfig resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sample</div>
                                     </td>
             </tr>

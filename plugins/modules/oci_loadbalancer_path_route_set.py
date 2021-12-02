@@ -103,25 +103,33 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create path_route_set
   oci_loadbalancer_path_route_set:
-    name: "example_path_route_set"
+    # required
+    name: example_path_route_set
     path_routes:
-    - path: "/example/video/123"
+    - # required
+      path: /example/video/123
       path_match_type:
-        match_type: "EXACT_MATCH"
-      backend_set_name: "example_backend_set"
+        # required
+        match_type: EXACT_MATCH
+      backend_set_name: example_backend_set
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update path_route_set
   oci_loadbalancer_path_route_set:
+    # required
+    name: example_path_route_set
     path_routes:
-    - path: "/example/video/123"
+    - # required
+      path: /example/video/123
       path_match_type:
-        match_type: "EXACT_MATCH"
-      backend_set_name: "example_backend_set"
+        # required
+        match_type: EXACT_MATCH
+      backend_set_name: example_backend_set
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete path_route_set
   oci_loadbalancer_path_route_set:
+    # required
     name: example_path_route_set
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

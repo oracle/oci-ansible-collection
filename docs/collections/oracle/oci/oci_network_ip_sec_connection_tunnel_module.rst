@@ -30,13 +30,9 @@ oracle.oci.oci_network_ip_sec_connection_tunnel -- Manage an IpSecConnectionTunn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_ip_sec_connection_tunnel`.
 
@@ -568,17 +564,48 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Update ip_sec_connection_tunnel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    - name: Update ip_sec_connection_tunnel
       oci_network_ip_sec_connection_tunnel:
+        # required
         ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+        tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
         display_name: display_name_example
         routing: BGP
         ike_version: V1
+        bgp_session_config:
+          # optional
+          oracle_interface_ip: 10.0.0.4/31
+          customer_interface_ip: 10.0.0.5/31
+          oracle_interface_ipv6: 2001:db8::1/64
+          customer_interface_ipv6: 2001:db8::1/64
+          customer_bgp_asn: 12345
+        encryption_domain_config:
+          # optional
+          oracle_traffic_selector: [ "null" ]
+          cpe_traffic_selector: [ "null" ]
 
-    - name: Update ip_sec_connection_tunnel
+    - name: Update ip_sec_connection_tunnel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection_tunnel:
+        # required
         ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
-        tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+
+        # optional
+        routing: BGP
+        ike_version: V1
+        bgp_session_config:
+          # optional
+          oracle_interface_ip: 10.0.0.4/31
+          customer_interface_ip: 10.0.0.5/31
+          oracle_interface_ipv6: 2001:db8::1/64
+          customer_interface_ipv6: 2001:db8::1/64
+          customer_bgp_asn: 12345
+        encryption_domain_config:
+          # optional
+          oracle_traffic_selector: [ "null" ]
+          cpe_traffic_selector: [ "null" ]
 
 
 
@@ -614,7 +641,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the IpSecConnectionTunnel resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bgp_session_info&#x27;: {&#x27;bgp_ipv6_state&#x27;: &#x27;UP&#x27;, &#x27;bgp_state&#x27;: &#x27;UP&#x27;, &#x27;customer_bgp_asn&#x27;: &#x27;12345&#x27;, &#x27;customer_interface_ip&#x27;: &#x27;10.0.0.5/31&#x27;, &#x27;customer_interface_ipv6&#x27;: &#x27;2001:db8::1/64&#x27;, &#x27;oracle_bgp_asn&#x27;: &#x27;oracle_bgp_asn_example&#x27;, &#x27;oracle_interface_ip&#x27;: &#x27;10.0.0.4/31&#x27;, &#x27;oracle_interface_ipv6&#x27;: &#x27;2001:db8::1/64&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_ip&#x27;: &#x27;203.0.113.22&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;encryption_domain_config&#x27;: {&#x27;cpe_traffic_selector&#x27;: [], &#x27;oracle_traffic_selector&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ike_version&#x27;: &#x27;V1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;routing&#x27;: &#x27;BGP&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_status_updated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vpn_ip&#x27;: &#x27;203.0.113.21&#x27;}</div>
                                     </td>
             </tr>
@@ -632,7 +659,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -649,7 +676,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The state of the BGP IPv6 session.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
@@ -668,7 +695,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The state of the BGP session.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
@@ -689,7 +716,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>If the tunnel uses static routing, the `customerBgpAsn` must be null.</div>
                                             <div>Example: `12345` (2-byte) or `1587232876` (4-byte)</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">12345</div>
                                     </td>
             </tr>
@@ -712,7 +739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The value must be a /30 or /31.</div>
                                             <div>Example: `10.0.0.5/31`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.5/31</div>
                                     </td>
             </tr>
@@ -735,7 +762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Only subnet masks from /64 up to /127 are allowed.</div>
                                             <div>Example: `2001:db8::1/64`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:db8::1/64</div>
                                     </td>
             </tr>
@@ -754,7 +781,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle BGP ASN.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oracle_bgp_asn_example</div>
                                     </td>
             </tr>
@@ -777,7 +804,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The value must be a /30 or /31.</div>
                                             <div>Example: `10.0.0.4/31`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.4/31</div>
                                     </td>
             </tr>
@@ -800,7 +827,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Only subnet masks from /64 up to /127 are allowed.</div>
                                             <div>Example: `2001:db8::1/64`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:db8::1/64</div>
                                     </td>
             </tr>
@@ -819,7 +846,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the tunnel.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -838,7 +865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The IP address of the CPE&#x27;s VPN headend.</div>
                                             <div>Example: `203.0.113.22`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">203.0.113.22</div>
                                     </td>
             </tr>
@@ -856,7 +883,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -874,7 +901,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -891,7 +918,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Lists IPv4 or IPv6-enabled subnets in your on-premises network.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -908,7 +935,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Lists IPv4 or IPv6-enabled subnets in your Oracle tenancy.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                     
                                 <tr>
@@ -925,7 +952,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the tunnel.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -943,7 +970,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Internet Key Exchange protocol version.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">V1</div>
                                     </td>
             </tr>
@@ -961,7 +988,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The tunnel&#x27;s lifecycle state.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -979,7 +1006,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of routing used for this tunnel (either BGP dynamic routing or static routing).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BGP</div>
                                     </td>
             </tr>
@@ -997,7 +1024,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The status of the tunnel based on IPSec protocol characteristics.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
@@ -1016,7 +1043,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the IPSec connection tunnel was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -1035,7 +1062,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When the status of the tunnel last changed, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -1054,7 +1081,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The IP address of Oracle&#x27;s VPN headend.</div>
                                             <div>Example: `203.0.113.21`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">203.0.113.21</div>
                                     </td>
             </tr>

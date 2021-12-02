@@ -30,13 +30,9 @@ oracle.oci.oci_compute_management_instance_pool_instance_actions -- Perform acti
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_management_instance_pool_instance_actions`.
 
@@ -375,9 +371,14 @@ Examples
     
     - name: Perform action detach on instance_pool_instance
       oci_compute_management_instance_pool_instance_actions:
+        # required
         instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach
+
+        # optional
+        is_decrement_size: true
+        is_auto_terminate: true
 
 
 

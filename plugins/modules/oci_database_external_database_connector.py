@@ -24,7 +24,7 @@ short_description: Manage an ExternalDatabaseConnector resource in Oracle Cloud 
 description:
     - This module allows the user to create, update and delete an ExternalDatabaseConnector resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new external database connector.
-    - "This resource has the following action operations in the M(oci_external_database_connector_actions) module:
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_external_database_connector_actions) module:
       check_external_database_connector_connection_status."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -178,40 +178,77 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create external_database_connector
+- name: Create external_database_connector with connector_type = MACS
   oci_database_external_database_connector:
-    display_name: "myTestConn"
+    # required
+    external_database_id: ocid
+    connector_agent_id: ocid
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: myTestConn
+    connector_type: MACS
     connection_string:
-      hostname: "myHost.test"
+      # required
+      hostname: myHost.test
       port: 1521
-      service: "testService"
-      protocol: "TCP"
+      service: testService
+      protocol: TCP
     connection_credentials:
-      username: "testUser"
-      password: "example-password"
-      role: "SYSDBA"
-    connector_type: "MACS"
-    connector_agent_id: "ocid"
-    external_database_id: "ocid"
+      # required
+      credential_type: NAME_REFERENCE
+      credential_name: credential_name_example
 
-- name: Update external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Update external_database_connector with connector_type = MACS
   oci_database_external_database_connector:
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: myTestConn
+    connector_type: MACS
+    connection_string:
+      # required
+      hostname: myHost.test
+      port: 1521
+      service: testService
+      protocol: TCP
     connection_credentials:
-      username: "testUser"
-      password: "example-password"
-      role: "SYSDBA"
+      # required
+      credential_type: NAME_REFERENCE
+      credential_name: credential_name_example
 
-- name: Update external_database_connector
+- name: Update external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connector_type = MACS
   oci_database_external_database_connector:
-    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    external_database_id: ocid
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: myTestConn
+    connector_type: MACS
+    connection_string:
+      # required
+      hostname: myHost.test
+      port: 1521
+      service: testService
+      protocol: TCP
+    connection_credentials:
+      # required
+      credential_type: NAME_REFERENCE
+      credential_name: credential_name_example
 
 - name: Delete external_database_connector
   oci_database_external_database_connector:
+    # required
     external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_database_connector:
+    # required
     display_name: myTestConn
     external_database_id: ocid
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -372,7 +409,7 @@ external_database_connector:
                         - The password that will be used to connect to the database.
                     returned: on success
                     type: str
-                    sample: password_example
+                    sample: example-password
                 role:
                     description:
                         - The role of the user that will be connecting to the database.
@@ -410,7 +447,7 @@ external_database_connector:
             "credential_type": "NAME_REFERENCE",
             "credential_name": "credential_name_example",
             "username": "username_example",
-            "password": "password_example",
+            "password": "example-password",
             "role": "SYSDBA"
         },
         "connector_agent_id": "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"

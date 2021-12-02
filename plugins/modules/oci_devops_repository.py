@@ -24,7 +24,7 @@ short_description: Manage a Repository resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Repository resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Repository.
-    - "This resource has the following action operations in the M(oci_repository_actions) module: mirror."
+    - "This resource has the following action operations in the M(oracle.oci.oci_devops_repository_actions) module: mirror."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -128,31 +128,81 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create repository
   oci_devops_repository:
+    # required
     name: name_example
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_devops_repository:
-    name: name_example
+    # optional
     default_branch: default_branch_example
     repository_type: repository_type_example
+    mirror_repository_config:
+      # optional
+      connector_id: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
+      repository_url: repository_url_example
+      trigger_schedule:
+        # required
+        schedule_type: NONE
+
+        # optional
+        custom_schedule: custom_schedule_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update repository
   oci_devops_repository:
+    # required
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     name: name_example
     default_branch: default_branch_example
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+    repository_type: repository_type_example
+    mirror_repository_config:
+      # optional
+      connector_id: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
+      repository_url: repository_url_example
+      trigger_schedule:
+        # required
+        schedule_type: NONE
+
+        # optional
+        custom_schedule: custom_schedule_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_devops_repository:
+    # required
+    name: name_example
+
+    # optional
+    default_branch: default_branch_example
+    repository_type: repository_type_example
+    mirror_repository_config:
+      # optional
+      connector_id: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
+      repository_url: repository_url_example
+      trigger_schedule:
+        # required
+        schedule_type: NONE
+
+        # optional
+        custom_schedule: custom_schedule_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete repository
   oci_devops_repository:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_devops_repository:
+    # required
     name: name_example
     state: absent
 

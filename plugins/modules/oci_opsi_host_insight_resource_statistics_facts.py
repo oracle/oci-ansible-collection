@@ -24,7 +24,7 @@ short_description: Fetches details about a HostInsightResourceStatistics resourc
 description:
     - Fetches details about a HostInsightResourceStatistics resource in Oracle Cloud Infrastructure
     - Lists the resource statistics (usage, capacity, usage change percent, utilization percent, load) for each host filtered
-      by utilization level.
+      by utilization level in a compartment and in all sub-compartments if specified.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -73,6 +73,11 @@ options:
     id:
         description:
             - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
+    exadata_insight_id:
+        description:
+            - Optional list of exadata insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
         elements: str
     percentile:
@@ -139,14 +144,37 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific host_insight_resource_statistics
   oci_opsi_host_insight_resource_statistics_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resource_metric: resource_metric_example
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    platform_type: [ "$p.getValue()" ]
+    id: [ "$p.getValue()" ]
+    exadata_insight_id: [ "$p.getValue()" ]
+    percentile: 56
+    insight_by: insight_by_example
+    forecast_days: 56
+    sort_order: ASC
+    sort_by: utilizationPercent
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -199,6 +227,12 @@ host_insight_resource_statistics:
                             returned: on success
                             type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                        compartment_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         host_name:
                             description:
                                 - The host name. The host name is unique amongst the hosts managed by the same management agent.
@@ -345,6 +379,7 @@ host_insight_resource_statistics:
         "items": [{
             "host_details": {
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "host_name": "host_name_example",
                 "host_display_name": "host_display_name_example",
                 "platform_type": "LINUX",
@@ -406,6 +441,7 @@ class HostInsightResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
             "time_interval_end",
             "platform_type",
             "id",
+            "exadata_insight_id",
             "percentile",
             "insight_by",
             "forecast_days",
@@ -415,6 +451,7 @@ class HostInsightResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -452,6 +489,7 @@ def main():
             time_interval_end=dict(type="str"),
             platform_type=dict(type="list", elements="str", choices=["LINUX"]),
             id=dict(type="list", elements="str"),
+            exadata_insight_id=dict(type="list", elements="str"),
             percentile=dict(type="int"),
             insight_by=dict(type="str"),
             forecast_days=dict(type="int"),
@@ -470,6 +508,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

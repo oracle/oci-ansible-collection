@@ -47,7 +47,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List zone_transfer_servers
   oci_dns_zone_transfer_server_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    scope: GLOBAL
 
 """
 

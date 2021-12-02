@@ -73,31 +73,36 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on external_pluggable_database
   oci_database_external_pluggable_database_actions:
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    action: change_compartment
 
 - name: Perform action disable_external_pluggable_database_database_management on external_pluggable_database
   oci_database_external_pluggable_database_actions:
+    # required
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_external_pluggable_database_database_management
 
 - name: Perform action disable_external_pluggable_database_operations_insights on external_pluggable_database
   oci_database_external_pluggable_database_actions:
+    # required
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_external_pluggable_database_operations_insights
 
 - name: Perform action enable_external_pluggable_database_database_management on external_pluggable_database
   oci_database_external_pluggable_database_actions:
-    external_database_connector_id: "ocid1.externaldatabaseconnector..unique_ID"
+    # required
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "enable_external_pluggable_database_database_management"
+    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_external_pluggable_database_database_management
 
 - name: Perform action enable_external_pluggable_database_operations_insights on external_pluggable_database
   oci_database_external_pluggable_database_actions:
-    external_database_connector_id: "ocid1.externaldatabaseconnector..unique_ID"
+    # required
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "enable_external_pluggable_database_operations_insights"
+    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_external_pluggable_database_operations_insights
 
 """
 

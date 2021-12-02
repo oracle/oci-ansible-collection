@@ -75,13 +75,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List data_assets
-  oci_ai_anomaly_detection_data_asset_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific data_asset
   oci_ai_anomaly_detection_data_asset_facts:
+    # required
     data_asset_id: "ocid1.dataasset.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List data_assets
+  oci_ai_anomaly_detection_data_asset_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    lifecycle_state: lifecycle_state_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on network_security_group
   oci_network_security_group_actions:
+    # required
     network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -83,7 +84,7 @@ network_security_group:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

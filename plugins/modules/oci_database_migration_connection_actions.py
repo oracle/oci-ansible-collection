@@ -51,6 +51,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on connection
   oci_database_migration_connection_actions:
+    # required
     connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

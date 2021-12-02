@@ -25,8 +25,8 @@ description:
     - This module allows the user to create, update and delete a DatabaseInsights resource in Oracle Cloud Infrastructure
     - For I(state=present), create a Database Insight resource for a database in Operations Insights. The database will be enabled in Operations Insights.
       Database metric collection and analysis will be started.
-    - "This resource has the following action operations in the M(oci_database_insights_actions) module: change, disable, enable, ingest_database_configuration,
-      ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_text."
+    - "This resource has the following action operations in the M(oracle.oci.oci_opsi_database_insights_actions) module: change, disable, enable,
+      ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_text."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -75,6 +75,11 @@ options:
             - Required for create using I(state=present).
             - Required when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
         type: str
+    exadata_insight_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+            - Applicable when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
+        type: str
     database_insight_id:
         description:
             - Unique database insight identifier
@@ -95,22 +100,68 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create database_insights
+- name: Create database_insights with entity_source = EM_MANAGED_EXTERNAL_DATABASE
   oci_opsi_database_insights:
-    entity_source: AUTONOMOUS_DATABASE
+    # required
+    entity_source: EM_MANAGED_EXTERNAL_DATABASE
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_identifier: enterprise_manager_identifier_example
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
 
-- name: Update database_insights
-  oci_opsi_database_insights:
-    entity_source: AUTONOMOUS_DATABASE
+    # optional
     freeform_tags: {'Department': 'Finance'}
-    database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create database_insights with entity_source = MACS_MANAGED_EXTERNAL_DATABASE
+  oci_opsi_database_insights:
+    # required
+    entity_source: MACS_MANAGED_EXTERNAL_DATABASE
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create database_insights with entity_source = AUTONOMOUS_DATABASE
+  oci_opsi_database_insights:
+    # required
+    entity_source: AUTONOMOUS_DATABASE
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update database_insights with entity_source = EM_MANAGED_EXTERNAL_DATABASE
+  oci_opsi_database_insights:
+    # required
+    entity_source: EM_MANAGED_EXTERNAL_DATABASE
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update database_insights with entity_source = MACS_MANAGED_EXTERNAL_DATABASE
+  oci_opsi_database_insights:
+    # required
+    entity_source: MACS_MANAGED_EXTERNAL_DATABASE
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update database_insights with entity_source = AUTONOMOUS_DATABASE
+  oci_opsi_database_insights:
+    # required
+    entity_source: AUTONOMOUS_DATABASE
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete database_insights
   oci_opsi_database_insights:
+    # required
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -279,6 +330,12 @@ database_insights:
             returned: on success
             type: str
             sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_insight_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+            returned: on success
+            type: str
+            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
@@ -365,6 +422,7 @@ database_insights:
         "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_details": {
@@ -422,7 +480,11 @@ class DatabaseInsightsHelperGen(OCIResourceHelperBase):
         return dict()
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["compartment_id", "enterprise_manager_bridge_id"]
+        optional_list_method_params = [
+            "compartment_id",
+            "enterprise_manager_bridge_id",
+            "exadata_insight_id",
+        ]
 
         return dict(
             (param, self.module.params[param])
@@ -523,6 +585,7 @@ def main():
             enterprise_manager_identifier=dict(type="str"),
             enterprise_manager_bridge_id=dict(type="str"),
             enterprise_manager_entity_identifier=dict(type="str"),
+            exadata_insight_id=dict(type="str"),
             database_insight_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

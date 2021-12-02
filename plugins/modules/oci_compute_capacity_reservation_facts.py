@@ -87,13 +87,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List compute_capacity_reservations
-  oci_compute_capacity_reservation_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific compute_capacity_reservation
   oci_compute_capacity_reservation_facts:
+    # required
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List compute_capacity_reservations
+  oci_compute_capacity_reservation_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 
@@ -128,8 +137,8 @@ compute_capacity_reservations:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the compute capacity reservation.
-                  It does not have to be unique, and it's changeable. Avoid entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -157,7 +166,7 @@ compute_capacity_reservations:
             sample: true
         instance_reservation_configs:
             description:
-                - The reservation configurations for the capacity reservation.
+                - The capacity configurations for the capacity reservation.
                 - To use the reservation for the desired shape, specify the shape, count, and
                   optionally the fault domain where you want this configuration.
             returned: on success
@@ -165,8 +174,8 @@ compute_capacity_reservations:
             contains:
                 fault_domain:
                     description:
-                        - The fault domain of this reservation configuration.
-                          If a value is not supplied, this reservation configuration is applicable to all fault domains in the specified availability domain.
+                        - The fault domain of this capacity configuration.
+                          If a value is not supplied, this capacity configuration is applicable to all fault domains in the specified availability domain.
                           For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm).
                     returned: on success
                     type: str
@@ -201,13 +210,13 @@ compute_capacity_reservations:
                             sample: 3.4
                 reserved_count:
                     description:
-                        - The amount of capacity reserved in this configuration.
+                        - The total number of instances that can be launched from the capacity configuration.
                     returned: on success
                     type: int
                     sample: 56
                 used_count:
                     description:
-                        - The amount of capacity in use out of the total capacity reserved in this reservation configuration.
+                        - The amount of capacity in use out of the total capacity reserved in this capacity configuration.
                     returned: on success
                     type: int
                     sample: 56
@@ -221,7 +230,7 @@ compute_capacity_reservations:
             description:
                 - The number of instances for which capacity will be held with this
                   compute capacity reservation. This number is the sum of the values of the `reservedCount` fields
-                  for all of the instance reservation configurations under this reservation.
+                  for all of the instance capacity configurations under this reservation.
                   The purpose of this field is to calculate the percentage usage of the reservation.
             returned: on success
             type: int
@@ -244,7 +253,7 @@ compute_capacity_reservations:
             description:
                 - The total number of instances currently consuming space in
                   this compute capacity reservation. This number is the sum of the values of the `usedCount` fields
-                  for all of the instance reservation configurations under this reservation.
+                  for all of the instance capacity configurations under this reservation.
                   The purpose of this field is to calculate the percentage usage of the reservation.
             returned: on success
             type: int

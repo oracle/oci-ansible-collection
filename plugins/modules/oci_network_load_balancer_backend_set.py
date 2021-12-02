@@ -196,19 +196,79 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create backend_set
   oci_network_load_balancer_backend_set:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: example_backend_set
     policy: FIVE_TUPLE
     health_checker:
+      # required
       protocol: HTTP
+
+      # optional
+      port: 8080
+      retries: 3
+      timeout_in_millis: 3000
+      interval_in_millis: 10000
+      url_path: /healthcheck
+      response_body_regex: response_body_regex_example
+      return_code: 200
+      request_data: null
+      response_data: null
+
+    # optional
+    is_preserve_source: true
+    backends:
+    - # required
+      port: 8080
+
+      # optional
+      name: 10.0.0.3:8080
+      ip_address: 10.0.0.3
+      target_id: "ocid1.privateip..oc1.unique_ID"
+      weight: 3
+      is_backup: false
+      is_drain: false
+      is_offline: false
 
 - name: Update backend_set
   oci_network_load_balancer_backend_set:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: example_backend_set
 
+    # optional
+    policy: FIVE_TUPLE
+    is_preserve_source: true
+    backends:
+    - # required
+      port: 8080
+
+      # optional
+      name: 10.0.0.3:8080
+      ip_address: 10.0.0.3
+      target_id: "ocid1.privateip..oc1.unique_ID"
+      weight: 3
+      is_backup: false
+      is_drain: false
+      is_offline: false
+    health_checker:
+      # required
+      protocol: HTTP
+
+      # optional
+      port: 8080
+      retries: 3
+      timeout_in_millis: 3000
+      interval_in_millis: 10000
+      url_path: /healthcheck
+      response_body_regex: response_body_regex_example
+      return_code: 200
+      request_data: null
+      response_data: null
+
 - name: Delete backend_set
   oci_network_load_balancer_backend_set:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: example_backend_set
     state: absent
@@ -374,7 +434,7 @@ backend_set:
                         - "Example: `^((?!false).|\\\\s)*$`"
                     returned: on success
                     type: str
-                    sample: "^((?!false).|\\\\s)*$"
+                    sample: response_body_regex_example
                 return_code:
                     description:
                         - "The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol,
@@ -416,7 +476,7 @@ backend_set:
             "timeout_in_millis": 3000,
             "interval_in_millis": 10000,
             "url_path": "/healthcheck",
-            "response_body_regex": "^((?!false).|\\\\s)*$",
+            "response_body_regex": "response_body_regex_example",
             "return_code": 0,
             "request_data": UNKNOWN TYPE - str,
             "response_data": UNKNOWN TYPE - str

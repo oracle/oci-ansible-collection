@@ -59,13 +59,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List network_load_balancer_healths
-  oci_network_load_balancer_health_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific network_load_balancer_health
   oci_network_load_balancer_health_facts:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List network_load_balancer_healths
+  oci_network_load_balancer_health_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

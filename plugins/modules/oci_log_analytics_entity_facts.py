@@ -129,15 +129,33 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific log_analytics_entity
+  oci_log_analytics_entity_facts:
+    # required
+    namespace_name: namespace_name_example
+    log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List log_analytics_entities
   oci_log_analytics_entity_facts:
+    # required
     namespace_name: namespace_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific log_analytics_entity
-  oci_log_analytics_entity_facts:
-    namespace_name: namespace_name_example
-    log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    name: name_example
+    name_contains: name_contains_example
+    entity_type_name: [ "$p.getValue()" ]
+    cloud_resource_id: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: ACTIVE
+    lifecycle_details_contains: lifecycle_details_contains_example
+    is_management_agent_id_null: true
+    hostname: hostname_example
+    hostname_contains: hostname_contains_example
+    source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+    creation_source_type: [ "$p.getValue()" ]
+    creation_source_details: creation_source_details_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

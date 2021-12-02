@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: Get a specific ca_bundle
   oci_certificates_ca_bundle_facts:
+    # required
     ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

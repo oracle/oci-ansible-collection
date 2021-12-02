@@ -34,7 +34,7 @@ description:
       retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the
       Console. For more information, see L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
-    - "This resource has the following action operations in the M(oci_notification_topic_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_ons_notification_topic_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -92,26 +92,45 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create notification_topic
   oci_ons_notification_topic:
-    name: "Admins"
-    compartment_id: "compartment_OCID"
-    description: "Channel for admin messages"
+    # required
+    name: Admins
+    compartment_id: compartment_OCID
 
-- name: Update notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_ons_notification_topic:
-    description: "Channel for admin messages"
+    # optional
+    description: Channel for admin messages
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update notification_topic
   oci_ons_notification_topic:
-    description: "Channel for admin messages"
+    # required
+    description: Channel for admin messages
     topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_ons_notification_topic:
+    # required
+    name: Admins
+    compartment_id: compartment_OCID
+
+    # optional
+    description: Channel for admin messages
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete notification_topic
   oci_ons_notification_topic:
+    # required
     topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ons_notification_topic:
+    # required
     name: Admins
     compartment_id: compartment_OCID
     state: absent

@@ -24,7 +24,7 @@ short_description: Manage an OnPremConnector resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete an OnPremConnector resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new on-premises connector.
-    - "This resource has the following action operations in the M(oci_on_prem_connector_actions) module: change_compartment,
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_safe_on_prem_connector_actions) module: change_compartment,
       generate_on_prem_connector_configuration."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -84,29 +84,46 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create on_prem_connector
   oci_data_safe_on_prem_connector:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_safe_on_prem_connector:
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update on_prem_connector
   oci_data_safe_on_prem_connector:
+    # required
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_safe_on_prem_connector:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete on_prem_connector
   oci_data_safe_on_prem_connector:
+    # required
     on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_on_prem_connector:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -30,13 +30,9 @@ oracle.oci.oci_waas_waf_log_facts -- Fetches details about one or multiple WafLo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_waas_waf_log_facts`.
 
@@ -582,7 +578,29 @@ Examples
     
     - name: List waf_logs
       oci_waas_waf_log_facts:
+        # required
         waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        time_observed_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+        time_observed_less_than: 2013-10-20T19:20:30+01:00
+        text_contains: text_contains_example
+        access_rule_key: [ "$p.getValue()" ]
+        action: [ "$p.getValue()" ]
+        client_address: [ "$p.getValue()" ]
+        country_code: [ "$p.getValue()" ]
+        country_name: [ "$p.getValue()" ]
+        fingerprint: [ "$p.getValue()" ]
+        http_method: [ "$p.getValue()" ]
+        incident_key: [ "$p.getValue()" ]
+        log_type: [ "$p.getValue()" ]
+        origin_address: [ "$p.getValue()" ]
+        referrer: [ "$p.getValue()" ]
+        request_url: [ "$p.getValue()" ]
+        response_code: [ "$p.getValue()" ]
+        threat_feed_key: [ "$p.getValue()" ]
+        user_agent: [ "$p.getValue()" ]
+        protection_rule_key: [ "$p.getValue()" ]
 
 
 
@@ -618,7 +636,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of WafLog resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;access_rule_key&#x27;: &#x27;access_rule_key_example&#x27;, &#x27;action&#x27;: &#x27;action_example&#x27;, &#x27;address_rate_limiting_key&#x27;: &#x27;address_rate_limiting_key_example&#x27;, &#x27;captcha_action&#x27;: &#x27;captcha_action_example&#x27;, &#x27;captcha_expected&#x27;: &#x27;captcha_expected_example&#x27;, &#x27;captcha_fail_count&#x27;: &#x27;captcha_fail_count_example&#x27;, &#x27;captcha_received&#x27;: &#x27;captcha_received_example&#x27;, &#x27;client_address&#x27;: &#x27;client_address_example&#x27;, &#x27;country_code&#x27;: &#x27;country_code_example&#x27;, &#x27;country_name&#x27;: &#x27;country_name_example&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;fingerprint&#x27;: &#x27;fingerprint_example&#x27;, &#x27;http_headers&#x27;: {}, &#x27;http_method&#x27;: &#x27;http_method_example&#x27;, &#x27;incident_key&#x27;: &#x27;incident_key_example&#x27;, &#x27;log_type&#x27;: &#x27;log_type_example&#x27;, &#x27;origin_address&#x27;: &#x27;origin_address_example&#x27;, &#x27;origin_response_time&#x27;: &#x27;origin_response_time_example&#x27;, &#x27;protection_rule_detections&#x27;: {}, &#x27;referrer&#x27;: &#x27;referrer_example&#x27;, &#x27;request_headers&#x27;: {}, &#x27;request_url&#x27;: &#x27;request_url_example&#x27;, &#x27;response_code&#x27;: 56, &#x27;response_size&#x27;: 56, &#x27;threat_feed_key&#x27;: &#x27;threat_feed_key_example&#x27;, &#x27;timestamp&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;user_agent&#x27;: &#x27;user_agent_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -636,7 +654,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The `AccessRule` key that matched the request. For more information about access rules, see `UpdateAccessRules`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">access_rule_key_example</div>
                                     </td>
             </tr>
@@ -654,7 +672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The action taken on the request, either `ALLOW`, `DETECT`, or `BLOCK`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_example</div>
                                     </td>
             </tr>
@@ -672,7 +690,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The `AddressRateLimiting` key that matched the request. For more information about address rate limiting, see `UpdateWafAddressRateLimiting`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">address_rate_limiting_key_example</div>
                                     </td>
             </tr>
@@ -690,7 +708,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The CAPTCHA action taken on the request, `ALLOW` or `BLOCK`. For more information about CAPTCHAs, see `UpdateCaptchas`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">captcha_action_example</div>
                                     </td>
             </tr>
@@ -708,7 +726,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The CAPTCHA challenge answer that was expected.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">captcha_expected_example</div>
                                     </td>
             </tr>
@@ -726,7 +744,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The number of times the CAPTCHA challenge was failed.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">captcha_fail_count_example</div>
                                     </td>
             </tr>
@@ -744,7 +762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The CAPTCHA challenge answer that was received.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">captcha_received_example</div>
                                     </td>
             </tr>
@@ -762,7 +780,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IPv4 address of the requesting client.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">client_address_example</div>
                                     </td>
             </tr>
@@ -780,7 +798,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>ISO 3166-1 alpha-2 code of the country from which the request originated. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">country_code_example</div>
                                     </td>
             </tr>
@@ -798,7 +816,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the country where the request originated.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">country_name_example</div>
                                     </td>
             </tr>
@@ -816,7 +834,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of device that the request was made from.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">device_example</div>
                                     </td>
             </tr>
@@ -834,7 +852,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The `Host` header data of the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">domain_example</div>
                                     </td>
             </tr>
@@ -852,7 +870,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The hashed signature of the device&#x27;s fingerprint. For more information, see `DeviceFingerPrintChallenge`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">fingerprint_example</div>
                                     </td>
             </tr>
@@ -870,7 +888,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The map of the request&#x27;s header names to their respective values.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -886,7 +904,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The HTTP method of the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">http_method_example</div>
                                     </td>
             </tr>
@@ -904,7 +922,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The incident key of a request. An incident key is generated for each request processed by the Web Application Firewall and is used to idenitfy blocked requests in applicable logs.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">incident_key_example</div>
                                     </td>
             </tr>
@@ -922,7 +940,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of log of the request. For more about log types, see <a href='https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/logs.htm'>Logs</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">log_type_example</div>
                                     </td>
             </tr>
@@ -940,7 +958,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The address of the origin server where the request was sent.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">origin_address_example</div>
                                     </td>
             </tr>
@@ -958,7 +976,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The amount of time it took the origin server to respond to the request, in seconds.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">origin_response_time_example</div>
                                     </td>
             </tr>
@@ -976,7 +994,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A map of protection rule keys to detection message details. Detections are requests that matched the criteria of a protection rule but the rule&#x27;s action was set to `DETECT`.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -992,7 +1010,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The `Referrer` header value of the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">referrer_example</div>
                                     </td>
             </tr>
@@ -1010,7 +1028,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A map of header names to values of the request sent to the origin, including any headers appended by the Web Application Firewall.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1026,7 +1044,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The path and query string of the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">request_url_example</div>
                                     </td>
             </tr>
@@ -1044,7 +1062,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The status code of the response.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1062,7 +1080,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The size in bytes of the response.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1080,7 +1098,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The `ThreatFeed` key that matched the request. For more information about threat feeds, see `UpdateThreatFeeds`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">threat_feed_key_example</div>
                                     </td>
             </tr>
@@ -1098,7 +1116,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the Web Application Firewall processed the request and logged it.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29Z</div>
                                     </td>
             </tr>
@@ -1116,7 +1134,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The value of the request&#x27;s `User-Agent` header field.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">user_agent_example</div>
                                     </td>
             </tr>

@@ -30,13 +30,9 @@ oracle.oci.oci_compute_measured_boot_report_facts -- Fetches details about a Mea
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_measured_boot_report_facts`.
 
@@ -57,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about a MeasuredBootReport resource in Oracle Cloud Infrastructure
-- Gets the measured boot report for this Shielded Instance.
+- Gets the measured boot report for this shielded instance.
 
 
 .. Aliases
@@ -270,6 +266,7 @@ Examples
     
     - name: Get a specific measured_boot_report
       oci_compute_measured_boot_report_facts:
+        # required
         instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
@@ -306,7 +303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>MeasuredBootReport resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;is_policy_verification_successful&#x27;: True, &#x27;measurements&#x27;: {&#x27;actual&#x27;: [{&#x27;hash_algorithm&#x27;: &#x27;hash_algorithm_example&#x27;, &#x27;pcr_index&#x27;: &#x27;pcr_index_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;policy&#x27;: [{&#x27;hash_algorithm&#x27;: &#x27;hash_algorithm_example&#x27;, &#x27;pcr_index&#x27;: &#x27;pcr_index_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}}</div>
                                     </td>
             </tr>
@@ -322,9 +319,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the verification succeeded and the new values matched the expected values.</div>
+                                            <div>Whether the verification succeeded, and the new values match the expected values.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -342,7 +339,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -359,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The list of actual PCR entries measured during boot.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -377,7 +374,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of algorithm used to calculate the hash.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hash_algorithm_example</div>
                                     </td>
             </tr>
@@ -397,7 +394,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The index of the policy.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pcr_index_example</div>
                                     </td>
             </tr>
@@ -417,7 +414,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The hashed PCR value.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>
@@ -437,7 +434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The list of expected PCR entries to use during verification.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -455,7 +452,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of algorithm used to calculate the hash.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hash_algorithm_example</div>
                                     </td>
             </tr>
@@ -475,7 +472,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The index of the policy.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pcr_index_example</div>
                                     </td>
             </tr>
@@ -495,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The hashed PCR value.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>

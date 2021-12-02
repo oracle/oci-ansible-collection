@@ -30,13 +30,9 @@ oracle.oci.oci_opsi_resource_statistics_facts -- Fetches details about a Resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_resource_statistics_facts`.
 
@@ -57,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about a ResourceStatistics resource in Oracle Cloud Infrastructure
-- Lists the Resource statistics (usage,capacity, usage change percent, utilization percent, base capacity, isAutoScalingEnabled) for each database filtered by utilization level
+- Lists the Resource statistics (usage,capacity, usage change percent, utilization percent, base capacity, isAutoScalingEnabled) for each database filtered by utilization level in a compartment and in all sub-compartments if specified.
 
 
 .. Aliases
@@ -184,6 +180,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cdb_name"></div>
+                    <b>cdb_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-cdb_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter by one or more cdb name.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -195,6 +206,25 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id_in_subtree"></div>
+                    <b>compartment_id_in_subtree</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id_in_subtree" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A flag to search all resources within a given compartment and all sub-compartments.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -293,6 +323,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned. Each item in the list has the format &quot;{namespace}.{tagName}.true&quot; (for checking existence of a defined tag) or &quot;{namespace}.true&quot;.  All inputs are case-insensitive. Currently, only existence (&quot;true&quot; at the end) is supported. Absence (&quot;false&quot; at the end) is not supported. Multiple values for the same key (i.e. same namespace and tag name) are interpreted as &quot;OR&quot;. Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exadata_insight_id"></div>
+                    <b>exadata_insight_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-exadata_insight_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional list of exadata insight resource <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -562,8 +607,31 @@ Examples
     
     - name: Get a specific resource_statistics
       oci_opsi_resource_statistics_facts:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resource_metric: resource_metric_example
+
+        # optional
+        analysis_time_interval: analysis_time_interval_example
+        time_interval_start: 2013-10-20T19:20:30+01:00
+        time_interval_end: 2013-10-20T19:20:30+01:00
+        database_type: [ "$p.getValue()" ]
+        database_id: [ "$p.getValue()" ]
+        id: [ "$p.getValue()" ]
+        exadata_insight_id: [ "$p.getValue()" ]
+        cdb_name: [ "$p.getValue()" ]
+        percentile: 56
+        insight_by: insight_by_example
+        forecast_days: 56
+        sort_order: ASC
+        sort_by: utilizationPercent
+        host_name: [ "$p.getValue()" ]
+        is_database_instance_level_metrics: true
+        defined_tag_equals: [ "$p.getValue()" ]
+        freeform_tag_equals: [ "$p.getValue()" ]
+        defined_tag_exists: [ "$p.getValue()" ]
+        freeform_tag_exists: [ "$p.getValue()" ]
+        compartment_id_in_subtree: true
 
 
 
@@ -599,8 +667,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>ResourceStatistics resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;base_capacity&#x27;: 222.3, &#x27;capacity&#x27;: 222.3, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 5.2, &#x27;utilization_percent&#x27;: 35.1}, &#x27;database_details&#x27;: {&#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instances&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;}]}}], &#x27;resource_metric&#x27;: &#x27;STORAGE&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;base_capacity&#x27;: 222.3, &#x27;capacity&#x27;: 222.3, &#x27;instance_metrics&#x27;: [{&#x27;capacity&#x27;: 222.3, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 5.2, &#x27;utilization_percent&#x27;: 35.1}], &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 5.2, &#x27;utilization_percent&#x27;: 35.1}, &#x27;database_details&#x27;: {&#x27;cdb_name&#x27;: &#x27;cdb_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instances&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;}]}}], &#x27;resource_metric&#x27;: &#x27;STORAGE&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -617,7 +685,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Collection of Resource Statistics items</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -634,7 +702,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -652,7 +720,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The base allocated amount of the resource metric type  (CPU, STORAGE).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">222.3</div>
                                     </td>
             </tr>
@@ -672,10 +740,155 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The maximum allocated amount of the resource metric type  (CPU, STORAGE).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">222.3</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/instance_metrics"></div>
+                    <b>instance_metrics</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/instance_metrics" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Array of instance metrics</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/instance_metrics/capacity"></div>
+                    <b>capacity</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/instance_metrics/capacity" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum allocated amount of the resource metric type  (CPU, STORAGE).</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">222.3</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/instance_metrics/host_name"></div>
+                    <b>host_name</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/instance_metrics/host_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The hostname of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/instance_metrics/instance_name"></div>
+                    <b>instance_name</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/instance_metrics/instance_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The instance name of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/instance_metrics/usage"></div>
+                    <b>usage</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/instance_metrics/usage" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Total amount used of the resource metric type (CPU, STORAGE).</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">34.5</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/instance_metrics/usage_change_percent"></div>
+                    <b>usage_change_percent</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/instance_metrics/usage_change_percent" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Change in resource utilization in percentage</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">5.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/instance_metrics/utilization_percent"></div>
+                    <b>utilization_percent</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/instance_metrics/utilization_percent" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Resource utilization in percentage</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">35.1</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -692,7 +905,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates if auto scaling feature is enabled or disabled on a database. It will be false for all metrics other than CPU.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -712,7 +925,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total amount used of the resource metric type (CPU, STORAGE).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">34.5</div>
                                     </td>
             </tr>
@@ -732,7 +945,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Change in resource utilization in percentage</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">5.2</div>
                                     </td>
             </tr>
@@ -752,7 +965,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Resource utilization in percentage</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">35.1</div>
                                     </td>
             </tr>
@@ -772,9 +985,49 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/cdb_name"></div>
+                    <b>cdb_name</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/cdb_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the CDB.Only applies to PDB.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cdb_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -790,7 +1043,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The user-friendly name for the database. The name does not have to be unique.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_display_name_example</div>
                                     </td>
             </tr>
@@ -810,7 +1063,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.database.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -830,7 +1083,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The database name. The database name is unique within the tenancy.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_name_example</div>
                                     </td>
             </tr>
@@ -850,7 +1103,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Operations Insights internal representation of the database type.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_type_example</div>
                                     </td>
             </tr>
@@ -870,7 +1123,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The version of the database.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_version_example</div>
                                     </td>
             </tr>
@@ -890,7 +1143,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -910,7 +1163,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Array of hostname and instance name.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -929,7 +1182,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The hostname of the database insight resource.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_name_example</div>
                                     </td>
             </tr>
@@ -950,7 +1203,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The instance name of the database insight resource.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_name_example</div>
                                     </td>
             </tr>
@@ -971,7 +1224,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defines the type of resource metric (example: CPU, STORAGE)</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STORAGE</div>
                                     </td>
             </tr>
@@ -989,7 +1242,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The end timestamp that was passed into the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-12-06T00:00:00.000Z</div>
                                     </td>
             </tr>
@@ -1007,7 +1260,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The start timestamp that was passed into the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-12-06T00:00:00.000Z</div>
                                     </td>
             </tr>
@@ -1025,7 +1278,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Displays usage unit ( CORES, GB)</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CORES</div>
                                     </td>
             </tr>

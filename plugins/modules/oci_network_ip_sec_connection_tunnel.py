@@ -39,8 +39,8 @@ options:
         aliases: ["id"]
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-              entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -161,17 +161,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Update ip_sec_connection_tunnel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Update ip_sec_connection_tunnel
   oci_network_ip_sec_connection_tunnel:
+    # required
     ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+    tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     routing: BGP
     ike_version: V1
+    bgp_session_config:
+      # optional
+      oracle_interface_ip: 10.0.0.4/31
+      customer_interface_ip: 10.0.0.5/31
+      oracle_interface_ipv6: 2001:db8::1/64
+      customer_interface_ipv6: 2001:db8::1/64
+      customer_bgp_asn: 12345
+    encryption_domain_config:
+      # optional
+      oracle_traffic_selector: [ "null" ]
+      cpe_traffic_selector: [ "null" ]
 
-- name: Update ip_sec_connection_tunnel
+- name: Update ip_sec_connection_tunnel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection_tunnel:
+    # required
     ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
-    tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    routing: BGP
+    ike_version: V1
+    bgp_session_config:
+      # optional
+      oracle_interface_ip: 10.0.0.4/31
+      customer_interface_ip: 10.0.0.5/31
+      oracle_interface_ipv6: 2001:db8::1/64
+      customer_interface_ipv6: 2001:db8::1/64
+      customer_bgp_asn: 12345
+    encryption_domain_config:
+      # optional
+      oracle_traffic_selector: [ "null" ]
+      cpe_traffic_selector: [ "null" ]
 
 """
 
@@ -228,8 +259,8 @@ ip_sec_connection_tunnel:
             sample: PROVISIONING
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

@@ -56,13 +56,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List queries
-  oci_usage_query_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific query
   oci_usage_query_facts:
+    # required
     query_id: "ocid1.query.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List queries
+  oci_usage_query_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: displayName
+    sort_order: ASC
 
 """
 

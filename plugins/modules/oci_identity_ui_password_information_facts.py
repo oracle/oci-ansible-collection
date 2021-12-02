@@ -40,6 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific ui_password_information
   oci_identity_ui_password_information_facts:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

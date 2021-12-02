@@ -40,13 +40,13 @@ description:
       traffic will flow to/from the internet even if there's a route rule that enables that traffic. You can later
       use L(UpdateInternetGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/InternetGateway/UpdateInternetGateway) to easily disable/enable
       the gateway without changing the route rule.
-    - "This resource has the following action operations in the M(oci_internet_gateway_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_internet_gateway_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the internet gateway.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the internet gateway.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -82,7 +82,7 @@ options:
         type: bool
     vcn_id:
         description:
-            - The OCID of the VCN the internet gateway is attached to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the internet gateway is attached to.
             - Required for create using I(state=present).
         type: str
     ig_id:
@@ -107,32 +107,47 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create internet_gateway
   oci_network_internet_gateway:
-    display_name: "MyInternetGateway"
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
     is_enabled: true
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
 
-- name: Update internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: MyInternetGateway
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update internet_gateway
   oci_network_internet_gateway:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
+    ig_id: "ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyInternetGateway
     freeform_tags: {'Department': 'Finance'}
     is_enabled: true
 
-- name: Update internet_gateway
+- name: Update internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyInternetGateway
-    ig_id: "ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    is_enabled: true
 
 - name: Delete internet_gateway
   oci_network_internet_gateway:
+    # required
     ig_id: "ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyInternetGateway
     state: absent
@@ -148,7 +163,7 @@ internet_gateway:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the internet gateway.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the internet gateway.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -178,7 +193,7 @@ internet_gateway:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The internet gateway's Oracle ID (OCID).
+                - The internet gateway's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -204,7 +219,7 @@ internet_gateway:
             sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
-                - The OCID of the VCN the internet gateway belongs to.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the internet gateway belongs to.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

@@ -26,7 +26,7 @@ description:
     - For I(state=present), create a Migration resource that contains all the details to perform the
       database migration operation, such as source and destination database
       details, credentials, etc.
-    - "This resource has the following action operations in the M(oci_migration_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_migration_migration_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -548,42 +548,376 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create migration
   oci_database_migration_migration:
+    # required
     type: ONLINE
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source_database_connection_id: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
     target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update migration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_migration_migration:
-    type: ONLINE
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
-    source_database_connection_id: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
     source_container_database_connection_id: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
-    target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    data_transfer_medium_details:
+      # optional
+      database_link_details:
+        # optional
+        name: name_example
+        wallet_bucket:
+          # optional
+          namespace_name: namespace_name_example
+          bucket_name: bucket_name_example
+      object_storage_details:
+        # optional
+        namespace_name: namespace_name_example
+        bucket_name: bucket_name_example
+    dump_transfer_details:
+      # optional
+      source:
+        # required
+        kind: OCI_CLI
+        oci_home: oci_home_example
+      target:
+        # required
+        kind: OCI_CLI
+        oci_home: oci_home_example
+    datapump_settings:
+      # optional
+      job_mode: FULL
+      data_pump_parameters:
+        # optional
+        is_cluster: true
+        estimate: BLOCKS
+        table_exists_action: TRUNCATE
+        exclude_parameters: [ "null" ]
+        import_parallelism_degree: 56
+        export_parallelism_degree: 56
+      metadata_remaps:
+      - # required
+        type: SCHEMA
+        old_value: old_value_example
+        new_value: new_value_example
+      export_directory_object:
+        # optional
+        name: name_example
+        path: path_example
+      import_directory_object:
+        # optional
+        name: name_example
+        path: path_example
+    advisor_settings:
+      # optional
+      is_skip_advisor: true
+      is_ignore_errors: true
     exclude_objects:
-    - owner: owner_example
+    - # required
+      owner: owner_example
       object_name: object_name_example
+
+      # optional
+      type: type_example
     include_objects:
-    - owner: owner_example
+    - # required
+      owner: owner_example
       object_name: object_name_example
+
+      # optional
+      type: type_example
+    golden_gate_details:
+      # optional
+      hub:
+        # optional
+        rest_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        source_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        source_container_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        target_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        url: url_example
+        source_microservices_deployment_name: source_microservices_deployment_name_example
+        target_microservices_deployment_name: target_microservices_deployment_name_example
+        compute_id: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
+      settings:
+        # optional
+        extract:
+          # optional
+          performance_profile: LOW
+          long_trans_duration: 56
+        replicat:
+          # optional
+          map_parallelism: 56
+          min_apply_parallelism: 56
+          max_apply_parallelism: 56
+        acceptable_lag: 56
+    vault_details:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update migration
   oci_database_migration_migration:
+    # required
+    migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     type: ONLINE
     display_name: display_name_example
-    migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
+    agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
+    source_database_connection_id: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    source_container_database_connection_id: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    data_transfer_medium_details:
+      # optional
+      database_link_details:
+        # optional
+        name: name_example
+        wallet_bucket:
+          # optional
+          namespace_name: namespace_name_example
+          bucket_name: bucket_name_example
+      object_storage_details:
+        # optional
+        namespace_name: namespace_name_example
+        bucket_name: bucket_name_example
+    dump_transfer_details:
+      # optional
+      source:
+        # required
+        kind: OCI_CLI
+        oci_home: oci_home_example
+      target:
+        # required
+        kind: OCI_CLI
+        oci_home: oci_home_example
+    datapump_settings:
+      # optional
+      job_mode: FULL
+      data_pump_parameters:
+        # optional
+        is_cluster: true
+        estimate: BLOCKS
+        table_exists_action: TRUNCATE
+        exclude_parameters: [ "null" ]
+        import_parallelism_degree: 56
+        export_parallelism_degree: 56
+      metadata_remaps:
+      - # required
+        type: SCHEMA
+        old_value: old_value_example
+        new_value: new_value_example
+      export_directory_object:
+        # optional
+        name: name_example
+        path: path_example
+      import_directory_object:
+        # optional
+        name: name_example
+        path: path_example
+    advisor_settings:
+      # optional
+      is_skip_advisor: true
+      is_ignore_errors: true
+    exclude_objects:
+    - # required
+      owner: owner_example
+      object_name: object_name_example
+
+      # optional
+      type: type_example
+    include_objects:
+    - # required
+      owner: owner_example
+      object_name: object_name_example
+
+      # optional
+      type: type_example
+    golden_gate_details:
+      # optional
+      hub:
+        # optional
+        rest_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        source_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        source_container_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        target_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        url: url_example
+        source_microservices_deployment_name: source_microservices_deployment_name_example
+        target_microservices_deployment_name: target_microservices_deployment_name_example
+        compute_id: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
+      settings:
+        # optional
+        extract:
+          # optional
+          performance_profile: LOW
+          long_trans_duration: 56
+        replicat:
+          # optional
+          map_parallelism: 56
+          min_apply_parallelism: 56
+          max_apply_parallelism: 56
+        acceptable_lag: 56
+    vault_details:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update migration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_migration_migration:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    type: ONLINE
+    agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
+    source_database_connection_id: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    source_container_database_connection_id: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    data_transfer_medium_details:
+      # optional
+      database_link_details:
+        # optional
+        name: name_example
+        wallet_bucket:
+          # optional
+          namespace_name: namespace_name_example
+          bucket_name: bucket_name_example
+      object_storage_details:
+        # optional
+        namespace_name: namespace_name_example
+        bucket_name: bucket_name_example
+    dump_transfer_details:
+      # optional
+      source:
+        # required
+        kind: OCI_CLI
+        oci_home: oci_home_example
+      target:
+        # required
+        kind: OCI_CLI
+        oci_home: oci_home_example
+    datapump_settings:
+      # optional
+      job_mode: FULL
+      data_pump_parameters:
+        # optional
+        is_cluster: true
+        estimate: BLOCKS
+        table_exists_action: TRUNCATE
+        exclude_parameters: [ "null" ]
+        import_parallelism_degree: 56
+        export_parallelism_degree: 56
+      metadata_remaps:
+      - # required
+        type: SCHEMA
+        old_value: old_value_example
+        new_value: new_value_example
+      export_directory_object:
+        # optional
+        name: name_example
+        path: path_example
+      import_directory_object:
+        # optional
+        name: name_example
+        path: path_example
+    advisor_settings:
+      # optional
+      is_skip_advisor: true
+      is_ignore_errors: true
+    exclude_objects:
+    - # required
+      owner: owner_example
+      object_name: object_name_example
+
+      # optional
+      type: type_example
+    include_objects:
+    - # required
+      owner: owner_example
+      object_name: object_name_example
+
+      # optional
+      type: type_example
+    golden_gate_details:
+      # optional
+      hub:
+        # optional
+        rest_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        source_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        source_container_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        target_db_admin_credentials:
+          # optional
+          username: username_example
+          password: example-password
+        url: url_example
+        source_microservices_deployment_name: source_microservices_deployment_name_example
+        target_microservices_deployment_name: target_microservices_deployment_name_example
+        compute_id: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
+      settings:
+        # optional
+        extract:
+          # optional
+          performance_profile: LOW
+          long_trans_duration: 56
+        replicat:
+          # optional
+          map_parallelism: 56
+          min_apply_parallelism: 56
+          max_apply_parallelism: 56
+        acceptable_lag: 56
+    vault_details:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete migration
   oci_database_migration_migration:
+    # required
     migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete migration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_migration:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -27,7 +27,8 @@ description:
       about security lists, see L(Security Lists,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securitylists.htm).
       For information on the number of rules you can have in a security list, see
       L(Service Limits,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm).
-    - For the purposes of access control, you must provide the OCID of the compartment where you want the security
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment where you want the security
       list to reside. Notice that the security list doesn't have to be in the same compartment as the VCN, subnets,
       or other Networking Service components. If you're not sure which compartment to use, put the security
       list in the same compartment as the VCN. For more information about compartments and access control, see
@@ -35,13 +36,13 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the security list, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_security_list_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_security_list_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the security list.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the security list.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -352,7 +353,7 @@ options:
                 type: str
     vcn_id:
         description:
-            - The OCID of the VCN the security list belongs to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the security list belongs to.
             - Required for create using I(state=present).
         type: str
     security_list_id:
@@ -397,58 +398,258 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create security_list
   oci_network_security_list:
-    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
-    display_name: "MyPrivateSubnetSecurityList"
-    ingress_security_rules:
-    - protocol: "6"
-      source: "10.0.1.0/24"
-      tcp_options:
-        destination_port_range:
-          min: "1521"
-          max: "1521"
-    - protocol: "6"
-      source: "10.0.2.0/24"
-      tcp_options:
-        destination_port_range:
-          min: "1521"
-          max: "1521"
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     egress_security_rules:
-    - protocol: "6"
-      destination: "10.0.2.0/24"
-      tcp_options:
-        destination_port_range:
-          min: "1521"
-          max: "1521"
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    - # required
+      destination: 10.0.2.0/24
+      protocol: 6
 
-- name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_security_list:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+      # optional
+      destination_type: CIDR_BLOCK
+      icmp_options:
+        # required
+        type: 56
+
+        # optional
+        code: 56
+      is_stateless: true
+      tcp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 1521
+          min: 1521
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      udp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      description: description_example
+    ingress_security_rules:
+    - # required
+      protocol: 6
+      source: 10.0.1.0/24
+
+      # optional
+      icmp_options:
+        # required
+        type: 56
+
+        # optional
+        code: 56
+      is_stateless: true
+      source_type: CIDR_BLOCK
+      tcp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 1521
+          min: 1521
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      udp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      description: description_example
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyPrivateSubnetSecurityList
-    egress_security_rules:
-    - destination: 10.0.2.0/24
-      protocol: 6
     freeform_tags: {'Department': 'Finance'}
-    ingress_security_rules:
-    - protocol: 6
-      source: 10.0.1.0/24
-    purge_security_rules: false
-    delete_security_rules: true
 
 - name: Update security_list
   oci_network_security_list:
+    # required
+    security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyPrivateSubnetSecurityList
-    security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
+    egress_security_rules:
+    - # required
+      destination: 10.0.2.0/24
+      protocol: 6
+
+      # optional
+      destination_type: CIDR_BLOCK
+      icmp_options:
+        # required
+        type: 56
+
+        # optional
+        code: 56
+      is_stateless: true
+      tcp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 1521
+          min: 1521
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      udp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    ingress_security_rules:
+    - # required
+      protocol: 6
+      source: 10.0.1.0/24
+
+      # optional
+      icmp_options:
+        # required
+        type: 56
+
+        # optional
+        code: 56
+      is_stateless: true
+      source_type: CIDR_BLOCK
+      tcp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 1521
+          min: 1521
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      udp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      description: description_example
+    purge_security_rules: false
+    delete_security_rules: true
+
+- name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_security_list:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: MyPrivateSubnetSecurityList
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    egress_security_rules:
+    - # required
+      destination: 10.0.2.0/24
+      protocol: 6
+
+      # optional
+      destination_type: CIDR_BLOCK
+      icmp_options:
+        # required
+        type: 56
+
+        # optional
+        code: 56
+      is_stateless: true
+      tcp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 1521
+          min: 1521
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      udp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    ingress_security_rules:
+    - # required
+      protocol: 6
+      source: 10.0.1.0/24
+
+      # optional
+      icmp_options:
+        # required
+        type: 56
+
+        # optional
+        code: 56
+      is_stateless: true
+      source_type: CIDR_BLOCK
+      tcp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 1521
+          min: 1521
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      udp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      description: description_example
+    purge_security_rules: false
+    delete_security_rules: true
 
 - name: Delete security_list
   oci_network_security_list:
+    # required
     security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_list:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyPrivateSubnetSecurityList
     state: absent
@@ -464,7 +665,7 @@ security_list:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the security list.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the security list.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -656,7 +857,7 @@ security_list:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The security list's Oracle Cloud ID (OCID).
+                - The security list's Oracle Cloud ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -836,7 +1037,7 @@ security_list:
             sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
-                - The OCID of the VCN the security list belongs to.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the security list belongs to.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

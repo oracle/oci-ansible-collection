@@ -86,13 +86,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List sddcs
-  oci_ocvp_sddc_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific sddc
   oci_ocvp_sddc_facts:
+    # required
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List sddcs
+  oci_ocvp_sddc_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    compute_availability_domain: Uocm:PHX-AD-1
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: CREATING
 
 """
 
@@ -207,14 +216,14 @@ sddcs:
                   to change this initial vCenter password to a different value.
             returned: on success
             type: str
-            sample: vcenter_initial_password_example
+            sample: example-password
         nsx_manager_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for NSX Manager. Make sure
                   to change this initial NSX Manager password to a different value.
             returned: on success
             type: str
-            sample: nsx_manager_initial_password_example
+            sample: example-password
         vcenter_username:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. You can
@@ -422,7 +431,7 @@ sddcs:
                   to change this initial HCX Manager password to a different value.
             returned: on success
             type: str
-            sample: hcx_initial_password_example
+            sample: example-password
         hcx_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -555,8 +564,8 @@ sddcs:
         "nsx_manager_fqdn": "nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
         "vcenter_private_ip_id": "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_manager_private_ip_id": "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx",
-        "vcenter_initial_password": "vcenter_initial_password_example",
-        "nsx_manager_initial_password": "nsx_manager_initial_password_example",
+        "vcenter_initial_password": "example-password",
+        "nsx_manager_initial_password": "example-password",
         "vcenter_username": "vcenter_username_example",
         "nsx_manager_username": "nsx_manager_username_example",
         "ssh_authorized_keys": "ssh_authorized_keys_example",
@@ -575,7 +584,7 @@ sddcs:
         "provisioning_vlan_id": "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_private_ip_id": "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_fqdn": "hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
-        "hcx_initial_password": "hcx_initial_password_example",
+        "hcx_initial_password": "example-password",
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hcx_enabled": true,
         "hcx_on_prem_key": "hcx_on_prem_key_example",

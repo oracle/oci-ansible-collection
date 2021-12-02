@@ -82,25 +82,42 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create snapshot
   oci_file_storage_snapshot:
-    name: "snapshot-1"
+    # required
     file_system_id: "ocid1.filesystem.oc1..unique_ID"
+    name: snapshot-1
 
-- name: Update snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_file_storage_snapshot:
-    name: "snapshot-1-new"
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update snapshot
   oci_file_storage_snapshot:
-    name: "snapshot-1-new"
-    snapshot_id: "string"
+    # required
+    snapshot_id: string
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_file_storage_snapshot:
+    # required
+    file_system_id: "ocid1.filesystem.oc1..unique_ID"
+    name: snapshot-1
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete snapshot
   oci_file_storage_snapshot:
+    # required
     snapshot_id: string
     state: absent
 
 - name: Delete snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
+    # required
     file_system_id: "ocid1.filesystem.oc1..unique_ID"
     name: snapshot-1
     state: absent

@@ -26,7 +26,7 @@ description:
     - For I(state=present), registers a new L(ExternalPluggableDatabase,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/datatypes/CreateExternalPluggableDatabaseDetails)
       resource.
-    - "This resource has the following action operations in the M(oci_external_pluggable_database_actions) module: change_compartment,
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_external_pluggable_database_actions) module: change_compartment,
       disable_external_pluggable_database_database_management, disable_external_pluggable_database_operations_insights,
       enable_external_pluggable_database_database_management, enable_external_pluggable_database_operations_insights."
 version_added: "2.9.0"
@@ -95,26 +95,45 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create external_pluggable_database
   oci_database_external_pluggable_database:
-    compartment_id: "ocid1.[tenancy|compartment].oc1.unique_ID"
-    display_name: "myTestExternalCdb"
-    external_container_database_id: "ocid1.externalcontainerdatabase.oc1.<example_unique_ID>"
+    # required
+    external_container_database_id: ocid1.externalcontainerdatabase.oc1.<example_unique_ID>
+    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
+    display_name: myTestExternalCdb
 
-- name: Update external_pluggable_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_external_pluggable_database:
-    display_name: "myExternalPdb"
+    # optional
+    source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update external_pluggable_database
   oci_database_external_pluggable_database:
+    # required
     display_name: myTestExternalCdb
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update external_pluggable_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_external_pluggable_database:
+    # required
+    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
+    display_name: myTestExternalCdb
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Delete external_pluggable_database
   oci_database_external_pluggable_database:
+    # required
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete external_pluggable_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_pluggable_database:
+    # required
     compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
     display_name: myTestExternalCdb
     state: absent

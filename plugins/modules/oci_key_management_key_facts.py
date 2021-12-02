@@ -99,14 +99,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List keys
-  oci_key_management_key_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
-
 - name: Get a specific key
   oci_key_management_key_facts:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
+
+- name: List keys
+  oci_key_management_key_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
+    protection_mode: HSM
+    algorithm: AES
+    length: 56
+    curve_id: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """

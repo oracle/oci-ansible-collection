@@ -105,13 +105,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List data_mask_rules
-  oci_cloud_guard_data_mask_rule_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific data_mask_rule
   oci_cloud_guard_data_mask_rule_facts:
+    # required
     data_mask_rule_id: "ocid1.datamaskrule.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List data_mask_rules
+  oci_cloud_guard_data_mask_rule_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    access_level: RESTRICTED
+    sort_order: ASC
+    sort_by: timeCreated
+    data_mask_rule_status: ENABLED
+    target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
+    iam_group_id: "ocid1.iamgroup.oc1..xxxxxxEXAMPLExxxxxx"
+    target_type: target_type_example
 
 """
 

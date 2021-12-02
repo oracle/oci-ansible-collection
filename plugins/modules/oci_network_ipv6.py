@@ -36,8 +36,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-              entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -87,28 +87,45 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create ipv6
   oci_network_ipv6:
+    # required
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update ipv6 using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    ip_address: "2001:DB8::"
+
+- name: Update ipv6
   oci_network_ipv6:
+    # required
+    ipv6_id: "ocid1.ipv6.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update ipv6
+- name: Update ipv6 using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ipv6:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
     display_name: display_name_example
-    ipv6_id: "ocid1.ipv6.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete ipv6
   oci_network_ipv6:
+    # required
     ipv6_id: "ocid1.ipv6.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete ipv6 using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ipv6:
+    # required
     display_name: display_name_example
     state: absent
 
@@ -138,8 +155,8 @@ ipv6:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

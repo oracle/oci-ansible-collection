@@ -43,6 +43,9 @@ EXAMPLES = """
 - name: List allowed_domain_license_types
   oci_identity_allowed_domain_license_type_facts:
 
+    # optional
+    current_license_type_name: current_license_type_name_example
+
 """
 
 RETURN = """

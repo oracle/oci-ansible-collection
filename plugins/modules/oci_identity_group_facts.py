@@ -80,13 +80,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List groups
-  oci_identity_group_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific group
   oci_identity_group_facts:
+    # required
     group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List groups
+  oci_identity_group_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

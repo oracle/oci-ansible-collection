@@ -70,9 +70,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List products
   oci_usage_proxy_product_facts:
+    # required
     tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
     subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
     usage_period_key: usage_period_key_example
+
+    # optional
+    sort_order: ASC
+    sort_by: TIMECREATED
+    producttype: ALL
 
 """
 

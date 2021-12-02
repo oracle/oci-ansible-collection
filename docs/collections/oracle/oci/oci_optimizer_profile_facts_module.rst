@@ -30,13 +30,9 @@ oracle.oci.oci_optimizer_profile_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_optimizer_profile_facts`.
 
@@ -365,13 +361,21 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: List profiles
-      oci_optimizer_profile_facts:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
     - name: Get a specific profile
       oci_optimizer_profile_facts:
+        # required
         profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: List profiles
+      oci_optimizer_profile_facts:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        name: name_example
+        sort_order: ASC
+        sort_by: NAME
+        lifecycle_state: ACTIVE
 
 
 
@@ -407,11 +411,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of Profile resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;levels_configuration&#x27;: {&#x27;items&#x27;: [{&#x27;level&#x27;: &#x27;level_example&#x27;, &#x27;recommendation_id&#x27;: &#x27;ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;target_compartments&#x27;: {&#x27;items&#x27;: []}, &#x27;target_tags&#x27;: {&#x27;items&#x27;: [{&#x27;tag_definition_name&#x27;: &#x27;tag_definition_name_example&#x27;, &#x27;tag_namespace_name&#x27;: &#x27;tag_namespace_name_example&#x27;, &#x27;tag_value_type&#x27;: &#x27;VALUE&#x27;, &#x27;tag_values&#x27;: []}]}, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}]</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;aggregation_interval_in_days&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;levels_configuration&#x27;: {&#x27;items&#x27;: [{&#x27;level&#x27;: &#x27;level_example&#x27;, &#x27;recommendation_id&#x27;: &#x27;ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;target_compartments&#x27;: {&#x27;items&#x27;: []}, &#x27;target_tags&#x27;: {&#x27;items&#x27;: [{&#x27;tag_definition_name&#x27;: &#x27;tag_definition_name_example&#x27;, &#x27;tag_namespace_name&#x27;: &#x27;tag_namespace_name_example&#x27;, &#x27;tag_value_type&#x27;: &#x27;VALUE&#x27;, &#x27;tag_values&#x27;: []}]}, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-profiles/aggregation_interval_in_days"></div>
+                    <b>aggregation_interval_in_days</b>
+                    <a class="ansibleOptionLink" href="#return-profiles/aggregation_interval_in_days" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time period over which to collect data for the recommendations, measured in number of days.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profiles/compartment_id"></div>
@@ -425,7 +447,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the tenancy. The tenancy is the root compartment.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -444,7 +466,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -462,7 +484,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Text describing the profile. Avoid entering confidential information.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -481,7 +503,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Simple key-value pair applied without any predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Exists for cross- compatibility only.</div>
                                             <div>Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -499,7 +521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique OCID of the profile.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -517,7 +539,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -534,7 +556,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The array of configuration levels.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -552,7 +574,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The pre-defined profile level.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">level_example</div>
                                     </td>
             </tr>
@@ -572,7 +594,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique OCID of the recommendation.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -592,7 +614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The profile&#x27;s current state.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
                                     </td>
             </tr>
@@ -610,7 +632,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name assigned to the profile. Avoid entering confidential information.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -628,7 +650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -643,9 +665,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of target compartment OCIDs attached to the current profile override.</div>
+                                            <div>The list of OCIDs attached to the compartments specified in the current profile override.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                     
                                 <tr>
@@ -662,7 +684,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -677,9 +699,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of target tags attached to the current profile override.</div>
+                                            <div>The list of tags specified in the current profile override.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -695,9 +717,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the tag definition.</div>
+                                            <div>The name you use to refer to the tag, also known as the tag key.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tag_definition_name_example</div>
                                     </td>
             </tr>
@@ -717,7 +739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the tag namespace.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tag_namespace_name_example</div>
                                     </td>
             </tr>
@@ -735,9 +757,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The tag value type.</div>
+                                            <div>Specifies which tag value types in the `tagValues` field result in overrides of the recommendation criteria.</div>
+                                            <div>When the value for this field is `ANY`, the `tagValues` field should be empty, which enforces overrides to the recommendation for resources with any tag values attached to them.</div>
+                                            <div>When the value for this field value is `VALUE`, the `tagValues` field must include a specific value or list of values. Overrides to the recommendation criteria only occur for resources that match the values in the `tagValues` fields.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VALUE</div>
                                     </td>
             </tr>
@@ -755,9 +779,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of tag values.</div>
+                                            <div>The list of tag values. The tag value is the value that the user applying the tag adds to the tag key.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                     
                     
@@ -775,7 +799,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the profile was created, in the format defined by RFC3339.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -793,7 +817,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the profile was last updated, in the format defined by RFC3339.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>

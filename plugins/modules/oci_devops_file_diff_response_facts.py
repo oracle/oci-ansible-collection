@@ -57,10 +57,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific file_diff_response
   oci_devops_file_diff_response_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     file_path: file_path_example
     base_version: base_version_example
     target_version: target_version_example
+
+    # optional
+    is_comparison_from_merge_base: true
 
 """
 

@@ -83,13 +83,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List instance_pools
-  oci_compute_management_instance_pool_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific instance_pool
   oci_compute_management_instance_pool_facts:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List instance_pools
+  oci_compute_management_instance_pool_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -123,7 +131,8 @@ instance_pools:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - The user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

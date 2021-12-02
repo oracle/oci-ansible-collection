@@ -72,14 +72,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List budget_alert_rules
-  oci_budget_alert_rule_facts:
-    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific budget_alert_rule
   oci_budget_alert_rule_facts:
+    # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List budget_alert_rules
+  oci_budget_alert_rule_facts:
+    # required
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: ACTIVE
+    display_name: My new resource
 
 """
 

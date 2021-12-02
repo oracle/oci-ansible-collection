@@ -67,13 +67,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List http_monitors
-  oci_healthchecks_http_monitor_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific http_monitor
   oci_healthchecks_http_monitor_facts:
+    # required
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List http_monitors
+  oci_healthchecks_http_monitor_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: id
+    sort_order: ASC
+    display_name: display_name_example
+    home_region: home_region_example
 
 """
 

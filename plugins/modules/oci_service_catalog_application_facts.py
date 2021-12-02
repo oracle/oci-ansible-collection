@@ -90,7 +90,18 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List applications
   oci_service_catalog_application_facts:
+
+    # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    service_catalog_id: "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx"
+    entity_type: entity_type_example
+    display_name: display_name_example
+    entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
+    publisher_id: [ "$p.getValue()" ]
+    package_type: [ "$p.getValue()" ]
+    pricing: [ "$p.getValue()" ]
+    is_featured: true
+    sort_order: ASC
 
 """
 

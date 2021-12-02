@@ -68,9 +68,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update event
   oci_os_management_event:
+    # required
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     event_id: "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 """
 

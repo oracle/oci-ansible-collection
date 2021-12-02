@@ -24,7 +24,7 @@ short_description: Manage an Application resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an Application resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an application.
-    - "This resource has the following action operations in the M(oci_application_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_flow_application_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -220,6 +220,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create application
   oci_data_flow_application:
+    # required
     compartment_id: compartmentId
     display_name: test_wordcount_app
     driver_shape: VM.Standard2.1
@@ -229,12 +230,34 @@ EXAMPLES = """
     num_executors: 1
     spark_version: 2.4
 
-- name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_flow_application:
+    # optional
     archive_uri: archive_uri_example
     arguments: [ "oci://.../WordCount.txt" ]
     class_name: org.apache.spark.examples.JavaWordCount
-    compartment_id: compartmentId
+    configuration: null
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    description: description_example
+    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
+    freeform_tags: {'Department': 'Finance'}
+    logs_bucket_uri: logs_bucket_uri_example
+    metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
+    parameters:
+    - # required
+      name: name_example
+      value: value_example
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    warehouse_bucket_uri: warehouse_bucket_uri_example
+
+- name: Update application
+  oci_data_flow_application:
+    # required
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    archive_uri: archive_uri_example
+    arguments: [ "oci://.../WordCount.txt" ]
+    class_name: org.apache.spark.examples.JavaWordCount
+    configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
     display_name: test_wordcount_app
@@ -248,23 +271,52 @@ EXAMPLES = """
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
     num_executors: 1
     parameters:
-    - name: name_example
+    - # required
+      name: name_example
       value: value_example
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     spark_version: 2.4
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
-- name: Update application
+- name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_application:
-    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    compartment_id: compartmentId
+    display_name: test_wordcount_app
+
+    # optional
+    archive_uri: archive_uri_example
+    arguments: [ "oci://.../WordCount.txt" ]
+    class_name: org.apache.spark.examples.JavaWordCount
+    configuration: null
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    description: description_example
+    driver_shape: VM.Standard2.1
+    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
+    executor_shape: VM.Standard2.1
+    file_uri: file_uri_example
+    freeform_tags: {'Department': 'Finance'}
+    language: JAVA
+    logs_bucket_uri: logs_bucket_uri_example
+    metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
+    num_executors: 1
+    parameters:
+    - # required
+      name: name_example
+      value: value_example
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    spark_version: 2.4
+    warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Delete application
   oci_data_flow_application:
+    # required
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_application:
+    # required
     compartment_id: compartmentId
     display_name: test_wordcount_app
     state: absent

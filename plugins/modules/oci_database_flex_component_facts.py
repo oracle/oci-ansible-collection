@@ -56,7 +56,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List flex_component_collections
   oci_database_flex_component_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_order: ASC
+    sort_by: NAME
 
 """
 

@@ -43,13 +43,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List namespaces
-  oci_log_analytics_namespace_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific namespace
   oci_log_analytics_namespace_facts:
+    # required
     namespace_name: namespace_name_example
+
+- name: List namespaces
+  oci_log_analytics_namespace_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

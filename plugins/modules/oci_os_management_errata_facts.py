@@ -71,7 +71,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List errata
   oci_os_management_errata_facts:
+
+    # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    erratum_id: "ocid1.erratum.oc1..xxxxxxEXAMPLExxxxxx"
+    advisory_name: ELSA-2020-5804
+    time_issue_date_start: 2013-10-20T19:20:30+01:00
+    time_issue_date_end: 2013-10-20T19:20:30+01:00
+    sort_order: ASC
+    sort_by: ISSUEDATE
 
 """
 

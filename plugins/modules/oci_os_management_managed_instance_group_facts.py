@@ -83,13 +83,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List managed_instance_groups
-  oci_os_management_managed_instance_group_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific managed_instance_group
   oci_os_management_managed_instance_group_facts:
+    # required
     managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List managed_instance_groups
+  oci_os_management_managed_instance_group_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    sort_order: ASC
+    sort_by: TIMECREATED
+    lifecycle_state: CREATING
+    os_family: LINUX
 
 """
 

@@ -86,14 +86,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific block_volume_replica
+  oci_blockstorage_block_volume_replica_facts:
+    # required
+    block_volume_replica_id: "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List block_volume_replicas
   oci_blockstorage_block_volume_replica_facts:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific block_volume_replica
-  oci_blockstorage_block_volume_replica_facts:
-    block_volume_replica_id: "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

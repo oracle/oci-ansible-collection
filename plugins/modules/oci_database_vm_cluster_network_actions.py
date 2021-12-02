@@ -70,6 +70,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action download_validation_report on vm_cluster_network
   oci_database_vm_cluster_network_actions:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
     validation_report_dest: /tmp/exadata_validation_report
@@ -77,6 +78,7 @@ EXAMPLES = """
 
 - name: Perform action download_vm_cluster_network_config_file on vm_cluster_network
   oci_database_vm_cluster_network_actions:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
     config_file_dest: /tmp/exadata_config_file.zip
@@ -84,6 +86,7 @@ EXAMPLES = """
 
 - name: Perform action validate on vm_cluster_network
   oci_database_vm_cluster_network_actions:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
     action: validate

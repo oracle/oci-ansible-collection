@@ -72,13 +72,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List private_application_packages
-  oci_service_catalog_private_application_package_facts:
-    private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific private_application_package
   oci_service_catalog_private_application_package_facts:
+    # required
     private_application_package_id: "ocid1.privateapplicationpackage.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List private_application_packages
+  oci_service_catalog_private_application_package_facts:
+    # required
+    private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    private_application_package_id: "ocid1.privateapplicationpackage.oc1..xxxxxxEXAMPLExxxxxx"
+    package_type: [ "$p.getValue()" ]
+    sort_by: TIMECREATED
+    sort_order: ASC
+    display_name: display_name_example
 
 """
 

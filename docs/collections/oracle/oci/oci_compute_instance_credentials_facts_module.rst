@@ -30,13 +30,9 @@ oracle.oci.oci_compute_instance_credentials_facts -- Fetches details about a Ins
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_instance_credentials_facts`.
 
@@ -270,6 +266,7 @@ Examples
     
     - name: Get a specific instance_credentials
       oci_compute_instance_credentials_facts:
+        # required
         instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
@@ -306,8 +303,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>InstanceCredentials resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;password&#x27;: &#x27;password_example&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;password&#x27;: &#x27;example-password&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -324,8 +321,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The password for the username.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">password_example</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example-password</div>
                                     </td>
             </tr>
                                 <tr>
@@ -342,7 +339,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The username.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">username_example</div>
                                     </td>
             </tr>

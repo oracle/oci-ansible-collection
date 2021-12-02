@@ -38,6 +38,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List terraform_versions
   oci_resource_manager_terraform_versions_facts:
+
+    # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

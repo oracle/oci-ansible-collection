@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List deploy_stages
-  oci_devops_deploy_stage_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific deploy_stage
   oci_devops_deploy_stage_facts:
+    # required
     deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List deploy_stages
+  oci_devops_deploy_stage_facts:
+
+    # optional
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Log resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a log within the specified log group. This call fails if a log group has already been created
       with the same displayName or (service, resource, category) triplet.
-    - "This resource has the following action operations in the M(oci_log_actions) module: change_log_log_group."
+    - "This resource has the following action operations in the M(oracle.oci.oci_logging_log_actions) module: change_log_log_group."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -147,33 +147,103 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create log
   oci_logging_log:
+    # required
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     log_type: CUSTOM
 
-- name: Update log using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_logging_log:
-    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
     is_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    configuration:
+      # required
+      source:
+        # required
+        source_type: OCISERVICE
+        service: service_example
+        resource: resource_example
+        category: category_example
+
+        # optional
+        parameters: null
+
+        # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      archiving:
+        # optional
+        is_enabled: true
     retention_duration: 56
 
 - name: Update log
   oci_logging_log:
+    # required
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+    log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    is_enabled: true
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    configuration:
+      # required
+      source:
+        # required
+        source_type: OCISERVICE
+        service: service_example
+        resource: resource_example
+        category: category_example
+
+        # optional
+        parameters: null
+
+        # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      archiving:
+        # optional
+        is_enabled: true
+    retention_duration: 56
+
+- name: Update log using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_logging_log:
+    # required
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    is_enabled: true
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    configuration:
+      # required
+      source:
+        # required
+        source_type: OCISERVICE
+        service: service_example
+        resource: resource_example
+        category: category_example
+
+        # optional
+        parameters: null
+
+        # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      archiving:
+        # optional
+        is_enabled: true
+    retention_duration: 56
 
 - name: Delete log
   oci_logging_log:
+    # required
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete log using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log:
+    # required
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

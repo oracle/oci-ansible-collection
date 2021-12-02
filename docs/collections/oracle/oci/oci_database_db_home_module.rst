@@ -30,13 +30,9 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_db_home`.
 
@@ -278,7 +274,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The password to open the TDE wallet.</div>
-                                            <div>Required when source is one of [&#x27;VM_CLUSTER_BACKUP&#x27;, &#x27;DATABASE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
+                                            <div>Applicable when source is one of [&#x27;VM_CLUSTER_BACKUP&#x27;, &#x27;DATABASE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1141,36 +1137,282 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Create db_home
+    - name: Create db_home with source = DATABASE
       oci_database_db_home:
-        db_system_id: "ocid1.dbsystem.oc1.phx.unique_ID"
-        display_name: "createdDbHome"
-        source: "NONE"
-        db_version: "12.1.0.2"
+        # required
+        source: DATABASE
+        db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
         database:
-          admin_password: "password"
-          db_name: "myTestDb"
-          db_unique_name: "myTestDb_phx1cs"
-          db_backup_config:
-            recovery_window_in_days: 30
-            auto_backup_enabled: true
+          # required
+          admin_password: example-password
 
-    - name: Update db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_database_db_home:
+          # optional
+          database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_tde_password: example-password
+          db_unique_name: myTestDb_phx1cs
+          db_name: myTestDb
+          time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+          backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+          sid_prefix: sid_prefix_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          pdb_name: pdb_name_example
+          tde_wallet_password: example-password
+          character_set: character_set_example
+          ncharacter_set: ncharacter_set_example
+          db_workload: OLTP
+          db_backup_config:
+            # optional
+            auto_backup_enabled: true
+            recovery_window_in_days: 30
+            auto_backup_window: SLOT_TWO
+            backup_destination_details:
+            - # required
+              type: NFS
+
+              # optional
+              id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+              vpc_user: vpc_user_example
+              vpc_password: example-password
+              internet_proxy: internet_proxy_example
+          freeform_tags: {'Department': 'Finance'}
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+        # optional
         display_name: createdDbHome
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        is_desupported_version: true
+
+    - name: Create db_home with source = DB_BACKUP
+      oci_database_db_home:
+        # required
+        source: DB_BACKUP
+        db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
+        database:
+          # required
+          admin_password: example-password
+
+          # optional
+          database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_tde_password: example-password
+          db_unique_name: myTestDb_phx1cs
+          db_name: myTestDb
+          time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+          backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+          sid_prefix: sid_prefix_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          pdb_name: pdb_name_example
+          tde_wallet_password: example-password
+          character_set: character_set_example
+          ncharacter_set: ncharacter_set_example
+          db_workload: OLTP
+          db_backup_config:
+            # optional
+            auto_backup_enabled: true
+            recovery_window_in_days: 30
+            auto_backup_window: SLOT_TWO
+            backup_destination_details:
+            - # required
+              type: NFS
+
+              # optional
+              id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+              vpc_user: vpc_user_example
+              vpc_password: example-password
+              internet_proxy: internet_proxy_example
+          freeform_tags: {'Department': 'Finance'}
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+        # optional
+        display_name: createdDbHome
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        is_desupported_version: true
+
+    - name: Create db_home with source = VM_CLUSTER_BACKUP
+      oci_database_db_home:
+        # required
+        source: VM_CLUSTER_BACKUP
+        database:
+          # required
+          admin_password: example-password
+
+          # optional
+          database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_tde_password: example-password
+          db_unique_name: myTestDb_phx1cs
+          db_name: myTestDb
+          time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+          backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+          sid_prefix: sid_prefix_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          pdb_name: pdb_name_example
+          tde_wallet_password: example-password
+          character_set: character_set_example
+          ncharacter_set: ncharacter_set_example
+          db_workload: OLTP
+          db_backup_config:
+            # optional
+            auto_backup_enabled: true
+            recovery_window_in_days: 30
+            auto_backup_window: SLOT_TWO
+            backup_destination_details:
+            - # required
+              type: NFS
+
+              # optional
+              id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+              vpc_user: vpc_user_example
+              vpc_password: example-password
+              internet_proxy: internet_proxy_example
+          freeform_tags: {'Department': 'Finance'}
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        display_name: createdDbHome
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        is_desupported_version: true
+
+    - name: Create db_home with source = NONE
+      oci_database_db_home:
+        # required
+        db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
+
+        # optional
+        display_name: createdDbHome
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        source: NONE
+        is_desupported_version: true
+        database:
+          # required
+          admin_password: example-password
+
+          # optional
+          database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_tde_password: example-password
+          db_unique_name: myTestDb_phx1cs
+          db_name: myTestDb
+          time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+          backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+          sid_prefix: sid_prefix_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          pdb_name: pdb_name_example
+          tde_wallet_password: example-password
+          character_set: character_set_example
+          ncharacter_set: ncharacter_set_example
+          db_workload: OLTP
+          db_backup_config:
+            # optional
+            auto_backup_enabled: true
+            recovery_window_in_days: 30
+            auto_backup_window: SLOT_TWO
+            backup_destination_details:
+            - # required
+              type: NFS
+
+              # optional
+              id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+              vpc_user: vpc_user_example
+              vpc_password: example-password
+              internet_proxy: internet_proxy_example
+          freeform_tags: {'Department': 'Finance'}
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_version: 12.1.0.2
+
+    - name: Create db_home with source = VM_CLUSTER_NEW
+      oci_database_db_home:
+        # required
+        source: VM_CLUSTER_NEW
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        display_name: createdDbHome
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        is_desupported_version: true
+        database:
+          # required
+          admin_password: example-password
+
+          # optional
+          database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+          backup_tde_password: example-password
+          db_unique_name: myTestDb_phx1cs
+          db_name: myTestDb
+          time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+          backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+          sid_prefix: sid_prefix_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          pdb_name: pdb_name_example
+          tde_wallet_password: example-password
+          character_set: character_set_example
+          ncharacter_set: ncharacter_set_example
+          db_workload: OLTP
+          db_backup_config:
+            # optional
+            auto_backup_enabled: true
+            recovery_window_in_days: 30
+            auto_backup_window: SLOT_TWO
+            backup_destination_details:
+            - # required
+              type: NFS
+
+              # optional
+              id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+              vpc_user: vpc_user_example
+              vpc_password: example-password
+              internet_proxy: internet_proxy_example
+          freeform_tags: {'Department': 'Finance'}
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_version: 12.1.0.2
 
     - name: Update db_home
       oci_database_db_home:
+        # required
         db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        patch_details:
+          # optional
+          patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          action: APPLY
+        one_off_patches: [ "null" ]
+
+    - name: Update db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_database_db_home:
+        # required
+        display_name: createdDbHome
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        patch_details:
+          # optional
+          patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          action: APPLY
+        one_off_patches: [ "null" ]
 
     - name: Delete db_home
       oci_database_db_home:
+        # required
         db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
+        # optional
+        perform_final_backup: true
+
     - name: Delete db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_home:
+        # required
         display_name: createdDbHome
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
@@ -1209,7 +1451,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the DbHome resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_software_image_id&#x27;: &#x27;ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_home_location&#x27;: &#x27;db_home_location_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;one_off_patches&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -1227,7 +1469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1245,7 +1487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1263,7 +1505,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The location of the Oracle Database Home.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_home_location_example</div>
                                     </td>
             </tr>
@@ -1281,7 +1523,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1299,7 +1541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Database version.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_version_example</div>
                                     </td>
             </tr>
@@ -1317,7 +1559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The user-provided name for the Database Home. The name does not need to be unique.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -1335,7 +1577,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Home.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1353,7 +1595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1371,7 +1613,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the last patch history. This value is updated as soon as a patch operation is started.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1389,7 +1631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Additional information about the current lifecycle state.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -1407,7 +1649,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the Database Home.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -1425,7 +1667,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of one-off patches for Database Homes.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1441,7 +1683,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the Database Home was created.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -1459,7 +1701,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VM cluster.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

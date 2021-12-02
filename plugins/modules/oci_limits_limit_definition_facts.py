@@ -62,7 +62,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List limit_definitions
   oci_limits_limit_definition_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    service_name: service_name_example
+    name: name_example
+    sort_by: name
+    sort_order: ASC
 
 """
 

@@ -78,25 +78,30 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on target_database
   oci_data_safe_target_database_actions:
+    # required
     credentials:
+      # required
       user_name: user_name_example
-      password: password_example
+      password: example-password
     target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
 
 - name: Perform action change_compartment on target_database
   oci_data_safe_target_database_actions:
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    # required
     target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaaqkb3jtub4lnlha7vfvp4f2mj6zxraqfnxernheayom3pljsfppca"
+    action: change_compartment
 
 - name: Perform action deactivate on target_database
   oci_data_safe_target_database_actions:
+    # required
     target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: deactivate
 
 - name: Perform action download_privilege_script on target_database
   oci_data_safe_target_database_actions:
+    # required
     dest: /tmp/myfile
     action: download_privilege_script
 
@@ -210,7 +215,7 @@ target_database:
                         - The password of the database user.
                     returned: on success
                     type: str
-                    sample: password_example
+                    sample: example-password
         tls_config:
             description:
                 - ""
@@ -234,7 +239,7 @@ target_database:
                         - The password to read the trust store and key store files, if they are password protected.
                     returned: on success
                     type: str
-                    sample: store_password_example
+                    sample: example-password
                 trust_store_content:
                     description:
                         - Base64 encoded string of trust store file content.
@@ -338,12 +343,12 @@ target_database:
         },
         "credentials": {
             "user_name": "user_name_example",
-            "password": "password_example"
+            "password": "example-password"
         },
         "tls_config": {
             "status": "ENABLED",
             "certificate_store_type": "JKS",
-            "store_password": "store_password_example",
+            "store_password": "example-password",
             "trust_store_content": "trust_store_content_example",
             "key_store_content": "key_store_content_example"
         },

@@ -104,13 +104,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List targets
-  oci_cloud_guard_target_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific target
   oci_cloud_guard_target_facts:
+    # required
     target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List targets
+  oci_cloud_guard_target_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    compartment_id_in_subtree: true
+    access_level: RESTRICTED
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

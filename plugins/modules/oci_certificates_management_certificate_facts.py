@@ -82,13 +82,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List certificates
-  oci_certificates_management_certificate_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific certificate
   oci_certificates_management_certificate_facts:
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List certificates
+  oci_certificates_management_certificate_facts:
+
+    # optional
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: CREATING
+    name: name_example
+    sort_by: NAME
+    sort_order: ASC
+    issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

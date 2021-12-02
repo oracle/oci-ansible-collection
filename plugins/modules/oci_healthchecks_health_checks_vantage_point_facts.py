@@ -56,6 +56,12 @@ EXAMPLES = """
 - name: List health_checks_vantage_points
   oci_healthchecks_health_checks_vantage_point_facts:
 
+    # optional
+    sort_by: name
+    sort_order: ASC
+    name: name_example
+    display_name: display_name_example
+
 """
 
 RETURN = """

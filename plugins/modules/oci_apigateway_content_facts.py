@@ -51,8 +51,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific content
   oci_apigateway_content_facts:
+    # required
     dest: /tmp/myfile
     api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    range: range_example
 
 """
 

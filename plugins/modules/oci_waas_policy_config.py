@@ -281,10 +281,38 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update policy_config
   oci_waas_policy_config:
+    # required
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     certificate_id: "ocid1.waascertificate.oc1.."
     is_https_enabled: true
     is_https_forced: true
-    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    tls_protocols: [ "null" ]
+    is_origin_compression_enabled: true
+    is_behind_cdn: true
+    client_address_header: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+    is_cache_control_respected: true
+    is_response_buffering_enabled: true
+    cipher_group: DEFAULT
+    load_balancing_method:
+      # required
+      method: ROUND_ROBIN
+    websocket_path_prefixes: [ "null" ]
+    is_sni_enabled: true
+    health_checks:
+      # optional
+      is_enabled: true
+      method: GET
+      path: path_example
+      headers: null
+      expected_response_code_group: [ "null" ]
+      is_response_text_check_enabled: true
+      expected_response_text: expected_response_text_example
+      interval_in_seconds: 56
+      timeout_in_seconds: 56
+      healthy_threshold: 56
+      unhealthy_threshold: 56
 
 """
 

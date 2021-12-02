@@ -47,6 +47,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: Get a specific fast_connect_provider_service_key
   oci_network_fast_connect_provider_service_key_facts:
+    # required
     provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
     provider_service_key_name: provider_service_key_name_example
 

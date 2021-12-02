@@ -30,11 +30,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    message:
+    msg:
         description:
             - The base64-encoded binary data object denoting the message or message digest to sign. You can have a message up to 4096 bytes in size. To sign a
               larger message, provide the message digest.
         type: str
+        aliases: ["message"]
         required: true
     key_id:
         description:
@@ -94,9 +95,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create signed_data
   oci_key_management_signed_data:
-    message: message_example
+    # required
+    msg: message_example
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     signing_algorithm: SHA_224_RSA_PKCS_PSS
+
+    # optional
+    key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    message_type: RAW
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """
@@ -206,7 +212,7 @@ def main():
     )
     module_args.update(
         dict(
-            message=dict(type="str", required=True),
+            msg=dict(aliases=["message"], type="str", required=True),
             key_id=dict(type="str", required=True),
             key_version_id=dict(type="str"),
             message_type=dict(type="str", choices=["RAW", "DIGEST"]),

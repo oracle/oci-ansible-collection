@@ -136,36 +136,69 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create deploy_artifact
   oci_devops_deploy_artifact:
+    # required
     deploy_artifact_type: deploy_artifact_type_example
     deploy_artifact_source:
+      # required
       deploy_artifact_source_type: GENERIC_ARTIFACT
+      repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+      deploy_artifact_path: deploy_artifact_path_example
+      deploy_artifact_version: ${appVersion}
     argument_substitution_mode: argument_substitution_mode_example
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update deploy_artifact using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_devops_deploy_artifact:
+    # optional
     description: description_example
     display_name: display_name_example
-    deploy_artifact_type: deploy_artifact_type_example
-    deploy_artifact_source:
-      deploy_artifact_source_type: GENERIC_ARTIFACT
-    argument_substitution_mode: argument_substitution_mode_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deploy_artifact
   oci_devops_deploy_artifact:
+    # required
+    deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     display_name: display_name_example
-    deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_type: deploy_artifact_type_example
+    deploy_artifact_source:
+      # required
+      deploy_artifact_source_type: GENERIC_ARTIFACT
+      repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+      deploy_artifact_path: deploy_artifact_path_example
+      deploy_artifact_version: ${appVersion}
+    argument_substitution_mode: argument_substitution_mode_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_artifact using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_devops_deploy_artifact:
+    # required
+    display_name: display_name_example
+
+    # optional
+    description: description_example
+    deploy_artifact_type: deploy_artifact_type_example
+    deploy_artifact_source:
+      # required
+      deploy_artifact_source_type: GENERIC_ARTIFACT
+      repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+      deploy_artifact_path: deploy_artifact_path_example
+      deploy_artifact_version: ${appVersion}
+    argument_substitution_mode: argument_substitution_mode_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete deploy_artifact
   oci_devops_deploy_artifact:
+    # required
     deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deploy_artifact using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_devops_deploy_artifact:
+    # required
     display_name: display_name_example
     state: absent
 

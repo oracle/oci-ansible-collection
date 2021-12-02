@@ -59,14 +59,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List vm_cluster_update_history_entries
-  oci_database_vm_cluster_update_history_entry_facts:
-    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific vm_cluster_update_history_entry
   oci_database_vm_cluster_update_history_entry_facts:
+    # required
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     update_history_entry_id: "ocid1.updatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List vm_cluster_update_history_entries
+  oci_database_vm_cluster_update_history_entry_facts:
+    # required
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    update_type: GI_UPGRADE
+    lifecycle_state: lifecycle_state_example
 
 """
 

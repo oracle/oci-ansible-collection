@@ -170,11 +170,30 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update object_lifecycle_policy
   oci_object_storage_object_lifecycle_policy:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
 
+    # optional
+    items:
+    - # required
+      name: name_example
+      action: action_example
+      time_amount: 56
+      time_unit: DAYS
+      is_enabled: true
+
+      # optional
+      target: target_example
+      object_name_filter:
+        # optional
+        inclusion_prefixes: [ "null" ]
+        inclusion_patterns: [ "null" ]
+        exclusion_patterns: [ "null" ]
+
 - name: Delete object_lifecycle_policy
   oci_object_storage_object_lifecycle_policy:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     state: absent

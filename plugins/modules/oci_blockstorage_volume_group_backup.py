@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a VolumeGroupBackup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new backup volume group of the specified volume group.
       For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
-    - "This resource has the following action operations in the M(oci_volume_group_backup_actions) module: change_compartment, copy."
+    - "This resource has the following action operations in the M(oracle.oci.oci_blockstorage_volume_group_backup_actions) module: change_compartment, copy."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -47,8 +47,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the volume group backup. Does not have
-              to be unique and it's changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -95,29 +95,45 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_group_backup
   oci_blockstorage_volume_group_backup:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update volume_group_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    type: FULL
+
+- name: Update volume_group_backup
   oci_blockstorage_volume_group_backup:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
-- name: Update volume_group_backup
+- name: Update volume_group_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_group_backup:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete volume_group_backup
   oci_blockstorage_volume_group_backup:
+    # required
     volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume_group_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_group_backup:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -147,8 +163,8 @@ volume_group_backup:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the volume group backup. Does not have
-                  to be unique and it's changeable. Avoid entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

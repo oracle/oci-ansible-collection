@@ -24,7 +24,7 @@ short_description: Manage a MfaTotpDevice resource in Oracle Cloud Infrastructur
 description:
     - This module allows the user to create and delete a MfaTotpDevice resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new MFA TOTP device for the user. A user can have one MFA TOTP device.
-    - "This resource has the following action operations in the M(oci_mfa_totp_device_actions) module: activate, generate_totp_seed."
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_mfa_totp_device_actions) module: activate, generate_totp_seed."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -54,10 +54,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create mfa_totp_device
   oci_identity_mfa_totp_device:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete mfa_totp_device
   oci_identity_mfa_totp_device:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

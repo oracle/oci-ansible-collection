@@ -30,13 +30,9 @@ oracle.oci.oci_resource_manager_stack_resource_drift_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_resource_manager_stack_resource_drift_facts`.
 
@@ -299,7 +295,12 @@ Examples
     
     - name: List stack_resource_drifts
       oci_resource_manager_stack_resource_drift_facts:
+        # required
         stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        work_request_id: "ocid1.workrequest.oc1..xxxxxxEXAMPLExxxxxx"
+        resource_drift_status: [ "$p.getValue()" ]
 
 
 
@@ -335,7 +336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of StackResourceDrift resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;actual_properties&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;expected_properties&#x27;: {}, &#x27;resource_drift_status&#x27;: &#x27;NOT_CHECKED&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;resource_type&#x27;: &#x27;oci_core_instance&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_drift_checked&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
@@ -353,7 +354,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Actual values of properties that the stack defines for the indicated resource. Each property and value is provided as a key-value pair. The following example shows actual values for the resource&#x27;s display name and server type: `{&quot;display_name&quot;: &quot;tf-default-dhcp-options-new&quot;, &quot;options.0.server_type&quot;: &quot;VcnLocalPlusInternet&quot;}`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -369,7 +370,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment where the stack is located.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -387,7 +388,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Expected values of properties that the stack defines for the indicated resource. Each property and value is provided as a key-value pair. The following example shows expected (defined) values for the resource&#x27;s display name and server type: `{&quot;display_name&quot;: &quot;tf-default-dhcp-options&quot;, &quot;options.0.server_type&quot;: &quot;VcnLocalPlusInternet&quot;}`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -403,7 +404,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The drift status of the resource. A drift status value indicates whether or not the actual state of the resource differs from the expected (defined) state for that resource.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NOT_CHECKED</div>
                                     </td>
             </tr>
@@ -421,7 +422,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the resource provisioned by Terraform.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -439,7 +440,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the resource as defined in the stack.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_name_example</div>
                                     </td>
             </tr>
@@ -457,7 +458,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The provider resource type. Must be supported by the <a href='https://www.terraform.io/docs/providers/oci/index.html'>Oracle Cloud Infrastructure provider</a>. Example: `oci_core_instance`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_core_instance</div>
                                     </td>
             </tr>
@@ -475,7 +476,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the stack.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -493,7 +494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time when the drift detection was executed. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600Z</div>
                                     </td>
             </tr>

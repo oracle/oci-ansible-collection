@@ -26,7 +26,8 @@ description:
     - For I(state=present), creates a new custom Software Source on the management system.
       This will not contain any packages after it is first created,
       and they must be added later.
-    - "This resource has the following action operations in the M(oci_software_source_actions) module: add_packages, change_compartment, remove_packages."
+    - "This resource has the following action operations in the M(oracle.oci.oci_os_management_software_source_actions) module: add_packages,
+      change_compartment, remove_packages."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -124,13 +125,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create software_source
   oci_os_management_software_source:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     arch_type: IA_32
 
-- name: Update software_source using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    description: description_example
+    maintainer_name: maintainer_name_example
+    maintainer_email: maintainer_email_example
+    maintainer_phone: maintainer_phone_example
+    checksum_type: SHA1
+    parent_id: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update software_source
   oci_os_management_software_source:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
     maintainer_name: maintainer_name_example
@@ -140,19 +155,30 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update software_source
+- name: Update software_source using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_software_source:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+
+    # optional
     description: description_example
-    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+    maintainer_name: maintainer_name_example
+    maintainer_email: maintainer_email_example
+    maintainer_phone: maintainer_phone_example
+    checksum_type: SHA1
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete software_source
   oci_os_management_software_source:
+    # required
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete software_source using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_software_source:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

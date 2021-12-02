@@ -24,7 +24,7 @@ short_description: Manage a View resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a View resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new view in the specified compartment. Requires a `PRIVATE` scope query parameter.
-    - "This resource has the following action operations in the M(oci_view_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_dns_view_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -95,30 +95,52 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create view
   oci_dns_view:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update view using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    scope: GLOBAL
+
+- name: Update view
   oci_dns_view:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
 
-- name: Update view
+- name: Update view using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_view:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
-    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
 
 - name: Delete view
   oci_dns_view:
+    # required
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
+
 - name: Delete view using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_view:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

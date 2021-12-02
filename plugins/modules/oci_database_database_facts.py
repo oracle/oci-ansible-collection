@@ -86,13 +86,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List databases
-  oci_database_database_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific database
   oci_database_database_facts:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List databases
+  oci_database_database_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+    system_id: "ocid1.system.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: DBNAME
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    db_name: db_name_example
 
 """
 
@@ -258,7 +268,7 @@ databases:
                                 - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
                             returned: on success
                             type: str
-                            sample: vpc_password_example
+                            sample: example-password
                         internet_proxy:
                             description:
                                 - Proxy URL to connect to object store.
@@ -377,7 +387,7 @@ databases:
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "vpc_user": "vpc_user_example",
-                "vpc_password": "vpc_password_example",
+                "vpc_password": "example-password",
                 "internet_proxy": "internet_proxy_example"
             }]
         },

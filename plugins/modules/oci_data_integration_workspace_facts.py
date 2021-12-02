@@ -79,13 +79,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List workspaces
-  oci_data_integration_workspace_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific workspace
   oci_data_integration_workspace_facts:
+    # required
     workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List workspaces
+  oci_data_integration_workspace_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    lifecycle_state: lifecycle_state_example
+    sort_order: ASC
+    sort_by: TIME_CREATED
 
 """
 

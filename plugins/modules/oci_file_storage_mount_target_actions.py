@@ -53,9 +53,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on mount_target
   oci_file_storage_mount_target_actions:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
     mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 

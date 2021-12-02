@@ -89,18 +89,40 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action add on drg_route_rules
   oci_network_drg_route_rules_actions:
+    # required
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     action: add
 
+    # optional
+    route_rules:
+    - # optional
+      destination_type: CIDR_BLOCK
+      destination: destination_example
+      next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Perform action remove on drg_route_rules
   oci_network_drg_route_rules_actions:
+    # required
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     action: remove
 
+    # optional
+    route_rule_ids: [ "null" ]
+
 - name: Perform action update on drg_route_rules
   oci_network_drg_route_rules_actions:
+    # required
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     action: update
+
+    # optional
+    route_rules:
+    - # optional
+      destination_type: CIDR_BLOCK
+      destination: destination_example
+      next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -177,6 +199,12 @@ drg_route_rules:
             returned: on success
             type: str
             sample: STATIC
+        attributes:
+            description:
+                - Additional properties for the route, computed by the service.
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "destination": "destination_example",
         "destination_type": "CIDR_BLOCK",
@@ -185,7 +213,8 @@ drg_route_rules:
         "is_conflict": true,
         "is_blackhole": true,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "route_provenance": "STATIC"
+        "route_provenance": "STATIC",
+        "attributes": {}
     }
 """
 

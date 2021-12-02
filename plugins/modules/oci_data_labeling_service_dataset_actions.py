@@ -52,6 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on dataset
   oci_data_labeling_service_dataset_actions:
+    # required
     dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

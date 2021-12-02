@@ -24,7 +24,7 @@ short_description: Manage a Channel resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Channel resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Channel to establish replication from a source to a target.
-    - "This resource has the following action operations in the M(oci_channel_actions) module: reset, resume."
+    - "This resource has the following action operations in the M(oracle.oci.oci_mysql_channel_actions) module: reset, resume."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -184,43 +184,115 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create channel
   oci_mysql_channel:
-    is_enabled: "false"
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source:
-      source_type: "MYSQL"
-      hostname: "hostname.my.company.com"
-      username: "username"
-      password: "password"
-      ssl_mode: "REQUIRED"
-    target:
-      target_type: "DBSYSTEM"
-      db_system_id: "ocid1.dbsystem.oc1.TargetDbSystemOCID"
+      # required
+      source_type: MYSQL
+      hostname: hostname.my.company.com
+      username: username
+      password: example-password
+      ssl_mode: REQUIRED
 
-- name: Update channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_mysql_channel:
-    is_enabled: "true"
-    target:
-      target_type: "DBSYSTEM"
-      applier_username: "admin"
-
-- name: Update channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_mysql_channel:
-    source:
-      ssl_mode: "VERIFY_IDENTITY"
+      # optional
+      port: 56
       ssl_ca_certificate:
-        certificate_type: "PEM"
-        contents: "CA certificate in PEM format"
+        # required
+        certificate_type: PEM
+        contents: CA certificate in PEM format
+    target:
+      # required
+      target_type: DBSYSTEM
+      db_system_id: ocid1.dbsystem.oc1.TargetDbSystemOCID
+
+      # optional
+      channel_name: channel_name_example
+      applier_username: admin
+
+    # optional
+    display_name: display_name_example
+    is_enabled: false
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update channel
   oci_mysql_channel:
+    # required
     channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    is_enabled: false
+    source:
+      # required
+      source_type: MYSQL
+      hostname: hostname.my.company.com
+      username: username
+      password: example-password
+      ssl_mode: REQUIRED
+
+      # optional
+      port: 56
+      ssl_ca_certificate:
+        # required
+        certificate_type: PEM
+        contents: CA certificate in PEM format
+    target:
+      # required
+      target_type: DBSYSTEM
+      db_system_id: ocid1.dbsystem.oc1.TargetDbSystemOCID
+
+      # optional
+      channel_name: channel_name_example
+      applier_username: admin
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_mysql_channel:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    is_enabled: false
+    source:
+      # required
+      source_type: MYSQL
+      hostname: hostname.my.company.com
+      username: username
+      password: example-password
+      ssl_mode: REQUIRED
+
+      # optional
+      port: 56
+      ssl_ca_certificate:
+        # required
+        certificate_type: PEM
+        contents: CA certificate in PEM format
+    target:
+      # required
+      target_type: DBSYSTEM
+      db_system_id: ocid1.dbsystem.oc1.TargetDbSystemOCID
+
+      # optional
+      channel_name: channel_name_example
+      applier_username: admin
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete channel
   oci_mysql_channel:
+    # required
     channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_channel:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

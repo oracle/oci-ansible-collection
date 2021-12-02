@@ -56,7 +56,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List stack_resource_drifts
   oci_resource_manager_stack_resource_drift_facts:
+    # required
     stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    work_request_id: "ocid1.workrequest.oc1..xxxxxxEXAMPLExxxxxx"
+    resource_drift_status: [ "$p.getValue()" ]
 
 """
 

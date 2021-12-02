@@ -52,6 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on oce_instance
   oci_oce_instance_actions:
+    # required
     oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

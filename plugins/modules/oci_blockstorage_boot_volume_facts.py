@@ -53,14 +53,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
+- name: Get a specific boot_volume
+  oci_blockstorage_boot_volume_facts:
+    # required
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List boot_volumes
   oci_blockstorage_boot_volume_facts:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific boot_volume
-  oci_blockstorage_boot_volume_facts:
-    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -222,7 +227,8 @@ boot_volumes:
             contains:
                 display_name:
                     description:
-                        - The display name of the boot volume replica
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
                     returned: on success
                     type: str
                     sample: display_name_example

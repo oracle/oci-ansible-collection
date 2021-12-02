@@ -40,6 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific ip_sec_connection_device_status
   oci_network_ip_sec_connection_device_status_facts:
+    # required
     ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -53,13 +54,13 @@ ip_sec_connection_device_status:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the IPSec connection.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the IPSec connection.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The IPSec connection's Oracle ID (OCID).
+                - The IPSec connection's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

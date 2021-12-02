@@ -63,7 +63,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific alarm_history_collection
   oci_monitoring_alarm_history_collection_facts:
+    # required
     alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    alarm_historytype: STATE_HISTORY
+    timestamp_greater_than_or_equal_to: 2019-01-01T01:00:00.789Z
+    timestamp_less_than: 2019-01-02T01:00:00.789Z
 
 """
 

@@ -116,28 +116,30 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on image
   oci_compute_image_actions:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
-- name: Perform action export on image
+- name: Perform action export on image with destination_type = objectStorageUri
   oci_compute_image_actions:
-    object_name: "my-exported-image.oci"
-    bucket_name: "MyBucket"
-    namespace_name: "MyNamespace"
-    destination_type: "objectStorageTuple"
-    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "export"
+    # required
+    destination_type: objectStorageUri
+    destination_uri: destination_uri_example
 
-- name: Perform action export on image
+    # optional
+    export_format: QCOW2
+
+- name: Perform action export on image with destination_type = objectStorageTuple
   oci_compute_image_actions:
-    object_name: "my-exported-image.vmdk"
-    bucket_name: "MyBucket"
-    namespace_name: "MyNamespace"
-    destination_type: "objectStorageTuple"
-    export_format: "VMDK"
-    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "export"
+    # required
+    destination_type: objectStorageTuple
+    bucket_name: bucket_name_example
+    namespace_name: namespace_name_example
+    object_name: object_name_example
+
+    # optional
+    export_format: QCOW2
 
 """
 

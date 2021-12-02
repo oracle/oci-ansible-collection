@@ -44,6 +44,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List replication_sources
   oci_object_storage_replication_source_facts:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
 

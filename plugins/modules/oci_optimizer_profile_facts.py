@@ -76,13 +76,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List profiles
-  oci_optimizer_profile_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific profile
   oci_optimizer_profile_facts:
+    # required
     profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List profiles
+  oci_optimizer_profile_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_order: ASC
+    sort_by: NAME
+    lifecycle_state: ACTIVE
 
 """
 
@@ -117,6 +125,12 @@ profiles:
             returned: on success
             type: str
             sample: description_example
+        aggregation_interval_in_days:
+            description:
+                - The time period over which to collect data for the recommendations, measured in number of days.
+            returned: on success
+            type: int
+            sample: 56
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -166,7 +180,7 @@ profiles:
             contains:
                 items:
                     description:
-                        - The list of target compartment OCIDs attached to the current profile override.
+                        - The list of OCIDs attached to the compartments specified in the current profile override.
                     returned: on success
                     type: list
                     sample: []
@@ -178,7 +192,7 @@ profiles:
             contains:
                 items:
                     description:
-                        - The list of target tags attached to the current profile override.
+                        - The list of tags specified in the current profile override.
                     returned: on success
                     type: complex
                     contains:
@@ -190,19 +204,23 @@ profiles:
                             sample: tag_namespace_name_example
                         tag_definition_name:
                             description:
-                                - The name of the tag definition.
+                                - The name you use to refer to the tag, also known as the tag key.
                             returned: on success
                             type: str
                             sample: tag_definition_name_example
                         tag_value_type:
                             description:
-                                - The tag value type.
+                                - Specifies which tag value types in the `tagValues` field result in overrides of the recommendation criteria.
+                                - When the value for this field is `ANY`, the `tagValues` field should be empty, which enforces overrides to the recommendation
+                                  for resources with any tag values attached to them.
+                                - When the value for this field value is `VALUE`, the `tagValues` field must include a specific value or list of values.
+                                  Overrides to the recommendation criteria only occur for resources that match the values in the `tagValues` fields.
                             returned: on success
                             type: str
                             sample: VALUE
                         tag_values:
                             description:
-                                - The list of tag values.
+                                - The list of tag values. The tag value is the value that the user applying the tag adds to the tag key.
                             returned: on success
                             type: list
                             sample: []
@@ -229,6 +247,7 @@ profiles:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
+        "aggregation_interval_in_days": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
         "levels_configuration": {

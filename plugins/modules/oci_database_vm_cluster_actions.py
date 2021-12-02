@@ -69,25 +69,28 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action add_virtual_machine on vm_cluster
   oci_database_vm_cluster_actions:
+    # required
     db_servers:
-    - db_server_id: "ocid1.dbserver.oc1.<example_unique_ID>"
-    - db_server_id: "ocid1.dbserver.oc1.<example_unique_ID>"
+    - # required
+      db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "add_virtual_machine"
+    action: add_virtual_machine
 
 - name: Perform action change_compartment on vm_cluster
   oci_database_vm_cluster_actions:
+    # required
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action remove_virtual_machine on vm_cluster
   oci_database_vm_cluster_actions:
+    # required
     db_servers:
-    - db_server_id: "ocid1.dbserver.oc1.<example_unique_ID>"
-    - db_server_id: "ocid1.dbserver.oc1.<example_unique_ID>"
+    - # required
+      db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "remove_virtual_machine"
+    action: remove_virtual_machine
 
 """
 

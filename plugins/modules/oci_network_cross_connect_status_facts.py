@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific cross_connect_status
   oci_network_cross_connect_status_facts:
+    # required
     cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -52,13 +53,13 @@ cross_connect_status:
     contains:
         cross_connect_id:
             description:
-                - The OCID of the cross-connect.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect.
             returned: on success
             type: str
             sample: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
         interface_state:
             description:
-                - Whether Oracle's side of the interface is up or down.
+                - Indicates whether Oracle's side of the interface is up or down.
             returned: on success
             type: str
             sample: UP
@@ -72,19 +73,40 @@ cross_connect_status:
         light_level_indicator:
             description:
                 - Status indicator corresponding to the light level.
-                - " * **NO_LIGHT:** No measurable light"
-                - " * **LOW_WARN:** There's measurable light but it's too low"
-                - " * **HIGH_WARN:** Light level is too high"
-                - " * **BAD:** There's measurable light but the signal-to-noise ratio is bad"
-                - " * **GOOD:** Good light level"
+                - " * **NO_LIGHT:** No measurable light
+                    * **LOW_WARN:** There's measurable light but it's too low
+                    * **HIGH_WARN:** Light level is too high
+                    * **BAD:** There's measurable light but the signal-to-noise ratio is bad
+                    * **GOOD:** Good light level"
             returned: on success
             type: str
             sample: NO_LIGHT
+        encryption_status:
+            description:
+                - Encryption status of this cross connect.
+                - "Possible values:
+                  * **UP:** Traffic is encrypted over this cross-connect
+                  * **DOWN:** Traffic is not encrypted over this cross-connect
+                  * **CIPHER_MISMATCH:** The MACsec encryption cipher doesn't match the cipher on the CPE
+                  * **CKN_MISMATCH:** The MACsec Connectivity association Key Name (CKN) doesn't match the CKN on the CPE
+                  * **CAK_MISMATCH:** The MACsec Connectivity Association Key (CAK) doesn't match the CAK on the CPE"
+            returned: on success
+            type: str
+            sample: UP
+        light_levels_in_d_bm:
+            description:
+                - The light levels of the cross-connect (in dBm).
+                - "Example: `[14.0, -14.0, 2.1, -10.1]`"
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "cross_connect_id": "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx",
         "interface_state": "UP",
         "light_level_ind_bm": 14.0,
-        "light_level_indicator": "NO_LIGHT"
+        "light_level_indicator": "NO_LIGHT",
+        "encryption_status": "UP",
+        "light_levels_in_d_bm": []
     }
 """
 

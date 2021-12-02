@@ -50,7 +50,7 @@ options:
         type: str
     peer_id:
         description:
-            - The OCID of the LPG you want to peer with.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the LPG you want to peer with.
             - Required for I(action=connect).
         type: str
     action:
@@ -67,12 +67,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on local_peering_gateway
   oci_network_local_peering_gateway_actions:
+    # required
     local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action connect on local_peering_gateway
   oci_network_local_peering_gateway_actions:
+    # required
     local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
     peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
     action: connect
@@ -88,7 +90,7 @@ local_peering_gateway:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the LPG.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the LPG.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -102,8 +104,8 @@ local_peering_gateway:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -118,7 +120,7 @@ local_peering_gateway:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The LPG's Oracle ID (OCID).
+                - The LPG's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -176,7 +178,7 @@ local_peering_gateway:
             sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         route_table_id:
             description:
-                - The OCID of the route table the LPG is using.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the LPG is using.
                 - "For information about why you would associate a route table with an LPG, see
                   L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)."
             returned: on success

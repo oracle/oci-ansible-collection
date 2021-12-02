@@ -24,7 +24,7 @@ short_description: Manage a PrivateEndpoint resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to create, update and delete a PrivateEndpoint resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a private endpoint to be used by applications.
-    - "This resource has the following action operations in the M(oci_private_endpoint_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_flow_private_endpoint_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -110,37 +110,56 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create private_endpoint
   oci_data_flow_private_endpoint:
-    compartment_id: "compartmentId"
-    display_name: "pe_1234"
-    dns_zones:
-    - "app.examplecorp.com"
-    - "oracle.com"
-    max_host_count: "256"
-    nsg_ids:
-    - "nsgId"
-    subnet_id: "subnetId"
+    # required
+    compartment_id: compartmentId
+    dns_zones: [ "app.examplecorp.com" ]
+    subnet_id: subnetId
 
-- name: Update private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_flow_private_endpoint:
-    display_name: "PE to DB32002"
-    dns_zones:
-    - "app.examplecorp.com"
-    - "oracle.com"
-    nsg_ids:
-    - "nsgId"
-    subnet_id: "subnetId"
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    description: description_example
+    display_name: pe_1234
+    freeform_tags: {'Department': 'Finance'}
+    max_host_count: 256
+    nsg_ids: [ "nsgId" ]
 
 - name: Update private_endpoint
   oci_data_flow_private_endpoint:
+    # required
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    description: description_example
+    display_name: pe_1234
+    dns_zones: [ "app.examplecorp.com" ]
+    freeform_tags: {'Department': 'Finance'}
+    max_host_count: 256
+    nsg_ids: [ "nsgId" ]
+
+- name: Update private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_flow_private_endpoint:
+    # required
+    compartment_id: compartmentId
+    display_name: pe_1234
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    description: description_example
+    dns_zones: [ "app.examplecorp.com" ]
+    freeform_tags: {'Department': 'Finance'}
+    max_host_count: 256
+    nsg_ids: [ "nsgId" ]
 
 - name: Delete private_endpoint
   oci_data_flow_private_endpoint:
+    # required
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_private_endpoint:
+    # required
     compartment_id: compartmentId
     display_name: pe_1234
     state: absent

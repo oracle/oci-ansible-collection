@@ -50,7 +50,7 @@ regions:
                 - "Example: `PHX`"
             returned: on success
             type: str
-            sample: PHX
+            sample: key_example
         name:
             description:
                 - The name of the region. See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
@@ -60,7 +60,7 @@ regions:
             type: str
             sample: us-phoenix-1
     sample: [{
-        "key": "PHX",
+        "key": "key_example",
         "name": "us-phoenix-1"
     }]
 """

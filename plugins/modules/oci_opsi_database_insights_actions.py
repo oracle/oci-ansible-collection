@@ -478,36 +478,108 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change on database_insights
   oci_opsi_database_insights_actions:
+    # required
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change
 
 - name: Perform action disable on database_insights
   oci_opsi_database_insights_actions:
+    # required
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable
 
-- name: Perform action enable on database_insights
+- name: Perform action enable on database_insights with entity_source = EM_MANAGED_EXTERNAL_DATABASE
   oci_opsi_database_insights_actions:
-    database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     entity_source: EM_MANAGED_EXTERNAL_DATABASE
-    action: enable
 
 - name: Perform action ingest_database_configuration on database_insights
   oci_opsi_database_insights_actions:
+    # required
+    items:
+    - # required
+      metric_name: DB_OS_CONFIG_INSTANCE
+      instance_name: instance_name_example
+      host_name: host_name_example
+
+      # optional
+      time_collected: time_collected_example
+      num_cp_us: 56
+      num_cpu_cores: 56
+      num_cpu_sockets: 56
+      physical_memory_bytes: 1.2
     action: ingest_database_configuration
+
+    # optional
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action ingest_sql_bucket on database_insights
   oci_opsi_database_insights_actions:
+    # required
     action: ingest_sql_bucket
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    items:
+    - # required
+      metric_name: DB_OS_CONFIG_INSTANCE
+      instance_name: instance_name_example
+      host_name: host_name_example
+
+      # optional
+      time_collected: time_collected_example
+      num_cp_us: 56
+      num_cpu_cores: 56
+      num_cpu_sockets: 56
+      physical_memory_bytes: 1.2
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action ingest_sql_plan_lines on database_insights
   oci_opsi_database_insights_actions:
+    # required
     action: ingest_sql_plan_lines
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    items:
+    - # required
+      metric_name: DB_OS_CONFIG_INSTANCE
+      instance_name: instance_name_example
+      host_name: host_name_example
+
+      # optional
+      time_collected: time_collected_example
+      num_cp_us: 56
+      num_cpu_cores: 56
+      num_cpu_sockets: 56
+      physical_memory_bytes: 1.2
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action ingest_sql_text on database_insights
   oci_opsi_database_insights_actions:
+    # required
     action: ingest_sql_text
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    items:
+    - # required
+      metric_name: DB_OS_CONFIG_INSTANCE
+      instance_name: instance_name_example
+      host_name: host_name_example
+
+      # optional
+      time_collected: time_collected_example
+      num_cp_us: 56
+      num_cpu_cores: 56
+      num_cpu_sockets: 56
+      physical_memory_bytes: 1.2
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -674,6 +746,12 @@ database_insights:
             returned: on success
             type: str
             sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_insight_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+            returned: on success
+            type: str
+            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
@@ -760,6 +838,7 @@ database_insights:
         "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_details": {

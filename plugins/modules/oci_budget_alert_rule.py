@@ -76,11 +76,12 @@ options:
             - The audience that will receive the alert when it triggers. An empty string is interpreted as null.
             - This parameter is updatable.
         type: str
-    message:
+    msg:
         description:
             - The message to be sent to the recipients when alert rule is triggered.
             - This parameter is updatable.
         type: str
+        aliases: ["message"]
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -117,38 +118,63 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create budget_alert_rule
   oci_budget_alert_rule:
+    # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     type: ACTUAL
     threshold: 10
     threshold_type: PERCENTAGE
 
-- name: Update budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    display_name: display_name_example
+    description: description_example
+    recipients: recipients_example
+    msg: message_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update budget_alert_rule
   oci_budget_alert_rule:
+    # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
+    alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
     type: ACTUAL
     threshold: 10
     threshold_type: PERCENTAGE
     recipients: recipients_example
-    message: message_example
+    msg: message_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update budget_alert_rule
+- name: Update budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget_alert_rule:
+    # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    type: ACTUAL
+    threshold: 10
+    threshold_type: PERCENTAGE
+    recipients: recipients_example
+    msg: message_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete budget_alert_rule
   oci_budget_alert_rule:
+    # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget_alert_rule:
+    # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -353,6 +379,9 @@ class BudgetAlertRuleHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateAlertRuleDetails
 
+    def get_exclude_attributes(self):
+        return ["msg"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -431,7 +460,7 @@ def main():
             threshold=dict(type="float"),
             threshold_type=dict(type="str", choices=["PERCENTAGE", "ABSOLUTE"]),
             recipients=dict(type="str"),
-            message=dict(type="str"),
+            msg=dict(aliases=["message"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             alert_rule_id=dict(aliases=["id"], type="str"),

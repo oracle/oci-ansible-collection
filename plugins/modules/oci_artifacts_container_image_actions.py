@@ -54,14 +54,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action remove_container_version on container_image
   oci_artifacts_container_image_actions:
+    # required
     image_id: "ocid1.containerimage.oc1..exampleuniqueID"
     version: version_example
     action: remove_container_version
 
 - name: Perform action restore on container_image
   oci_artifacts_container_image_actions:
+    # required
     image_id: "ocid1.containerimage.oc1..exampleuniqueID"
     action: restore
+
+    # optional
+    version: version_example
 
 """
 

@@ -82,13 +82,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List gateways
-  oci_apigateway_gateway_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific gateway
   oci_apigateway_gateway_facts:
+    # required
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List gateways
+  oci_apigateway_gateway_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: My new resource
+    lifecycle_state: SUCCEEDED
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

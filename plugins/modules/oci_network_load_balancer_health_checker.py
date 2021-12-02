@@ -118,9 +118,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update health_checker
   oci_network_load_balancer_health_checker:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    protocol: HTTP
     backend_set_name: example_backend_set
+
+    # optional
+    protocol: HTTP
+    port: 8080
+    retries: 3
+    timeout_in_millis: 3000
+    interval_in_millis: 10000
+    url_path: /healthcheck
+    response_body_regex: response_body_regex_example
+    return_code: 0
+    request_data: null
+    response_data: null
 
 """
 
@@ -182,7 +194,7 @@ health_checker:
                 - "Example: `^((?!false).|\\\\s)*$`"
             returned: on success
             type: str
-            sample: "^((?!false).|\\\\s)*$"
+            sample: response_body_regex_example
         return_code:
             description:
                 - "The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol,
@@ -210,7 +222,7 @@ health_checker:
         "timeout_in_millis": 3000,
         "interval_in_millis": 10000,
         "url_path": "/healthcheck",
-        "response_body_regex": "^((?!false).|\\\\s)*$",
+        "response_body_regex": "response_body_regex_example",
         "return_code": 0,
         "request_data": UNKNOWN TYPE - str,
         "response_data": UNKNOWN TYPE - str

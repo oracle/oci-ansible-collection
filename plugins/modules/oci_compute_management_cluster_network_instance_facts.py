@@ -69,8 +69,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List cluster_network_instances
   oci_compute_management_cluster_network_instance_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 
@@ -101,7 +107,8 @@ cluster_network_instances:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

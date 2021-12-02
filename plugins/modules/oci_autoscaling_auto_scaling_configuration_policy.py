@@ -244,39 +244,111 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Update auto_scaling_configuration_policy with policy_type = threshold
   oci_autoscaling_auto_scaling_configuration_policy:
-    display_name: "example_threshold_autoscaling_policy"
+    # required
+    policy_type: threshold
+
+    # optional
+    display_name: example_threshold_autoscaling_policy
     capacity:
+      # optional
       max: 50
       min: 10
       initial: 15
-    policy_type: "threshold"
+    is_enabled: true
     rules:
-    - action:
-        type: "CHANGE_COUNT_BY"
+    - # required
+      action:
+        # required
+        type: CHANGE_COUNT_BY
         value: 5
-      display_name: "example_scale_out_condition"
       metric:
-        metric_type: "CPU_UTILIZATION"
+        # required
+        metric_type: CPU_UTILIZATION
         threshold:
-          operator: "GTE"
+          # required
+          operator: GTE
           value: 90
-    - action:
-        type: "CHANGE_COUNT_BY"
-        value: -5
-      display_name: "example_scale_in_condition"
-      metric:
-        metric_type: "CPU_UTILIZATION"
-        threshold:
-          operator: "LTE"
-          value: 25
 
-- name: Update auto_scaling_configuration_policy
+      # optional
+      display_name: example_scale_out_condition
+
+- name: Update auto_scaling_configuration_policy with policy_type = scheduled
   oci_autoscaling_auto_scaling_configuration_policy:
-    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
-    auto_scaling_policy_id: "ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     policy_type: scheduled
+
+    # optional
+    display_name: example_threshold_autoscaling_policy
+    capacity:
+      # optional
+      max: 50
+      min: 10
+      initial: 15
+    is_enabled: true
+    execution_schedule:
+      # required
+      type: cron
+      timezone: UTC
+      expression: "0 15 10 ? * *"
+    resource_action:
+      # required
+      action_type: power
+      action: STOP
+
+- name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with policy_type = threshold
+  oci_autoscaling_auto_scaling_configuration_policy:
+    # required
+    policy_type: threshold
+
+    # optional
+    display_name: example_threshold_autoscaling_policy
+    capacity:
+      # optional
+      max: 50
+      min: 10
+      initial: 15
+    is_enabled: true
+    rules:
+    - # required
+      action:
+        # required
+        type: CHANGE_COUNT_BY
+        value: 5
+      metric:
+        # required
+        metric_type: CPU_UTILIZATION
+        threshold:
+          # required
+          operator: GTE
+          value: 90
+
+      # optional
+      display_name: example_scale_out_condition
+
+- name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with policy_type = scheduled
+  oci_autoscaling_auto_scaling_configuration_policy:
+    # required
+    policy_type: scheduled
+
+    # optional
+    display_name: example_threshold_autoscaling_policy
+    capacity:
+      # optional
+      max: 50
+      min: 10
+      initial: 15
+    is_enabled: true
+    execution_schedule:
+      # required
+      type: cron
+      timezone: UTC
+      expression: "0 15 10 ? * *"
+    resource_action:
+      # required
+      action_type: power
+      action: STOP
 
 """
 

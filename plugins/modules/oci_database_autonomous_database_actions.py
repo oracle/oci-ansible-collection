@@ -168,84 +168,121 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action autonomous_database_manual_refresh on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: autonomous_database_manual_refresh
 
+    # optional
+    time_refresh_cutoff: 2013-10-20T19:20:30+01:00
+
 - name: Perform action change_compartment on autonomous_database
   oci_database_autonomous_database_actions:
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action configure_autonomous_database_vault_key on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: configure_autonomous_database_vault_key
 
+    # optional
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    is_using_oracle_managed_keys: true
+
 - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    pdb_admin_password: pdb_admin_password_example
+    pdb_admin_password: example-password
     action: deregister_autonomous_database_data_safe
 
 - name: Perform action disable_autonomous_database_operations_insights on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_autonomous_database_operations_insights
 
 - name: Perform action enable_autonomous_database_operations_insights on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_autonomous_database_operations_insights
 
 - name: Perform action fail_over on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: fail_over
 
+    # optional
+    peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Perform action generate_autonomous_database_wallet on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    password: password_example
+    password: example-password
     wallet_file: /tmp/atp_wallet.zip
     action: generate_autonomous_database_wallet
 
+    # optional
+    generate_type: ALL
+    force: $utils.AnsibleRenderingUtils.escapeStringExampleValue($p.getValue())
+
 - name: Perform action register_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    pdb_admin_password: pdb_admin_password_example
+    pdb_admin_password: example-password
     action: register_autonomous_database_data_safe
 
 - name: Perform action restart on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart
 
 - name: Perform action restore on autonomous_database
   oci_database_autonomous_database_actions:
-    timestamp: "2018-04-11T01:59:07.032Z"
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "restore"
+    timestamp: 2013-10-20T19:20:30+01:00
+    action: restore
+
+    # optional
+    database_scn: database_scn_example
+    latest: true
 
 - name: Perform action rotate_autonomous_database_encryption_key on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_autonomous_database_encryption_key
 
 - name: Perform action start on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 - name: Perform action switchover on autonomous_database
   oci_database_autonomous_database_actions:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: switchover
+
+    # optional
+    peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

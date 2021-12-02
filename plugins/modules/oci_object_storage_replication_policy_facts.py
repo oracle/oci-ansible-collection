@@ -49,16 +49,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List replication_policies
-  oci_object_storage_replication_policy_facts:
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-
 - name: Get a specific replication_policy
   oci_object_storage_replication_policy_facts:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List replication_policies
+  oci_object_storage_replication_policy_facts:
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
 
 """
 

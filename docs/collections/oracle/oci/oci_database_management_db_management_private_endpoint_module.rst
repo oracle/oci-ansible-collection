@@ -30,13 +30,9 @@ oracle.oci.oci_database_management_db_management_private_endpoint -- Manage a Db
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_management_db_management_private_endpoint`.
 
@@ -58,7 +54,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DbManagementPrivateEndpoint resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Database Management private endpoint.
-- This resource has the following action operations in the M(oci_db_management_private_endpoint_actions) module: change_compartment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_database_management_db_management_private_endpoint_actions <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -446,29 +442,44 @@ Examples
     
     - name: Create db_management_private_endpoint
       oci_database_management_db_management_private_endpoint:
+        # required
         name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-    - name: Update db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_database_management_db_management_private_endpoint:
-        name: name_example
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        # optional
         description: description_example
+        nsg_ids: [ "null" ]
 
     - name: Update db_management_private_endpoint
       oci_database_management_db_management_private_endpoint:
+        # required
+        db_management_private_endpoint_id: "ocid1.dbmanagementprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
         name: name_example
         description: description_example
-        db_management_private_endpoint_id: "ocid1.dbmanagementprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "null" ]
+
+    - name: Update db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_database_management_db_management_private_endpoint:
+        # required
+        name: name_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        description: description_example
+        nsg_ids: [ "null" ]
 
     - name: Delete db_management_private_endpoint
       oci_database_management_db_management_private_endpoint:
+        # required
         db_management_private_endpoint_id: "ocid1.dbmanagementprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_management_db_management_private_endpoint:
+        # required
         name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
@@ -507,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the DbManagementPrivateEndpoint resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -525,7 +536,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the compartment.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -543,7 +554,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The description of the private endpoint.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -561,7 +572,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the Database Management private endpoint.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -579,7 +590,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the private endpoint.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
@@ -597,7 +608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The display name of the private endpoint.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -615,7 +626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCIDs of the network security groups that the private endpoint belongs to.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -631,7 +642,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The private IP addresses assigned to the private endpoint.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">private_ip_example</div>
                                     </td>
             </tr>
@@ -649,7 +660,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the subnet.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -667,7 +678,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the private endpoint was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -685,7 +696,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the VCN.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

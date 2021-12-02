@@ -30,13 +30,9 @@ oracle.oci.oci_data_catalog_namespace -- Manage a Namespace resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_data_catalog_namespace`.
 
@@ -431,30 +427,45 @@ Examples
     
     - name: Create namespace
       oci_data_catalog_namespace:
+        # required
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
 
-    - name: Update namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_data_catalog_namespace:
-        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
+        # optional
         description: description_example
         is_service_defined: true
 
     - name: Update namespace
       oci_data_catalog_namespace:
+        # required
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        display_name: display_name_example
+        description: description_example
+        is_service_defined: true
+
+    - name: Update namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_data_catalog_namespace:
+        # required
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
-        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        description: description_example
+        is_service_defined: true
 
     - name: Delete namespace
       oci_data_catalog_namespace:
+        # required
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_namespace:
+        # required
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
@@ -493,7 +504,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Namespace resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_service_defined&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -511,7 +522,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the user who created the namespace.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -529,7 +540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Description for the namespace</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -547,7 +558,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the Namespace</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -565,7 +576,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>If this field is defined by service or by a user</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -583,7 +594,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique namespace key that is immutable.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
                                     </td>
             </tr>
@@ -601,7 +612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the namespace.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
@@ -619,7 +630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the namespace was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2019-03-25T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-25T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -637,7 +648,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The last time that any change was made to the namespace. An <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> formatted datetime string.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -655,7 +666,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the user who last modified the namespace.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

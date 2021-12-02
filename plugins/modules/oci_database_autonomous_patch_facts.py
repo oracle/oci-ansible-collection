@@ -48,14 +48,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List autonomous_patches
-  oci_database_autonomous_patch_facts:
-    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific autonomous_patch
   oci_database_autonomous_patch_facts:
+    # required
     autonomous_patch_id: "ocid1.autonomouspatch.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List autonomous_patches
+  oci_database_autonomous_patch_facts:
+    # required
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

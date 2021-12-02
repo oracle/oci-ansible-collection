@@ -126,17 +126,36 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change on database_parameter
   oci_database_management_database_parameter_actions:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    credentials:
+      # optional
+      user_name: user_name_example
+      password: example-password
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+      role: NORMAL
     scope: MEMORY
     change_parameters:
-    - name: name_example
+    - # required
+      name: name_example
       value: value_example
+
+      # optional
+      update_comment: update_comment_example
     action: change
 
 - name: Perform action reset on database_parameter
   oci_database_management_database_parameter_actions:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    credentials:
+      # optional
+      user_name: user_name_example
+      password: example-password
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+      role: NORMAL
     scope: MEMORY
+    reset_parameters: [ "null" ]
     action: reset
 
 """

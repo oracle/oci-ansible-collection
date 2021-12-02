@@ -43,6 +43,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List monthly_rewards
   oci_usage_proxy_monthly_reward_facts:
+    # required
     tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
     subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
 

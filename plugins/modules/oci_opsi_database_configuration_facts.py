@@ -25,6 +25,8 @@ description:
     - Fetches details about one or multiple DatabaseConfiguration resources in Oracle Cloud Infrastructure
     - Gets a list of database insight configurations based on the query parameters specified. Either compartmentId or databaseInsightId query parameter must be
       specified.
+      When both compartmentId and compartmentIdInSubtree are specified, a list of database insight configurations in that compartment and in all sub-
+      compartments will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -44,6 +46,16 @@ options:
     database_id:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: list
+        elements: str
+    exadata_insight_id:
+        description:
+            - Optional list of exadata insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
+    cdb_name:
+        description:
+            - Filter by one or more cdb name.
         type: list
         elements: str
     database_type:
@@ -112,13 +124,33 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List database_configurations
   oci_opsi_database_configuration_facts:
+
+    # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+    id: [ "$p.getValue()" ]
+    database_id: [ "$p.getValue()" ]
+    exadata_insight_id: [ "$p.getValue()" ]
+    cdb_name: [ "$p.getValue()" ]
+    database_type: [ "$p.getValue()" ]
+    sort_order: ASC
+    sort_by: databaseName
+    host_name: [ "$p.getValue()" ]
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -171,6 +203,12 @@ database_configurations:
             returned: on success
             type: str
             sample: database_version_example
+        cdb_name:
+            description:
+                - Name of the CDB.Only applies to PDB.
+            returned: on success
+            type: str
+            sample: cdb_name_example
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -199,6 +237,7 @@ database_configurations:
         "database_display_name": "database_display_name_example",
         "database_type": "database_type_example",
         "database_version": "database_version_example",
+        "cdb_name": "cdb_name_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
         "processor_count": 56
@@ -232,6 +271,8 @@ class DatabaseConfigurationFactsHelperGen(OCIResourceFactsHelperBase):
             "enterprise_manager_bridge_id",
             "id",
             "database_id",
+            "exadata_insight_id",
+            "cdb_name",
             "database_type",
             "sort_order",
             "sort_by",
@@ -240,6 +281,7 @@ class DatabaseConfigurationFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -270,6 +312,8 @@ def main():
             enterprise_manager_bridge_id=dict(type="str"),
             id=dict(type="list", elements="str"),
             database_id=dict(type="list", elements="str"),
+            exadata_insight_id=dict(type="list", elements="str"),
+            cdb_name=dict(type="list", elements="str"),
             database_type=dict(
                 type="list",
                 elements="str",
@@ -292,6 +336,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

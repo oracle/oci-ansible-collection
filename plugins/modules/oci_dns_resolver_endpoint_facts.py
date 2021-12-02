@@ -88,14 +88,27 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List resolver_endpoints
-  oci_dns_resolver_endpoint_facts:
-    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific resolver_endpoint
   oci_dns_resolver_endpoint_facts:
+    # required
     resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     resolver_endpoint_name: resolver_endpoint_name_example
+
+    # optional
+    if_modified_since: if_modified_since_example
+    scope: GLOBAL
+
+- name: List resolver_endpoints
+  oci_dns_resolver_endpoint_facts:
+    # required
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    scope: GLOBAL
+    name: name_example
+    sort_order: ASC
+    sort_by: name
+    lifecycle_state: lifecycle_state_example
 
 """
 

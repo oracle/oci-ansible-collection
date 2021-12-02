@@ -95,14 +95,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific file_system
+  oci_file_storage_file_system_facts:
+    # required
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List file_systems
   oci_file_storage_file_system_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
 
-- name: Get a specific file_system
-  oci_file_storage_file_system_facts:
-    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    display_name: My resource
+    lifecycle_state: CREATING
+    source_snapshot_id: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
+    parent_file_system_id: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

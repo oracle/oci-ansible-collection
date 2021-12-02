@@ -48,6 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List listener_rules
   oci_loadbalancer_listener_rule_facts:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     listener_name: listener_name_example
 

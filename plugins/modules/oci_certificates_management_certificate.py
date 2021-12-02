@@ -24,8 +24,8 @@ short_description: Manage a Certificate resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create and update a Certificate resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new certificate according to the details of the request.
-    - "This resource has the following action operations in the M(oci_certificate_actions) module: cancel_certificate_deletion, change_compartment,
-      schedule_certificate_deletion."
+    - "This resource has the following action operations in the M(oracle.oci.oci_certificates_management_certificate_actions) module:
+      cancel_certificate_deletion, change_compartment, schedule_certificate_deletion."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -345,32 +345,96 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create certificate
   oci_certificates_management_certificate:
-    certificate_config:
-      certificate_profile_type: "TLS_SERVER_OR_CLIENT"
-      config_type: "ISSUED_BY_INTERNAL_CA"
-      issuer_certificate_authority_id: "ocid1.certificateauthority.oc1.iad.exampleae47ajxya5r64cqhcvbhd7vn4ifypr3wn3lqkfhjxfauxqohfpmoa"
-      key_algorithm: "RSA2048"
-      subject:
-        common_name: "www.example.com"
-      validity:
-        time_of_validity_not_after: "2022-05-06T00:00:00.000Z"
-    certificate_rules:
-    - advance_renewal_period: "P30D"
-      renewal_interval: "P365D"
-      rule_type: "CERTIFICATE_RENEWAL_RULE"
+    # required
+    name: test-cert
     compartment_id: "ocid1.compartment.oc1..exampleawwcufihrc62gpbcvbjizswgoj4w7rg5q4fwbg2fauxvlcxbtliaa"
-    defined_tags: "{'Operations': {'CostCenter': 'US'}}"
-    freeform_tags: "{'Department': 'Finance'}"
-    name: "test-cert"
+    certificate_config:
+      # required
+      config_type: ISSUED_BY_INTERNAL_CA
+      issuer_certificate_authority_id: ocid1.certificateauthority.oc1.iad.exampleae47ajxya5r64cqhcvbhd7vn4ifypr3wn3lqkfhjxfauxqohfpmoa
+      csr_pem: csr_pem_example
 
-- name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_certificates_management_certificate:
-    description: "new certificate description"
+      # optional
+      version_name: version_name_example
+      validity:
+        # required
+        time_of_validity_not_after: 2022-05-06T00:00:00.000Z
+
+        # optional
+        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
+      stage: CURRENT
+
+    # optional
+    description: new certificate description
+    certificate_rules:
+    - # required
+      rule_type: CERTIFICATE_RENEWAL_RULE
+      renewal_interval: P365D
+      advance_renewal_period: P30D
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update certificate
   oci_certificates_management_certificate:
-    description: "new certificate description"
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: new certificate description
+    certificate_rules:
+    - # required
+      rule_type: CERTIFICATE_RENEWAL_RULE
+      renewal_interval: P365D
+      advance_renewal_period: P30D
+    certificate_config:
+      # required
+      config_type: ISSUED_BY_INTERNAL_CA
+      issuer_certificate_authority_id: ocid1.certificateauthority.oc1.iad.exampleae47ajxya5r64cqhcvbhd7vn4ifypr3wn3lqkfhjxfauxqohfpmoa
+      csr_pem: csr_pem_example
+
+      # optional
+      version_name: version_name_example
+      validity:
+        # required
+        time_of_validity_not_after: 2022-05-06T00:00:00.000Z
+
+        # optional
+        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
+      stage: CURRENT
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    current_version_number: 56
+
+- name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_certificates_management_certificate:
+    # required
+    name: test-cert
+
+    # optional
+    description: new certificate description
+    certificate_rules:
+    - # required
+      rule_type: CERTIFICATE_RENEWAL_RULE
+      renewal_interval: P365D
+      advance_renewal_period: P30D
+    certificate_config:
+      # required
+      config_type: ISSUED_BY_INTERNAL_CA
+      issuer_certificate_authority_id: ocid1.certificateauthority.oc1.iad.exampleae47ajxya5r64cqhcvbhd7vn4ifypr3wn3lqkfhjxfauxqohfpmoa
+      csr_pem: csr_pem_example
+
+      # optional
+      version_name: version_name_example
+      validity:
+        # required
+        time_of_validity_not_after: 2022-05-06T00:00:00.000Z
+
+        # optional
+        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
+      stage: CURRENT
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    current_version_number: 56
 
 """
 

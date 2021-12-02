@@ -28,7 +28,7 @@ description:
     - When the request is received, the backup object is in a REQUEST_RECEIVED state.
       When the data is imaged, it goes into a CREATING state.
       After the backup is fully uploaded to the cloud, it goes into an AVAILABLE state.
-    - "This resource has the following action operations in the M(oci_volume_backup_actions) module: change_compartment, copy."
+    - "This resource has the following action operations in the M(oracle.oci.oci_blockstorage_volume_backup_actions) module: change_compartment, copy."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -41,7 +41,7 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the volume backup. Does not have to be unique and it's changeable.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -96,29 +96,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_backup
   oci_blockstorage_volume_backup:
+    # required
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_blockstorage_volume_backup:
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
 
 - name: Update volume_backup
   oci_blockstorage_volume_backup:
+    # required
+    volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_blockstorage_volume_backup:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete volume_backup
   oci_blockstorage_volume_backup:
+    # required
     volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_backup:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -155,7 +170,7 @@ volume_backup:
             sample: {}
         display_name:
             description:
-                - A user-friendly name for the volume backup. Does not have to be unique and it's changeable.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

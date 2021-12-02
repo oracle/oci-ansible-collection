@@ -56,6 +56,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action upload on event_content
   oci_os_management_event_content_actions:
+    # required
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     event_id: "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

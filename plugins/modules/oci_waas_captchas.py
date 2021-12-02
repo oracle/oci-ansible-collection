@@ -96,13 +96,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update captchas
   oci_waas_captchas:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     captchas:
-    - url: url_example
+    - # required
+      url: url_example
       session_expiration_in_seconds: 56
       title: title_example
       failure_message: failure_message_example
       submit_label: submit_label_example
+
+      # optional
+      header_text: header_text_example
+      footer_text: footer_text_example
 
 """
 

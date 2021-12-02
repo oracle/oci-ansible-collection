@@ -63,8 +63,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update resource_action
   oci_optimizer_resource_action:
+    # required
     resource_action_id: "ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx"
     status: PENDING
+
+    # optional
+    time_status_end: 2013-10-20T19:20:30+01:00
 
 """
 

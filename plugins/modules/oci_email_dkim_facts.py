@@ -79,13 +79,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List dkims
-  oci_email_dkim_facts:
-    email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific dkim
   oci_email_dkim_facts:
+    # required
     dkim_id: "ocid1.dkim.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List dkims
+  oci_email_dkim_facts:
+    # required
+    email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    sort_by: TIMECREATED
 
 """
 

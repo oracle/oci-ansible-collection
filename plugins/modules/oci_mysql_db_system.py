@@ -24,7 +24,7 @@ short_description: Manage a DbSystem resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DbSystem resource in Oracle Cloud Infrastructure
     - For I(state=present), creates and launches a DB System.
-    - "This resource has the following action operations in the M(oci_db_system_actions) module: restart, start, stop."
+    - "This resource has the following action operations in the M(oracle.oci.oci_mysql_db_system_actions) module: restart, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -260,22 +260,51 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create db_system
   oci_mysql_db_system:
-    admin_password: "password"
-    admin_username: "adminUser"
+    # required
     compartment_id: "ocid1.compartment.oc1..UniqueID"
-    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
-    data_storage_size_in_gbs: 63
-    description: "MySQL Database Service"
-    display_name: "DBSystem001"
-    shape_name: "VM.Standard.E2.1"
-    subnet_id: "ocid1.subnet.oc1.iad.UniqueID"
-    mysql_version: "8.0.20"
+    shape_name: VM.Standard.E2.1
+    subnet_id: ocid1.subnet.oc1.iad.UniqueID
+    admin_username: adminUser
+    admin_password: example-password
 
-- name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_mysql_db_system:
+    # optional
     display_name: DBSystem001
     description: MySQL Database Service
-    compartment_id: "ocid1.compartment.oc1..UniqueID"
+    is_highly_available: true
+    availability_domain: Uocm:PHX-AD-1
+    fault_domain: fault_domain_example
+    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
+    mysql_version: 8.0.20
+    data_storage_size_in_gbs: 63
+    hostname_label: hostname_label_example
+    ip_address: ip_address_example
+    port: 56
+    port_x: 56
+    backup_policy:
+      # optional
+      is_enabled: true
+      window_start_time: 01:00-00:00
+      retention_in_days: 56
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    source:
+      # required
+      source_type: BACKUP
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+    maintenance:
+      # optional
+      window_start_time: window_start_time_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update db_system
+  oci_mysql_db_system:
+    # required
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: DBSystem001
+    description: MySQL Database Service
     is_highly_available: true
     availability_domain: Uocm:PHX-AD-1
     fault_domain: fault_domain_example
@@ -284,28 +313,69 @@ EXAMPLES = """
     mysql_version: 8.0.20
     subnet_id: ocid1.subnet.oc1.iad.UniqueID
     admin_username: adminUser
-    admin_password: password
+    admin_password: example-password
     data_storage_size_in_gbs: 63
     hostname_label: hostname_label_example
     ip_address: ip_address_example
     port: 56
     port_x: 56
+    backup_policy:
+      # optional
+      is_enabled: true
+      window_start_time: 01:00-00:00
+      retention_in_days: 56
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    maintenance:
+      # optional
+      window_start_time: window_start_time_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update db_system
+- name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
+    # required
     display_name: DBSystem001
+    compartment_id: "ocid1.compartment.oc1..UniqueID"
+
+    # optional
     description: MySQL Database Service
-    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    is_highly_available: true
+    availability_domain: Uocm:PHX-AD-1
+    fault_domain: fault_domain_example
+    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
+    shape_name: VM.Standard.E2.1
+    mysql_version: 8.0.20
+    subnet_id: ocid1.subnet.oc1.iad.UniqueID
+    admin_username: adminUser
+    admin_password: example-password
+    data_storage_size_in_gbs: 63
+    hostname_label: hostname_label_example
+    ip_address: ip_address_example
+    port: 56
+    port_x: 56
+    backup_policy:
+      # optional
+      is_enabled: true
+      window_start_time: 01:00-00:00
+      retention_in_days: 56
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    maintenance:
+      # optional
+      window_start_time: window_start_time_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete db_system
   oci_mysql_db_system:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
+    # required
     display_name: DBSystem001
     compartment_id: "ocid1.compartment.oc1..UniqueID"
     state: absent

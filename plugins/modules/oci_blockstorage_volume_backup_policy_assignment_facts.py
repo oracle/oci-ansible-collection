@@ -45,13 +45,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List volume_backup_policy_assignments
-  oci_blockstorage_volume_backup_policy_assignment_facts:
-    asset_id: "ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific volume_backup_policy_assignment
   oci_blockstorage_volume_backup_policy_assignment_facts:
+    # required
     policy_assignment_id: "ocid1.policyassignment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List volume_backup_policy_assignments
+  oci_blockstorage_volume_backup_policy_assignment_facts:
+    # required
+    asset_id: "ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

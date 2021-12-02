@@ -24,7 +24,7 @@ short_description: Manage a DatabaseToolsConnection resource in Oracle Cloud Inf
 description:
     - This module allows the user to create, update and delete a DatabaseToolsConnection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DatabaseToolsConnection.
-    - "This resource has the following action operations in the M(oci_database_tools_connection_actions) module: change_compartment, validate."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_tools_connection_actions) module: change_compartment, validate."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -193,38 +193,134 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create database_tools_connection
+- name: Create database_tools_connection with type = ORACLE_DATABASE
   oci_database_tools_connection:
-    display_name: "ADMIN@DB202005191141_low"
-    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
-    related_resource:
-      entity_type: "DATABASE"
-      identifier: "ocid1.database.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q"
-    connection_string: "mydbsystem.mysubnet.myvcn.oraclevcn.com:1521/mydb_phx1ds.mysubnet.myvcn.oraclevcn.com"
-    user_name: "SYSTEM"
-    user_password:
-      value_type: "SECRETID"
-      secret_id: "ocid1.vaultsecret.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a"
-    private_endpoint_id: "ocid1.dbtoolsprivateendpoint.oc1.phx.exampleaaxjx47ignvzufg74jlixkqygujmdctskf47m7d6mndd6vlzafuta"
-
-- name: Update database_tools_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_tools_connection:
-    display_name: "ADMIN@DB202010051234"
-
-- name: Update database_tools_connection
-  oci_database_tools_connection:
-    display_name: ADMIN@DB202005191141_low
+    # required
     compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
     type: ORACLE_DATABASE
-    database_tools_connection_id: "ocid1.databasetoolsconnection.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: ADMIN@DB202005191141_low
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    related_resource:
+      # optional
+      entity_type: DATABASE
+      identifier: ocid1.database.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q
+    connection_string: mydbsystem.mysubnet.myvcn.oraclevcn.com:1521/mydb_phx1ds.mysubnet.myvcn.oraclevcn.com
+    user_name: SYSTEM
+    user_password:
+      # required
+      value_type: SECRETID
+
+      # optional
+      secret_id: ocid1.vaultsecret.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a
+    advanced_properties: null
+    key_stores:
+    - # optional
+      key_store_type: JAVA_KEY_STORE
+      key_store_content:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+      key_store_password:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_id: ocid1.dbtoolsprivateendpoint.oc1.phx.exampleaaxjx47ignvzufg74jlixkqygujmdctskf47m7d6mndd6vlzafuta
+
+- name: Update database_tools_connection with type = ORACLE_DATABASE
+  oci_database_tools_connection:
+    # required
+    type: ORACLE_DATABASE
+
+    # optional
+    display_name: ADMIN@DB202005191141_low
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    related_resource:
+      # optional
+      entity_type: DATABASE
+      identifier: ocid1.database.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q
+    connection_string: mydbsystem.mysubnet.myvcn.oraclevcn.com:1521/mydb_phx1ds.mysubnet.myvcn.oraclevcn.com
+    user_name: SYSTEM
+    user_password:
+      # required
+      value_type: SECRETID
+
+      # optional
+      secret_id: ocid1.vaultsecret.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a
+    advanced_properties: null
+    key_stores:
+    - # optional
+      key_store_type: JAVA_KEY_STORE
+      key_store_content:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+      key_store_password:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_id: ocid1.dbtoolsprivateendpoint.oc1.phx.exampleaaxjx47ignvzufg74jlixkqygujmdctskf47m7d6mndd6vlzafuta
+
+- name: Update database_tools_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = ORACLE_DATABASE
+  oci_database_tools_connection:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
+    type: ORACLE_DATABASE
+
+    # optional
+    display_name: ADMIN@DB202005191141_low
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    related_resource:
+      # optional
+      entity_type: DATABASE
+      identifier: ocid1.database.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q
+    connection_string: mydbsystem.mysubnet.myvcn.oraclevcn.com:1521/mydb_phx1ds.mysubnet.myvcn.oraclevcn.com
+    user_name: SYSTEM
+    user_password:
+      # required
+      value_type: SECRETID
+
+      # optional
+      secret_id: ocid1.vaultsecret.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a
+    advanced_properties: null
+    key_stores:
+    - # optional
+      key_store_type: JAVA_KEY_STORE
+      key_store_content:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+      key_store_password:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_id: ocid1.dbtoolsprivateendpoint.oc1.phx.exampleaaxjx47ignvzufg74jlixkqygujmdctskf47m7d6mndd6vlzafuta
 
 - name: Delete database_tools_connection
   oci_database_tools_connection:
+    # required
     database_tools_connection_id: "ocid1.databasetoolsconnection.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete database_tools_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_tools_connection:
+    # required
     display_name: ADMIN@DB202005191141_low
     compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
     state: absent

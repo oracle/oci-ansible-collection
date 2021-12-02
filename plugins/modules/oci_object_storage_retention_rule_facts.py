@@ -50,16 +50,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List retention_rules
-  oci_object_storage_retention_rule_facts:
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-
 - name: Get a specific retention_rule
   oci_object_storage_retention_rule_facts:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List retention_rules
+  oci_object_storage_retention_rule_facts:
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
 
 """
 

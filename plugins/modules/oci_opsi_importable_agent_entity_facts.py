@@ -56,7 +56,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List importable_agent_entities
   oci_opsi_importable_agent_entity_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: entityName
 
 """
 

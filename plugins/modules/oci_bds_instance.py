@@ -24,8 +24,8 @@ short_description: Manage a BdsInstance resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Big Data Service cluster.
-    - "This resource has the following action operations in the M(oci_bds_instance_actions) module: add_block_storage, add_cloud_sql, add_worker_nodes,
-      change_compartment, change_shape, remove_cloud_sql, restart_node."
+    - "This resource has the following action operations in the M(oracle.oci.oci_bds_instance_actions) module: add_block_storage, add_cloud_sql,
+      add_worker_nodes, change_compartment, change_shape, remove_cloud_sql, restart_node."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -144,39 +144,58 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create bds_instance
   oci_bds_instance:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     cluster_version: cluster_version_example
     cluster_public_key: cluster_public_key_example
-    cluster_admin_password: cluster_admin_password_example
+    cluster_admin_password: example-password
     is_high_availability: true
     is_secure: true
     nodes:
-    - node_type: node_type_example
+    - # required
+      node_type: node_type_example
       shape: shape_example
       block_volume_size_in_gbs: 56
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update bds_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_bds_instance:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
+    network_config:
+      # optional
+      is_nat_gateway_required: true
+      cidr_block: 172.16.0.0/16
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update bds_instance
   oci_bds_instance:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update bds_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_bds_instance:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete bds_instance
   oci_bds_instance:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete bds_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_instance:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

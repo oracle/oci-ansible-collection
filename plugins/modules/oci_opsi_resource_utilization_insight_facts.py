@@ -24,6 +24,7 @@ short_description: Fetches details about a ResourceUtilizationInsight resource i
 description:
     - Fetches details about a ResourceUtilizationInsight resource in Oracle Cloud Infrastructure
     - Gets resources with current utilization (high and low) and projected utilization (high and low) for a resource type over specified time period.
+      If compartmentIdInSubtree is specified, aggregates resources in a compartment and in all sub-compartments.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -84,6 +85,11 @@ options:
             - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
         elements: str
+    exadata_insight_id:
+        description:
+            - Optional list of exadata insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
     forecast_days:
         description:
             - Number of days used for utilization forecast analysis.
@@ -132,14 +138,36 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific resource_utilization_insight
   oci_opsi_resource_utilization_insight_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resource_metric: resource_metric_example
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    database_type: [ "$p.getValue()" ]
+    database_id: [ "$p.getValue()" ]
+    id: [ "$p.getValue()" ]
+    exadata_insight_id: [ "$p.getValue()" ]
+    forecast_days: 56
+    host_name: [ "$p.getValue()" ]
+    is_database_instance_level_metrics: true
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -281,6 +309,7 @@ class ResourceUtilizationInsightFactsHelperGen(OCIResourceFactsHelperBase):
             "database_type",
             "database_id",
             "id",
+            "exadata_insight_id",
             "forecast_days",
             "host_name",
             "is_database_instance_level_metrics",
@@ -288,6 +317,7 @@ class ResourceUtilizationInsightFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -337,6 +367,7 @@ def main():
             ),
             database_id=dict(type="list", elements="str"),
             id=dict(type="list", elements="str"),
+            exadata_insight_id=dict(type="list", elements="str"),
             forecast_days=dict(type="int"),
             host_name=dict(type="list", elements="str"),
             is_database_instance_level_metrics=dict(type="bool"),
@@ -344,6 +375,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

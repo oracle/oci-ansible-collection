@@ -85,14 +85,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific export_set
+  oci_file_storage_export_set_facts:
+    # required
+    export_set_id: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List export_sets
   oci_file_storage_export_set_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
 
-- name: Get a specific export_set
-  oci_file_storage_export_set_facts:
-    export_set_id: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    display_name: My resource
+    lifecycle_state: CREATING
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

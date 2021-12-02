@@ -62,7 +62,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific networking_topology
   oci_network_networking_topology_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    access_level: ANY
+    query_compartment_subtree: true
+    cache_control: cache_control_example
 
 """
 
@@ -109,6 +115,20 @@ networking_topology:
                     returned: on success
                     type: str
                     sample: CONTAINS
+                associated_with_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        via:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the entities via which the
+                                  relationship is created. For example an instance is associated with a network security group via the VNIC attachment and the
+                                  VNIC.
+                            returned: on success
+                            type: list
+                            sample: []
                 route_rule_details:
                     description:
                         - ""
@@ -138,6 +158,12 @@ networking_topology:
                             returned: on success
                             type: str
                             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+                        route_type:
+                            description:
+                                - A route rule can be `STATIC` if manually added to the route table or `DYNAMIC` if imported from another route table.
+                            returned: on success
+                            type: str
+                            sample: STATIC
         time_created:
             description:
                 - Records when the virtual network topology was created, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format for date and time.
@@ -151,10 +177,14 @@ networking_topology:
             "id1": "id1_example",
             "id2": "id2_example",
             "type": "CONTAINS",
+            "associated_with_details": {
+                "via": []
+            },
             "route_rule_details": {
                 "destination_type": "destination_type_example",
                 "destination": "destination_example",
-                "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+                "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
+                "route_type": "STATIC"
             }
         }],
         "time_created": "2013-10-20T19:20:30+01:00"

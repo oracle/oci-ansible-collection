@@ -60,7 +60,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List network_security_group_security_rules
   oci_network_security_group_security_rule_facts:
+    # required
     network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    direction: EGRESS
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 
@@ -88,7 +94,8 @@ network_security_group_security_rules:
                 - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                       setting up a security rule for traffic destined for a particular `Service` through
                       a service gateway. For example: `oci-phx-objectstorage`."
-                - " * The OCID of a L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
+                - " * The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
+                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
                       VCN. The value can be the NSG that the rule belongs to if the rule's intent is to control
                       traffic between VNICs in the same NSG."
             returned: on success
@@ -102,7 +109,8 @@ network_security_group_security_rules:
                 - " * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
                       L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                       particular `Service` through a service gateway)."
-                - " * `NETWORK_SECURITY_GROUP`: If the rule's `destination` is the OCID of a
+                - " * `NETWORK_SECURITY_GROUP`: If the rule's `destination` is the
+                  L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
                       L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/)."
             returned: on success
             type: str
@@ -178,7 +186,8 @@ network_security_group_security_rules:
                 - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                       setting up a security rule for traffic coming from a particular `Service` through
                       a service gateway. For example: `oci-phx-objectstorage`."
-                - " * The OCID of a L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
+                - " * The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
+                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
                       VCN. The value can be the NSG that the rule belongs to if the rule's intent is to control
                       traffic between VNICs in the same NSG."
             returned: on success
@@ -191,7 +200,8 @@ network_security_group_security_rules:
                 - " * `SERVICE_CIDR_BLOCK`: If the rule's `source` is the `cidrBlock` value for a
                       L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic coming from a
                       particular `Service` through a service gateway)."
-                - " * `NETWORK_SECURITY_GROUP`: If the rule's `source` is the OCID of a
+                - " * `NETWORK_SECURITY_GROUP`: If the rule's `source` is the
+                  L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
                       L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/)."
             returned: on success
             type: str

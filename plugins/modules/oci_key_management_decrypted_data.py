@@ -84,7 +84,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create decrypted_data
   oci_key_management_decrypted_data:
-    ciphertext: "AAwgpauIe9AAAM6dU7pS7AKwmDFyXOqNh0uAvNY9a3E95rw7Ae3LZNBnDtHWdkB1l/pIDBfg"
+    # required
+    ciphertext: AAwgpauIe9AAAM6dU7pS7AKwmDFyXOqNh0uAvNY9a3E95rw7Ae3LZNBnDtHWdkB1l/pIDBfg
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    associated_data: null
+    logging_context: null
+    key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    encryption_algorithm: AES_256_GCM
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """

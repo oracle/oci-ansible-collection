@@ -34,13 +34,13 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the set of DHCP options, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_dhcp_options_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_dhcp_options_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the set of DHCP options.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the set of DHCP options.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -132,7 +132,7 @@ options:
                 elements: str
     vcn_id:
         description:
-            - The OCID of the VCN the set of DHCP options belongs to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the set of DHCP options belongs to.
             - Required for create using I(state=present).
         type: str
     domain_name_type:
@@ -166,38 +166,68 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create dhcp_options
   oci_network_dhcp_options:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     options:
-    - type: "DomainNameServer"
-      custom_dns_servers:
-      - "203.0.113.6"
-      server_type: "CustomDnsServer"
-    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
-    display_name: "MyDhcpOptions"
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    - # required
+      type: DomainNameServer
+      server_type: CustomDnsServer
 
-- name: Update dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_dhcp_options:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+      # optional
+      custom_dns_servers: [ "203.0.113.6" ]
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDhcpOptions
     freeform_tags: {'Department': 'Finance'}
-    options:
-    - type: DomainNameServer
     domain_name_type: SUBNET_DOMAIN
 
 - name: Update dhcp_options
   oci_network_dhcp_options:
+    # required
+    dhcp_id: "ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDhcpOptions
-    dhcp_id: "ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    options:
+    - # required
+      type: DomainNameServer
+      server_type: CustomDnsServer
+
+      # optional
+      custom_dns_servers: [ "203.0.113.6" ]
+    domain_name_type: SUBNET_DOMAIN
+
+- name: Update dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_dhcp_options:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: MyDhcpOptions
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    options:
+    - # required
+      type: DomainNameServer
+      server_type: CustomDnsServer
+
+      # optional
+      custom_dns_servers: [ "203.0.113.6" ]
+    domain_name_type: SUBNET_DOMAIN
 
 - name: Delete dhcp_options
   oci_network_dhcp_options:
+    # required
     dhcp_id: "ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_dhcp_options:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyDhcpOptions
     state: absent
@@ -213,7 +243,7 @@ dhcp_options:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the set of DHCP options.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the set of DHCP options.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -243,7 +273,7 @@ dhcp_options:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - Oracle ID (OCID) for the set of DHCP options.
+                - Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the set of DHCP options.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -317,7 +347,7 @@ dhcp_options:
             sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
-                - The OCID of the VCN the set of DHCP options belongs to.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the set of DHCP options belongs to.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

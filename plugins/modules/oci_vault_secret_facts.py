@@ -80,13 +80,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List secrets
-  oci_vault_secret_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific secret
   oci_vault_secret_facts:
+    # required
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List secrets
+  oci_vault_secret_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
 
 """
 

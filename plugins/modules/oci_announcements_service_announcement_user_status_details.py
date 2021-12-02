@@ -62,10 +62,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update announcement_user_status_details
   oci_announcements_service_announcement_user_status_details:
-    time_acknowledged: "2019-01-28T23:21:57.342Z"
-    user_id: "ocid1.user.region1..exampleaorxz3psplonigcvbzy5oaiwiubh7k7ip6zgklfauxic67kksu4oq"
-    user_status_announcement_id: "ocid1.announcement.region1..examplear73oue4jdywjjvietoc6im3cvb6xae4falm3faux5us3iwra3t6q"
+    # required
     announcement_id: "ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx"
+    user_status_announcement_id: "ocid1.announcement.region1..examplear73oue4jdywjjvietoc6im3cvb6xae4falm3faux5us3iwra3t6q"
+    user_id: "ocid1.user.region1..exampleaorxz3psplonigcvbzy5oaiwiubh7k7ip6zgklfauxic67kksu4oq"
+
+    # optional
+    time_acknowledged: 2019-01-28T23:21:57.342Z
 
 """
 

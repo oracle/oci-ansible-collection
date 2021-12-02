@@ -69,8 +69,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List dedicated_vm_host_instances
   oci_compute_dedicated_vm_host_instance_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

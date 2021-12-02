@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on route_table
   oci_network_route_table_actions:
+    # required
     rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -69,7 +70,7 @@ route_table:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the route table.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the route table.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -99,7 +100,7 @@ route_table:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The route table's Oracle ID (OCID).
+                - The route table's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -154,7 +155,8 @@ route_table:
                     sample: CIDR_BLOCK
                 network_entity_id:
                     description:
-                        - The OCID for the route rule's target. For information about the type of
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the route rule's target. For information
+                          about the type of
                           targets you can specify, see
                           L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                     returned: on success

@@ -111,37 +111,51 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create policy
   oci_identity_policy:
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
-    description: "Policy for users who need to launch instances, attach volumes, manage images"
-    name: "LaunchInstances"
-    statements:
-    - "Allow group InstanceLaunchers to manage instance-family in compartment ABC"
-    - "Allow group InstanceLaunchers to use volume-family in compartment ABC"
-    - "Allow group InstanceLaunchers to use virtual-network-family in compartment Network"
-
-- name: Update policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_policy:
+    # required
     compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
     name: LaunchInstances
     statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
     description: Policy for users who need to launch instances, attach volumes, manage images
+
+    # optional
     version_date: 2013-10-20T19:20:30+01:00
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update policy
   oci_identity_policy:
+    # required
+    policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
     description: Policy for users who need to launch instances, attach volumes, manage images
-    policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
+    version_date: 2013-10-20T19:20:30+01:00
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_identity_policy:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
+    name: LaunchInstances
+
+    # optional
+    statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
+    description: Policy for users who need to launch instances, attach volumes, manage images
+    version_date: 2013-10-20T19:20:30+01:00
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete policy
   oci_identity_policy:
+    # required
     policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_policy:
+    # required
     compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
     name: LaunchInstances
     state: absent

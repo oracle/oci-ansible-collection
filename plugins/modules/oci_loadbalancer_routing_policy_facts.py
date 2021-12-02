@@ -43,14 +43,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List routing_policies
-  oci_loadbalancer_routing_policy_facts:
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific routing_policy
   oci_loadbalancer_routing_policy_facts:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     routing_policy_name: example_routing_policy
+
+- name: List routing_policies
+  oci_loadbalancer_routing_policy_facts:
+    # required
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

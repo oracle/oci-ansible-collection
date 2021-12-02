@@ -291,53 +291,90 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action copy on object
   oci_object_storage_object_actions:
-    source_object_name: "backup.tar.gz"
-    source_object_if_match_e_tag: "*"
-    destination_region: "uk-london-1"
-    destination_namespace: "ansh8lvru1zp"
-    destination_bucket: "backup"
-    destination_object_name: "backup2.tar.gz"
-    destination_object_if_match_e_tag: "*"
-    destination_object_if_none_match_e_tag: "*"
-    destination_object_metadata:
-      opc-meta-a: "b"
-    namespace_name: "namespace_name_example"
-    bucket_name: "my-new-bucket1"
-    action: "copy"
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+    source_object_name: source_object_name_example
+    destination_region: destination_region_example
+    destination_namespace: destination_namespace_example
+    destination_bucket: destination_bucket_example
+    destination_object_name: destination_object_name_example
+    action: copy
+
+    # optional
+    source_object_if_match_e_tag: source_object_if_match_e_tag_example
+    source_version_id: "ocid1.sourceversion.oc1..xxxxxxEXAMPLExxxxxx"
+    destination_object_if_match_e_tag: destination_object_if_match_e_tag_example
+    destination_object_if_none_match_e_tag: destination_object_if_none_match_e_tag_example
+    destination_object_metadata: null
+    destination_object_storage_tier: Standard
+    opc_sse_customer_algorithm: opc_sse_customer_algorithm_example
+    opc_sse_customer_key: opc_sse_customer_key_example
+    opc_sse_customer_key_sha256: opc_sse_customer_key_sha256_example
+    opc_source_sse_customer_algorithm: opc_source_sse_customer_algorithm_example
+    opc_source_sse_customer_key: opc_source_sse_customer_key_example
+    opc_source_sse_customer_key_sha256: opc_source_sse_customer_key_sha256_example
+    opc_sse_kms_key_id: "ocid1.opcssekmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action reencrypt on object
   oci_object_storage_object_actions:
-    kms_key_id: "ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva"
-    namespace_name: "namespace_name_example"
-    bucket_name: "my-new-bucket1"
-    object_name: "test/object1.log"
-    action: "reencrypt"
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+    object_name: test/object1.log
+    action: reencrypt
+
+    # optional
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    sse_customer_key:
+      # required
+      algorithm: AES256
+      key: key_example
+      key_sha256: key_sha256_example
+    source_sse_customer_key:
+      # required
+      algorithm: AES256
+      key: key_example
+      key_sha256: key_sha256_example
+    version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action rename on object
   oci_object_storage_object_actions:
-    source_name: "SourceObjectName"
-    new_name: "TargetObjectName"
-    src_obj_if_match_e_tag: "*"
-    new_obj_if_match_e_tag: "*"
-    new_obj_if_none_match_e_tag: "*"
-    namespace_name: "namespace_name_example"
-    bucket_name: "my-new-bucket1"
-    action: "rename"
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+    source_name: source_name_example
+    new_name: new_name_example
+    action: rename
+
+    # optional
+    src_obj_if_match_e_tag: src_obj_if_match_e_tag_example
+    new_obj_if_match_e_tag: new_obj_if_match_e_tag_example
+    new_obj_if_none_match_e_tag: new_obj_if_none_match_e_tag_example
 
 - name: Perform action restore on object
   oci_object_storage_object_actions:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     object_name: test/object1.log
     action: restore
 
+    # optional
+    version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
+    hours: 56
+
 - name: Perform action update_object_storage_tier on object
   oci_object_storage_object_actions:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     object_name: test/object1.log
     storage_tier: Standard
     action: update_object_storage_tier
+
+    # optional
+    version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

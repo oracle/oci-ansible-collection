@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: Get a specific tenancy
   oci_identity_tenancy_facts:
+    # required
     tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

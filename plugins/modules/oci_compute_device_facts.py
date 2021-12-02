@@ -67,7 +67,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List devices
   oci_compute_device_facts:
+    # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    is_available: true
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

@@ -40,6 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List api_keys
   oci_identity_api_key_facts:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

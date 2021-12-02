@@ -50,7 +50,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List virtual_circuit_public_prefixes
   oci_network_virtual_circuit_public_prefix_facts:
+    # required
     virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    verification_state: verification_state_example
 
 """
 

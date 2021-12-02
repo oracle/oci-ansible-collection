@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: Get a specific erratum
   oci_os_management_erratum_facts:
+    # required
     erratum_id: "ocid1.erratum.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

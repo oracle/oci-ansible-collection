@@ -80,10 +80,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create exported_key_data
   oci_key_management_exported_key_data:
-    key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
-    key_version_id: "ocid1.keyversion.oc1.iad.examplevriiaa.examples4h2bocax3damnsxw4cvbbndged2gftlho4ufxwa4faux2eiqwija"
-    algorithm: "RSA_OAEP_AES_SHA256"
+    # required
+    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
+    algorithm: RSA_OAEP_AES_SHA256
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+
+    # optional
+    key_version_id: ocid1.keyversion.oc1.iad.examplevriiaa.examples4h2bocax3damnsxw4cvbbndged2gftlho4ufxwa4faux2eiqwija
+    logging_context: null
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """

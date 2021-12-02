@@ -108,24 +108,36 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create backend
   oci_network_load_balancer_backend:
-    ip_address: "10.0.0.3"
-    port: 8080
-    is_backup: false
-    is_drain: false
-    is_offline: false
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: "example_backend_set"
+    port: 8080
+    backend_set_name: example_backend_set
+
+    # optional
+    name: webServer1
+    ip_address: 10.0.0.3
+    target_id: "ocid1.privateip..oc1.unique_ID"
+    weight: 3
+    is_drain: false
+    is_backup: false
+    is_offline: false
 
 - name: Update backend
   oci_network_load_balancer_backend:
-    is_backup: false
-    is_drain: false
-    is_offline: false
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: "example_backend_set"
+    name: webServer1
+    backend_set_name: example_backend_set
+
+    # optional
+    weight: 3
+    is_drain: false
+    is_backup: false
+    is_offline: false
 
 - name: Delete backend
   oci_network_load_balancer_backend:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: webServer1
     backend_set_name: example_backend_set

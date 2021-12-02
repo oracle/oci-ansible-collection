@@ -82,13 +82,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List functions
-  oci_functions_function_facts:
-    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific function
   oci_functions_function_facts:
+    # required
     function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List functions
+  oci_functions_function_facts:
+    # required
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: Creating
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

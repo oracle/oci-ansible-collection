@@ -23,7 +23,7 @@ module: oci_artifacts_container_image
 short_description: Manage a ContainerImage resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to delete a ContainerImage resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_container_image_actions) module: remove_container_version, restore."
+    - "This resource has the following action operations in the M(oracle.oci.oci_artifacts_container_image_actions) module: remove_container_version, restore."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -48,6 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Delete container_image
   oci_artifacts_container_image:
+    # required
     image_id: "ocid1.containerimage.oc1..exampleuniqueID"
     state: absent
 

@@ -76,8 +76,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific sql_statistics_time_series_by_plan
   oci_opsi_sql_statistics_time_series_by_plan_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
+
+    # optional
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
 
 """
 

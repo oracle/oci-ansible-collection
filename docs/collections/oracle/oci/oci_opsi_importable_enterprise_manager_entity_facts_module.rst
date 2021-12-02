@@ -30,13 +30,9 @@ oracle.oci.oci_opsi_importable_enterprise_manager_entity_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_importable_enterprise_manager_entity_facts`.
 
@@ -214,6 +210,51 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-enterprise_manager_entity_type"></div>
+                    <b>enterprise_manager_entity_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-enterprise_manager_entity_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter by one or more Enterprise Manager entity types. Currently, the supported types are &quot;oracle_pdb&quot;, &quot;oracle_database&quot;, &quot;host&quot;, &quot;oracle_dbmachine&quot;, &quot;oracle_exa_cloud_service&quot;, and &quot;oracle_oci_exadata_cloud_service&quot;. If this parameter is not specified, targets of all supported entity types are returned by default.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-enterprise_manager_identifier"></div>
+                    <b>enterprise_manager_identifier</b>
+                    <a class="ansibleOptionLink" href="#parameter-enterprise_manager_identifier" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Used in combination with enterpriseManagerParentEntityIdentifier to return the members of a particular Enterprise Manager parent entity. Both enterpriseManagerIdentifier and enterpriseManagerParentEntityIdentifier must be specified to identify a particular Enterprise Manager parent entity.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-enterprise_manager_parent_entity_identifier"></div>
+                    <b>enterprise_manager_parent_entity_identifier</b>
+                    <a class="ansibleOptionLink" href="#parameter-enterprise_manager_parent_entity_identifier" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Used in combination with enterpriseManagerIdentifier to return the members of a particular Enterprise Manager parent entity. Both enterpriseManagerIdentifier and enterpriseManagerParentEntityIdentifier must be specified to identify a particular  Enterprise Manager parent entity.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -269,7 +310,13 @@ Examples
     
     - name: List importable_enterprise_manager_entities
       oci_opsi_importable_enterprise_manager_entity_facts:
+        # required
         enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        enterprise_manager_entity_type: [ "$p.getValue()" ]
+        enterprise_manager_identifier: enterprise_manager_identifier_example
+        enterprise_manager_parent_entity_identifier: enterprise_manager_parent_entity_identifier_example
 
 
 
@@ -305,7 +352,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of ImportableEnterpriseManagerEntity resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;enterprise_manager_entity_identifier&#x27;: &#x27;enterprise_manager_entity_identifier_example&#x27;, &#x27;enterprise_manager_entity_name&#x27;: &#x27;enterprise_manager_entity_name_example&#x27;, &#x27;enterprise_manager_entity_type&#x27;: &#x27;enterprise_manager_entity_type_example&#x27;, &#x27;enterprise_manager_identifier&#x27;: &#x27;enterprise_manager_identifier_example&#x27;, &#x27;opsi_entity_type&#x27;: &#x27;opsi_entity_type_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -323,7 +370,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Enterprise Manager Entity Unique Identifier</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_entity_identifier_example</div>
                                     </td>
             </tr>
@@ -341,7 +388,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Enterprise Manager Entity Name</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_entity_name_example</div>
                                     </td>
             </tr>
@@ -359,7 +406,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Enterprise Manager Entity Type</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_entity_type_example</div>
                                     </td>
             </tr>
@@ -377,7 +424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Enterprise Manager Unique Identifier</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_identifier_example</div>
                                     </td>
             </tr>
@@ -395,7 +442,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Operations Insights internal representation of the resource type.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">opsi_entity_type_example</div>
                                     </td>
             </tr>

@@ -84,14 +84,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List log_analytics_entity_types
-  oci_log_analytics_entity_type_facts:
-    namespace_name: namespace_name_example
-
 - name: Get a specific log_analytics_entity_type
   oci_log_analytics_entity_type_facts:
+    # required
     namespace_name: namespace_name_example
     entity_type_name: entity_type_name_example
+
+- name: List log_analytics_entity_types
+  oci_log_analytics_entity_type_facts:
+    # required
+    namespace_name: namespace_name_example
+
+    # optional
+    name: name_example
+    name_contains: name_contains_example
+    cloud_type: CLOUD
+    lifecycle_state: ACTIVE
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

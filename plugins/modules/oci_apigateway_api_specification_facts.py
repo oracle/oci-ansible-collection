@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific api_specification
   oci_apigateway_api_specification_facts:
+    # required
     api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -123,7 +124,7 @@ api_specification:
                                         - Name of the claim.
                                     returned: on success
                                     type: str
-                                    sample: iss
+                                    sample: key_example
                                 values:
                                     description:
                                         - "The list of acceptable values for a given claim.
@@ -241,7 +242,7 @@ api_specification:
                                                 - The content of the PEM-encoded public key.
                                             returned: on success
                                             type: str
-                                            sample: -----BEGIN PUBLIC KEY-----
+                                            sample: key_example
                 rate_limiting:
                     description:
                         - ""
@@ -1036,7 +1037,7 @@ api_specification:
                 "issuers": [],
                 "audiences": [],
                 "verify_claims": [{
-                    "key": "iss",
+                    "key": "key_example",
                     "values": [],
                     "is_required": true
                 }],
@@ -1055,7 +1056,7 @@ api_specification:
                         "alg": "alg_example",
                         "n": "n_example",
                         "e": "e_example",
-                        "key": "-----BEGIN PUBLIC KEY-----"
+                        "key": "key_example"
                     }]
                 }
             },

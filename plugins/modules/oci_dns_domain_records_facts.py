@@ -94,8 +94,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific domain_records
   oci_dns_domain_records_facts:
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     domain: domain_example
+
+    # optional
+    if_modified_since: if_modified_since_example
+    zone_version: zone_version_example
+    rtype: rtype_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: rtype
+    sort_order: ASC
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

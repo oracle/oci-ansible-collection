@@ -61,13 +61,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List service_catalogs
-  oci_service_catalog_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific service_catalog
   oci_service_catalog_facts:
+    # required
     service_catalog_id: "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List service_catalogs
+  oci_service_catalog_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    service_catalog_id: "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
+    display_name: display_name_example
 
 """
 

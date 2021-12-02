@@ -104,13 +104,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List scheduled_jobs
-  oci_os_management_scheduled_job_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific scheduled_job
   oci_os_management_scheduled_job_facts:
+    # required
     scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List scheduled_jobs
+  oci_os_management_scheduled_job_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    operation_type: INSTALL
+    sort_order: ASC
+    sort_by: TIMECREATED
+    lifecycle_state: CREATING
+    os_family: LINUX
+    is_restricted: true
 
 """
 

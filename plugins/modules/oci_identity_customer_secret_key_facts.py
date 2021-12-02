@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List customer_secret_keys
   oci_identity_customer_secret_key_facts:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

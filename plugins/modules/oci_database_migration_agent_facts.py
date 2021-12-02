@@ -75,13 +75,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List agents
-  oci_database_migration_agent_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific agent
   oci_database_migration_agent_facts:
+    # required
     agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List agents
+  oci_database_migration_agent_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: timeCreated
+    sort_order: ASC
+    display_name: display_name_example
+    lifecycle_state: CREATING
 
 """
 

@@ -46,6 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action reset_idp_scim_client on identity_provider
   oci_identity_provider_actions:
+    # required
     identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
     action: reset_idp_scim_client
 

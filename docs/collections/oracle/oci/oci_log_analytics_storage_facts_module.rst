@@ -30,13 +30,9 @@ oracle.oci.oci_log_analytics_storage_facts -- Fetches details about a Storage re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_log_analytics_storage_facts`.
 
@@ -269,6 +265,7 @@ Examples
     
     - name: Get a specific storage
       oci_log_analytics_storage_facts:
+        # required
         namespace_name: namespace_name_example
 
 
@@ -305,7 +302,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Storage resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;archiving_configuration&#x27;: {&#x27;active_storage_duration&#x27;: &#x27;active_storage_duration_example&#x27;, &#x27;archival_storage_duration&#x27;: &#x27;archival_storage_duration_example&#x27;}, &#x27;is_archiving_enabled&#x27;: True}</div>
                                     </td>
             </tr>
@@ -323,7 +320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -340,7 +337,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This is the duration data in active storage before data is archived, as described in https://en.wikipedia.org/wiki/ISO_8601#Durations. The largest supported unit is D, e.g. P365D (not P1Y) or P14D (not P2W).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">active_storage_duration_example</div>
                                     </td>
             </tr>
@@ -359,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This is the duration before archived data is deleted from object storage, as described in https://en.wikipedia.org/wiki/ISO_8601#Durations The largest supported unit is D, e.g. P365D (not P1Y) or P14D (not P2W).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">archival_storage_duration_example</div>
                                     </td>
             </tr>
@@ -378,7 +375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This indicates if old data can be archived for a tenancy</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>

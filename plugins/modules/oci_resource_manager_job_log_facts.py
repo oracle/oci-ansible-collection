@@ -73,7 +73,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List job_logs
   oci_resource_manager_job_log_facts:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    type: [ "$p.getValue()" ]
+    level_greater_than_or_equal_to: level_greater_than_or_equal_to_example
+    sort_order: ASC
+    timestamp_greater_than_or_equal_to: 2020-01-01T12:00:00.000Z
+    timestamp_less_than_or_equal_to: 2020-02-01T12:00:00.000Z
 
 """
 

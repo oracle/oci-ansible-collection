@@ -24,7 +24,7 @@ short_description: Manage a Connection resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new connection.
-    - "This resource has the following action operations in the M(oci_connection_actions) module: test."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_catalog_connection_actions) module: test."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -135,27 +135,66 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create connection
   oci_data_catalog_connection:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     display_name: display_name_example
     type_key: type_key_example
+    properties: null
 
-- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_catalog_connection:
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-    data_asset_key: data_asset_key_example
+    # optional
     description: description_example
-    display_name: display_name_example
+    custom_property_members:
+    - # optional
+      key: key_example
+      display_name: display_name_example
+      value: value_example
+      namespace_name: namespace_name_example
+    enc_properties: null
     is_default: true
 
 - name: Update connection
   oci_data_catalog_connection:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     connection_key: connection_key_example
 
+    # optional
+    description: description_example
+    display_name: display_name_example
+    custom_property_members:
+    - # optional
+      key: key_example
+      display_name: display_name_example
+      value: value_example
+      namespace_name: namespace_name_example
+    properties: null
+    enc_properties: null
+    is_default: true
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_catalog_connection:
+    # required
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    data_asset_key: data_asset_key_example
+    display_name: display_name_example
+
+    # optional
+    description: description_example
+    custom_property_members:
+    - # optional
+      key: key_example
+      display_name: display_name_example
+      value: value_example
+      namespace_name: namespace_name_example
+    properties: null
+    enc_properties: null
+    is_default: true
+
 - name: Delete connection
   oci_data_catalog_connection:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     connection_key: connection_key_example
@@ -163,6 +202,7 @@ EXAMPLES = """
 
 - name: Delete connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_connection:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     display_name: display_name_example

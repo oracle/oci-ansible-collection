@@ -369,15 +369,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create monitor
   oci_apm_synthetics_monitor:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: exampleName
     monitor_type: SCRIPTED_BROWSER
+    vantage_points: [ "null" ]
     repeat_interval_in_seconds: 600
 
-- name: Update monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+    status: ENABLED
+    is_run_once: true
+    timeout_in_seconds: 180
+    target: https://www.oracle.com/index.html
+    script_parameters:
+    - # required
+      param_name: testName
+      param_value: openPageMonitor
+    configuration:
+      # required
+      config_type: SCRIPTED_REST_CONFIG
+
+      # optional
+      is_failure_retried: true
+      network_configuration:
+        # optional
+        number_of_hops: 56
+        probe_per_hop: 56
+        transmission_rate: 56
+        protocol: TCP
+        probe_mode: SACK
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update monitor
   oci_apm_synthetics_monitor:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+    monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: exampleName
+    vantage_points: [ "null" ]
     script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
     status: ENABLED
     repeat_interval_in_seconds: 600
@@ -385,27 +418,69 @@ EXAMPLES = """
     timeout_in_seconds: 180
     target: https://www.oracle.com/index.html
     script_parameters:
-    - param_name: testName
+    - # required
+      param_name: testName
       param_value: openPageMonitor
     configuration:
+      # required
       config_type: SCRIPTED_REST_CONFIG
+
+      # optional
+      is_failure_retried: true
+      network_configuration:
+        # optional
+        number_of_hops: 56
+        probe_per_hop: 56
+        transmission_rate: 56
+        protocol: TCP
+        probe_mode: SACK
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update monitor
+- name: Update monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_synthetics_monitor:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: exampleName
-    monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    vantage_points: [ "null" ]
+    script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+    status: ENABLED
+    repeat_interval_in_seconds: 600
+    is_run_once: true
+    timeout_in_seconds: 180
+    target: https://www.oracle.com/index.html
+    script_parameters:
+    - # required
+      param_name: testName
+      param_value: openPageMonitor
+    configuration:
+      # required
+      config_type: SCRIPTED_REST_CONFIG
+
+      # optional
+      is_failure_retried: true
+      network_configuration:
+        # optional
+        number_of_hops: 56
+        probe_per_hop: 56
+        transmission_rate: 56
+        protocol: TCP
+        probe_mode: SACK
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete monitor
   oci_apm_synthetics_monitor:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_synthetics_monitor:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: exampleName
     state: absent
@@ -663,7 +738,7 @@ monitor:
                                 - User password for authentication.
                             returned: on success
                             type: str
-                            sample: password
+                            sample: example-password
                         auth_token:
                             description:
                                 - Authentication token.
@@ -835,7 +910,7 @@ monitor:
             "req_authentication_details": {
                 "oauth_scheme": "NONE",
                 "auth_user_name": "user",
-                "auth_user_password": "password",
+                "auth_user_password": "example-password",
                 "auth_token": "token",
                 "auth_url": "https://www.example.com/token",
                 "auth_headers": [{

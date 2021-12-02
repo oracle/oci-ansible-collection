@@ -95,13 +95,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List analytics_instances
-  oci_analytics_instance_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific analytics_instance
   oci_analytics_instance_facts:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List analytics_instances
+  oci_analytics_instance_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    capacity_type: OLPU_COUNT
+    feature_set: SELF_SERVICE_ANALYTICS
+    lifecycle_state: ACTIVE
+    sort_by: capacityType
+    sort_order: ASC
 
 """
 

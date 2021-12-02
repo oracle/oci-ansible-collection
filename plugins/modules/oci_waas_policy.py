@@ -40,7 +40,8 @@ description:
       Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "**Note:** After sending the POST request, the new object's state will temporarily be `CREATING`. Ensure that the resource's state has changed to `ACTIVE`
       before use."
-    - "This resource has the following action operations in the M(oci_waas_policy_actions) module: accept_recommendations, change_compartment, purge_cache."
+    - "This resource has the following action operations in the M(oracle.oci.oci_waas_policy_actions) module: accept_recommendations, change_compartment,
+      purge_cache."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -1511,25 +1512,800 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create waas_policy
   oci_waas_policy:
+    # required
     compartment_id: "ocid1.compartment.oc1.."
-    display_name: "Policy"
-    domain: "example.com"
+    domain: example.com
 
-- name: Update waas_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_waas_policy:
-    display_name: "change_policy"
+    # optional
+    display_name: Policy
+    additional_domains: [ "null" ]
+    origins:
+      # required
+      uri: uri_example
+
+      # optional
+      http_port: 56
+      https_port: 56
+      custom_headers:
+      - # required
+        name: name_example
+        value: value_example
+    origin_groups:
+      # optional
+      origins:
+      - # optional
+        origin: origin_example
+        weight: 56
+    policy_config:
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+      is_https_enabled: true
+      is_https_forced: true
+      tls_protocols: [ "null" ]
+      is_origin_compression_enabled: true
+      is_behind_cdn: true
+      client_address_header: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+      is_cache_control_respected: true
+      is_response_buffering_enabled: true
+      cipher_group: DEFAULT
+      load_balancing_method:
+        # required
+        method: ROUND_ROBIN
+      websocket_path_prefixes: [ "null" ]
+      is_sni_enabled: true
+      health_checks:
+        # optional
+        is_enabled: true
+        method: GET
+        path: path_example
+        headers: null
+        expected_response_code_group: [ "null" ]
+        is_response_text_check_enabled: true
+        expected_response_text: expected_response_text_example
+        interval_in_seconds: 56
+        timeout_in_seconds: 56
+        healthy_threshold: 56
+        unhealthy_threshold: 56
+    waf_config:
+      # optional
+      access_rules:
+      - # required
+        name: name_example
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+          # optional
+          is_case_sensitive: true
+        action: ALLOW
+
+        # optional
+        block_action: SET_RESPONSE_CODE
+        block_response_code: 56
+        block_error_page_message: block_error_page_message_example
+        block_error_page_code: block_error_page_code_example
+        block_error_page_description: block_error_page_description_example
+        bypass_challenges: [ "null" ]
+        redirect_url: redirect_url_example
+        redirect_response_code: MOVED_PERMANENTLY
+        captcha_title: captcha_title_example
+        captcha_header: captcha_header_example
+        captcha_footer: captcha_footer_example
+        captcha_submit_label: captcha_submit_label_example
+        response_header_manipulation:
+        - # required
+          action: EXTEND_HTTP_RESPONSE_HEADER
+          header: example_header_name
+          value: example_value
+      address_rate_limiting:
+        # required
+        is_enabled: true
+
+        # optional
+        allowed_rate_per_address: 56
+        max_delayed_count_per_address: 56
+        block_response_code: 56
+      captchas:
+      - # required
+        url: url_example
+        session_expiration_in_seconds: 56
+        title: title_example
+        failure_message: failure_message_example
+        submit_label: submit_label_example
+
+        # optional
+        header_text: header_text_example
+        footer_text: footer_text_example
+      device_fingerprint_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        failure_threshold_expiration_in_seconds: 56
+        max_address_count: 56
+        max_address_count_expiration_in_seconds: 56
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+      human_interaction_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        failure_threshold_expiration_in_seconds: 56
+        interaction_threshold: 56
+        recording_period_in_seconds: 56
+        set_http_header:
+          # required
+          name: name_example
+          value: value_example
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+        is_nat_enabled: true
+      js_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        set_http_header:
+          # required
+          name: name_example
+          value: value_example
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+        are_redirects_challenged: true
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+          # optional
+          is_case_sensitive: true
+        is_nat_enabled: true
+      origin: origin_example
+      caching_rules:
+      - # required
+        name: name_example
+        action: CACHE
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+        # optional
+        key: key_example
+        caching_duration: PT1H
+        is_client_caching_enabled: true
+        client_caching_duration: PT1H
+      custom_protection_rules:
+      - # optional
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        action: DETECT
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "null" ]
+      origin_groups: [ "null" ]
+      protection_settings:
+        # optional
+        block_action: SHOW_ERROR_PAGE
+        block_response_code: 56
+        block_error_page_message: block_error_page_message_example
+        block_error_page_code: block_error_page_code_example
+        block_error_page_description: block_error_page_description_example
+        max_argument_count: 56
+        max_name_length_per_argument: 56
+        max_total_name_length_of_arguments: 56
+        recommendations_period_in_days: 56
+        is_response_inspected: true
+        max_response_size_in_ki_b: 56
+        allowed_http_methods: [ "null" ]
+        media_types: [ "null" ]
+      whitelists:
+      - # required
+        name: name_example
+
+        # optional
+        addresses: [ "null" ]
+        address_lists: [ "null" ]
+      good_bots:
+      - # required
+        key: key_example
+        is_enabled: true
+
+        # optional
+        name: name_example
+        description: description_example
+      protection_rules:
+      - # optional
+        key: key_example
+        mod_security_rule_ids: [ "null" ]
+        name: name_example
+        description: description_example
+        action: OFF
+        labels: [ "null" ]
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "null" ]
+      threat_feeds:
+      - # optional
+        key: key_example
+        name: name_example
+        action: OFF
+        description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update waas_policy
   oci_waas_policy:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: Policy
+    additional_domains: [ "null" ]
+    origins:
+      # required
+      uri: uri_example
+
+      # optional
+      http_port: 56
+      https_port: 56
+      custom_headers:
+      - # required
+        name: name_example
+        value: value_example
+    origin_groups:
+      # optional
+      origins:
+      - # optional
+        origin: origin_example
+        weight: 56
+    policy_config:
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+      is_https_enabled: true
+      is_https_forced: true
+      tls_protocols: [ "null" ]
+      is_origin_compression_enabled: true
+      is_behind_cdn: true
+      client_address_header: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+      is_cache_control_respected: true
+      is_response_buffering_enabled: true
+      cipher_group: DEFAULT
+      load_balancing_method:
+        # required
+        method: ROUND_ROBIN
+      websocket_path_prefixes: [ "null" ]
+      is_sni_enabled: true
+      health_checks:
+        # optional
+        is_enabled: true
+        method: GET
+        path: path_example
+        headers: null
+        expected_response_code_group: [ "null" ]
+        is_response_text_check_enabled: true
+        expected_response_text: expected_response_text_example
+        interval_in_seconds: 56
+        timeout_in_seconds: 56
+        healthy_threshold: 56
+        unhealthy_threshold: 56
+    waf_config:
+      # optional
+      access_rules:
+      - # required
+        name: name_example
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+          # optional
+          is_case_sensitive: true
+        action: ALLOW
+
+        # optional
+        block_action: SET_RESPONSE_CODE
+        block_response_code: 56
+        block_error_page_message: block_error_page_message_example
+        block_error_page_code: block_error_page_code_example
+        block_error_page_description: block_error_page_description_example
+        bypass_challenges: [ "null" ]
+        redirect_url: redirect_url_example
+        redirect_response_code: MOVED_PERMANENTLY
+        captcha_title: captcha_title_example
+        captcha_header: captcha_header_example
+        captcha_footer: captcha_footer_example
+        captcha_submit_label: captcha_submit_label_example
+        response_header_manipulation:
+        - # required
+          action: EXTEND_HTTP_RESPONSE_HEADER
+          header: example_header_name
+          value: example_value
+      address_rate_limiting:
+        # required
+        is_enabled: true
+
+        # optional
+        allowed_rate_per_address: 56
+        max_delayed_count_per_address: 56
+        block_response_code: 56
+      captchas:
+      - # required
+        url: url_example
+        session_expiration_in_seconds: 56
+        title: title_example
+        failure_message: failure_message_example
+        submit_label: submit_label_example
+
+        # optional
+        header_text: header_text_example
+        footer_text: footer_text_example
+      device_fingerprint_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        failure_threshold_expiration_in_seconds: 56
+        max_address_count: 56
+        max_address_count_expiration_in_seconds: 56
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+      human_interaction_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        failure_threshold_expiration_in_seconds: 56
+        interaction_threshold: 56
+        recording_period_in_seconds: 56
+        set_http_header:
+          # required
+          name: name_example
+          value: value_example
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+        is_nat_enabled: true
+      js_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        set_http_header:
+          # required
+          name: name_example
+          value: value_example
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+        are_redirects_challenged: true
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+          # optional
+          is_case_sensitive: true
+        is_nat_enabled: true
+      origin: origin_example
+      caching_rules:
+      - # required
+        name: name_example
+        action: CACHE
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+        # optional
+        key: key_example
+        caching_duration: PT1H
+        is_client_caching_enabled: true
+        client_caching_duration: PT1H
+      custom_protection_rules:
+      - # optional
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        action: DETECT
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "null" ]
+      origin_groups: [ "null" ]
+      protection_settings:
+        # optional
+        block_action: SHOW_ERROR_PAGE
+        block_response_code: 56
+        block_error_page_message: block_error_page_message_example
+        block_error_page_code: block_error_page_code_example
+        block_error_page_description: block_error_page_description_example
+        max_argument_count: 56
+        max_name_length_per_argument: 56
+        max_total_name_length_of_arguments: 56
+        recommendations_period_in_days: 56
+        is_response_inspected: true
+        max_response_size_in_ki_b: 56
+        allowed_http_methods: [ "null" ]
+        media_types: [ "null" ]
+      whitelists:
+      - # required
+        name: name_example
+
+        # optional
+        addresses: [ "null" ]
+        address_lists: [ "null" ]
+      good_bots:
+      - # required
+        key: key_example
+        is_enabled: true
+
+        # optional
+        name: name_example
+        description: description_example
+      protection_rules:
+      - # optional
+        key: key_example
+        mod_security_rule_ids: [ "null" ]
+        name: name_example
+        description: description_example
+        action: OFF
+        labels: [ "null" ]
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "null" ]
+      threat_feeds:
+      - # optional
+        key: key_example
+        name: name_example
+        action: OFF
+        description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update waas_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_waas_policy:
+    # required
+    compartment_id: "ocid1.compartment.oc1.."
+    display_name: Policy
+
+    # optional
+    additional_domains: [ "null" ]
+    origins:
+      # required
+      uri: uri_example
+
+      # optional
+      http_port: 56
+      https_port: 56
+      custom_headers:
+      - # required
+        name: name_example
+        value: value_example
+    origin_groups:
+      # optional
+      origins:
+      - # optional
+        origin: origin_example
+        weight: 56
+    policy_config:
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+      is_https_enabled: true
+      is_https_forced: true
+      tls_protocols: [ "null" ]
+      is_origin_compression_enabled: true
+      is_behind_cdn: true
+      client_address_header: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+      is_cache_control_respected: true
+      is_response_buffering_enabled: true
+      cipher_group: DEFAULT
+      load_balancing_method:
+        # required
+        method: ROUND_ROBIN
+      websocket_path_prefixes: [ "null" ]
+      is_sni_enabled: true
+      health_checks:
+        # optional
+        is_enabled: true
+        method: GET
+        path: path_example
+        headers: null
+        expected_response_code_group: [ "null" ]
+        is_response_text_check_enabled: true
+        expected_response_text: expected_response_text_example
+        interval_in_seconds: 56
+        timeout_in_seconds: 56
+        healthy_threshold: 56
+        unhealthy_threshold: 56
+    waf_config:
+      # optional
+      access_rules:
+      - # required
+        name: name_example
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+          # optional
+          is_case_sensitive: true
+        action: ALLOW
+
+        # optional
+        block_action: SET_RESPONSE_CODE
+        block_response_code: 56
+        block_error_page_message: block_error_page_message_example
+        block_error_page_code: block_error_page_code_example
+        block_error_page_description: block_error_page_description_example
+        bypass_challenges: [ "null" ]
+        redirect_url: redirect_url_example
+        redirect_response_code: MOVED_PERMANENTLY
+        captcha_title: captcha_title_example
+        captcha_header: captcha_header_example
+        captcha_footer: captcha_footer_example
+        captcha_submit_label: captcha_submit_label_example
+        response_header_manipulation:
+        - # required
+          action: EXTEND_HTTP_RESPONSE_HEADER
+          header: example_header_name
+          value: example_value
+      address_rate_limiting:
+        # required
+        is_enabled: true
+
+        # optional
+        allowed_rate_per_address: 56
+        max_delayed_count_per_address: 56
+        block_response_code: 56
+      captchas:
+      - # required
+        url: url_example
+        session_expiration_in_seconds: 56
+        title: title_example
+        failure_message: failure_message_example
+        submit_label: submit_label_example
+
+        # optional
+        header_text: header_text_example
+        footer_text: footer_text_example
+      device_fingerprint_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        failure_threshold_expiration_in_seconds: 56
+        max_address_count: 56
+        max_address_count_expiration_in_seconds: 56
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+      human_interaction_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        failure_threshold_expiration_in_seconds: 56
+        interaction_threshold: 56
+        recording_period_in_seconds: 56
+        set_http_header:
+          # required
+          name: name_example
+          value: value_example
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+        is_nat_enabled: true
+      js_challenge:
+        # required
+        is_enabled: true
+
+        # optional
+        action: DETECT
+        failure_threshold: 56
+        action_expiration_in_seconds: 56
+        set_http_header:
+          # required
+          name: name_example
+          value: value_example
+        challenge_settings:
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_description: block_error_page_description_example
+          block_error_page_code: block_error_page_code_example
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+        are_redirects_challenged: true
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+          # optional
+          is_case_sensitive: true
+        is_nat_enabled: true
+      origin: origin_example
+      caching_rules:
+      - # required
+        name: name_example
+        action: CACHE
+        criteria:
+        - # required
+          condition: URL_IS
+          value: value_example
+
+        # optional
+        key: key_example
+        caching_duration: PT1H
+        is_client_caching_enabled: true
+        client_caching_duration: PT1H
+      custom_protection_rules:
+      - # optional
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        action: DETECT
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "null" ]
+      origin_groups: [ "null" ]
+      protection_settings:
+        # optional
+        block_action: SHOW_ERROR_PAGE
+        block_response_code: 56
+        block_error_page_message: block_error_page_message_example
+        block_error_page_code: block_error_page_code_example
+        block_error_page_description: block_error_page_description_example
+        max_argument_count: 56
+        max_name_length_per_argument: 56
+        max_total_name_length_of_arguments: 56
+        recommendations_period_in_days: 56
+        is_response_inspected: true
+        max_response_size_in_ki_b: 56
+        allowed_http_methods: [ "null" ]
+        media_types: [ "null" ]
+      whitelists:
+      - # required
+        name: name_example
+
+        # optional
+        addresses: [ "null" ]
+        address_lists: [ "null" ]
+      good_bots:
+      - # required
+        key: key_example
+        is_enabled: true
+
+        # optional
+        name: name_example
+        description: description_example
+      protection_rules:
+      - # optional
+        key: key_example
+        mod_security_rule_ids: [ "null" ]
+        name: name_example
+        description: description_example
+        action: OFF
+        labels: [ "null" ]
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "null" ]
+      threat_feeds:
+      - # optional
+        key: key_example
+        name: name_example
+        action: OFF
+        description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete waas_policy
   oci_waas_policy:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete waas_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_policy:
+    # required
     compartment_id: "ocid1.compartment.oc1.."
     display_name: Policy
     state: absent

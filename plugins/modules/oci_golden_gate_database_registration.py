@@ -24,7 +24,7 @@ short_description: Manage a DatabaseRegistration resource in Oracle Cloud Infras
 description:
     - This module allows the user to create, update and delete a DatabaseRegistration resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DatabaseRegistration.
-    - "This resource has the following action operations in the M(oci_database_registration_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_database_registration_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -148,40 +148,70 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create database_registration
   oci_golden_gate_database_registration:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     fqdn: fqdn_example
     username: username_example
-    password: password_example
+    password: example-password
     alias_name: alias_name_example
 
-- name: Update database_registration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    ip_address: ip_address_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_string: connection_string_example
+    wallet: wallet_example
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_compartment_id: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update database_registration
   oci_golden_gate_database_registration:
+    # required
+    database_registration_id: "ocid1.databaseregistration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     fqdn: fqdn_example
     username: username_example
-    password: password_example
+    password: example-password
     connection_string: connection_string_example
     wallet: wallet_example
     alias_name: alias_name_example
 
-- name: Update database_registration
+- name: Update database_registration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_database_registration:
+    # required
     display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
-    database_registration_id: "ocid1.databaseregistration.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    fqdn: fqdn_example
+    username: username_example
+    password: example-password
+    connection_string: connection_string_example
+    wallet: wallet_example
+    alias_name: alias_name_example
 
 - name: Delete database_registration
   oci_golden_gate_database_registration:
+    # required
     database_registration_id: "ocid1.databaseregistration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete database_registration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_database_registration:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

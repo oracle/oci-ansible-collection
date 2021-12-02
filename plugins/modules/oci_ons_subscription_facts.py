@@ -49,13 +49,18 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List subscriptions
-  oci_ons_subscription_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific subscription
   oci_ons_subscription_facts:
+    # required
     subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List subscriptions
+  oci_ons_subscription_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

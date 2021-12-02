@@ -61,14 +61,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List publication_packages
-  oci_marketplace_publication_package_facts:
-    publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific publication_package
   oci_marketplace_publication_package_facts:
+    # required
     publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
+
+- name: List publication_packages
+  oci_marketplace_publication_package_facts:
+    # required
+    publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    package_version: package_version_example
+    package_type: package_type_example
+    sort_by: TIMERELEASED
+    sort_order: ASC
 
 """
 

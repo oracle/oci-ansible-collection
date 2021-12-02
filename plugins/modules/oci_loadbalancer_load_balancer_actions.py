@@ -53,9 +53,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on load_balancer
   oci_loadbalancer_load_balancer_actions:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 
@@ -729,7 +730,7 @@ load_balancer:
                                 - "Example: `^((?!false).|\\\\s)*$`"
                             returned: on success
                             type: str
-                            sample: "^((?!false).|\\\\s)*$"
+                            sample: response_body_regex_example
                 ssl_configuration:
                     description:
                         - ""
@@ -1421,7 +1422,7 @@ load_balancer:
                 "retries": 3,
                 "timeout_in_millis": 3000,
                 "interval_in_millis": 10000,
-                "response_body_regex": "^((?!false).|\\\\s)*$"
+                "response_body_regex": "response_body_regex_example"
             },
             "ssl_configuration": {
                 "verify_depth": 3,

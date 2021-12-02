@@ -63,12 +63,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific service_catalog_association
+  oci_service_catalog_association_facts:
+    # required
+    service_catalog_association_id: "ocid1.servicecatalogassociation.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List service_catalog_associations
   oci_service_catalog_association_facts:
 
-- name: Get a specific service_catalog_association
-  oci_service_catalog_association_facts:
+    # optional
     service_catalog_association_id: "ocid1.servicecatalogassociation.oc1..xxxxxxEXAMPLExxxxxx"
+    service_catalog_id: "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx"
+    entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
+    entity_type: entity_type_example
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 

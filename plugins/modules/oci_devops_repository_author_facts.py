@@ -49,7 +49,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List repository_authors
   oci_devops_repository_author_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    ref_name: ref_name_example
+    sort_order: ASC
 
 """
 

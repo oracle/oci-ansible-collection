@@ -79,13 +79,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List streams
-  oci_streaming_stream_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific stream
   oci_streaming_stream_facts:
+    # required
     stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List streams
+  oci_streaming_stream_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    sort_by: NAME
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

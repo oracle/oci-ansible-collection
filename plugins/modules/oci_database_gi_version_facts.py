@@ -49,7 +49,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List gi_versions
   oci_database_gi_version_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    shape: shape_example
 
 """
 

@@ -77,8 +77,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List object_versions
   oci_object_storage_object_version_facts:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
+
+    # optional
+    prefix: prefix_example
+    start: start_example
+    end: end_example
+    delimiter: delimiter_example
+    fields: name
 
 """
 

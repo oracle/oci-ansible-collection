@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific letter_of_authority
   oci_network_letter_of_authority_facts:
+    # required
     cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -64,7 +65,7 @@ letter_of_authority:
             sample: Single_mode_LC
         cross_connect_id:
             description:
-                - The OCID of the cross-connect.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect.
             returned: on success
             type: str
             sample: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"

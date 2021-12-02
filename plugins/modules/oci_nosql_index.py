@@ -93,16 +93,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create index
   oci_nosql_index:
+    # required
     table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     keys:
-    - column_name: column_name_example
+    - # required
+      column_name: column_name_example
+
+      # optional
+      json_path: json_path_example
+      json_field_type: json_field_type_example
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    is_if_not_exists: true
 
 - name: Delete index
   oci_nosql_index:
+    # required
     table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    is_if_exists: true
 
 """
 

@@ -58,7 +58,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List shapes
   oci_mysql_shape_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    is_supported_for: [ "$p.getValue()" ]
+    availability_domain: Uocm:PHX-AD-1
+    name: name_example
 
 """
 

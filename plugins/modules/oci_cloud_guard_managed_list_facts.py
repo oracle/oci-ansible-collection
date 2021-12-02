@@ -127,13 +127,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List managed_lists
-  oci_cloud_guard_managed_list_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific managed_list
   oci_cloud_guard_managed_list_facts:
+    # required
     managed_list_id: "ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List managed_lists
+  oci_cloud_guard_managed_list_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    resource_metadata_only: true
+    lifecycle_state: CREATING
+    list_type: CIDR_BLOCK
+    compartment_id_in_subtree: true
+    access_level: RESTRICTED
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

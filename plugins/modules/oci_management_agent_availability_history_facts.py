@@ -63,7 +63,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List availability_histories
   oci_management_agent_availability_history_facts:
+    # required
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    time_availability_status_ended_greater_than: 2013-10-20T19:20:30+01:00
+    time_availability_status_started_less_than: 2013-10-20T19:20:30+01:00
+    sort_order: ASC
+    sort_by: timeAvailabilityStatusStarted
 
 """
 

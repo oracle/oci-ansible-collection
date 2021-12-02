@@ -24,7 +24,7 @@ short_description: Manage a Job resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Job resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a job.
-    - "This resource has the following action operations in the M(oci_job_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_science_job_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -167,22 +167,46 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create job
   oci_data_science_job:
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     job_configuration_details:
+      # required
       job_type: DEFAULT
+
+      # optional
+      environment_variables: null
+      command_line_arguments: command_line_arguments_example
+      maximum_runtime_in_minutes: 56
     job_infrastructure_configuration_details:
+      # required
       job_infrastructure_type: STANDALONE
       shape_name: shape_name_example
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       block_storage_size_in_gbs: 1024
 
-- name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    display_name: display_name_example
+    description: description_example
+    job_log_configuration_details:
+      # optional
+      enable_logging: true
+      enable_auto_log_creation: true
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update job
   oci_data_science_job:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
     job_infrastructure_configuration_details:
+      # required
       job_infrastructure_type: STANDALONE
       shape_name: shape_name_example
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -190,19 +214,35 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update job
+- name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_job:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+
+    # optional
     description: description_example
-    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+    job_infrastructure_configuration_details:
+      # required
+      job_infrastructure_type: STANDALONE
+      shape_name: shape_name_example
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      block_storage_size_in_gbs: 1024
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete job
   oci_data_science_job:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    delete_related_job_runs: true
+
 - name: Delete job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_job:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

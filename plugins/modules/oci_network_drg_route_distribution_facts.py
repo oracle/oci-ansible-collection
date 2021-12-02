@@ -81,13 +81,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List drg_route_distributions
-  oci_network_drg_route_distribution_facts:
-    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific drg_route_distribution
   oci_network_drg_route_distribution_facts:
+    # required
     drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List drg_route_distributions
+  oci_network_drg_route_distribution_facts:
+    # required
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

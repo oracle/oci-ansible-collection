@@ -84,13 +84,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List vlans
-  oci_network_vlan_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific vlan
   oci_network_vlan_facts:
+    # required
     vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List vlans
+  oci_network_vlan_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -119,7 +128,7 @@ vlans:
             sample: 192.168.1.0/24
         compartment_id:
             description:
-                - The OCID of the compartment containing the VLAN.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the VLAN.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -149,7 +158,7 @@ vlans:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The VLAN's Oracle ID (OCID).
+                - The VLAN's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -177,7 +186,7 @@ vlans:
             sample: 100
         route_table_id:
             description:
-                - The OCID of the route table that the VLAN uses.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table that the VLAN uses.
             returned: on success
             type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
@@ -190,7 +199,7 @@ vlans:
             sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
-                - The OCID of the VCN the VLAN is in.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the VLAN is in.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

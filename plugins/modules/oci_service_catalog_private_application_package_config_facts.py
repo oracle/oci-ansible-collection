@@ -45,6 +45,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific private_application_package_config
   oci_service_catalog_private_application_package_config_facts:
+    # required
     dest: /tmp/myfile
     private_application_package_id: "ocid1.privateapplicationpackage.oc1..xxxxxxEXAMPLExxxxxx"
 

@@ -24,7 +24,7 @@ short_description: Manage a NetworkAddressList resource in Oracle Cloud Infrastr
 description:
     - This module allows the user to create, update and delete a NetworkAddressList resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new NetworkAddressList.
-    - "This resource has the following action operations in the M(oci_network_address_list_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_waf_network_address_list_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -117,36 +117,100 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create network_address_list
+- name: Create network_address_list with type = VCN_ADDRESSES
   oci_waf_network_address_list:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    type: ADDRESSES
+    type: VCN_ADDRESSES
 
-- name: Update network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_waf_network_address_list:
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    type: ADDRESSES
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
     vcn_addresses:
-    - vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
       addresses: addresses_example
 
-- name: Update network_address_list
+- name: Create network_address_list with type = ADDRESSES
   oci_waf_network_address_list:
-    display_name: display_name_example
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: ADDRESSES
-    network_address_list_id: "ocid1.networkaddresslist.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
+    addresses: [ "null" ]
+
+- name: Update network_address_list with type = VCN_ADDRESSES
+  oci_waf_network_address_list:
+    # required
+    type: VCN_ADDRESSES
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
+    vcn_addresses:
+    - # required
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      addresses: addresses_example
+
+- name: Update network_address_list with type = ADDRESSES
+  oci_waf_network_address_list:
+    # required
+    type: ADDRESSES
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
+    addresses: [ "null" ]
+
+- name: Update network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = VCN_ADDRESSES
+  oci_waf_network_address_list:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: VCN_ADDRESSES
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
+    vcn_addresses:
+    - # required
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      addresses: addresses_example
+
+- name: Update network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = ADDRESSES
+  oci_waf_network_address_list:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: ADDRESSES
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
+    addresses: [ "null" ]
 
 - name: Delete network_address_list
   oci_waf_network_address_list:
+    # required
     network_address_list_id: "ocid1.networkaddresslist.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waf_network_address_list:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

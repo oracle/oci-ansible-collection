@@ -24,7 +24,7 @@ short_description: Manage a Template resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Template resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a private template in the specified compartment.
-    - "This resource has the following action operations in the M(oci_template_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_resource_manager_template_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -116,34 +116,63 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create template
   oci_resource_manager_template:
+    # required
     compartment_id: compartment_OCID
     display_name: Template Display Name
     description: Brief description of the template
     template_config_source:
+      # required
       template_config_source_type: ZIP_UPLOAD
+      zip_file_base64_encoded: binary string
 
-- name: Update template using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_resource_manager_template:
-    display_name: Template Display Name
-    description: Brief description of the template
+    # optional
     long_description: Detailed description of the template.
     logo_file_base64_encoded: binary string
-    template_config_source:
-      template_config_source_type: ZIP_UPLOAD
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update template
   oci_resource_manager_template:
+    # required
     template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: Template Display Name
+    description: Brief description of the template
+    long_description: Detailed description of the template.
+    logo_file_base64_encoded: binary string
+    template_config_source:
+      # required
+      template_config_source_type: ZIP_UPLOAD
+      zip_file_base64_encoded: binary string
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update template using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_resource_manager_template:
+    # required
+    display_name: Template Display Name
+
+    # optional
+    description: Brief description of the template
+    long_description: Detailed description of the template.
+    logo_file_base64_encoded: binary string
+    template_config_source:
+      # required
+      template_config_source_type: ZIP_UPLOAD
+      zip_file_base64_encoded: binary string
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete template
   oci_resource_manager_template:
+    # required
     template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete template using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_resource_manager_template:
+    # required
     display_name: Template Display Name
     state: absent
 

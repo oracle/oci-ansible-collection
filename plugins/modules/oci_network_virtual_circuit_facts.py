@@ -83,13 +83,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List virtual_circuits
-  oci_network_virtual_circuit_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific virtual_circuit
   oci_network_virtual_circuit_facts:
+    # required
     virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List virtual_circuits
+  oci_network_virtual_circuit_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -131,7 +139,7 @@ virtual_circuits:
             sample: UP
         compartment_id:
             description:
-                - The OCID of the compartment containing the virtual circuit.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the virtual circuit.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -153,7 +161,8 @@ virtual_circuits:
                     sample: bgp_md5_auth_key_example
                 cross_connect_or_cross_connect_group_id:
                     description:
-                        - The OCID of the cross-connect or cross-connect group for this mapping.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect or cross-connect group
+                          for this mapping.
                           Specified by the owner of the cross-connect or cross-connect group (the
                           customer if the customer is colocated with Oracle, or the provider if the
                           customer is connecting via provider).
@@ -273,14 +282,15 @@ virtual_circuits:
             sample: {'Department': 'Finance'}
         gateway_id:
             description:
-                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Drg)
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the customer's L(dynamic routing gateway
+                  (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Drg)
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
             type: str
             sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The virtual circuit's Oracle ID (OCID).
+                - The virtual circuit's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -306,7 +316,8 @@ virtual_circuits:
             sample: provider_name_example
         provider_service_id:
             description:
-                - The OCID of the service offered by the provider (if the customer is connecting via a provider).
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service offered by the provider (if the
+                  customer is connecting via a provider).
             returned: on success
             type: str
             sample: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
@@ -374,6 +385,12 @@ virtual_circuits:
             returned: on success
             type: str
             sample: PUBLIC
+        ip_mtu:
+            description:
+                - The layer 3 IP MTU to use on this virtual circuit.
+            returned: on success
+            type: str
+            sample: MTU_1500
     sample: [{
         "bandwidth_shape_name": "10 Gbps",
         "bgp_management": "CUSTOMER_MANAGED",
@@ -409,7 +426,8 @@ virtual_circuits:
         "region": "region_example",
         "service_type": "COLOCATED",
         "time_created": "2016-08-25T21:10:29.600Z",
-        "type": "PUBLIC"
+        "type": "PUBLIC",
+        "ip_mtu": "MTU_1500"
     }]
 """
 

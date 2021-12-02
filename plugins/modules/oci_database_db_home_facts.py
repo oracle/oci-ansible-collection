@@ -92,13 +92,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List db_homes
-  oci_database_db_home_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific db_home
   oci_database_db_home_facts:
+    # required
     db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List db_homes
+  oci_database_db_home_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+    db_version: db_version_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
 
 """
 

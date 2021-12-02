@@ -76,13 +76,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List applications
-  oci_data_flow_application_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific application
   oci_data_flow_application_facts:
+    # required
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List applications
+  oci_data_flow_application_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: timeCreated
+    sort_order: ASC
+    display_name: display_name_example
+    owner_principal_id: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name_starts_with: display_name_starts_with_example
+    spark_version: spark_version_example
 
 """
 

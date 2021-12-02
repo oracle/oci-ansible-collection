@@ -43,7 +43,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific cluster_options
   oci_container_engine_cluster_options_facts:
-    cluster_option_id: "all"
+    # required
+    cluster_option_id: "ocid1.clusteroption.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

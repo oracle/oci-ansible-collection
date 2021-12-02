@@ -30,13 +30,9 @@ oracle.oci.oci_network_vcn_topology_facts -- Fetches details about a VcnTopology
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_vcn_topology_facts`.
 
@@ -338,8 +334,14 @@ Examples
     
     - name: Get a specific vcn_topology
       oci_network_vcn_topology_facts:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        access_level: ANY
+        query_compartment_subtree: true
+        cache_control: cache_control_example
 
 
 
@@ -375,8 +377,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>VcnTopology resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;entities&#x27;: [], &#x27;relationships&#x27;: [{&#x27;id1&#x27;: &#x27;id1_example&#x27;, &#x27;id2&#x27;: &#x27;id2_example&#x27;, &#x27;route_rule_details&#x27;: {&#x27;destination&#x27;: &#x27;destination_example&#x27;, &#x27;destination_type&#x27;: &#x27;destination_type_example&#x27;, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;type&#x27;: &#x27;CONTAINS&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;NETWORKING&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;entities&#x27;: [], &#x27;relationships&#x27;: [{&#x27;associated_with_details&#x27;: {&#x27;via&#x27;: []}, &#x27;id1&#x27;: &#x27;id1_example&#x27;, &#x27;id2&#x27;: &#x27;id2_example&#x27;, &#x27;route_rule_details&#x27;: {&#x27;destination&#x27;: &#x27;destination_example&#x27;, &#x27;destination_type&#x27;: &#x27;destination_type_example&#x27;, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;route_type&#x27;: &#x27;STATIC&#x27;}, &#x27;type&#x27;: &#x27;CONTAINS&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;NETWORKING&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -393,7 +395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Lists entities comprising the virtual network topology.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -409,9 +411,45 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Lists relationships between entities in the virtual network topology.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vcn_topology/relationships/associated_with_details"></div>
+                    <b>associated_with_details</b>
+                    <a class="ansibleOptionLink" href="#return-vcn_topology/relationships/associated_with_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vcn_topology/relationships/associated_with_details/via"></div>
+                    <b>via</b>
+                    <a class="ansibleOptionLink" href="#return-vcn_topology/relationships/associated_with_details/via" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the entities via which the relationship is created. For example an instance is associated with a network security group via the VNIC attachment and the VNIC.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                    
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -426,7 +464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the first entity in the relationship.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">id1_example</div>
                                     </td>
             </tr>
@@ -445,7 +483,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the second entity in the relationship.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">id2_example</div>
                                     </td>
             </tr>
@@ -464,7 +502,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -482,7 +520,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An IP address range in CIDR notation or the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Service/'>Service</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">destination_example</div>
                                     </td>
             </tr>
@@ -504,7 +542,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* Use `CIDR_BLOCK` if the rule&#x27;s `destination` is an IP address range in CIDR notation.</div>
                                             <div>* Use `SERVICE_CIDR_BLOCK` if the rule&#x27;s `destination` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">destination_type_example</div>
                                     </td>
             </tr>
@@ -524,8 +562,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the routing table that contains the route rule.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vcn_topology/relationships/route_rule_details/route_type"></div>
+                    <b>route_type</b>
+                    <a class="ansibleOptionLink" href="#return-vcn_topology/relationships/route_rule_details/route_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A route rule can be `STATIC` if manually added to the route table or `DYNAMIC` if imported from another route table.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STATIC</div>
                                     </td>
             </tr>
                     
@@ -544,7 +602,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of relationship between the entities.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CONTAINS</div>
                                     </td>
             </tr>
@@ -563,7 +621,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Records when the virtual network topology was created, in <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> format for date and time.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -581,7 +639,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of the topology object.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NETWORKING</div>
                                     </td>
             </tr>
@@ -599,7 +657,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN for which the topology is generated.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

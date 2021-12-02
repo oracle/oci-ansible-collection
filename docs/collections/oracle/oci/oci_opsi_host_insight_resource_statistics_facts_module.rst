@@ -30,13 +30,9 @@ oracle.oci.oci_opsi_host_insight_resource_statistics_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_host_insight_resource_statistics_facts`.
 
@@ -57,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about a HostInsightResourceStatistics resource in Oracle Cloud Infrastructure
-- Lists the resource statistics (usage, capacity, usage change percent, utilization percent, load) for each host filtered by utilization level.
+- Lists the resource statistics (usage, capacity, usage change percent, utilization percent, load) for each host filtered by utilization level in a compartment and in all sub-compartments if specified.
 
 
 .. Aliases
@@ -199,6 +195,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id_in_subtree"></div>
+                    <b>compartment_id_in_subtree</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id_in_subtree" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A flag to search all resources within a given compartment and all sub-compartments.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -255,6 +270,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned. Each item in the list has the format &quot;{namespace}.{tagName}.true&quot; (for checking existence of a defined tag) or &quot;{namespace}.true&quot;.  All inputs are case-insensitive. Currently, only existence (&quot;true&quot; at the end) is supported. Absence (&quot;false&quot; at the end) is not supported. Multiple values for the same key (i.e. same namespace and tag name) are interpreted as &quot;OR&quot;. Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exadata_insight_id"></div>
+                    <b>exadata_insight_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-exadata_insight_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional list of exadata insight resource <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -508,8 +538,27 @@ Examples
     
     - name: Get a specific host_insight_resource_statistics
       oci_opsi_host_insight_resource_statistics_facts:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resource_metric: resource_metric_example
+
+        # optional
+        analysis_time_interval: analysis_time_interval_example
+        time_interval_start: 2013-10-20T19:20:30+01:00
+        time_interval_end: 2013-10-20T19:20:30+01:00
+        platform_type: [ "$p.getValue()" ]
+        id: [ "$p.getValue()" ]
+        exadata_insight_id: [ "$p.getValue()" ]
+        percentile: 56
+        insight_by: insight_by_example
+        forecast_days: 56
+        sort_order: ASC
+        sort_by: utilizationPercent
+        defined_tag_equals: [ "$p.getValue()" ]
+        freeform_tag_equals: [ "$p.getValue()" ]
+        defined_tag_exists: [ "$p.getValue()" ]
+        freeform_tag_exists: [ "$p.getValue()" ]
+        compartment_id_in_subtree: true
 
 
 
@@ -545,8 +594,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>HostInsightResourceStatistics resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;available_memory&#x27;: 1.2, &#x27;capacity&#x27;: 222.3, &#x27;free_memory&#x27;: 1.2, &#x27;huge_page_size_in_mb&#x27;: 1.2, &#x27;huge_pages_free&#x27;: 56, &#x27;huge_pages_reserved&#x27;: 56, &#x27;huge_pages_total&#x27;: 56, &#x27;load&#x27;: {&#x27;average&#x27;: 1.2, &#x27;lower_quartile&#x27;: 1.2, &#x27;maximum&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;minimum&#x27;: 1.2, &#x27;upper_quartile&#x27;: 1.2}, &#x27;resource_name&#x27;: &#x27;HOST_CPU_STATISTICS&#x27;, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 5.2, &#x27;utilization_percent&#x27;: 35.1}, &#x27;host_details&#x27;: {&#x27;agent_identifier&#x27;: &#x27;agent_identifier_example&#x27;, &#x27;host_display_name&#x27;: &#x27;host_display_name_example&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;}}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;available_memory&#x27;: 1.2, &#x27;capacity&#x27;: 222.3, &#x27;free_memory&#x27;: 1.2, &#x27;huge_page_size_in_mb&#x27;: 1.2, &#x27;huge_pages_free&#x27;: 56, &#x27;huge_pages_reserved&#x27;: 56, &#x27;huge_pages_total&#x27;: 56, &#x27;load&#x27;: {&#x27;average&#x27;: 1.2, &#x27;lower_quartile&#x27;: 1.2, &#x27;maximum&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;minimum&#x27;: 1.2, &#x27;upper_quartile&#x27;: 1.2}, &#x27;resource_name&#x27;: &#x27;HOST_CPU_STATISTICS&#x27;, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 5.2, &#x27;utilization_percent&#x27;: 35.1}, &#x27;host_details&#x27;: {&#x27;agent_identifier&#x27;: &#x27;agent_identifier_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;host_display_name&#x27;: &#x27;host_display_name_example&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;}}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -563,7 +612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Collection of Resource Statistics items</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -580,7 +629,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -598,7 +647,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -618,7 +667,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The maximum allocated amount of the resource metric type  (CPU, STORAGE).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">222.3</div>
                                     </td>
             </tr>
@@ -638,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -658,7 +707,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Size of huge pages in megabytes.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -678,7 +727,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total number of available huge pages.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -698,7 +747,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total number of huge pages which are used or reserved.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -718,7 +767,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total number of huge pages.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -738,7 +787,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -757,7 +806,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The average number in the data set.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -778,7 +827,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The middle number between the smallest number and the median of the data set. It&#x27;s also known as the 25th quartile.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -799,7 +848,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The largest number in the data set.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -820,7 +869,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The middle number in the data set.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -841,7 +890,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The smallest number in the data set.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -862,7 +911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The middle number between the median and the largest number of the data set. It&#x27;s also known as the 75th quartile.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -883,7 +932,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of resource for host</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HOST_CPU_STATISTICS</div>
                                     </td>
             </tr>
@@ -903,7 +952,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total amount used of the resource metric type (CPU, STORAGE).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">34.5</div>
                                     </td>
             </tr>
@@ -923,7 +972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Change in resource utilization in percentage</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">5.2</div>
                                     </td>
             </tr>
@@ -943,7 +992,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Resource utilization in percentage.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">35.1</div>
                                     </td>
             </tr>
@@ -963,7 +1012,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -981,8 +1030,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The identifier of the agent.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">agent_identifier_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-host_insight_resource_statistics/items/host_details/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-host_insight_resource_statistics/items/host_details/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1001,7 +1070,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The user-friendly name for the host. The name does not have to be unique.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_display_name_example</div>
                                     </td>
             </tr>
@@ -1021,7 +1090,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The host name. The host name is unique amongst the hosts managed by the same management agent.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_name_example</div>
                                     </td>
             </tr>
@@ -1041,7 +1110,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the host.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1061,7 +1130,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Platform type.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LINUX</div>
                                     </td>
             </tr>
@@ -1081,7 +1150,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defines the type of resource metric (CPU, Physical Memory, Logical Memory)</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU</div>
                                     </td>
             </tr>
@@ -1099,7 +1168,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The end timestamp that was passed into the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-12-06T00:00:00.000Z</div>
                                     </td>
             </tr>
@@ -1117,7 +1186,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The start timestamp that was passed into the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-12-06T00:00:00.000Z</div>
                                     </td>
             </tr>
@@ -1135,7 +1204,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Displays usage unit.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CORES</div>
                                     </td>
             </tr>

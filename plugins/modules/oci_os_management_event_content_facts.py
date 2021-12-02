@@ -55,6 +55,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific event_content
   oci_os_management_event_content_facts:
+    # required
     dest: /tmp/myfile
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     event_id: "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx"

@@ -30,13 +30,9 @@ oracle.oci.oci_waas_access_rules -- Manage an AccessRules resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_waas_access_rules`.
 
@@ -792,13 +788,38 @@ Examples
     
     - name: Update access_rules
       oci_waas_access_rules:
+        # required
         waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         access_rules:
-        - name: name_example
+        - # required
+          name: name_example
           criteria:
-          - condition: URL_IS
+          - # required
+            condition: URL_IS
             value: value_example
+
+            # optional
+            is_case_sensitive: true
           action: ALLOW
+
+          # optional
+          block_action: SET_RESPONSE_CODE
+          block_response_code: 56
+          block_error_page_message: block_error_page_message_example
+          block_error_page_code: block_error_page_code_example
+          block_error_page_description: block_error_page_description_example
+          bypass_challenges: [ "null" ]
+          redirect_url: redirect_url_example
+          redirect_response_code: MOVED_PERMANENTLY
+          captcha_title: captcha_title_example
+          captcha_header: captcha_header_example
+          captcha_footer: captcha_footer_example
+          captcha_submit_label: captcha_submit_label_example
+          response_header_manipulation:
+          - # required
+            action: EXTEND_HTTP_RESPONSE_HEADER
+            header: example_header_name
+            value: example_value
 
 
 
@@ -834,7 +855,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the AccessRules resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;action&#x27;: &#x27;ALLOW&#x27;, &#x27;block_action&#x27;: &#x27;SET_RESPONSE_CODE&#x27;, &#x27;block_error_page_code&#x27;: &#x27;block_error_page_code_example&#x27;, &#x27;block_error_page_description&#x27;: &#x27;block_error_page_description_example&#x27;, &#x27;block_error_page_message&#x27;: &#x27;block_error_page_message_example&#x27;, &#x27;block_response_code&#x27;: 56, &#x27;bypass_challenges&#x27;: [], &#x27;captcha_footer&#x27;: &#x27;captcha_footer_example&#x27;, &#x27;captcha_header&#x27;: &#x27;captcha_header_example&#x27;, &#x27;captcha_submit_label&#x27;: &#x27;captcha_submit_label_example&#x27;, &#x27;captcha_title&#x27;: &#x27;captcha_title_example&#x27;, &#x27;criteria&#x27;: [{&#x27;condition&#x27;: &#x27;URL_IS&#x27;, &#x27;is_case_sensitive&#x27;: True, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;redirect_response_code&#x27;: &#x27;MOVED_PERMANENTLY&#x27;, &#x27;redirect_url&#x27;: &#x27;redirect_url_example&#x27;, &#x27;response_header_manipulation&#x27;: [{&#x27;action&#x27;: &#x27;EXTEND_HTTP_RESPONSE_HEADER&#x27;, &#x27;header&#x27;: &#x27;example_header_name&#x27;, &#x27;value&#x27;: &#x27;example_value&#x27;}]}</div>
                                     </td>
             </tr>
@@ -859,7 +880,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>- **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page.</div>
                                             <div>Regardless of action, no further rules are processed once a rule is matched.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ALLOW</div>
                                     </td>
             </tr>
@@ -877,7 +898,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The method used to block requests if `action` is set to `BLOCK` and the access criteria are met. If unspecified, defaults to `SET_RESPONSE_CODE`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SET_RESPONSE_CODE</div>
                                     </td>
             </tr>
@@ -895,7 +916,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access rules&#x27;.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">block_error_page_code_example</div>
                                     </td>
             </tr>
@@ -913,7 +934,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access blocked by website owner. Please contact support.&#x27;</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">block_error_page_description_example</div>
                                     </td>
             </tr>
@@ -931,7 +952,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access to the website is blocked.&#x27;</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">block_error_page_message_example</div>
                                     </td>
             </tr>
@@ -949,7 +970,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the access criteria are met. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `494`, `495`, `496`, `497`, `499`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -971,7 +992,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>- **HUMAN_INTERACTION_CHALLENGE:** Bypasses Human Interaction Challenge.</div>
                                             <div>- **CAPTCHA:** Bypasses CAPTCHA Challenge.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -987,7 +1008,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">captcha_footer_example</div>
                                     </td>
             </tr>
@@ -1005,7 +1026,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The text to show in the header when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">captcha_header_example</div>
                                     </td>
             </tr>
@@ -1023,7 +1044,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">captcha_submit_label_example</div>
                                     </td>
             </tr>
@@ -1041,7 +1062,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The title used when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">captcha_title_example</div>
                                     </td>
             </tr>
@@ -1059,7 +1080,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The list of access rule criteria. The rule would be applied only for the requests that matched all the listed conditions.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1080,7 +1101,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*Example:* &quot;GET\nPOST&quot;</div>
                                             <div>- **COUNTRY_IS:** Matches if the request originates from one of countries in the `value` field. The `value` in this case is string with one or multiple countries separated by new line symbol \n Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>. *Example:* &quot;AL\nDZ\nAM&quot; - **COUNTRY_IS_NOT:** Matches if the request does not originate from any of countries in the `value` field. The `value` in this case is string with one or multiple countries separated by new line symbol \n Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>. *Example:* &quot;AL\nDZ\nAM&quot; - **USER_AGENT_IS:** Matches if the requesting user agent is identical to the contents of the `value` field. *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0` - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field. *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">URL_IS</div>
                                     </td>
             </tr>
@@ -1099,7 +1120,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>When enabled, the condition will be matched with case-sensitive rules.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1118,7 +1139,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The criteria value.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>
@@ -1137,7 +1158,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique name of the access rule.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -1157,7 +1178,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>- **MOVED_PERMANENTLY:** Used for designating the permanent movement of a page (numerical code - 301).</div>
                                             <div>- **FOUND:** Used for designating the temporary movement of a page (numerical code - 302).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MOVED_PERMANENTLY</div>
                                     </td>
             </tr>
@@ -1175,7 +1196,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">redirect_url_example</div>
                                     </td>
             </tr>
@@ -1193,7 +1214,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An object that represents an action to apply to an HTTP response headers if all rule criteria will be matched regardless of `action` value.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1210,7 +1231,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTEND_HTTP_RESPONSE_HEADER</div>
                                     </td>
             </tr>
@@ -1230,7 +1251,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A header field name that conforms to RFC 7230.</div>
                                             <div>Example: `example_header_name`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_header_name</div>
                                     </td>
             </tr>
@@ -1250,7 +1271,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A header field value that conforms to RFC 7230.</div>
                                             <div>Example: `example_value`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_value</div>
                                     </td>
             </tr>

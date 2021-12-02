@@ -59,7 +59,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific certificate_authority_bundle
   oci_certificates_certificate_authority_bundle_facts:
+    # required
     certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    version_number: 789
+    certificate_authority_version_name: certificate_authority_version_name_example
+    stage: CURRENT
 
 """
 

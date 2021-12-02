@@ -92,10 +92,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update protection_rules
   oci_waas_protection_rules:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     protection_rules:
-    - key: key_example
+    - # required
+      key: key_example
       action: OFF
+
+      # optional
+      exclusions:
+      - # optional
+        target: REQUEST_COOKIES
+        exclusions: [ "null" ]
 
 """
 

@@ -51,8 +51,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on private_application
   oci_service_catalog_private_application_actions:
+    # required
     private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific vcn_dns_resolver_association
   oci_network_vcn_dns_resolver_association_facts:
+    # required
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -52,13 +53,13 @@ vcn_dns_resolver_association:
     contains:
         vcn_id:
             description:
-                - The OCID of the VCN in the association.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN in the association.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         dns_resolver_id:
             description:
-                - The OCID of the DNS resolver in the association.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DNS resolver in the association.
             returned: on success
             type: str
             sample: "ocid1.dnsresolver.oc1..xxxxxxEXAMPLExxxxxx"

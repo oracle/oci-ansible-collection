@@ -61,7 +61,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List recalled_data
   oci_log_analytics_recalled_data_facts:
+    # required
     namespace_name: namespace_name_example
+
+    # optional
+    sort_by: timeStarted
+    sort_order: ASC
+    time_data_started_greater_than_or_equal: 2013-10-20T19:20:30+01:00
+    time_data_ended_less_than: 2013-10-20T19:20:30+01:00
 
 """
 

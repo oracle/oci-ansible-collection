@@ -43,14 +43,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List ip_sec_connection_tunnels
-  oci_network_ip_sec_connection_tunnel_facts:
-    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific ip_sec_connection_tunnel
   oci_network_ip_sec_connection_tunnel_facts:
+    # required
     ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
     tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List ip_sec_connection_tunnels
+  oci_network_ip_sec_connection_tunnel_facts:
+    # required
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -107,8 +109,8 @@ ip_sec_connection_tunnels:
             sample: PROVISIONING
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

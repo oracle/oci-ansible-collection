@@ -71,13 +71,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List notification_topics
-  oci_ons_notification_topic_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific notification_topic
   oci_ons_notification_topic_facts:
+    # required
     topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List notification_topics
+  oci_ons_notification_topic_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

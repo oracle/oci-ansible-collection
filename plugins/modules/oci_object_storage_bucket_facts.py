@@ -67,15 +67,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific bucket
+  oci_object_storage_bucket_facts:
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+
+    # optional
+    fields: [ "$p.getValue()" ]
+
 - name: List buckets
   oci_object_storage_bucket_facts:
+    # required
     namespace_name: namespace_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific bucket
-  oci_object_storage_bucket_facts:
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    # optional
+    fields: [ "$p.getValue()" ]
 
 """
 

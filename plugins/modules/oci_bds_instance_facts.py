@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List bds_instances
-  oci_bds_instance_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific bds_instance
   oci_bds_instance_facts:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List bds_instances
+  oci_bds_instance_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: lifecycle_state_example
+    sort_by: timeCreated
+    sort_order: ASC
+    display_name: display_name_example
 
 """
 

@@ -30,13 +30,9 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_data_guard_association`.
 
@@ -59,7 +55,7 @@ Synopsis
 - This module allows the user to create and update a DataGuardAssociation resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Data Guard association.  A Data Guard association represents the replication relationship between the specified database and a peer database. For more information, see `Using Oracle Data Guard <https://docs.cloud.oracle.com/Content/Database/Tasks/usingdataguard.htm>`_.
 - All Oracle Cloud Infrastructure resources, including Data Guard associations, get an Oracle-assigned, unique ID called an Oracle Cloud Identifier (OCID). When you create a resource, you can find its OCID in the response. You can also retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the Console. For more information, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
-- This resource has the following action operations in the M(oci_data_guard_association_actions) module: failover, reinstate, switchover.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_database_data_guard_association_actions <ansible_collections.oracle.oci.oci_database_data_guard_association_actions_module>` module: failover, reinstate, switchover.
 
 
 .. Aliases
@@ -674,27 +670,77 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Create data_guard_association
+    - name: Create data_guard_association with creation_type = NewDbSystem
       oci_database_data_guard_association:
-        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        database_admin_password: database_admin_password_example
+        # required
+        database_admin_password: example-password
+        protection_mode: MAXIMUM_AVAILABILITY
+        transport_type: SYNC
+        creation_type: NewDbSystem
+
+        # optional
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_db_unique_name: peer_db_unique_name_example
+        peer_sid_prefix: peer_sid_prefix_example
+        display_name: display_name_example
+        availability_domain: Uocm:PHX-AD-1
+        shape: shape_example
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "null" ]
+        backup_network_nsg_ids: [ "null" ]
+        hostname: hostname_example
+
+    - name: Create data_guard_association with creation_type = ExistingVmCluster
+      oci_database_data_guard_association:
+        # required
+        database_admin_password: example-password
+        protection_mode: MAXIMUM_AVAILABILITY
+        transport_type: SYNC
+        creation_type: ExistingVmCluster
+
+        # optional
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_db_unique_name: peer_db_unique_name_example
+        peer_sid_prefix: peer_sid_prefix_example
+        peer_vm_cluster_id: "ocid1.peervmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Create data_guard_association with creation_type = ExistingDbSystem
+      oci_database_data_guard_association:
+        # required
+        database_admin_password: example-password
         protection_mode: MAXIMUM_AVAILABILITY
         transport_type: SYNC
         creation_type: ExistingDbSystem
 
-    - name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_database_data_guard_association:
-        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        database_admin_password: database_admin_password_example
-        protection_mode: MAXIMUM_AVAILABILITY
-        transport_type: SYNC
-        display_name: display_name_example
+        # optional
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_db_unique_name: peer_db_unique_name_example
+        peer_sid_prefix: peer_sid_prefix_example
+        peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_db_system_id: "ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update data_guard_association
       oci_database_data_guard_association:
+        # required
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        database_admin_password: database_admin_password_example
         data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        database_admin_password: example-password
+        protection_mode: MAXIMUM_AVAILABILITY
+        transport_type: SYNC
+
+    - name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_database_data_guard_association:
+        # required
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+
+        # optional
+        database_admin_password: example-password
+        protection_mode: MAXIMUM_AVAILABILITY
+        transport_type: SYNC
 
 
 
@@ -730,7 +776,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the DataGuardAssociation resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_lag&#x27;: &#x27;9 seconds&#x27;, &#x27;apply_rate&#x27;: &#x27;180 Mb per second&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;peer_data_guard_association_id&#x27;: &#x27;ocid1.peerdataguardassociation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_database_id&#x27;: &#x27;ocid1.peerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_db_home_id&#x27;: &#x27;ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_db_system_id&#x27;: &#x27;ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_role&#x27;: &#x27;PRIMARY&#x27;, &#x27;protection_mode&#x27;: &#x27;MAXIMUM_AVAILABILITY&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;transport_type&#x27;: &#x27;SYNC&#x27;}</div>
                                     </td>
             </tr>
@@ -749,7 +795,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The lag time between updates to the primary database and application of the redo data on the standby database, as computed by the reporting database.</div>
                                             <div>Example: `9 seconds`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">9 seconds</div>
                                     </td>
             </tr>
@@ -768,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The rate at which redo logs are synced between the associated databases.</div>
                                             <div>Example: `180 Mb per second`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">180 Mb per second</div>
                                     </td>
             </tr>
@@ -786,7 +832,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the reporting database.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.database.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -804,7 +850,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Data Guard association.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -822,7 +868,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Additional information about the current lifecycleState, if available.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -840,7 +886,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the Data Guard association.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -858,7 +904,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the peer database&#x27;s Data Guard association.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.peerdataguardassociation.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -876,7 +922,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the associated peer database.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.peerdatabase.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -894,7 +940,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Home containing the associated peer database.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -912,7 +958,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system containing the associated peer database.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -930,7 +976,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The role of the peer database in this Data Guard association.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIMARY</div>
                                     </td>
             </tr>
@@ -948,7 +994,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The protection mode of this Data Guard association. For more information, see <a href='http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000'>Oracle Data Guard Protection Modes</a> in the Oracle Data Guard documentation.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MAXIMUM_AVAILABILITY</div>
                                     </td>
             </tr>
@@ -966,7 +1012,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The role of the reporting database in this Data Guard association.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIMARY</div>
                                     </td>
             </tr>
@@ -984,7 +1030,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the Data Guard association was created.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -1002,7 +1048,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The redo transport type used by this Data Guard association.  For more information, see <a href='http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400'>Redo Transport Services</a> in the Oracle Data Guard documentation.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SYNC</div>
                                     </td>
             </tr>

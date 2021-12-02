@@ -70,7 +70,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific certificate_bundle
   oci_certificates_certificate_bundle_facts:
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    version_number: 789
+    certificate_version_name: certificate_version_name_example
+    stage: CURRENT
+    certificate_bundle_type: CERTIFICATE_CONTENT_PUBLIC_ONLY
 
 """
 

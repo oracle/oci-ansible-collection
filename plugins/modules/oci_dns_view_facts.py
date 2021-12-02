@@ -90,13 +90,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List views
-  oci_dns_view_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific view
   oci_dns_view_facts:
+    # required
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    if_modified_since: if_modified_since_example
+    scope: GLOBAL
+
+- name: List views
+  oci_dns_view_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    scope: GLOBAL
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: displayName
+    lifecycle_state: lifecycle_state_example
 
 """
 

@@ -92,13 +92,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List on_prem_connectors
-  oci_data_safe_on_prem_connector_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific on_prem_connector
   oci_data_safe_on_prem_connector_facts:
+    # required
     on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List on_prem_connectors
+  oci_data_safe_on_prem_connector_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    on_prem_connector_lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: TIMECREATED
+    compartment_id_in_subtree: true
+    access_level: RESTRICTED
 
 """
 

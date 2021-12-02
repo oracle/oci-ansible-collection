@@ -24,7 +24,8 @@ short_description: Manage a DeploymentBackup resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete a DeploymentBackup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DeploymentBackup.
-    - "This resource has the following action operations in the M(oci_deployment_backup_actions) module: cancel, change_compartment, restore_deployment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_backup_actions) module: cancel, change_compartment,
+      restore_deployment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -96,6 +97,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create deployment_backup
   oci_golden_gate_deployment_backup:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -103,26 +105,38 @@ EXAMPLES = """
     bucket_name: bucket_name_example
     object_name: object_name_example
 
-- name: Update deployment_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_golden_gate_deployment_backup:
-    display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deployment_backup
   oci_golden_gate_deployment_backup:
+    # required
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update deployment_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_golden_gate_deployment_backup:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete deployment_backup
   oci_golden_gate_deployment_backup:
+    # required
     deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deployment_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment_backup:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

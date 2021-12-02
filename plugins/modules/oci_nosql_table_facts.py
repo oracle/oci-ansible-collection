@@ -79,13 +79,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List tables
-  oci_nosql_table_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific table
   oci_nosql_table_facts:
+    # required
     table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List tables
+  oci_nosql_table_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: ALL
 
 """
 

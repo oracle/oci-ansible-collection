@@ -51,6 +51,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on apm_domain
   oci_apm_control_plane_apm_domain_actions:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

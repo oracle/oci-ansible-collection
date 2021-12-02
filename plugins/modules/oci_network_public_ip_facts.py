@@ -97,22 +97,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
+- name: Get a specific public_ip
+  oci_network_public_ip_facts:
+    # required
+    public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List public_ips
   oci_network_public_ip_facts:
+    # required
     scope: REGION
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific public_ip
-  oci_network_public_ip_facts:
-    public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
-
-- name: Get a specific public_ip
-  oci_network_public_ip_facts:
-    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
-
-- name: Get a specific public_ip
-  oci_network_public_ip_facts:
-    ip_address: "129.146.2.1"
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    lifetime: EPHEMERAL
+    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
+    private_ip_id: $utils.AnsibleRenderingUtils.escapeStringExampleValue($p.getValue())
+    ip_address: $utils.AnsibleRenderingUtils.escapeStringExampleValue($p.getValue())
 
 """
 
@@ -125,7 +126,8 @@ public_ips:
     contains:
         assigned_entity_id:
             description:
-                - The OCID of the entity the public IP is assigned to, or in the process of
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the entity the public IP is assigned to, or in the
+                  process of
                   being assigned to.
             returned: on success
             type: str
@@ -148,7 +150,8 @@ public_ips:
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment containing the public IP. For an ephemeral public IP, this is
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the public IP. For an
+                  ephemeral public IP, this is
                   the compartment of its assigned entity (which can be a private IP or a regional entity such
                   as a NAT gateway). For a reserved public IP that is currently assigned,
                   its compartment can be different from the assigned private IP's.
@@ -165,8 +168,8 @@ public_ips:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -181,7 +184,7 @@ public_ips:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The public IP's Oracle ID (OCID).
+                - The public IP's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -217,7 +220,8 @@ public_ips:
         private_ip_id:
             description:
                 - Deprecated. Use `assignedEntityId` instead.
-                - The OCID of the private IP that the public IP is currently assigned to, or in the
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the private IP that the public IP is currently
+                  assigned to, or in the
                   process of being assigned to.
                 - "**Note:** This is `null` if the public IP is not assigned to a private IP, or is
                   in the process of being assigned to one."

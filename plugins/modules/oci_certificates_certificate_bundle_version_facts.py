@@ -52,7 +52,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List certificate_bundle_versions
   oci_certificates_certificate_bundle_version_facts:
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: VERSION_NUMBER
+    sort_order: ASC
 
 """
 

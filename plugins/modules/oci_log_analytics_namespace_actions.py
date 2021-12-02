@@ -47,11 +47,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action offboard on namespace
   oci_log_analytics_namespace_actions:
+    # required
     namespace_name: namespace_name_example
     action: offboard
 
 - name: Perform action onboard on namespace
   oci_log_analytics_namespace_actions:
+    # required
     namespace_name: namespace_name_example
     action: onboard
 

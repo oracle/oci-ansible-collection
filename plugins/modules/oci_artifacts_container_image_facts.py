@@ -100,13 +100,27 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List container_images
-  oci_artifacts_container_image_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific container_image
   oci_artifacts_container_image_facts:
+    # required
     image_id: "ocid1.containerimage.oc1..exampleuniqueID"
+
+- name: List container_images
+  oci_artifacts_container_image_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    image_id: "ocid1.containerimage.oc1..exampleuniqueID"
+    compartment_id_in_subtree: true
+    display_name: display_name_example
+    is_versioned: true
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+    repository_name: foo
+    version: foo
+    lifecycle_state: lifecycle_state_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

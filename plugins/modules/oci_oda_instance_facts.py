@@ -80,13 +80,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List oda_instances
-  oci_oda_instance_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific oda_instance
   oci_oda_instance_facts:
+    # required
     oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List oda_instances
+  oci_oda_instance_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 

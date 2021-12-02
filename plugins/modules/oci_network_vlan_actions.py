@@ -53,6 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on vlan
   oci_network_vlan_actions:
+    # required
     vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -84,7 +85,7 @@ vlan:
             sample: 192.168.1.0/24
         compartment_id:
             description:
-                - The OCID of the compartment containing the VLAN.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the VLAN.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -114,7 +115,7 @@ vlan:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The VLAN's Oracle ID (OCID).
+                - The VLAN's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -142,7 +143,7 @@ vlan:
             sample: 100
         route_table_id:
             description:
-                - The OCID of the route table that the VLAN uses.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table that the VLAN uses.
             returned: on success
             type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
@@ -155,7 +156,7 @@ vlan:
             sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
-                - The OCID of the VCN the VLAN is in.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the VLAN is in.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

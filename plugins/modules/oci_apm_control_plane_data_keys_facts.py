@@ -46,7 +46,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List data_keys
   oci_apm_control_plane_data_keys_facts:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    data_key_type: PRIVATE
 
 """
 

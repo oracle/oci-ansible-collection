@@ -178,16 +178,35 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List custom_properties
-  oci_data_catalog_custom_property_facts:
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-    namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific custom_property
   oci_data_catalog_custom_property_facts:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
     custom_property_key: custom_property_key_example
+
+    # optional
+    fields: [ "$p.getValue()" ]
+
+- name: List custom_properties
+  oci_data_catalog_custom_property_facts:
+    # required
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    fields: [ "$p.getValue()" ]
+    display_name: display_name_example
+    display_name_contains: display_name_contains_example
+    data_types: [ "$p.getValue()" ]
+    type_name: [ "$p.getValue()" ]
+    lifecycle_state: CREATING
+    time_created: 2013-10-20T19:20:30+01:00
+    time_updated: 2013-10-20T19:20:30+01:00
+    created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+    updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_order: ASC
+    sort_by: DISPLAYNAME
 
 """
 

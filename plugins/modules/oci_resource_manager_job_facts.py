@@ -93,13 +93,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List jobs
-  oci_resource_manager_job_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific job
   oci_resource_manager_job_facts:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List jobs
+  oci_resource_manager_job_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

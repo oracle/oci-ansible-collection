@@ -43,14 +43,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List console_connections
-  oci_database_console_connection_facts:
-    db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific console_connection
   oci_database_console_connection_facts:
+    # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
     console_connection_id: "ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List console_connections
+  oci_database_console_connection_facts:
+    # required
+    db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

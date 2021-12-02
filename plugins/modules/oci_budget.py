@@ -121,16 +121,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create budget
   oci_budget:
+    # required
     compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
-    target_type: "COMPARTMENT"
-    targets:
-    - "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
-    amount: "100.00"
-    reset_period: "Monthly"
+    amount: 100.00
+    reset_period: Monthly
 
-- name: Update budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    budget_processing_period_start_offset: 56
+    target_type: COMPARTMENT
+    targets: [ "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update budget
   oci_budget:
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
+    # required
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
     amount: 100.00
@@ -139,19 +150,29 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update budget
+- name: Update budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget:
+    # required
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
     display_name: display_name_example
+
+    # optional
     description: description_example
-    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
+    amount: 100.00
+    reset_period: Monthly
+    budget_processing_period_start_offset: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete budget
   oci_budget:
+    # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget:
+    # required
     compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
     display_name: display_name_example
     state: absent

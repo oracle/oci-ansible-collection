@@ -46,6 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific backend_set_health
   oci_loadbalancer_backend_set_health_facts:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: example_backend_set
 

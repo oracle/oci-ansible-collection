@@ -24,7 +24,7 @@ short_description: Manage a NetworkSecurityGroup resource in Oracle Cloud Infras
 description:
     - This module allows the user to create, update and delete a NetworkSecurityGroup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new network security group for the specified VCN.
-    - "This resource has the following action operations in the M(oci_network_security_group_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_security_group_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -43,7 +43,7 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the network security group. Does not have to be unique.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -85,28 +85,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create network_security_group
   oci_network_security_group:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update network_security_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_security_group:
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update network_security_group
   oci_network_security_group:
+    # required
+    network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update network_security_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_security_group:
+    # required
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete network_security_group
   oci_network_security_group:
+    # required
     network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete network_security_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_group:
+    # required
     display_name: display_name_example
     state: absent
 
@@ -135,7 +150,7 @@ network_security_group:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

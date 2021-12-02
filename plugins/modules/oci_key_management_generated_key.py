@@ -98,11 +98,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create generated_key
   oci_key_management_generated_key:
+    # required
     include_plaintext_key: true
-    key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
+    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
     key_shape:
-      algorithm: "AES"
+      # required
+      algorithm: AES
       length: 16
+
+      # optional
+      curve_id: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    associated_data: null
+    logging_context: null
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """

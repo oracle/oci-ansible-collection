@@ -74,13 +74,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List sessions
-  oci_bastion_session_facts:
-    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific session
   oci_bastion_session_facts:
+    # required
     session_id: "ocid1.session.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List sessions
+  oci_bastion_session_facts:
+    # required
+    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    session_id: "ocid1.session.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    session_lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

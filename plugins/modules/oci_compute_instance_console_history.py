@@ -98,29 +98,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_console_history
   oci_compute_instance_console_history:
+    # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update instance_console_history using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_instance_console_history:
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update instance_console_history
   oci_compute_instance_console_history:
+    # required
+    instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update instance_console_history using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_instance_console_history:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete instance_console_history
   oci_compute_instance_console_history:
+    # required
     instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete instance_console_history using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance_console_history:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -159,10 +173,9 @@ instance_console_history:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My console history metadata`"
             returned: on success
             type: str
-            sample: My console history metadata
+            sample: display_name_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -201,7 +214,7 @@ instance_console_history:
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "My console history metadata",
+        "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",

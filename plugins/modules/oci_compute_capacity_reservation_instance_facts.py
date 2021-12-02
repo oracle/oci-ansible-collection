@@ -68,7 +68,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List capacity_reservation_instances
   oci_compute_capacity_reservation_instance_facts:
+    # required
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

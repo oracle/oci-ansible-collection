@@ -43,14 +43,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List data_guard_associations
-  oci_database_data_guard_association_facts:
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific data_guard_association
   oci_database_data_guard_association_facts:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List data_guard_associations
+  oci_database_data_guard_association_facts:
+    # required
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -78,13 +78,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List blockchain_platforms
-  oci_blockchain_platform_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific blockchain_platform
   oci_blockchain_platform_facts:
+    # required
     blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List blockchain_platforms
+  oci_blockchain_platform_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: lifecycle_state_example
 
 """
 

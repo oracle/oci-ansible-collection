@@ -30,13 +30,9 @@ oracle.oci.oci_opsi_host_insight_hosted_entity_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_host_insight_hosted_entity_facts`.
 
@@ -229,6 +225,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exadata_insight_id"></div>
+                    <b>exadata_insight_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-exadata_insight_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div><a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of exadata insight resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
@@ -385,8 +396,18 @@ Examples
     
     - name: List host_insight_hosted_entities
       oci_opsi_host_insight_hosted_entity_facts:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        analysis_time_interval: analysis_time_interval_example
+        time_interval_start: 2013-10-20T19:20:30+01:00
+        time_interval_end: 2013-10-20T19:20:30+01:00
+        platform_type: [ "$p.getValue()" ]
+        exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        sort_order: ASC
+        sort_by: entityName
 
 
 
@@ -422,7 +443,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of HostInsightHostedEntity resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;entity_identifier&#x27;: &#x27;entity_identifier_example&#x27;, &#x27;entity_name&#x27;: &#x27;entity_name_example&#x27;, &#x27;entity_type&#x27;: &#x27;entity_type_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -440,7 +461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The identifier of the entity.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">entity_identifier_example</div>
                                     </td>
             </tr>
@@ -458,7 +479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The entity name.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">entity_name_example</div>
                                     </td>
             </tr>
@@ -476,7 +497,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The entity type.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">entity_type_example</div>
                                     </td>
             </tr>

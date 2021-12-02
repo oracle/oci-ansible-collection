@@ -62,11 +62,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create service_catalog_association
   oci_service_catalog_association:
+    # required
     service_catalog_id: "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx"
     entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    entity_type: entity_type_example
+
 - name: Delete service_catalog_association
   oci_service_catalog_association:
+    # required
     service_catalog_association_id: "ocid1.servicecatalogassociation.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

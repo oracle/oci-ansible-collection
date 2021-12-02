@@ -38,6 +38,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List run_logs
   oci_data_flow_run_log_facts:
+    # required
     run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

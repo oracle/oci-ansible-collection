@@ -93,13 +93,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List db_systems
-  oci_database_db_system_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific db_system
   oci_database_db_system_facts:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List db_systems
+  oci_database_db_system_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    availability_domain: Uocm:PHX-AD-1
+    display_name: display_name_example
 
 """
 

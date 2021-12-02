@@ -141,42 +141,141 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create deploy_environment
+- name: Create deploy_environment with deploy_environment_type = COMPUTE_INSTANCE_GROUP
   oci_devops_deploy_environment:
-    deploy_environment_type: FUNCTION
+    # required
+    deploy_environment_type: COMPUTE_INSTANCE_GROUP
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_devops_deploy_environment:
+    # optional
     description: description_example
     display_name: display_name_example
-    deploy_environment_type: FUNCTION
-    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     compute_instance_group_selectors:
+      # required
       items:
-      - selector_type: INSTANCE_IDS
-    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
-    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+      - # required
+        selector_type: INSTANCE_IDS
+        compute_instance_ids: [ "null" ]
 
-- name: Update deploy_environment
+- name: Create deploy_environment with deploy_environment_type = OKE_CLUSTER
   oci_devops_deploy_environment:
+    # required
+    deploy_environment_type: OKE_CLUSTER
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create deploy_environment with deploy_environment_type = FUNCTION
+  oci_devops_deploy_environment:
+    # required
     deploy_environment_type: FUNCTION
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_environment_id: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update deploy_environment with deploy_environment_type = COMPUTE_INSTANCE_GROUP
+  oci_devops_deploy_environment:
+    # required
+    deploy_environment_type: COMPUTE_INSTANCE_GROUP
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    compute_instance_group_selectors:
+      # required
+      items:
+      - # required
+        selector_type: INSTANCE_IDS
+        compute_instance_ids: [ "null" ]
+
+- name: Update deploy_environment with deploy_environment_type = OKE_CLUSTER
+  oci_devops_deploy_environment:
+    # required
+    deploy_environment_type: OKE_CLUSTER
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update deploy_environment with deploy_environment_type = FUNCTION
+  oci_devops_deploy_environment:
+    # required
+    deploy_environment_type: FUNCTION
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = COMPUTE_INSTANCE_GROUP
+  oci_devops_deploy_environment:
+    # required
+    deploy_environment_type: COMPUTE_INSTANCE_GROUP
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    compute_instance_group_selectors:
+      # required
+      items:
+      - # required
+        selector_type: INSTANCE_IDS
+        compute_instance_ids: [ "null" ]
+
+- name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = OKE_CLUSTER
+  oci_devops_deploy_environment:
+    # required
+    deploy_environment_type: OKE_CLUSTER
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = FUNCTION
+  oci_devops_deploy_environment:
+    # required
+    deploy_environment_type: FUNCTION
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete deploy_environment
   oci_devops_deploy_environment:
+    # required
     deploy_environment_id: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_devops_deploy_environment:
+    # required
     display_name: display_name_example
     state: absent
 

@@ -30,13 +30,9 @@ oracle.oci.oci_analytics_private_access_channel -- Manage a PrivateAccessChannel
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_analytics_private_access_channel`.
 
@@ -478,31 +474,38 @@ Examples
     
     - name: Create private_access_channel
       oci_analytics_private_access_channel:
-        display_name: "example_private_access_channel"
-        vcn_id: "ocid1.vcn.unique_part_vcn_id"
-        subnet_id: "ocid1.subnet.unique_part_subnet_id"
-        private_source_dns_zones:
-        - dns_zone: "example-vcn.oraclevcn.com"
-          description: "Example OCI VCN DNS label"
-        - dns_zone: "example.com"
-          description: "Example DNS Zone / Domain for On-Premise"
+        # required
         analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: example_private_access_channel
+        vcn_id: ocid1.vcn.unique_part_vcn_id
+        subnet_id: ocid1.subnet.unique_part_subnet_id
+        private_source_dns_zones:
+        - # required
+          dns_zone: example-vcn.oraclevcn.com
+
+          # optional
+          description: Example OCI VCN DNS label
 
     - name: Update private_access_channel
       oci_analytics_private_access_channel:
-        display_name: "example_private_access_channel"
-        vcn_id: "ocid1.vcn.unique_part_vcn_id"
-        subnet_id: "ocid1.subnet.unique_part_subnet_id"
-        private_source_dns_zones:
-        - dns_zone: "example-vcn.oraclevcn.com"
-          description: "Example OCI VCN DNS label"
-        - dns_zone: "example.com"
-          description: "Example DNS Zone / Domain for On-Premise"
+        # required
         analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-        private_access_channel_key: "private_access_channel_key_example"
+        private_access_channel_key: private_access_channel_key_example
+
+        # optional
+        display_name: example_private_access_channel
+        vcn_id: ocid1.vcn.unique_part_vcn_id
+        subnet_id: ocid1.subnet.unique_part_subnet_id
+        private_source_dns_zones:
+        - # required
+          dns_zone: example-vcn.oraclevcn.com
+
+          # optional
+          description: Example OCI VCN DNS label
 
     - name: Delete private_access_channel
       oci_analytics_private_access_channel:
+        # required
         analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         private_access_channel_key: private_access_channel_key_example
         state: absent
@@ -541,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the PrivateAccessChannel resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;egress_source_ip_addresses&#x27;: [], &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;private_source_dns_zones&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dns_zone&#x27;: &#x27;dns_zone_example&#x27;}], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -559,7 +562,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Display Name of the Private Access Channel.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -577,7 +580,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The list of IP addresses from the customer subnet connected to private access channel, used as a source Ip by Private Access Channel for network traffic from the AnalyticsInstance to Private Sources.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -593,7 +596,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>IP Address of the Private Access channel.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ip_address_example</div>
                                     </td>
             </tr>
@@ -611,7 +614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Private Access Channel unique identifier key.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
                                     </td>
             </tr>
@@ -629,7 +632,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of Private Source DNS zones registered with Private Access Channel, where datasource hostnames from these dns zones / domains will be resolved in the peered VCN for access from Analytics Instance. Min of 1 is required and Max of 30 Private Source DNS zones can be registered.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -646,7 +649,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Description of private source dns zone.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -665,7 +668,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Private Source DNS Zone. Ex: example-vcn.oraclevcn.com, corp.example.com.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dns_zone_example</div>
                                     </td>
             </tr>
@@ -684,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the customer subnet connected to private access channel.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -702,7 +705,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the customer VCN peered with private access channel.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

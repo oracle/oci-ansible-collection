@@ -111,13 +111,31 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List steering_policies
-  oci_dns_steering_policy_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific steering_policy
   oci_dns_steering_policy_facts:
+    # required
     steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    if_modified_since: if_modified_since_example
+    scope: GLOBAL
+
+- name: List steering_policies
+  oci_dns_steering_policy_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    scope: GLOBAL
+    display_name: display_name_example
+    display_name_contains: display_name_contains_example
+    health_check_monitor_id: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
+    time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_created_less_than: 2013-10-20T19:20:30+01:00
+    template: template_example
+    lifecycle_state: lifecycle_state_example
+    sort_by: displayName
+    sort_order: ASC
 
 """
 

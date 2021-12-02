@@ -87,13 +87,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List backups
-  oci_mysql_backup_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific backup
   oci_mysql_backup_facts:
+    # required
     backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List backups
+  oci_mysql_backup_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    creation_type: creation_type_example
+    sort_by: timeCreated
+    sort_order: ASC
 
 """
 

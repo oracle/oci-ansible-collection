@@ -40,6 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific instance_credentials
   oci_compute_instance_credentials_facts:
+    # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -56,7 +57,7 @@ instance_credentials:
                 - The password for the username.
             returned: on success
             type: str
-            sample: password_example
+            sample: example-password
         username:
             description:
                 - The username.
@@ -64,7 +65,7 @@ instance_credentials:
             type: str
             sample: username_example
     sample: {
-        "password": "password_example",
+        "password": "example-password",
         "username": "username_example"
     }
 """

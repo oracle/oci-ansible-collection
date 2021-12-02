@@ -26,6 +26,7 @@ description:
     - A cumulative distribution function is used to rank the usage data points per host within the specified time period.
       For each host, the minimum data point with a ranking > the percentile value is included in the summation.
       Linear regression functions are used to calculate the usage change percentage.
+      If compartmentIdInSubtree is specified, aggregates resources in a compartment and in all sub-compartments.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -76,6 +77,11 @@ options:
             - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
         elements: str
+    exadata_insight_id:
+        description:
+            - Optional list of exadata insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
     percentile:
         description:
             - Percentile values of daily usage to be used for computing the aggregate resource usage.
@@ -113,14 +119,33 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific host_insight_resource_usage_summary
   oci_opsi_host_insight_resource_usage_summary_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resource_metric: resource_metric_example
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    platform_type: [ "$p.getValue()" ]
+    id: [ "$p.getValue()" ]
+    exadata_insight_id: [ "$p.getValue()" ]
+    percentile: 56
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -215,11 +240,13 @@ class HostInsightResourceUsageSummaryFactsHelperGen(OCIResourceFactsHelperBase):
             "time_interval_end",
             "platform_type",
             "id",
+            "exadata_insight_id",
             "percentile",
             "defined_tag_equals",
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -257,11 +284,13 @@ def main():
             time_interval_end=dict(type="str"),
             platform_type=dict(type="list", elements="str", choices=["LINUX"]),
             id=dict(type="list", elements="str"),
+            exadata_insight_id=dict(type="list", elements="str"),
             percentile=dict(type="int"),
             defined_tag_equals=dict(type="list", elements="str"),
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

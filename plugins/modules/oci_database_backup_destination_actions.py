@@ -53,9 +53,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on backup_destination
   oci_database_backup_destination_actions:
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    action: change_compartment
 
 """
 

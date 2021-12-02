@@ -65,23 +65,26 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action failover on data_guard_association
   oci_database_data_guard_association_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
-    database_admin_password: database_admin_password_example
+    database_admin_password: example-password
     action: failover
 
 - name: Perform action reinstate on data_guard_association
   oci_database_data_guard_association_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
-    database_admin_password: database_admin_password_example
+    database_admin_password: example-password
     action: reinstate
 
 - name: Perform action switchover on data_guard_association
   oci_database_data_guard_association_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
-    database_admin_password: database_admin_password_example
+    database_admin_password: example-password
     action: switchover
 
 """

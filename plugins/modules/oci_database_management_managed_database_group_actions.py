@@ -68,21 +68,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action add_managed_database on managed_database_group
   oci_database_management_managed_database_group_actions:
-    managed_database_id: "managedDatabaseId"
+    # required
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "add_managed_database"
+    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: add_managed_database
 
 - name: Perform action change_compartment on managed_database_group
   oci_database_management_managed_database_group_actions:
-    compartment_id: "compartmentId"
+    # required
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action remove_managed_database on managed_database_group
   oci_database_management_managed_database_group_actions:
-    managed_database_id: "managedDatabaseId"
+    # required
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "remove_managed_database"
+    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: remove_managed_database
 
 """
 

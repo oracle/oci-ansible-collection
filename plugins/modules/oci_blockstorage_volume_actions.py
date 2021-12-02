@@ -53,6 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on volume
   oci_blockstorage_volume_actions:
+    # required
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -210,7 +211,8 @@ volume:
             contains:
                 display_name:
                     description:
-                        - The display name of the block volume replica
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
                     returned: on success
                     type: str
                     sample: display_name_example

@@ -50,7 +50,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update configuration
   oci_data_safe_configuration:
+    # required
     is_enabled: true
+
+    # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

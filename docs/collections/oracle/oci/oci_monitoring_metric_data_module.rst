@@ -30,13 +30,9 @@ oracle.oci.oci_monitoring_metric_data -- Manage a MetricData resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_monitoring_metric_data`.
 
@@ -63,7 +59,7 @@ Synopsis
 - *A metric group is the combination of a given metric, metric namespace, and tenancy for the purpose of determining limits. A dimension is a qualifier provided in a metric definition. A metric stream is an individual set of aggregated data for a metric, typically specific to a resource. For more information about metric-related concepts, see `Monitoring Concepts <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts>`_.
 - The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as in the following example:
 - https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
-- This resource has the following action operations in the M(oci_metric_data_actions) module: summarize_metrics_data.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_monitoring_metric_data_actions <ansible_collections.oracle.oci.oci_monitoring_metric_data_actions_module>` module: summarize_metrics_data.
 
 
 .. Aliases
@@ -523,13 +519,27 @@ Examples
     
     - name: Create metric_data
       oci_monitoring_metric_data:
+        # required
         metric_data:
-        - namespace: my_namespace
+        - # required
+          namespace: my_namespace
           compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
           name: my_app.success_rate
+          dimensions: null
           datapoints:
-          - timestamp: 2019-02-01T01:02:29.600Z
+          - # required
+            timestamp: 2019-02-01T01:02:29.600Z
             value: 10.23
+
+            # optional
+            count: 56
+
+          # optional
+          resource_group: frontend-fleet
+          metadata: null
+
+        # optional
+        batch_atomicity: NON_ATOMIC
 
 
 
@@ -565,7 +575,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the MetricData resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;failed_metrics&#x27;: [{&#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;metric_data&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..exampleuniqueID&#x27;, &#x27;datapoints&#x27;: [{&#x27;count&#x27;: 56, &#x27;timestamp&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;value&#x27;: 10.23}], &#x27;dimensions&#x27;: {}, &#x27;metadata&#x27;: {}, &#x27;name&#x27;: &#x27;my_app.success_rate&#x27;, &#x27;namespace&#x27;: &#x27;my_namespace&#x27;, &#x27;resource_group&#x27;: &#x27;frontend-fleet&#x27;}}], &#x27;failed_metrics_count&#x27;: 56}</div>
                                     </td>
             </tr>
@@ -583,7 +593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of records identifying metric objects that failed input validation and the reasons for the failures.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -600,7 +610,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An error message indicating the reason that the indicated metric object failed input validation.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
                                     </td>
             </tr>
@@ -619,7 +629,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Identifier of a metric object that failed input validation.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -637,7 +647,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to use for metrics.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..exampleuniqueID</div>
                                     </td>
             </tr>
@@ -657,7 +667,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of metric values with timestamps. At least one data point is required per call.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -677,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The number of occurrences of the associated value in the set of data.</div>
                                             <div>Default is 1. Value must be greater than zero.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -699,7 +709,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Timestamp for this metric value. Format defined by RFC3339.</div>
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600Z</div>
                                     </td>
             </tr>
@@ -721,7 +731,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Numeric value of the metric.</div>
                                             <div>Example: `10.23`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.23</div>
                                     </td>
             </tr>
@@ -743,7 +753,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair. A valid dimension key includes only printable ASCII, excluding periods (.) and spaces. The character limit for a dimension key is 256. A valid dimension value includes only Unicode characters. The character limit for a dimension value is 256. Empty strings are not allowed for keys or values. Avoid entering confidential information.</div>
                                             <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -762,7 +772,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Properties describing metrics. These are not part of the unique fields identifying the metric. Each metadata item takes the form of a key-value pair. The character limit for a metadata key is 256. The character limit for a metadata value is 256.</div>
                                             <div>Example: `&quot;unit&quot;: &quot;bytes&quot;`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -782,7 +792,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A valid name value starts with an alphabetical character and includes only alphanumeric characters, dots, underscores, hyphens, and dollar signs. The `oci_` prefix is reserved. Avoid entering confidential information.</div>
                                             <div>Example: `my_app.success_rate`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">my_app.success_rate</div>
                                     </td>
             </tr>
@@ -804,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A valid namespace value starts with an alphabetical character and includes only alphanumeric characters and underscores. The &quot;oci_&quot; prefix is reserved. Avoid entering confidential information.</div>
                                             <div>Example: `my_namespace`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">my_namespace</div>
                                     </td>
             </tr>
@@ -825,7 +835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Resource group to assign to the metric. A resource group is a custom string that you can match when retrieving custom metrics. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($). Avoid entering confidential information.</div>
                                             <div>Example: `frontend-fleet`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">frontend-fleet</div>
                                     </td>
             </tr>
@@ -845,7 +855,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The number of metric objects that failed input validation.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

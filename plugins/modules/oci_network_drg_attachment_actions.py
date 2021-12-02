@@ -46,6 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action remove_export_drg_route_distribution on drg_attachment
   oci_network_drg_attachment_actions:
+    # required
     drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
     action: remove_export_drg_route_distribution
 
@@ -158,7 +159,7 @@ drg_attachment:
             sample: {'Department': 'Finance'}
         route_table_id:
             description:
-                - The OCID of the route table the DRG attachment is using.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is using.
                 - "For information about why you would associate a route table with a DRG attachment, see:"
                 - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
                     * L(Transit Routing: Private Access to Oracle

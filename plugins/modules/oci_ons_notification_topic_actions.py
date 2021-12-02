@@ -55,9 +55,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on notification_topic
   oci_ons_notification_topic_actions:
-    compartment_id: "compartment_OCID"
+    # required
     topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 

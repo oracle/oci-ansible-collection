@@ -57,7 +57,8 @@ options:
                     - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                           setting up a security rule for traffic destined for a particular `Service` through
                           a service gateway. For example: `oci-phx-objectstorage`."
-                    - " * The OCID of a L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
+                    - " * The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
+                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
                           VCN. The value can be the NSG that the rule belongs to if the rule's intent is to control
                           traffic between VNICs in the same NSG."
                 type: str
@@ -69,7 +70,8 @@ options:
                     - " * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
                           L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                           particular `Service` through a service gateway)."
-                    - " * `NETWORK_SECURITY_GROUP`: If the rule's `destination` is the OCID of a
+                    - " * `NETWORK_SECURITY_GROUP`: If the rule's `destination` is the
+                      L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
                           L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/)."
                 type: str
                 choices:
@@ -126,7 +128,8 @@ options:
                     - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                           setting up a security rule for traffic coming from a particular `Service` through
                           a service gateway. For example: `oci-phx-objectstorage`."
-                    - " * The OCID of a L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
+                    - " * The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
+                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
                           VCN. The value can be the NSG that the rule belongs to if the rule's intent is to control
                           traffic between VNICs in the same NSG."
                 type: str
@@ -137,7 +140,8 @@ options:
                     - " * `SERVICE_CIDR_BLOCK`: If the rule's `source` is the `cidrBlock` value for a
                           L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic coming from a
                           particular `Service` through a service gateway)."
-                    - " * `NETWORK_SECURITY_GROUP`: If the rule's `source` is the OCID of a
+                    - " * `NETWORK_SECURITY_GROUP`: If the rule's `source` is the
+                      L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
                           L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/)."
                 type: str
                 choices:
@@ -244,45 +248,106 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action add on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
+    # required
     network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
+    action: add
+
+    # optional
     security_rules:
-    - description: "Example ingress security rule"
-      source_type: "CIDR_BLOCK"
-      source: "10.0.0.0/16"
-      direction: "INGRESS"
-      protocol: "all"
-    - description: "Example egress security rule"
-      destination_type: "CIDR_BLOCK"
-      destination: "10.0.0.0/16"
-      direction: "EGRESS"
-      protocol: "all"
-    action: "add"
+    - # required
+      direction: EGRESS
+      protocol: protocol_example
+
+      # optional
+      description: description_example
+      destination: destination_example
+      destination_type: CIDR_BLOCK
+      icmp_options:
+        # required
+        type: 56
+
+        # optional
+        code: 56
+      is_stateless: true
+      source: source_example
+      source_type: CIDR_BLOCK
+      tcp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      udp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      id: 04ABEC
 
 - name: Perform action remove on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
+    # required
     network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
-    security_rule_ids:
-    - "880233"
-    - "203597"
-    action: "remove"
+    action: remove
+
+    # optional
+    security_rule_ids: [ "null" ]
 
 - name: Perform action update on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
+    # required
     network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
+    action: update
+
+    # optional
     security_rules:
-    - description: "Example ingress security rule - updated"
-      id: "203597"
-      source_type: "CIDR_BLOCK"
-      source: "10.0.0.0/24"
-      direction: "INGRESS"
-      protocol: "all"
-    - description: "Example egress security rule - updated"
-      destination_type: "CIDR_BLOCK"
-      destination: "10.0.0.0/24"
-      direction: "EGRESS"
-      id: "880233"
-      protocol: "all"
-    action: "update"
+    - # required
+      direction: EGRESS
+      protocol: protocol_example
+
+      # optional
+      description: description_example
+      destination: destination_example
+      destination_type: CIDR_BLOCK
+      icmp_options:
+        # required
+        type: 56
+
+        # optional
+        code: 56
+      is_stateless: true
+      source: source_example
+      source_type: CIDR_BLOCK
+      tcp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      udp_options:
+        # optional
+        destination_port_range:
+          # required
+          max: 56
+          min: 56
+        source_port_range:
+          # required
+          max: 56
+          min: 56
+      id: 04ABEC
 
 """
 
@@ -316,8 +381,8 @@ network_security_group_security_rule:
                         - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a security rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
-                        - " * The OCID of a L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the
-                          same
+                        - " * The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
+                          L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
                               VCN. The value can be the NSG that the rule belongs to if the rule's intent is to control
                               traffic between VNICs in the same NSG."
                     returned: on success
@@ -331,7 +396,8 @@ network_security_group_security_rule:
                         - " * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
                               L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                               particular `Service` through a service gateway)."
-                        - " * `NETWORK_SECURITY_GROUP`: If the rule's `destination` is the OCID of a
+                        - " * `NETWORK_SECURITY_GROUP`: If the rule's `destination` is the
+                          L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
                               L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/)."
                     returned: on success
                     type: str
@@ -407,8 +473,8 @@ network_security_group_security_rule:
                         - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a security rule for traffic coming from a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
-                        - " * The OCID of a L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the
-                          same
+                        - " * The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
+                          L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/) in the same
                               VCN. The value can be the NSG that the rule belongs to if the rule's intent is to control
                               traffic between VNICs in the same NSG."
                     returned: on success
@@ -421,7 +487,8 @@ network_security_group_security_rule:
                         - " * `SERVICE_CIDR_BLOCK`: If the rule's `source` is the `cidrBlock` value for a
                               L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic coming from a
                               particular `Service` through a service gateway)."
-                        - " * `NETWORK_SECURITY_GROUP`: If the rule's `source` is the OCID of a
+                        - " * `NETWORK_SECURITY_GROUP`: If the rule's `source` is the
+                          L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a
                               L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/)."
                     returned: on success
                     type: str

@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List managed_database_groups
-  oci_database_management_managed_database_group_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific managed_database_group
   oci_database_management_managed_database_group_facts:
+    # required
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List managed_database_groups
+  oci_database_management_managed_database_group_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    lifecycle_state: CREATING
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

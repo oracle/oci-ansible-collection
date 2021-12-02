@@ -30,13 +30,9 @@ oracle.oci.oci_network_virtual_circuit_bandwidth_shape_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_virtual_circuit_bandwidth_shape_facts`.
 
@@ -57,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple VirtualCircuitBandwidthShape resources in Oracle Cloud Infrastructure
-- The deprecated operation lists available bandwidth levels for virtual circuits. For the compartment ID, provide the OCID of your tenancy (the root compartment).
+- The deprecated operation lists available bandwidth levels for virtual circuits. For the compartment ID, provide the `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_ of your tenancy (the root compartment).
 
 
 .. Aliases
@@ -284,6 +280,7 @@ Examples
     
     - name: List virtual_circuit_bandwidth_shapes
       oci_network_virtual_circuit_bandwidth_shape_facts:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
@@ -320,7 +317,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of VirtualCircuitBandwidthShape resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bandwidth_in_mbps&#x27;: 10000, &#x27;name&#x27;: &#x27;10 Gbps&#x27;}]</div>
                                     </td>
             </tr>
@@ -339,7 +336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The bandwidth in Mbps.</div>
                                             <div>Example: `10000`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10000</div>
                                     </td>
             </tr>
@@ -358,7 +355,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the bandwidth shape.</div>
                                             <div>Example: `10 Gbps`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10 Gbps</div>
                                     </td>
             </tr>

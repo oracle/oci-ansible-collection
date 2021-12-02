@@ -57,12 +57,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on run
   oci_data_flow_run_actions:
-    compartment_id: "compartmentId"
+    # required
     run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action cancel on run
   oci_data_flow_run_actions:
+    # required
     run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel
 

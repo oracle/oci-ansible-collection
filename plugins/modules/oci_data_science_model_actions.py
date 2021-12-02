@@ -55,17 +55,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on model
   oci_data_science_model_actions:
+    # required
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
 
 - name: Perform action change_compartment on model
   oci_data_science_model_actions:
+    # required
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on model
   oci_data_science_model_actions:
+    # required
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     action: deactivate
 

@@ -65,8 +65,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create job_artifact
   oci_data_science_job_artifact:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
     job_artifact_file: job_artifact.zip
+
+    # optional
+    content_length: 789
+    content_disposition: content_disposition_example
 
 """
 

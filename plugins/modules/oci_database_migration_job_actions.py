@@ -74,13 +74,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action abort on job
   oci_database_migration_job_actions:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
     action: abort
 
 - name: Perform action resume on job
   oci_database_migration_job_actions:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
     action: resume
+
+    # optional
+    wait_after: ODMS_VALIDATE_TGT
 
 """
 

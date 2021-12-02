@@ -62,15 +62,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on database_tools_connection
   oci_database_tools_connection_actions:
-    compartment_id: "compartmentId"
+    # required
     database_tools_connection_id: "ocid1.databasetoolsconnection.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
-- name: Perform action validate on database_tools_connection
+- name: Perform action validate on database_tools_connection with type = ORACLE_DATABASE
   oci_database_tools_connection_actions:
-    database_tools_connection_id: "ocid1.databasetoolsconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     type: ORACLE_DATABASE
-    action: validate
 
 """
 

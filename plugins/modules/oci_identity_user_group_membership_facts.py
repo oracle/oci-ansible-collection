@@ -59,13 +59,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List user_group_memberships
-  oci_identity_user_group_membership_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific user_group_membership
   oci_identity_user_group_membership_facts:
+    # required
     user_group_membership_id: "ocid1.usergroupmembership.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List user_group_memberships
+  oci_identity_user_group_membership_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

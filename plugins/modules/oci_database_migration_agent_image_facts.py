@@ -41,6 +41,9 @@ EXAMPLES = """
 - name: List agent_images
   oci_database_migration_agent_image_facts:
 
+    # optional
+    sort_order: ASC
+
 """
 
 RETURN = """

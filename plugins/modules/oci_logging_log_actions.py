@@ -56,9 +56,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_log_log_group on log
   oci_logging_log_actions:
+    # required
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_log_log_group
+
+    # optional
+    target_log_group_id: "ocid1.targetloggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

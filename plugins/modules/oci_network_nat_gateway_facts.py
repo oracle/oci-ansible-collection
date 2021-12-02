@@ -84,13 +84,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List nat_gateways
-  oci_network_nat_gateway_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific nat_gateway
   oci_network_nat_gateway_facts:
+    # required
     nat_gateway_id: "ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List nat_gateways
+  oci_network_nat_gateway_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

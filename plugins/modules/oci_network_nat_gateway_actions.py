@@ -53,6 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on nat_gateway
   oci_network_nat_gateway_actions:
+    # required
     nat_gateway_id: "ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

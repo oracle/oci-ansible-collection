@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an AnalyticsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new AnalyticsInstance in the specified compartment. The operation is long-running
       and creates a new WorkRequest.
-    - "This resource has the following action operations in the M(oci_analytics_instance_actions) module: change_compartment,
+    - "This resource has the following action operations in the M(oracle.oci.oci_analytics_instance_actions) module: change_compartment,
       change_analytics_instance_network_endpoint, scale, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -179,37 +179,62 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create analytics_instance
   oci_analytics_instance:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     feature_set: SELF_SERVICE_ANALYTICS
     capacity:
+      # required
       capacity_type: OLPU_COUNT
       capacity_value: 56
     license_type: LICENSE_INCLUDED
 
-- name: Update analytics_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_analytics_instance:
-    name: name_example
+    # optional
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    license_type: LICENSE_INCLUDED
     email_notification: email_notification_example
+    network_endpoint_details:
+      # required
+      network_endpoint_type: PRIVATE
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    idcs_access_token: idcs_access_token_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update analytics_instance
   oci_analytics_instance:
+    # required
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     license_type: LICENSE_INCLUDED
-    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    email_notification: email_notification_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update analytics_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_analytics_instance:
+    # required
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    license_type: LICENSE_INCLUDED
+    email_notification: email_notification_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete analytics_instance
   oci_analytics_instance:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete analytics_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_analytics_instance:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

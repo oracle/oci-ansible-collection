@@ -30,13 +30,9 @@ oracle.oci.oci_network_drg_route_rules_actions -- Perform actions on a DrgRouteR
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_drg_route_rules_actions`.
 
@@ -393,18 +389,40 @@ Examples
     
     - name: Perform action add on drg_route_rules
       oci_network_drg_route_rules_actions:
+        # required
         drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         action: add
 
+        # optional
+        route_rules:
+        - # optional
+          destination_type: CIDR_BLOCK
+          destination: destination_example
+          next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
     - name: Perform action remove on drg_route_rules
       oci_network_drg_route_rules_actions:
+        # required
         drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         action: remove
 
+        # optional
+        route_rule_ids: [ "null" ]
+
     - name: Perform action update on drg_route_rules
       oci_network_drg_route_rules_actions:
+        # required
         drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         action: update
+
+        # optional
+        route_rules:
+        - # optional
+          destination_type: CIDR_BLOCK
+          destination: destination_example
+          next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -440,11 +458,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the DrgRouteRules resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;destination&#x27;: &#x27;destination_example&#x27;, &#x27;destination_type&#x27;: &#x27;CIDR_BLOCK&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_blackhole&#x27;: True, &#x27;is_conflict&#x27;: True, &#x27;next_hop_drg_attachment_id&#x27;: &#x27;ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;route_provenance&#x27;: &#x27;STATIC&#x27;, &#x27;route_type&#x27;: &#x27;STATIC&#x27;}</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;attributes&#x27;: {}, &#x27;destination&#x27;: &#x27;destination_example&#x27;, &#x27;destination_type&#x27;: &#x27;CIDR_BLOCK&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_blackhole&#x27;: True, &#x27;is_conflict&#x27;: True, &#x27;next_hop_drg_attachment_id&#x27;: &#x27;ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;route_provenance&#x27;: &#x27;STATIC&#x27;, &#x27;route_type&#x27;: &#x27;STATIC&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-drg_route_rules/attributes"></div>
+                    <b>attributes</b>
+                    <a class="ansibleOptionLink" href="#return-drg_route_rules/attributes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Additional properties for the route, computed by the service.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-drg_route_rules/destination"></div>
@@ -459,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Represents the range of IP addresses to match against when routing traffic.</div>
                                             <div>Potential values: * An IP address range (IPv4 or IPv6) in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`. * When you&#x27;re setting up a security rule for traffic destined for a particular `Service` through a service gateway, this is the `cidrBlock` value associated with that <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/Service/'>Service</a>. For example: `oci-phx-objectstorage`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">destination_example</div>
                                     </td>
             </tr>
@@ -479,7 +513,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Allowed values:</div>
                                             <div>* `CIDR_BLOCK`: If the rule&#x27;s `destination` is an IP address range in CIDR notation. * `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `destination` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a> (the rule is for traffic destined for a particular `Service` through a service gateway).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CIDR_BLOCK</div>
                                     </td>
             </tr>
@@ -497,7 +531,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle-assigned ID of the DRG route rule.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -515,7 +549,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates that if the next hop attachment does not exist, so traffic for this route is discarded without notification.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -533,7 +567,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates that the route was not imported due to a conflict between route rules.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -552,7 +586,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the next hop DRG attachment responsible for reaching the network destination.</div>
                                             <div>A value of `BLACKHOLE` means traffic for this route is discarded without notification.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -571,7 +605,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The earliest origin of a route. If a route is advertised to a DRG through an IPsec tunnel attachment, and is propagated to peered DRGs via RPC attachments, the route&#x27;s provenance in the peered DRGs remains `IPSEC_TUNNEL`, because that is the earliest origin.</div>
                                             <div>No routes with a provenance `IPSEC_TUNNEL` or `VIRTUAL_CIRCUIT` will be exported to IPsec tunnel or virtual circuit attachments, regardless of the attachment&#x27;s export distribution.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STATIC</div>
                                     </td>
             </tr>
@@ -589,7 +623,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>You can specify static routes for the DRG route table using the API. The DRG learns dynamic routes from the DRG attachments using various routing protocols.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STATIC</div>
                                     </td>
             </tr>

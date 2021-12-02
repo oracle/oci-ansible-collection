@@ -30,13 +30,9 @@ oracle.oci.oci_key_management_exported_key_data -- Manage an ExportedKeyData res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_key_management_exported_key_data`.
 
@@ -401,10 +397,14 @@ Examples
     
     - name: Create exported_key_data
       oci_key_management_exported_key_data:
-        key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
-        key_version_id: "ocid1.keyversion.oc1.iad.examplevriiaa.examples4h2bocax3damnsxw4cvbbndged2gftlho4ufxwa4faux2eiqwija"
-        algorithm: "RSA_OAEP_AES_SHA256"
+        # required
+        key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
+        algorithm: RSA_OAEP_AES_SHA256
         public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+
+        # optional
+        key_version_id: ocid1.keyversion.oc1.iad.examplevriiaa.examples4h2bocax3damnsxw4cvbbndged2gftlho4ufxwa4faux2eiqwija
+        logging_context: null
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 
@@ -441,7 +441,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the ExportedKeyData resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;algorithm&#x27;: &#x27;RSA_OAEP_AES_SHA256&#x27;, &#x27;encrypted_key&#x27;: &#x27;encrypted_key_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_version_id&#x27;: &#x27;ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -459,7 +459,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The encryption algorithm to use to encrypt exportable key material from a key that persists on the server (as opposed to a key that persists on a hardware security module and, therefore, cannot be exported). Specifying RSA_OAEP_AES_SHA256 invokes the RSA AES key wrap mechanism, which generates a temporary AES key. The temporary AES key is wrapped by the RSA public wrapping key provided along with the request, creating a wrapped temporary AES key. The temporary AES key is also used to wrap the exportable key material. The wrapped temporary AES key and the wrapped exportable key material are concatenated, producing concatenated blob output that jointly represents them. Specifying RSA_OAEP_SHA256 means that the exportable key material is wrapped by the RSA public wrapping key provided along with the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RSA_OAEP_AES_SHA256</div>
                                     </td>
             </tr>
@@ -477,7 +477,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The base64-encoded exported key material, which is encrypted by using the public RSA wrapping key specified in the export request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">encrypted_key_example</div>
                                     </td>
             </tr>
@@ -495,7 +495,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the master encryption key associated with this key version.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.key.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -513,7 +513,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the key version.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -531,7 +531,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time this key version was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -549,7 +549,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the vault that contains this key version.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

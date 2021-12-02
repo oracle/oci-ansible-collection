@@ -99,31 +99,45 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create group
   oci_identity_group:
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
-    description: "Group for network administrators"
-    name: "NetworkAdmins"
-
-- name: Update group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_group:
+    # required
     compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
     name: NetworkAdmins
     description: Group for network administrators
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update group
   oci_identity_group:
+    # required
+    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: Group for network administrators
     freeform_tags: {'Department': 'Finance'}
-    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_identity_group:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
+    name: NetworkAdmins
+
+    # optional
+    description: Group for network administrators
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete group
   oci_identity_group:
+    # required
     group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_group:
+    # required
     compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
     name: NetworkAdmins
     state: absent

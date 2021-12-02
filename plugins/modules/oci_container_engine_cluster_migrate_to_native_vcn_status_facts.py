@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific cluster_migrate_to_native_vcn_status
   oci_container_engine_cluster_migrate_to_native_vcn_status_facts:
+    # required
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

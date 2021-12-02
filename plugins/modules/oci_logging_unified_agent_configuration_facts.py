@@ -87,13 +87,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List unified_agent_configurations
-  oci_logging_unified_agent_configuration_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific unified_agent_configuration
   oci_logging_unified_agent_configuration_facts:
+    # required
     unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List unified_agent_configurations
+  oci_logging_unified_agent_configuration_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    is_compartment_id_in_subtree: true
+    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    sort_by: timeCreated
+    sort_order: ASC
 
 """
 

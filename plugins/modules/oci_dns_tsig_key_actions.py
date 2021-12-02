@@ -59,9 +59,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on tsig_key
   oci_dns_tsig_key_actions:
+    # required
     tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+    # optional
+    scope: GLOBAL
 
 """
 

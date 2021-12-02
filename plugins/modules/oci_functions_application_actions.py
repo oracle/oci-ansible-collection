@@ -54,9 +54,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on application
   oci_functions_application_actions:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 

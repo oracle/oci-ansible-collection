@@ -64,9 +64,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update configuration
   oci_cloud_guard_configuration:
+    # required
     reporting_region: reporting_region_example
     status: ENABLED
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    self_manage_resources: true
 
 """
 

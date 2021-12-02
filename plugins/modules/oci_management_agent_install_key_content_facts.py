@@ -50,8 +50,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific management_agent_install_key_content
   oci_management_agent_install_key_content_facts:
+    # required
     dest: /tmp/myfile
     management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    plugin_name: [ "$p.getValue()" ]
 
 """
 

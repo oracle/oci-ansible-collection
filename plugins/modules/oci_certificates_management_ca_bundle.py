@@ -24,7 +24,7 @@ short_description: Manage a CaBundle resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a CaBundle resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new CA bundle according to the details of the request.
-    - "This resource has the following action operations in the M(oci_ca_bundle_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_certificates_management_ca_bundle_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -87,31 +87,47 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create ca_bundle
   oci_certificates_management_ca_bundle:
+    # required
     name: name_example
     compartment_id: "ocid1.tenancy.oc1..exampleauingds4uwkcvbxv4ijs7zxuqnoewldef4fauxs7vaax2fab4gcsq"
     ca_bundle_pem: ca_bundle_pem_example
 
-- name: Update ca_bundle using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_certificates_management_ca_bundle:
-    name: name_example
+    # optional
     description: description_example
-    ca_bundle_pem: ca_bundle_pem_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update ca_bundle
   oci_certificates_management_ca_bundle:
+    # required
+    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     ca_bundle_pem: ca_bundle_pem_example
-    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update ca_bundle using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_certificates_management_ca_bundle:
+    # required
+    name: name_example
+
+    # optional
+    description: description_example
+    ca_bundle_pem: ca_bundle_pem_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete ca_bundle
   oci_certificates_management_ca_bundle:
+    # required
     ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete ca_bundle using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_certificates_management_ca_bundle:
+    # required
     name: name_example
     state: absent
 

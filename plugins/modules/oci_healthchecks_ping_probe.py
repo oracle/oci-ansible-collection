@@ -77,10 +77,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create ping_probe
   oci_healthchecks_ping_probe:
+    # required
     compartment_id: "ocid1.tenancy.oc1..."
-    targets:
-    - "192.0.2.0"
-    protocol: "ICMP"
+    targets: [ "192.0.2.0" ]
+    protocol: ICMP
+
+    # optional
+    vantage_point_names: [ "null" ]
+    port: 56
+    timeout_in_seconds: 56
 
 """
 

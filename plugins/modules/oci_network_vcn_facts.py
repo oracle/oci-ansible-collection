@@ -80,13 +80,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List vcns
-  oci_network_vcn_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific vcn
   oci_network_vcn_facts:
+    # required
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List vcns
+  oci_network_vcn_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -112,25 +120,25 @@ vcns:
             sample: []
         compartment_id:
             description:
-                - The OCID of the compartment containing the VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the VCN.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_dhcp_options_id:
             description:
-                - The OCID for the VCN's default set of DHCP options.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the VCN's default set of DHCP options.
             returned: on success
             type: str
             sample: "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         default_route_table_id:
             description:
-                - The OCID for the VCN's default route table.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the VCN's default route table.
             returned: on success
             type: str
             sample: "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         default_security_list_id:
             description:
-                - The OCID for the VCN's default security list.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the VCN's default security list.
             returned: on success
             type: str
             sample: "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx"
@@ -175,7 +183,7 @@ vcns:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The VCN's Oracle ID (OCID).
+                - The VCN's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

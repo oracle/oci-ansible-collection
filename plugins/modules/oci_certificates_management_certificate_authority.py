@@ -24,8 +24,8 @@ short_description: Manage a CertificateAuthority resource in Oracle Cloud Infras
 description:
     - This module allows the user to create and update a CertificateAuthority resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new certificate authority (CA) according to the details of the request.
-    - "This resource has the following action operations in the M(oci_certificate_authority_actions) module: cancel_certificate_authority_deletion,
-      change_compartment, schedule_certificate_authority_deletion."
+    - "This resource has the following action operations in the M(oracle.oci.oci_certificates_management_certificate_authority_actions) module:
+      cancel_certificate_authority_deletion, change_compartment, schedule_certificate_authority_deletion."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -308,34 +308,199 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create certificate_authority
   oci_certificates_management_certificate_authority:
+    # required
     name: test-ca-1
     compartment_id: "ocid1.tenancy.oc1..exampleauingds4uwkcvbxv4ijs7zxuqnoewldef4fauxs7vaax2fab4gcsq"
     certificate_authority_config:
+      # required
       config_type: ROOT_CA_GENERATED_INTERNALLY
+      subject:
+        # required
+        common_name: www.example.com
+
+        # optional
+        country: country_example
+        domain_component: domain_component_example
+        distinguished_name_qualifier: distinguished_name_qualifier_example
+        generation_qualifier: generation_qualifier_example
+        given_name: given_name_example
+        initials: initials_example
+        locality_name: locality_name_example
+        organization: organization_example
+        organizational_unit: organizational_unit_example
+        pseudonym: pseudonym_example
+        serial_number: serial_number_example
+        state_or_province_name: state_or_province_name_example
+        street: street_example
+        surname: surname_example
+        title: title_example
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+      version_name: version_name_example
+      validity:
+        # required
+        time_of_validity_not_after: 2031-05-06T00:00:00.000Z
+
+        # optional
+        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
+      signing_algorithm: SHA512_WITH_RSA
+      stage: CURRENT
     kms_key_id: ocid1.key.oc1.iad.examplegaag4s.abzwkljsd4iacvbv3s2e57hhwyljoc2zfxcgugfauxafqyxm7ljawezfc3cq
 
-- name: Update certificate_authority using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_certificates_management_certificate_authority:
-    name: test-ca-1
+    # optional
     description: description_example
     certificate_authority_rules:
-    - rule_type: CERTIFICATE_AUTHORITY_RENEWAL_RULE
-    certificate_authority_config:
-      config_type: ROOT_CA_GENERATED_INTERNALLY
+    - # required
+      rule_type: CERTIFICATE_AUTHORITY_RENEWAL_RULE
+
+      # optional
+      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
     certificate_revocation_list_details:
+      # required
       object_storage_config:
+        # required
         object_storage_bucket_name: ca-crl-bucket
         object_storage_object_name_format: ca-1-crl
+
+        # optional
+        object_storage_namespace: example-namespace
+
+        # optional
+      custom_formatted_urls: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update certificate_authority
+  oci_certificates_management_certificate_authority:
+    # required
+    certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    certificate_authority_rules:
+    - # required
+      rule_type: CERTIFICATE_AUTHORITY_RENEWAL_RULE
+
+      # optional
+      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
+    certificate_authority_config:
+      # required
+      config_type: ROOT_CA_GENERATED_INTERNALLY
+      subject:
+        # required
+        common_name: www.example.com
+
+        # optional
+        country: country_example
+        domain_component: domain_component_example
+        distinguished_name_qualifier: distinguished_name_qualifier_example
+        generation_qualifier: generation_qualifier_example
+        given_name: given_name_example
+        initials: initials_example
+        locality_name: locality_name_example
+        organization: organization_example
+        organizational_unit: organizational_unit_example
+        pseudonym: pseudonym_example
+        serial_number: serial_number_example
+        state_or_province_name: state_or_province_name_example
+        street: street_example
+        surname: surname_example
+        title: title_example
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+      version_name: version_name_example
+      validity:
+        # required
+        time_of_validity_not_after: 2031-05-06T00:00:00.000Z
+
+        # optional
+        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
+      signing_algorithm: SHA512_WITH_RSA
+      stage: CURRENT
+    certificate_revocation_list_details:
+      # required
+      object_storage_config:
+        # required
+        object_storage_bucket_name: ca-crl-bucket
+        object_storage_object_name_format: ca-1-crl
+
+        # optional
+        object_storage_namespace: example-namespace
+
+        # optional
+      custom_formatted_urls: [ "null" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     current_version_number: 56
 
-- name: Update certificate_authority
+- name: Update certificate_authority using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_certificates_management_certificate_authority:
+    # required
+    name: test-ca-1
+
+    # optional
     description: description_example
     certificate_authority_rules:
-    - rule_type: CERTIFICATE_AUTHORITY_RENEWAL_RULE
-    certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      rule_type: CERTIFICATE_AUTHORITY_RENEWAL_RULE
+
+      # optional
+      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
+    certificate_authority_config:
+      # required
+      config_type: ROOT_CA_GENERATED_INTERNALLY
+      subject:
+        # required
+        common_name: www.example.com
+
+        # optional
+        country: country_example
+        domain_component: domain_component_example
+        distinguished_name_qualifier: distinguished_name_qualifier_example
+        generation_qualifier: generation_qualifier_example
+        given_name: given_name_example
+        initials: initials_example
+        locality_name: locality_name_example
+        organization: organization_example
+        organizational_unit: organizational_unit_example
+        pseudonym: pseudonym_example
+        serial_number: serial_number_example
+        state_or_province_name: state_or_province_name_example
+        street: street_example
+        surname: surname_example
+        title: title_example
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+      version_name: version_name_example
+      validity:
+        # required
+        time_of_validity_not_after: 2031-05-06T00:00:00.000Z
+
+        # optional
+        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
+      signing_algorithm: SHA512_WITH_RSA
+      stage: CURRENT
+    certificate_revocation_list_details:
+      # required
+      object_storage_config:
+        # required
+        object_storage_bucket_name: ca-crl-bucket
+        object_storage_object_name_format: ca-1-crl
+
+        # optional
+        object_storage_namespace: example-namespace
+
+        # optional
+      custom_formatted_urls: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    current_version_number: 56
 
 """
 

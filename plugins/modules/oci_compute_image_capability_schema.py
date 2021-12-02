@@ -24,7 +24,7 @@ short_description: Manage a ComputeImageCapabilitySchema resource in Oracle Clou
 description:
     - This module allows the user to create, update and delete a ComputeImageCapabilitySchema resource in Oracle Cloud Infrastructure
     - For I(state=present), creates compute image capability schema.
-    - "This resource has the following action operations in the M(oci_compute_image_capability_schema_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_image_capability_schema_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -53,7 +53,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the compute image capability schema
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -138,38 +139,68 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create compute_image_capability_schema
   oci_compute_image_capability_schema:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-    compute_global_image_capability_schema_version_name: "2c0xx226-xxx-xxxx-xxxx-193cc17xx90b"
+    compute_global_image_capability_schema_version_name: 2c0xx226-xxx-xxxx-xxxx-193cc17xx90b
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     schema_data:
-      Compute.LaunchMode:
-        descriptor_type: "enumstring"
-        source: "IMAGE"
-        enum_string_values:
-        - "EMULATED"
-        - "PARAVIRTUALIZED"
-        - "CUSTOM"
-        enum_string_default_value: "PARAVIRTUALIZED"
+      # required
+      descriptor_type: enumstring
+      source: GLOBAL
+      enum_string_values: [ "null" ]
 
-- name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_image_capability_schema:
-    compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
-    schema_data:
-      Storage.ConsistentVolumeNaming:
-        descriptor_type: "boolean"
-        source: "IMAGE"
-        enum_string_default_value: true
+      # optional
+      enum_string_default_value: default_value_example
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    display_name: display_name_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update compute_image_capability_schema
   oci_compute_image_capability_schema:
+    # required
     compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    display_name: display_name_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    schema_data:
+      # required
+      descriptor_type: enumstring
+      source: GLOBAL
+      enum_string_values: [ "null" ]
+
+      # optional
+      enum_string_default_value: default_value_example
+
+- name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_image_capability_schema:
+    # required
+    display_name: display_name_example
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    schema_data:
+      # required
+      descriptor_type: enumstring
+      source: GLOBAL
+      enum_string_values: [ "null" ]
+
+      # optional
+      enum_string_default_value: default_value_example
 
 - name: Delete compute_image_capability_schema
   oci_compute_image_capability_schema:
+    # required
     compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image_capability_schema:
+    # required
     display_name: display_name_example
     state: absent
 
@@ -222,7 +253,8 @@ compute_image_capability_schema:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the compute global image capability schema
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

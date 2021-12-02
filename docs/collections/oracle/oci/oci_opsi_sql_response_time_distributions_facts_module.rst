@@ -30,13 +30,9 @@ oracle.oci.oci_opsi_sql_response_time_distributions_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_sql_response_time_distributions_facts`.
 
@@ -359,8 +355,16 @@ Examples
     
     - name: Get a specific sql_response_time_distributions
       oci_opsi_sql_response_time_distributions_facts:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         sql_identifier: 6rgjh9bjmy2s7
+
+        # optional
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        analysis_time_interval: analysis_time_interval_example
+        time_interval_start: 2013-10-20T19:20:30+01:00
+        time_interval_end: 2013-10-20T19:20:30+01:00
 
 
 
@@ -396,7 +400,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>SqlResponseTimeDistributions resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bucket_id&#x27;: &#x27;ocid1.bucket.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;executions_count&#x27;: 56}</div>
                                     </td>
             </tr>
@@ -414,7 +418,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Response time bucket id</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.bucket.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -432,7 +436,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total number of SQL executions</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

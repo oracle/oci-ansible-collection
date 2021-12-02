@@ -78,13 +78,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List apis
-  oci_apigateway_api_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific api
   oci_apigateway_api_facts:
+    # required
     api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List apis
+  oci_apigateway_api_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    lifecycle_state: ACTIVE
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

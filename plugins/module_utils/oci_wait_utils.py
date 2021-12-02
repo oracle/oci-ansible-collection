@@ -461,6 +461,40 @@ class CreateDatabaseOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter)
         return get_response.data
 
 
+class CreateBdsApiKeyOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter):
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(CreateBdsApiKeyOperationWorkRequestWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    def get_resource_from_wait_response(self, wait_response):
+        entity_type = self.resource_helper.get_entity_type()
+        identifier = None
+        if hasattr(wait_response.data, "resources"):
+            identifier = get_resource_identifier_from_wait_response(
+                wait_response.data, entity_type
+            )
+        elif hasattr(
+            wait_response.data, self.resource_helper.get_module_resource_id_param()
+        ):
+            # this handles LB style WorkRequests which contain a field "load_balancer_id"
+            identifier = getattr(
+                wait_response.data, self.resource_helper.get_module_resource_id_param()
+            )
+
+        if not identifier:
+            self.resource_helper.module.fail_json(
+                msg="Could not get the resource identifier from work request response {0}".format(
+                    to_dict(wait_response.data)
+                )
+            )
+        bds_instance_id = self.resource_helper.module.params.get("bds_instance_id")
+        get_response = self.resource_helper.get_get_fn()(
+            bds_instance_id=bds_instance_id, api_key_id=identifier
+        )
+        return get_response.data
+
+
 class NoneWaiter(Waiter):
     """Waiter which does not wait"""
 
@@ -974,6 +1008,11 @@ _WAITER_OVERRIDE_MAP = {
         "autonomous_database",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): CreateDatabaseOperationWorkRequestWaiter,
+    (
+        "bds",
+        "bds_api_key",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateBdsApiKeyOperationWorkRequestWaiter,
     # As External Databases need a connector to reach to the 'Available' state which is not done as part of the DB generation,
     # hence marking as NoWaiter so that "Not Connected" state can be considered
     (

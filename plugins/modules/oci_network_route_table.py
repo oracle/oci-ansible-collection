@@ -28,7 +28,8 @@ description:
       L(Service Limits,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm). For general information about route
       tables in your VCN and the types of targets you can use in route rules,
       see L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
-    - For the purposes of access control, you must provide the OCID of the compartment where you want the route
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment where you want the route
       table to reside. Notice that the route table doesn't have to be in the same compartment as the VCN, subnets,
       or other Networking Service components. If you're not sure which compartment to use, put the route
       table in the same compartment as the VCN. For more information about compartments and access control, see
@@ -36,13 +37,13 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the route table, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_route_table_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_route_table_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the route table.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the route table.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -114,7 +115,8 @@ options:
                     - "SERVICE_CIDR_BLOCK"
             network_entity_id:
                 description:
-                    - The OCID for the route rule's target. For information about the type of
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the route rule's target. For information about
+                      the type of
                       targets you can specify, see
                       L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                 type: str
@@ -125,7 +127,7 @@ options:
                 type: str
     vcn_id:
         description:
-            - The OCID of the VCN the route table belongs to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the route table belongs to.
             - Required for create using I(state=present).
         type: str
     rt_id:
@@ -168,37 +170,75 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create route_table
   oci_network_route_table:
-    display_name: "MyRouteTable"
-    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     route_rules:
-    - cidr_block: "0.0.0.0/0"
-      network_entity_id: "ocid1.internetgateway.oc1.phx.unique_ID"
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    - # required
+      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
 
-- name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      # optional
+      cidr_block: 0.0.0.0/0
+      destination: destination_example
+      destination_type: CIDR_BLOCK
+      description: description_example
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: MyRouteTable
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update route_table
   oci_network_route_table:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
+    rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyRouteTable
     freeform_tags: {'Department': 'Finance'}
     route_rules:
-    - network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+    - # required
+      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+
+      # optional
+      cidr_block: 0.0.0.0/0
+      destination: destination_example
+      destination_type: CIDR_BLOCK
+      description: description_example
     purge_route_rules: false
     delete_route_rules: true
 
-- name: Update route_table
+- name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyRouteTable
-    rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    route_rules:
+    - # required
+      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+
+      # optional
+      cidr_block: 0.0.0.0/0
+      destination: destination_example
+      destination_type: CIDR_BLOCK
+      description: description_example
+    purge_route_rules: false
+    delete_route_rules: true
 
 - name: Delete route_table
   oci_network_route_table:
+    # required
     rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyRouteTable
     state: absent
@@ -214,7 +254,7 @@ route_table:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the route table.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the route table.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -244,7 +284,7 @@ route_table:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The route table's Oracle ID (OCID).
+                - The route table's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -299,7 +339,8 @@ route_table:
                     sample: CIDR_BLOCK
                 network_entity_id:
                     description:
-                        - The OCID for the route rule's target. For information about the type of
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the route rule's target. For information
+                          about the type of
                           targets you can specify, see
                           L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                     returned: on success

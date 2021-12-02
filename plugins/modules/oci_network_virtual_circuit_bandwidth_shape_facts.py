@@ -23,8 +23,8 @@ module: oci_network_virtual_circuit_bandwidth_shape_facts
 short_description: Fetches details about one or multiple VirtualCircuitBandwidthShape resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple VirtualCircuitBandwidthShape resources in Oracle Cloud Infrastructure
-    - The deprecated operation lists available bandwidth levels for virtual circuits. For the compartment ID, provide the OCID of your tenancy (the root
-      compartment).
+    - The deprecated operation lists available bandwidth levels for virtual circuits. For the compartment ID, provide the
+      L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of your tenancy (the root compartment).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List virtual_circuit_bandwidth_shapes
   oci_network_virtual_circuit_bandwidth_shape_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

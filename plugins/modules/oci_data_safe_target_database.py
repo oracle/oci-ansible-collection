@@ -24,8 +24,8 @@ short_description: Manage a TargetDatabase resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a TargetDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), registers the specified database with Data Safe and creates a Data Safe target database in the Data Safe Console.
-    - "This resource has the following action operations in the M(oci_target_database_actions) module: activate, change_compartment, deactivate,
-      download_privilege_script."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_safe_target_database_actions) module: activate, change_compartment,
+      deactivate, download_privilege_script."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -220,36 +220,135 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create target_database
   oci_data_safe_target_database:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     database_details:
+      # required
       database_type: CLOUD_DB_SYSTEM
       infrastructure_type: ORACLE_CLOUD
 
-- name: Update target_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_safe_target_database:
-    display_name: "updated-name"
-    description: "updated-description"
-    database_details: null
+      # optional
+      instance_id: ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq
+      ip_addresses: [ "null" ]
+      listener_port: 56
+      service_name: database.host.com
+
+    # optional
+    display_name: null
+    description: null
     credentials:
-      user_name: "databaseAdminUser"
-      password: ""
-    tls_config: null
-    connection_option: null
-    freeform_tags: "{'Department': 'Finance'}"
-    defined_tags: "{'Operations': {'CostCenter': 'US'}}"
+      # required
+      user_name: databaseAdminUser
+      password: example-password
+    tls_config:
+      # required
+      status: ENABLED
+
+      # optional
+      certificate_store_type: JKS
+      store_password: example-password
+      trust_store_content: trust_store_content_example
+      key_store_content: key_store_content_example
+    connection_option:
+      # required
+      connection_type: PRIVATE_ENDPOINT
+
+      # optional
+      datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update target_database
   oci_data_safe_target_database:
+    # required
     target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: null
+    description: null
+    database_details:
+      # required
+      database_type: CLOUD_DB_SYSTEM
+      infrastructure_type: ORACLE_CLOUD
+
+      # optional
+      instance_id: ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq
+      ip_addresses: [ "null" ]
+      listener_port: 56
+      service_name: database.host.com
+    credentials:
+      # required
+      user_name: databaseAdminUser
+      password: example-password
+    tls_config:
+      # required
+      status: ENABLED
+
+      # optional
+      certificate_store_type: JKS
+      store_password: example-password
+      trust_store_content: trust_store_content_example
+      key_store_content: key_store_content_example
+    connection_option:
+      # required
+      connection_type: PRIVATE_ENDPOINT
+
+      # optional
+      datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update target_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_safe_target_database:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: null
+
+    # optional
+    description: null
+    database_details:
+      # required
+      database_type: CLOUD_DB_SYSTEM
+      infrastructure_type: ORACLE_CLOUD
+
+      # optional
+      instance_id: ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq
+      ip_addresses: [ "null" ]
+      listener_port: 56
+      service_name: database.host.com
+    credentials:
+      # required
+      user_name: databaseAdminUser
+      password: example-password
+    tls_config:
+      # required
+      status: ENABLED
+
+      # optional
+      certificate_store_type: JKS
+      store_password: example-password
+      trust_store_content: trust_store_content_example
+      key_store_content: key_store_content_example
+    connection_option:
+      # required
+      connection_type: PRIVATE_ENDPOINT
+
+      # optional
+      datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete target_database
   oci_data_safe_target_database:
+    # required
     target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete target_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_target_database:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: null
     state: absent
 
 """
@@ -362,7 +461,7 @@ target_database:
                         - The password of the database user.
                     returned: on success
                     type: str
-                    sample: password_example
+                    sample: example-password
         tls_config:
             description:
                 - ""
@@ -386,7 +485,7 @@ target_database:
                         - The password to read the trust store and key store files, if they are password protected.
                     returned: on success
                     type: str
-                    sample: store_password_example
+                    sample: example-password
                 trust_store_content:
                     description:
                         - Base64 encoded string of trust store file content.
@@ -490,12 +589,12 @@ target_database:
         },
         "credentials": {
             "user_name": "user_name_example",
-            "password": "password_example"
+            "password": "example-password"
         },
         "tls_config": {
             "status": "ENABLED",
             "certificate_store_type": "JKS",
-            "store_password": "store_password_example",
+            "store_password": "example-password",
             "trust_store_content": "trust_store_content_example",
             "key_store_content": "key_store_content_example"
         },

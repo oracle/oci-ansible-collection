@@ -44,14 +44,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List hostnames
-  oci_loadbalancer_hostname_facts:
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific hostname
   oci_loadbalancer_hostname_facts:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: example_hostname_001
+
+- name: List hostnames
+  oci_loadbalancer_hostname_facts:
+    # required
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

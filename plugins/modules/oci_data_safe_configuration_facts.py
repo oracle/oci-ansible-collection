@@ -38,6 +38,9 @@ EXAMPLES = """
 - name: Get a specific configuration
   oci_data_safe_configuration_facts:
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
 """
 
 RETURN = """

@@ -30,13 +30,9 @@ oracle.oci.oci_certificates_certificate_authority_bundle_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_certificates_certificate_authority_bundle_facts`.
 
@@ -322,7 +318,13 @@ Examples
     
     - name: Get a specific certificate_authority_bundle
       oci_certificates_certificate_authority_bundle_facts:
+        # required
         certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        version_number: 789
+        certificate_authority_version_name: certificate_authority_version_name_example
+        stage: CURRENT
 
 
 
@@ -358,7 +360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>CertificateAuthorityBundle resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cert_chain_pem&#x27;: &#x27;cert_chain_pem_example&#x27;, &#x27;certificate_authority_id&#x27;: &#x27;ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_authority_name&#x27;: &#x27;certificate_authority_name_example&#x27;, &#x27;certificate_pem&#x27;: &#x27;certificate_pem_example&#x27;, &#x27;revocation_status&#x27;: {&#x27;revocation_reason&#x27;: &#x27;UNSPECIFIED&#x27;, &#x27;time_revoked&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;serial_number&#x27;: &#x27;03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF&#x27;, &#x27;stages&#x27;: [], &#x27;time_created&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;, &#x27;validity&#x27;: {&#x27;time_of_validity_not_after&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;, &#x27;time_of_validity_not_before&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;}, &#x27;version_name&#x27;: &#x27;version_name_example&#x27;, &#x27;version_number&#x27;: 56}</div>
                                     </td>
             </tr>
@@ -376,7 +378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The certificate chain (in PEM format) for this CA version.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cert_chain_pem_example</div>
                                     </td>
             </tr>
@@ -394,7 +396,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the certificate authority (CA).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -412,7 +414,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the CA.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">certificate_authority_name_example</div>
                                     </td>
             </tr>
@@ -430,7 +432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The certificate (in PEM format) for this CA version.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">certificate_pem_example</div>
                                     </td>
             </tr>
@@ -448,7 +450,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -465,7 +467,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The reason that the certificate or CA was revoked.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UNSPECIFIED</div>
                                     </td>
             </tr>
@@ -484,7 +486,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time when the certificate or CA was revoked.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -503,7 +505,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A unique certificate identifier used in certificate revocation tracking, formatted as octets. Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF</div>
                                     </td>
             </tr>
@@ -521,7 +523,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of rotation states for this CA.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -537,7 +539,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A property indicating when the CA was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -555,7 +557,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -572,7 +574,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date on which the certificate validity period ends, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -591,7 +593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date on which the certificate validity period begins, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -610,7 +612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the CA.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_name_example</div>
                                     </td>
             </tr>
@@ -628,7 +630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The version number of the CA.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

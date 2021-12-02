@@ -73,9 +73,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action invoke on function
   oci_functions_function_actions:
+    # required
     dest: /tmp/myfile
     function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
     action: invoke
+
+    # optional
+    invoke_function_body: B
+    fn_intent: httprequest
+    fn_invoke_type: detached
 
 """
 

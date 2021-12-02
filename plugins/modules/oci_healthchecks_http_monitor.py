@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates an HTTP monitor. Vantage points will be automatically selected if not specified,
       and probes will be initiated from each vantage point to each of the targets at the frequency
       specified by `intervalInSeconds`.
-    - "This resource has the following action operations in the M(oci_http_monitor_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_healthchecks_http_monitor_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -146,31 +146,73 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create http_monitor
   oci_healthchecks_http_monitor:
+    # required
     compartment_id: "ocid1.tenancy.oc1...."
-    targets:
-    - "192.0.2.0"
-    protocol: "HTTP"
-    display_name: "test"
+    targets: [ "192.0.2.0" ]
+    protocol: HTTP
+    display_name: test
     interval_in_seconds: 300
 
-- name: Update http_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_healthchecks_http_monitor:
-    protocol: "HTTPS"
+    # optional
+    vantage_point_names: [ "null" ]
     port: 443
+    timeout_in_seconds: 56
+    method: GET
+    path: path_example
+    headers: null
+    is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update http_monitor
   oci_healthchecks_http_monitor:
-    protocol: "HTTPS"
-    port: 443
+    # required
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    targets: [ "192.0.2.0" ]
+    vantage_point_names: [ "null" ]
+    port: 443
+    timeout_in_seconds: 56
+    protocol: HTTP
+    method: GET
+    path: path_example
+    headers: null
+    display_name: test
+    interval_in_seconds: 300
+    is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update http_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_healthchecks_http_monitor:
+    # required
+    compartment_id: "ocid1.tenancy.oc1...."
+    display_name: test
+
+    # optional
+    targets: [ "192.0.2.0" ]
+    vantage_point_names: [ "null" ]
+    port: 443
+    timeout_in_seconds: 56
+    protocol: HTTP
+    method: GET
+    path: path_example
+    headers: null
+    interval_in_seconds: 300
+    is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete http_monitor
   oci_healthchecks_http_monitor:
+    # required
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete http_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_healthchecks_http_monitor:
+    # required
     compartment_id: "ocid1.tenancy.oc1...."
     display_name: test
     state: absent

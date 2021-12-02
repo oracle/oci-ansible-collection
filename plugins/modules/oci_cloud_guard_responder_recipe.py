@@ -24,7 +24,7 @@ short_description: Manage a ResponderRecipe resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to create, update and delete a ResponderRecipe resource in Oracle Cloud Infrastructure
     - For I(state=present), create a ResponderRecipe.
-    - "This resource has the following action operations in the M(oci_responder_recipe_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_cloud_guard_responder_recipe_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -109,35 +109,65 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create responder_recipe
   oci_cloud_guard_responder_recipe:
+    # required
     display_name: display_name_example
     source_responder_recipe_id: "ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_cloud_guard_responder_recipe:
-    display_name: display_name_example
+    # optional
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     responder_rules:
-    - responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
       details:
+        # required
         is_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update responder_recipe
   oci_cloud_guard_responder_recipe:
+    # required
     display_name: display_name_example
-    description: description_example
     responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    responder_rules:
+    - # required
+      responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
+      details:
+        # required
+        is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_cloud_guard_responder_recipe:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    responder_rules:
+    - # required
+      responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
+      details:
+        # required
+        is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete responder_recipe
   oci_cloud_guard_responder_recipe:
+    # required
     responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_responder_recipe:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

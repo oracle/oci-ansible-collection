@@ -30,13 +30,9 @@ oracle.oci.oci_network_ip_sec_connection -- Manage an IpSecConnection resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_ip_sec_connection`.
 
@@ -57,14 +53,14 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an IpSecConnection resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new IPSec connection between the specified DRG and CPE. For more information, see `IPSec VPNs <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPsec.htm>`_.
+- For *state=present*, creates a new IPSec connection between the specified DRG and CPE. For more information, see `Site-to-Site VPN Overview <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm>`_.
 - If you configure at least one tunnel to use static routing, then in the request you must provide at least one valid static route (you're allowed a maximum of 10). For example: 10.0.0.0/16. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes. For more information, see the important note in `IPSecConnection <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/>`_.
 - For the purposes of access control, you must provide the `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_ of the compartment where you want the IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to use, put the IPSec connection in the same compartment as the DRG. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_.
 - You may optionally specify a *display name* for the IPSec connection, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - After creating the IPSec connection, you need to configure your on-premises router with tunnel-specific information. For tunnel status and the required configuration information, see:
 -  * `IPSecConnectionTunnel <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/>`_ * `IPSecConnectionTunnelSharedSecret <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/>`_
-- For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret (that is, the pre-shared key). For more information, see `Configuring Your On-Premises Router for an IPSec VPN <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm>`_.
-- This resource has the following action operations in the M(oci_ip_sec_connection_actions) module: change_compartment.
+- For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret (that is, the pre-shared key). For more information, see `CPE Configuration <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm>`_.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_network_ip_sec_connection_actions <ansible_collections.oracle.oci.oci_network_ip_sec_connection_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -186,7 +182,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment to contain the IPSec connection.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to contain the IPSec connection.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -234,7 +230,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -792,17 +788,42 @@ Examples
     
     - name: Create ip_sec_connection
       oci_network_ip_sec_connection:
-        display_name: "MyIPSecConnection"
-        cpe_id: "ocid1.cpe.oc1.phx.unique_ID"
-        static_routes:
-        - "192.0.2.0/24"
-        - "2001:db8::/32"
-        drg_id: "ocid1.drg.oc1.phx.unique_ID"
+        # required
         compartment_id: "ocid1.compartment.oc1..unique_ID"
+        cpe_id: ocid1.cpe.oc1.phx.unique_ID
+        drg_id: ocid1.drg.oc1.phx.unique_ID
+        static_routes: [ "192.0.2.0/24" ]
 
-    - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+        # optional
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: MyIPSecConnection
+        freeform_tags: {'Department': 'Finance'}
+        cpe_local_identifier: cpe_local_identifier_example
+        cpe_local_identifier_type: IP_ADDRESS
+        tunnel_configuration:
+        - # optional
+          display_name: display_name_example
+          routing: BGP
+          ike_version: V1
+          shared_secret: shared_secret_example
+          bgp_session_config:
+            # optional
+            oracle_interface_ip: 10.0.0.4/31
+            customer_interface_ip: 10.0.0.5/31
+            oracle_interface_ipv6: 2001:db8::1/64
+            customer_interface_ipv6: 2001:db8::1/64
+            customer_bgp_asn: 12345
+          encryption_domain_config:
+            # optional
+            oracle_traffic_selector: [ "null" ]
+            cpe_traffic_selector: [ "null" ]
+
+    - name: Update ip_sec_connection
       oci_network_ip_sec_connection:
-        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        # required
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyIPSecConnection
         freeform_tags: {'Department': 'Finance'}
@@ -810,19 +831,28 @@ Examples
         cpe_local_identifier_type: IP_ADDRESS
         static_routes: [ "192.0.2.0/24" ]
 
-    - name: Update ip_sec_connection
+    - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        # required
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyIPSecConnection
-        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
+        cpe_local_identifier: cpe_local_identifier_example
+        cpe_local_identifier_type: IP_ADDRESS
+        static_routes: [ "192.0.2.0/24" ]
 
     - name: Delete ip_sec_connection
       oci_network_ip_sec_connection:
+        # required
         ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
+        # required
         compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyIPSecConnection
         state: absent
@@ -861,7 +891,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the IpSecConnection resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_id&#x27;: &#x27;ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_local_identifier&#x27;: &#x27;cpe_local_identifier_example&#x27;, &#x27;cpe_local_identifier_type&#x27;: &#x27;IP_ADDRESS&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drg_id&#x27;: &#x27;ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;static_routes&#x27;: [], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
@@ -877,9 +907,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment containing the IPSec connection.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the IPSec connection.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -895,9 +925,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -919,7 +949,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example IP address: `10.0.3.3`</div>
                                             <div>Example hostname: `cpe.example.com`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cpe_local_identifier_example</div>
                                     </td>
             </tr>
@@ -937,7 +967,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of identifier for your CPE device. The value here must correspond to the value for `cpeLocalIdentifier`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IP_ADDRESS</div>
                                     </td>
             </tr>
@@ -956,7 +986,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -974,7 +1004,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -992,7 +1022,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1011,7 +1041,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -1029,7 +1059,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IPSec connection&#x27;s Oracle ID (<a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1047,7 +1077,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IPSec connection&#x27;s current state.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -1069,7 +1099,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `10.0.1.0/24`</div>
                                             <div>Example: `2001:db8::/32`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1086,7 +1116,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the IPSec connection was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>

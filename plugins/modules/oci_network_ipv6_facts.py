@@ -25,11 +25,13 @@ description:
     - Fetches details about one or multiple Ipv6 resources in Oracle Cloud Infrastructure
     - "Lists the L(IPv6,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Ipv6/) objects based
       on one of these filters:"
-    - " * Subnet OCID.
-        * VNIC OCID.
+    - " * Subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        * VNIC L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         * Both IPv6 address and subnet OCID: This lets you get an `Ipv6` object based on its private
-        IPv6 address (for example, 2001:0db8:0123:1111:abcd:ef01:2345:6789) and not its OCID. For comparison,
-        L(GetIpv6,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Ipv6/GetIpv6) requires the OCID."
+        IPv6 address (for example, 2001:0db8:0123:1111:abcd:ef01:2345:6789) and not its
+        L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). For comparison,
+        L(GetIpv6,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Ipv6/GetIpv6) requires the
+        L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)."
     - If I(ipv6_id) is specified, the details of a single Ipv6 will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -57,12 +59,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
+- name: Get a specific ipv6
+  oci_network_ipv6_facts:
+    # required
+    ipv6_id: "ocid1.ipv6.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List ipv6s
   oci_network_ipv6_facts:
 
-- name: Get a specific ipv6
-  oci_network_ipv6_facts:
-    ipv6_id: "ocid1.ipv6.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    ip_address: 10.0.3.3
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -90,8 +98,8 @@ ipv6s:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

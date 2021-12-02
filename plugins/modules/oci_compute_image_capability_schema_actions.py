@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on compute_image_capability_schema
   oci_compute_image_capability_schema_actions:
+    # required
     compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -107,7 +108,8 @@ compute_image_capability_schema:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the compute global image capability schema
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

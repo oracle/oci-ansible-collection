@@ -52,6 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on ai_private_endpoint
   oci_ai_anomaly_detection_ai_private_endpoint_actions:
+    # required
     ai_private_endpoint_id: "ocid1.aiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

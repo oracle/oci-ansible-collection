@@ -135,16 +135,36 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List connections
-  oci_data_catalog_connection_facts:
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-    data_asset_key: data_asset_key_example
-
 - name: Get a specific connection
   oci_data_catalog_connection_facts:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     connection_key: connection_key_example
+
+    # optional
+    fields: [ "$p.getValue()" ]
+
+- name: List connections
+  oci_data_catalog_connection_facts:
+    # required
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    data_asset_key: data_asset_key_example
+
+    # optional
+    fields: [ "$p.getValue()" ]
+    display_name: display_name_example
+    display_name_contains: display_name_contains_example
+    lifecycle_state: CREATING
+    time_created: 2013-10-20T19:20:30+01:00
+    time_updated: 2013-10-20T19:20:30+01:00
+    created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+    updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+    external_key: external_key_example
+    time_status_updated: 2013-10-20T19:20:30+01:00
+    is_default: true
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

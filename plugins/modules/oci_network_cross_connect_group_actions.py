@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on cross_connect_group
   oci_network_cross_connect_group_actions:
+    # required
     cross_connect_group_id: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -69,7 +70,7 @@ cross_connect_group:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the cross-connect group.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cross-connect group.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -83,7 +84,7 @@ cross_connect_group:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str
@@ -123,6 +124,56 @@ cross_connect_group:
             returned: on success
             type: str
             sample: "2016-08-25T21:10:29.600Z"
+        macsec_properties:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                state:
+                    description:
+                        - Indicates whether or not MACsec is enabled.
+                    returned: on success
+                    type: str
+                    sample: ENABLED
+                primary_key:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        connectivity_association_name_secret_id:
+                            description:
+                                - Secret L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) containing the Connectivity
+                                  association Key Name (CKN) of this MACsec key.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx"
+                        connectivity_association_name_secret_version:
+                            description:
+                                - The secret version of the connectivity association name secret in Vault.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        connectivity_association_key_secret_id:
+                            description:
+                                - Secret L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) containing the Connectivity
+                                  Association Key (CAK) of this MACsec key.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx"
+                        connectivity_association_key_secret_version:
+                            description:
+                                - The secret version of the `connectivityAssociationKey` secret in Vault.
+                            returned: on success
+                            type: int
+                            sample: 56
+                encryption_cipher:
+                    description:
+                        - Type of encryption cipher suite to use for the MACsec connection.
+                    returned: on success
+                    type: str
+                    sample: AES128_GCM
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -131,7 +182,17 @@ cross_connect_group:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "customer_reference_name": "customer_reference_name_example",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2016-08-25T21:10:29.600Z",
+        "macsec_properties": {
+            "state": "ENABLED",
+            "primary_key": {
+                "connectivity_association_name_secret_id": "ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx",
+                "connectivity_association_name_secret_version": 56,
+                "connectivity_association_key_secret_id": "ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx",
+                "connectivity_association_key_secret_version": 56
+            },
+            "encryption_cipher": "AES128_GCM"
+        }
     }
 """
 

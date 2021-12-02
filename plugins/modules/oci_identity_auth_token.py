@@ -67,17 +67,22 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create auth_token
   oci_identity_auth_token:
+    # required
     description: description_example
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update auth_token
   oci_identity_auth_token:
-    description: description_example
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     auth_token_id: "ocid1.authtoken.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    description: description_example
+
 - name: Delete auth_token
   oci_identity_auth_token:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     auth_token_id: "ocid1.authtoken.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -146,25 +146,126 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create deployment
+- name: Create deployment with deployment_type = PIPELINE_REDEPLOYMENT
   oci_devops_deployment:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_type: PIPELINE_REDEPLOYMENT
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create deployment with deployment_type = PIPELINE_DEPLOYMENT
+  oci_devops_deployment:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_type: PIPELINE_DEPLOYMENT
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    deployment_arguments:
+      # required
+      items:
+      - # required
+        name: name_example
+        value: value_example
+    deploy_artifact_override_arguments:
+      # required
+      items:
+      - # required
+        deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
+        value: value_example
+
+- name: Create deployment with deployment_type = SINGLE_STAGE_DEPLOYMENT
+  oci_devops_deployment:
+    # required
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_type: SINGLE_STAGE_DEPLOYMENT
 
-- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    deployment_arguments:
+      # required
+      items:
+      - # required
+        name: name_example
+        value: value_example
+    deploy_artifact_override_arguments:
+      # required
+      items:
+      - # required
+        deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
+        value: value_example
+    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update deployment with deployment_type = PIPELINE_REDEPLOYMENT
   oci_devops_deployment:
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    deployment_type: SINGLE_STAGE_DEPLOYMENT
+    # required
+    deployment_type: PIPELINE_REDEPLOYMENT
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update deployment
+- name: Update deployment with deployment_type = PIPELINE_DEPLOYMENT
   oci_devops_deployment:
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    deployment_type: SINGLE_STAGE_DEPLOYMENT
+    # required
+    deployment_type: PIPELINE_DEPLOYMENT
+
+    # optional
     display_name: display_name_example
-    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deployment with deployment_type = SINGLE_STAGE_DEPLOYMENT
+  oci_devops_deployment:
+    # required
+    deployment_type: SINGLE_STAGE_DEPLOYMENT
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deployment_type = PIPELINE_REDEPLOYMENT
+  oci_devops_deployment:
+    # required
+    deployment_type: PIPELINE_REDEPLOYMENT
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deployment_type = PIPELINE_DEPLOYMENT
+  oci_devops_deployment:
+    # required
+    deployment_type: PIPELINE_DEPLOYMENT
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deployment_type = SINGLE_STAGE_DEPLOYMENT
+  oci_devops_deployment:
+    # required
+    deployment_type: SINGLE_STAGE_DEPLOYMENT
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 """
 

@@ -58,13 +58,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List vnic_attachments
-  oci_compute_vnic_attachment_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific vnic_attachment
   oci_compute_vnic_attachment_facts:
+    # required
     vnic_attachment_id: "ocid1.vnicattachment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List vnic_attachments
+  oci_compute_vnic_attachment_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -91,7 +98,7 @@ vnic_attachments:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

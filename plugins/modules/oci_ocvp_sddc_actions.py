@@ -72,27 +72,33 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action cancel_downgrade_hcx on sddc
   oci_ocvp_sddc_actions:
+    # required
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel_downgrade_hcx
 
 - name: Perform action change_compartment on sddc
   oci_ocvp_sddc_actions:
+    # required
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action downgrade_hcx on sddc
   oci_ocvp_sddc_actions:
+    # required
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+    reserving_hcx_on_premise_license_keys: [ "null" ]
     action: downgrade_hcx
 
 - name: Perform action refresh_hcx_license_status on sddc
   oci_ocvp_sddc_actions:
+    # required
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     action: refresh_hcx_license_status
 
 - name: Perform action upgrade_hcx on sddc
   oci_ocvp_sddc_actions:
+    # required
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     action: upgrade_hcx
 
@@ -209,14 +215,14 @@ sddc:
                   to change this initial vCenter password to a different value.
             returned: on success
             type: str
-            sample: vcenter_initial_password_example
+            sample: example-password
         nsx_manager_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for NSX Manager. Make sure
                   to change this initial NSX Manager password to a different value.
             returned: on success
             type: str
-            sample: nsx_manager_initial_password_example
+            sample: example-password
         vcenter_username:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. You can
@@ -424,7 +430,7 @@ sddc:
                   to change this initial HCX Manager password to a different value.
             returned: on success
             type: str
-            sample: hcx_initial_password_example
+            sample: example-password
         hcx_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -557,8 +563,8 @@ sddc:
         "nsx_manager_fqdn": "nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
         "vcenter_private_ip_id": "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_manager_private_ip_id": "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx",
-        "vcenter_initial_password": "vcenter_initial_password_example",
-        "nsx_manager_initial_password": "nsx_manager_initial_password_example",
+        "vcenter_initial_password": "example-password",
+        "nsx_manager_initial_password": "example-password",
         "vcenter_username": "vcenter_username_example",
         "nsx_manager_username": "nsx_manager_username_example",
         "ssh_authorized_keys": "ssh_authorized_keys_example",
@@ -577,7 +583,7 @@ sddc:
         "provisioning_vlan_id": "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_private_ip_id": "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_fqdn": "hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
-        "hcx_initial_password": "hcx_initial_password_example",
+        "hcx_initial_password": "example-password",
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hcx_enabled": true,
         "hcx_on_prem_key": "hcx_on_prem_key_example",

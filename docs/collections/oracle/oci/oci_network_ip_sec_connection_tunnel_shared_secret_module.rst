@@ -30,13 +30,9 @@ oracle.oci.oci_network_ip_sec_connection_tunnel_shared_secret -- Manage an IpSec
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_ip_sec_connection_tunnel_shared_secret`.
 
@@ -319,8 +315,12 @@ Examples
     
     - name: Update ip_sec_connection_tunnel_shared_secret
       oci_network_ip_sec_connection_tunnel_shared_secret:
+        # required
         ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
         tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        shared_secret: shared_secret_example
 
 
 
@@ -356,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the IpSecConnectionTunnelSharedSecret resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;shared_secret&#x27;: &#x27;shared_secret_example&#x27;}</div>
                                     </td>
             </tr>
@@ -374,7 +374,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The tunnel&#x27;s shared secret (pre-shared key).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shared_secret_example</div>
                                     </td>
             </tr>

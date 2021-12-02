@@ -64,7 +64,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List db_versions
   oci_database_db_version_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    db_system_shape: db_system_shape_example
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    storage_management: storage_management_example
+    is_upgrade_supported: true
+    is_database_software_image_supported: true
 
 """
 

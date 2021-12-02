@@ -68,8 +68,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List related_events
   oci_os_management_related_event_facts:
+    # required
     event_fingerprint: event_fingerprint_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: instanceId
+    latest_timestamp_less_than: 2013-10-20T19:20:30+01:00
+    latest_timestamp_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
 
 """
 

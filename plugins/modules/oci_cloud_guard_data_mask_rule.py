@@ -147,36 +147,64 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create data_mask_rule
   oci_cloud_guard_data_mask_rule:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     iam_group_id: "ocid1.iamgroup.oc1..xxxxxxEXAMPLExxxxxx"
     target_selected:
+      # required
       kind: ALL
+    data_mask_categories: [ "null" ]
 
-- name: Update data_mask_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_cloud_guard_data_mask_rule:
-    display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    iam_group_id: "ocid1.iamgroup.oc1..xxxxxxEXAMPLExxxxxx"
-    target_selected:
-      kind: ALL
+    # optional
+    description: description_example
     data_mask_rule_status: ENABLED
+    lifecycle_state: CREATING
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update data_mask_rule
   oci_cloud_guard_data_mask_rule:
+    # required
+    data_mask_rule_id: "ocid1.datamaskrule.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    data_mask_rule_id: "ocid1.datamaskrule.oc1..xxxxxxEXAMPLExxxxxx"
+    iam_group_id: "ocid1.iamgroup.oc1..xxxxxxEXAMPLExxxxxx"
+    target_selected:
+      # required
+      kind: ALL
+    data_mask_categories: [ "null" ]
+    data_mask_rule_status: ENABLED
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update data_mask_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_cloud_guard_data_mask_rule:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    iam_group_id: "ocid1.iamgroup.oc1..xxxxxxEXAMPLExxxxxx"
+    target_selected:
+      # required
+      kind: ALL
+    data_mask_categories: [ "null" ]
+    data_mask_rule_status: ENABLED
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete data_mask_rule
   oci_cloud_guard_data_mask_rule:
+    # required
     data_mask_rule_id: "ocid1.datamaskrule.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete data_mask_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_data_mask_rule:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

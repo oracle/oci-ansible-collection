@@ -51,7 +51,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update user_state
   oci_identity_user_state:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     blocked: true
 
 """
@@ -164,7 +167,7 @@ user:
                         - Indicates if the user can log in to the console.
                     returned: on success
                     type: bool
-                    sample: true
+                    sample: example-password
                 can_use_api_keys:
                     description:
                         - Indicates if the user can use API keys.
@@ -236,7 +239,7 @@ user:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "capabilities": {
-            "can_use_console_password": true,
+            "can_use_console_password": example-password,
             "can_use_api_keys": true,
             "can_use_auth_tokens": true,
             "can_use_smtp_credentials": true,

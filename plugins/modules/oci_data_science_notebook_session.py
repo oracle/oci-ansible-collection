@@ -24,7 +24,8 @@ short_description: Manage a NotebookSession resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to create, update and delete a NotebookSession resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new notebook session.
-    - "This resource has the following action operations in the M(oci_notebook_session_actions) module: activate, change_compartment, deactivate."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_science_notebook_session_actions) module: activate, change_compartment,
+      deactivate."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -123,37 +124,77 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create notebook_session
   oci_data_science_notebook_session:
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     notebook_session_configuration_details:
+      # required
       shape: VM.Standard.E3.Flex
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_science_notebook_session:
+      # optional
+      block_storage_size_in_gbs: 1024
+      notebook_session_shape_config_details:
+        # optional
+        ocpus: 64.0
+        memory_in_gbs: 1024.0
+
+    # optional
     display_name: My NotebookSession
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    notebook_session_configuration_details:
-      shape: VM.Standard.E3.Flex
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update notebook_session
   oci_data_science_notebook_session:
+    # required
+    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: My NotebookSession
     notebook_session_configuration_details:
+      # required
       shape: VM.Standard.E3.Flex
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      block_storage_size_in_gbs: 1024
+      notebook_session_shape_config_details:
+        # optional
+        ocpus: 64.0
+        memory_in_gbs: 1024.0
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_science_notebook_session:
+    # required
+    display_name: My NotebookSession
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    notebook_session_configuration_details:
+      # required
+      shape: VM.Standard.E3.Flex
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      block_storage_size_in_gbs: 1024
+      notebook_session_shape_config_details:
+        # optional
+        ocpus: 64.0
+        memory_in_gbs: 1024.0
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete notebook_session
   oci_data_science_notebook_session:
+    # required
     notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_notebook_session:
+    # required
     display_name: My NotebookSession
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

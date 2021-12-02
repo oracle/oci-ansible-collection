@@ -50,11 +50,12 @@ options:
             - "Example: `ocid1.keyversion.oc1..exampleuniqueID`"
             - Required for create using I(state=present).
         type: str
-    message:
+    msg:
         description:
             - The base64 encoded signature payload that was signed.
             - Required for create using I(state=present).
         type: str
+        aliases: ["message"]
     signature:
         description:
             - The signature of the message field using the kmsKeyId, the kmsKeyVersionId, and the signingAlgorithm.
@@ -92,16 +93,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create container_image_signature
   oci_artifacts_container_image_signature:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     image_id: "ocid1.containerimage.oc1..exampleuniqueID"
     kms_key_id: "ocid1.key.oc1..exampleuniqueID"
     kms_key_version_id: "ocid1.keyversion.oc1..exampleuniqueID"
-    message: message_example
+    msg: message_example
     signature: signature_example
     signing_algorithm: SHA_224_RSA_PKCS_PSS
 
 - name: Delete container_image_signature
   oci_artifacts_container_image_signature:
+    # required
     image_signature_id: "ocid1.containersignature.oc1..exampleuniqueID"
     state: absent
 
@@ -281,6 +284,9 @@ class ContainerImageSignatureHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateContainerImageSignatureDetails
 
+    def get_exclude_attributes(self):
+        return ["msg"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -336,7 +342,7 @@ def main():
             image_id=dict(type="str"),
             kms_key_id=dict(type="str"),
             kms_key_version_id=dict(type="str"),
-            message=dict(type="str"),
+            msg=dict(aliases=["message"], type="str"),
             signature=dict(type="str"),
             signing_algorithm=dict(
                 type="str",

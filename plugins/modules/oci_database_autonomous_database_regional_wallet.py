@@ -45,6 +45,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update autonomous_database_regional_wallet
   oci_database_autonomous_database_regional_wallet:
+
+    # optional
     should_rotate: true
 
 """

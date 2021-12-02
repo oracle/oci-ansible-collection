@@ -117,45 +117,61 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action add_block_storage on bds_instance
   oci_bds_instance_actions:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    cluster_admin_password: cluster_admin_password_example
+    cluster_admin_password: example-password
     block_volume_size_in_gbs: 56
     action: add_block_storage
 
 - name: Perform action add_cloud_sql on bds_instance
   oci_bds_instance_actions:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    cluster_admin_password: cluster_admin_password_example
+    cluster_admin_password: example-password
     shape: shape_example
     action: add_cloud_sql
 
+    # optional
+    block_volume_size_in_gbs: 56
+
 - name: Perform action add_worker_nodes on bds_instance
   oci_bds_instance_actions:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    cluster_admin_password: cluster_admin_password_example
+    cluster_admin_password: example-password
     number_of_worker_nodes: 56
     action: add_worker_nodes
 
 - name: Perform action change_compartment on bds_instance
   oci_bds_instance_actions:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action change_shape on bds_instance
   oci_bds_instance_actions:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    cluster_admin_password: cluster_admin_password_example
+    cluster_admin_password: example-password
+    nodes:
+      # optional
+      worker: worker_example
+      master: master_example
+      utility: utility_example
+      cloudsql: cloudsql_example
     action: change_shape
 
 - name: Perform action remove_cloud_sql on bds_instance
   oci_bds_instance_actions:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    cluster_admin_password: cluster_admin_password_example
+    cluster_admin_password: example-password
     action: remove_cloud_sql
 
 - name: Perform action restart_node on bds_instance
   oci_bds_instance_actions:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     node_id: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart_node

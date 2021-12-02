@@ -46,6 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action mirror on repository
   oci_devops_repository_actions:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     action: mirror
 

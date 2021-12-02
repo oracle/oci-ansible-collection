@@ -25,8 +25,8 @@ description:
     - This module allows the user to create, update and delete a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Managed Database Group. The group does not contain any
       Managed Databases when it is created, and they must be added later.
-    - "This resource has the following action operations in the M(oci_managed_database_group_actions) module: add_managed_database, change_compartment,
-      remove_managed_database."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_management_managed_database_group_actions) module:
+      add_managed_database, change_compartment, remove_managed_database."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -74,26 +74,39 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create managed_database_group
   oci_database_management_managed_database_group:
+    # required
+    name: TestGroup
     compartment_id: "ocid1.tenancy.oc1..unique_ID"
-    name: "TestGroup"
-    description: "Sales test database group"
 
-- name: Update managed_database_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_management_managed_database_group:
-    description: "Test database group"
+    # optional
+    description: Sales test database group
 
 - name: Update managed_database_group
   oci_database_management_managed_database_group:
-    description: "Test database group"
+    # required
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: Sales test database group
+
+- name: Update managed_database_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_management_managed_database_group:
+    # required
+    name: TestGroup
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+
+    # optional
+    description: Sales test database group
 
 - name: Delete managed_database_group
   oci_database_management_managed_database_group:
+    # required
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete managed_database_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_management_managed_database_group:
+    # required
     name: TestGroup
     compartment_id: "ocid1.tenancy.oc1..unique_ID"
     state: absent

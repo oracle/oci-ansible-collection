@@ -73,13 +73,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List apm_domains
-  oci_apm_control_plane_apm_domain_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific apm_domain
   oci_apm_control_plane_apm_domain_facts:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List apm_domains
+  oci_apm_control_plane_apm_domain_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

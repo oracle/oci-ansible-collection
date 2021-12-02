@@ -24,7 +24,7 @@ short_description: Fetches details about a Vnic resource in Oracle Cloud Infrast
 description:
     - Fetches details about a Vnic resource in Oracle Cloud Infrastructure
     - Gets the information for the specified virtual network interface card (VNIC).
-      You can get the VNIC OCID from the
+      You can get the VNIC L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) from the
       L(ListVnicAttachments,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VnicAttachment/ListVnicAttachments)
       operation.
 version_added: "2.9.0"
@@ -42,6 +42,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: Get a specific vnic
   oci_network_vnic_facts:
+    # required
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -62,7 +63,7 @@ vnic:
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment containing the VNIC.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the VNIC.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -76,7 +77,7 @@ vnic:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str
@@ -106,7 +107,7 @@ vnic:
             sample: bminstance-1
         id:
             description:
-                - The OCID of the VNIC.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -148,7 +149,8 @@ vnic:
         vlan_id:
             description:
                 - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
-                  belonging to a subnet), the `vlanId` is the OCID of the VLAN the VNIC is in. See
+                  belonging to a subnet), the `vlanId` is the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN
+                  the VNIC is in. See
                   L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan). If the VNIC is instead in a subnet, `subnetId` has a value.
             returned: on success
             type: str
@@ -182,7 +184,7 @@ vnic:
             sample: true
         subnet_id:
             description:
-                - The OCID of the subnet the VNIC is in.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet the VNIC is in.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"

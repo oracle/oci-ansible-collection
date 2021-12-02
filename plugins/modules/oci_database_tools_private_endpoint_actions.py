@@ -53,9 +53,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on database_tools_private_endpoint
   oci_database_tools_private_endpoint_actions:
-    compartment_id: "compartmentId"
+    # required
     database_tools_private_endpoint_id: "ocid1.databasetoolsprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 

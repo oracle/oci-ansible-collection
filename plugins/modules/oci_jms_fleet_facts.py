@@ -76,13 +76,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List fleets
-  oci_jms_fleet_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific fleet
   oci_jms_fleet_facts:
+    # required
     fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List fleets
+  oci_jms_fleet_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: ACTIVE
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: displayName
 
 """
 

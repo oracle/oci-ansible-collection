@@ -85,13 +85,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List channels
-  oci_mysql_channel_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific channel
   oci_mysql_channel_facts:
+    # required
     channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List channels
+  oci_mysql_channel_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    lifecycle_state: lifecycle_state_example
+    is_enabled: true
+    sort_by: displayName
+    sort_order: ASC
 
 """
 

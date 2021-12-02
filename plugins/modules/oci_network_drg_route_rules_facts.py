@@ -46,7 +46,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List drg_route_rules
   oci_network_drg_route_rules_facts:
+    # required
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    route_type: STATIC
 
 """
 
@@ -123,6 +127,12 @@ drg_route_rules:
             returned: on success
             type: str
             sample: STATIC
+        attributes:
+            description:
+                - Additional properties for the route, computed by the service.
+            returned: on success
+            type: dict
+            sample: {}
     sample: [{
         "destination": "destination_example",
         "destination_type": "CIDR_BLOCK",
@@ -131,7 +141,8 @@ drg_route_rules:
         "is_conflict": true,
         "is_blackhole": true,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "route_provenance": "STATIC"
+        "route_provenance": "STATIC",
+        "attributes": {}
     }]
 """
 

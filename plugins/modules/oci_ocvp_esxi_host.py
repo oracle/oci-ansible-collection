@@ -116,28 +116,47 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create esxi_host
   oci_ocvp_esxi_host:
+    # required
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_ocvp_esxi_host:
+    # optional
     display_name: display_name_example
+    current_sku: HOUR
     next_sku: HOUR
+    compute_availability_domain: compute_availability_domain_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update esxi_host
   oci_ocvp_esxi_host:
+    # required
+    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     next_sku: HOUR
-    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_ocvp_esxi_host:
+    # required
+    display_name: display_name_example
+
+    # optional
+    next_sku: HOUR
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete esxi_host
   oci_ocvp_esxi_host:
+    # required
     esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_esxi_host:
+    # required
     display_name: display_name_example
     state: absent
 

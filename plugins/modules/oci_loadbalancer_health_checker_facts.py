@@ -46,6 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific health_checker
   oci_loadbalancer_health_checker_facts:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: example_backend_set
 
@@ -117,7 +118,7 @@ health_checker:
                 - "Example: `^((?!false).|\\\\s)*$`"
             returned: on success
             type: str
-            sample: "^((?!false).|\\\\s)*$"
+            sample: response_body_regex_example
     sample: {
         "protocol": "HTTP",
         "url_path": "/healthcheck",
@@ -126,7 +127,7 @@ health_checker:
         "retries": 3,
         "timeout_in_millis": 3000,
         "interval_in_millis": 10000,
-        "response_body_regex": "^((?!false).|\\\\s)*$"
+        "response_body_regex": "response_body_regex_example"
     }
 """
 

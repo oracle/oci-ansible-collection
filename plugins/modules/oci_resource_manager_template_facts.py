@@ -73,13 +73,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List templates
-  oci_resource_manager_template_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific template
   oci_resource_manager_template_facts:
+    # required
     template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List templates
+  oci_resource_manager_template_facts:
+
+    # optional
+    template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    template_category_id: "ocid1.templatecategory.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

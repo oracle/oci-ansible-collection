@@ -140,14 +140,33 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create custom_property
   oci_data_catalog_custom_property:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
-- name: Update custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    description: description_example
+    data_type: TEXT
+    is_sortable: true
+    is_filterable: true
+    is_multi_valued: true
+    is_hidden: true
+    is_editable: true
+    is_shown_in_list: true
+    is_hidden_in_search: true
+    is_event_enabled: true
+    allowed_values: [ "null" ]
+    properties: null
+
+- name: Update custom_property
   oci_data_catalog_custom_property:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
+    custom_property_key: custom_property_key_example
+
+    # optional
     display_name: display_name_example
     description: description_example
     is_sortable: true
@@ -158,15 +177,32 @@ EXAMPLES = """
     is_shown_in_list: true
     is_hidden_in_search: true
     is_event_enabled: true
+    allowed_values: [ "null" ]
+    properties: null
 
-- name: Update custom_property
+- name: Update custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_custom_property:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-    custom_property_key: custom_property_key_example
+    display_name: display_name_example
+
+    # optional
+    description: description_example
+    is_sortable: true
+    is_filterable: true
+    is_multi_valued: true
+    is_hidden: true
+    is_editable: true
+    is_shown_in_list: true
+    is_hidden_in_search: true
+    is_event_enabled: true
+    allowed_values: [ "null" ]
+    properties: null
 
 - name: Delete custom_property
   oci_data_catalog_custom_property:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
     custom_property_key: custom_property_key_example
@@ -174,6 +210,7 @@ EXAMPLES = """
 
 - name: Delete custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_custom_property:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example

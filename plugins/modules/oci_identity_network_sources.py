@@ -131,30 +131,63 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create network_sources
   oci_identity_network_sources:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
 
-- name: Update network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_network_sources:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
-    description: description_example
+    # optional
+    public_source_list: [ "null" ]
+    virtual_source_list:
+    - # optional
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      ip_ranges: [ "null" ]
+    services: [ "null" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update network_sources
   oci_identity_network_sources:
-    description: description_example
+    # required
     network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    public_source_list: [ "null" ]
+    virtual_source_list:
+    - # optional
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      ip_ranges: [ "null" ]
+    services: [ "null" ]
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_identity_network_sources:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+
+    # optional
+    public_source_list: [ "null" ]
+    virtual_source_list:
+    - # optional
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      ip_ranges: [ "null" ]
+    services: [ "null" ]
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete network_sources
   oci_identity_network_sources:
+    # required
     network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_network_sources:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent

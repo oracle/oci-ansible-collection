@@ -72,13 +72,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List accepted_agreements
-  oci_marketplace_accepted_agreement_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific accepted_agreement
   oci_marketplace_accepted_agreement_facts:
+    # required
     accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List accepted_agreements
+  oci_marketplace_accepted_agreement_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+    package_version: package_version_example
+    sort_by: TIMEACCEPTED
+    sort_order: ASC
 
 """
 

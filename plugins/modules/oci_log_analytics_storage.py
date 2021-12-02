@@ -65,7 +65,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update storage
   oci_log_analytics_storage:
+    # required
     namespace_name: namespace_name_example
+    archiving_configuration:
+      # optional
+      active_storage_duration: active_storage_duration_example
+      archival_storage_duration: archival_storage_duration_example
 
 """
 

@@ -28,7 +28,8 @@ description:
       For more information, see L(VCNs and Subnets,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVCNs.htm).
       For information on the number of subnets you can have in a VCN, see
       L(Service Limits,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm).
-    - For the purposes of access control, you must provide the OCID of the compartment where you want the subnet
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment where you want the subnet
       to reside. Notice that the subnet doesn't have to be in the same compartment as the VCN, route tables, or
       other Networking Service components. If you're not sure which compartment to use, put the subnet in
       the same compartment as the VCN. For more information about compartments and access control, see
@@ -48,7 +49,7 @@ description:
     - You can also add a DNS label for the subnet, which is required if you want the Internet and
       VCN Resolver to resolve hostnames for instances in the subnet. For more information, see
       L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
-    - "This resource has the following action operations in the M(oci_subnet_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_subnet_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -76,7 +77,7 @@ options:
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment to contain the subnet.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the subnet.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -90,7 +91,8 @@ options:
         type: dict
     dhcp_options_id:
         description:
-            - The OCID of the set of DHCP options the subnet will use. If you don't
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the set of DHCP options the subnet will use. If you
+              don't
               provide a value, the subnet uses the VCN's default set of DHCP options.
             - This parameter is updatable.
         type: str
@@ -158,7 +160,8 @@ options:
         type: bool
     route_table_id:
         description:
-            - The OCID of the route table the subnet will use. If you don't provide a value,
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the subnet will use. If you don't
+              provide a value,
               the subnet uses the VCN's default route table.
             - This parameter is updatable.
         type: str
@@ -173,7 +176,7 @@ options:
         elements: str
     vcn_id:
         description:
-            - The OCID of the VCN to contain the subnet.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN to contain the subnet.
             - Required for create using I(state=present).
         type: str
     subnet_id:
@@ -198,20 +201,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create subnet
   oci_network_subnet:
-    display_name: "MySubnet"
-    cidr_block: "10.0.2.0/24"
-    availability_domain: "Uocm:PHX-AD-1"
-    route_table_id: "ocid1.routetable.oc1.phx.unique_ID"
-    security_list_ids:
-    - "ocid1.securitylist.oc1.phx.unique_ID"
-    dhcp_options_id: "ocid1.dhcpoptions.oc1.phx.unique_ID"
-    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-
-- name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_subnet:
+    # required
     cidr_block: 10.0.2.0/24
     compartment_id: "ocid1.compartment.oc1..unique_ID"
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
+    display_name: MySubnet
+    dns_label: subnet123
+    freeform_tags: {'Department': 'Finance'}
+    ipv6_cidr_block: 2001:0db8:0123:1111::/64
+    prohibit_internet_ingress: true
+    prohibit_public_ip_on_vnic: true
+    route_table_id: ocid1.routetable.oc1.phx.unique_ID
+    security_list_ids: [ "ocid1.securitylist.oc1.phx.unique_ID" ]
+
+- name: Update subnet
+  oci_network_subnet:
+    # required
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    cidr_block: 10.0.2.0/24
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
     display_name: MySubnet
@@ -220,19 +234,30 @@ EXAMPLES = """
     route_table_id: ocid1.routetable.oc1.phx.unique_ID
     security_list_ids: [ "ocid1.securitylist.oc1.phx.unique_ID" ]
 
-- name: Update subnet
+- name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: MySubnet
+
+    # optional
     cidr_block: 10.0.2.0/24
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
+    freeform_tags: {'Department': 'Finance'}
+    ipv6_cidr_block: 2001:0db8:0123:1111::/64
+    route_table_id: ocid1.routetable.oc1.phx.unique_ID
+    security_list_ids: [ "ocid1.securitylist.oc1.phx.unique_ID" ]
 
 - name: Delete subnet
   oci_network_subnet:
+    # required
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MySubnet
     state: absent
@@ -263,7 +288,7 @@ subnet:
             sample: 10.0.1.0/24
         compartment_id:
             description:
-                - The OCID of the compartment containing the subnet.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the subnet.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -277,7 +302,7 @@ subnet:
             sample: {'Operations': {'CostCenter': 'US'}}
         dhcp_options_id:
             description:
-                - The OCID of the set of DHCP options that the subnet uses.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the set of DHCP options that the subnet uses.
             returned: on success
             type: str
             sample: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
@@ -314,7 +339,7 @@ subnet:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The subnet's Oracle ID (OCID).
+                - The subnet's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -371,7 +396,7 @@ subnet:
             sample: true
         route_table_id:
             description:
-                - The OCID of the route table that the subnet uses.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table that the subnet uses.
             returned: on success
             type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
@@ -402,7 +427,7 @@ subnet:
             sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
-                - The OCID of the VCN the subnet is in.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the subnet is in.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

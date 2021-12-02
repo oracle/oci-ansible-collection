@@ -47,7 +47,7 @@ description:
       When you create a resource, you can find its OCID in the response.
       You can also retrieve a resource's OCID by using a List API operation on that resource
       type or by viewing the resource in the Console.
-    - "This resource has the following action operations in the M(oci_file_system_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_file_storage_file_system_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -123,32 +123,49 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create file_system
   oci_file_storage_file_system:
-    availability_domain: "Uocm:PHX-AD-1"
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "media-files-1"
-
-- name: Update file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_file_storage_file_system:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..unique_ID"
+
+    # optional
+    display_name: media-files-1
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    source_snapshot_id: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update file_system
+  oci_file_storage_file_system:
+    # required
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: media-files-1
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update file_system
+- name: Update file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_file_system:
+    # required
+    availability_domain: Uocm:PHX-AD-1
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: media-files-1
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
-    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete file_system
   oci_file_storage_file_system:
+    # required
     file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_file_system:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: media-files-1

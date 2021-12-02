@@ -43,14 +43,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List vm_cluster_patch_history_entries
-  oci_database_vm_cluster_patch_history_entry_facts:
-    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific vm_cluster_patch_history_entry
   oci_database_vm_cluster_patch_history_entry_facts:
+    # required
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     patch_history_entry_id: "ocid1.patchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List vm_cluster_patch_history_entries
+  oci_database_vm_cluster_patch_history_entry_facts:
+    # required
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -57,9 +57,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on address_list
   oci_waas_address_list_actions:
-    compartment_id: "ocid1.compartment.oc1.."
+    # required
     address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 

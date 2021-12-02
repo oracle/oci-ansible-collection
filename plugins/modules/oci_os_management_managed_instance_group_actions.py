@@ -79,25 +79,35 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action attach_managed_instance on managed_instance_group
   oci_os_management_managed_instance_group_actions:
+    # required
     managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_managed_instance
 
 - name: Perform action change_compartment on managed_instance_group
   oci_os_management_managed_instance_group_actions:
+    # required
     managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Perform action detach_managed_instance on managed_instance_group
   oci_os_management_managed_instance_group_actions:
+    # required
     managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_managed_instance
 
 - name: Perform action install_all_updates on managed_instance_group
   oci_os_management_managed_instance_group_actions:
+    # required
     managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     action: install_all_updates
+
+    # optional
+    update_type: SECURITY
 
 """
 

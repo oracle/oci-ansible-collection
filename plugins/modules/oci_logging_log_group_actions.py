@@ -53,9 +53,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on log_group
   oci_logging_log_group_actions:
-    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+    # required
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    action: change_compartment
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

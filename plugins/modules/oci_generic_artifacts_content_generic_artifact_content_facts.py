@@ -58,6 +58,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific generic_artifact_content
   oci_generic_artifacts_content_generic_artifact_content_facts:
+    # required
     dest: /tmp/myfile
     repository_id: "ocid1.repository.oc1..exampleuniqueID"
     artifact_path: project01/my-web-app/artifact-abc

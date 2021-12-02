@@ -25,7 +25,8 @@ description:
     - This module allows the user to create, update and delete an InstanceConfiguration resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an instance configuration. An instance configuration is a template that defines the
       settings to use when creating Compute instances.
-    - "This resource has the following action operations in the M(oci_instance_configuration_actions) module: change_compartment, launch."
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_management_instance_configuration_actions) module: change_compartment,
+      launch."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -46,8 +47,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the instance configuration. Does not have to be unique,
-              and it's changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -117,7 +118,8 @@ options:
                         suboptions:
                             display_name:
                                 description:
-                                    - A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
+                                    - A user-friendly name. Does not have to be unique, and it's changeable.
+                                      Avoid entering confidential information.
                                 type: str
                                 aliases: ["name"]
                             is_read_only:
@@ -250,7 +252,9 @@ options:
                         type: str
                     compartment_id:
                         description:
-                            - The OCID of the compartment.
+                            - The OCID of the compartment containing the instance.
+                              Instances created from instance configurations are placed in the same compartment
+                              as the instance that was used to create the instance configuration.
                         type: str
                     create_vnic_details:
                         description:
@@ -278,7 +282,7 @@ options:
                                 type: dict
                             display_name:
                                 description:
-                                    - A user-friendly name for the VNIC. Does not have to be unique.
+                                    - A user-friendly name. Does not have to be unique, and it's changeable.
                                       Avoid entering confidential information.
                                 type: str
                                 aliases: ["name"]
@@ -331,7 +335,6 @@ options:
                         description:
                             - A user-friendly name. Does not have to be unique, and it's changeable.
                               Avoid entering confidential information.
-                            - "Example: `My bare metal instance`"
                         type: str
                         aliases: ["name"]
                     extended_metadata:
@@ -780,7 +783,7 @@ options:
                                 type: dict
                             display_name:
                                 description:
-                                    - A user-friendly name for the VNIC. Does not have to be unique.
+                                    - A user-friendly name. Does not have to be unique, and it's changeable.
                                       Avoid entering confidential information.
                                 type: str
                                 aliases: ["name"]
@@ -824,7 +827,8 @@ options:
                                 type: str
                     display_name:
                         description:
-                            - A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.
+                            - A user-friendly name. Does not have to be unique, and it's changeable.
+                              Avoid entering confidential information.
                         type: str
                         aliases: ["name"]
                     nic_index:
@@ -861,33 +865,190 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create instance_configuration
+- name: Create instance_configuration with source = NONE
   oci_compute_management_instance_configuration:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "example-instance-configuration"
-    source: "INSTANCE"
-    instance_id: "ocid1.instance.oc1.phx.unique_ID"
+    instance_details:
+      # required
+      instance_type: compute
 
-- name: Update instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      # optional
+      block_volumes:
+      - # optional
+        attach_details:
+          # required
+          type: iscsi
+
+          # optional
+          display_name: display_name_example
+          is_read_only: true
+          device: device_example
+          is_shareable: true
+          use_chap: true
+        create_details:
+          # optional
+          availability_domain: Uocm:PHX-AD-1
+          backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
+          compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+          display_name: display_name_example
+          freeform_tags: {'Department': 'Finance'}
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          vpus_per_gb: 56
+          size_in_gbs: 56
+          source_details:
+            # required
+            type: volumeBackup
+
+            # optional
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+      launch_details:
+        # optional
+        availability_domain: Uocm:PHX-AD-1
+        capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        create_vnic_details:
+          # optional
+          assign_public_ip: true
+          assign_private_dns_record: true
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+          display_name: display_name_example
+          freeform_tags: {'Department': 'Finance'}
+          hostname_label: hostname_label_example
+          nsg_ids: [ "null" ]
+          private_ip: private_ip_example
+          skip_source_dest_check: true
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        extended_metadata: null
+        freeform_tags: {'Department': 'Finance'}
+        ipxe_script: ipxe_script_example
+        metadata: null
+        shape: shape_example
+        shape_config:
+          # optional
+          ocpus: 3.4
+          memory_in_gbs: 3.4
+          baseline_ocpu_utilization: BASELINE_1_8
+        platform_config:
+          # required
+          type: AMD_MILAN_BM
+
+          # optional
+          is_secure_boot_enabled: true
+          is_trusted_platform_module_enabled: true
+          is_measured_boot_enabled: true
+          numa_nodes_per_socket: NPS0
+        source_details:
+          # required
+          source_type: image
+
+          # optional
+          boot_volume_size_in_gbs: 56
+          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        fault_domain: FAULT-DOMAIN-1
+        dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
+        launch_mode: NATIVE
+        launch_options:
+          # optional
+          boot_volume_type: ISCSI
+          firmware: BIOS
+          network_type: E1000
+          remote_data_volume_type: ISCSI
+          is_pv_encryption_in_transit_enabled: true
+          is_consistent_volume_naming_enabled: true
+        agent_config:
+          # optional
+          is_monitoring_disabled: true
+          is_management_disabled: true
+          are_all_plugins_disabled: true
+          plugins_config:
+          - # required
+            name: name_example
+            desired_state: ENABLED
+        is_pv_encryption_in_transit_enabled: true
+        preferred_maintenance_action: LIVE_MIGRATE
+        instance_options:
+          # optional
+          are_legacy_imds_endpoints_disabled: true
+        availability_config:
+          # optional
+          recovery_action: RESTORE_INSTANCE
+        preemptible_instance_config:
+          # required
+          preemption_action:
+            # required
+            type: TERMINATE
+
+            # optional
+            preserve_boot_volume: true
+      secondary_vnics:
+      - # optional
+        create_vnic_details:
+          # optional
+          assign_public_ip: true
+          assign_private_dns_record: true
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+          display_name: display_name_example
+          freeform_tags: {'Department': 'Finance'}
+          hostname_label: hostname_label_example
+          nsg_ids: [ "null" ]
+          private_ip: private_ip_example
+          skip_source_dest_check: true
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        nic_index: 56
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example-instance-configuration
+    freeform_tags: {'Department': 'Finance'}
+    source: NONE
+
+- name: Create instance_configuration with source = INSTANCE
   oci_compute_management_instance_configuration:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
+    source: INSTANCE
+    instance_id: ocid1.instance.oc1.phx.unique_ID
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: example-instance-configuration
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update instance_configuration
   oci_compute_management_instance_configuration:
+    # required
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: example-instance-configuration
-    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_management_instance_configuration:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: example-instance-configuration
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete instance_configuration
   oci_compute_management_instance_configuration:
+    # required
     instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_configuration:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: example-instance-configuration
     state: absent
@@ -918,7 +1079,8 @@ instance_configuration:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the instance configuration.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -963,7 +1125,8 @@ instance_configuration:
                             contains:
                                 display_name:
                                     description:
-                                        - A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
+                                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                                          Avoid entering confidential information.
                                     returned: on success
                                     type: str
                                     sample: display_name_example
@@ -1129,7 +1292,9 @@ instance_configuration:
                             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
                         compartment_id:
                             description:
-                                - The OCID of the compartment.
+                                - The OCID of the compartment containing the instance.
+                                  Instances created from instance configurations are placed in the same compartment
+                                  as the instance that was used to create the instance configuration.
                             returned: on success
                             type: str
                             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1166,7 +1331,7 @@ instance_configuration:
                                     sample: {'Operations': {'CostCenter': 'US'}}
                                 display_name:
                                     description:
-                                        - A user-friendly name for the VNIC. Does not have to be unique.
+                                        - A user-friendly name. Does not have to be unique, and it's changeable.
                                           Avoid entering confidential information.
                                     returned: on success
                                     type: str
@@ -1233,10 +1398,9 @@ instance_configuration:
                             description:
                                 - A user-friendly name. Does not have to be unique, and it's changeable.
                                   Avoid entering confidential information.
-                                - "Example: `My bare metal instance`"
                             returned: on success
                             type: str
-                            sample: My bare metal instance
+                            sample: display_name_example
                         extended_metadata:
                             description:
                                 - Additional metadata key/value pairs that you provide. They serve the same purpose and
@@ -1711,7 +1875,7 @@ instance_configuration:
                                     sample: {'Operations': {'CostCenter': 'US'}}
                                 display_name:
                                     description:
-                                        - A user-friendly name for the VNIC. Does not have to be unique.
+                                        - A user-friendly name. Does not have to be unique, and it's changeable.
                                           Avoid entering confidential information.
                                     returned: on success
                                     type: str
@@ -1767,7 +1931,8 @@ instance_configuration:
                                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
-                                - A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.
+                                - A user-friendly name. Does not have to be unique, and it's changeable.
+                                  Avoid entering confidential information.
                             returned: on success
                             type: str
                             sample: display_name_example
@@ -1848,7 +2013,7 @@ instance_configuration:
                     "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 },
                 "defined_tags": {'Operations': {'CostCenter': 'US'}},
-                "display_name": "My bare metal instance",
+                "display_name": "display_name_example",
                 "extended_metadata": {},
                 "freeform_tags": {'Department': 'Finance'},
                 "ipxe_script": "ipxe_script_example",

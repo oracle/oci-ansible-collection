@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific announcement
   oci_announcements_service_announcement_facts:
+    # required
     announcement_id: "ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

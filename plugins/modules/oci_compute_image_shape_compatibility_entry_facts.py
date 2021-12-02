@@ -42,14 +42,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List image_shape_compatibility_entries
-  oci_compute_image_shape_compatibility_entry_facts:
-    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific image_shape_compatibility_entry
   oci_compute_image_shape_compatibility_entry_facts:
+    # required
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
+
+- name: List image_shape_compatibility_entries
+  oci_compute_image_shape_compatibility_entry_facts:
+    # required
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

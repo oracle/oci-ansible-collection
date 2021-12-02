@@ -30,13 +30,9 @@ oracle.oci.oci_network_load_balancer_backend -- Manage a Backend resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_load_balancer_backend`.
 
@@ -519,24 +515,36 @@ Examples
     
     - name: Create backend
       oci_network_load_balancer_backend:
-        ip_address: "10.0.0.3"
-        port: 8080
-        is_backup: false
-        is_drain: false
-        is_offline: false
+        # required
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        backend_set_name: "example_backend_set"
+        port: 8080
+        backend_set_name: example_backend_set
+
+        # optional
+        name: webServer1
+        ip_address: 10.0.0.3
+        target_id: "ocid1.privateip..oc1.unique_ID"
+        weight: 3
+        is_drain: false
+        is_backup: false
+        is_offline: false
 
     - name: Update backend
       oci_network_load_balancer_backend:
-        is_backup: false
-        is_drain: false
-        is_offline: false
+        # required
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        backend_set_name: "example_backend_set"
+        name: webServer1
+        backend_set_name: example_backend_set
+
+        # optional
+        weight: 3
+        is_drain: false
+        is_backup: false
+        is_offline: false
 
     - name: Delete backend
       oci_network_load_balancer_backend:
+        # required
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         name: webServer1
         backend_set_name: example_backend_set
@@ -576,7 +584,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Backend resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;ip_address&#x27;: &#x27;10.0.0.3&#x27;, &#x27;is_backup&#x27;: False, &#x27;is_drain&#x27;: False, &#x27;is_offline&#x27;: False, &#x27;name&#x27;: &#x27;10.0.0.3:8080&#x27;, &#x27;port&#x27;: 8080, &#x27;target_id&#x27;: &#x27;ocid1.privateip..oc1.unique_ID&#x27;, &#x27;weight&#x27;: 3}</div>
                                     </td>
             </tr>
@@ -594,7 +602,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IP address of the backend server. Example: `10.0.0.3`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.3</div>
                                     </td>
             </tr>
@@ -613,7 +621,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the network load balancer should treat this server as a backup unit. If `true`, then the network load balancer forwards no ingress traffic to this backend server unless all other backend servers not marked as &quot;isBackup&quot; fail the health check policy.</div>
                                             <div>Example: `false`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -630,7 +638,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the network load balancer should drain this server. Servers marked &quot;isDrain&quot; receive no incoming traffic.</div>
                                             <div>Example: `false`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -647,7 +655,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the network load balancer should treat this server as offline. Offline servers receive no incoming traffic.</div>
                                             <div>Example: `false`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -664,7 +672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A read-only field showing the IP address/IP OCID and port that uniquely identify this backend server in the backend set.</div>
                                             <div>Example: `10.0.0.3:8080`, or `ocid1.privateip..oc1.&lt;var&gt;&amp;lt;unique_ID&amp;gt;&lt;/var&gt;:443` or `10.0.0.3:0`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.3:8080</div>
                                     </td>
             </tr>
@@ -683,7 +691,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The communication port for the backend server.</div>
                                             <div>Example: `8080`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">8080</div>
                                     </td>
             </tr>
@@ -701,7 +709,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IP OCID/Instance OCID associated with the backend server. Example: `ocid1.privateip..oc1.&lt;var&gt;&amp;lt;unique_ID&amp;gt;&lt;/var&gt;`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.privateip..oc1.unique_ID</div>
                                     </td>
             </tr>
@@ -720,7 +728,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The network load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger proportion of incoming traffic. For example, a server weighted &#x27;3&#x27; receives three times the number of new connections as a server weighted &#x27;1&#x27;. For more information about load balancing policies, see <a href='https://docs.cloud.oracle.com/Content/Balance/Reference/lbpolicies.htm'>How Network Load Balancing Policies Work</a>.</div>
                                             <div>Example: `3`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
                                     </td>
             </tr>

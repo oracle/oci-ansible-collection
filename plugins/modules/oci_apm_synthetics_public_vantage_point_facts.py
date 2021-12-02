@@ -61,7 +61,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List public_vantage_points
   oci_apm_synthetics_public_vantage_point_facts:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: name
+    display_name: display_name_example
+    name: name_example
 
 """
 

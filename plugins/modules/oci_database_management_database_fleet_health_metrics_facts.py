@@ -80,8 +80,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific database_fleet_health_metrics
   oci_database_management_database_fleet_health_metrics_facts:
+    # required
     compare_baseline_time: compare_baseline_time_example
     compare_target_time: compare_target_time_example
+
+    # optional
+    managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compare_type: HOUR
+    filter_by_metric_names: filter_by_metric_names_example
+    filter_by_database_type: filter_by_database_type_example
+    filter_by_database_sub_type: filter_by_database_sub_type_example
+    filter_by_database_deployment_type: filter_by_database_deployment_type_example
+    filter_by_database_version: filter_by_database_version_example
 
 """
 

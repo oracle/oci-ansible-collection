@@ -89,14 +89,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific mount_target
+  oci_file_storage_mount_target_facts:
+    # required
+    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List mount_targets
   oci_file_storage_mount_target_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
 
-- name: Get a specific mount_target
-  oci_file_storage_mount_target_facts:
-    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    display_name: My resource
+    export_set_id: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: CREATING
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

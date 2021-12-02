@@ -38,7 +38,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific configuration
   oci_audit_configuration_facts:
-    compartment_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

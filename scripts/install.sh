@@ -159,7 +159,7 @@ esac
 done
 
 # check if there is a python >=3.6 as oci-ansible-collection is supported for python>=3.6
-declare -a supported_versions=(python3.9 python3.8 python3.7 python3.6)
+declare -a supported_versions=(python3.10 python3.9 python3.8 python3.7 python3.6)
 
 unsupported_py_version=false
 python_installed=false
@@ -180,24 +180,35 @@ if [ "$unsupported_py_version" == true ]; then
     exit 1
 fi
 
-if [ -z "$PYTHON" ]; then # if no pytho path provided
+if [ -z "$PYTHON" ]; then # if no python path provided
     command -v python3 >/dev/null 2>&1
     if [ $? -ne 0 ]; then
         echo "ERROR: python version 3 not found. python version >=3.6 is needed to install oci-ansible-collection"
         exit 1
     fi
 
-    # python3 is installed.   
-    # check if python>=3.6 is present
-    for i in "${supported_versions[@]}"; do
-        echo $i
-        $i -c "import sys; v = sys.version_info; valid = v >= (3, 6, ); sys.exit(0) if valid else sys.exit(1)"
-        if [ $? -eq 0 ]; then
-            python_exe=$i
-            python_installed=true
-            break
-        fi
-    done
+    # python3 is installed.
+    # Try with python3 first since if it works we need not go through a list of hard coded
+    # versions. The problem with hard coded versions is we need to keep on updating it when
+    # a new version is installed. For now, I don't see a simple alternative for doing the
+    # python interpreter discovery without a list of hard coded versions. But python3 generally
+    # points to the recent installation and most of the times it being the newest version, I think
+    # it is a reasonable assumption to go with python3 if it satisfies our requirements.
+    python3 -c "import sys; v = sys.version_info; valid = v >= (3, 6, ); sys.exit(0) if valid else sys.exit(1)"
+    if [ ! $? -eq 0 ]; then
+        for i in "${supported_versions[@]}"; do
+          echo $i
+          $i -c "import sys; v = sys.version_info; valid = v >= (3, 6, ); sys.exit(0) if valid else sys.exit(1)"
+          if [ $? -eq 0 ]; then
+              python_exe=$i
+              python_installed=true
+              break
+          fi
+        done
+    else
+        python_exe=python3
+        python_installed=true
+    fi
 fi
 set -e
 
@@ -211,7 +222,8 @@ fi
 
 downloaded_script=true
 echo "Downloading installer script..."
-install_script=$(mktemp -t oci_ansible_install_tmp_XXXX) || exit
+# -t option does not work in all unix environments. Use it if available, else fallback to just mktemp.
+install_script=$(mktemp -t oci_ansible_install_tmp_XXXX 2>/dev/null || mktemp) || exit
 echo "Downloading oci-ansible-collection install script from $INSTALL_SCRIPT_URL to $install_script."
 curl -# -f $INSTALL_SCRIPT_URL > $install_script
 if [ $? -ne 0 ]; then

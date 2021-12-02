@@ -24,7 +24,7 @@ short_description: Manage a Rule resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Rule resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new rule.
-    - "This resource has the following action operations in the M(oci_rule_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_events_rule_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -172,42 +172,82 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create rule
   oci_events_rule:
+    # required
     display_name: example_rule
     is_enabled: true
     condition: {"eventType": "com.oraclecloud.databaseservice.autonomous.database.backup.end"}
     compartment_id: "ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     actions:
+      # required
       actions:
-      - action_type: ONS
+      - # required
+        action_type: ONS
         is_enabled: true
+        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_events_rule:
-    display_name: example_rule
+        # optional
+        description: description_example
+
+    # optional
     description: description_example
-    is_enabled: true
-    condition: {"eventType": "com.oraclecloud.databaseservice.autonomous.database.backup.end"}
-    compartment_id: "ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    actions:
-      actions:
-      - action_type: ONS
-        is_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update rule
   oci_events_rule:
+    # required
+    rule_id: "ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: example_rule
     description: description_example
-    rule_id: "ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx"
+    is_enabled: true
+    condition: {"eventType": "com.oraclecloud.databaseservice.autonomous.database.backup.end"}
+    actions:
+      # required
+      actions:
+      - # required
+        action_type: ONS
+        is_enabled: true
+        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_events_rule:
+    # required
+    display_name: example_rule
+    compartment_id: "ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    is_enabled: true
+    condition: {"eventType": "com.oraclecloud.databaseservice.autonomous.database.backup.end"}
+    actions:
+      # required
+      actions:
+      - # required
+        action_type: ONS
+        is_enabled: true
+        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete rule
   oci_events_rule:
+    # required
     rule_id: "ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_events_rule:
+    # required
     display_name: example_rule
     compartment_id: "ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

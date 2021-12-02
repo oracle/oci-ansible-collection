@@ -57,9 +57,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific resource_availability
   oci_limits_resource_availability_facts:
+    # required
     service_name: service_name_example
     limit_name: limit_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
 
 """
 

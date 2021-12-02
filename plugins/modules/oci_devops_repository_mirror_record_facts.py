@@ -54,14 +54,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List repository_mirror_records
-  oci_devops_repository_mirror_record_facts:
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific repository_mirror_record
   oci_devops_repository_mirror_record_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     mirror_record_type: current
+
+- name: List repository_mirror_records
+  oci_devops_repository_mirror_record_facts:
+    # required
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
 
 """
 

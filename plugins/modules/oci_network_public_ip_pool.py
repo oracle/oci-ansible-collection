@@ -24,8 +24,8 @@ short_description: Manage a PublicIpPool resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a PublicIpPool resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a public IP pool.
-    - "This resource has the following action operations in the M(oci_public_ip_pool_actions) module: add_public_ip_pool_capacity, change_compartment,
-      remove_public_ip_pool_capacity."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_public_ip_pool_actions) module: add_public_ip_pool_capacity,
+      change_compartment, remove_public_ip_pool_capacity."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -81,28 +81,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create public_ip_pool
   oci_network_public_ip_pool:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update public_ip_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_public_ip_pool:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update public_ip_pool
   oci_network_public_ip_pool:
+    # required
+    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update public_ip_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_public_ip_pool:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete public_ip_pool
   oci_network_public_ip_pool:
+    # required
     public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete public_ip_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_public_ip_pool:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

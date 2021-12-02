@@ -48,6 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List report_collections
   oci_marketplace_report_collection_facts:
+    # required
     report_type: report_type_example
     date: 2013-10-20T19:20:30+01:00
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

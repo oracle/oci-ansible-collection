@@ -64,14 +64,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List blockchain_platform_osns
-  oci_blockchain_platform_osn_facts:
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific blockchain_platform_osn
   oci_blockchain_platform_osn_facts:
+    # required
     blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List blockchain_platform_osns
+  oci_blockchain_platform_osn_facts:
+    # required
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

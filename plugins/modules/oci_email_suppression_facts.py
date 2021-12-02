@@ -86,13 +86,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List suppressions
-  oci_email_suppression_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific suppression
   oci_email_suppression_facts:
+    # required
     suppression_id: "ocid1.suppression.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List suppressions
+  oci_email_suppression_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    email_address: email_address_example
+    time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_created_less_than: 2013-10-20T19:20:30+01:00
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

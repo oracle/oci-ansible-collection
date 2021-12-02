@@ -44,6 +44,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: Get a specific private_access_channel
   oci_analytics_private_access_channel_facts:
+    # required
     private_access_channel_key: private_access_channel_key_example
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 

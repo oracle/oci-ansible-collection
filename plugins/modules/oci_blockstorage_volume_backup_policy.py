@@ -38,7 +38,7 @@ options:
         type: str
     display_name:
         description:
-            - A user-friendly name for the volume backup policy. Does not have to be unique and it's changeable.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -193,33 +193,88 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_backup_policy
   oci_blockstorage_volume_backup_policy:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update volume_backup_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_blockstorage_volume_backup_policy:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     display_name: display_name_example
     destination_region: us-ashburn-1
     schedules:
-    - backup_type: FULL
+    - # required
+      backup_type: FULL
       period: ONE_HOUR
       retention_seconds: 56
+
+      # optional
+      offset_seconds: 56
+      offset_type: STRUCTURED
+      hour_of_day: 56
+      day_of_week: MONDAY
+      day_of_month: 56
+      month: JANUARY
+      time_zone: UTC
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update volume_backup_policy
   oci_blockstorage_volume_backup_policy:
+    # required
+    policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     destination_region: us-ashburn-1
-    policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
+    schedules:
+    - # required
+      backup_type: FULL
+      period: ONE_HOUR
+      retention_seconds: 56
+
+      # optional
+      offset_seconds: 56
+      offset_type: STRUCTURED
+      hour_of_day: 56
+      day_of_week: MONDAY
+      day_of_month: 56
+      month: JANUARY
+      time_zone: UTC
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update volume_backup_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_blockstorage_volume_backup_policy:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    destination_region: us-ashburn-1
+    schedules:
+    - # required
+      backup_type: FULL
+      period: ONE_HOUR
+      retention_seconds: 56
+
+      # optional
+      offset_seconds: 56
+      offset_type: STRUCTURED
+      hour_of_day: 56
+      day_of_week: MONDAY
+      day_of_month: 56
+      month: JANUARY
+      time_zone: UTC
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete volume_backup_policy
   oci_blockstorage_volume_backup_policy:
+    # required
     policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume_backup_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_backup_policy:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -235,7 +290,7 @@ volume_backup_policy:
     contains:
         display_name:
             description:
-                - A user-friendly name for the volume backup policy. Does not have to be unique and it's changeable.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

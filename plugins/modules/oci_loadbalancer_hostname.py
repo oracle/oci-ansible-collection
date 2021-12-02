@@ -64,17 +64,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create hostname
   oci_loadbalancer_hostname:
-    name: "example_hostname_001"
-    hostname: "app.example.com"
+    # required
+    name: example_hostname_001
+    hostname: app.example.com
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update hostname
   oci_loadbalancer_hostname:
-    hostname: "app.example.com"
+    # required
+    name: example_hostname_001
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    hostname: app.example.com
 
 - name: Delete hostname
   oci_loadbalancer_hostname:
+    # required
     name: example_hostname_001
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

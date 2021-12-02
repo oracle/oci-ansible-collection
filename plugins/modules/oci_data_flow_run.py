@@ -24,7 +24,7 @@ short_description: Manage a Run resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create and update a Run resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a run for an application.
-    - "This resource has the following action operations in the M(oci_run_actions) module: change_compartment, cancel."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_flow_run_actions) module: change_compartment, cancel."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -173,24 +173,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create run
   oci_data_flow_run:
-    display_name: "test_wordcount_run"
-    application_id: "applicationId"
-    compartment_id: "compartmentId"
-    driver_shape: "VM.Standard2.1"
-    executor_shape: "VM.Standard2.1"
-    num_executors: 1
-    arguments:
-    - "oci://.../WordCount.txt"
-    parameters: []
-    configuration: {}
+    # required
+    compartment_id: compartmentId
 
-- name: Update run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_flow_run:
-    freeform_tags: "{'Department': 'Finance'}"
+    # optional
+    application_id: applicationId
+    archive_uri: archive_uri_example
+    arguments: [ "oci://.../WordCount.txt" ]
+    configuration: null
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: test_wordcount_run
+    driver_shape: VM.Standard2.1
+    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
+    executor_shape: VM.Standard2.1
+    freeform_tags: {'Department': 'Finance'}
+    logs_bucket_uri: logs_bucket_uri_example
+    metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
+    num_executors: 1
+    parameters:
+    - # required
+      name: name_example
+      value: value_example
+    spark_version: spark_version_example
+    warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Update run
   oci_data_flow_run:
+    # required
     run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_flow_run:
+    # required
+    compartment_id: compartmentId
+    display_name: test_wordcount_run
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 """
 

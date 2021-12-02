@@ -101,26 +101,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create steering_policy_attachment
   oci_dns_steering_policy_attachment:
+    # required
     steering_policy_id: "ocid1.dnspolicy.oc1.."
     zone_id: "ocid1.dns-zone.oc1.."
-    domain_name: "example.com"
-    display_name: "attached to example"
+    domain_name: example.com
 
-- name: Update steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_dns_steering_policy_attachment:
-    display_name: "IP prefix steering"
+    # optional
+    display_name: attached to example
+    scope: GLOBAL
 
 - name: Update steering_policy_attachment
   oci_dns_steering_policy_attachment:
+    # required
     steering_policy_attachment_id: "ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: attached to example
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
+
+- name: Update steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_dns_steering_policy_attachment:
+    # required
+    display_name: attached to example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
 
 - name: Delete steering_policy_attachment
   oci_dns_steering_policy_attachment:
+    # required
     steering_policy_attachment_id: "ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
+
 - name: Delete steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy_attachment:
+    # required
     display_name: attached to example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -24,7 +24,8 @@ short_description: Manage a Cluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Cluster resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new cluster.
-    - "This resource has the following action operations in the M(oci_cluster_actions) module: cluster_migrate_to_native_vcn, update_cluster_endpoint_config."
+    - "This resource has the following action operations in the M(oracle.oci.oci_container_engine_cluster_actions) module: cluster_migrate_to_native_vcn,
+      update_cluster_endpoint_config."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -170,30 +171,107 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cluster
   oci_container_engine_cluster:
+    # required
     name: My Cluster
     compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
     vcn_id: ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa
     kubernetes_version: v1.9.4
 
-- name: Update cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_container_engine_cluster:
-    name: My Cluster
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
-    kubernetes_version: v1.9.4
+    # optional
+    endpoint_config:
+      # optional
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      nsg_ids: [ "null" ]
+      is_public_ip_enabled: true
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    options:
+      # optional
+      service_lb_subnet_ids: [ "null" ]
+      kubernetes_network_config:
+        # optional
+        pods_cidr: 10.244.0.0/16
+        services_cidr: 10.96.0.0/16
+      add_ons:
+        # optional
+        is_kubernetes_dashboard_enabled: true
+        is_tiller_enabled: true
+      admission_controller_options:
+        # optional
+        is_pod_security_policy_enabled: false
+    image_policy_config:
+      # optional
+      is_policy_enabled: true
+      key_details:
+      - # optional
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update cluster
   oci_container_engine_cluster:
+    # required
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     name: My Cluster
     kubernetes_version: v1.9.4
-    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    options:
+      # optional
+      service_lb_subnet_ids: [ "null" ]
+      kubernetes_network_config:
+        # optional
+        pods_cidr: 10.244.0.0/16
+        services_cidr: 10.96.0.0/16
+      add_ons:
+        # optional
+        is_kubernetes_dashboard_enabled: true
+        is_tiller_enabled: true
+      admission_controller_options:
+        # optional
+        is_pod_security_policy_enabled: false
+    image_policy_config:
+      # optional
+      is_policy_enabled: true
+      key_details:
+      - # optional
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_container_engine_cluster:
+    # required
+    name: My Cluster
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+
+    # optional
+    kubernetes_version: v1.9.4
+    options:
+      # optional
+      service_lb_subnet_ids: [ "null" ]
+      kubernetes_network_config:
+        # optional
+        pods_cidr: 10.244.0.0/16
+        services_cidr: 10.96.0.0/16
+      add_ons:
+        # optional
+        is_kubernetes_dashboard_enabled: true
+        is_tiller_enabled: true
+      admission_controller_options:
+        # optional
+        is_pod_security_policy_enabled: false
+    image_policy_config:
+      # optional
+      is_policy_enabled: true
+      key_details:
+      - # optional
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cluster
   oci_container_engine_cluster:
+    # required
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_cluster:
+    # required
     name: My Cluster
     compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
     state: absent

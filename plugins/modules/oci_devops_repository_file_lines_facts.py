@@ -52,9 +52,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific repository_file_lines
   oci_devops_repository_file_lines_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     file_path: file_path_example
     revision: revision_example
+
+    # optional
+    start_line_number: 56
 
 """
 

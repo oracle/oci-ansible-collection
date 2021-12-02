@@ -57,8 +57,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List redeemable_users
   oci_usage_proxy_redeemable_user_facts:
+    # required
     tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
     subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 

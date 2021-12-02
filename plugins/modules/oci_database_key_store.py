@@ -24,7 +24,7 @@ short_description: Manage a KeyStore resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a KeyStore resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Key Store.
-    - "This resource has the following action operations in the M(oci_key_store_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_key_store_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -114,22 +114,29 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create key_store
   oci_database_key_store:
-    display_name: "Key Store1"
-    compartment_id: "ocid1.tenancy.oc1.unique_ID"
-    type_details:
-      type: "ORACLE_KEY_VAULT"
-      connection_ips:
-      - "198.12.34.56"
-      - "198.12.34.57"
-      admin_username: "username1"
-      vault_id: "ocid1.vault.oc1.unique_ID"
-      secret_id: "ocid1.key.oc1.unique_ID"
-
-- name: Update key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_key_store:
+    # required
     compartment_id: ocid1.tenancy.oc1.unique_ID
     display_name: Key Store1
     type_details:
+      # required
+      type: ORACLE_KEY_VAULT
+      connection_ips: [ "198.12.34.56" ]
+      admin_username: username1
+      vault_id: ocid1.vault.oc1.unique_ID
+      secret_id: ocid1.key.oc1.unique_ID
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update key_store
+  oci_database_key_store:
+    # required
+    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    type_details:
+      # required
       type: ORACLE_KEY_VAULT
       connection_ips: [ "198.12.34.56" ]
       admin_username: username1
@@ -138,24 +145,32 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update key_store
+- name: Update key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_key_store:
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: Key Store1
+
+    # optional
     type_details:
+      # required
       type: ORACLE_KEY_VAULT
       connection_ips: [ "198.12.34.56" ]
       admin_username: username1
       vault_id: ocid1.vault.oc1.unique_ID
       secret_id: ocid1.key.oc1.unique_ID
     freeform_tags: {'Department': 'Finance'}
-    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete key_store
   oci_database_key_store:
+    # required
     key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_key_store:
+    # required
     compartment_id: ocid1.tenancy.oc1.unique_ID
     display_name: Key Store1
     state: absent

@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List external_non_container_databases
-  oci_database_external_non_container_database_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific external_non_container_database
   oci_database_external_non_container_database_facts:
+    # required
     external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List external_non_container_databases
+  oci_database_external_non_container_database_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: DISPLAYNAME
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
 
 """
 

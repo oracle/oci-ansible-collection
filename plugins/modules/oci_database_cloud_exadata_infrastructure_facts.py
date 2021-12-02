@@ -75,13 +75,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List cloud_exadata_infrastructures
-  oci_database_cloud_exadata_infrastructure_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure_facts:
+    # required
     cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List cloud_exadata_infrastructures
+  oci_database_cloud_exadata_infrastructure_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
 
 """
 

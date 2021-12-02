@@ -30,13 +30,9 @@ oracle.oci.oci_audit_event_facts -- Fetches details about one or multiple AuditE
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_audit_event_facts`.
 
@@ -301,6 +297,7 @@ Examples
     
     - name: List audit_events
       oci_audit_event_facts:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         start_time: 2013-10-20T19:20:30+01:00
         end_time: 2013-10-20T19:20:30+01:00
@@ -339,7 +336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of AuditEvent resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cloud_events_version&#x27;: &#x27;0.1&#x27;, &#x27;content_type&#x27;: &#x27;application/json&#x27;, &#x27;data&#x27;: {&#x27;additional_details&#x27;: {}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_name&#x27;: &#x27;CompartmentA&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;event_grouping_id&#x27;: &#x27;ocid1.eventgrouping.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;event_name&#x27;: &#x27;GetInstance&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;identity&#x27;: {&#x27;auth_type&#x27;: &#x27;natv&#x27;, &#x27;caller_id&#x27;: &#x27;ocid1.caller.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;caller_name&#x27;: &#x27;caller_name_example&#x27;, &#x27;console_session_id&#x27;: &#x27;ocid1.consolesession.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credentials&#x27;: &#x27;credentials_example&#x27;, &#x27;ip_address&#x27;: &#x27;172.24.80.88&#x27;, &#x27;principal_id&#x27;: &#x27;ocid1.principal.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;principal_name&#x27;: &#x27;ExampleName&#x27;, &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;user_agent&#x27;: &#x27;Jersey/2.23 (HttpUrlConnection 1.8.0_212)&#x27;}, &#x27;request&#x27;: {&#x27;action&#x27;: &#x27;GET&#x27;, &#x27;headers&#x27;: {}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parameters&#x27;: {}, &#x27;path&#x27;: &#x27;/20160918/instances/ocid1.instance.oc1.phx.&lt;unique_ID&gt;&#x27;}, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;response&#x27;: {&#x27;headers&#x27;: {}, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;payload&#x27;: {}, &#x27;response_time&#x27;: &#x27;2019-09-18T00:10:59.278Z&#x27;, &#x27;status&#x27;: &#x27;200&#x27;}, &#x27;state_change&#x27;: {&#x27;current&#x27;: {}, &#x27;previous&#x27;: {}}}, &#x27;event_id&#x27;: &#x27;ocid1.event.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;event_time&#x27;: &#x27;2019-09-18T00:10:59.252Z&#x27;, &#x27;event_type&#x27;: &#x27;com.oraclecloud.ComputeApi.GetInstance&#x27;, &#x27;event_type_version&#x27;: &#x27;2.0&#x27;, &#x27;source&#x27;: &#x27;ComputeApi&#x27;}]</div>
                                     </td>
             </tr>
@@ -359,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Audit uses version 0.1 specification of the CloudEvents event envelope.</div>
                                             <div>Example: `0.1`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">0.1</div>
                                     </td>
             </tr>
@@ -378,7 +375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The content type of the data contained in `data`.</div>
                                             <div>Example: `application/json`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">application/json</div>
                                     </td>
             </tr>
@@ -396,7 +393,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -421,7 +418,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         }
       -----&quot;</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -438,7 +435,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The availability domain where the resource resides.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
                                     </td>
             </tr>
@@ -457,7 +454,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment of the resource emitting the event.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -477,7 +474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the compartment. This value is the friendly name associated with compartmentId. This value can change, but the service logs the value that appeared at the time of the audit event.</div>
                                             <div>Example: `CompartmentA`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CompartmentA</div>
                                     </td>
             </tr>
@@ -497,7 +494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -516,7 +513,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This value links multiple audit events that are part of the same API operation. For example, a long running API operations that emit an event at the start and the end of an operation would use the same value in this field for both events.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.eventgrouping.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -536,7 +533,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Name of the API operation that generated this event.</div>
                                             <div>Example: `GetInstance`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GetInstance</div>
                                     </td>
             </tr>
@@ -556,7 +553,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. Exists for cross-compatibility only. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -575,7 +572,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -594,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The type of authentication used.</div>
                                             <div>Example: `natv`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">natv</div>
                                     </td>
             </tr>
@@ -614,7 +611,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the caller. The caller that made a request on behalf of the prinicpal.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.caller.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -634,7 +631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the user or service. This value is the friendly name associated with `callerId`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">caller_name_example</div>
                                     </td>
             </tr>
@@ -654,7 +651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This value identifies any Console session associated with this request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.consolesession.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -674,7 +671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The credential ID of the user. This value is extracted from the HTTP &#x27;Authorization&#x27; request header. It consists of the tenantId, userId, and user fingerprint, all delimited by a slash (/).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">credentials_example</div>
                                     </td>
             </tr>
@@ -695,7 +692,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The IP address of the source of the request.</div>
                                             <div>Example: `172.24.80.88`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">172.24.80.88</div>
                                     </td>
             </tr>
@@ -715,7 +712,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the principal.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.principal.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -736,7 +733,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the user or service. This value is the friendly name associated with `principalId`.</div>
                                             <div>Example: `ExampleName`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ExampleName</div>
                                     </td>
             </tr>
@@ -756,7 +753,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the tenant.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -777,7 +774,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The user agent of the client that made the request.</div>
                                             <div>Example: `Jersey/2.23 (HttpUrlConnection 1.8.0_212)`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Jersey/2.23 (HttpUrlConnection 1.8.0_212)</div>
                                     </td>
             </tr>
@@ -797,7 +794,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -816,7 +813,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The HTTP method of the request.</div>
                                             <div>Example: `GET`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GET</div>
                                     </td>
             </tr>
@@ -885,7 +882,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         }
       -----&quot;</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -903,7 +900,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The opc-request-id of the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -923,7 +920,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The parameters supplied by the caller during this operation.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -942,7 +939,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The full path of the API request.</div>
                                             <div>Example: `/20160918/instances/ocid1.instance.oc1.phx.&lt;unique_ID&gt;`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">/20160918/instances/ocid1.instance.oc1.phx.&lt;unique_ID&gt;</div>
                                     </td>
             </tr>
@@ -962,7 +959,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> or some other ID for the resource emitting the event.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -981,7 +978,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the resource emitting the event.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_name_example</div>
                                     </td>
             </tr>
@@ -1000,7 +997,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1041,7 +1038,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         }
       -----&quot;</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1059,7 +1056,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A friendly description of what happened during the operation. Use this for troubleshooting.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
                                     </td>
             </tr>
@@ -1086,7 +1083,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         }
       -----&quot;</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1105,7 +1102,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time of the response to the audited request, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                             <div>Example: `2019-09-18T00:10:59.278Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-09-18T00:10:59.278Z</div>
                                     </td>
             </tr>
@@ -1126,7 +1123,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The status code of the response.</div>
                                             <div>Example: `200`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">200</div>
                                     </td>
             </tr>
@@ -1146,7 +1143,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1164,7 +1161,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Provides the current state of fields that may have changed during an operation. To determine how the current operation changed a resource, compare the information in this attribute to `previous`.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1182,7 +1179,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Provides the previous state of fields that may have changed during an operation. To determine how the current operation changed a resource, compare the information in this attribute to `current`.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                     
                     
@@ -1200,7 +1197,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The GUID of the event.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.event.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1219,7 +1216,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the event occurred, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                             <div>Example: `2019-09-18T00:10:59.252Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-09-18T00:10:59.252Z</div>
                                     </td>
             </tr>
@@ -1239,7 +1236,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The service that produces the event can also add, remove, or change the meaning of a field. A service implementing these type changes would publish a new version of an `eventType` and revise the `eventTypeVersion` field.</div>
                                             <div>Example: `com.oraclecloud.ComputeApi.GetInstance`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">com.oraclecloud.ComputeApi.GetInstance</div>
                                     </td>
             </tr>
@@ -1258,7 +1255,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The version of the event type. This version applies to the payload of the event, not the envelope. Use `cloudEventsVersion` to determine the version of the envelope.</div>
                                             <div>Example: `2.0`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2.0</div>
                                     </td>
             </tr>
@@ -1277,7 +1274,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The source of the event.</div>
                                             <div>Example: `ComputeApi`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ComputeApi</div>
                                     </td>
             </tr>

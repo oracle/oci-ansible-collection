@@ -56,6 +56,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on cluster_network
   oci_compute_management_cluster_network_actions:
+    # required
     cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -77,7 +78,7 @@ cluster_network:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cluster netowrk.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cluster network.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -92,6 +93,7 @@ cluster_network:
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -134,7 +136,8 @@ cluster_network:
                     sample: {'Operations': {'CostCenter': 'US'}}
                 display_name:
                     description:
-                        - The user-friendly name. Does not have to be unique.
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
                     returned: on success
                     type: str
                     sample: display_name_example

@@ -66,6 +66,14 @@ EXAMPLES = """
 - name: Get a specific secret_bundle
   oci_secrets_secret_bundle_facts:
 
+    # optional
+    secret_name: SecretForIntegrationTests
+    vault_id: ocid1.vault.oc1.iad.xxxxxxEXAMPLExxxxxx
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    version_number: 789
+    secret_version_name: secret_version_name_example
+    stage: CURRENT
+
 """
 
 RETURN = """

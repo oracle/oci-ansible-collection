@@ -30,13 +30,9 @@ oracle.oci.oci_generic_artifacts_content_generic_artifact_content_facts -- Fetch
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_generic_artifacts_content_generic_artifact_content_facts`.
 
@@ -317,6 +313,7 @@ Examples
     
     - name: Get a specific generic_artifact_content
       oci_generic_artifacts_content_generic_artifact_content_facts:
+        # required
         dest: /tmp/myfile
         repository_id: "ocid1.repository.oc1..exampleuniqueID"
         artifact_path: project01/my-web-app/artifact-abc

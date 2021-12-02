@@ -73,16 +73,37 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create log_analytics_entity_type
   oci_log_analytics_entity_type:
+    # required
     namespace_name: namespace_name_example
     name: name_example
+
+    # optional
+    category: category_example
+    properties:
+    - # required
+      name: name_example
+
+      # optional
+      description: description_example
 
 - name: Update log_analytics_entity_type
   oci_log_analytics_entity_type:
+    # required
     namespace_name: namespace_name_example
     name: name_example
 
+    # optional
+    category: category_example
+    properties:
+    - # required
+      name: name_example
+
+      # optional
+      description: description_example
+
 - name: Delete log_analytics_entity_type
   oci_log_analytics_entity_type:
+    # required
     namespace_name: namespace_name_example
     name: name_example
     state: absent

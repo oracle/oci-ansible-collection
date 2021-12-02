@@ -51,7 +51,7 @@ description:
       When you create a resource, you can find its OCID in the response.
       You can also retrieve a resource's OCID by using a List API operation on that resource
       type, or by viewing the resource in the Console.
-    - "This resource has the following action operations in the M(oci_mount_target_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_file_storage_mount_target_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -151,26 +151,51 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create mount_target
   oci_file_storage_mount_target:
-    availability_domain: "Uocm:PHX-AD-1"
+    # required
+    availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "mount-target-5"
     subnet_id: "ocid1.subnet.oc1..unique_ID"
 
-- name: Update mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_file_storage_mount_target:
-    display_name: "mount-target-1"
+    # optional
+    display_name: mount-target-5
+    hostname_label: files-1
+    ip_address: 10.0.3.3
+    nsg_ids: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update mount_target
   oci_file_storage_mount_target:
+    # required
     mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: mount-target-5
+    nsg_ids: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_file_storage_mount_target:
+    # required
+    availability_domain: Uocm:PHX-AD-1
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: mount-target-5
+
+    # optional
+    nsg_ids: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete mount_target
   oci_file_storage_mount_target:
+    # required
     mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_mount_target:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: mount-target-5

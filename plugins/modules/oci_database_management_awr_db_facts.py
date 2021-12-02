@@ -64,7 +64,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List awr_dbs
   oci_database_management_awr_db_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    time_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    sort_by: END_INTERVAL_TIME
+    sort_order: ASC
 
 """
 

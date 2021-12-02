@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an AddressList resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an address list in a set compartment and allows it to be used in a WAAS policy and referenced by access rules. Addresses can
       be IP addresses and CIDR notations.
-    - "This resource has the following action operations in the M(oci_address_list_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_waas_address_list_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -88,26 +88,46 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create address_list
   oci_waas_address_list:
+    # required
     compartment_id: "ocid1.compartment.oc1.."
-    display_name: "addresslist"
-    addresses:
-    - "192.0.2.0"
+    display_name: addresslist
+    addresses: [ "192.0.2.0" ]
 
-- name: Update address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_waas_address_list:
-    display_name: "Updated details"
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update address_list
   oci_waas_address_list:
+    # required
     address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: addresslist
+    addresses: [ "192.0.2.0" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_waas_address_list:
+    # required
+    compartment_id: "ocid1.compartment.oc1.."
+    display_name: addresslist
+
+    # optional
+    addresses: [ "192.0.2.0" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete address_list
   oci_waas_address_list:
+    # required
     address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_address_list:
+    # required
     compartment_id: "ocid1.compartment.oc1.."
     display_name: addresslist
     state: absent

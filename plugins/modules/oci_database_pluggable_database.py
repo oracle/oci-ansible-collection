@@ -24,9 +24,11 @@ short_description: Manage a PluggableDatabase resource in Oracle Cloud Infrastru
 description:
     - This module allows the user to create, update and delete a PluggableDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates and starts a pluggable database in the specified container database.
-      Use the [StartPluggableDatabase](#/en/database/latest/PluggableDatabase/StartPluggableDatabase] and
-      [StopPluggableDatabase](#/en/database/latest/PluggableDatabase/StopPluggableDatabase] APIs to start and stop the pluggable database.
-    - "This resource has the following action operations in the M(oci_pluggable_database_actions) module: local_clone, remote_clone, start, stop."
+      Use the L(StartPluggableDatabase,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StartPluggableDatabase) and
+      L(StopPluggableDatabase,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StopPluggableDatabase) APIs to start and stop
+      the pluggable database.
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_pluggable_database_actions) module: local_clone, remote_clone, start,
+      stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -46,13 +48,16 @@ options:
         description:
             - "A strong password for PDB Admin. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numbers,
               and two special characters. The special characters must be _, #, or -."
-            - Required for create using I(state=present).
         type: str
     tde_wallet_password:
         description:
             - The existing TDE wallet password of the CDB.
-            - Required for create using I(state=present).
         type: str
+    should_pdb_admin_account_be_locked:
+        description:
+            - The locked mode of the pluggable database admin account. If false, the user needs to provide the PDB Admin Password to connect to it.
+              If true, the pluggable database will be locked and user cannot login to it.
+        type: bool
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -92,18 +97,30 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create pluggable_database
   oci_database_pluggable_database:
+    # required
     pdb_name: pdb_name_example
     container_database_id: "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    pdb_admin_password: password
-    tde_wallet_password: tde_wallet_password_example
+
+    # optional
+    pdb_admin_password: example-password
+    tde_wallet_password: example-password
+    should_pdb_admin_account_be_locked: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update pluggable_database
   oci_database_pluggable_database:
-    freeform_tags: "{'Department': 'Finance'}"
+    # required
     pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete pluggable_database
   oci_database_pluggable_database:
+    # required
     pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -310,7 +327,11 @@ class PluggableDatabaseHelperGen(OCIResourceHelperBase):
         return CreatePluggableDatabaseDetails
 
     def get_exclude_attributes(self):
-        return ["pdb_admin_password", "tde_wallet_password"]
+        return [
+            "pdb_admin_password",
+            "tde_wallet_password",
+            "should_pdb_admin_account_be_locked",
+        ]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -376,6 +397,7 @@ def main():
             container_database_id=dict(type="str"),
             pdb_admin_password=dict(type="str", no_log=True),
             tde_wallet_password=dict(type="str", no_log=True),
+            should_pdb_admin_account_be_locked=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             pluggable_database_id=dict(aliases=["id"], type="str"),

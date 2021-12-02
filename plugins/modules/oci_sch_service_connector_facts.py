@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List service_connectors
-  oci_sch_service_connector_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific service_connector
   oci_sch_service_connector_facts:
+    # required
     service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List service_connectors
+  oci_sch_service_connector_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: ACTIVE
+    display_name: example_service_connector
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

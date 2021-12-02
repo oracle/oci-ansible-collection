@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a HostInsight resource in Oracle Cloud Infrastructure
     - For I(state=present), create a Host Insight resource for a host in Operations Insights. The host will be enabled in Operations Insights. Host metric
       collection and analysis will be started.
-    - "This resource has the following action operations in the M(oci_host_insight_actions) module: change_compartment, disable, enable."
+    - "This resource has the following action operations in the M(oracle.oci.oci_opsi_host_insight_actions) module: change_compartment, disable, enable."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -36,6 +36,7 @@ options:
         type: str
         choices:
             - "MACS_MANAGED_EXTERNAL_HOST"
+            - "EM_MANAGED_EXTERNAL_HOST"
     compartment_id:
         description:
             - Compartment Identifier of host
@@ -56,7 +57,27 @@ options:
     management_agent_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
-            - Required for create using I(state=present).
+            - Required when entity_source is 'MACS_MANAGED_EXTERNAL_HOST'
+        type: str
+    enterprise_manager_identifier:
+        description:
+            - Enterprise Manager Unique Identifier
+            - Required when entity_source is 'EM_MANAGED_EXTERNAL_HOST'
+        type: str
+    enterprise_manager_bridge_id:
+        description:
+            - OPSI Enterprise Manager Bridge OCID
+            - Required when entity_source is 'EM_MANAGED_EXTERNAL_HOST'
+        type: str
+    enterprise_manager_entity_identifier:
+        description:
+            - Enterprise Manager Entity Unique Identifier
+            - Required when entity_source is 'EM_MANAGED_EXTERNAL_HOST'
+        type: str
+    exadata_insight_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+            - Applicable when entity_source is 'EM_MANAGED_EXTERNAL_HOST'
         type: str
     host_insight_id:
         description:
@@ -78,22 +99,52 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create host_insight
+- name: Create host_insight with entity_source = MACS_MANAGED_EXTERNAL_HOST
   oci_opsi_host_insight:
+    # required
     entity_source: MACS_MANAGED_EXTERNAL_HOST
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update host_insight
-  oci_opsi_host_insight:
-    entity_source: MACS_MANAGED_EXTERNAL_HOST
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     freeform_tags: {'Department': 'Finance'}
-    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-    host_insight_id: "ocid1.hostinsight.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create host_insight with entity_source = EM_MANAGED_EXTERNAL_HOST
+  oci_opsi_host_insight:
+    # required
+    entity_source: EM_MANAGED_EXTERNAL_HOST
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    enterprise_manager_identifier: enterprise_manager_identifier_example
+    enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+    enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update host_insight with entity_source = MACS_MANAGED_EXTERNAL_HOST
+  oci_opsi_host_insight:
+    # required
+    entity_source: MACS_MANAGED_EXTERNAL_HOST
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update host_insight with entity_source = EM_MANAGED_EXTERNAL_HOST
+  oci_opsi_host_insight:
+    # required
+    entity_source: EM_MANAGED_EXTERNAL_HOST
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete host_insight
   oci_opsi_host_insight:
+    # required
     host_insight_id: "ocid1.hostinsight.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -200,30 +251,72 @@ host_insight:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        management_agent_id:
+        enterprise_manager_identifier:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+                - Enterprise Manager Unique Identifier
             returned: on success
             type: str
-            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-        platform_name:
+            sample: enterprise_manager_identifier_example
+        enterprise_manager_entity_name:
             description:
-                - Platform name.
+                - Enterprise Manager Entity Name
             returned: on success
             type: str
-            sample: platform_name_example
+            sample: enterprise_manager_entity_name_example
+        enterprise_manager_entity_type:
+            description:
+                - Enterprise Manager Entity Type
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_type_example
+        enterprise_manager_entity_identifier:
+            description:
+                - Enterprise Manager Entity Unique Identifier
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_identifier_example
+        enterprise_manager_entity_display_name:
+            description:
+                - Enterprise Manager Entity Display Name
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_display_name_example
+        enterprise_manager_bridge_id:
+            description:
+                - OPSI Enterprise Manager Bridge OCID
+            returned: on success
+            type: str
+            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
         platform_type:
             description:
                 - Platform type.
             returned: on success
             type: str
             sample: LINUX
+        platform_name:
+            description:
+                - Platform name.
+            returned: on success
+            type: str
+            sample: platform_name_example
         platform_version:
             description:
                 - Platform version.
             returned: on success
             type: str
-            sample: platform_version_example
+            sample: Oracle Linux Server release 7.9
+        exadata_insight_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+            returned: on success
+            type: str
+            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        management_agent_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+            returned: on success
+            type: str
+            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -240,10 +333,17 @@ host_insight:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
-        "platform_name": "platform_name_example",
+        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
+        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
+        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
+        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
+        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
+        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "platform_type": "LINUX",
-        "platform_version": "platform_version_example"
+        "platform_name": "platform_name_example",
+        "platform_version": "Oracle Linux Server release 7.9",
+        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -289,7 +389,11 @@ class HostInsightHelperGen(OCIResourceHelperBase):
         return dict()
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["compartment_id"]
+        optional_list_method_params = [
+            "compartment_id",
+            "enterprise_manager_bridge_id",
+            "exadata_insight_id",
+        ]
 
         return dict(
             (param, self.module.params[param])
@@ -376,11 +480,18 @@ def main():
     )
     module_args.update(
         dict(
-            entity_source=dict(type="str", choices=["MACS_MANAGED_EXTERNAL_HOST"]),
+            entity_source=dict(
+                type="str",
+                choices=["MACS_MANAGED_EXTERNAL_HOST", "EM_MANAGED_EXTERNAL_HOST"],
+            ),
             compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             management_agent_id=dict(type="str"),
+            enterprise_manager_identifier=dict(type="str"),
+            enterprise_manager_bridge_id=dict(type="str"),
+            enterprise_manager_entity_identifier=dict(type="str"),
+            exadata_insight_id=dict(type="str"),
             host_insight_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

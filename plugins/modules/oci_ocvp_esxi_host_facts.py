@@ -90,12 +90,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific esxi_host
+  oci_ocvp_esxi_host_facts:
+    # required
+    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List esxi_hosts
   oci_ocvp_esxi_host_facts:
 
-- name: Get a specific esxi_host
-  oci_ocvp_esxi_host_facts:
-    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+    compute_instance_id: "ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: CREATING
 
 """
 

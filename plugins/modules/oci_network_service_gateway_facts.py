@@ -79,13 +79,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List service_gateways
-  oci_network_service_gateway_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific service_gateway
   oci_network_service_gateway_facts:
+    # required
     service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List service_gateways
+  oci_network_service_gateway_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -149,7 +157,7 @@ service_gateways:
             sample: PROVISIONING
         route_table_id:
             description:
-                - "The OCID of the route table the service gateway is using.
+                - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the service gateway is using.
                   For information about why you would associate a route table with a service gateway, see
                   L(Transit Routing: Private Access to Oracle
                   Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)."

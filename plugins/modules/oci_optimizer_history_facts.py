@@ -100,8 +100,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List histories
   oci_optimizer_history_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
+
+    # optional
+    name: name_example
+    recommendation_name: recommendation_name_example
+    recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+    resource_type: resource_type_example
+    sort_order: ASC
+    sort_by: NAME
+    lifecycle_state: ACTIVE
+    status: PENDING
 
 """
 

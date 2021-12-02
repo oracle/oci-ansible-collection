@@ -75,13 +75,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List web_app_firewalls
-  oci_waf_web_app_firewall_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific web_app_firewall
   oci_waf_web_app_firewall_facts:
+    # required
     web_app_firewall_id: "ocid1.webappfirewall.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List web_app_firewalls
+  oci_waf_web_app_firewall_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: [ "$p.getValue()" ]
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

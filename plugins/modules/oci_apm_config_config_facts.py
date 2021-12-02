@@ -70,14 +70,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List configs
-  oci_apm_config_config_facts:
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific config
   oci_apm_config_config_facts:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     config_id: "ocid1.config.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List configs
+  oci_apm_config_config_facts:
+    # required
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    config_type: config_type_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: displayName
 
 """
 

@@ -30,13 +30,9 @@ oracle.oci.oci_network_load_balancer_listener_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_load_balancer_listener_facts`.
 
@@ -304,14 +300,19 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: List listeners
-      oci_network_load_balancer_listener_facts:
-        network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-
     - name: Get a specific listener
       oci_network_load_balancer_listener_facts:
+        # required
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         listener_name: example_listener
+
+    - name: List listeners
+      oci_network_load_balancer_listener_facts:
+        # required
+        network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        sort_order: ASC
 
 
 
@@ -347,7 +348,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of Listener resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;TCP&#x27;}]</div>
                                     </td>
             </tr>
@@ -366,7 +367,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the associated backend set.</div>
                                             <div>Example: `example_backend_set`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_backend_set</div>
                                     </td>
             </tr>
@@ -385,7 +386,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A friendly name for the listener. It must be unique and it cannot be changed.</div>
                                             <div>Example: `example_listener`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_listener</div>
                                     </td>
             </tr>
@@ -404,7 +405,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The communication port for the listener.</div>
                                             <div>Example: `80`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -421,7 +422,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The protocol on which the listener accepts connection requests. For public network load balancers, ANY protocol refers to TCP/UDP. For private network load balancers, ANY protocol refers to TCP/UDP/ICMP (note that ICMP requires isPreserveSourceDestination to be set to true). To get a list of valid protocols, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/NetworkLoadBalancer/20200501/networkLoadBalancerProtocol/ListNetworkLoadBalancersProtocols'>ListNetworkLoadBalancersProtocols</a> operation.</div>
                                             <div>Example: `TCP`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TCP</div>
                                     </td>
             </tr>

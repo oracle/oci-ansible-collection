@@ -83,13 +83,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List cluster_networks
-  oci_compute_management_cluster_network_facts:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-
 - name: Get a specific cluster_network
   oci_compute_management_cluster_network_facts:
+    # required
     cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List cluster_networks
+  oci_compute_management_cluster_network_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -108,7 +116,7 @@ cluster_networks:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cluster netowrk.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cluster network.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -123,6 +131,7 @@ cluster_networks:
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -165,7 +174,8 @@ cluster_networks:
                     sample: {'Operations': {'CostCenter': 'US'}}
                 display_name:
                     description:
-                        - The user-friendly name. Does not have to be unique.
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
                     returned: on success
                     type: str
                     sample: display_name_example

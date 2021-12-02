@@ -29,8 +29,8 @@ description:
     - "**Important:** You must configure the SDDC's networking resources with the security rules detailed in L(Security Rules for Oracle Cloud VMware Solution
       SDDCs,https://docs.cloud.oracle.com/iaas/Content/VMware/Reference/ocvssecurityrules.htm). Otherwise, provisioning the SDDC will fail. The rules are based
       on the requirements set by VMware."
-    - "This resource has the following action operations in the M(oci_sddc_actions) module: cancel_downgrade_hcx, change_compartment, downgrade_hcx,
-      refresh_hcx_license_status, upgrade_hcx."
+    - "This resource has the following action operations in the M(oracle.oci.oci_ocvp_sddc_actions) module: cancel_downgrade_hcx, change_compartment,
+      downgrade_hcx, refresh_hcx_license_status, upgrade_hcx."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -224,6 +224,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create sddc
   oci_ocvp_sddc:
+    # required
     compute_availability_domain: compute_availability_domain_example
     vmware_software_version: vmware_software_version_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -238,11 +239,27 @@ EXAMPLES = """
     nsx_edge_uplink1_vlan_id: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
     nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    display_name: display_name_example
+    instance_display_name_prefix: instance_display_name_prefix_example
+    initial_sku: HOUR
+    is_hcx_enabled: true
+    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    is_hcx_enterprise_enabled: true
+    workload_network_cidr: workload_network_cidr_example
+    replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update sddc
   oci_ocvp_sddc:
+    # required
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     vmware_software_version: vmware_software_version_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
     ssh_authorized_keys: ssh_authorized_keys_example
     vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -257,19 +274,37 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update sddc
+- name: Update sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_sddc:
+    # required
     display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     vmware_software_version: vmware_software_version_example
-    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    ssh_authorized_keys: ssh_authorized_keys_example
+    vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
+    vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    vsan_vlan_id: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_v_tep_vlan_id: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_v_tep_vlan_id: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_uplink1_vlan_id: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
+    replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete sddc
   oci_ocvp_sddc:
+    # required
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_sddc:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -387,14 +422,14 @@ sddc:
                   to change this initial vCenter password to a different value.
             returned: on success
             type: str
-            sample: vcenter_initial_password_example
+            sample: example-password
         nsx_manager_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for NSX Manager. Make sure
                   to change this initial NSX Manager password to a different value.
             returned: on success
             type: str
-            sample: nsx_manager_initial_password_example
+            sample: example-password
         vcenter_username:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. You can
@@ -602,7 +637,7 @@ sddc:
                   to change this initial HCX Manager password to a different value.
             returned: on success
             type: str
-            sample: hcx_initial_password_example
+            sample: example-password
         hcx_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -735,8 +770,8 @@ sddc:
         "nsx_manager_fqdn": "nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
         "vcenter_private_ip_id": "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_manager_private_ip_id": "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx",
-        "vcenter_initial_password": "vcenter_initial_password_example",
-        "nsx_manager_initial_password": "nsx_manager_initial_password_example",
+        "vcenter_initial_password": "example-password",
+        "nsx_manager_initial_password": "example-password",
         "vcenter_username": "vcenter_username_example",
         "nsx_manager_username": "nsx_manager_username_example",
         "ssh_authorized_keys": "ssh_authorized_keys_example",
@@ -755,7 +790,7 @@ sddc:
         "provisioning_vlan_id": "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_private_ip_id": "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_fqdn": "hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
-        "hcx_initial_password": "hcx_initial_password_example",
+        "hcx_initial_password": "example-password",
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hcx_enabled": true,
         "hcx_on_prem_key": "hcx_on_prem_key_example",

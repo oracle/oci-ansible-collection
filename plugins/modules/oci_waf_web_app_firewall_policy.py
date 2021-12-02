@@ -24,7 +24,7 @@ short_description: Manage a WebAppFirewallPolicy resource in Oracle Cloud Infras
 description:
     - This module allows the user to create, update and delete a WebAppFirewallPolicy resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new WebAppFirewallPolicy.
-    - "This resource has the following action operations in the M(oci_web_app_firewall_policy_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_waf_web_app_firewall_policy_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -638,35 +638,430 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create web_app_firewall_policy
   oci_waf_web_app_firewall_policy:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update web_app_firewall_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_waf_web_app_firewall_policy:
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     actions:
-    - type: RETURN_HTTP_RESPONSE
+    - # required
+      type: RETURN_HTTP_RESPONSE
       name: name_example
+      code: 200
+
+      # optional
+      headers:
+      - # required
+        name: name_example
+        value: value_example
+      body:
+        # required
+        type: STATIC_TEXT
+        text: text_example
     request_access_control:
+      # required
       default_action_name: default_action_name_example
+
+      # optional
+      rules:
+      - # required
+        type: ACCESS_CONTROL
+        name: name_example
+        action_name: action_name_example
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    request_rate_limiting:
+      # optional
+      rules:
+      - # required
+        type: REQUEST_RATE_LIMITING
+        name: name_example
+        action_name: action_name_example
+        configurations:
+        - # required
+          period_in_seconds: 56
+          requests_limit: 56
+
+          # optional
+          action_duration_in_seconds: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    request_protection:
+      # optional
+      rules:
+      - # required
+        type: PROTECTION
+        name: name_example
+        action_name: action_name_example
+        protection_capabilities:
+        - # required
+          key: key_example
+          version: 56
+
+          # optional
+          exclusions:
+            # optional
+            request_cookies: [ "null" ]
+            args: [ "null" ]
+          action_name: action_name_example
+          collaborative_action_threshold: 56
+          collaborative_weights:
+          - # required
+            key: key_example
+            weight: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+        protection_capability_settings:
+          # optional
+          max_number_of_arguments: 56
+          max_single_argument_length: 56
+          max_total_argument_length: 56
+          max_http_request_headers: 56
+          max_http_request_header_length: 56
+          allowed_http_methods: [ "null" ]
+    response_access_control:
+      # optional
+      rules:
+      - # required
+        type: ACCESS_CONTROL
+        name: name_example
+        action_name: action_name_example
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    response_protection:
+      # optional
+      rules:
+      - # required
+        type: PROTECTION
+        name: name_example
+        action_name: action_name_example
+        protection_capabilities:
+        - # required
+          key: key_example
+          version: 56
+
+          # optional
+          exclusions:
+            # optional
+            request_cookies: [ "null" ]
+            args: [ "null" ]
+          action_name: action_name_example
+          collaborative_action_threshold: 56
+          collaborative_weights:
+          - # required
+            key: key_example
+            weight: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+        protection_capability_settings:
+          # optional
+          max_number_of_arguments: 56
+          max_single_argument_length: 56
+          max_total_argument_length: 56
+          max_http_request_headers: 56
+          max_http_request_header_length: 56
+          allowed_http_methods: [ "null" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
 
 - name: Update web_app_firewall_policy
   oci_waf_web_app_firewall_policy:
+    # required
+    web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     actions:
-    - type: RETURN_HTTP_RESPONSE
+    - # required
+      type: RETURN_HTTP_RESPONSE
       name: name_example
-    web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+      code: 200
+
+      # optional
+      headers:
+      - # required
+        name: name_example
+        value: value_example
+      body:
+        # required
+        type: STATIC_TEXT
+        text: text_example
+    request_access_control:
+      # required
+      default_action_name: default_action_name_example
+
+      # optional
+      rules:
+      - # required
+        type: ACCESS_CONTROL
+        name: name_example
+        action_name: action_name_example
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    request_rate_limiting:
+      # optional
+      rules:
+      - # required
+        type: REQUEST_RATE_LIMITING
+        name: name_example
+        action_name: action_name_example
+        configurations:
+        - # required
+          period_in_seconds: 56
+          requests_limit: 56
+
+          # optional
+          action_duration_in_seconds: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    request_protection:
+      # optional
+      rules:
+      - # required
+        type: PROTECTION
+        name: name_example
+        action_name: action_name_example
+        protection_capabilities:
+        - # required
+          key: key_example
+          version: 56
+
+          # optional
+          exclusions:
+            # optional
+            request_cookies: [ "null" ]
+            args: [ "null" ]
+          action_name: action_name_example
+          collaborative_action_threshold: 56
+          collaborative_weights:
+          - # required
+            key: key_example
+            weight: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+        protection_capability_settings:
+          # optional
+          max_number_of_arguments: 56
+          max_single_argument_length: 56
+          max_total_argument_length: 56
+          max_http_request_headers: 56
+          max_http_request_header_length: 56
+          allowed_http_methods: [ "null" ]
+    response_access_control:
+      # optional
+      rules:
+      - # required
+        type: ACCESS_CONTROL
+        name: name_example
+        action_name: action_name_example
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    response_protection:
+      # optional
+      rules:
+      - # required
+        type: PROTECTION
+        name: name_example
+        action_name: action_name_example
+        protection_capabilities:
+        - # required
+          key: key_example
+          version: 56
+
+          # optional
+          exclusions:
+            # optional
+            request_cookies: [ "null" ]
+            args: [ "null" ]
+          action_name: action_name_example
+          collaborative_action_threshold: 56
+          collaborative_weights:
+          - # required
+            key: key_example
+            weight: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+        protection_capability_settings:
+          # optional
+          max_number_of_arguments: 56
+          max_single_argument_length: 56
+          max_total_argument_length: 56
+          max_http_request_headers: 56
+          max_http_request_header_length: 56
+          allowed_http_methods: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
+
+- name: Update web_app_firewall_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_waf_web_app_firewall_policy:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    actions:
+    - # required
+      type: RETURN_HTTP_RESPONSE
+      name: name_example
+      code: 200
+
+      # optional
+      headers:
+      - # required
+        name: name_example
+        value: value_example
+      body:
+        # required
+        type: STATIC_TEXT
+        text: text_example
+    request_access_control:
+      # required
+      default_action_name: default_action_name_example
+
+      # optional
+      rules:
+      - # required
+        type: ACCESS_CONTROL
+        name: name_example
+        action_name: action_name_example
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    request_rate_limiting:
+      # optional
+      rules:
+      - # required
+        type: REQUEST_RATE_LIMITING
+        name: name_example
+        action_name: action_name_example
+        configurations:
+        - # required
+          period_in_seconds: 56
+          requests_limit: 56
+
+          # optional
+          action_duration_in_seconds: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    request_protection:
+      # optional
+      rules:
+      - # required
+        type: PROTECTION
+        name: name_example
+        action_name: action_name_example
+        protection_capabilities:
+        - # required
+          key: key_example
+          version: 56
+
+          # optional
+          exclusions:
+            # optional
+            request_cookies: [ "null" ]
+            args: [ "null" ]
+          action_name: action_name_example
+          collaborative_action_threshold: 56
+          collaborative_weights:
+          - # required
+            key: key_example
+            weight: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+        protection_capability_settings:
+          # optional
+          max_number_of_arguments: 56
+          max_single_argument_length: 56
+          max_total_argument_length: 56
+          max_http_request_headers: 56
+          max_http_request_header_length: 56
+          allowed_http_methods: [ "null" ]
+    response_access_control:
+      # optional
+      rules:
+      - # required
+        type: ACCESS_CONTROL
+        name: name_example
+        action_name: action_name_example
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+    response_protection:
+      # optional
+      rules:
+      - # required
+        type: PROTECTION
+        name: name_example
+        action_name: action_name_example
+        protection_capabilities:
+        - # required
+          key: key_example
+          version: 56
+
+          # optional
+          exclusions:
+            # optional
+            request_cookies: [ "null" ]
+            args: [ "null" ]
+          action_name: action_name_example
+          collaborative_action_threshold: 56
+          collaborative_weights:
+          - # required
+            key: key_example
+            weight: 56
+
+        # optional
+        condition_language: JMESPATH
+        condition: condition_example
+        protection_capability_settings:
+          # optional
+          max_number_of_arguments: 56
+          max_single_argument_length: 56
+          max_total_argument_length: 56
+          max_http_request_headers: 56
+          max_http_request_header_length: 56
+          allowed_http_methods: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
 
 - name: Delete web_app_firewall_policy
   oci_waf_web_app_firewall_policy:
+    # required
     web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete web_app_firewall_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waf_web_app_firewall_policy:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

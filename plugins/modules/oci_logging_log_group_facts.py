@@ -68,13 +68,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List log_groups
-  oci_logging_log_group_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific log_group
   oci_logging_log_group_facts:
+    # required
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List log_groups
+  oci_logging_log_group_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    is_compartment_id_in_subtree: true
+    display_name: display_name_example
+    sort_by: timeCreated
+    sort_order: ASC
 
 """
 

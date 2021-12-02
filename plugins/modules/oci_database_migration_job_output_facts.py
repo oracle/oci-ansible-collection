@@ -38,6 +38,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List job_outputs
   oci_database_migration_job_output_facts:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

@@ -84,13 +84,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List deployment_backups
-  oci_golden_gate_deployment_backup_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific deployment_backup
   oci_golden_gate_deployment_backup_facts:
+    # required
     deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List deployment_backups
+  oci_golden_gate_deployment_backup_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: CREATING
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

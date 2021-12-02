@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a job to be executed on a Managed Database or Managed Database Group. Only one
       of the parameters, managedDatabaseId or managedDatabaseGroupId should be provided as
       input in CreateJobDetails resource in request body.
-    - "This resource has the following action operations in the M(oci_job_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_management_job_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -190,49 +190,108 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create job
+- name: Create job with job_type = SQL
   oci_database_management_job:
+    # required
     name: TestJob
     compartment_id: "ocid1.tenancy.oc1..unique_ID"
     schedule_type: IMMEDIATE
     job_type: SQL
     operation_type: EXECUTE_SQL
 
-- name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_management_job:
-    name: TestJob
+    # optional
     description: Job to fetch the Performance data from database.
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
-    schedule_type: IMMEDIATE
-    job_type: SQL
+    managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_database_id: "ocid1.externalcontainerdatabase.oc1..unique_ID"
+    database_sub_type: CDB
     timeout: 5m
     result_location:
+      # required
       type: OBJECT_STORAGE
+
+      # optional
+      namespace_name: TestNamespace
+      bucket_name: resultBucket
+    schedule_details:
+      # optional
+      start_time: start_time_example
+      end_time: end_time_example
+      interval_type: DAILY
+      interval_value: interval_value_example
     sql_text: SELECT SYSTIMESTAMP FROM DUAL
     sql_type: QUERY
-    operation_type: EXECUTE_SQL
     user_name: TestJobUser
-    password: testPwd
+    password: example-password
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     role: NORMAL
 
-- name: Update job
+- name: Update job with job_type = SQL
   oci_database_management_job:
-    name: TestJob
-    description: Job to fetch the Performance data from database.
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
-    schedule_type: IMMEDIATE
+    # required
     job_type: SQL
-    operation_type: EXECUTE_SQL
-    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: Job to fetch the Performance data from database.
+    timeout: 5m
+    result_location:
+      # required
+      type: OBJECT_STORAGE
+
+      # optional
+      namespace_name: TestNamespace
+      bucket_name: resultBucket
+    schedule_details:
+      # optional
+      start_time: start_time_example
+      end_time: end_time_example
+      interval_type: DAILY
+      interval_value: interval_value_example
+    sql_text: SELECT SYSTIMESTAMP FROM DUAL
+    sql_type: QUERY
+    user_name: TestJobUser
+    password: example-password
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    role: NORMAL
+
+- name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with job_type = SQL
+  oci_database_management_job:
+    # required
+    name: TestJob
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    job_type: SQL
+
+    # optional
+    description: Job to fetch the Performance data from database.
+    timeout: 5m
+    result_location:
+      # required
+      type: OBJECT_STORAGE
+
+      # optional
+      namespace_name: TestNamespace
+      bucket_name: resultBucket
+    schedule_details:
+      # optional
+      start_time: start_time_example
+      end_time: end_time_example
+      interval_type: DAILY
+      interval_value: interval_value_example
+    sql_text: SELECT SYSTIMESTAMP FROM DUAL
+    sql_type: QUERY
+    user_name: TestJobUser
+    password: example-password
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    role: NORMAL
 
 - name: Delete job
   oci_database_management_job:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_management_job:
+    # required
     name: TestJob
     compartment_id: "ocid1.tenancy.oc1..unique_ID"
     state: absent

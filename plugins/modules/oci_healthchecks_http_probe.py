@@ -93,10 +93,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create http_probe
   oci_healthchecks_http_probe:
+    # required
     compartment_id: "ocid1.tenancy.oc1..."
-    targets:
-    - "192.0.2.0"
-    protocol: "HTTP"
+    targets: [ "192.0.2.0" ]
+    protocol: HTTP
+
+    # optional
+    vantage_point_names: [ "null" ]
+    port: 56
+    timeout_in_seconds: 56
+    method: GET
+    path: path_example
+    headers: null
 
 """
 

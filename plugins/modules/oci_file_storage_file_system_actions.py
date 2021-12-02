@@ -53,9 +53,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on file_system
   oci_file_storage_file_system_actions:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
     file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 

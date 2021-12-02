@@ -43,13 +43,19 @@ options:
         description:
             - "A strong password for PDB Admin of the newly cloned PDB. The password must be at least nine characters and contain at least two uppercase, two
               lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
-            - Required for I(action=local_clone), I(action=remote_clone).
+            - Applicable only for I(action=local_clone)I(action=remote_clone).
         type: str
     target_tde_wallet_password:
         description:
             - The existing TDE wallet password of the target CDB.
-            - Required for I(action=local_clone), I(action=remote_clone).
+            - Applicable only for I(action=local_clone)I(action=remote_clone).
         type: str
+    should_pdb_admin_account_be_locked:
+        description:
+            - The locked mode of the pluggable database admin account. If false, the user needs to provide the PDB Admin Password to connect to it.
+              If true, the pluggable database will be locked and user cannot login to it.
+            - Applicable only for I(action=local_clone)I(action=remote_clone).
+        type: bool
     pluggable_database_id:
         description:
             - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -82,29 +88,39 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action local_clone on pluggable_database
   oci_database_pluggable_database_actions:
-    cloned_pdb_name: "NewSalesPdb"
-    target_tde_wallet_password: "TDE_password"
-    pdb_admin_password: "password"
+    # required
+    cloned_pdb_name: cloned_pdb_name_example
     pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "local_clone"
+    action: local_clone
+
+    # optional
+    pdb_admin_password: example-password
+    target_tde_wallet_password: example-password
+    should_pdb_admin_account_be_locked: true
 
 - name: Perform action remote_clone on pluggable_database
   oci_database_pluggable_database_actions:
-    cloned_pdb_name: "NewSalesPdb"
-    target_container_database_id: "ocid1.database.oc1..aaaaaaaah2sauv373xyfrpcnaed2ptfy67fnspzyda2hacgdbrkijhffugaa"
-    source_container_db_admin_password: "password"
-    target_tde_wallet_password: "TDE_password"
-    pdb_admin_password: "password"
+    # required
+    cloned_pdb_name: cloned_pdb_name_example
     pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "remote_clone"
+    target_container_database_id: "ocid1.targetcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    source_container_db_admin_password: example-password
+    action: remote_clone
+
+    # optional
+    pdb_admin_password: example-password
+    target_tde_wallet_password: example-password
+    should_pdb_admin_account_be_locked: true
 
 - name: Perform action start on pluggable_database
   oci_database_pluggable_database_actions:
+    # required
     pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on pluggable_database
   oci_database_pluggable_database_actions:
+    # required
     pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
@@ -383,6 +399,7 @@ def main():
             cloned_pdb_name=dict(type="str"),
             pdb_admin_password=dict(type="str", no_log=True),
             target_tde_wallet_password=dict(type="str", no_log=True),
+            should_pdb_admin_account_be_locked=dict(type="bool"),
             pluggable_database_id=dict(aliases=["id"], type="str", required=True),
             target_container_database_id=dict(type="str"),
             source_container_db_admin_password=dict(type="str", no_log=True),

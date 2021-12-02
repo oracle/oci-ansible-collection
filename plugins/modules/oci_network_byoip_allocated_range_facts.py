@@ -40,6 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List byoip_allocated_ranges
   oci_network_byoip_allocated_range_facts:
+    # required
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

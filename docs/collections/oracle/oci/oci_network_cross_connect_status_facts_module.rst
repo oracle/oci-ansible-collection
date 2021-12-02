@@ -30,13 +30,9 @@ oracle.oci.oci_network_cross_connect_status_facts -- Fetches details about a Cro
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_cross_connect_status_facts`.
 
@@ -270,6 +266,7 @@ Examples
     
     - name: Get a specific cross_connect_status
       oci_network_cross_connect_status_facts:
+        # required
         cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 
@@ -306,8 +303,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>CrossConnectStatus resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cross_connect_id&#x27;: &#x27;ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;interface_state&#x27;: &#x27;UP&#x27;, &#x27;light_level_ind_bm&#x27;: 14.0, &#x27;light_level_indicator&#x27;: &#x27;NO_LIGHT&#x27;}</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cross_connect_id&#x27;: &#x27;ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;encryption_status&#x27;: &#x27;UP&#x27;, &#x27;interface_state&#x27;: &#x27;UP&#x27;, &#x27;light_level_ind_bm&#x27;: 14.0, &#x27;light_level_indicator&#x27;: &#x27;NO_LIGHT&#x27;, &#x27;light_levels_in_d_bm&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -322,10 +319,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the cross-connect.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the cross-connect.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cross_connect_status/encryption_status"></div>
+                    <b>encryption_status</b>
+                    <a class="ansibleOptionLink" href="#return-cross_connect_status/encryption_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Encryption status of this cross connect.</div>
+                                            <div>Possible values: * **UP:** Traffic is encrypted over this cross-connect * **DOWN:** Traffic is not encrypted over this cross-connect * **CIPHER_MISMATCH:** The MACsec encryption cipher doesn&#x27;t match the cipher on the CPE * **CKN_MISMATCH:** The MACsec Connectivity association Key Name (CKN) doesn&#x27;t match the CKN on the CPE * **CAK_MISMATCH:** The MACsec Connectivity Association Key (CAK) doesn&#x27;t match the CAK on the CPE</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
                                 <tr>
@@ -340,9 +356,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether Oracle&#x27;s side of the interface is up or down.</div>
+                                            <div>Indicates whether Oracle&#x27;s side of the interface is up or down.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
@@ -361,7 +377,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The light level of the cross-connect (in dBm).</div>
                                             <div>Example: `14.0`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">14.0</div>
                                     </td>
             </tr>
@@ -378,14 +394,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Status indicator corresponding to the light level.</div>
-                                            <div>* **NO_LIGHT:** No measurable light</div>
-                                            <div>* **LOW_WARN:** There&#x27;s measurable light but it&#x27;s too low</div>
-                                            <div>* **HIGH_WARN:** Light level is too high</div>
-                                            <div>* **BAD:** There&#x27;s measurable light but the signal-to-noise ratio is bad</div>
-                                            <div>* **GOOD:** Good light level</div>
+                                            <div>* **NO_LIGHT:** No measurable light * **LOW_WARN:** There&#x27;s measurable light but it&#x27;s too low * **HIGH_WARN:** Light level is too high * **BAD:** There&#x27;s measurable light but the signal-to-noise ratio is bad * **GOOD:** Good light level</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NO_LIGHT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cross_connect_status/light_levels_in_d_bm"></div>
+                    <b>light_levels_in_d_bm</b>
+                    <a class="ansibleOptionLink" href="#return-cross_connect_status/light_levels_in_d_bm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The light levels of the cross-connect (in dBm).</div>
+                                            <div>Example: `[14.0, -14.0, 2.1, -10.1]`</div>
+                                        <br/>
                                     </td>
             </tr>
                     

@@ -30,13 +30,9 @@ oracle.oci.oci_waas_captchas -- Manage a Captchas resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_waas_captchas`.
 
@@ -457,13 +453,19 @@ Examples
     
     - name: Update captchas
       oci_waas_captchas:
+        # required
         waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         captchas:
-        - url: url_example
+        - # required
+          url: url_example
           session_expiration_in_seconds: 56
           title: title_example
           failure_message: failure_message_example
           submit_label: submit_label_example
+
+          # optional
+          header_text: header_text_example
+          footer_text: footer_text_example
 
 
 
@@ -499,7 +501,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Captchas resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;failure_message&#x27;: &#x27;failure_message_example&#x27;, &#x27;footer_text&#x27;: &#x27;footer_text_example&#x27;, &#x27;header_text&#x27;: &#x27;header_text_example&#x27;, &#x27;session_expiration_in_seconds&#x27;: 56, &#x27;submit_label&#x27;: &#x27;submit_label_example&#x27;, &#x27;title&#x27;: &#x27;title_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}</div>
                                     </td>
             </tr>
@@ -517,7 +519,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The text to show when incorrect CAPTCHA text is entered. If unspecified, defaults to `The CAPTCHA was incorrect. Try again.`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">failure_message_example</div>
                                     </td>
             </tr>
@@ -535,7 +537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The text to show in the footer when showing a CAPTCHA challenge. If unspecified, defaults to &#x27;Enter the letters and numbers as they are shown in the image above.&#x27;</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">footer_text_example</div>
                                     </td>
             </tr>
@@ -553,7 +555,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The text to show in the header when showing a CAPTCHA challenge. If unspecified, defaults to &#x27;We have detected an increased number of attempts to access this website. To help us keep this site secure, please let us know that you are not a robot by entering the text from the image below.&#x27;</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">header_text_example</div>
                                     </td>
             </tr>
@@ -571,7 +573,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The amount of time before the CAPTCHA expires, in seconds. If unspecified, defaults to `300`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -589,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The text to show on the label of the CAPTCHA challenge submit button. If unspecified, defaults to `Yes, I am human`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">submit_label_example</div>
                                     </td>
             </tr>
@@ -607,7 +609,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The title used when displaying a CAPTCHA challenge. If unspecified, defaults to `Are you human?`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">title_example</div>
                                     </td>
             </tr>
@@ -625,7 +627,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique URL path at which to show the CAPTCHA challenge.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
                                     </td>
             </tr>

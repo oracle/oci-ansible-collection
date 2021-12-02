@@ -30,13 +30,9 @@ oracle.oci.oci_key_management_replication_status_details_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_key_management_replication_status_details_facts`.
 
@@ -285,6 +281,7 @@ Examples
     
     - name: Get a specific replication_status_details
       oci_key_management_replication_status_details_facts:
+        # required
         replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
@@ -322,7 +319,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>ReplicationStatusDetails resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;replica_details&#x27;: [{&#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;status&#x27;: &#x27;REPLICATING&#x27;}]}</div>
                                     </td>
             </tr>
@@ -340,7 +337,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The value to assign to the replica_details property of this Vault.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -357,7 +354,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The replica region</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_example</div>
                                     </td>
             </tr>
@@ -376,7 +373,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Replication status associated with a replicationId</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">REPLICATING</div>
                                     </td>
             </tr>

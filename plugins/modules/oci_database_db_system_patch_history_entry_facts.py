@@ -43,14 +43,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List db_system_patch_history_entries
-  oci_database_db_system_patch_history_entry_facts:
-    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific db_system_patch_history_entry
   oci_database_db_system_patch_history_entry_facts:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     patch_history_entry_id: "ocid1.patchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List db_system_patch_history_entries
+  oci_database_db_system_patch_history_entry_facts:
+    # required
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -32,7 +32,8 @@ description:
     - "For a CIDR block, Oracle recommends that you use one of the private IP address ranges specified in L(RFC 1918,https://tools.ietf.org/html/rfc1918)
       (10.0.0.0/8, 172.16/12, and 192.168/16). Example:
       172.16.0.0/16. The CIDR blocks can range from /16 to /30."
-    - For the purposes of access control, you must provide the OCID of the compartment where you want the VCN to
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment where you want the VCN to
       reside. Consult an Oracle Cloud Infrastructure administrator in your organization if you're not sure which
       compartment to use. Notice that the VCN doesn't have to be in the same compartment as the subnets or other
       Networking Service components. For more information about compartments and access control, see
@@ -44,13 +45,14 @@ description:
       Interent and VCN Resolver option for DNS in the VCN. For more information, see
       L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
     - The VCN automatically comes with a default route table, default security list, and default set of DHCP options.
-      The OCID for each is returned in the response. You can't delete these default objects, but you can change their
+      The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for each is returned in the response. You can't delete these
+      default objects, but you can change their
       contents (that is, change the route rules, security list rules, and so on).
-    - The VCN and subnets you create are not accessible until you attach an internet gateway or set up an IPSec VPN
+    - The VCN and subnets you create are not accessible until you attach an internet gateway or set up a Site-to-Site VPN
       or FastConnect. For more information, see
       L(Overview of the Networking Service,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm).
-    - "This resource has the following action operations in the M(oci_vcn_actions) module: add_ipv6_vcn_cidr, add_vcn_cidr, change_compartment, modify_vcn_cidr,
-      remove_vcn_cidr."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_vcn_actions) module: add_ipv6_vcn_cidr, add_vcn_cidr,
+      change_compartment, modify_vcn_cidr, remove_vcn_cidr."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -70,7 +72,7 @@ options:
         elements: str
     compartment_id:
         description:
-            - The OCID of the compartment to contain the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the VCN.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -142,30 +144,47 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vcn
   oci_network_vcn:
-    cidr_block: "10.0.0.0/16"
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "MyVcn"
 
-- name: Update vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    cidr_block: 10.0.0.0/16
+    cidr_blocks: [ "null" ]
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: MyVcn
+    dns_label: vcn1
+    freeform_tags: {'Department': 'Finance'}
+    is_ipv6_enabled: true
+
+- name: Update vcn
   oci_network_vcn:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyVcn
     freeform_tags: {'Department': 'Finance'}
 
-- name: Update vcn
+- name: Update vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vcn:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyVcn
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete vcn
   oci_network_vcn:
+    # required
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vcn:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyVcn
     state: absent
@@ -194,25 +213,25 @@ vcn:
             sample: []
         compartment_id:
             description:
-                - The OCID of the compartment containing the VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the VCN.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_dhcp_options_id:
             description:
-                - The OCID for the VCN's default set of DHCP options.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the VCN's default set of DHCP options.
             returned: on success
             type: str
             sample: "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         default_route_table_id:
             description:
-                - The OCID for the VCN's default route table.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the VCN's default route table.
             returned: on success
             type: str
             sample: "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         default_security_list_id:
             description:
-                - The OCID for the VCN's default security list.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the VCN's default security list.
             returned: on success
             type: str
             sample: "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx"
@@ -257,7 +276,7 @@ vcn:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The VCN's Oracle ID (OCID).
+                - The VCN's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

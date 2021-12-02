@@ -88,13 +88,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List job_runs
-  oci_data_science_job_run_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific job_run
   oci_data_science_job_run_facts:
+    # required
     job_run_id: "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List job_runs
+  oci_data_science_job_run_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+    created_by: created_by_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: ACCEPTED
 
 """
 

@@ -60,11 +60,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create console_connection
   oci_database_console_connection:
+    # required
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete console_connection
   oci_database_console_connection:
+    # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
     console_connection_id: "ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

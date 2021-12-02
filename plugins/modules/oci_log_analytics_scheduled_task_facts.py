@@ -89,16 +89,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific scheduled_task
+  oci_log_analytics_scheduled_task_facts:
+    # required
+    namespace_name: namespace_name_example
+    scheduled_task_id: "ocid1.scheduledtask.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List scheduled_tasks
   oci_log_analytics_scheduled_task_facts:
+    # required
     namespace_name: namespace_name_example
     task_type: SAVED_SEARCH
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific scheduled_task
-  oci_log_analytics_scheduled_task_facts:
-    namespace_name: namespace_name_example
-    scheduled_task_id: "ocid1.scheduledtask.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
+    saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name_contains: display_name_contains_example
 
 """
 

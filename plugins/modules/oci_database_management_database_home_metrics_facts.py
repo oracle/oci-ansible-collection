@@ -50,6 +50,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific database_home_metrics
   oci_database_management_database_home_metrics_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     start_time: start_time_example
     end_time: end_time_example

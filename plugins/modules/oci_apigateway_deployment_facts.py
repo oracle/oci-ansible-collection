@@ -82,13 +82,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List deployments
-  oci_apigateway_deployment_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific deployment
   oci_apigateway_deployment_facts:
+    # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List deployments
+  oci_apigateway_deployment_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: My new resource
+    lifecycle_state: SUCCEEDED
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 
@@ -221,7 +230,7 @@ deployments:
                                                 - Name of the claim.
                                             returned: on success
                                             type: str
-                                            sample: iss
+                                            sample: key_example
                                         values:
                                             description:
                                                 - "The list of acceptable values for a given claim.
@@ -339,7 +348,7 @@ deployments:
                                                         - The content of the PEM-encoded public key.
                                                     returned: on success
                                                     type: str
-                                                    sample: -----BEGIN PUBLIC KEY-----
+                                                    sample: key_example
                         rate_limiting:
                             description:
                                 - ""
@@ -1196,7 +1205,7 @@ deployments:
                     "issuers": [],
                     "audiences": [],
                     "verify_claims": [{
-                        "key": "iss",
+                        "key": "key_example",
                         "values": [],
                         "is_required": true
                     }],
@@ -1215,7 +1224,7 @@ deployments:
                             "alg": "alg_example",
                             "n": "n_example",
                             "e": "e_example",
-                            "key": "-----BEGIN PUBLIC KEY-----"
+                            "key": "key_example"
                         }]
                     }
                 },

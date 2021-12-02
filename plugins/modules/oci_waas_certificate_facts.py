@@ -88,13 +88,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List waas_certificates
-  oci_waas_certificate_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific waas_certificate
   oci_waas_certificate_facts:
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List waas_certificates
+  oci_waas_certificate_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: id
+    sort_order: ASC
+    display_name: [ "$p.getValue()" ]
+    lifecycle_state: [ "$p.getValue()" ]
+    time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_created_less_than: 2013-10-20T19:20:30+01:00
 
 """
 
@@ -345,7 +355,7 @@ waas_certificates:
                 - The data of the SSL certificate.
             returned: on success
             type: str
-            sample: certificate_data_example
+            sample: this-is-not-the-secret
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -389,7 +399,7 @@ waas_certificates:
         "lifecycle_state": "CREATING",
         "time_created": "2018-11-16T21:10:29Z",
         "is_trust_verification_disabled": true,
-        "certificate_data": "certificate_data_example"
+        "certificate_data": "this-is-not-the-secret"
     }]
 """
 

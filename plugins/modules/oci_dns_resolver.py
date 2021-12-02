@@ -23,7 +23,7 @@ module: oci_dns_resolver
 short_description: Manage a Resolver resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a Resolver resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_resolver_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_dns_resolver_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -145,24 +145,53 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Update resolver using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Update resolver
   oci_dns_resolver:
+    # required
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     attached_views:
-    - view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
     rules:
-    - action: FORWARD
+    - # required
+      action: FORWARD
+      destination_addresses: [ "null" ]
       source_endpoint_name: source_endpoint_name_example
+
+      # optional
+      client_address_conditions: [ "null" ]
+      qname_cover_conditions: [ "null" ]
     if_unmodified_since: if_unmodified_since_example
     scope: GLOBAL
+
+- name: Update resolver using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_dns_resolver:
+    # required
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update resolver
-  oci_dns_resolver:
-    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    attached_views:
+    - # required
+      view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    rules:
+    - # required
+      action: FORWARD
+      destination_addresses: [ "null" ]
+      source_endpoint_name: source_endpoint_name_example
+
+      # optional
+      client_address_conditions: [ "null" ]
+      qname_cover_conditions: [ "null" ]
+    if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 """
 

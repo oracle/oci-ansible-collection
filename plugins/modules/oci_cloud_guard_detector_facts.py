@@ -70,13 +70,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List detectors
-  oci_cloud_guard_detector_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific detector
   oci_cloud_guard_detector_facts:
+    # required
     detector_id: "ocid1.detector.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List detectors
+  oci_cloud_guard_detector_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

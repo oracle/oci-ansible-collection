@@ -23,7 +23,7 @@ module: oci_opsi_sql_texts_facts
 short_description: Fetches details about one or multiple SqlTexts resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple SqlTexts resources in Oracle Cloud Infrastructure
-    - Query SQL Warehouse to get the full SQL Text for a SQL.
+    - Query SQL Warehouse to get the full SQL Text for a SQL in a compartment and in all sub-compartments if specified.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -82,14 +82,28 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List sql_texts
   oci_opsi_sql_texts_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: [ "6rgjh9bjmy2s7" ]
+
+    # optional
+    database_id: [ "$p.getValue()" ]
+    id: [ "$p.getValue()" ]
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -118,6 +132,12 @@ sql_texts:
             returned: on success
             type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         sql_text:
             description:
                 - SQL Text
@@ -128,6 +148,7 @@ sql_texts:
         "sql_identifier": "sql_identifier_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "sql_text": "sql_text_example"
     }]
 """
@@ -164,6 +185,7 @@ class SqlTextsFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -197,6 +219,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

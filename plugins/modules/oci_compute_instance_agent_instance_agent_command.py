@@ -177,16 +177,39 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_agent_command
   oci_compute_instance_agent_instance_agent_command:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     execution_time_out_in_seconds: 56
+    target:
+      # optional
+      instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    content:
+      # required
+      source:
+        # required
+        source_type: OBJECT_STORAGE_TUPLE
+        bucket_name: bucket_name_example
+        namespace_name: namespace_name_example
+        object_name: object_name_example
+
+        # optional
+      output:
+        # required
+        output_type: OBJECT_STORAGE_URI
+        output_uri: output_uri_example
+
+    # optional
+    display_name: Database Backup Script
 
 - name: Delete instance_agent_command
   oci_compute_instance_agent_instance_agent_command:
+    # required
     instance_agent_command_id: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete instance_agent_command using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance_agent_instance_agent_command:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: Database Backup Script
     state: absent

@@ -97,15 +97,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific recommendation
+  oci_optimizer_recommendation_facts:
+    # required
+    recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List recommendations
   oci_optimizer_recommendation_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
     category_id: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific recommendation
-  oci_optimizer_recommendation_facts:
-    recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    name: name_example
+    sort_order: ASC
+    sort_by: NAME
+    lifecycle_state: ACTIVE
+    status: PENDING
 
 """
 
@@ -233,6 +242,14 @@ recommendations:
                             returned: on success
                             type: str
                             sample: name_example
+        extended_metadata:
+            description:
+                - Additional metadata key/value pairs for the recommendation.
+                - "For example:"
+                - "`{\\"EstimatedSaving\\": \\"200\\"}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -255,7 +272,8 @@ recommendations:
             "items": [{
                 "name": "name_example"
             }]
-        }
+        },
+        "extended_metadata": {}
     }]
 """
 

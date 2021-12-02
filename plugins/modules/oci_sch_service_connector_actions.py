@@ -68,17 +68,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on service_connector
   oci_sch_service_connector_actions:
+    # required
     service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
 
 - name: Perform action change_compartment on service_connector
   oci_sch_service_connector_actions:
+    # required
     service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on service_connector
   oci_sch_service_connector_actions:
+    # required
     service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: deactivate
 

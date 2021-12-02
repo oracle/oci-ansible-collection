@@ -57,10 +57,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List search_listings
+- name: List search_listings with type = Structured
   oci_marketplace_search_listings_facts:
-    type: "FreeText"
-    text: "Fortinet"
+    # required
+    type: Structured
+    query: query_example
+
+    # optional
+    matching_context_type: NONE
+
+- name: List search_listings with type = FreeText
+  oci_marketplace_search_listings_facts:
+    # required
+    type: FreeText
+    text: text_example
+
+    # optional
+    matching_context_type: NONE
 
 """
 

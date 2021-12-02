@@ -38,8 +38,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-              entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -81,7 +81,8 @@ options:
     vlan_id:
         description:
             - Use this attribute only with the Oracle Cloud VMware Solution.
-            - "The OCID of the VLAN from which the private IP is to be drawn. The IP address,
+            - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN from which the private IP is to be drawn. The
+              IP address,
               *if supplied*, must be valid for the given VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan)."
         type: str
     private_ip_id:
@@ -107,27 +108,47 @@ EXAMPLES = """
 - name: Create private_ip
   oci_network_private_ip:
 
-- name: Update private_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    hostname_label: bminstance-1
+    ip_address: 10.0.3.3
+    vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
+    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update private_ip
   oci_network_private_ip:
+    # required
+    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     hostname_label: bminstance-1
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update private_ip
+- name: Update private_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_private_ip:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
     display_name: display_name_example
-    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    hostname_label: bminstance-1
+    vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete private_ip
   oci_network_private_ip:
+    # required
     private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete private_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_private_ip:
+    # required
     display_name: display_name_example
     state: absent
 
@@ -150,7 +171,7 @@ private_ip:
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment containing the private IP.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the private IP.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -164,8 +185,8 @@ private_ip:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -194,7 +215,7 @@ private_ip:
             sample: bminstance-1
         id:
             description:
-                - The private IP's Oracle ID (OCID).
+                - The private IP's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -220,14 +241,15 @@ private_ip:
         vlan_id:
             description:
                 - Applicable only if the `PrivateIp` object is being used with a VLAN as part of
-                  the Oracle Cloud VMware Solution. The `vlanId` is the OCID of the VLAN. See
+                  the Oracle Cloud VMware Solution. The `vlanId` is the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of
+                  the VLAN. See
                   L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
             returned: on success
             type: str
             sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
-                - The OCID of the subnet the VNIC is in.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet the VNIC is in.
                 - However, if the `PrivateIp` object is being used with a VLAN as part of
                   the Oracle Cloud VMware Solution, the `subnetId` is null.
             returned: on success
@@ -242,7 +264,8 @@ private_ip:
             sample: "2016-08-25T21:10:29.600Z"
         vnic_id:
             description:
-                - The OCID of the VNIC the private IP is assigned to. The VNIC and private IP
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC the private IP is assigned to. The VNIC
+                  and private IP
                   must be in the same subnet.
                   However, if the `PrivateIp` object is being used with a VLAN as part of
                   the Oracle Cloud VMware Solution, the `vnicId` is null.

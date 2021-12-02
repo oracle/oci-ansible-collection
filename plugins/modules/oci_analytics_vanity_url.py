@@ -85,22 +85,32 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vanity_url
   oci_analytics_vanity_url:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    hosts: [ "null" ]
     private_key: private_key_example
     public_certificate: public_certificate_example
     ca_certificate: ca_certificate_example
 
+    # optional
+    description: description_example
+    passphrase: passphrase_example
+
 - name: Update vanity_url
   oci_analytics_vanity_url:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    passphrase: passphrase_example
     private_key: private_key_example
     public_certificate: public_certificate_example
     ca_certificate: ca_certificate_example
     vanity_url_key: vanity_url_key_example
 
+    # optional
+    passphrase: passphrase_example
+
 - name: Delete vanity_url
   oci_analytics_vanity_url:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     vanity_url_key: vanity_url_key_example
     state: absent

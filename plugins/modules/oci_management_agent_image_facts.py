@@ -77,7 +77,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List management_agent_images
   oci_management_agent_image_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: platformType
+    name: name_example
+    lifecycle_state: CREATING
+    install_type: AGENT
 
 """
 

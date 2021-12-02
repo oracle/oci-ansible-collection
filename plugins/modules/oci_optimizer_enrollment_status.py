@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update enrollment_status
   oci_optimizer_enrollment_status:
+    # required
     enrollment_status_id: "ocid1.enrollmentstatus.oc1..xxxxxxEXAMPLExxxxxx"
     status: ACTIVE
 

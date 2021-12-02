@@ -70,13 +70,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List network_address_lists
-  oci_waf_network_address_list_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific network_address_list
   oci_waf_network_address_list_facts:
+    # required
     network_address_list_id: "ocid1.networkaddresslist.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List network_address_lists
+  oci_waf_network_address_list_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: [ "$p.getValue()" ]
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

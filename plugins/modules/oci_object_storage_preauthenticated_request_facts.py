@@ -54,16 +54,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List preauthenticated_requests
-  oci_object_storage_preauthenticated_request_facts:
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-
 - name: Get a specific preauthenticated_request
   oci_object_storage_preauthenticated_request_facts:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     par_id: "ocid1.par.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List preauthenticated_requests
+  oci_object_storage_preauthenticated_request_facts:
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+
+    # optional
+    object_name_prefix: object_name_prefix_example
 
 """
 

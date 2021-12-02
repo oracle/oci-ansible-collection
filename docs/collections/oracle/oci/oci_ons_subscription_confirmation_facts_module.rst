@@ -30,13 +30,9 @@ oracle.oci.oci_ons_subscription_confirmation_facts -- Fetches details about a Su
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_ons_subscription_confirmation_facts`.
 
@@ -302,6 +298,7 @@ Examples
     
     - name: Get a specific subscription_confirmation
       oci_ons_subscription_confirmation_facts:
+        # required
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         token: token_example
         protocol: protocol_example
@@ -340,7 +337,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>SubscriptionConfirmation resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;endpoint&#x27;: &#x27;abc@oracle.com&#x27;, &#x27;message&#x27;: &#x27;The subscription has been confirmed&#x27;, &#x27;subscription_id&#x27;: &#x27;ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_name&#x27;: &#x27;topic_name_example&#x27;, &#x27;unsubscribe_url&#x27;: &#x27;unsubscribe_url_example&#x27;}</div>
                                     </td>
             </tr>
@@ -358,7 +355,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A locator that corresponds to the subscription protocol. For example, an email address for a subscription that uses the `EMAIL` protocol, or a URL for a subscription that uses an HTTP-based protocol.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">abc@oracle.com</div>
                                     </td>
             </tr>
@@ -376,7 +373,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A human-readable string indicating the status of the subscription confirmation.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">The subscription has been confirmed</div>
                                     </td>
             </tr>
@@ -394,7 +391,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the subscription specified in the request.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -412,7 +409,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the topic associated with the specified subscription.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -430,7 +427,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the subscribed topic.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">topic_name_example</div>
                                     </td>
             </tr>
@@ -448,7 +445,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The URL for unsubscribing from the topic.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unsubscribe_url_example</div>
                                     </td>
             </tr>

@@ -65,14 +65,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List mfa_totp_devices
-  oci_identity_mfa_totp_device_facts:
-    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific mfa_totp_device
   oci_identity_mfa_totp_device_facts:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List mfa_totp_devices
+  oci_identity_mfa_totp_device_facts:
+    # required
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

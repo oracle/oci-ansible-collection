@@ -77,14 +77,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific publication
+  oci_marketplace_publication_facts:
+    # required
+    publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List publications
   oci_marketplace_publication_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     listing_type: COMMUNITY
 
-- name: Get a specific publication
-  oci_marketplace_publication_facts:
+    # optional
     publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
+    name: [ "$p.getValue()" ]
+    operating_systems: [ "$p.getValue()" ]
+    sort_by: TIMERELEASED
+    sort_order: ASC
 
 """
 

@@ -26,7 +26,7 @@ description:
     - For I(state=present), starts the provisioning of a new stream pool.
       To track the progress of the provisioning, you can periodically call GetStreamPool.
       In the response, the `lifecycleState` parameter of the object tells you its current state.
-    - "This resource has the following action operations in the M(oci_stream_pool_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_streaming_stream_pool_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -141,27 +141,75 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create stream_pool
   oci_streaming_stream_pool:
+    # required
     compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
-    name: "MyStreamPool"
+    name: MyStreamPool
 
-- name: Update stream_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_streaming_stream_pool:
+    # optional
     kafka_settings:
+      # optional
+      bootstrap_servers: bootstrap_servers_example
       auto_create_topics_enable: true
       log_retention_hours: 24
       num_partitions: 1
+    custom_encryption_key_details:
+      # required
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_details:
+      # optional
+      subnet_id: ocid1.subnet.realm.region.zxcvbn432765
+      private_endpoint_ip: 10.0.0.5
+      nsg_ids: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update stream_pool
   oci_streaming_stream_pool:
+    # required
     stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: MyStreamPool
+    kafka_settings:
+      # optional
+      bootstrap_servers: bootstrap_servers_example
+      auto_create_topics_enable: true
+      log_retention_hours: 24
+      num_partitions: 1
+    custom_encryption_key_details:
+      # required
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update stream_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_streaming_stream_pool:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+    name: MyStreamPool
+
+    # optional
+    kafka_settings:
+      # optional
+      bootstrap_servers: bootstrap_servers_example
+      auto_create_topics_enable: true
+      log_retention_hours: 24
+      num_partitions: 1
+    custom_encryption_key_details:
+      # required
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete stream_pool
   oci_streaming_stream_pool:
+    # required
     stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete stream_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_stream_pool:
+    # required
     compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
     name: MyStreamPool
     state: absent

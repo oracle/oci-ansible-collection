@@ -101,15 +101,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific resource_action
+  oci_optimizer_resource_action_facts:
+    # required
+    resource_action_id: "ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List resource_actions
   oci_optimizer_resource_action_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
     recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific resource_action
-  oci_optimizer_resource_action_facts:
-    resource_action_id: "ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    name: name_example
+    resource_type: resource_type_example
+    sort_order: ASC
+    sort_by: NAME
+    lifecycle_state: ACTIVE
+    status: PENDING
 
 """
 

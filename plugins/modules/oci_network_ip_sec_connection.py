@@ -24,7 +24,7 @@ short_description: Manage an IpSecConnection resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete an IpSecConnection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new IPSec connection between the specified DRG and CPE. For more information, see
-      L(IPSec VPNs,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPsec.htm).
+      L(Site-to-Site VPN Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm).
     - "If you configure at least one tunnel to use static routing, then in the request you must provide
       at least one valid static route (you're allowed a maximum of 10). For example: 10.0.0.0/16.
       If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for
@@ -45,21 +45,22 @@ description:
         * L(IPSecConnectionTunnelSharedSecret,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/)"
     - For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret
       (that is, the pre-shared key). For more information, see
-      L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
-    - "This resource has the following action operations in the M(oci_ip_sec_connection_actions) module: change_compartment."
+      L(CPE Configuration,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_ip_sec_connection_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the IPSec connection.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     cpe_id:
         description:
-            - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(Cpe,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/Cpe/) object.
             - Required for create using I(state=present).
         type: str
     defined_tags:
@@ -139,8 +140,8 @@ options:
         suboptions:
             display_name:
                 description:
-                    - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                      entering confidential information.
+                    - A user-friendly name. Does not have to be unique, and it's changeable.
+                      Avoid entering confidential information.
                 type: str
                 aliases: ["name"]
             routing:
@@ -265,17 +266,42 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create ip_sec_connection
   oci_network_ip_sec_connection:
-    display_name: "MyIPSecConnection"
-    cpe_id: "ocid1.cpe.oc1.phx.unique_ID"
-    static_routes:
-    - "192.0.2.0/24"
-    - "2001:db8::/32"
-    drg_id: "ocid1.drg.oc1.phx.unique_ID"
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
+    cpe_id: ocid1.cpe.oc1.phx.unique_ID
+    drg_id: ocid1.drg.oc1.phx.unique_ID
+    static_routes: [ "192.0.2.0/24" ]
 
-- name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: MyIPSecConnection
+    freeform_tags: {'Department': 'Finance'}
+    cpe_local_identifier: cpe_local_identifier_example
+    cpe_local_identifier_type: IP_ADDRESS
+    tunnel_configuration:
+    - # optional
+      display_name: display_name_example
+      routing: BGP
+      ike_version: V1
+      shared_secret: shared_secret_example
+      bgp_session_config:
+        # optional
+        oracle_interface_ip: 10.0.0.4/31
+        customer_interface_ip: 10.0.0.5/31
+        oracle_interface_ipv6: 2001:db8::1/64
+        customer_interface_ipv6: 2001:db8::1/64
+        customer_bgp_asn: 12345
+      encryption_domain_config:
+        # optional
+        oracle_traffic_selector: [ "null" ]
+        cpe_traffic_selector: [ "null" ]
+
+- name: Update ip_sec_connection
   oci_network_ip_sec_connection:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyIPSecConnection
     freeform_tags: {'Department': 'Finance'}
@@ -283,19 +309,28 @@ EXAMPLES = """
     cpe_local_identifier_type: IP_ADDRESS
     static_routes: [ "192.0.2.0/24" ]
 
-- name: Update ip_sec_connection
+- name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyIPSecConnection
-    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    cpe_local_identifier: cpe_local_identifier_example
+    cpe_local_identifier_type: IP_ADDRESS
+    static_routes: [ "192.0.2.0/24" ]
 
 - name: Delete ip_sec_connection
   oci_network_ip_sec_connection:
+    # required
     ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyIPSecConnection
     state: absent
@@ -311,13 +346,14 @@ ip_sec_connection:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the IPSec connection.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the IPSec connection.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_id:
             description:
-                - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(Cpe,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
             type: str
             sample: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"

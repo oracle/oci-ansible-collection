@@ -30,13 +30,9 @@ oracle.oci.oci_devops_deploy_environment -- Manage a DeployEnvironment resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_devops_deploy_environment`.
 
@@ -610,42 +606,141 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Create deploy_environment
+    - name: Create deploy_environment with deploy_environment_type = COMPUTE_INSTANCE_GROUP
       oci_devops_deploy_environment:
-        deploy_environment_type: FUNCTION
+        # required
+        deploy_environment_type: COMPUTE_INSTANCE_GROUP
         project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-        function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
-    - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_devops_deploy_environment:
+        # optional
         description: description_example
         display_name: display_name_example
-        deploy_environment_type: FUNCTION
-        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         compute_instance_group_selectors:
+          # required
           items:
-          - selector_type: INSTANCE_IDS
-        cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
-        function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+          - # required
+            selector_type: INSTANCE_IDS
+            compute_instance_ids: [ "null" ]
 
-    - name: Update deploy_environment
+    - name: Create deploy_environment with deploy_environment_type = OKE_CLUSTER
       oci_devops_deploy_environment:
+        # required
+        deploy_environment_type: OKE_CLUSTER
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
         description: description_example
         display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Create deploy_environment with deploy_environment_type = FUNCTION
+      oci_devops_deploy_environment:
+        # required
         deploy_environment_type: FUNCTION
         project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
         function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_environment_id: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update deploy_environment with deploy_environment_type = COMPUTE_INSTANCE_GROUP
+      oci_devops_deploy_environment:
+        # required
+        deploy_environment_type: COMPUTE_INSTANCE_GROUP
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        compute_instance_group_selectors:
+          # required
+          items:
+          - # required
+            selector_type: INSTANCE_IDS
+            compute_instance_ids: [ "null" ]
+
+    - name: Update deploy_environment with deploy_environment_type = OKE_CLUSTER
+      oci_devops_deploy_environment:
+        # required
+        deploy_environment_type: OKE_CLUSTER
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update deploy_environment with deploy_environment_type = FUNCTION
+      oci_devops_deploy_environment:
+        # required
+        deploy_environment_type: FUNCTION
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = COMPUTE_INSTANCE_GROUP
+      oci_devops_deploy_environment:
+        # required
+        deploy_environment_type: COMPUTE_INSTANCE_GROUP
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        compute_instance_group_selectors:
+          # required
+          items:
+          - # required
+            selector_type: INSTANCE_IDS
+            compute_instance_ids: [ "null" ]
+
+    - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = OKE_CLUSTER
+      oci_devops_deploy_environment:
+        # required
+        deploy_environment_type: OKE_CLUSTER
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = FUNCTION
+      oci_devops_deploy_environment:
+        # required
+        deploy_environment_type: FUNCTION
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete deploy_environment
       oci_devops_deploy_environment:
+        # required
         deploy_environment_id: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_devops_deploy_environment:
+        # required
         display_name: display_name_example
         state: absent
 
@@ -683,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the DeployEnvironment resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_selectors&#x27;: {&#x27;items&#x27;: [{&#x27;compute_instance_ids&#x27;: [], &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;selector_type&#x27;: &#x27;INSTANCE_IDS&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_environment_type&#x27;: &#x27;OKE_CLUSTER&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
@@ -701,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the Kubernetes cluster.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -719,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of a compartment.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -737,7 +832,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -754,7 +849,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -772,7 +867,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Compute instance OCID identifiers that are members of this group.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -790,7 +885,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is documented at https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/querysyntax.htm</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_example</div>
                                     </td>
             </tr>
@@ -810,7 +905,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Region identifier referred by the deployment environment. Region identifiers are listed at https://docs.oracle.com/en- us/iaas/Content/General/Concepts/regions.htm</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_example</div>
                                     </td>
             </tr>
@@ -830,7 +925,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defines the type of the instance selector for the group.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INSTANCE_IDS</div>
                                     </td>
             </tr>
@@ -850,7 +945,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -868,7 +963,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Deployment environment type.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OKE_CLUSTER</div>
                                     </td>
             </tr>
@@ -886,7 +981,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Optional description about the deployment environment.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -904,7 +999,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Deployment environment display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -922,7 +1017,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -940,7 +1035,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the Function.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.function.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -958,7 +1053,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique identifier that is immutable on creation.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -976,7 +1071,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -994,7 +1089,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the deployment environment.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
@@ -1012,7 +1107,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of a project.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.project.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1030,7 +1125,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Usage of system tag keys. These predefined keys are scoped to namespaces. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1046,7 +1141,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Time the deployment environment was created. Format defined by <a href='https://datatracker.ietf.org/doc/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -1064,7 +1159,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Time the deployment environment was updated. Format defined by <a href='https://datatracker.ietf.org/doc/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>

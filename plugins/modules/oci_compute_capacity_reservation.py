@@ -28,7 +28,7 @@ description:
       When you launch an instance using this reservation, you are assured that you have enough space for your instance,
       and you won't get out of capacity errors.
       For more information, see L(Reserved Capacity,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm).
-    - "This resource has the following action operations in the M(oci_compute_capacity_reservation_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_capacity_reservation_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -48,8 +48,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the compute capacity reservation. Does not have to be unique, and it's
-              changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -76,7 +76,7 @@ options:
         type: bool
     instance_reservation_configs:
         description:
-            - The reservation configurations for the capacity reservation.
+            - The capacity configurations for the capacity reservation.
             - To use the reservation for the desired shape, specify the shape, count, and
               optionally the fault domain where you want this configuration.
             - This parameter is updatable.
@@ -107,7 +107,7 @@ options:
                         type: float
             fault_domain:
                 description:
-                    - The fault domain to use for instances created using this reservation configuration.
+                    - The fault domain to use for instances created using this capacity configuration.
                       For more information, see L(Fault Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#fault).
                       If you do not specify the fault domain, the capacity is available for an instance
                       that does not specify a fault domain. To change the fault domain for a reservation,
@@ -118,7 +118,7 @@ options:
                 type: str
             reserved_count:
                 description:
-                    - The amount of capacity to reserve in this reservation configuration.
+                    - The total number of instances that can be launched from the capacity configuration.
                 type: int
                 required: true
     capacity_reservation_id:
@@ -143,33 +143,80 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create compute_capacity_reservation
   oci_compute_capacity_reservation:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
 
-- name: Update compute_capacity_reservation using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_capacity_reservation:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     is_default_reservation: true
     instance_reservation_configs:
-    - instance_shape: instance_shape_example
+    - # required
+      instance_shape: instance_shape_example
       reserved_count: 56
+
+      # optional
+      instance_shape_config:
+        # optional
+        ocpus: 3.4
+        memory_in_gbs: 3.4
+      fault_domain: FAULT-DOMAIN-1
 
 - name: Update compute_capacity_reservation
   oci_compute_capacity_reservation:
+    # required
+    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    is_default_reservation: true
+    instance_reservation_configs:
+    - # required
+      instance_shape: instance_shape_example
+      reserved_count: 56
+
+      # optional
+      instance_shape_config:
+        # optional
+        ocpus: 3.4
+        memory_in_gbs: 3.4
+      fault_domain: FAULT-DOMAIN-1
+
+- name: Update compute_capacity_reservation using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_capacity_reservation:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    is_default_reservation: true
+    instance_reservation_configs:
+    - # required
+      instance_shape: instance_shape_example
+      reserved_count: 56
+
+      # optional
+      instance_shape_config:
+        # optional
+        ocpus: 3.4
+        memory_in_gbs: 3.4
+      fault_domain: FAULT-DOMAIN-1
 
 - name: Delete compute_capacity_reservation
   oci_compute_capacity_reservation:
+    # required
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete compute_capacity_reservation using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_capacity_reservation:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -207,8 +254,8 @@ compute_capacity_reservation:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the compute capacity reservation.
-                  It does not have to be unique, and it's changeable. Avoid entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -236,7 +283,7 @@ compute_capacity_reservation:
             sample: true
         instance_reservation_configs:
             description:
-                - The reservation configurations for the capacity reservation.
+                - The capacity configurations for the capacity reservation.
                 - To use the reservation for the desired shape, specify the shape, count, and
                   optionally the fault domain where you want this configuration.
             returned: on success
@@ -244,8 +291,8 @@ compute_capacity_reservation:
             contains:
                 fault_domain:
                     description:
-                        - The fault domain of this reservation configuration.
-                          If a value is not supplied, this reservation configuration is applicable to all fault domains in the specified availability domain.
+                        - The fault domain of this capacity configuration.
+                          If a value is not supplied, this capacity configuration is applicable to all fault domains in the specified availability domain.
                           For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm).
                     returned: on success
                     type: str
@@ -280,13 +327,13 @@ compute_capacity_reservation:
                             sample: 3.4
                 reserved_count:
                     description:
-                        - The amount of capacity reserved in this configuration.
+                        - The total number of instances that can be launched from the capacity configuration.
                     returned: on success
                     type: int
                     sample: 56
                 used_count:
                     description:
-                        - The amount of capacity in use out of the total capacity reserved in this reservation configuration.
+                        - The amount of capacity in use out of the total capacity reserved in this capacity configuration.
                     returned: on success
                     type: int
                     sample: 56
@@ -300,7 +347,7 @@ compute_capacity_reservation:
             description:
                 - The number of instances for which capacity will be held with this
                   compute capacity reservation. This number is the sum of the values of the `reservedCount` fields
-                  for all of the instance reservation configurations under this reservation.
+                  for all of the instance capacity configurations under this reservation.
                   The purpose of this field is to calculate the percentage usage of the reservation.
             returned: on success
             type: int
@@ -323,7 +370,7 @@ compute_capacity_reservation:
             description:
                 - The total number of instances currently consuming space in
                   this compute capacity reservation. This number is the sum of the values of the `usedCount` fields
-                  for all of the instance reservation configurations under this reservation.
+                  for all of the instance capacity configurations under this reservation.
                   The purpose of this field is to calculate the percentage usage of the reservation.
             returned: on success
             type: int

@@ -24,7 +24,7 @@ short_description: Manage an EmailDomain resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an EmailDomain resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new email domain. Avoid entering confidential information.
-    - "This resource has the following action operations in the M(oci_email_domain_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_email_domain_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -88,30 +88,45 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create email_domain
   oci_email_domain:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update email_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_email_domain:
-    name: name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update email_domain
   oci_email_domain:
+    # required
+    email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     freeform_tags: {'Department': 'Finance'}
-    email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update email_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_email_domain:
+    # required
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete email_domain
   oci_email_domain:
+    # required
     email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete email_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_email_domain:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -67,20 +67,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action cancel_secret_deletion on secret
   oci_vault_secret_actions:
+    # required
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel_secret_deletion
 
 - name: Perform action change_compartment on secret
   oci_vault_secret_actions:
-    compartment_id: "compartment_OCID"
+    # required
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action schedule_secret_deletion on secret
   oci_vault_secret_actions:
-    time_of_deletion: "2018-04-03T21:10:29.600Z"
+    # required
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "schedule_secret_deletion"
+    action: schedule_secret_deletion
+
+    # optional
+    time_of_deletion: 2013-10-20T19:20:30+01:00
 
 """
 
