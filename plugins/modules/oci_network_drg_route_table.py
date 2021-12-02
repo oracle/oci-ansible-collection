@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a DrgRouteTable resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DRG route table for the specified DRG. Assign the DRG route table to a DRG attachment
       using the `UpdateDrgAttachment` or `CreateDrgAttachment` operations.
-    - "This resource has the following action operations in the M(oci_drg_route_table_actions) module: remove_import_drg_route_distribution."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_drg_route_table_actions) module: remove_import_drg_route_distribution."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -94,30 +94,49 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create drg_route_table
   oci_network_drg_route_table:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update drg_route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_drg_route_table:
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     import_drg_route_distribution_id: "ocid1.importdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     is_ecmp_enabled: true
 
 - name: Update drg_route_table
   oci_network_drg_route_table:
+    # required
+    drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    import_drg_route_distribution_id: "ocid1.importdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+    is_ecmp_enabled: true
+
+- name: Update drg_route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_drg_route_table:
+    # required
+    display_name: display_name_example
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    import_drg_route_distribution_id: "ocid1.importdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+    is_ecmp_enabled: true
 
 - name: Delete drg_route_table
   oci_network_drg_route_table:
+    # required
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete drg_route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_route_table:
+    # required
     display_name: display_name_example
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

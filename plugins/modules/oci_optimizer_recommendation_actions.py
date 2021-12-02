@@ -104,9 +104,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action bulk_apply on recommendation
   oci_optimizer_recommendation_actions:
+    # required
     recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
     status: PENDING
     action: bulk_apply
+
+    # optional
+    resource_action_ids: [ "null" ]
+    actions:
+    - # required
+      resource_action_id: "ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      status: PENDING
+      time_status_end: 2013-10-20T19:20:30+01:00
+      parameters: null
+      strategy_name: strategy_name_example
+    time_status_end: 2013-10-20T19:20:30+01:00
 
 """
 
@@ -234,6 +248,14 @@ recommendation:
                             returned: on success
                             type: str
                             sample: name_example
+        extended_metadata:
+            description:
+                - Additional metadata key/value pairs for the recommendation.
+                - "For example:"
+                - "`{\\"EstimatedSaving\\": \\"200\\"}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -256,7 +278,8 @@ recommendation:
             "items": [{
                 "name": "name_example"
             }]
-        }
+        },
+        "extended_metadata": {}
     }
 """
 

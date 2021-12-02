@@ -91,38 +91,89 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create connection
+- name: Create connection with connection_type = GITHUB_ACCESS_TOKEN
   oci_devops_connection:
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-    connection_type: GITLAB_ACCESS_TOKEN
-    access_token: access_token_example
+    connection_type: GITHUB_ACCESS_TOKEN
 
-- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_devops_connection:
+    # optional
     description: description_example
     display_name: display_name_example
-    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-    connection_type: GITLAB_ACCESS_TOKEN
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     access_token: access_token_example
 
-- name: Update connection
+- name: Create connection with connection_type = GITLAB_ACCESS_TOKEN
   oci_devops_connection:
-    description: description_example
-    display_name: display_name_example
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     connection_type: GITLAB_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     access_token: access_token_example
-    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update connection with connection_type = GITHUB_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: GITHUB_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+
+- name: Update connection with connection_type = GITLAB_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: GITLAB_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITHUB_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: GITHUB_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: GITLAB_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
 
 - name: Delete connection
   oci_devops_connection:
+    # required
     connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_devops_connection:
+    # required
     display_name: display_name_example
     state: absent
 

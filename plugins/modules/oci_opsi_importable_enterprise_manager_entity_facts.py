@@ -32,13 +32,38 @@ options:
             - Unique Enterprise Manager bridge identifier
         type: str
         required: true
+    enterprise_manager_entity_type:
+        description:
+            - "Filter by one or more Enterprise Manager entity types. Currently, the supported types are \\"oracle_pdb\\", \\"oracle_database\\", \\"host\\",
+              \\"oracle_dbmachine\\", \\"oracle_exa_cloud_service\\", and \\"oracle_oci_exadata_cloud_service\\". If this parameter is not specified, targets of
+              all supported entity types are returned by default."
+        type: list
+        elements: str
+    enterprise_manager_identifier:
+        description:
+            - Used in combination with enterpriseManagerParentEntityIdentifier to return the members of a particular Enterprise Manager parent entity. Both
+              enterpriseManagerIdentifier and enterpriseManagerParentEntityIdentifier must be specified to identify a particular Enterprise Manager parent
+              entity.
+        type: str
+    enterprise_manager_parent_entity_identifier:
+        description:
+            - Used in combination with enterpriseManagerIdentifier to return the members of a particular Enterprise Manager parent entity. Both
+              enterpriseManagerIdentifier and enterpriseManagerParentEntityIdentifier must be specified to identify a particular  Enterprise Manager parent
+              entity.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List importable_enterprise_manager_entities
   oci_opsi_importable_enterprise_manager_entity_facts:
+    # required
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    enterprise_manager_entity_type: [ "$p.getValue()" ]
+    enterprise_manager_identifier: enterprise_manager_identifier_example
+    enterprise_manager_parent_entity_identifier: enterprise_manager_parent_entity_identifier_example
 
 """
 
@@ -112,7 +137,11 @@ class ImportableEnterpriseManagerEntityFactsHelperGen(OCIResourceFactsHelperBase
         ]
 
     def list_resources(self):
-        optional_list_method_params = []
+        optional_list_method_params = [
+            "enterprise_manager_entity_type",
+            "enterprise_manager_identifier",
+            "enterprise_manager_parent_entity_identifier",
+        ]
         optional_kwargs = dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
@@ -142,7 +171,12 @@ class ResourceFactsHelper(
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
-        dict(enterprise_manager_bridge_id=dict(type="str", required=True),)
+        dict(
+            enterprise_manager_bridge_id=dict(type="str", required=True),
+            enterprise_manager_entity_type=dict(type="list", elements="str"),
+            enterprise_manager_identifier=dict(type="str"),
+            enterprise_manager_parent_entity_identifier=dict(type="str"),
+        )
     )
 
     module = AnsibleModule(argument_spec=module_args)

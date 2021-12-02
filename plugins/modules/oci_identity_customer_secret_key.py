@@ -70,28 +70,35 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create customer_secret_key
   oci_identity_customer_secret_key:
-    display_name: display_name_example
-    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-
-- name: Update customer_secret_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_customer_secret_key:
+    # required
     display_name: display_name_example
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update customer_secret_key
   oci_identity_customer_secret_key:
-    display_name: display_name_example
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     customer_secret_key_id: "ocid1.customersecretkey.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    display_name: display_name_example
+
+- name: Update customer_secret_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_identity_customer_secret_key:
+    # required
+    display_name: display_name_example
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Delete customer_secret_key
   oci_identity_customer_secret_key:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     customer_secret_key_id: "ocid1.customersecretkey.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete customer_secret_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_customer_secret_key:
+    # required
     display_name: display_name_example
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -105,9 +112,15 @@ customer_secret_key:
     returned: on success
     type: complex
     contains:
+        key:
+            description:
+                - The secret key. Key will be returned only for create operation.
+            returned: on success
+            type: str
+            sample: key_example
         id:
             description:
-                - The OCID of the secret key.
+                - The access key portion of the key pair.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -119,7 +132,7 @@ customer_secret_key:
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The displayName you assign to the secret key. Does not have to be unique, and it's changeable.
+                - The display name you assign to the secret key. Does not have to be unique, and it's changeable.
             returned: on success
             type: str
             sample: display_name_example
@@ -151,21 +164,15 @@ customer_secret_key:
             returned: on success
             type: int
             sample: 56
-        key:
-            description:
-                - The secret key. Key will be returned only for create operation.
-            returned: on success
-            type: str
-            sample: example-key
     sample: {
+        "key": "key_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_expires": "2016-08-25T21:10:29.600Z",
         "lifecycle_state": "CREATING",
-        "inactive_status": 56,
-        "key": "example-key"
+        "inactive_status": 56
     }
 """
 

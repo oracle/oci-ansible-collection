@@ -97,30 +97,50 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create retention_rule
   oci_object_storage_retention_rule:
-    display_name: "sampleRetentionRule"
-    duration:
-      time_amount: 30
-      time_unit: "DAYS"
-    time_rule_locked: "2019-12-13T17:23:46.000Z"
-    namespace_name: "namespace_name_example"
-    bucket_name: "my-new-bucket1"
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
 
-- name: Update retention_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_object_storage_retention_rule:
-    display_name: "sampleRetentionRule"
+    # optional
+    display_name: sampleRetentionRule
     duration:
-      time_unit: "DAYS"
+      # required
       time_amount: 30
-    time_rule_locked: "2019-12-13T17:23:46.000Z"
+      time_unit: DAYS
+    time_rule_locked: 2019-12-13T17:23:46.000Z
 
 - name: Update retention_rule
   oci_object_storage_retention_rule:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    display_name: sampleRetentionRule
+    duration:
+      # required
+      time_amount: 30
+      time_unit: DAYS
+    time_rule_locked: 2019-12-13T17:23:46.000Z
+
+- name: Update retention_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_object_storage_retention_rule:
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+    display_name: sampleRetentionRule
+
+    # optional
+    duration:
+      # required
+      time_amount: 30
+      time_unit: DAYS
+    time_rule_locked: 2019-12-13T17:23:46.000Z
+
 - name: Delete retention_rule
   oci_object_storage_retention_rule:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -128,6 +148,7 @@ EXAMPLES = """
 
 - name: Delete retention_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_object_storage_retention_rule:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     display_name: sampleRetentionRule

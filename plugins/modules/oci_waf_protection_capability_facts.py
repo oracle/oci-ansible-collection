@@ -83,7 +83,17 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List protection_capabilities
   oci_waf_protection_capability_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    key: key_example
+    is_latest_version: [ "$p.getValue()" ]
+    type: type_example
+    group_tag: [ "$p.getValue()" ]
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: key
 
 """
 

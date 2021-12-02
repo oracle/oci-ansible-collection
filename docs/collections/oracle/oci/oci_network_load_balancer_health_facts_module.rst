@@ -30,13 +30,9 @@ oracle.oci.oci_network_load_balancer_health_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_load_balancer_health_facts`.
 
@@ -324,13 +320,19 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: List network_load_balancer_healths
-      oci_network_load_balancer_health_facts:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
     - name: Get a specific network_load_balancer_health
       oci_network_load_balancer_health_facts:
+        # required
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: List network_load_balancer_healths
+      oci_network_load_balancer_health_facts:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        sort_order: ASC
+        sort_by: timeCreated
 
 
 
@@ -366,7 +368,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of NetworkLoadBalancerHealth resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;critical_state_backend_set_names&#x27;: [], &#x27;network_load_balancer_id&#x27;: &#x27;ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;OK&#x27;, &#x27;total_backend_set_count&#x27;: 4, &#x27;unknown_state_backend_set_names&#x27;: [], &#x27;warning_state_backend_set_names&#x27;: []}]</div>
                                     </td>
             </tr>
@@ -385,7 +387,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A list of backend sets that are currently in the `CRITICAL` health state. The list identifies each backend set by the user-friendly name you assigned when you created the backend set.</div>
                                             <div>Example: `example_backend_set`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -401,7 +403,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the network load balancer with which the health status is associated.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -427,7 +429,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  More than half of the backend sets associated with the network load balancer return a status of `UNKNOWN`, none of the backend sets return a status of `WARNING` or `CRITICAL`, and the network load balancer life cycle state is `ACTIVE`.</div>
                                             <div>*  The system could not retrieve metrics for any reason.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OK</div>
                                     </td>
             </tr>
@@ -446,7 +448,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The total number of backend sets associated with this network load balancer.</div>
                                             <div>Example: `4`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">4</div>
                                     </td>
             </tr>
@@ -465,7 +467,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A list of backend sets that are currently in the `UNKNOWN` health state. The list identifies each backend set by the user-friendly name you assigned when you created the backend set.</div>
                                             <div>Example: `example_backend_set2`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -482,7 +484,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A list of backend sets that are currently in the `WARNING` health state. The list identifies each backend set by the user-friendly name you assigned when you created the backend set.</div>
                                             <div>Example: `example_backend_set3`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                     
                         </table>

@@ -27,7 +27,8 @@ description:
       reserved public IP. For information about limits on how many you can create, see
       L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm).
     - "* **For an ephemeral public IP assigned to a private IP:** You must also specify a `privateIpId`
-      with the OCID of the primary private IP you want to assign the public IP to. The public IP is
+      with the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary private IP you want to assign the public IP
+      to. The public IP is
       created in the same availability domain as the private IP. An ephemeral public IP must always be
       assigned to a private IP, and only to the *primary* private IP on a VNIC, not a secondary
       private IP. Exception: If you create a L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/), Oracle
@@ -40,14 +41,15 @@ description:
     - Also, for reserved public IPs, the optional assignment part of this operation is
       asynchronous. Poll the public IP's `lifecycleState` to determine if the assignment
       succeeded.
-    - "This resource has the following action operations in the M(oci_public_ip_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_public_ip_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the public IP. For ephemeral public IPs,
-              you must set this to the private IP's compartment OCID.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the public IP. For ephemeral
+              public IPs,
+              you must set this to the private IP's compartment L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -61,8 +63,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-              entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -87,7 +89,7 @@ options:
             - "RESERVED"
     private_ip_id:
         description:
-            - The OCID of the private IP to assign the public IP to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the private IP to assign the public IP to.
             - "Required for an ephemeral public IP because it must always be assigned to a private IP
               (specifically a *primary* private IP)."
             - Optional for a reserved public IP. If you don't provide it, the public IP is created but not
@@ -138,32 +140,49 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create public_ip
   oci_network_public_ip:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     lifetime: EPHEMERAL
-    scope: REGION
 
-- name: Update public_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_public_ip:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
-    scope: REGION
+    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update public_ip
   oci_network_public_ip:
+    # required
+    public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update public_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_public_ip:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    scope: REGION
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete public_ip
   oci_network_public_ip:
+    # required
     public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete public_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_public_ip:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     scope: REGION
@@ -180,7 +199,8 @@ public_ip:
     contains:
         assigned_entity_id:
             description:
-                - The OCID of the entity the public IP is assigned to, or in the process of
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the entity the public IP is assigned to, or in the
+                  process of
                   being assigned to.
             returned: on success
             type: str
@@ -203,7 +223,8 @@ public_ip:
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment containing the public IP. For an ephemeral public IP, this is
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the public IP. For an
+                  ephemeral public IP, this is
                   the compartment of its assigned entity (which can be a private IP or a regional entity such
                   as a NAT gateway). For a reserved public IP that is currently assigned,
                   its compartment can be different from the assigned private IP's.
@@ -220,8 +241,8 @@ public_ip:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -236,7 +257,7 @@ public_ip:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The public IP's Oracle ID (OCID).
+                - The public IP's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -272,7 +293,8 @@ public_ip:
         private_ip_id:
             description:
                 - Deprecated. Use `assignedEntityId` instead.
-                - The OCID of the private IP that the public IP is currently assigned to, or in the
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the private IP that the public IP is currently
+                  assigned to, or in the
                   process of being assigned to.
                 - "**Note:** This is `null` if the public IP is not assigned to a private IP, or is
                   in the process of being assigned to one."

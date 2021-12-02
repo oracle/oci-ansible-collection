@@ -69,6 +69,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action get_unsubscription on subscription
   oci_ons_subscription_actions:
+    # required
     id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     token: token_example
     protocol: protocol_example
@@ -76,6 +77,7 @@ EXAMPLES = """
 
 - name: Perform action resend_subscription_confirmation on subscription
   oci_ons_subscription_actions:
+    # required
     id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     action: resend_subscription_confirmation
 

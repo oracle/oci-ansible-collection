@@ -77,6 +77,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create app_catalog_subscription
   oci_compute_app_catalog_subscription:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     listing_resource_version: listing_resource_version_example
@@ -84,8 +85,12 @@ EXAMPLES = """
     time_retrieved: 2018-03-20T12:32:53.532Z
     signature: signature_example
 
+    # optional
+    eula_link: eula_link_example
+
 - name: Delete app_catalog_subscription
   oci_compute_app_catalog_subscription:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     listing_resource_version: listing_resource_version_example
@@ -126,7 +131,8 @@ app_catalog_subscription:
             sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The display name of the listing.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Bucket resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a bucket in the given namespace with a bucket name and optional user-defined metadata. Avoid entering
       confidential information in bucket names.
-    - "This resource has the following action operations in the M(oci_bucket_actions) module: make_bucket_writable, reencrypt."
+    - "This resource has the following action operations in the M(oracle.oci.oci_object_storage_bucket_actions) module: make_bucket_writable, reencrypt."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -141,20 +141,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create bucket
   oci_object_storage_bucket:
+    # required
     namespace_name: namespace_name_example
     name: my-test-1
     compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentID"
 
+    # optional
+    metadata: null
+    public_access_type: NoPublicAccess
+    storage_tier: Standard
+    object_events_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    versioning: Enabled
+    auto_tiering: auto_tiering_example
+
 - name: Update bucket
   oci_object_storage_bucket:
+    # required
     namespace_name: namespace_name_example
     name: my-test-1
 
+    # optional
+    compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentID"
+    metadata: null
+    public_access_type: NoPublicAccess
+    object_events_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    versioning: Enabled
+    auto_tiering: auto_tiering_example
+
 - name: Delete bucket
   oci_object_storage_bucket:
+    # required
     namespace_name: namespace_name_example
     name: my-test-1
     state: absent
+
+    # optional
+    force: $utils.AnsibleRenderingUtils.escapeStringExampleValue($p.getValue())
 
 """
 

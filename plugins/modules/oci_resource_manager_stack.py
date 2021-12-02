@@ -30,7 +30,8 @@ description:
       You can also upload the Terraform configuration from an Object Storage bucket.
       For more information, see
       L(To create a stack,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#createstack-all).
-    - "This resource has the following action operations in the M(oci_stack_actions) module: change_compartment, detect_stack_drift."
+    - "This resource has the following action operations in the M(oracle.oci.oci_resource_manager_stack_actions) module: change_compartment,
+      detect_stack_drift."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -197,33 +198,72 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create stack
   oci_resource_manager_stack:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     config_source:
+      # required
       config_source_type: ZIP_UPLOAD
+      zip_file_base64_encoded: zip_file_base64_encoded_example
 
-- name: Update stack using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_resource_manager_stack:
+      # optional
+      working_directory: working_directory_example
+
+    # optional
     display_name: display_name_example
     description: description_example
-    config_source:
-      config_source_type: ZIP_UPLOAD
+    variables: null
     terraform_version: 0.12.x
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update stack
   oci_resource_manager_stack:
+    # required
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
+    config_source:
+      # required
+      config_source_type: ZIP_UPLOAD
+      zip_file_base64_encoded: zip_file_base64_encoded_example
+
+      # optional
+      working_directory: working_directory_example
+    variables: null
+    terraform_version: 0.12.x
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update stack using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_resource_manager_stack:
+    # required
+    display_name: display_name_example
+
+    # optional
+    description: description_example
+    config_source:
+      # required
+      config_source_type: ZIP_UPLOAD
+      zip_file_base64_encoded: zip_file_base64_encoded_example
+
+      # optional
+      working_directory: working_directory_example
+    variables: null
+    terraform_version: 0.12.x
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete stack
   oci_resource_manager_stack:
+    # required
     stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete stack using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_resource_manager_stack:
+    # required
     display_name: display_name_example
     state: absent
 

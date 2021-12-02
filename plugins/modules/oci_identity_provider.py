@@ -39,7 +39,7 @@ description:
     - After you send your request, the new object's `lifecycleState` will temporarily
       be CREATING. Before using the object, first make sure its `lifecycleState` has
       changed to ACTIVE.
-    - "This resource has the following action operations in the M(oci_identity_provider_actions) module: reset_idp_scim_client."
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_provider_actions) module: reset_idp_scim_client."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -141,54 +141,62 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create identity_provider
+- name: Create identity_provider with protocol = SAML2
   oci_identity_provider:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
-    description: description_example
     product_type: IDCS
     protocol: SAML2
-    metadata_url: metadata_url_example
-    metadata: metadata_example
 
-- name: Update identity_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_provider:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
+    # optional
     description: description_example
-    product_type: IDCS
-    protocol: SAML2
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     metadata_url: metadata_url_example
     metadata: metadata_example
+    freeform_attributes: null
 
-- name: Update identity_provider
+- name: Update identity_provider with protocol = SAML2
   oci_identity_provider:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
-    description: description_example
-    product_type: IDCS
+    # required
     protocol: SAML2
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     metadata_url: metadata_url_example
     metadata: metadata_example
-    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_attributes: null
+
+- name: Update identity_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with protocol = SAML2
+  oci_identity_provider:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    protocol: SAML2
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    metadata_url: metadata_url_example
+    metadata: metadata_example
+    freeform_attributes: null
 
 - name: Delete identity_provider
   oci_identity_provider:
+    # required
     identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
-- name: Delete identity_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Delete identity_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with protocol = SAML2
   oci_identity_provider:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
-    description: description_example
-    product_type: IDCS
     protocol: SAML2
-    metadata_url: metadata_url_example
-    metadata: metadata_example
-    state: absent
 
 """
 

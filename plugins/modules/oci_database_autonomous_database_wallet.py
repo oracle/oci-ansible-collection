@@ -51,8 +51,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update autonomous_database_wallet
   oci_database_autonomous_database_wallet:
-    should_rotate: true
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    should_rotate: true
 
 """
 

@@ -48,7 +48,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List waf_traffic_datums
   oci_waas_waf_traffic_datum_facts:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    time_observed_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_observed_less_than: 2013-10-20T19:20:30+01:00
 
 """
 

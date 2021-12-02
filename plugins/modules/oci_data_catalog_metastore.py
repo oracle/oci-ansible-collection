@@ -24,7 +24,7 @@ short_description: Manage a Metastore resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Metastore resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new metastore.
-    - "This resource has the following action operations in the M(oci_metastore_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_catalog_metastore_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -88,30 +88,45 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create metastore
   oci_data_catalog_metastore:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     default_managed_table_location: default_managed_table_location_example
     default_external_table_location: default_external_table_location_example
 
-- name: Update metastore using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_catalog_metastore:
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update metastore
   oci_data_catalog_metastore:
+    # required
+    metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update metastore using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_catalog_metastore:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete metastore
   oci_data_catalog_metastore:
+    # required
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete metastore using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_metastore:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

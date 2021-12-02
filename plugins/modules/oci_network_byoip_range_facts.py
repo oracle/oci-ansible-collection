@@ -75,13 +75,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List byoip_ranges
-  oci_network_byoip_range_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific byoip_range
   oci_network_byoip_range_facts:
+    # required
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List byoip_ranges
+  oci_network_byoip_range_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    lifecycle_state: lifecycle_state_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 
@@ -114,8 +122,8 @@ byoip_ranges:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

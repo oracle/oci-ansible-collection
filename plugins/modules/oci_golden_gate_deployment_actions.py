@@ -67,27 +67,40 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on deployment
   oci_golden_gate_deployment_actions:
+    # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
-- name: Perform action start on deployment
+- name: Perform action start on deployment with type = DEFAULT
   oci_golden_gate_deployment_actions:
-    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-    type: CURRENT_RELEASE
-    action: start
+    # required
+    type: DEFAULT
 
-- name: Perform action stop on deployment
+- name: Perform action start on deployment with type = CURRENT_RELEASE
   oci_golden_gate_deployment_actions:
-    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     type: CURRENT_RELEASE
-    action: stop
 
-- name: Perform action upgrade on deployment
+- name: Perform action stop on deployment with type = DEFAULT
   oci_golden_gate_deployment_actions:
-    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    type: DEFAULT
+
+- name: Perform action stop on deployment with type = CURRENT_RELEASE
+  oci_golden_gate_deployment_actions:
+    # required
     type: CURRENT_RELEASE
-    action: upgrade
+
+- name: Perform action upgrade on deployment with type = DEFAULT
+  oci_golden_gate_deployment_actions:
+    # required
+    type: DEFAULT
+
+- name: Perform action upgrade on deployment with type = CURRENT_RELEASE
+  oci_golden_gate_deployment_actions:
+    # required
+    type: CURRENT_RELEASE
 
 """
 

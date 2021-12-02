@@ -78,13 +78,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List associations
-  oci_certificates_management_association_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific association
   oci_certificates_management_association_facts:
+    # required
     association_id: "ocid1.association.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List associations
+  oci_certificates_management_association_facts:
+
+    # optional
+    association_id: "ocid1.association.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    certificates_resource_id: "ocid1.certificatesresource.oc1..xxxxxxEXAMPLExxxxxx"
+    associated_resource_id: "ocid1.associatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    sort_by: NAME
+    sort_order: ASC
+    association_type: CERTIFICATE
 
 """
 

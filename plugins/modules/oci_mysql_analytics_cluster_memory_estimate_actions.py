@@ -47,6 +47,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action generate on analytics_cluster_memory_estimate
   oci_mysql_analytics_cluster_memory_estimate_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: generate
 

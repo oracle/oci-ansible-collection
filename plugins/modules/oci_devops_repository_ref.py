@@ -69,15 +69,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Update repository_ref
+- name: Update repository_ref with ref_type = TAG
   oci_devops_repository_ref:
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-    ref_name: ref_name_example
+    # required
+    ref_type: TAG
+    object_id: "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update repository_ref with ref_type = BRANCH
+  oci_devops_repository_ref:
+    # required
     ref_type: BRANCH
     commit_id: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete repository_ref
   oci_devops_repository_ref:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     ref_name: ref_name_example
     state: absent

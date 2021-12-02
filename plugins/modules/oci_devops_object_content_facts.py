@@ -53,9 +53,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific object_content
   oci_devops_object_content_facts:
+    # required
     dest: /tmp/myfile
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     sha: sha_example
+
+    # optional
+    file_path: file_path_example
 
 """
 

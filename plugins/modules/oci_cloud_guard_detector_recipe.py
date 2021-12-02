@@ -24,7 +24,7 @@ short_description: Manage a DetectorRecipe resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a DetectorRecipe resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a DetectorRecipe
-    - "This resource has the following action operations in the M(oci_detector_recipe_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_cloud_guard_detector_recipe_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -251,36 +251,143 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create detector_recipe
   oci_cloud_guard_detector_recipe:
+    # required
     display_name: display_name_example
     source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_cloud_guard_detector_recipe:
-    display_name: display_name_example
+    # optional
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     detector_rules:
-    - detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
       details:
+        # required
         is_enabled: true
         risk_level: CRITICAL
+
+        # optional
+        configurations:
+        - # required
+          config_key: config_key_example
+          name: name_example
+
+          # optional
+          value: value_example
+          data_type: data_type_example
+          values:
+          - # required
+            list_type: MANAGED
+            managed_list_type: managed_list_type_example
+            value: value_example
+        condition:
+          # required
+          kind: SIMPLE
+
+          # optional
+          parameter: parameter_example
+          operator: IN
+          value: value_example
+          value_type: MANAGED
+        labels: [ "null" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update detector_recipe
   oci_cloud_guard_detector_recipe:
+    # required
+    detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+    detector_rules:
+    - # required
+      detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
+      details:
+        # required
+        is_enabled: true
+        risk_level: CRITICAL
+
+        # optional
+        configurations:
+        - # required
+          config_key: config_key_example
+          name: name_example
+
+          # optional
+          value: value_example
+          data_type: data_type_example
+          values:
+          - # required
+            list_type: MANAGED
+            managed_list_type: managed_list_type_example
+            value: value_example
+        condition:
+          # required
+          kind: SIMPLE
+
+          # optional
+          parameter: parameter_example
+          operator: IN
+          value: value_example
+          value_type: MANAGED
+        labels: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_cloud_guard_detector_recipe:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    detector_rules:
+    - # required
+      detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
+      details:
+        # required
+        is_enabled: true
+        risk_level: CRITICAL
+
+        # optional
+        configurations:
+        - # required
+          config_key: config_key_example
+          name: name_example
+
+          # optional
+          value: value_example
+          data_type: data_type_example
+          values:
+          - # required
+            list_type: MANAGED
+            managed_list_type: managed_list_type_example
+            value: value_example
+        condition:
+          # required
+          kind: SIMPLE
+
+          # optional
+          parameter: parameter_example
+          operator: IN
+          value: value_example
+          value_type: MANAGED
+        labels: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete detector_recipe
   oci_cloud_guard_detector_recipe:
+    # required
     detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_detector_recipe:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

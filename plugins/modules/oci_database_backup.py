@@ -67,16 +67,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create backup
   oci_database_backup:
-    database_id: "ocid1.database.oc1.phx.unique_ID"
-    display_name: "Monthly Backup"
+    # required
+    database_id: ocid1.database.oc1.phx.unique_ID
+    display_name: Monthly Backup
 
 - name: Delete backup
   oci_database_backup:
+    # required
     backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup:
+    # required
     display_name: Monthly Backup
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

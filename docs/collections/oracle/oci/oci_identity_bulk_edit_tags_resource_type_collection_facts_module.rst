@@ -30,13 +30,9 @@ oracle.oci.oci_identity_bulk_edit_tags_resource_type_collection_facts -- Fetches
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_identity_bulk_edit_tags_resource_type_collection_facts`.
 
@@ -289,7 +285,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of BulkEditTagsResourceTypeCollection resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;metadata_keys&#x27;: [], &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -308,7 +304,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The metadata keys required to identify the resource.</div>
                                             <div>For example, for a bucket, the value of `metadataKeys` will be <a href='https://docs.cloud.oracle.com/api/#/en/objectstorage/latest/Bucket/UpdateBucket'>&quot;namespaceName&quot;, &quot;bucketName&quot;]. This information will match the API documentation. See [UpdateBucket</a> and <a href='https://docs.cloud.oracle.com/api/#/en/objectstorage/latest/Bucket/DeleteBucket'>DeleteBucket</a>.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -324,7 +320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique name of the resource type.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_type_example</div>
                                     </td>
             </tr>

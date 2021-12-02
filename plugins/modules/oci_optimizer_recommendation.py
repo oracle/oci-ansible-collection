@@ -23,7 +23,7 @@ module: oci_optimizer_recommendation
 short_description: Manage a Recommendation resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a Recommendation resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_recommendation_actions) module: bulk_apply."
+    - "This resource has the following action operations in the M(oracle.oci.oci_optimizer_recommendation_actions) module: bulk_apply."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -64,8 +64,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update recommendation
   oci_optimizer_recommendation:
+    # required
     recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
     status: PENDING
+
+    # optional
+    time_status_end: 2013-10-20T19:20:30+01:00
 
 """
 
@@ -193,6 +197,14 @@ recommendation:
                             returned: on success
                             type: str
                             sample: name_example
+        extended_metadata:
+            description:
+                - Additional metadata key/value pairs for the recommendation.
+                - "For example:"
+                - "`{\\"EstimatedSaving\\": \\"200\\"}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -215,7 +227,8 @@ recommendation:
             "items": [{
                 "name": "name_example"
             }]
-        }
+        },
+        "extended_metadata": {}
     }
 """
 

@@ -115,13 +115,28 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List container_image_signatures
-  oci_artifacts_container_image_signature_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific container_image_signature
   oci_artifacts_container_image_signature_facts:
+    # required
     image_signature_id: "ocid1.containersignature.oc1..exampleuniqueID"
+
+- name: List container_image_signatures
+  oci_artifacts_container_image_signature_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    compartment_id_in_subtree: true
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+    repository_name: foo
+    image_digest: sha256:e7d38b3517548a1c71e41bffe9c8ae6d6d29546ce46bf62159837aad072c90aa
+    display_name: display_name_example
+    kms_key_id: "ocid1.keyversion.oc1..exampleuniqueID"
+    kms_key_version_id: "ocid1.keyversion.oc1..exampleuniqueID"
+    signing_algorithm: SHA_224_RSA_PKCS_PSS
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

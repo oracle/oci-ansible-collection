@@ -27,7 +27,7 @@ description:
       Dedicated virtual machine hosts enable you to run your Compute virtual machine (VM) instances on dedicated servers
       that are a single tenant and not shared with other customers.
       For more information, see L(Dedicated Virtual Machine Hosts,https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/dedicatedvmhosts.htm).
-    - "This resource has the following action operations in the M(oci_dedicated_vm_host_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_dedicated_vm_host_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -61,7 +61,6 @@ options:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
-            - "Example: `My dedicated VM host`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -106,32 +105,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create dedicated_vm_host
   oci_compute_dedicated_vm_host:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     dedicated_vm_host_shape: dedicated_vm_host_shape_example
 
-- name: Update dedicated_vm_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_dedicated_vm_host:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: My dedicated VM host
+    display_name: display_name_example
+    fault_domain: FAULT-DOMAIN-1
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update dedicated_vm_host
   oci_compute_dedicated_vm_host:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: My dedicated VM host
+    # required
     dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update dedicated_vm_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_dedicated_vm_host:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete dedicated_vm_host
   oci_compute_dedicated_vm_host:
+    # required
     dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete dedicated_vm_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_dedicated_vm_host:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: My dedicated VM host
+    display_name: display_name_example
     state: absent
 
 """
@@ -175,10 +190,9 @@ dedicated_vm_host:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My Dedicated Vm Host`"
             returned: on success
             type: str
-            sample: My Dedicated Vm Host
+            sample: display_name_example
         fault_domain:
             description:
                 - The fault domain for the dedicated virtual machine host's assigned instances.
@@ -248,7 +262,7 @@ dedicated_vm_host:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_shape": "dedicated_vm_host_shape_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "My Dedicated Vm Host",
+        "display_name": "display_name_example",
         "fault_domain": "FAULT-DOMAIN-1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

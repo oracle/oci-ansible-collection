@@ -24,7 +24,7 @@ short_description: Manage a Gateway resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Gateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new gateway.
-    - "This resource has the following action operations in the M(oci_gateway_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_apigateway_gateway_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -175,33 +175,99 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create gateway
   oci_apigateway_gateway:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     endpoint_type: PUBLIC
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_apigateway_gateway:
+    # optional
     display_name: My new resource
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    network_security_group_ids: [ "null" ]
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     response_cache_details:
+      # required
       type: EXTERNAL_RESP_CACHE
+      servers:
+      - # required
+        host: host_example
+        port: 56
+      authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      authentication_secret_version_number: 56
+
+        # optional
+      is_ssl_enabled: true
+      is_ssl_verify_disabled: true
+      connect_timeout_in_ms: 56
+      read_timeout_in_ms: 56
+      send_timeout_in_ms: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update gateway
   oci_apigateway_gateway:
-    display_name: My new resource
-    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    network_security_group_ids: [ "null" ]
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    response_cache_details:
+      # required
+      type: EXTERNAL_RESP_CACHE
+      servers:
+      - # required
+        host: host_example
+        port: 56
+      authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      authentication_secret_version_number: 56
+
+        # optional
+      is_ssl_enabled: true
+      is_ssl_verify_disabled: true
+      connect_timeout_in_ms: 56
+      read_timeout_in_ms: 56
+      send_timeout_in_ms: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_apigateway_gateway:
+    # required
+    display_name: My new resource
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    network_security_group_ids: [ "null" ]
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    response_cache_details:
+      # required
+      type: EXTERNAL_RESP_CACHE
+      servers:
+      - # required
+        host: host_example
+        port: 56
+      authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
+      authentication_secret_version_number: 56
+
+        # optional
+      is_ssl_enabled: true
+      is_ssl_verify_disabled: true
+      connect_timeout_in_ms: 56
+      read_timeout_in_ms: 56
+      send_timeout_in_ms: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete gateway
   oci_apigateway_gateway:
+    # required
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_gateway:
+    # required
     display_name: My new resource
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

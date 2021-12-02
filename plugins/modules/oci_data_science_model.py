@@ -24,7 +24,7 @@ short_description: Manage a Model resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Model resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new model.
-    - "This resource has the following action operations in the M(oci_model_actions) module: activate, change_compartment, deactivate."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_science_model_actions) module: activate, change_compartment, deactivate."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -173,30 +173,85 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create model
   oci_data_science_model:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update model using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_science_model:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     display_name: My Model
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    custom_metadata_list:
+    - # optional
+      key: key_example
+      value: oci.datasciencemodel.aaa12934190b32g9823589
+      description: The base model on which the current model was derived
+      category: Performance
+    defined_metadata_list:
+    - # optional
+      key: key_example
+      value: oci.datasciencemodel.aaa12934190b32g9823589
+      description: The base model on which the current model was derived
+      category: Performance
+    input_schema: "{"predict_arguments":{"sepal_length_(cm)":{"type":"continuous","dtype":"float64"},"sepal_width_(c..."
+    output_schema: {"class":3,"probabilities":[0.1,0.2,0.7]}
 
 - name: Update model
   oci_data_science_model:
+    # required
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: My Model
     description: description_example
-    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    custom_metadata_list:
+    - # optional
+      key: key_example
+      value: oci.datasciencemodel.aaa12934190b32g9823589
+      description: The base model on which the current model was derived
+      category: Performance
+    defined_metadata_list:
+    - # optional
+      key: key_example
+      value: oci.datasciencemodel.aaa12934190b32g9823589
+      description: The base model on which the current model was derived
+      category: Performance
+
+- name: Update model using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_science_model:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: My Model
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    custom_metadata_list:
+    - # optional
+      key: key_example
+      value: oci.datasciencemodel.aaa12934190b32g9823589
+      description: The base model on which the current model was derived
+      category: Performance
+    defined_metadata_list:
+    - # optional
+      key: key_example
+      value: oci.datasciencemodel.aaa12934190b32g9823589
+      description: The base model on which the current model was derived
+      category: Performance
 
 - name: Delete model
   oci_data_science_model:
+    # required
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete model using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_model:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: My Model
     state: absent

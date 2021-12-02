@@ -54,7 +54,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List table_usages
   oci_nosql_table_usage_facts:
+    # required
     table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    time_start: 2013-10-20T19:20:30+01:00
+    time_end: 2013-10-20T19:20:30+01:00
 
 """
 

@@ -154,55 +154,90 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create bds_auto_scale_config
   oci_bds_auto_scale_config:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     node_type: node_type_example
     is_enabled: true
-    cluster_admin_password: cluster_admin_password_example
+    cluster_admin_password: example-password
     policy:
+      # required
       policy_type: THRESHOLD_BASED
       rules:
-      - action: CHANGE_SHAPE_SCALE_UP
+      - # required
+        action: CHANGE_SHAPE_SCALE_UP
         metric:
+          # required
           metric_type: CPU_UTILIZATION
           threshold:
+            # required
             duration_in_minutes: 56
             operator: GT
             value: 56
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_bds_auto_scale_config:
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     display_name: display_name_example
-    is_enabled: true
-    cluster_admin_password: cluster_admin_password_example
-    policy:
-      policy_type: THRESHOLD_BASED
-      rules:
-      - action: CHANGE_SHAPE_SCALE_UP
-        metric:
-          metric_type: CPU_UTILIZATION
-          threshold:
-            duration_in_minutes: 56
-            operator: GT
-            value: 56
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update bds_auto_scale_config
   oci_bds_auto_scale_config:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    is_enabled: true
+    cluster_admin_password: example-password
+    policy:
+      # required
+      policy_type: THRESHOLD_BASED
+      rules:
+      - # required
+        action: CHANGE_SHAPE_SCALE_UP
+        metric:
+          # required
+          metric_type: CPU_UTILIZATION
+          threshold:
+            # required
+            duration_in_minutes: 56
+            operator: GT
+            value: 56
+
+- name: Update bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_bds_auto_scale_config:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    is_enabled: true
+    cluster_admin_password: example-password
+    policy:
+      # required
+      policy_type: THRESHOLD_BASED
+      rules:
+      - # required
+        action: CHANGE_SHAPE_SCALE_UP
+        metric:
+          # required
+          metric_type: CPU_UTILIZATION
+          threshold:
+            # required
+            duration_in_minutes: 56
+            operator: GT
+            value: 56
 
 - name: Delete bds_auto_scale_config
   oci_bds_auto_scale_config:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    cluster_admin_password: cluster_admin_password_example
+    cluster_admin_password: example-password
     auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_auto_scale_config:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

@@ -40,6 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific job_logs_content
   oci_resource_manager_job_logs_content_facts:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

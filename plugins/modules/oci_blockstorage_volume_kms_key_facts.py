@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific volume_kms_key
   oci_blockstorage_volume_kms_key_facts:
+    # required
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

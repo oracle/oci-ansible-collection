@@ -28,8 +28,8 @@ description:
       number of requests across all management write operations. Key Management might throttle this call
       to reject an otherwise valid request when the total rate of management write operations exceeds 10
       requests per second for a given tenancy.
-    - "This resource has the following action operations in the M(oci_key_actions) module: cancel_key_deletion, change_compartment, disable, enable,
-      schedule_key_deletion."
+    - "This resource has the following action operations in the M(oracle.oci.oci_key_management_key_actions) module: cancel_key_deletion, change_compartment,
+      disable, enable, schedule_key_deletion."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -129,21 +129,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create key
   oci_key_management_key:
+    # required
     compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5lsdneskcfy7lr4a6wfauxuwrwed5b3xea"
-    display_name: "Key C"
+    display_name: Key C
     key_shape:
-      algorithm: "AES"
+      # required
+      algorithm: AES
       length: 16
-    service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
-- name: Update key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_key_management_key:
-    display_name: "Key CC"
+      # optional
+      curve_id: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    protection_mode: HSM
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Update key
   oci_key_management_key:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: Key C
+    freeform_tags: {'Department': 'Finance'}
+    service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
+
+- name: Update key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_key_management_key:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5lsdneskcfy7lr4a6wfauxuwrwed5b3xea"
+    display_name: Key C
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """

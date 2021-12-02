@@ -65,9 +65,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update generic_artifact_content
   oci_generic_artifacts_content_generic_artifact_content:
+    # required
     repository_id: "ocid1.repository.oc1..exampleuniqueID"
     artifact_path: project01/my-web-app/artifact-abc
     version: 1.1.2
+
+    # optional
     generic_artifact_content_file: model.zip
 
 """

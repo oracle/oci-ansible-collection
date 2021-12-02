@@ -217,53 +217,193 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create config
+- name: Create config with config_type = SPAN_FILTER
   oci_apm_config_config:
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-    config_type: "SPAN_FILTER"
-    display_name: "example_displayname"
-    rules:
-    - filter_text: "page-url like page"
-    filter_text: "page-url like page"
+    # required
+    config_type: SPAN_FILTER
 
-- name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_apm_config_config:
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-    config_type: APDEX
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: example_displayname
     filter_text: page-url like page
     description: This filter is used to match all login pages.
+
+- name: Create config with config_type = METRIC_GROUP
+  oci_apm_config_config:
+    # required
+    config_type: METRIC_GROUP
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_displayname
     filter_id: ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg
     namespace: oracle_apm_monitoring
     dimensions:
-    - name: name_example
-    metrics:
-    - name: name_example
-    rules:
-    - filter_text: page-url like page
-      priority: 2
-    opc_dry_run: opc_dry_run_example
+    - # required
+      name: name_example
 
-- name: Update config
+      # optional
+      value_source: value_source_example
+    metrics:
+    - # required
+      name: name_example
+
+      # optional
+      value_source: dummy_value_source
+      unit: kb, ms
+      description: This metric shows the number page load errors.
+
+- name: Create config with config_type = APDEX
   oci_apm_config_config:
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     config_type: APDEX
-    display_name: example_displayname
     rules:
-    - filter_text: page-url like page
+    - # required
+      filter_text: page-url like page
       priority: 2
-    config_id: "ocid1.config.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      is_enabled: true
+      satisfied_response_time: 2500
+      tolerating_response_time: 12000
+      is_apply_to_error_spans: false
+      display_name: Apdex computation for Database connections
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_displayname
+
+- name: Update config with config_type = SPAN_FILTER
+  oci_apm_config_config:
+    # required
+    config_type: SPAN_FILTER
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_displayname
+    filter_text: page-url like page
+    description: This filter is used to match all login pages.
+
+- name: Update config with config_type = METRIC_GROUP
+  oci_apm_config_config:
+    # required
+    config_type: METRIC_GROUP
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_displayname
+    filter_id: ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg
+    namespace: oracle_apm_monitoring
+    dimensions:
+    - # required
+      name: name_example
+
+      # optional
+      value_source: value_source_example
+    metrics:
+    - # required
+      name: name_example
+
+      # optional
+      value_source: dummy_value_source
+      unit: kb, ms
+      description: This metric shows the number page load errors.
+
+- name: Update config with config_type = APDEX
+  oci_apm_config_config:
+    # required
+    config_type: APDEX
+    rules:
+    - # required
+      filter_text: page-url like page
+      priority: 2
+
+      # optional
+      is_enabled: true
+      satisfied_response_time: 2500
+      tolerating_response_time: 12000
+      is_apply_to_error_spans: false
+      display_name: Apdex computation for Database connections
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_displayname
+
+- name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = SPAN_FILTER
+  oci_apm_config_config:
+    # required
+    config_type: SPAN_FILTER
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_displayname
+    filter_text: page-url like page
+    description: This filter is used to match all login pages.
+
+- name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = METRIC_GROUP
+  oci_apm_config_config:
+    # required
+    config_type: METRIC_GROUP
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_displayname
+    filter_id: ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg
+    namespace: oracle_apm_monitoring
+    dimensions:
+    - # required
+      name: name_example
+
+      # optional
+      value_source: value_source_example
+    metrics:
+    - # required
+      name: name_example
+
+      # optional
+      value_source: dummy_value_source
+      unit: kb, ms
+      description: This metric shows the number page load errors.
+
+- name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = APDEX
+  oci_apm_config_config:
+    # required
+    config_type: APDEX
+    rules:
+    - # required
+      filter_text: page-url like page
+      priority: 2
+
+      # optional
+      is_enabled: true
+      satisfied_response_time: 2500
+      tolerating_response_time: 12000
+      is_apply_to_error_spans: false
+      display_name: Apdex computation for Database connections
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_displayname
 
 - name: Delete config
   oci_apm_config_config:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     config_id: "ocid1.config.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_config_config:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: example_displayname
     state: absent

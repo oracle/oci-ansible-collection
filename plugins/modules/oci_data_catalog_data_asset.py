@@ -24,8 +24,8 @@ short_description: Manage a DataAsset resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DataAsset resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new data asset.
-    - "This resource has the following action operations in the M(oci_data_asset_actions) module: add_data_selector_patterns, import_connection,
-      import_data_asset, parse_connection, remove_data_selector_patterns, synchronous_export, validate_connection."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_catalog_data_asset_actions) module: add_data_selector_patterns,
+      import_connection, import_data_asset, parse_connection, remove_data_selector_patterns, synchronous_export, validate_connection."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -111,30 +111,64 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create data_asset
   oci_data_catalog_data_asset:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     type_key: type_key_example
 
-- name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_catalog_data_asset:
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
     description: description_example
+    custom_property_members:
+    - # optional
+      key: key_example
+      display_name: display_name_example
+      value: value_example
+      namespace_name: namespace_name_example
+    properties: null
 
 - name: Update data_asset
   oci_data_catalog_data_asset:
+    # required
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    data_asset_key: data_asset_key_example
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    custom_property_members:
+    - # optional
+      key: key_example
+      display_name: display_name_example
+      value: value_example
+      namespace_name: namespace_name_example
+    properties: null
+
+- name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_catalog_data_asset:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    data_asset_key: data_asset_key_example
+
+    # optional
+    description: description_example
+    custom_property_members:
+    - # optional
+      key: key_example
+      display_name: display_name_example
+      value: value_example
+      namespace_name: namespace_name_example
+    properties: null
 
 - name: Delete data_asset
   oci_data_catalog_data_asset:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     state: absent
 
 - name: Delete data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_data_asset:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

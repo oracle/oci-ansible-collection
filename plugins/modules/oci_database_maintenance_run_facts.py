@@ -100,13 +100,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List maintenance_runs
-  oci_database_maintenance_run_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific maintenance_run
   oci_database_maintenance_run_facts:
+    # required
     maintenance_run_id: "ocid1.maintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List maintenance_runs
+  oci_database_maintenance_run_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
+    target_resource_type: target_resource_type_example
+    maintenance_type: maintenance_type_example
+    sort_by: TIME_SCHEDULED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    availability_domain: Uocm:PHX-AD-1
 
 """
 

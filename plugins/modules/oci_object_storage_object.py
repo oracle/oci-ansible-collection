@@ -23,7 +23,8 @@ module: oci_object_storage_object
 short_description: Manage an Object resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an Object resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_object_actions) module: copy, reencrypt, rename, restore, update_object_storage_tier."
+    - "This resource has the following action operations in the M(oracle.oci.oci_object_storage_object_actions) module: copy, reencrypt, rename, restore,
+      update_object_storage_tier."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -180,24 +181,40 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update object
   oci_object_storage_object:
-    namespace_name: "namespace_example"
-    bucket_name: "bucket_example"
-    object_name: "object_example"
-    src: "/usr/local/myobject.txt"
+    # required
+    namespace_name: namespace_example
+    bucket_name: bucket_example
+    object_name: object_example
 
-- name: Update object
-  oci_object_storage_object:
-    namespace_name: "namespace_example"
-    bucket_name: "bucket_example"
-    object_name: "object_example"
-    dest: "/usr/local/myobject.txt"
+    # optional
+    src: /usr/local/myobject.txt
+    force: true
+    dest: /usr/local/myobject.txt
+    content_length: 789
+    expect: expect_example
+    content_md5: content_md5_example
+    content_type: content_type_example
+    content_language: content_language_example
+    content_encoding: content_encoding_example
+    content_disposition: content_disposition_example
+    cache_control: cache_control_example
+    opc_sse_customer_algorithm: opc_sse_customer_algorithm_example
+    opc_sse_customer_key: opc_sse_customer_key_example
+    opc_sse_customer_key_sha256: opc_sse_customer_key_sha256_example
+    opc_sse_kms_key_id: "ocid1.opcssekmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    storage_tier: Standard
+    opc_meta: opc_meta_example
 
 - name: Delete object
   oci_object_storage_object:
+    # required
     namespace_name: namespace_example
     bucket_name: bucket_example
     object_name: object_example
     state: absent
+
+    # optional
+    version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

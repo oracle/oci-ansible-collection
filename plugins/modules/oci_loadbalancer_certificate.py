@@ -97,15 +97,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create certificate
   oci_loadbalancer_certificate:
-    passphrase: "passphrase&gt</var>"
-    private_key: "private_key&gt</var>"
-    public_certificate: "public_certificate&gt</var>"
-    ca_certificate: "ca_certificate&gt</var>"
-    certificate_name: "example_certificate_bundle"
+    # required
+    certificate_name: example_certificate_bundle
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    passphrase: passphrase&gt</var>
+    private_key: private_key&gt</var>
+    public_certificate: public_certificate&gt</var>
+    ca_certificate: ca_certificate&gt</var>
 
 - name: Delete certificate
   oci_loadbalancer_certificate:
+    # required
     certificate_name: example_certificate_bundle
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

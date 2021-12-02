@@ -62,7 +62,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create kubeconfig
   oci_container_engine_kubeconfig:
+    # required
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    token_version: 2.0.0
+    expiration: 56
+    endpoint: PUBLIC_ENDPOINT
 
 """
 

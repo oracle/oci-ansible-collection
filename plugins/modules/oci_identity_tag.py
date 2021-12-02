@@ -41,7 +41,7 @@ description:
       * If a `validator` is set, the user applying the tag to a resource must select from a list
       of values that you supply with L(EnumTagDefinitionValidator,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/latest/datatypes/EnumTagDefinitionValidator)."
-    - "This resource has the following action operations in the M(oci_tag_actions) module: bulk_delete, bulk_edit."
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_tag_actions) module: bulk_delete, bulk_edit."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -122,17 +122,38 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create tag
   oci_identity_tag:
+    # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     name: CostCenter
     description: This tag will show the cost center that will be used for billing of associated resources.
 
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_cost_tracking: true
+    validator:
+      # required
+      validator_type: DEFAULT
+
 - name: Update tag
   oci_identity_tag:
+    # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     name: CostCenter
 
+    # optional
+    description: This tag will show the cost center that will be used for billing of associated resources.
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_cost_tracking: true
+    validator:
+      # required
+      validator_type: DEFAULT
+    is_retired: true
+
 - name: Delete tag
   oci_identity_tag:
+    # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     name: CostCenter
     state: absent

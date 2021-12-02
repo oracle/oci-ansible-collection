@@ -58,7 +58,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List tablespaces
   oci_database_management_tablespace_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

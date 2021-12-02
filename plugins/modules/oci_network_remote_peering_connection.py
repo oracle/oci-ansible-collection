@@ -24,13 +24,14 @@ short_description: Manage a RemotePeeringConnection resource in Oracle Cloud Inf
 description:
     - This module allows the user to create, update and delete a RemotePeeringConnection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new remote peering connection (RPC) for the specified DRG.
-    - "This resource has the following action operations in the M(oci_remote_peering_connection_actions) module: change_compartment, connect."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_remote_peering_connection_actions) module: change_compartment,
+      connect."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the RPC.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the RPC.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -52,7 +53,7 @@ options:
         aliases: ["name"]
     drg_id:
         description:
-            - The OCID of the DRG the RPC belongs to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG the RPC belongs to.
             - Required for create using I(state=present).
         type: str
     freeform_tags:
@@ -85,29 +86,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create remote_peering_connection
   oci_network_remote_peering_connection:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update remote_peering_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_remote_peering_connection:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update remote_peering_connection
   oci_network_remote_peering_connection:
+    # required
+    remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update remote_peering_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_remote_peering_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete remote_peering_connection
   oci_network_remote_peering_connection:
+    # required
     remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete remote_peering_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_remote_peering_connection:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -123,7 +139,7 @@ remote_peering_connection:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment that contains the RPC.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the RPC.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -144,7 +160,7 @@ remote_peering_connection:
             sample: display_name_example
         drg_id:
             description:
-                - The OCID of the DRG that this RPC belongs to.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG that this RPC belongs to.
             returned: on success
             type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
@@ -159,7 +175,7 @@ remote_peering_connection:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The OCID of the RPC.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the RPC.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -178,7 +194,7 @@ remote_peering_connection:
             sample: AVAILABLE
         peer_id:
             description:
-                - If this RPC is peered, this value is the OCID of the other RPC.
+                - If this RPC is peered, this value is the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the other RPC.
             returned: on success
             type: str
             sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -191,7 +207,8 @@ remote_peering_connection:
             sample: us-ashburn-1
         peer_tenancy_id:
             description:
-                - If this RPC is peered, this value is the OCID of the other RPC's tenancy.
+                - If this RPC is peered, this value is the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the other
+                  RPC's tenancy.
             returned: on success
             type: str
             sample: "ocid1.peertenancy.oc1..xxxxxxEXAMPLExxxxxx"

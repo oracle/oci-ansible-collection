@@ -90,13 +90,26 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Update export_set using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_file_storage_export_set:
-    display_name: "mount-target-5-new-exportset"
-
 - name: Update export_set
   oci_file_storage_export_set:
+    # required
     export_set_id: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: mount-target-5-new-exportset
+    max_fs_stat_bytes: 56
+    max_fs_stat_files: 56
+
+- name: Update export_set using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_file_storage_export_set:
+    # required
+    display_name: mount-target-5-new-exportset
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    availability_domain: Uocm:PHX-AD-1
+
+    # optional
+    max_fs_stat_bytes: 56
+    max_fs_stat_files: 56
 
 """
 

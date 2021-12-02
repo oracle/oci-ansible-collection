@@ -52,7 +52,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List secret_bundle_versions
   oci_secrets_secret_bundle_version_facts:
+    # required
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: VERSION_NUMBER
+    sort_order: ASC
 
 """
 

@@ -96,13 +96,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List runs
-  oci_data_flow_run_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific run
   oci_data_flow_run_facts:
+    # required
     run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List runs
+  oci_data_flow_run_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+    owner_principal_id: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name_starts_with: display_name_starts_with_example
+    lifecycle_state: ACCEPTED
+    time_created_greater_than: 2013-10-20T19:20:30+01:00
+    sort_by: timeCreated
+    sort_order: ASC
+    display_name: display_name_example
 
 """
 

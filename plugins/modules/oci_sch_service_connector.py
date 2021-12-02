@@ -39,7 +39,8 @@ description:
       source service to the target service. For instructions on deactivating and
       activating service connectors, see
       L(To activate or deactivate a service connector,https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm).
-    - "This resource has the following action operations in the M(oci_service_connector_actions) module: activate, change_compartment, deactivate."
+    - "This resource has the following action operations in the M(oracle.oci.oci_sch_service_connector_actions) module: activate, change_compartment,
+      deactivate."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -280,40 +281,121 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create service_connector
   oci_sch_service_connector:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source:
+      # required
       kind: logging
-    target:
-      kind: notifications
+      log_sources:
+      - # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_sch_service_connector:
-    display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    description: description_example
-    source:
-      kind: logging
-    tasks:
-    - kind: function
+        # optional
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     target:
+      # required
       kind: notifications
+      topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      enable_formatted_messaging: true
+
+    # optional
+    description: description_example
+    tasks:
+    - # required
+      kind: function
+      function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      batch_size_in_kbs: 56
+      batch_time_in_sec: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update service_connector
   oci_sch_service_connector:
+    # required
+    service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    source:
+      # required
+      kind: logging
+      log_sources:
+      - # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    tasks:
+    - # required
+      kind: function
+      function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      batch_size_in_kbs: 56
+      batch_time_in_sec: 56
+    target:
+      # required
+      kind: notifications
+      topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      enable_formatted_messaging: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_sch_service_connector:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    source:
+      # required
+      kind: logging
+      log_sources:
+      - # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    tasks:
+    - # required
+      kind: function
+      function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      batch_size_in_kbs: 56
+      batch_time_in_sec: 56
+    target:
+      # required
+      kind: notifications
+      topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      enable_formatted_messaging: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete service_connector
   oci_sch_service_connector:
+    # required
     service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_sch_service_connector:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

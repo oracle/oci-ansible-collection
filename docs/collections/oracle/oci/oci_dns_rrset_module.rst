@@ -30,13 +30,9 @@ oracle.oci.oci_dns_rrset -- Manage a Rrset resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_dns_rrset`.
 
@@ -687,24 +683,41 @@ Examples
     
     - name: Update rrset
       oci_dns_rrset:
-        update_items:
-        - domain: "www.example.com"
-          record_hash: "e86155f805706f45b4820db76f0dd71f"
-          is_protected: false
-          rdata: "v=spf1 include:example.net -all"
-          rrset_version: "10"
-          rtype: "TXT"
-          ttl: 60
+        # required
         zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
-        domain: "domain_example"
-        rtype: "rtype_example"
+        domain: domain_example
+        rtype: rtype_example
+
+        # optional
+        update_items:
+        - # required
+          domain: www.example.com
+          rdata: v=spf1 include:example.net -all
+          rtype: TXT
+          ttl: 60
+
+          # optional
+          record_hash: e86155f805706f45b4820db76f0dd71f
+          is_protected: false
+          rrset_version: 10
+        if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
+        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete rrset
       oci_dns_rrset:
+        # required
         zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
         domain: domain_example
         rtype: rtype_example
         state: absent
+
+        # optional
+        if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
+        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -740,7 +753,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Rrset resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;is_protected&#x27;: True, &#x27;rdata&#x27;: &#x27;rdata_example&#x27;, &#x27;record_hash&#x27;: &#x27;record_hash_example&#x27;, &#x27;rrset_version&#x27;: &#x27;rrset_version_example&#x27;, &#x27;rtype&#x27;: &#x27;rtype_example&#x27;, &#x27;ttl&#x27;: 56}]}</div>
                                     </td>
             </tr>
@@ -758,7 +771,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -775,7 +788,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The fully qualified domain name where the record can be located.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">domain_example</div>
                                     </td>
             </tr>
@@ -794,7 +807,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A Boolean flag indicating whether or not parts of the record are unable to be explicitly managed.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -813,7 +826,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The record&#x27;s data, as whitespace-delimited tokens in type-specific presentation format. All RDATA is normalized and the returned presentation of your RDATA may differ from its initial input. For more information about RDATA, see <a href='https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm'>Supported DNS Resource Record Types</a></div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rdata_example</div>
                                     </td>
             </tr>
@@ -832,7 +845,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A unique identifier for the record within its zone.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">record_hash_example</div>
                                     </td>
             </tr>
@@ -851,7 +864,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The latest version of the record&#x27;s zone in which its RRSet differs from the preceding version.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rrset_version_example</div>
                                     </td>
             </tr>
@@ -870,7 +883,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rtype_example</div>
                                     </td>
             </tr>
@@ -889,7 +902,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Time To Live for the record, in seconds.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List integration_instances
-  oci_integration_instance_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific integration_instance
   oci_integration_instance_facts:
+    # required
     integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List integration_instances
+  oci_integration_instance_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 

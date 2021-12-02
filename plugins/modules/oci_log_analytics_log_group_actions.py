@@ -56,6 +56,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on log_analytics_log_group
   oci_log_analytics_log_group_actions:
+    # required
     namespace_name: namespace_name_example
     log_analytics_log_group_id: "ocid1.loganalyticsloggroup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

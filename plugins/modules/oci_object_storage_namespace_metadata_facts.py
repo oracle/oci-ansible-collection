@@ -43,6 +43,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific namespace_metadata
   oci_object_storage_namespace_metadata_facts:
+    # required
     namespace_name: namespace_name_example
 
 """

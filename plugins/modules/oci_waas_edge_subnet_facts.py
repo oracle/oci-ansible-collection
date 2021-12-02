@@ -50,6 +50,10 @@ EXAMPLES = """
 - name: List waas_edge_subnets
   oci_waas_edge_subnet_facts:
 
+    # optional
+    sort_by: cidr
+    sort_order: ASC
+
 """
 
 RETURN = """

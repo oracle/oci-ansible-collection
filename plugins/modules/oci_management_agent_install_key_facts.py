@@ -84,13 +84,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List management_agent_install_keys
-  oci_management_agent_install_key_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific management_agent_install_key
   oci_management_agent_install_key_facts:
+    # required
     management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List management_agent_install_keys
+  oci_management_agent_install_key_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    compartment_id_in_subtree: true
+    access_level: access_level_example
+    lifecycle_state: CREATING
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

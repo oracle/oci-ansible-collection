@@ -30,13 +30,9 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci`.
 
@@ -87,15 +83,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:OCI_USER_KEY_FILE
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Full path and filename of the private key (in PEM format). If the key is encrypted with a pass-phrase, the pass_phrase option must also be provided. Preference order is .oci.yml &gt; OCI_USER_KEY_FILE environment variable &gt; settings from config file This option is required if the private key is not specified through a configuration file (See config_file)</div>
@@ -109,15 +103,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:OCI_USER_KEY_PASS_PHRASE
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Passphrase used by the key referenced in api_user_key_file, if it is encrypted. Preference order is .oci.yml &gt; OCI_USER_KEY_PASS_PHRASE environment variable &gt; settings from config file This option is required if the passphrase is not specified through a configuration file (See config_file)</div>
@@ -131,8 +123,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
@@ -144,8 +135,7 @@ Parameters
                                                     <td>
                                                                             <div>
                                 env:OCI_ANSIBLE_AUTH_TYPE
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
@@ -159,8 +149,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -171,13 +160,11 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [inventory]<br>cache = no
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_INVENTORY_CACHE
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Toggle to enable/disable the caching of the inventory&#x27;s source data, requires a cache plugin setup to work.</div>
@@ -191,29 +178,24 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                     <div> ini entries:
                                                                     <p>
                                         [defaults]<br>fact_caching_connection = None
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                                     <p>
                                         [inventory]<br>cache_connection = None
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_CACHE_PLUGIN_CONNECTION
-                                                                	
-                            </div>
+                                                                                            </div>
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_CONNECTION
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Cache connection data or path, read cache plugin documentation for specifics.</div>
@@ -227,8 +209,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"memory"</div>
                                     </td>
@@ -236,21 +217,17 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [defaults]<br>fact_caching = memory
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                                     <p>
                                         [inventory]<br>cache_plugin = memory
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_CACHE_PLUGIN
-                                                                	
-                            </div>
+                                                                                            </div>
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_PLUGIN
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Cache plugin to use for the inventory&#x27;s source data.</div>
@@ -264,8 +241,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">"ansible_inventory_"</div>
                                     </td>
@@ -273,21 +249,17 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [default]<br>fact_caching_prefix = ansible_inventory_
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                                     <p>
                                         [inventory]<br>cache_prefix = ansible_inventory_
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_CACHE_PLUGIN_PREFIX
-                                                                	
-                            </div>
+                                                                                            </div>
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_PLUGIN_PREFIX
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Prefix to use for cache plugin files/tables</div>
@@ -301,8 +273,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">3600</div>
                                     </td>
@@ -310,21 +281,17 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [defaults]<br>fact_caching_timeout = 3600
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                                     <p>
                                         [inventory]<br>cache_timeout = 3600
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_CACHE_PLUGIN_TIMEOUT
-                                                                	
-                            </div>
+                                                                                            </div>
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_TIMEOUT
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Cache duration in seconds</div>
@@ -338,8 +305,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -357,8 +323,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -376,8 +341,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -395,8 +359,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -418,8 +381,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -437,8 +399,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">dictionary</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">{}</div>
                                     </td>
@@ -456,15 +417,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:OCI_CONFIG_FILE
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>The oci config path.</div>
@@ -478,15 +437,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:OCI_CONFIG_PROFILE
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>The config profile to use.</div>
@@ -500,8 +457,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -522,15 +478,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:OCI_DELEGATION_TOKEN_FILE
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Path to delegation_token file. If not set then the value of the OCI_DELEGATION_TOKEN_FILE environment variable, if any, is used. Otherwise, defaults to config_file.</div>
@@ -545,8 +499,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -563,8 +516,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -582,8 +534,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -601,8 +552,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -620,8 +570,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -639,8 +588,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -662,8 +610,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -680,8 +627,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -702,8 +648,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -724,8 +669,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -744,8 +688,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">dictionary</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">{}</div>
                                     </td>
@@ -763,15 +706,13 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
                                                                             <div>
                                 env:OCI_HOSTNAME_FORMAT
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Host naming format to use. Use &#x27;fqdn&#x27; to list hosts using the instance&#x27;s Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN resolver specified through the subnet&#x27;s DHCP options. Please see https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details. Use &#x27;public_ip&#x27; to list hosts using public IP address. Use &#x27;private_ip&#x27; to list hosts using private IP address. Use &#x27;display_name&#x27; to list hosts using display_name of the Instances. &#x27;display_name&#x27; cannot be used when fetch_db_hosts is True. By default, hosts are listed using public IP address. hostname_format_preferences and hostname_format cannot be used together</div>
@@ -785,8 +726,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -803,8 +743,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -821,8 +760,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -839,8 +777,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -858,8 +795,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">[]</div>
                                     </td>
@@ -880,8 +816,7 @@ Parameters
                                           <div style="font-style: italic; font-size: small; color: darkgreen">
                         added in 2.11 of ansible.builtin
                       </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -907,8 +842,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                  / <span style="color: red">required</span>                    </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>oracle.oci.oci</li>
@@ -928,8 +862,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>no</li>
@@ -939,8 +872,7 @@ Parameters
                                                     <td>
                                                                             <div>
                                 env:OCI_PRIMARY_VNIC_ONLY
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>The default behavior of the plugin is to process all VNIC&#x27;s attached to a compute instance. This might result in instance having multiple entries. When this parameter is set to True, the plugin will only process the primary VNIC and thus having only a single entry for each compute instance.</div>
@@ -954,8 +886,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
                          / <span style="color: purple">elements=string</span>                                            </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
@@ -972,8 +903,7 @@ Parameters
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -998,8 +928,7 @@ Parameters
                                           <div style="font-style: italic; font-size: small; color: darkgreen">
                         added in 2.11 of ansible.builtin
                       </div>
-                                                              	
-                                    </td>
+                                                        </td>
                                 <td>
                                                                                                                                                                                                                     <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
@@ -1010,13 +939,11 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [inventory_plugins]<br>use_extra_vars = no
-                                                                                	
-                                    </p>
+                                                                                                                    </p>
                                                             </div>
                                                                             <div>
                                 env:ANSIBLE_INVENTORY_USE_EXTRA_VARS
-                                                                	
-                            </div>
+                                                                                            </div>
                                                                                             </td>
                                                 <td>
                                             <div>Merge extra vars into the available variables for composition (highest precedence).</div>

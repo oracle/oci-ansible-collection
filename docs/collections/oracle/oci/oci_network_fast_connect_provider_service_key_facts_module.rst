@@ -30,13 +30,9 @@ oracle.oci.oci_network_fast_connect_provider_service_key_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_fast_connect_provider_service_key_facts`.
 
@@ -299,6 +295,7 @@ Examples
     
     - name: Get a specific fast_connect_provider_service_key
       oci_network_fast_connect_provider_service_key_facts:
+        # required
         provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
         provider_service_key_name: provider_service_key_name_example
 
@@ -336,7 +333,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>FastConnectProviderServiceKey resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bandwidth_shape_name&#x27;: &#x27;10 Gbps&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;peering_location&#x27;: &#x27;peering_location_example&#x27;}</div>
                                     </td>
             </tr>
@@ -355,7 +352,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10 Gbps</div>
                                     </td>
             </tr>
@@ -373,7 +370,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The service key that the provider gives you when you set up a virtual circuit connection from the provider to Oracle Cloud Infrastructure. Use this value as the `providerServiceKeyName` query parameter for <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/FastConnectProviderServiceKey/GetFastConnectProviderServiceKey'>GetFastConnectProviderServiceKey</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -391,7 +388,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The provider&#x27;s peering location.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">peering_location_example</div>
                                     </td>
             </tr>

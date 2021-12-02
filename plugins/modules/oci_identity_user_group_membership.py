@@ -65,12 +65,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create user_group_membership
   oci_identity_user_group_membership:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete user_group_membership
   oci_identity_user_group_membership:
+    # required
     user_group_membership_id: "ocid1.usergroupmembership.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

@@ -89,13 +89,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List boot_volume_backups
-  oci_blockstorage_boot_volume_backup_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific boot_volume_backup
   oci_blockstorage_boot_volume_backup_facts:
+    # required
     boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List boot_volume_backups
+  oci_blockstorage_boot_volume_backup_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    source_boot_volume_backup_id: "ocid1.sourcebootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -135,7 +145,7 @@ boot_volume_backups:
             sample: {}
         display_name:
             description:
-                - A user-friendly name for the boot volume backup. Does not have to be unique and it's changeable.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

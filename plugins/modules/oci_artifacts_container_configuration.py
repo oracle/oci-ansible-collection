@@ -51,7 +51,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update container_configuration
   oci_artifacts_container_configuration:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     is_repository_created_on_first_push: true
 
 """

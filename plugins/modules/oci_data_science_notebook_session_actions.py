@@ -55,17 +55,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on notebook_session
   oci_data_science_notebook_session_actions:
+    # required
     notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
 
 - name: Perform action change_compartment on notebook_session
   oci_data_science_notebook_session_actions:
+    # required
     notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on notebook_session
   oci_data_science_notebook_session_actions:
+    # required
     notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     action: deactivate
 

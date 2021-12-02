@@ -24,7 +24,7 @@ short_description: Manage a VmCluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a VmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Exadata Cloud@Customer VM cluster.
-    - "This resource has the following action operations in the M(oci_vm_cluster_actions) module: add_virtual_machine, change_compartment,
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_vm_cluster_actions) module: add_virtual_machine, change_compartment,
       remove_virtual_machine."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -192,39 +192,85 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vm_cluster
   oci_database_vm_cluster:
-    display_name: "vmCluster"
-    compartment_id: "ocid1.tenancy.oc1.unique_ID"
-    exadata_infrastructure_id: "ocid1.tenancy.oc1.oc1.unique_ID"
-    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1.unique_ID"
-    cpu_core_count: "4"
-    memory_size_in_gbs: "30"
-    db_node_storage_size_in_gbs: "60"
-    data_storage_size_in_tbs: "84"
-    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
-    license_model: "LICENSE_INCLUDED"
-    is_sparse_diskgroup_enabled: "false"
-    is_local_backup_enabled: "true"
-    time_zone: "PST"
-    gi_version: "19.1.0.0"
-    db_servers:
-    - "ocid1.dbserver.oc1.<example_unique_ID>"
-    - "ocid1.dbserver.oc1.<example_unique_ID>"
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: vmCluster
+    exadata_infrastructure_id: ocid1.tenancy.oc1.oc1.unique_ID
+    cpu_core_count: 4
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    vm_cluster_network_id: ocid1.vmclusternetwork.oc1.unique_ID
+    gi_version: 19.1.0.0
 
-- name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_vm_cluster:
-    cpu_core_count: 10
+    # optional
+    memory_size_in_gbs: 30
+    db_node_storage_size_in_gbs: 60
+    data_storage_size_in_tbs: 84
+    license_model: LICENSE_INCLUDED
+    is_sparse_diskgroup_enabled: false
+    is_local_backup_enabled: true
+    time_zone: PST
+    db_servers: [ "ocid1.dbserver.oc1.<example_unique_ID>" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update vm_cluster
   oci_database_vm_cluster:
+    # required
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    cpu_core_count: 4
+    memory_size_in_gbs: 30
+    db_node_storage_size_in_gbs: 60
+    data_storage_size_in_tbs: 84
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    license_model: LICENSE_INCLUDED
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    version:
+      # optional
+      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      action: APPLY
+    update_details:
+      # optional
+      update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
+      update_action: ROLLING_APPLY
+
+- name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_vm_cluster:
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: vmCluster
+
+    # optional
+    cpu_core_count: 4
+    memory_size_in_gbs: 30
+    db_node_storage_size_in_gbs: 60
+    data_storage_size_in_tbs: 84
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    license_model: LICENSE_INCLUDED
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    version:
+      # optional
+      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      action: APPLY
+    update_details:
+      # optional
+      update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
+      update_action: ROLLING_APPLY
 
 - name: Delete vm_cluster
   oci_database_vm_cluster:
+    # required
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
+    # required
     compartment_id: ocid1.tenancy.oc1.unique_ID
     display_name: vmCluster
     state: absent

@@ -37,7 +37,8 @@ description:
       L(UpdateCompartment,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Compartment/UpdateCompartment)."
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
       object, first make sure its `lifecycleState` has changed to ACTIVE.
-    - "This resource has the following action operations in the M(oci_compartment_actions) module: bulk_delete_resources, bulk_move_resources, move, recover."
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_compartment_actions) module: bulk_delete_resources,
+      bulk_move_resources, move, recover."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -98,33 +99,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create compartment
   oci_identity_compartment:
-    parent_compartment_id: "ocid1.compartment.oc1..aaaaaaaParentCompartmentID"
-    description: "For network components"
-    name: "Network"
+    # required
+    parent_compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    description: description_example
 
-- name: Update compartment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_compartment:
-    parent_compartment_id: "ocid1.compartment.oc1..aaaaaaaParentCompartmentID"
-    name: Network
-    description: For network components
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update compartment
   oci_identity_compartment:
-    name: Network
-    description: For network components
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update compartment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_identity_compartment:
+    # required
+    parent_compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete compartment
   oci_identity_compartment:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete compartment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_compartment:
-    parent_compartment_id: "ocid1.compartment.oc1..aaaaaaaParentCompartmentID"
-    name: Network
+    # required
+    parent_compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """

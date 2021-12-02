@@ -47,13 +47,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List fast_connect_provider_services
-  oci_network_fast_connect_provider_service_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific fast_connect_provider_service
   oci_network_fast_connect_provider_service_facts:
+    # required
     provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List fast_connect_provider_services
+  oci_network_fast_connect_provider_service_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -75,7 +77,7 @@ fast_connect_provider_services:
             sample: https://example.com
         id:
             description:
-                - The OCID of the service offered by the provider.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service offered by the provider.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

@@ -53,11 +53,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action cancel on job_run
   oci_data_science_job_run_actions:
+    # required
     job_run_id: "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel
 
 - name: Perform action change_compartment on job_run
   oci_data_science_job_run_actions:
+    # required
     job_run_id: "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

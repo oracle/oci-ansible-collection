@@ -116,32 +116,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create user
   oci_identity_user:
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
-    description: "John Smith"
-    name: "JohnSmith@example.com"
-
-- name: Update user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_user:
+    # required
     compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
     name: JohnSmith@example.com
     description: John Smith
+
+    # optional
     email: email_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update user
   oci_identity_user:
+    # required
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: John Smith
     email: email_example
-    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_identity_user:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
+    name: JohnSmith@example.com
+
+    # optional
+    description: John Smith
+    email: email_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete user
   oci_identity_user:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_user:
+    # required
     compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
     name: JohnSmith@example.com
     state: absent
@@ -256,7 +272,7 @@ user:
                         - Indicates if the user can log in to the console.
                     returned: on success
                     type: bool
-                    sample: true
+                    sample: example-password
                 can_use_api_keys:
                     description:
                         - Indicates if the user can use API keys.
@@ -328,7 +344,7 @@ user:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "capabilities": {
-            "can_use_console_password": true,
+            "can_use_console_password": example-password,
             "can_use_api_keys": true,
             "can_use_auth_tokens": true,
             "can_use_smtp_credentials": true,

@@ -63,8 +63,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific zone_content
   oci_dns_zone_content_facts:
+    # required
     dest: /tmp/myfile
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    if_modified_since: if_modified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

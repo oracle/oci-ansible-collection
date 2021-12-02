@@ -62,23 +62,22 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Perform action cancel on deployment_backup
+- name: Perform action cancel on deployment_backup with type = DEFAULT
   oci_golden_gate_deployment_backup_actions:
-    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     type: DEFAULT
-    action: cancel
 
 - name: Perform action change_compartment on deployment_backup
   oci_golden_gate_deployment_backup_actions:
+    # required
     deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
-- name: Perform action restore_deployment on deployment_backup
+- name: Perform action restore_deployment on deployment_backup with type = DEFAULT
   oci_golden_gate_deployment_backup_actions:
-    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     type: DEFAULT
-    action: restore_deployment
 
 """
 

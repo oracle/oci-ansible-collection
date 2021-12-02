@@ -78,13 +78,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List db_management_private_endpoints
-  oci_database_management_db_management_private_endpoint_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific db_management_private_endpoint
   oci_database_management_db_management_private_endpoint_facts:
+    # required
     db_management_private_endpoint_id: "ocid1.dbmanagementprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List db_management_private_endpoints
+  oci_database_management_db_management_private_endpoint_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 

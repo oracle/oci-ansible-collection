@@ -80,13 +80,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List database_registrations
-  oci_golden_gate_database_registration_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific database_registration
   oci_golden_gate_database_registration_facts:
+    # required
     database_registration_id: "ocid1.databaseregistration.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List database_registrations
+  oci_golden_gate_database_registration_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: CREATING
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

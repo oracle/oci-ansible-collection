@@ -65,15 +65,17 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on on_prem_connector
   oci_data_safe_on_prem_connector_actions:
+    # required
     on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action generate_on_prem_connector_configuration on on_prem_connector
   oci_data_safe_on_prem_connector_actions:
+    # required
     on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     dest: /tmp/myfile
-    password: password_example
+    password: example-password
     action: generate_on_prem_connector_configuration
 
 """

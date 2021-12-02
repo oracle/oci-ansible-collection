@@ -175,3 +175,26 @@ class SecretActionsHelperCustom:
         return super(SecretActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
+
+
+# Having message as a top level parameter causes issues in ansible when journal
+# is enabled. Check https://github.com/ansible/ansible/issues/47132 for more
+# details. To get around this problem, the name of the parameter is changed to
+# msg. But since these are existing modules and it does work when journal is not
+# enabled, adding message as an alias so that it is not a breaking change. The
+# below customisations are needed since the rename is in the module but we
+# still have to pass the values with original names to SDK/API.
+class SignedDataHelperCustom:
+    def get_create_model(self):
+        create_model = super(SignedDataHelperCustom, self).get_create_model()
+        if self.module.params.get("msg"):
+            setattr(create_model, "message", self.module.params["msg"])
+        return create_model
+
+
+class VerifiedDataHelperCustom:
+    def get_create_model(self):
+        create_model = super(VerifiedDataHelperCustom, self).get_create_model()
+        if self.module.params.get("msg"):
+            setattr(create_model, "message", self.module.params["msg"])
+        return create_model

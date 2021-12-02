@@ -68,13 +68,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List quotas
-  oci_limits_quota_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific quota
   oci_limits_quota_facts:
+    # required
     quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List quotas
+  oci_limits_quota_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    lifecycle_state: ACTIVE
+    sort_order: ASC
+    sort_by: NAME
 
 """
 

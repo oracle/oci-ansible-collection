@@ -76,6 +76,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action cancel_key_version_deletion on key_version
   oci_key_management_key_version_actions:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel_key_version_deletion
@@ -83,10 +84,13 @@ EXAMPLES = """
 
 - name: Perform action schedule_key_version_deletion on key_version
   oci_key_management_key_version_actions:
-    time_of_deletion: "2018-04-03T21:10:29.600Z"
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "schedule_key_version_deletion"
+    action: schedule_key_version_deletion
+
+    # optional
+    time_of_deletion: 2013-10-20T19:20:30+01:00
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """

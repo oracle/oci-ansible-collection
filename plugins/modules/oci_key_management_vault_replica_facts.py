@@ -58,7 +58,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List vault_replicas
   oci_key_management_vault_replica_facts:
+    # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

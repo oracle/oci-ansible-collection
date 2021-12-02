@@ -123,13 +123,28 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List management_agents
-  oci_management_agent_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific management_agent
   oci_management_agent_facts:
+    # required
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List management_agents
+  oci_management_agent_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    plugin_name: [ "$p.getValue()" ]
+    version: [ "$p.getValue()" ]
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    availability_status: ACTIVE
+    host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
+    platform_type: [ "$p.getValue()" ]
+    is_customer_deployed: true
+    install_type: AGENT
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

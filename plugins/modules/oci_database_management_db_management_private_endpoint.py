@@ -24,7 +24,8 @@ short_description: Manage a DbManagementPrivateEndpoint resource in Oracle Cloud
 description:
     - This module allows the user to create, update and delete a DbManagementPrivateEndpoint resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Database Management private endpoint.
-    - "This resource has the following action operations in the M(oci_db_management_private_endpoint_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_management_db_management_private_endpoint_actions) module:
+      change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -80,29 +81,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create db_management_private_endpoint
   oci_database_management_db_management_private_endpoint:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_management_db_management_private_endpoint:
-    name: name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     description: description_example
+    nsg_ids: [ "null" ]
 
 - name: Update db_management_private_endpoint
   oci_database_management_db_management_private_endpoint:
+    # required
+    db_management_private_endpoint_id: "ocid1.dbmanagementprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     name: name_example
     description: description_example
-    db_management_private_endpoint_id: "ocid1.dbmanagementprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "null" ]
+
+- name: Update db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_management_db_management_private_endpoint:
+    # required
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    nsg_ids: [ "null" ]
 
 - name: Delete db_management_private_endpoint
   oci_database_management_db_management_private_endpoint:
+    # required
     db_management_private_endpoint_id: "ocid1.dbmanagementprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_management_db_management_private_endpoint:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

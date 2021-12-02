@@ -60,9 +60,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on resolver
   oci_dns_resolver_actions:
+    # required
     resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+    # optional
+    scope: GLOBAL
 
 """
 

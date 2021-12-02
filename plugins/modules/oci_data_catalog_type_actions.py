@@ -61,15 +61,25 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action associate_custom_property on type
   oci_data_catalog_type_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     type_key: type_key_example
     action: associate_custom_property
 
+    # optional
+    custom_property_ids: [ "null" ]
+    is_event_enabled: true
+
 - name: Perform action disassociate_custom_property on type
   oci_data_catalog_type_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     type_key: type_key_example
     action: disassociate_custom_property
+
+    # optional
+    custom_property_ids: [ "null" ]
+    is_event_enabled: true
 
 """
 

@@ -72,13 +72,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List triggers
-  oci_devops_trigger_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific trigger
   oci_devops_trigger_facts:
+    # required
     trigger_id: "ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List triggers
+  oci_devops_trigger_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

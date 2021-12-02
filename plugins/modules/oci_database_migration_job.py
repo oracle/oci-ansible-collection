@@ -23,7 +23,7 @@ module: oci_database_migration_job
 short_description: Manage a Job resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete a Job resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_job_actions) module: abort, resume."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_migration_job_actions) module: abort, resume."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -72,25 +72,35 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Update job
   oci_database_migration_job:
+    # required
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_migration_job:
+    # required
+    display_name: display_name_example
     migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update job
-  oci_database_migration_job:
-    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete job
   oci_database_migration_job:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_job:
+    # required
     display_name: display_name_example
     migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

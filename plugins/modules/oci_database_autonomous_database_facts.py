@@ -128,13 +128,28 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List autonomous_databases
-  oci_database_autonomous_database_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific autonomous_database
   oci_database_autonomous_database_facts:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List autonomous_databases
+  oci_database_autonomous_database_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
+    infrastructure_type: infrastructure_type_example
+    lifecycle_state: lifecycle_state_example
+    db_workload: db_workload_example
+    db_version: db_version_example
+    is_free_tier: true
+    display_name: display_name_example
+    is_refreshable_clone: true
+    is_data_guard_enabled: true
 
 """
 

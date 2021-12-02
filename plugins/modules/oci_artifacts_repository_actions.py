@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on repository
   oci_artifacts_repository_actions:
+    # required
     repository_id: "ocid1.artifactrepository.oc1..exampleuniqueID"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

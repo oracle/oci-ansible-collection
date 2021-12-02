@@ -54,6 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on ip_sec_connection
   oci_network_ip_sec_connection_actions:
+    # required
     ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -69,13 +70,14 @@ ip_sec_connection:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the IPSec connection.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the IPSec connection.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_id:
             description:
-                - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(Cpe,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
             type: str
             sample: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"

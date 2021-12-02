@@ -50,14 +50,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List listeners
-  oci_network_load_balancer_listener_facts:
-    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific listener
   oci_network_load_balancer_listener_facts:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     listener_name: example_listener
+
+- name: List listeners
+  oci_network_load_balancer_listener_facts:
+    # required
+    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
 
 """
 

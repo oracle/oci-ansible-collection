@@ -24,7 +24,7 @@ short_description: Manage a Table resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Table resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new table.
-    - "This resource has the following action operations in the M(oci_table_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_nosql_table_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -114,39 +114,66 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create table
   oci_nosql_table:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     ddl_statement: ddl_statement_example
     table_limits:
+      # required
       max_read_units: 56
       max_write_units: 56
       max_storage_in_g_bs: 56
 
-- name: Update table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    is_auto_reclaimable: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update table
   oci_nosql_table:
-    name: name_example
+    # required
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     ddl_statement: ddl_statement_example
     table_limits:
+      # required
       max_read_units: 56
       max_write_units: 56
       max_storage_in_g_bs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update table
+- name: Update table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_nosql_table:
+    # required
+    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     ddl_statement: ddl_statement_example
-    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
+    table_limits:
+      # required
+      max_read_units: 56
+      max_write_units: 56
+      max_storage_in_g_bs: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete table
   oci_nosql_table:
+    # required
     table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    is_if_exists: true
+
 - name: Delete table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_nosql_table:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

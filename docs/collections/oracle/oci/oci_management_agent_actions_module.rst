@@ -30,13 +30,9 @@ oracle.oci.oci_management_agent_actions -- Perform actions on a ManagementAgent 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_management_agent_actions`.
 
@@ -351,7 +347,10 @@ Examples
     
     - name: Perform action deploy_plugins on management_agent
       oci_management_agent_actions:
+        # required
+        plugin_ids: [ "null" ]
         agent_compartment_id: "ocid1.agentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+        agent_ids: [ "null" ]
         action: deploy_plugins
 
 

@@ -24,7 +24,7 @@ short_description: Manage a Vlan resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Vlan resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a VLAN in the specified VCN and the specified compartment.
-    - "This resource has the following action operations in the M(oci_vlan_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_vlan_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -51,7 +51,7 @@ options:
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment to contain the VLAN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the VLAN.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -65,7 +65,7 @@ options:
         type: dict
     display_name:
         description:
-            - A descriptive name. Does not have to be unique, and it's changeable.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -89,13 +89,14 @@ options:
         elements: str
     route_table_id:
         description:
-            - The OCID of the route table the VLAN will use. If you don't provide a value,
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the VLAN will use. If you don't provide
+              a value,
               the VLAN uses the VCN's default route table.
             - This parameter is updatable.
         type: str
     vcn_id:
         description:
-            - The OCID of the VCN to contain the VLAN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN to contain the VLAN.
             - Required for create using I(state=present).
         type: str
     vlan_tag:
@@ -126,32 +127,55 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vlan
   oci_network_vlan:
+    # required
     cidr_block: 192.0.2.0/24
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_vlan:
-    cidr_block: 192.0.2.0/24
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    availability_domain: Uocm:PHX-AD-1
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    nsg_ids: [ "null" ]
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    vlan_tag: 56
 
 - name: Update vlan
   oci_network_vlan:
+    # required
+    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     cidr_block: 192.0.2.0/24
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    nsg_ids: [ "null" ]
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_vlan:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    cidr_block: 192.0.2.0/24
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    nsg_ids: [ "null" ]
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete vlan
   oci_network_vlan:
+    # required
     vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vlan:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -183,7 +207,7 @@ vlan:
             sample: 192.168.1.0/24
         compartment_id:
             description:
-                - The OCID of the compartment containing the VLAN.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the VLAN.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -213,7 +237,7 @@ vlan:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The VLAN's Oracle ID (OCID).
+                - The VLAN's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -241,7 +265,7 @@ vlan:
             sample: 100
         route_table_id:
             description:
-                - The OCID of the route table that the VLAN uses.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table that the VLAN uses.
             returned: on success
             type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
@@ -254,7 +278,7 @@ vlan:
             sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
-                - The OCID of the VCN the VLAN is in.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the VLAN is in.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

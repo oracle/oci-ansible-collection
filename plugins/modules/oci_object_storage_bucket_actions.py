@@ -69,12 +69,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action make_bucket_writable on bucket
   oci_object_storage_bucket_actions:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     action: make_bucket_writable
 
 - name: Perform action reencrypt on bucket
   oci_object_storage_bucket_actions:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     action: reencrypt

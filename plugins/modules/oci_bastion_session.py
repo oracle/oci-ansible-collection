@@ -119,29 +119,49 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create session
   oci_bastion_session:
+    # required
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
     target_resource_details:
+      # required
       session_type: MANAGED_SSH
+      target_resource_operating_system_user_name: target_resource_operating_system_user_name_example
+      target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      target_resource_port: 56
+      target_resource_private_ip_address: target_resource_private_ip_address_example
     key_details:
+      # required
       public_key_content: public_key_content_example
 
-- name: Update session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_bastion_session:
+    # optional
     display_name: display_name_example
-    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+    key_type: PUB
+    session_ttl_in_seconds: 56
 
 - name: Update session
   oci_bastion_session:
-    display_name: display_name_example
+    # required
     session_id: "ocid1.session.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+
+- name: Update session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_bastion_session:
+    # required
+    display_name: display_name_example
+    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete session
   oci_bastion_session:
+    # required
     session_id: "ocid1.session.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bastion_session:
+    # required
     display_name: display_name_example
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

@@ -107,24 +107,39 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create resolver_endpoint
+- name: Create resolver_endpoint with endpoint_type = VNIC
   oci_dns_resolver_endpoint:
-    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     name: name_example
     is_forwarding: true
     is_listening: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update resolver_endpoint
+    # optional
+    endpoint_type: VNIC
+    forwarding_address: forwarding_address_example
+    listening_address: listening_address_example
+    nsg_ids: [ "null" ]
+
+- name: Update resolver_endpoint with endpoint_type = VNIC
   oci_dns_resolver_endpoint:
-    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     name: name_example
+
+    # optional
+    endpoint_type: VNIC
+    nsg_ids: [ "null" ]
 
 - name: Delete resolver_endpoint
   oci_dns_resolver_endpoint:
+    # required
     resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
+
+    # optional
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
 
 """
 

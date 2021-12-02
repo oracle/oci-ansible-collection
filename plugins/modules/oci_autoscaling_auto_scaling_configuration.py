@@ -24,7 +24,7 @@ short_description: Manage an AutoScalingConfiguration resource in Oracle Cloud I
 description:
     - This module allows the user to create, update and delete an AutoScalingConfiguration resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an autoscaling configuration.
-    - "This resource has the following action operations in the M(oci_auto_scaling_configuration_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_autoscaling_auto_scaling_configuration_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -292,57 +292,74 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "example_autoscaling_configuration"
-    cool_down_in_seconds: 300
-    is_enabled: true
     policies:
-    - capacity:
+    - # required
+      policy_type: threshold
+      execution_schedule:
+        # required
+        type: cron
+        timezone: UTC
+        expression: "0 15 10 ? * *"
+
+      # optional
+      capacity:
+        # optional
         max: 50
         min: 10
         initial: 15
-      display_name: "example_autoscaling_policy"
-      policy_type: "threshold"
-      rules:
-      - action:
-          type: "CHANGE_COUNT_BY"
-          value: 5
-        display_name: "example_scale_out_condition"
-        metric:
-          metric_type: "CPU_UTILIZATION"
-          threshold:
-            operator: "GTE"
-            value: 90
-      - action:
-          type: "CHANGE_COUNT_BY"
-          value: -5
-        display_name: "example_scale_in_condition"
-        metric:
-          metric_type: "CPU_UTILIZATION"
-          threshold:
-            operator: "LTE"
-            value: 25
+      display_name: example_autoscaling_policy
+      is_enabled: true
+      resource_action:
+        # required
+        action_type: power
+        action: STOP
     resource:
-      type: "instancePool"
+      # required
+      type: instancePool
       id: "ocid1.instancepool.oc1..unique_ID"
 
-- name: Update auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_autoscaling_auto_scaling_configuration:
-    display_name: "example_autoscaling_configuration"
-    is_enabled: false
-    cool_down_in_seconds: 600
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_autoscaling_configuration
+    freeform_tags: {'Department': 'Finance'}
+    cool_down_in_seconds: 300
+    is_enabled: true
 
 - name: Update auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration:
+    # required
     auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_autoscaling_configuration
+    freeform_tags: {'Department': 'Finance'}
+    cool_down_in_seconds: 300
+    is_enabled: true
+
+- name: Update auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_autoscaling_auto_scaling_configuration:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: example_autoscaling_configuration
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    cool_down_in_seconds: 300
+    is_enabled: true
 
 - name: Delete auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration:
+    # required
     auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_autoscaling_auto_scaling_configuration:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: example_autoscaling_configuration
     state: absent

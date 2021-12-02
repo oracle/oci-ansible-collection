@@ -58,12 +58,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on mfa_totp_device
   oci_identity_mfa_totp_device_actions:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
 
+    # optional
+    totp_token: totp_token_example
+
 - name: Perform action generate_totp_seed on mfa_totp_device
   oci_identity_mfa_totp_device_actions:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
     action: generate_totp_seed

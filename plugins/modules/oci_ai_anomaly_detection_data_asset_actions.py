@@ -51,6 +51,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on data_asset
   oci_ai_anomaly_detection_data_asset_actions:
+    # required
     data_asset_id: "ocid1.dataasset.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

@@ -140,18 +140,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create export
   oci_file_storage_export:
+    # required
     export_set_id: "ocid1.exportset.oc1..unique_ID"
     file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     path: /mediafiles
 
+    # optional
+    export_options:
+    - # required
+      source: source_example
+
+      # optional
+      require_privileged_source_port: true
+      access: READ_WRITE
+      identity_squash: NONE
+      anonymous_uid: 56
+      anonymous_gid: 56
+
 - name: Update export
   oci_file_storage_export:
-    export_options:
-    - source: source_example
+    # required
     export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    export_options:
+    - # required
+      source: source_example
+
+      # optional
+      require_privileged_source_port: true
+      access: READ_WRITE
+      identity_squash: NONE
+      anonymous_uid: 56
+      anonymous_gid: 56
 
 - name: Delete export
   oci_file_storage_export:
+    # required
     export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

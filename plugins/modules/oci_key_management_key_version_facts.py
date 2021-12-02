@@ -69,15 +69,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List key_versions
-  oci_key_management_key_version_facts:
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-    service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
-
 - name: Get a specific key_version
   oci_key_management_key_version_facts:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
+
+- name: List key_versions
+  oci_key_management_key_version_facts:
+    # required
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """

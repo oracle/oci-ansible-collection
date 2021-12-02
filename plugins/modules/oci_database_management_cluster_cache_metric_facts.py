@@ -53,6 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific cluster_cache_metric
   oci_database_management_cluster_cache_metric_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     start_time: start_time_example
     end_time: end_time_example

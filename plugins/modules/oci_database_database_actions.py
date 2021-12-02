@@ -165,64 +165,111 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action disable_database_management on database
   oci_database_database_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_database_management
 
 - name: Perform action enable_database_management on database
   oci_database_database_actions:
-    credential_details:
-      user_name: "dbUser_1"
-      password_secret_id: "ocid1.vaultsecret.oc1.phx.amaaaaaaqn2gl2iahl4b5q4u6ux3nhvnznyvjkuu6p7vlgpxt2bnmmmmmmmm"
-    private_end_point_id: "ocid1.dbmanagementprivateendpoint.oc1.phx.amaaaaaaet6wzjya46nhydueyc3p3vtvqg4ubsrpfd4q26wvrjsicqunnnnn"
-    management_type: "BASIC"
-    service_name: "DB0510_phx23p.sub04302048065.abcd123.oraclevcn.com"
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "enable_database_management"
+    credential_details:
+      # required
+      user_name: user_name_example
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    service_name: service_name_example
+    action: enable_database_management
+
+    # optional
+    management_type: BASIC
 
 - name: Perform action migrate_vault_key on database
   oci_database_database_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     action: migrate_vault_key
 
+    # optional
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Perform action modify_database_management on database
   oci_database_database_actions:
-    credential_details:
-      user_name: "dbUser_2"
-      password_secret_id: "ocid1.vaultsecret.oc1.phx.amaaaaaaqn2gl2iahl4b5q4u6ux3nhvnznyvjkuu6p7vlgpxt2bnmmmmmmmm"
-    private_end_point_id: "ocid1.dbmanagementprivateendpoint.oc1.phx.amaaaaaaet6wzjya46nhydueyc3p3vtvqg4ubsrpfd4q26wvrjsicqunnnnn"
-    management_type: "ADVANCED"
-    service_name: "DB0630_phx23p.sub04302048065.abcd123.oraclevcn.com"
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "modify_database_management"
+    action: modify_database_management
+
+    # optional
+    credential_details:
+      # required
+      user_name: user_name_example
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    management_type: BASIC
+    service_name: service_name_example
 
 - name: Perform action restore on database
   oci_database_database_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: restore
 
+    # optional
+    database_scn: database_scn_example
+    timestamp: 2013-10-20T19:20:30+01:00
+    latest: true
+
 - name: Perform action rotate_vault_key on database
   oci_database_database_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_vault_key
 
 - name: Perform action precheck on database
   oci_database_database_actions:
-    database_upgrade_source_details:
-      db_version: "19.7.0.0"
-      source: "DB_VERSION"
-    action: "PRECHECK"
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    action: precheck
+
+    # optional
+    database_upgrade_source_details:
+      # required
+      source: DB_HOME
+      db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      options: options_example
 
 - name: Perform action upgrade on database
   oci_database_database_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: upgrade
 
+    # optional
+    database_upgrade_source_details:
+      # required
+      source: DB_HOME
+      db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      options: options_example
+
 - name: Perform action rollback on database
   oci_database_database_actions:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: rollback
+
+    # optional
+    database_upgrade_source_details:
+      # required
+      source: DB_HOME
+      db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      options: options_example
 
 """
 
@@ -388,7 +435,7 @@ database:
                                 - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
                             returned: on success
                             type: str
-                            sample: vpc_password_example
+                            sample: example-password
                         internet_proxy:
                             description:
                                 - Proxy URL to connect to object store.
@@ -507,7 +554,7 @@ database:
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "vpc_user": "vpc_user_example",
-                "vpc_password": "vpc_password_example",
+                "vpc_password": "example-password",
                 "internet_proxy": "internet_proxy_example"
             }]
         },

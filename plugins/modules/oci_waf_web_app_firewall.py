@@ -24,7 +24,7 @@ short_description: Manage a WebAppFirewall resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a WebAppFirewall resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new WebAppFirewall.
-    - "This resource has the following action operations in the M(oci_web_app_firewall_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_waf_web_app_firewall_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -98,34 +98,53 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create web_app_firewall
+- name: Create web_app_firewall with backend_type = LOAD_BALANCER
   oci_waf_web_app_firewall:
+    # required
     backend_type: LOAD_BALANCER
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update web_app_firewall using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_waf_web_app_firewall:
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
 
 - name: Update web_app_firewall
   oci_waf_web_app_firewall:
+    # required
+    web_app_firewall_id: "ocid1.webappfirewall.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
-    web_app_firewall_id: "ocid1.webappfirewall.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
+
+- name: Update web_app_firewall using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_waf_web_app_firewall:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
 
 - name: Delete web_app_firewall
   oci_waf_web_app_firewall:
+    # required
     web_app_firewall_id: "ocid1.webappfirewall.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete web_app_firewall using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waf_web_app_firewall:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

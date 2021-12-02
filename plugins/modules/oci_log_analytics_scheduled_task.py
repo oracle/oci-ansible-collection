@@ -24,7 +24,7 @@ short_description: Manage a ScheduledTask resource in Oracle Cloud Infrastructur
 description:
     - This module allows the user to create, update and delete a ScheduledTask resource in Oracle Cloud Infrastructure
     - For I(state=present), schedule a task as specified and return task info.
-    - "This resource has the following action operations in the M(oci_scheduled_task_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_log_analytics_scheduled_task_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -275,45 +275,140 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create scheduled_task
+- name: Create scheduled_task with kind = STANDARD
   oci_log_analytics_scheduled_task:
-    namespace_name: namespace_name_example
-    kind: ACCELERATION
+    # required
+    kind: STANDARD
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     task_type: SAVED_SEARCH
-    saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_log_analytics_scheduled_task:
-    namespace_name: namespace_name_example
-    kind: ACCELERATION
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    task_type: SAVED_SEARCH
     schedules:
-    - type: CRON
-    action:
-      type: PURGE
-    saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      type: CRON
+      expression: expression_example
+      time_zone: time_zone_example
 
-- name: Update scheduled_task
+      # optional
+      misfire_policy: RETRY_ONCE
+      time_of_first_execution: 2013-10-20T19:20:30+01:00
+    action:
+      # required
+      type: PURGE
+      query_string: query_string_example
+      data_type: LOG
+      purge_duration: purge_duration_example
+      purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      compartment_id_in_subtree: true
+
+- name: Create scheduled_task with kind = ACCELERATION
   oci_log_analytics_scheduled_task:
-    namespace_name: namespace_name_example
+    # required
     kind: ACCELERATION
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
-    scheduled_task_id: "ocid1.scheduledtask.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update scheduled_task with kind = STANDARD
+  oci_log_analytics_scheduled_task:
+    # required
+    kind: STANDARD
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    schedules:
+    - # required
+      type: CRON
+      expression: expression_example
+      time_zone: time_zone_example
+
+      # optional
+      misfire_policy: RETRY_ONCE
+      time_of_first_execution: 2013-10-20T19:20:30+01:00
+    action:
+      # required
+      type: PURGE
+      query_string: query_string_example
+      data_type: LOG
+      purge_duration: purge_duration_example
+      purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      compartment_id_in_subtree: true
+
+- name: Update scheduled_task with kind = ACCELERATION
+  oci_log_analytics_scheduled_task:
+    # required
+    kind: ACCELERATION
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with kind = STANDARD
+  oci_log_analytics_scheduled_task:
+    # required
+    kind: STANDARD
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    task_type: SAVED_SEARCH
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    schedules:
+    - # required
+      type: CRON
+      expression: expression_example
+      time_zone: time_zone_example
+
+      # optional
+      misfire_policy: RETRY_ONCE
+      time_of_first_execution: 2013-10-20T19:20:30+01:00
+    action:
+      # required
+      type: PURGE
+      query_string: query_string_example
+      data_type: LOG
+      purge_duration: purge_duration_example
+      purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      compartment_id_in_subtree: true
+
+- name: Update scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with kind = ACCELERATION
+  oci_log_analytics_scheduled_task:
+    # required
+    kind: ACCELERATION
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete scheduled_task
   oci_log_analytics_scheduled_task:
+    # required
     namespace_name: namespace_name_example
     scheduled_task_id: "ocid1.scheduledtask.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_scheduled_task:
+    # required
     namespace_name: namespace_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example

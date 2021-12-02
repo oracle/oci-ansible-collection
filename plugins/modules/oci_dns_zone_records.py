@@ -188,43 +188,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update zone_records
   oci_dns_zone_records:
-    update_items:
-    - domain: "example.com"
-      record_hash: "261c84e3c11c3f2808fc4f18528f236e"
-      is_protected: true
-      rdata: "ns1.p68.dns.oraclecloud.net."
-      rrset_version: "1"
-      rtype: "NS"
-      ttl: 86400
-    - domain: "example.com"
-      record_hash: "90c6eaebe9f434417091ec5dbd547df4"
-      is_protected: true
-      rdata: "ns3.p68.dns.oraclecloud.net."
-      rrset_version: "1"
-      rtype: "NS"
-      ttl: 86400
-    - domain: "example.com"
-      record_hash: "d896912a210edd8e9c7a25814c3546e5"
-      is_protected: true
-      rdata: "ns2.p68.dns.oraclecloud.net."
-      rrset_version: "1"
-      rtype: "NS"
-      ttl: 86400
-    - domain: "example.com"
-      record_hash: "ef56ea8e43967513ea90250df1769b3a"
-      is_protected: true
-      rdata: "ns4.p68.dns.oraclecloud.net."
-      rrset_version: "1"
-      rtype: "NS"
-      ttl: 86400
-    - domain: "www.example.com"
-      record_hash: "136d3f26e66156a0727dda2552ab306f"
-      is_protected: false
-      rdata: "v=spf1 include:example.net -all"
-      rrset_version: "14"
-      rtype: "TXT"
-      ttl: 300
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    update_items:
+    - # required
+      domain: example.com
+      rdata: ns1.p68.dns.oraclecloud.net.
+      rtype: NS
+      ttl: 86400
+
+      # optional
+      record_hash: 261c84e3c11c3f2808fc4f18528f236e
+      is_protected: true
+      rrset_version: 1
+    if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

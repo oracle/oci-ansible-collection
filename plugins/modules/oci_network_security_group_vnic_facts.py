@@ -52,7 +52,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List network_security_group_vnics
   oci_network_security_group_vnic_facts:
+    # required
     network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMEASSOCIATED
+    sort_order: ASC
 
 """
 

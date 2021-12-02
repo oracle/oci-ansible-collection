@@ -43,6 +43,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific launch_eligibility
   oci_marketplace_launch_eligibility_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 

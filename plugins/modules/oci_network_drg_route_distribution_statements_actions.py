@@ -112,17 +112,41 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action add on drg_route_distribution_statements
   oci_network_drg_route_distribution_statements_actions:
+    # required
     drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+    statements:
+    - # optional
+      match_criteria:
+      - # required
+        match_type: DRG_ATTACHMENT_ID
+        drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+      action: ACCEPT
+      priority: 56
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     action: add
 
 - name: Perform action remove on drg_route_distribution_statements
   oci_network_drg_route_distribution_statements_actions:
+    # required
     drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     action: remove
 
+    # optional
+    statement_ids: [ "null" ]
+
 - name: Perform action update on drg_route_distribution_statements
   oci_network_drg_route_distribution_statements_actions:
+    # required
     drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+    statements:
+    - # optional
+      match_criteria:
+      - # required
+        match_type: DRG_ATTACHMENT_ID
+        drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+      action: ACCEPT
+      priority: 56
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     action: update
 
 """

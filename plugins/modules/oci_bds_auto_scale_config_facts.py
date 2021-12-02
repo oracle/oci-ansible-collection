@@ -79,15 +79,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific bds_auto_scale_config
+  oci_bds_auto_scale_config_facts:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List bds_auto_scale_configs
   oci_bds_auto_scale_config_facts:
+    # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific bds_auto_scale_config
-  oci_bds_auto_scale_config_facts:
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    sort_by: timeCreated
+    sort_order: ASC
+    display_name: display_name_example
+    lifecycle_state: lifecycle_state_example
 
 """
 

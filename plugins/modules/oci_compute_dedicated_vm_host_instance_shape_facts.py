@@ -48,7 +48,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List dedicated_vm_host_instance_shapes
   oci_compute_dedicated_vm_host_instance_shape_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    dedicated_vm_host_shape: dedicated_vm_host_shape_example
 
 """
 

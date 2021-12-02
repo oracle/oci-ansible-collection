@@ -31,8 +31,8 @@ description:
       the total number of requests across all provisioning write operations. Key Management might
       throttle this call to reject an otherwise valid request when the total rate of provisioning
       write operations exceeds 10 requests per second for a given tenancy.
-    - "This resource has the following action operations in the M(oci_vault_actions) module: cancel_vault_deletion, change_compartment, create_vault_replica,
-      delete_vault_replica, schedule_vault_deletion."
+    - "This resource has the following action operations in the M(oracle.oci.oci_key_management_vault_actions) module: cancel_vault_deletion,
+      change_compartment, create_vault_replica, delete_vault_replica, schedule_vault_deletion."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -93,17 +93,34 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vault
   oci_key_management_vault:
+    # required
     compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5ltpneskcfy7lr4a6wfauxuwrwed5bsdea"
-    display_name: "Vault 1"
-    vault_type: "VIRTUAL_PRIVATE"
+    display_name: Vault 1
+    vault_type: VIRTUAL_PRIVATE
 
-- name: Update vault using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_key_management_vault:
-    display_name: "Vault 1"
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Update vault
   oci_key_management_vault:
+    # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: Vault 1
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update vault using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_key_management_vault:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5ltpneskcfy7lr4a6wfauxuwrwed5bsdea"
+    display_name: Vault 1
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 """
 

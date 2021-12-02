@@ -96,13 +96,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List deployments
-  oci_golden_gate_deployment_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific deployment
   oci_golden_gate_deployment_facts:
+    # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List deployments
+  oci_golden_gate_deployment_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: CREATING
+    lifecycle_sub_state: RECOVERING
+    display_name: display_name_example
+    fqdn: fqdn_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

@@ -24,7 +24,7 @@ short_description: Manage a ContainerRepository resource in Oracle Cloud Infrast
 description:
     - This module allows the user to create, update and delete a ContainerRepository resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new empty container repository. Avoid entering confidential information.
-    - "This resource has the following action operations in the M(oci_container_repository_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_artifacts_container_repository_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -94,32 +94,54 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create container_repository
   oci_artifacts_container_repository:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
-- name: Update container_repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_artifacts_container_repository:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
     is_immutable: true
     is_public: true
     readme:
+      # required
       content: content_example
       format: TEXT_MARKDOWN
 
 - name: Update container_repository
   oci_artifacts_container_repository:
+    # required
+    repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
+
+    # optional
     is_immutable: true
     is_public: true
-    repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
+    readme:
+      # required
+      content: content_example
+      format: TEXT_MARKDOWN
+
+- name: Update container_repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_artifacts_container_repository:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    is_immutable: true
+    is_public: true
+    readme:
+      # required
+      content: content_example
+      format: TEXT_MARKDOWN
 
 - name: Delete container_repository
   oci_artifacts_container_repository:
+    # required
     repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
     state: absent
 
 - name: Delete container_repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_artifacts_container_repository:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

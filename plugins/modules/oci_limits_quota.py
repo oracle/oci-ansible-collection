@@ -90,35 +90,48 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create quota
   oci_limits_quota:
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
-    description: "Quotas for Compute VM.DenseIO1.16 resources"
-    name: "ComputeQuotas"
-    statements:
-    - "Zero instance-family quotas in compartment DeveloperCompartment"
-    - "Set {INSTANCE_VM.STANDARD2.2} quota to 3 in compartment DeveloperCompartment where all {request.region = 'iad', request.ad = 'ad1'}"
-
-- name: Update quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_limits_quota:
+    # required
     compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
     description: Quotas for Compute VM.DenseIO1.16 resources
     name: ComputeQuotas
     statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update quota
   oci_limits_quota:
+    # required
+    quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: Quotas for Compute VM.DenseIO1.16 resources
     statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
-    quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_limits_quota:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
+    name: ComputeQuotas
+
+    # optional
+    description: Quotas for Compute VM.DenseIO1.16 resources
+    statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete quota
   oci_limits_quota:
+    # required
     quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_limits_quota:
+    # required
     compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
     name: ComputeQuotas
     state: absent

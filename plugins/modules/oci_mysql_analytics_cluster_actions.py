@@ -68,6 +68,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action add on analytics_cluster
   oci_mysql_analytics_cluster_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
     cluster_size: 56
@@ -75,16 +76,19 @@ EXAMPLES = """
 
 - name: Perform action restart on analytics_cluster
   oci_mysql_analytics_cluster_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart
 
 - name: Perform action start on analytics_cluster
   oci_mysql_analytics_cluster_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on analytics_cluster
   oci_mysql_analytics_cluster_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 

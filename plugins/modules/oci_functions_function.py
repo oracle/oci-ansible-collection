@@ -24,7 +24,7 @@ short_description: Manage a Function resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Function resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new function.
-    - "This resource has the following action operations in the M(oci_function_actions) module: invoke."
+    - "This resource has the following action operations in the M(oracle.oci.oci_functions_function_actions) module: invoke."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -125,32 +125,66 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create function
   oci_functions_function:
-    application_id: "application_OCID"
-    display_name: "ExampleFunction"
-    image: "phx.ocir.io/example-namespace/example-repo/example-image:0.0.1"
+    # required
+    display_name: ExampleFunction
+    application_id: application_OCID
+    image: phx.ocir.io/example-namespace/example-repo/example-image:0.0.1
     memory_in_mbs: 128
 
-- name: Update function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_functions_function:
-    image: "phx.ocir.io/ten/functions/function:0.0.1"
-    image_digest: "sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7"
-    memory_in_mbs: 56
+    # optional
+    image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+    config: null
     timeout_in_seconds: 56
-    display_name: "myfunction"
-    config:
-      EXAMPLE_KEY: "example-value"
+    trace_config:
+      # optional
+      is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update function
   oci_functions_function:
+    # required
     function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    image: phx.ocir.io/example-namespace/example-repo/example-image:0.0.1
+    image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+    memory_in_mbs: 128
+    config: null
+    timeout_in_seconds: 56
+    trace_config:
+      # optional
+      is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_functions_function:
+    # required
+    display_name: ExampleFunction
+    application_id: application_OCID
+
+    # optional
+    image: phx.ocir.io/example-namespace/example-repo/example-image:0.0.1
+    image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+    memory_in_mbs: 128
+    config: null
+    timeout_in_seconds: 56
+    trace_config:
+      # optional
+      is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete function
   oci_functions_function:
+    # required
     function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_function:
+    # required
     display_name: ExampleFunction
     application_id: application_OCID
     state: absent

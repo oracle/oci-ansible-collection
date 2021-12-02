@@ -49,6 +49,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List bulk_action_resource_type_collections
   oci_identity_bulk_action_resource_type_collection_facts:
+    # required
     bulk_action_type: BULK_MOVE_RESOURCES
 
 """

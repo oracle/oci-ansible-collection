@@ -85,13 +85,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List address_lists
-  oci_waas_address_list_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific address_list
   oci_waas_address_list_facts:
+    # required
     address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List address_lists
+  oci_waas_address_list_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: id
+    sort_order: ASC
+    name: [ "$p.getValue()" ]
+    lifecycle_state: [ "$p.getValue()" ]
+    time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_created_less_than: 2013-10-20T19:20:30+01:00
 
 """
 

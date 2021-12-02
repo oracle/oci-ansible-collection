@@ -75,13 +75,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List connections
-  oci_database_migration_connection_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific connection
   oci_database_migration_connection_facts:
+    # required
     connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List connections
+  oci_database_migration_connection_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: timeCreated
+    sort_order: ASC
+    lifecycle_state: CREATING
 
 """
 

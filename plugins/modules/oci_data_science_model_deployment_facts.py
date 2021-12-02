@@ -89,13 +89,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List model_deployments
-  oci_data_science_model_deployment_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific model_deployment
   oci_data_science_model_deployment_facts:
+    # required
     model_deployment_id: "ocid1.modeldeployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List model_deployments
+  oci_data_science_model_deployment_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    created_by: created_by_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

@@ -133,32 +133,41 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on analytics_instance
   oci_analytics_instance_actions:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action change_analytics_instance_network_endpoint on analytics_instance
   oci_analytics_instance_actions:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     network_endpoint_details:
+      # required
       network_endpoint_type: PRIVATE
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_analytics_instance_network_endpoint
 
 - name: Perform action scale on analytics_instance
   oci_analytics_instance_actions:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     capacity:
+      # required
       capacity_type: OLPU_COUNT
       capacity_value: 56
     action: scale
 
 - name: Perform action start on analytics_instance
   oci_analytics_instance_actions:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on analytics_instance
   oci_analytics_instance_actions:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 

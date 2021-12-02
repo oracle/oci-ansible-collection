@@ -307,46 +307,181 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action add_data_selector_patterns on data_asset
   oci_data_catalog_data_asset_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
+    items: [ "null" ]
     action: add_data_selector_patterns
 
 - name: Perform action import_connection on data_asset
   oci_data_catalog_data_asset_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
+    connection_payload: null
     action: import_connection
+
+    # optional
+    connection_detail:
+      # optional
+      description: description_example
+      display_name: display_name_example
+      type_key: type_key_example
+      custom_property_members:
+      - # optional
+        key: key_example
+        display_name: display_name_example
+        value: value_example
+        namespace_name: namespace_name_example
+        description: description_example
+        data_type: TEXT
+        namespace_key: namespace_key_example
+        is_multi_valued: true
+        is_hidden: true
+        is_editable: true
+        is_shown_in_list: true
+        is_event_enabled: true
+        is_list_type: true
+        allowed_values: [ "null" ]
+      properties: null
+      enc_properties: null
+      is_default: true
+      key: key_example
+      time_created: 2019-03-25T21:10:29.600Z
+      time_updated: 2013-10-20T19:20:30+01:00
+      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+      external_key: external_key_example
+      time_status_updated: 2013-10-20T19:20:30+01:00
+      lifecycle_state: CREATING
+      data_asset_key: data_asset_key_example
+      uri: uri_example
 
 - name: Perform action import_data_asset on data_asset
   oci_data_catalog_data_asset_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
+    import_file_contents: null
+    import_type: [ "$p.getValue()" ]
     action: import_data_asset
+
+    # optional
+    is_missing_value_ignored: true
 
 - name: Perform action parse_connection on data_asset
   oci_data_catalog_data_asset_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     action: parse_connection
 
+    # optional
+    connection_detail:
+      # optional
+      description: description_example
+      display_name: display_name_example
+      type_key: type_key_example
+      custom_property_members:
+      - # optional
+        key: key_example
+        display_name: display_name_example
+        value: value_example
+        namespace_name: namespace_name_example
+        description: description_example
+        data_type: TEXT
+        namespace_key: namespace_key_example
+        is_multi_valued: true
+        is_hidden: true
+        is_editable: true
+        is_shown_in_list: true
+        is_event_enabled: true
+        is_list_type: true
+        allowed_values: [ "null" ]
+      properties: null
+      enc_properties: null
+      is_default: true
+      key: key_example
+      time_created: 2019-03-25T21:10:29.600Z
+      time_updated: 2013-10-20T19:20:30+01:00
+      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+      external_key: external_key_example
+      time_status_updated: 2013-10-20T19:20:30+01:00
+      lifecycle_state: CREATING
+      data_asset_key: data_asset_key_example
+      uri: uri_example
+    connection_payload: null
+    wallet_secret_id: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    wallet_secret_name: wallet_secret_name_example
+    connection_key: connection_key_example
+
 - name: Perform action remove_data_selector_patterns on data_asset
   oci_data_catalog_data_asset_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
+    items: [ "null" ]
     action: remove_data_selector_patterns
 
 - name: Perform action synchronous_export on data_asset
   oci_data_catalog_data_asset_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     dest: /tmp/myfile
+    export_type: [ "$p.getValue()" ]
     action: synchronous_export
+
+    # optional
+    export_scope:
+    - # optional
+      object_key: object_key_example
+      export_type_ids: [ "null" ]
 
 - name: Perform action validate_connection on data_asset
   oci_data_catalog_data_asset_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     action: validate_connection
+
+    # optional
+    connection_detail:
+      # optional
+      description: description_example
+      display_name: display_name_example
+      type_key: type_key_example
+      custom_property_members:
+      - # optional
+        key: key_example
+        display_name: display_name_example
+        value: value_example
+        namespace_name: namespace_name_example
+        description: description_example
+        data_type: TEXT
+        namespace_key: namespace_key_example
+        is_multi_valued: true
+        is_hidden: true
+        is_editable: true
+        is_shown_in_list: true
+        is_event_enabled: true
+        is_list_type: true
+        allowed_values: [ "null" ]
+      properties: null
+      enc_properties: null
+      is_default: true
+      key: key_example
+      time_created: 2019-03-25T21:10:29.600Z
+      time_updated: 2013-10-20T19:20:30+01:00
+      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+      external_key: external_key_example
+      time_status_updated: 2013-10-20T19:20:30+01:00
+      lifecycle_state: CREATING
+      data_asset_key: data_asset_key_example
+      uri: uri_example
+    connection_payload: null
 
 """
 

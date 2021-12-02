@@ -298,13 +298,38 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update access_rules
   oci_waas_access_rules:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     access_rules:
-    - name: name_example
+    - # required
+      name: name_example
       criteria:
-      - condition: URL_IS
+      - # required
+        condition: URL_IS
         value: value_example
+
+        # optional
+        is_case_sensitive: true
       action: ALLOW
+
+      # optional
+      block_action: SET_RESPONSE_CODE
+      block_response_code: 56
+      block_error_page_message: block_error_page_message_example
+      block_error_page_code: block_error_page_code_example
+      block_error_page_description: block_error_page_description_example
+      bypass_challenges: [ "null" ]
+      redirect_url: redirect_url_example
+      redirect_response_code: MOVED_PERMANENTLY
+      captcha_title: captcha_title_example
+      captcha_header: captcha_header_example
+      captcha_footer: captcha_footer_example
+      captcha_submit_label: captcha_submit_label_example
+      response_header_manipulation:
+      - # required
+        action: EXTEND_HTTP_RESPONSE_HEADER
+        header: example_header_name
+        value: example_value
 
 """
 

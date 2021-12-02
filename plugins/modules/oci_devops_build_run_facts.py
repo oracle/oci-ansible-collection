@@ -81,13 +81,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List build_runs
-  oci_devops_build_run_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific build_run
   oci_devops_build_run_facts:
+    # required
     build_run_id: "ocid1.buildrun.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List build_runs
+  oci_devops_build_run_facts:
+
+    # optional
+    build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    lifecycle_state: lifecycle_state_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

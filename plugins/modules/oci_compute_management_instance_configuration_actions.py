@@ -76,7 +76,8 @@ options:
                 suboptions:
                     display_name:
                         description:
-                            - A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
+                            - A user-friendly name. Does not have to be unique, and it's changeable.
+                              Avoid entering confidential information.
                         type: str
                         aliases: ["name"]
                     is_read_only:
@@ -209,7 +210,9 @@ options:
                 type: str
             compartment_id:
                 description:
-                    - The OCID of the compartment.
+                    - The OCID of the compartment containing the instance.
+                      Instances created from instance configurations are placed in the same compartment
+                      as the instance that was used to create the instance configuration.
                 type: str
             create_vnic_details:
                 description:
@@ -237,7 +240,7 @@ options:
                         type: dict
                     display_name:
                         description:
-                            - A user-friendly name for the VNIC. Does not have to be unique.
+                            - A user-friendly name. Does not have to be unique, and it's changeable.
                               Avoid entering confidential information.
                         type: str
                         aliases: ["name"]
@@ -289,7 +292,6 @@ options:
                 description:
                     - A user-friendly name. Does not have to be unique, and it's changeable.
                       Avoid entering confidential information.
-                    - "Example: `My bare metal instance`"
                 type: str
                 aliases: ["name"]
             extended_metadata:
@@ -737,7 +739,7 @@ options:
                         type: dict
                     display_name:
                         description:
-                            - A user-friendly name for the VNIC. Does not have to be unique.
+                            - A user-friendly name. Does not have to be unique, and it's changeable.
                               Avoid entering confidential information.
                         type: str
                         aliases: ["name"]
@@ -781,7 +783,8 @@ options:
                         type: str
             display_name:
                 description:
-                    - A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.
+                    - A user-friendly name. Does not have to be unique, and it's changeable.
+                      Avoid entering confidential information.
                 type: str
                 aliases: ["name"]
             nic_index:
@@ -806,15 +809,144 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on instance_configuration
   oci_compute_management_instance_configuration_actions:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
     instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
-- name: Perform action launch on instance_configuration
+- name: Perform action launch on instance_configuration with instance_type = compute
   oci_compute_management_instance_configuration_actions:
-    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     instance_type: compute
-    action: launch
+
+    # optional
+    block_volumes:
+    - # optional
+      attach_details:
+        # required
+        type: iscsi
+
+        # optional
+        display_name: display_name_example
+        is_read_only: true
+        device: device_example
+        is_shareable: true
+        use_chap: true
+      create_details:
+        # optional
+        availability_domain: Uocm:PHX-AD-1
+        backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        vpus_per_gb: 56
+        size_in_gbs: 56
+        source_details:
+          # required
+          type: volumeBackup
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+    launch_details:
+      # optional
+      availability_domain: Uocm:PHX-AD-1
+      capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      create_vnic_details:
+        # optional
+        assign_public_ip: true
+        assign_private_dns_record: true
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        hostname_label: hostname_label_example
+        nsg_ids: [ "null" ]
+        private_ip: private_ip_example
+        skip_source_dest_check: true
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      extended_metadata: null
+      freeform_tags: {'Department': 'Finance'}
+      ipxe_script: ipxe_script_example
+      metadata: null
+      shape: shape_example
+      shape_config:
+        # optional
+        ocpus: 3.4
+        memory_in_gbs: 3.4
+        baseline_ocpu_utilization: BASELINE_1_8
+      platform_config:
+        # required
+        type: AMD_MILAN_BM
+
+        # optional
+        is_secure_boot_enabled: true
+        is_trusted_platform_module_enabled: true
+        is_measured_boot_enabled: true
+        numa_nodes_per_socket: NPS0
+      source_details:
+        # required
+        source_type: image
+
+        # optional
+        boot_volume_size_in_gbs: 56
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+      fault_domain: FAULT-DOMAIN-1
+      dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
+      launch_mode: NATIVE
+      launch_options:
+        # optional
+        boot_volume_type: ISCSI
+        firmware: BIOS
+        network_type: E1000
+        remote_data_volume_type: ISCSI
+        is_pv_encryption_in_transit_enabled: true
+        is_consistent_volume_naming_enabled: true
+      agent_config:
+        # optional
+        is_monitoring_disabled: true
+        is_management_disabled: true
+        are_all_plugins_disabled: true
+        plugins_config:
+        - # required
+          name: name_example
+          desired_state: ENABLED
+      is_pv_encryption_in_transit_enabled: true
+      preferred_maintenance_action: LIVE_MIGRATE
+      instance_options:
+        # optional
+        are_legacy_imds_endpoints_disabled: true
+      availability_config:
+        # optional
+        recovery_action: RESTORE_INSTANCE
+      preemptible_instance_config:
+        # required
+        preemption_action:
+          # required
+          type: TERMINATE
+
+          # optional
+          preserve_boot_volume: true
+    secondary_vnics:
+    - # optional
+      create_vnic_details:
+        # optional
+        assign_public_ip: true
+        assign_private_dns_record: true
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        hostname_label: hostname_label_example
+        nsg_ids: [ "null" ]
+        private_ip: private_ip_example
+        skip_source_dest_check: true
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      display_name: display_name_example
+      nic_index: 56
 
 """
 
@@ -864,10 +996,9 @@ instance:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My bare metal instance`"
             returned: on success
             type: str
-            sample: My bare metal instance
+            sample: display_name_example
         extended_metadata:
             description:
                 - Additional metadata key/value pairs that you provide. They serve the same purpose and functionality
@@ -917,16 +1048,21 @@ instance:
                   instance boots, the iPXE firmware that runs on the instance is
                   configured to run an iPXE script to continue the boot process.
                 - If you want more control over the boot process, you can provide
-                  your own custom iPXE script that will run when the instance boots;
-                  however, you should be aware that the same iPXE script will run
-                  every time an instance boots; not only after the initial
+                  your own custom iPXE script that will run when the instance boots.
+                  Be aware that the same iPXE script will run
+                  every time an instance boots, not only after the initial
                   LaunchInstance call.
                 - "The default iPXE script connects to the instance's local boot
                   volume over iSCSI and performs a network boot. If you use a custom iPXE
                   script and want to network-boot from the instance's local boot volume
-                  over iSCSI the same way as the default iPXE script, you should use the
+                  over iSCSI the same way as the default iPXE script, use the
                   following iSCSI IP address: 169.254.0.2, and boot volume IQN:
                   iqn.2015-02.oracle.boot."
+                - If your instance boot volume type is paravirtualized,
+                  the boot volume is attached to the instance through virtio-scsi and no iPXE script is used.
+                  If your instance boot volume type is paravirtualized
+                  and you use custom iPXE to network boot into your instance,
+                  the primary boot volume is attached as a data volume through virtio-scsi drive.
                 - For more information about the Bring Your Own Image feature of
                   Oracle Cloud Infrastructure, see
                   L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
@@ -1353,7 +1489,7 @@ instance:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "My bare metal instance",
+        "display_name": "display_name_example",
         "extended_metadata": {},
         "fault_domain": "FAULT-DOMAIN-1",
         "freeform_tags": {'Department': 'Finance'},

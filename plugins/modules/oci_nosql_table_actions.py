@@ -59,9 +59,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on table
   oci_nosql_table_actions:
+    # required
     table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     to_compartment_id: "ocid1.tocompartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+    # optional
+    from_compartment_id: "ocid1.fromcompartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

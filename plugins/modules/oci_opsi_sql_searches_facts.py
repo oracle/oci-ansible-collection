@@ -23,7 +23,8 @@ module: oci_opsi_sql_searches_facts
 short_description: Fetches details about one or multiple SqlSearches resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple SqlSearches resources in Oracle Cloud Infrastructure
-    - Search SQL by SQL Identifier across databases and get the SQL Text and the details of the databases executing the SQL for a given time period.
+    - Search SQL by SQL Identifier across databases in a compartment and in all sub-compartments if specified.
+      And get the SQL Text and the details of the databases executing the SQL for a given time period.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -94,14 +95,29 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List sql_searches
   oci_opsi_sql_searches_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -198,6 +214,7 @@ class SqlSearchesFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -232,6 +249,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

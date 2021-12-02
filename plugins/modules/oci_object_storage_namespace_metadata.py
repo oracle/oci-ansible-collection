@@ -55,9 +55,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update namespace_metadata
   oci_object_storage_namespace_metadata:
+    # required
+    namespace_name: namespace_name_example
+
+    # optional
     default_s3_compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentS3ID"
     default_swift_compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentSwiftID"
-    namespace_name: "namespace_name_example"
 
 """
 

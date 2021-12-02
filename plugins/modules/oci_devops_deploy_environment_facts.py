@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List deploy_environments
-  oci_devops_deploy_environment_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific deploy_environment
   oci_devops_deploy_environment_facts:
+    # required
     deploy_environment_id: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List deploy_environments
+  oci_devops_deploy_environment_facts:
+
+    # optional
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

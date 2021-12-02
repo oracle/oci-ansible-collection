@@ -23,7 +23,7 @@ module: oci_os_management_event_content
 short_description: Manage an EventContent resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to delete an EventContent resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_event_content_actions) module: upload."
+    - "This resource has the following action operations in the M(oracle.oci.oci_os_management_event_content_actions) module: upload."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -57,6 +57,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Delete event_content
   oci_os_management_event_content:
+    # required
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     event_id: "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

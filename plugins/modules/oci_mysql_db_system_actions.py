@@ -61,17 +61,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action restart on db_system
   oci_mysql_db_system_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     shutdown_type: IMMEDIATE
     action: restart
 
 - name: Perform action start on db_system
   oci_mysql_db_system_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on db_system
   oci_mysql_db_system_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     shutdown_type: IMMEDIATE
     action: stop

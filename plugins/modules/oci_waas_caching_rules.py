@@ -130,13 +130,22 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update caching_rules
   oci_waas_caching_rules:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     caching_rules_details:
-    - name: name_example
+    - # required
+      name: name_example
       action: CACHE
       criteria:
-      - condition: URL_IS
+      - # required
+        condition: URL_IS
         value: value_example
+
+      # optional
+      key: key_example
+      caching_duration: PT1H
+      is_client_caching_enabled: true
+      client_caching_duration: PT1H
 
 """
 

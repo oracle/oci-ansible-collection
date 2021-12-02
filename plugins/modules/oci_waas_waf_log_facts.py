@@ -159,7 +159,29 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List waf_logs
   oci_waas_waf_log_facts:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    time_observed_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_observed_less_than: 2013-10-20T19:20:30+01:00
+    text_contains: text_contains_example
+    access_rule_key: [ "$p.getValue()" ]
+    action: [ "$p.getValue()" ]
+    client_address: [ "$p.getValue()" ]
+    country_code: [ "$p.getValue()" ]
+    country_name: [ "$p.getValue()" ]
+    fingerprint: [ "$p.getValue()" ]
+    http_method: [ "$p.getValue()" ]
+    incident_key: [ "$p.getValue()" ]
+    log_type: [ "$p.getValue()" ]
+    origin_address: [ "$p.getValue()" ]
+    referrer: [ "$p.getValue()" ]
+    request_url: [ "$p.getValue()" ]
+    response_code: [ "$p.getValue()" ]
+    threat_feed_key: [ "$p.getValue()" ]
+    user_agent: [ "$p.getValue()" ]
+    protection_rule_key: [ "$p.getValue()" ]
 
 """
 

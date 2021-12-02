@@ -59,12 +59,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific app_catalog_listing
+  oci_compute_app_catalog_listing_facts:
+    # required
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List app_catalog_listings
   oci_compute_app_catalog_listing_facts:
 
-- name: Get a specific app_catalog_listing
-  oci_compute_app_catalog_listing_facts:
-    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    sort_order: ASC
+    publisher_name: publisher_name_example
+    publisher_type: publisher_type_example
+    display_name: display_name_example
 
 """
 
@@ -95,7 +102,8 @@ app_catalog_listings:
             sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Name of the listing.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

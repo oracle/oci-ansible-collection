@@ -59,6 +59,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific subscription_confirmation
   oci_ons_subscription_confirmation_facts:
+    # required
     id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     token: token_example
     protocol: protocol_example

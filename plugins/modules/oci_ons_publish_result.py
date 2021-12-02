@@ -82,9 +82,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create publish_result
   oci_ons_publish_result:
-    title: "Alarm notification"
-    body: "High CPU usage"
+    # required
     topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+    body: High CPU usage
+
+    # optional
+    title: Alarm notification
+    message_type: message_type_example
 
 """
 

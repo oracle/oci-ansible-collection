@@ -85,14 +85,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List monitors
-  oci_apm_synthetics_monitor_facts:
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific monitor
   oci_apm_synthetics_monitor_facts:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List monitors
+  oci_apm_synthetics_monitor_facts:
+    # required
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
+    monitor_type: monitor_type_example
+    status: ENABLED
+    sort_order: ASC
+    sort_by: displayName
 
 """
 
@@ -347,7 +357,7 @@ monitors:
                                 - User password for authentication.
                             returned: on success
                             type: str
-                            sample: password
+                            sample: example-password
                         auth_token:
                             description:
                                 - Authentication token.
@@ -519,7 +529,7 @@ monitors:
             "req_authentication_details": {
                 "oauth_scheme": "NONE",
                 "auth_user_name": "user",
-                "auth_user_password": "password",
+                "auth_user_password": "example-password",
                 "auth_token": "token",
                 "auth_url": "https://www.example.com/token",
                 "auth_headers": [{

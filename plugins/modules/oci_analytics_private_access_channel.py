@@ -93,31 +93,38 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create private_access_channel
   oci_analytics_private_access_channel:
-    display_name: "example_private_access_channel"
-    vcn_id: "ocid1.vcn.unique_part_vcn_id"
-    subnet_id: "ocid1.subnet.unique_part_subnet_id"
-    private_source_dns_zones:
-    - dns_zone: "example-vcn.oraclevcn.com"
-      description: "Example OCI VCN DNS label"
-    - dns_zone: "example.com"
-      description: "Example DNS Zone / Domain for On-Premise"
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: example_private_access_channel
+    vcn_id: ocid1.vcn.unique_part_vcn_id
+    subnet_id: ocid1.subnet.unique_part_subnet_id
+    private_source_dns_zones:
+    - # required
+      dns_zone: example-vcn.oraclevcn.com
+
+      # optional
+      description: Example OCI VCN DNS label
 
 - name: Update private_access_channel
   oci_analytics_private_access_channel:
-    display_name: "example_private_access_channel"
-    vcn_id: "ocid1.vcn.unique_part_vcn_id"
-    subnet_id: "ocid1.subnet.unique_part_subnet_id"
-    private_source_dns_zones:
-    - dns_zone: "example-vcn.oraclevcn.com"
-      description: "Example OCI VCN DNS label"
-    - dns_zone: "example.com"
-      description: "Example DNS Zone / Domain for On-Premise"
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    private_access_channel_key: "private_access_channel_key_example"
+    private_access_channel_key: private_access_channel_key_example
+
+    # optional
+    display_name: example_private_access_channel
+    vcn_id: ocid1.vcn.unique_part_vcn_id
+    subnet_id: ocid1.subnet.unique_part_subnet_id
+    private_source_dns_zones:
+    - # required
+      dns_zone: example-vcn.oraclevcn.com
+
+      # optional
+      description: Example OCI VCN DNS label
 
 - name: Delete private_access_channel
   oci_analytics_private_access_channel:
+    # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     private_access_channel_key: private_access_channel_key_example
     state: absent

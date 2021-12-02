@@ -68,8 +68,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List recommendation_strategies
   oci_optimizer_recommendation_strategy_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
+
+    # optional
+    name: name_example
+    recommendation_name: recommendation_name_example
+    sort_order: ASC
+    sort_by: NAME
 
 """
 

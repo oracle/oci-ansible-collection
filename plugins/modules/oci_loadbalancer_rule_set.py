@@ -304,31 +304,29 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create rule_set
   oci_loadbalancer_rule_set:
-    name: "example_rule_set"
-    items:
-    - action: "ADD_HTTP_REQUEST_HEADER"
-      header: "example_header_name"
-      value: "example_value"
-    - action: "EXTEND_HTTP_REQUEST_HEADER_VALUE"
-      header: "example_header_name2"
-      prefix: "example_prefix_value"
-      suffix: "example_suffix_value"
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: example_rule_set
+    items:
+    - # required
+      action: ADD_HTTP_REQUEST_HEADER
+      header: example_header_name
+      value: example_value
 
 - name: Update rule_set
   oci_loadbalancer_rule_set:
-    items:
-    - action: "ADD_HTTP_REQUEST_HEADER"
-      header: "example_header_name"
-      value: "example_value"
-    - action: "EXTEND_HTTP_REQUEST_HEADER_VALUE"
-      header: "example_header_name2"
-      prefix: "example_prefix_value"
-      suffix: "example_suffix_value"
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: example_rule_set
+    items:
+    - # required
+      action: ADD_HTTP_REQUEST_HEADER
+      header: example_header_name
+      value: example_value
 
 - name: Delete rule_set
   oci_loadbalancer_rule_set:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: example_rule_set
     state: absent

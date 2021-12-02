@@ -23,7 +23,8 @@ module: oci_opsi_sql_statistics_time_series_facts
 short_description: Fetches details about a SqlStatisticsTimeSeries resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a SqlStatisticsTimeSeries resource in Oracle Cloud Infrastructure
-    - Query SQL Warehouse to get the performance statistics time series for a given SQL across given databases for a given time period.
+    - Query SQL Warehouse to get the performance statistics time series for a given SQL across given databases for a
+      given time period in a compartment and in all sub-compartments if specified.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -46,6 +47,16 @@ options:
     id:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
+        type: list
+        elements: str
+    exadata_insight_id:
+        description:
+            - Optional list of exadata insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
+    cdb_name:
+        description:
+            - Filter by one or more cdb name.
         type: list
         elements: str
     host_name:
@@ -109,14 +120,34 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific sql_statistics_time_series
   oci_opsi_sql_statistics_time_series_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
+
+    # optional
+    database_id: [ "$p.getValue()" ]
+    id: [ "$p.getValue()" ]
+    exadata_insight_id: [ "$p.getValue()" ]
+    cdb_name: [ "$p.getValue()" ]
+    host_name: [ "$p.getValue()" ]
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -181,6 +212,12 @@ sql_statistics_time_series:
                             returned: on success
                             type: str
                             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+                        compartment_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         database_name:
                             description:
                                 - The database name. The database name is unique within the tenancy.
@@ -223,6 +260,12 @@ sql_statistics_time_series:
                                     returned: on success
                                     type: str
                                     sample: instance_name_example
+                        cdb_name:
+                            description:
+                                - Name of the CDB.Only applies to PDB.
+                            returned: on success
+                            type: str
+                            sample: cdb_name_example
                 statistics:
                     description:
                         - SQL performance statistics for a given database
@@ -251,6 +294,7 @@ sql_statistics_time_series:
             "database_details": {
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "database_name": "database_name_example",
                 "database_display_name": "database_display_name_example",
                 "database_type": "database_type_example",
@@ -258,7 +302,8 @@ sql_statistics_time_series:
                 "instances": [{
                     "host_name": "host_name_example",
                     "instance_name": "instance_name_example"
-                }]
+                }],
+                "cdb_name": "cdb_name_example"
             },
             "statistics": [{
                 "name": "name_example",
@@ -296,6 +341,8 @@ class SqlStatisticsTimeSeriesFactsHelperGen(OCIResourceFactsHelperBase):
         optional_get_method_params = [
             "database_id",
             "id",
+            "exadata_insight_id",
+            "cdb_name",
             "host_name",
             "analysis_time_interval",
             "time_interval_start",
@@ -304,6 +351,7 @@ class SqlStatisticsTimeSeriesFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -337,6 +385,8 @@ def main():
             sql_identifier=dict(type="str", required=True),
             database_id=dict(type="list", elements="str"),
             id=dict(type="list", elements="str"),
+            exadata_insight_id=dict(type="list", elements="str"),
+            cdb_name=dict(type="list", elements="str"),
             host_name=dict(type="list", elements="str"),
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
@@ -345,6 +395,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

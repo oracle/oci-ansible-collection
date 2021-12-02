@@ -46,13 +46,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List backups
-  oci_database_backup_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific backup
   oci_database_backup_facts:
+    # required
     backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List backups
+  oci_database_backup_facts:
+
+    # optional
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -23,7 +23,7 @@ module: oci_management_agent
 short_description: Manage a ManagementAgent resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete a ManagementAgent resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_management_agent_actions) module: deploy_plugins."
+    - "This resource has the following action operations in the M(oracle.oci.oci_management_agent_actions) module: deploy_plugins."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -72,25 +72,35 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Update management_agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Update management_agent
   oci_management_agent:
+    # required
+    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update management_agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_management_agent:
+    # required
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update management_agent
-  oci_management_agent:
-    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete management_agent
   oci_management_agent:
+    # required
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete management_agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_management_agent:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

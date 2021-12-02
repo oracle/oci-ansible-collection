@@ -50,8 +50,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific model_artifact
   oci_data_science_model_artifact_facts:
+    # required
     dest: /tmp/myfile
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    range: range_example
 
 """
 

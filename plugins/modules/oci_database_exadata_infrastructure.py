@@ -26,8 +26,8 @@ description:
     - For I(state=present), creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only.
       To create an Exadata Cloud Service infrastructure resource, use the  L(CreateCloudExadataInfrastructure,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) operation.
-    - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate, add_storage_capacity,
-      change_compartment, download_exadata_infrastructure_config_file."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_exadata_infrastructure_actions) module: activate,
+      add_storage_capacity, change_compartment, download_exadata_infrastructure_config_file."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -270,38 +270,146 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create exadata_infrastructure
   oci_database_exadata_infrastructure:
-    compartment_id: "ocid1.tenancy.oc1.unique_ID"
-    display_name: "tstExaInfra"
-    shape: "Exadata.Full2.336"
-    time_zone: "PST"
-    cloud_control_plane_server1: "192.168.19.1"
-    cloud_control_plane_server2: "192.168.19.2"
-    netmask: "255.255.0.0"
-    gateway: "192.168.20.1"
-    admin_network_cidr: "192.168.19.2/16"
-    infini_band_network_cidr: "10.172.19.1/24"
-    corporate_proxy: "192.168.20.1"
-    dns_server:
-    - "192.168.10.10"
-    ntp_server:
-    - "192.168.10.20"
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: tstExaInfra
+    shape: Exadata.Full2.336
+    time_zone: PST
+    cloud_control_plane_server1: 192.168.19.1
+    cloud_control_plane_server2: 192.168.19.2
+    netmask: 255.255.0.0
+    gateway: 192.168.20.1
+    admin_network_cidr: 192.168.19.2/16
+    infini_band_network_cidr: 10.172.19.1/24
+    dns_server: [ "192.168.10.10" ]
+    ntp_server: [ "192.168.10.20" ]
 
-- name: Update exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_exadata_infrastructure:
-    admin_network_cidr: "192.168.19.1/16"
-    infini_band_network_cidr: "10.172.19.2/24"
+    # optional
+    corporate_proxy: 192.168.20.1
+    contacts:
+    - # required
+      name: name_example
+      email: email_example
+      is_primary: true
+
+      # optional
+      phone_number: phone_number_example
+      is_contact_mos_validated: true
+    maintenance_window:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    storage_count: 56
+    compute_count: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update exadata_infrastructure
   oci_database_exadata_infrastructure:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    time_zone: PST
+    cloud_control_plane_server1: 192.168.19.1
+    cloud_control_plane_server2: 192.168.19.2
+    netmask: 255.255.0.0
+    gateway: 192.168.20.1
+    admin_network_cidr: 192.168.19.2/16
+    infini_band_network_cidr: 10.172.19.1/24
+    corporate_proxy: 192.168.20.1
+    contacts:
+    - # required
+      name: name_example
+      email: email_example
+      is_primary: true
+
+      # optional
+      phone_number: phone_number_example
+      is_contact_mos_validated: true
+    maintenance_window:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    dns_server: [ "192.168.10.10" ]
+    ntp_server: [ "192.168.10.20" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    additional_storage_count: 56
+
+- name: Update exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_exadata_infrastructure:
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: tstExaInfra
+
+    # optional
+    time_zone: PST
+    cloud_control_plane_server1: 192.168.19.1
+    cloud_control_plane_server2: 192.168.19.2
+    netmask: 255.255.0.0
+    gateway: 192.168.20.1
+    admin_network_cidr: 192.168.19.2/16
+    infini_band_network_cidr: 10.172.19.1/24
+    corporate_proxy: 192.168.20.1
+    contacts:
+    - # required
+      name: name_example
+      email: email_example
+      is_primary: true
+
+      # optional
+      phone_number: phone_number_example
+      is_contact_mos_validated: true
+    maintenance_window:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    dns_server: [ "192.168.10.10" ]
+    ntp_server: [ "192.168.10.20" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    additional_storage_count: 56
 
 - name: Delete exadata_infrastructure
   oci_database_exadata_infrastructure:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_exadata_infrastructure:
+    # required
     compartment_id: ocid1.tenancy.oc1.unique_ID
     display_name: tstExaInfra
     state: absent

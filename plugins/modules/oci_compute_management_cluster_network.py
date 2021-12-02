@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a ClusterNetwork resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a cluster network. For more information about cluster networks, see
       L(Managing Cluster Networks,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm).
-    - "This resource has the following action operations in the M(oci_cluster_network_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_management_cluster_network_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -46,8 +46,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the cluster network. Does not have to be unique, and it's
-              changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -78,7 +78,8 @@ options:
                 type: dict
             display_name:
                 description:
-                    - A user-friendly name. Does not have to be unique. Avoid entering confidential information.
+                    - A user-friendly name. Does not have to be unique, and it's changeable.
+                      Avoid entering confidential information.
                     - This parameter is updatable.
                 type: str
                 aliases: ["name"]
@@ -162,26 +163,79 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cluster_network
   oci_compute_management_cluster_network:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
+    instance_pools:
+    - # optional
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      freeform_tags: {'Department': 'Finance'}
+      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+      size: 56
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     placement_configuration:
+      # required
       availability_domain: Uocm:PHX-AD-1
       primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_management_cluster_network:
-    display_name: "example_cluster_network"
+      # optional
+      secondary_vnic_subnets:
+      - # required
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_cluster_network
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Update cluster_network
   oci_compute_management_cluster_network:
+    # required
     cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: example_cluster_network
+    freeform_tags: {'Department': 'Finance'}
+    instance_pools:
+    - # optional
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      freeform_tags: {'Department': 'Finance'}
+      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+      size: 56
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_management_cluster_network:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: example_cluster_network
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    instance_pools:
+    - # optional
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      freeform_tags: {'Department': 'Finance'}
+      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+      size: 56
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cluster_network
   oci_compute_management_cluster_network:
+    # required
     cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_cluster_network:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: example_cluster_network
     state: absent
@@ -203,7 +257,7 @@ cluster_network:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cluster netowrk.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cluster network.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -218,6 +272,7 @@ cluster_network:
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -260,7 +315,8 @@ cluster_network:
                     sample: {'Operations': {'CostCenter': 'US'}}
                 display_name:
                     description:
-                        - The user-friendly name. Does not have to be unique.
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
                     returned: on success
                     type: str
                     sample: display_name_example

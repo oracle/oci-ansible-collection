@@ -286,26 +286,119 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create query
   oci_usage_query:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     query_definition:
+      # required
       display_name: display_name_example
       report_query:
+        # required
         tenant_id: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         granularity: HOURLY
+
+        # optional
+        time_usage_started: 2013-10-20T19:20:30+01:00
+        time_usage_ended: 2013-10-20T19:20:30+01:00
+        is_aggregate_by_time: true
+        forecast:
+          # required
+          time_forecast_ended: 2013-10-20T19:20:30+01:00
+
+          # optional
+          forecast_type: BASIC
+          time_forecast_started: 2013-10-20T19:20:30+01:00
+        query_type: USAGE
+        group_by: [ "null" ]
+        group_by_tag:
+        - # optional
+          namespace: namespace_example
+          key: key_example
+          value: value_example
+        compartment_depth: 10
+        filter:
+          # optional
+          operator: AND
+          dimensions:
+          - # required
+            key: key_example
+            value: value_example
+          tags:
+          - # optional
+            namespace: namespace_example
+            key: key_example
+            value: value_example
+          filters:
+          - # optional
+            operator: AND
+            dimensions: [ "null" ]
+            tags: [ "null" ]
+            filters: [ "null" ]
+        date_range_name: LAST_SEVEN_DAYS
+      cost_analysis_ui:
+        # optional
+        graph: BARS
+        is_cumulative_graph: true
       version: 10
 
 - name: Update query
   oci_usage_query:
+    # required
     query_definition:
+      # required
       display_name: display_name_example
       report_query:
+        # required
         tenant_id: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         granularity: HOURLY
+
+        # optional
+        time_usage_started: 2013-10-20T19:20:30+01:00
+        time_usage_ended: 2013-10-20T19:20:30+01:00
+        is_aggregate_by_time: true
+        forecast:
+          # required
+          time_forecast_ended: 2013-10-20T19:20:30+01:00
+
+          # optional
+          forecast_type: BASIC
+          time_forecast_started: 2013-10-20T19:20:30+01:00
+        query_type: USAGE
+        group_by: [ "null" ]
+        group_by_tag:
+        - # optional
+          namespace: namespace_example
+          key: key_example
+          value: value_example
+        compartment_depth: 10
+        filter:
+          # optional
+          operator: AND
+          dimensions:
+          - # required
+            key: key_example
+            value: value_example
+          tags:
+          - # optional
+            namespace: namespace_example
+            key: key_example
+            value: value_example
+          filters:
+          - # optional
+            operator: AND
+            dimensions: [ "null" ]
+            tags: [ "null" ]
+            filters: [ "null" ]
+        date_range_name: LAST_SEVEN_DAYS
+      cost_analysis_ui:
+        # optional
+        graph: BARS
+        is_cumulative_graph: true
       version: 10
     query_id: "ocid1.query.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete query
   oci_usage_query:
+    # required
     query_id: "ocid1.query.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

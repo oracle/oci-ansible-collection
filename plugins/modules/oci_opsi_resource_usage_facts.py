@@ -26,6 +26,7 @@ description:
     - A cumulative distribution function is used to rank the usage data points per database within the specified time period.
       For each database, the minimum data point with a ranking > the percentile value is included in the summation.
       Linear regression functions are used to calculate the usage change percentage.
+      If compartmentIdInSubtree is specified, aggregates resources in a compartment and in all sub-compartments.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -86,6 +87,11 @@ options:
             - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
         elements: str
+    exadata_insight_id:
+        description:
+            - Optional list of exadata insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
     host_name:
         description:
             - Filter by one or more hostname.
@@ -134,14 +140,36 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific resource_usage
   oci_opsi_resource_usage_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resource_metric: resource_metric_example
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    database_type: [ "$p.getValue()" ]
+    database_id: [ "$p.getValue()" ]
+    id: [ "$p.getValue()" ]
+    exadata_insight_id: [ "$p.getValue()" ]
+    host_name: [ "$p.getValue()" ]
+    is_database_instance_level_metrics: true
+    percentile: 56
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -237,6 +265,7 @@ class ResourceUsageFactsHelperGen(OCIResourceFactsHelperBase):
             "database_type",
             "database_id",
             "id",
+            "exadata_insight_id",
             "host_name",
             "is_database_instance_level_metrics",
             "percentile",
@@ -244,6 +273,7 @@ class ResourceUsageFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -288,6 +318,7 @@ def main():
             ),
             database_id=dict(type="list", elements="str"),
             id=dict(type="list", elements="str"),
+            exadata_insight_id=dict(type="list", elements="str"),
             host_name=dict(type="list", elements="str"),
             is_database_instance_level_metrics=dict(type="bool"),
             percentile=dict(type="int"),
@@ -295,6 +326,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

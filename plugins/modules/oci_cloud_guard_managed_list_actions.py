@@ -51,6 +51,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on managed_list
   oci_cloud_guard_managed_list_actions:
+    # required
     managed_list_id: "ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

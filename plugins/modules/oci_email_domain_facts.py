@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List email_domains
-  oci_email_domain_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific email_domain
   oci_email_domain_facts:
+    # required
     email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List email_domains
+  oci_email_domain_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    sort_by: TIMECREATED
 
 """
 

@@ -26,7 +26,7 @@ description:
     - For I(state=present), attaches an instance to an instance pool. For information about the prerequisites
       that an instance must meet before you can attach it to a pool, see
       L(Attaching an Instance to an Instance Pool,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/updatinginstancepool.htm#attach-instance).
-    - "This resource has the following action operations in the M(oci_instance_pool_instance_actions) module: detach."
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_management_instance_pool_instance_actions) module: detach."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -60,9 +60,9 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_pool_instance
   oci_compute_management_instance_pool_instance:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -106,7 +106,8 @@ instance_pool_instance:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

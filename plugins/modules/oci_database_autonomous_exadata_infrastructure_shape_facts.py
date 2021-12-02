@@ -44,6 +44,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List autonomous_exadata_infrastructure_shapes
   oci_database_autonomous_exadata_infrastructure_shape_facts:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 

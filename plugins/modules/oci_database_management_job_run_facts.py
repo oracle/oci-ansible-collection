@@ -82,13 +82,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List job_runs
-  oci_database_management_job_run_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific job_run
   oci_database_management_job_run_facts:
+    # required
     job_run_id: "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List job_runs
+  oci_database_management_job_run_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    run_status: run_status_example
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

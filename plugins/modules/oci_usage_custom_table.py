@@ -117,19 +117,46 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create custom_table
   oci_usage_custom_table:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     saved_report_id: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
     saved_custom_table:
+      # required
       display_name: display_name_example
+
+      # optional
+      row_group_by: [ "null" ]
+      column_group_by: [ "null" ]
+      group_by_tag:
+      - # optional
+        namespace: namespace_example
+        key: key_example
+        value: value_example
+      compartment_depth: 10
+      version: 10
 
 - name: Update custom_table
   oci_usage_custom_table:
+    # required
     saved_custom_table:
+      # required
       display_name: display_name_example
+
+      # optional
+      row_group_by: [ "null" ]
+      column_group_by: [ "null" ]
+      group_by_tag:
+      - # optional
+        namespace: namespace_example
+        key: key_example
+        value: value_example
+      compartment_depth: 10
+      version: 10
     custom_table_id: "ocid1.customtable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete custom_table
   oci_usage_custom_table:
+    # required
     custom_table_id: "ocid1.customtable.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

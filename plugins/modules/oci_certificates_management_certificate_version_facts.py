@@ -61,14 +61,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List certificate_versions
-  oci_certificates_management_certificate_version_facts:
-    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific certificate_version
   oci_certificates_management_certificate_version_facts:
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     certificate_version_number: 789
+
+- name: List certificate_versions
+  oci_certificates_management_certificate_version_facts:
+    # required
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    version_number: 789
+    sort_by: VERSION_NUMBER
+    sort_order: ASC
 
 """
 

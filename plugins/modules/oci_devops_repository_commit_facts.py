@@ -71,14 +71,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List repository_commits
-  oci_devops_repository_commit_facts:
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific repository_commit
   oci_devops_repository_commit_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     commit_id: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List repository_commits
+  oci_devops_repository_commit_facts:
+    # required
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    ref_name: ref_name_example
+    exclude_ref_name: exclude_ref_name_example
+    file_path: file_path_example
+    timestamp_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    timestamp_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    commit_message: commit_message_example
+    author_name: author_name_example
 
 """
 

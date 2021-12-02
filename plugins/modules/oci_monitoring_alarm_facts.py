@@ -90,13 +90,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List alarms
-  oci_monitoring_alarm_facts:
-    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
-
 - name: Get a specific alarm
   oci_monitoring_alarm_facts:
+    # required
     alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List alarms
+  oci_monitoring_alarm_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
+
+    # optional
+    display_name: display_name_example
+    lifecycle_state: lifecycle_state_example
+    sort_by: severity
+    sort_order: ASC
+    compartment_id_in_subtree: true
 
 """
 

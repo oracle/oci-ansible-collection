@@ -82,13 +82,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List database_tools_private_endpoints
-  oci_database_tools_private_endpoint_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific database_tools_private_endpoint
   oci_database_tools_private_endpoint_facts:
+    # required
     database_tools_private_endpoint_id: "ocid1.databasetoolsprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List database_tools_private_endpoints
+  oci_database_tools_private_endpoint_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_order: ASC
+    sort_by: timeCreated
+    endpoint_service_id: "ocid1.endpointservice.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: CREATING
+    display_name: display_name_example
 
 """
 

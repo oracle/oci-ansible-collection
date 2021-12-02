@@ -83,11 +83,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update image_shape_compatibility_entry
   oci_compute_image_shape_compatibility_entry:
+    # required
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
 
+    # optional
+    memory_constraints:
+      # optional
+      min_in_gbs: 56
+      max_in_gbs: 56
+    ocpu_constraints:
+      # optional
+      min: 56
+      max: 56
+
 - name: Delete image_shape_compatibility_entry
   oci_compute_image_shape_compatibility_entry:
+    # required
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
     state: absent

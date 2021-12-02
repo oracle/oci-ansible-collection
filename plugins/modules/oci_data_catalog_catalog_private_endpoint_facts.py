@@ -76,13 +76,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List catalog_private_endpoints
-  oci_data_catalog_catalog_private_endpoint_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific catalog_private_endpoint
   oci_data_catalog_catalog_private_endpoint_facts:
+    # required
     catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List catalog_private_endpoints
+  oci_data_catalog_catalog_private_endpoint_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 

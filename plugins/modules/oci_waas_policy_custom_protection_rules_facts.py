@@ -51,7 +51,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List waas_policy_custom_protection_rules
   oci_waas_policy_custom_protection_rules_facts:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    mod_security_rule_id: [ "$p.getValue()" ]
+    action: [ "$p.getValue()" ]
 
 """
 

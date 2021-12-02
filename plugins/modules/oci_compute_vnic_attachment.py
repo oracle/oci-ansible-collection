@@ -72,7 +72,7 @@ options:
                 type: dict
             display_name:
                 description:
-                    - A user-friendly name for the VNIC. Does not have to be unique.
+                    - A user-friendly name. Does not have to be unique, and it's changeable.
                       Avoid entering confidential information.
                 type: str
                 aliases: ["name"]
@@ -143,7 +143,8 @@ options:
                 type: bool
             subnet_id:
                 description:
-                    - The OCID of the subnet to create the VNIC in. When launching an instance,
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create the VNIC in. When
+                      launching an instance,
                       use this `subnetId` instead of the deprecated `subnetId` in
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       At least one of them is required; if you provide both, the values must match.
@@ -154,14 +155,15 @@ options:
             vlan_id:
                 description:
                     - Provide this attribute only if you are an Oracle Cloud VMware Solution
-                      customer and creating a secondary VNIC in a VLAN. The value is the OCID of the VLAN.
+                      customer and creating a secondary VNIC in a VLAN. The value is the
+                      L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN.
                       See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                     - Provide a `vlanId` instead of a `subnetId`. If you provide both a
                       `vlanId` and `subnetId`, the request fails.
                 type: str
     display_name:
         description:
-            - A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
             - Required for create, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
@@ -206,16 +208,35 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vnic_attachment
   oci_compute_vnic_attachment:
+    # required
+    create_vnic_details:
+      # optional
+      assign_public_ip: false
+      assign_private_dns_record: true
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      freeform_tags: {'Department': 'Finance'}
+      hostname_label: bminstance-1
+      nsg_ids: [ "null" ]
+      private_ip: 10.0.3.3
+      skip_source_dest_check: true
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    nic_index: 56
 
 - name: Delete vnic_attachment
   oci_compute_vnic_attachment:
+    # required
     vnic_attachment_id: "ocid1.vnicattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vnic_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_vnic_attachment:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -245,7 +266,7 @@ vnic_attachment:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

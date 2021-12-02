@@ -52,16 +52,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List agreements
-  oci_marketplace_agreement_facts:
-    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-    package_version: package_version_example
-
 - name: Get a specific agreement
   oci_marketplace_agreement_facts:
+    # required
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
     agreement_id: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List agreements
+  oci_marketplace_agreement_facts:
+    # required
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+    package_version: package_version_example
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

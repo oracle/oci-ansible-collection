@@ -52,9 +52,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List diffs
   oci_devops_diff_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     base_version: base_version_example
     target_version: target_version_example
+
+    # optional
+    is_comparison_from_merge_base: true
 
 """
 

@@ -38,6 +38,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific third_party_paid_listing_eligibility
   oci_marketplace_third_party_paid_listing_eligibility_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

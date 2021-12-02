@@ -24,7 +24,7 @@ short_description: Manage a Dataset resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Dataset resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Dataset.
-    - "This resource has the following action operations in the M(oci_dataset_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_labeling_service_dataset_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -153,36 +153,66 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create dataset
   oci_data_labeling_service_dataset:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     annotation_format: annotation_format_example
     dataset_source_details:
+      # required
       source_type: OBJECT_STORAGE
       namespace: namespace_example
       bucket: bucket_example
-    dataset_format_details:
-      format_type: IMAGE
 
-- name: Update dataset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_labeling_service_dataset:
+      # optional
+      prefix: prefix_example
+    dataset_format_details:
+      # required
+      format_type: IMAGE
+    label_set:
+      # optional
+      items:
+      - # optional
+        name: name_example
+
+    # optional
     display_name: display_name_example
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    initial_record_generation_configuration:
+      # optional
+      limit: 10
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update dataset
   oci_data_labeling_service_dataset:
+    # required
+    dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update dataset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_labeling_service_dataset:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete dataset
   oci_data_labeling_service_dataset:
+    # required
     dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete dataset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_labeling_service_dataset:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

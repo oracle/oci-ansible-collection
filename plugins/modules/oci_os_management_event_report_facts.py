@@ -54,8 +54,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific event_report
   oci_os_management_event_report_facts:
+    # required
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    latest_timestamp_less_than: 2013-10-20T19:20:30+01:00
+    latest_timestamp_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
 
 """
 

@@ -43,13 +43,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List key_stores
-  oci_database_key_store_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific key_store
   oci_database_key_store_facts:
+    # required
     key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List key_stores
+  oci_database_key_store_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

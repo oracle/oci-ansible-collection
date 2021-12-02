@@ -70,7 +70,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List database_parameters
   oci_database_management_database_parameter_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    source: CURRENT
+    name: name_example
+    is_allowed_values_included: true
+    sort_by: NAME
+    sort_order: ASC
 
 """
 

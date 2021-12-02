@@ -79,13 +79,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List enrollment_statuses
-  oci_optimizer_enrollment_status_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific enrollment_status
   oci_optimizer_enrollment_status_facts:
+    # required
     enrollment_status_id: "ocid1.enrollmentstatus.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List enrollment_statuses
+  oci_optimizer_enrollment_status_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: NAME
+    lifecycle_state: ACTIVE
+    status: ACTIVE
 
 """
 

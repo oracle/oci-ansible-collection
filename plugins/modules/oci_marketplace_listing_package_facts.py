@@ -80,14 +80,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List listing_packages
-  oci_marketplace_listing_package_facts:
-    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific listing_package
   oci_marketplace_listing_package_facts:
+    # required
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List listing_packages
+  oci_marketplace_listing_package_facts:
+    # required
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    package_version: package_version_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    package_type: package_type_example
+    sort_by: TIMERELEASED
+    sort_order: ASC
 
 """
 

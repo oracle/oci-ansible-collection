@@ -23,7 +23,7 @@ module: oci_compute_measured_boot_report_actions
 short_description: Perform actions on a MeasuredBootReport resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a MeasuredBootReport resource in Oracle Cloud Infrastructure
-    - For I(action=accept_shielded_integrity_policy), accept the changes to the PCR values in the Measured Boot Report.
+    - For I(action=accept_shielded_integrity_policy), accept the changes to the PCR values in the measured boot report.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -46,6 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action accept_shielded_integrity_policy on measured_boot_report
   oci_compute_measured_boot_report_actions:
+    # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     action: accept_shielded_integrity_policy
 
@@ -60,7 +61,7 @@ measured_boot_report:
     contains:
         is_policy_verification_successful:
             description:
-                - Whether the verification succeeded and the new values matched the expected values.
+                - Whether the verification succeeded, and the new values match the expected values.
             returned: on success
             type: bool
             sample: true

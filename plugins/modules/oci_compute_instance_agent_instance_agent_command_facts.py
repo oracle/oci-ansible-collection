@@ -63,13 +63,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List instance_agent_commands
-  oci_compute_instance_agent_instance_agent_command_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific instance_agent_command
   oci_compute_instance_agent_instance_agent_command_facts:
+    # required
     instance_agent_command_id: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List instance_agent_commands
+  oci_compute_instance_agent_instance_agent_command_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

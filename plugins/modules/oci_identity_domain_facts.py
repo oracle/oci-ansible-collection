@@ -102,13 +102,27 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List domains
-  oci_identity_domain_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific domain
   oci_identity_domain_facts:
+    # required
     domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List domains
+  oci_identity_domain_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    url: url_example
+    home_region_url: home_region_url_example
+    type: type_example
+    license_type: license_type_example
+    is_hidden_on_login: true
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

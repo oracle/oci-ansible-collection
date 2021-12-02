@@ -75,14 +75,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List pdb_conversion_history_entries
-  oci_database_pdb_conversion_history_entry_facts:
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific pdb_conversion_history_entry
   oci_database_pdb_conversion_history_entry_facts:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     pdb_conversion_history_entry_id: "ocid1.pdbconversionhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List pdb_conversion_history_entries
+  oci_database_pdb_conversion_history_entry_facts:
+    # required
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    pdb_conversion_action: pdb_conversion_action_example
+    lifecycle_state: lifecycle_state_example
+    sort_by: TIMESTARTED
+    sort_order: ASC
 
 """
 

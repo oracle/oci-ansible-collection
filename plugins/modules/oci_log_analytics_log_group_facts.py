@@ -71,15 +71,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific log_analytics_log_group
+  oci_log_analytics_log_group_facts:
+    # required
+    namespace_name: namespace_name_example
+    log_analytics_log_group_id: "ocid1.loganalyticsloggroup.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List log_analytics_log_groups
   oci_log_analytics_log_group_facts:
+    # required
     namespace_name: namespace_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific log_analytics_log_group
-  oci_log_analytics_log_group_facts:
-    namespace_name: namespace_name_example
-    log_analytics_log_group_id: "ocid1.loganalyticsloggroup.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

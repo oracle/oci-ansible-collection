@@ -66,13 +66,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List node_pools
-  oci_container_engine_node_pool_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific node_pool
   oci_container_engine_node_pool_facts:
+    # required
     node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List node_pools
+  oci_container_engine_node_pool_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    sort_order: ASC
+    sort_by: ID
 
 """
 
@@ -218,7 +226,7 @@ node_pools:
                         - The key of the pair.
                     returned: on success
                     type: str
-                    sample: mykey
+                    sample: key_example
                 value:
                     description:
                         - The value of the pair.
@@ -414,7 +422,7 @@ node_pools:
         },
         "node_shape": "VM.Standard2.4",
         "initial_node_labels": [{
-            "key": "mykey",
+            "key": "key_example",
             "value": "myvalue"
         }],
         "ssh_public_key": "ssh-rsa AAAAB3NzaC1yc2abc123...",

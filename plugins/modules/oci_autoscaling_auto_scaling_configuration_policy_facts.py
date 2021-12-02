@@ -65,14 +65,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List auto_scaling_configuration_policies
-  oci_autoscaling_auto_scaling_configuration_policy_facts:
-    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific auto_scaling_configuration_policy
   oci_autoscaling_auto_scaling_configuration_policy_facts:
+    # required
     auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     auto_scaling_policy_id: "ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List auto_scaling_configuration_policies
+  oci_autoscaling_auto_scaling_configuration_policy_facts:
+    # required
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

@@ -82,14 +82,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific external_database_connector
+  oci_database_external_database_connector_facts:
+    # required
+    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List external_database_connectors
   oci_database_external_database_connector_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     external_database_id: "ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific external_database_connector
-  oci_database_external_database_connector_facts:
-    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    sort_by: DISPLAYNAME
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
 
 """
 
@@ -246,7 +254,7 @@ external_database_connectors:
                         - The password that will be used to connect to the database.
                     returned: on success
                     type: str
-                    sample: password_example
+                    sample: example-password
                 role:
                     description:
                         - The role of the user that will be connecting to the database.
@@ -284,7 +292,7 @@ external_database_connectors:
             "credential_type": "NAME_REFERENCE",
             "credential_name": "credential_name_example",
             "username": "username_example",
-            "password": "password_example",
+            "password": "example-password",
             "role": "SYSDBA"
         },
         "connector_agent_id": "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"

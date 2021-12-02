@@ -101,12 +101,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action cancel_key_deletion on key
   oci_key_management_key_actions:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel_key_deletion
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Perform action change_compartment on key
   oci_key_management_key_actions:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -114,21 +116,26 @@ EXAMPLES = """
 
 - name: Perform action disable on key
   oci_key_management_key_actions:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Perform action enable on key
   oci_key_management_key_actions:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Perform action schedule_key_deletion on key
   oci_key_management_key_actions:
-    time_of_deletion: "2018-04-03T21:10:29.600Z"
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "schedule_key_deletion"
+    action: schedule_key_deletion
+
+    # optional
+    time_of_deletion: 2013-10-20T19:20:30+01:00
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """

@@ -83,14 +83,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific category
+  oci_optimizer_category_facts:
+    # required
+    category_id: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List categories
   oci_optimizer_category_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
 
-- name: Get a specific category
-  oci_optimizer_category_facts:
-    category_id: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    name: name_example
+    sort_order: ASC
+    sort_by: NAME
+    lifecycle_state: ACTIVE
 
 """
 
@@ -115,13 +123,13 @@ categories:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
-                - The name assigned to the category. Avoid entering confidential information.
+                - The name assigned to the category.
             returned: on success
             type: str
             sample: name_example
         description:
             description:
-                - Text describing the category. Avoid entering confidential information.
+                - Text describing the category.
             returned: on success
             type: str
             sample: description_example
@@ -185,6 +193,14 @@ categories:
             returned: on success
             type: str
             sample: "2020-08-25T21:10:29.600Z"
+        extended_metadata:
+            description:
+                - Additional metadata key/value pairs for the category.
+                - "For example:"
+                - "`{\\"EstimatedSaving\\": \\"200\\"}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -201,7 +217,8 @@ categories:
         "lifecycle_state": "ACTIVE",
         "estimated_cost_saving": 1.2,
         "time_created": "2020-08-25T21:10:29.600Z",
-        "time_updated": "2020-08-25T21:10:29.600Z"
+        "time_updated": "2020-08-25T21:10:29.600Z",
+        "extended_metadata": {}
     }]
 """
 

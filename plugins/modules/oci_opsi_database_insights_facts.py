@@ -24,6 +24,8 @@ short_description: Fetches details about one or multiple DatabaseInsights resour
 description:
     - Fetches details about one or multiple DatabaseInsights resources in Oracle Cloud Infrastructure
     - Gets a list of database insights based on the query parameters specified. Either compartmentId or id query parameter must be specified.
+      When both compartmentId and compartmentIdInSubtree are specified, a list of database insights in that compartment and in all sub-compartments will be
+      returned.
     - If I(database_insight_id) is specified, the details of a single DatabaseInsights will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -111,17 +113,38 @@ options:
             - "databaseName"
             - "databaseDisplayName"
             - "databaseType"
+    exadata_insight_id:
+        description:
+            - L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of exadata insight resource.
+        type: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List database_insights
-  oci_opsi_database_insights_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific database_insights
   oci_opsi_database_insights_facts:
+    # required
     database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List database_insights
+  oci_opsi_database_insights_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+    status: [ "$p.getValue()" ]
+    lifecycle_state: [ "$p.getValue()" ]
+    database_type: [ "$p.getValue()" ]
+    database_id: [ "$p.getValue()" ]
+    fields: [ "$p.getValue()" ]
+    sort_order: ASC
+    sort_by: databaseName
+    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id_in_subtree: true
 
 """
 
@@ -288,6 +311,12 @@ database_insights:
             returned: on success
             type: str
             sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_insight_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+            returned: on success
+            type: str
+            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
@@ -380,6 +409,7 @@ database_insights:
         "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_details": {
@@ -439,6 +469,8 @@ class DatabaseInsightsFactsHelperGen(OCIResourceFactsHelperBase):
             "fields",
             "sort_order",
             "sort_by",
+            "exadata_insight_id",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -518,6 +550,8 @@ def main():
                 type="str",
                 choices=["databaseName", "databaseDisplayName", "databaseType"],
             ),
+            exadata_insight_id=dict(type="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

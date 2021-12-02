@@ -24,7 +24,7 @@ short_description: Manage a BlockchainPlatform resource in Oracle Cloud Infrastr
 description:
     - This module allows the user to create, update and delete a BlockchainPlatform resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Blockchain Platform.
-    - "This resource has the following action operations in the M(oci_blockchain_platform_actions) module: change_compartment, start, stop."
+    - "This resource has the following action operations in the M(oracle.oci.oci_blockchain_platform_actions) module: change_compartment, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -150,36 +150,67 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create blockchain_platform
   oci_blockchain_platform:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     platform_role: platform_role_example
     compute_shape: compute_shape_example
     idcs_access_token: idcs_access_token_example
 
-- name: Update blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    description: description_example
+    is_byol: true
+    federated_user_id: "ocid1.federateduser.oc1..xxxxxxEXAMPLExxxxxx"
+    ca_cert_archive_text: ca_cert_archive_text_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update blockchain_platform
   oci_blockchain_platform:
-    display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     storage_size_in_tbs: 1.2
+    replicas:
+      # optional
+      proxy_count: 56
+      ca_count: 56
+      console_count: 56
     total_ocpu_capacity: 56
     load_balancer_shape: load_balancer_shape_example
 
-- name: Update blockchain_platform
+- name: Update blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockchain_platform:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     freeform_tags: {'Department': 'Finance'}
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    storage_size_in_tbs: 1.2
+    replicas:
+      # optional
+      proxy_count: 56
+      ca_count: 56
+      console_count: 56
+    total_ocpu_capacity: 56
+    load_balancer_shape: load_balancer_shape_example
 
 - name: Delete blockchain_platform
   oci_blockchain_platform:
+    # required
     blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockchain_platform:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

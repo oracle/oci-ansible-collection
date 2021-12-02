@@ -93,13 +93,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List deployments
-  oci_devops_deployment_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific deployment
   oci_devops_deployment_facts:
+    # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List deployments
+  oci_devops_deployment_facts:
+
+    # optional
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
+    time_created_less_than: 2013-10-20T19:20:30+01:00
+    time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
 
 """
 

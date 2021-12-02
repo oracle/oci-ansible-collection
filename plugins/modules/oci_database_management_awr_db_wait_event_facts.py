@@ -99,8 +99,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific awr_db_wait_event
   oci_database_management_awr_db_wait_event_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     awr_db_id: "ocid1.awrdb.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    inst_num: inst_num_example
+    begin_sn_id_greater_than_or_equal_to: 56
+    end_sn_id_less_than_or_equal_to: 56
+    time_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    name: [ "$p.getValue()" ]
+    session_type: FOREGROUND
+    container_id: 56
+    sort_by: TIME_BEGIN
+    sort_order: ASC
 
 """
 

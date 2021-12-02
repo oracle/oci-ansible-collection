@@ -64,6 +64,13 @@ EXAMPLES = """
 - name: List software_package_searches
   oci_os_management_software_package_search_facts:
 
+    # optional
+    software_package_name: software_package_name_example
+    display_name: My new resource
+    cve_name: CVE-2006-4535
+    sort_order: ASC
+    sort_by: TIMECREATED
+
 """
 
 RETURN = """

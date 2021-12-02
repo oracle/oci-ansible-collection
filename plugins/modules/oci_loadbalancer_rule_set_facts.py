@@ -44,14 +44,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List rule_sets
-  oci_loadbalancer_rule_set_facts:
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific rule_set
   oci_loadbalancer_rule_set_facts:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     rule_set_name: example_rule_set
+
+- name: List rule_sets
+  oci_loadbalancer_rule_set_facts:
+    # required
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

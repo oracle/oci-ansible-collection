@@ -39,20 +39,20 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the cross-connect.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_cross_connect_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_cross_connect_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the cross-connect.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the cross-connect.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     cross_connect_group_id:
         description:
-            - The OCID of the cross-connect group to put this cross-connect in.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect group to put this cross-connect in.
         type: str
     defined_tags:
         description:
@@ -73,7 +73,8 @@ options:
         description:
             - If you already have an existing cross-connect or cross-connect group at this FastConnect
               location, and you want this new cross-connect to be on a different router (for the
-              purposes of redundancy), provide the OCID of that existing cross-connect or
+              purposes of redundancy), provide the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of that existing cross-
+              connect or
               cross-connect group.
         type: str
     freeform_tags:
@@ -96,7 +97,7 @@ options:
         description:
             - If you already have an existing cross-connect or cross-connect group at this FastConnect
               location, and you want this new cross-connect to be on the same router, provide the
-              OCID of that existing cross-connect or cross-connect group.
+              L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of that existing cross-connect or cross-connect group.
         type: str
     port_speed_shape_name:
         description:
@@ -112,6 +113,62 @@ options:
               uses.
             - This parameter is updatable.
         type: str
+    macsec_properties:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            state:
+                description:
+                    - Indicates whether or not MACsec is enabled.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "ENABLED"
+                    - "DISABLED"
+                required: true
+            primary_key:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    connectivity_association_name_secret_id:
+                        description:
+                            - Secret L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) containing the Connectivity association
+                              Key Name (CKN) of this MACsec key.
+                            - "NOTE: Only the latest secret version will be used."
+                            - This parameter is updatable.
+                        type: str
+                        required: true
+                    connectivity_association_key_secret_id:
+                        description:
+                            - Secret L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) containing the Connectivity Association
+                              Key (CAK) of this MACsec key.
+                            - "NOTE: Only the latest secret version will be used."
+                            - This parameter is updatable.
+                        type: str
+                        required: true
+                    connectivity_association_name_secret_version:
+                        description:
+                            - The secret version of the connectivity association name secret in Vault.
+                            - This parameter is updatable.
+                        type: int
+                    connectivity_association_key_secret_version:
+                        description:
+                            - The secret version of the connectivityAssociationKey secret in Vault.
+                            - This parameter is updatable.
+                        type: int
+            encryption_cipher:
+                description:
+                    - Type of encryption cipher suite to use for the MACsec connection.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "AES128_GCM"
+                    - "AES128_GCM_XPN"
+                    - "AES256_GCM"
+                    - "AES256_GCM_XPN"
     cross_connect_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect.
@@ -142,32 +199,95 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cross_connect
   oci_network_cross_connect:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     location_name: CyrusOne, Chandler, AZ
     port_speed_shape_name: 10 Gbps
 
-- name: Update cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    cross_connect_group_id: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    far_cross_connect_or_cross_connect_group_id: "ocid1.farcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    near_cross_connect_or_cross_connect_group_id: "ocid1.nearcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
+    customer_reference_name: customer_reference_name_example
+    macsec_properties:
+      # required
+      state: ENABLED
+
+      # optional
+      primary_key:
+        # required
+        connectivity_association_name_secret_id: "ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx"
+        connectivity_association_key_secret_id: "ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        connectivity_association_name_secret_version: 56
+        connectivity_association_key_secret_version: 56
+      encryption_cipher: AES128_GCM
+
+- name: Update cross_connect
   oci_network_cross_connect:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     customer_reference_name: customer_reference_name_example
+    macsec_properties:
+      # required
+      state: ENABLED
+
+      # optional
+      primary_key:
+        # required
+        connectivity_association_name_secret_id: "ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx"
+        connectivity_association_key_secret_id: "ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        connectivity_association_name_secret_version: 56
+        connectivity_association_key_secret_version: 56
+      encryption_cipher: AES128_GCM
     is_active: true
 
-- name: Update cross_connect
+- name: Update cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cross_connect:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    customer_reference_name: customer_reference_name_example
+    macsec_properties:
+      # required
+      state: ENABLED
+
+      # optional
+      primary_key:
+        # required
+        connectivity_association_name_secret_id: "ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx"
+        connectivity_association_key_secret_id: "ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        connectivity_association_name_secret_version: 56
+        connectivity_association_key_secret_version: 56
+      encryption_cipher: AES128_GCM
+    is_active: true
 
 - name: Delete cross_connect
   oci_network_cross_connect:
+    # required
     cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cross_connect:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -183,13 +303,14 @@ cross_connect:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the cross-connect group.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cross-connect group.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cross_connect_group_id:
             description:
-                - The OCID of the cross-connect group this cross-connect belongs to (if any).
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect group this cross-connect belongs
+                  to (if any).
             returned: on success
             type: str
             sample: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
@@ -262,6 +383,56 @@ cross_connect:
             returned: on success
             type: str
             sample: "2016-08-25T21:10:29.600Z"
+        macsec_properties:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                state:
+                    description:
+                        - Indicates whether or not MACsec is enabled.
+                    returned: on success
+                    type: str
+                    sample: ENABLED
+                primary_key:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        connectivity_association_name_secret_id:
+                            description:
+                                - Secret L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) containing the Connectivity
+                                  association Key Name (CKN) of this MACsec key.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx"
+                        connectivity_association_name_secret_version:
+                            description:
+                                - The secret version of the connectivity association name secret in Vault.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        connectivity_association_key_secret_id:
+                            description:
+                                - Secret L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) containing the Connectivity
+                                  Association Key (CAK) of this MACsec key.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx"
+                        connectivity_association_key_secret_version:
+                            description:
+                                - The secret version of the `connectivityAssociationKey` secret in Vault.
+                            returned: on success
+                            type: int
+                            sample: 56
+                encryption_cipher:
+                    description:
+                        - Type of encryption cipher suite to use for the MACsec connection.
+                    returned: on success
+                    type: str
+                    sample: AES128_GCM
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cross_connect_group_id": "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx",
@@ -274,7 +445,17 @@ cross_connect:
         "port_name": "port_name_example",
         "port_speed_shape_name": "10 Gbps",
         "customer_reference_name": "customer_reference_name_example",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2016-08-25T21:10:29.600Z",
+        "macsec_properties": {
+            "state": "ENABLED",
+            "primary_key": {
+                "connectivity_association_name_secret_id": "ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx",
+                "connectivity_association_name_secret_version": 56,
+                "connectivity_association_key_secret_id": "ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx",
+                "connectivity_association_key_secret_version": 56
+            },
+            "encryption_cipher": "AES128_GCM"
+        }
     }
 """
 
@@ -435,6 +616,41 @@ def main():
             near_cross_connect_or_cross_connect_group_id=dict(type="str"),
             port_speed_shape_name=dict(type="str"),
             customer_reference_name=dict(type="str"),
+            macsec_properties=dict(
+                type="dict",
+                options=dict(
+                    state=dict(
+                        type="str", required=True, choices=["ENABLED", "DISABLED"]
+                    ),
+                    primary_key=dict(
+                        type="dict",
+                        no_log=False,
+                        options=dict(
+                            connectivity_association_name_secret_id=dict(
+                                type="str", required=True
+                            ),
+                            connectivity_association_key_secret_id=dict(
+                                type="str", required=True
+                            ),
+                            connectivity_association_name_secret_version=dict(
+                                type="int", no_log=True
+                            ),
+                            connectivity_association_key_secret_version=dict(
+                                type="int", no_log=True
+                            ),
+                        ),
+                    ),
+                    encryption_cipher=dict(
+                        type="str",
+                        choices=[
+                            "AES128_GCM",
+                            "AES128_GCM_XPN",
+                            "AES256_GCM",
+                            "AES256_GCM_XPN",
+                        ],
+                    ),
+                ),
+            ),
             cross_connect_id=dict(aliases=["id"], type="str"),
             is_active=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

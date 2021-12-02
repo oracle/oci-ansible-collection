@@ -29,11 +29,13 @@ author: Oracle (@oracle)
 options:
     device:
         description:
-            - The device name.
+            - The device name. To retrieve a list of devices for a given instance, see L(ListInstanceDevices,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/Device/ListInstanceDevices).
         type: str
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
@@ -128,31 +130,87 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create volume_attachment
+- name: Create volume_attachment with type = service_determined
   oci_compute_volume_attachment:
+    # required
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    type: service_determined
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    device: device_example
+    display_name: display_name_example
+    is_read_only: true
+    is_shareable: true
+
+- name: Create volume_attachment with type = emulated
+  oci_compute_volume_attachment:
+    # required
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    type: emulated
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    device: device_example
+    display_name: display_name_example
+    is_read_only: true
+    is_shareable: true
+
+- name: Create volume_attachment with type = iscsi
+  oci_compute_volume_attachment:
+    # required
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    type: iscsi
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    device: device_example
+    display_name: display_name_example
+    is_read_only: true
+    is_shareable: true
+    use_chap: true
+    encryption_in_transit_type: NONE
+
+- name: Create volume_attachment with type = paravirtualized
+  oci_compute_volume_attachment:
+    # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     type: paravirtualized
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update volume_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_volume_attachment:
+    # optional
+    device: device_example
     display_name: display_name_example
-    iscsi_login_state: UNKNOWN
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    is_read_only: true
+    is_shareable: true
+    is_pv_encryption_in_transit_enabled: true
 
 - name: Update volume_attachment
   oci_compute_volume_attachment:
+    # required
     volume_attachment_id: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    iscsi_login_state: UNKNOWN
+
+- name: Update volume_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_volume_attachment:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     iscsi_login_state: UNKNOWN
 
 - name: Delete volume_attachment
   oci_compute_volume_attachment:
+    # required
     volume_attachment_id: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_volume_attachment:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -193,12 +251,11 @@ volume_attachment:
             sample: device_example
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it cannot be changed.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My volume attachment`"
             returned: on success
             type: str
-            sample: My volume attachment
+            sample: display_name_example
         id:
             description:
                 - The OCID of the volume attachment.
@@ -354,7 +411,7 @@ volume_attachment:
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "device": "device_example",
-        "display_name": "My volume attachment",
+        "display_name": "display_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "is_read_only": true,

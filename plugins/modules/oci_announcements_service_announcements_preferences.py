@@ -75,16 +75,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create announcements_preferences
   oci_announcements_service_announcements_preferences:
+    # required
     type: CreateAnnouncementsPreferencesDetails
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     preference_type: OPT_IN_TENANT_ANNOUNCEMENTS
 
+    # optional
+    is_unsubscribed: true
+
 - name: Update announcements_preferences
   oci_announcements_service_announcements_preferences:
+    # required
     type: CreateAnnouncementsPreferencesDetails
-    is_unsubscribed: true
     preference_type: OPT_IN_TENANT_ANNOUNCEMENTS
     preference_id: "ocid1.preference.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    is_unsubscribed: true
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

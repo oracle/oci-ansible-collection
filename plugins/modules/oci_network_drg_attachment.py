@@ -32,14 +32,14 @@ description:
     - For the purposes of access control, the DRG attachment is automatically placed into the currently selected compartment.
       For more information about compartments and access control, see
       L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
-    - "This resource has the following action operations in the M(oci_drg_attachment_actions) module: remove_export_drg_route_distribution."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_drg_attachment_actions) module: remove_export_drg_route_distribution."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique. Avoid entering
-              confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -156,34 +156,73 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create drg_attachment
   oci_network_drg_attachment:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update drg_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_drg_attachment:
+    # optional
     display_name: display_name_example
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     network_details:
+      # required
       type: VCN
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update drg_attachment
+  oci_network_drg_attachment:
+    # required
+    drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
+    network_details:
+      # required
+      type: VCN
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     export_drg_route_distribution_id: "ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update drg_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_drg_attachment:
+    # required
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update drg_attachment
-  oci_network_drg_attachment:
-    display_name: display_name_example
+    # optional
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
-    drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+    network_details:
+      # required
+      type: VCN
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    export_drg_route_distribution_id: "ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete drg_attachment
   oci_network_drg_attachment:
+    # required
     drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete drg_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_attachment:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -297,7 +336,7 @@ drg_attachment:
             sample: {'Department': 'Finance'}
         route_table_id:
             description:
-                - The OCID of the route table the DRG attachment is using.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is using.
                 - "For information about why you would associate a route table with a DRG attachment, see:"
                 - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
                     * L(Transit Routing: Private Access to Oracle

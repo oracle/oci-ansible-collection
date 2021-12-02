@@ -74,13 +74,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List bastions
-  oci_bastion_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific bastion
   oci_bastion_facts:
+    # required
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List bastions
+  oci_bastion_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+    bastion_lifecycle_state: CREATING
+    name: name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

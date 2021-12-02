@@ -51,6 +51,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action cancel on build_run
   oci_devops_build_run_actions:
+    # required
     reason: reason_example
     build_run_id: "ocid1.buildrun.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel

@@ -24,7 +24,7 @@ short_description: Manage an IntegrationInstance resource in Oracle Cloud Infras
 description:
     - This module allows the user to create, update and delete an IntegrationInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Integration Instance.
-    - "This resource has the following action operations in the M(oci_integration_instance_actions) module: change_compartment,
+    - "This resource has the following action operations in the M(oracle.oci.oci_integration_instance_actions) module: change_compartment,
       change_integration_instance_network_endpoint, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -200,16 +200,53 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create integration_instance
   oci_integration_instance:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     integration_instance_type: STANDARD
     is_byol: true
     message_packs: 56
 
-- name: Update integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    idcs_at: idcs_at_example
+    is_visual_builder_enabled: true
+    custom_endpoint:
+      # required
+      hostname: hostname_example
+
+      # optional
+      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
+    alternate_custom_endpoints:
+    - # required
+      hostname: hostname_example
+
+      # optional
+      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
+    consumption_model: UCM
+    is_file_server_enabled: true
+    network_endpoint_details:
+      # required
+      network_endpoint_type: PUBLIC
+
+      # optional
+      allowlisted_http_ips: [ "null" ]
+      allowlisted_http_vcns:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        allowlisted_ips: [ "null" ]
+      is_integration_vcn_allowlisted: true
+
+- name: Update integration_instance
   oci_integration_instance:
+    # required
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     integration_instance_type: STANDARD
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -217,24 +254,55 @@ EXAMPLES = """
     message_packs: 56
     is_visual_builder_enabled: true
     custom_endpoint:
+      # required
       hostname: hostname_example
+
+      # optional
+      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
     alternate_custom_endpoints:
-    - hostname: hostname_example
+    - # required
+      hostname: hostname_example
+
+      # optional
+      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
     is_file_server_enabled: true
 
-- name: Update integration_instance
+- name: Update integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_integration_instance:
+    # required
     display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     integration_instance_type: STANDARD
-    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_byol: true
+    message_packs: 56
+    is_visual_builder_enabled: true
+    custom_endpoint:
+      # required
+      hostname: hostname_example
+
+      # optional
+      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
+    alternate_custom_endpoints:
+    - # required
+      hostname: hostname_example
+
+      # optional
+      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
+    is_file_server_enabled: true
 
 - name: Delete integration_instance
   oci_integration_instance:
+    # required
     integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_integration_instance:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

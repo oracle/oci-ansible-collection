@@ -38,6 +38,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List region_subscriptions
   oci_identity_region_subscription_facts:
+    # required
     tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

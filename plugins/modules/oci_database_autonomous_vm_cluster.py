@@ -24,7 +24,7 @@ short_description: Manage an AutonomousVmCluster resource in Oracle Cloud Infras
 description:
     - This module allows the user to create, update and delete an AutonomousVmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Autonomous VM cluster for Exadata Cloud@Customer.
-    - "This resource has the following action operations in the M(oci_autonomous_vm_cluster_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_autonomous_vm_cluster_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -105,27 +105,49 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create autonomous_vm_cluster
   oci_database_autonomous_vm_cluster:
-    display_name: "autonomousVmCluster"
-    compartment_id: "ocid1.tenancy.oc1.unique_ID"
-    exadata_infrastructure_id: "ocid1.exadataInfrastructure.oc1.unique_ID"
-    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1.unique_ID"
-    license_model: "LICENSE_INCLUDED"
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: autonomousVmCluster
+    exadata_infrastructure_id: ocid1.exadataInfrastructure.oc1.unique_ID
+    vm_cluster_network_id: ocid1.vmclusternetwork.oc1.unique_ID
 
-- name: Update autonomous_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_autonomous_vm_cluster:
-    license_model: "BRING_YOUR_OWN_LICENSE"
+    # optional
+    time_zone: time_zone_example
+    is_local_backup_enabled: true
+    license_model: LICENSE_INCLUDED
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update autonomous_vm_cluster
   oci_database_autonomous_vm_cluster:
+    # required
     autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    license_model: LICENSE_INCLUDED
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update autonomous_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_autonomous_vm_cluster:
+    # required
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: autonomousVmCluster
+
+    # optional
+    license_model: LICENSE_INCLUDED
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete autonomous_vm_cluster
   oci_database_autonomous_vm_cluster:
+    # required
     autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete autonomous_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_vm_cluster:
+    # required
     compartment_id: ocid1.tenancy.oc1.unique_ID
     display_name: autonomousVmCluster
     state: absent

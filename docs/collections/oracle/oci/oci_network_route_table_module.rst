@@ -30,13 +30,9 @@ oracle.oci.oci_network_route_table -- Manage a RouteTable resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_route_table`.
 
@@ -58,9 +54,9 @@ Synopsis
 
 - This module allows the user to create, update and delete a RouteTable resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new route table for the specified VCN. In the request you must also include at least one route rule for the new route table. For information on the number of rules you can have in a route table, see `Service Limits <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm>`_. For general information about route tables in your VCN and the types of targets you can use in route rules, see `Route Tables <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm>`_.
-- For the purposes of access control, you must provide the OCID of the compartment where you want the route table to reside. Notice that the route table doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the route table in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
+- For the purposes of access control, you must provide the `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_ of the compartment where you want the route table to reside. Notice that the route table doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the route table in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the route table, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
-- This resource has the following action operations in the M(oci_route_table_actions) module: change_compartment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_network_route_table_actions <ansible_collections.oracle.oci.oci_network_route_table_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -182,7 +178,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment to contain the route table.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to contain the route table.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -467,7 +463,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID for the route rule&#x27;s target. For information about the type of targets you can specify, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm'>Route Tables</a>.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> for the route rule&#x27;s target. For information about the type of targets you can specify, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm'>Route Tables</a>.</div>
                                                         </td>
             </tr>
                     
@@ -537,7 +533,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the VCN the route table belongs to.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN the route table belongs to.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -602,37 +598,75 @@ Examples
     
     - name: Create route_table
       oci_network_route_table:
-        display_name: "MyRouteTable"
-        vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
+        # required
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         route_rules:
-        - cidr_block: "0.0.0.0/0"
-          network_entity_id: "ocid1.internetgateway.oc1.phx.unique_ID"
-        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        - # required
+          network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
 
-    - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+          # optional
+          cidr_block: 0.0.0.0/0
+          destination: destination_example
+          destination_type: CIDR_BLOCK
+          description: description_example
+        vcn_id: ocid1.vcn.oc1.phx.unique_ID
+
+        # optional
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: MyRouteTable
+        freeform_tags: {'Department': 'Finance'}
+
+    - name: Update route_table
       oci_network_route_table:
-        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        # required
+        rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyRouteTable
         freeform_tags: {'Department': 'Finance'}
         route_rules:
-        - network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+        - # required
+          network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+
+          # optional
+          cidr_block: 0.0.0.0/0
+          destination: destination_example
+          destination_type: CIDR_BLOCK
+          description: description_example
         purge_route_rules: false
         delete_route_rules: true
 
-    - name: Update route_table
+    - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_route_table:
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        # required
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyRouteTable
-        rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
+        route_rules:
+        - # required
+          network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+
+          # optional
+          cidr_block: 0.0.0.0/0
+          destination: destination_example
+          destination_type: CIDR_BLOCK
+          description: description_example
+        purge_route_rules: false
+        delete_route_rules: true
 
     - name: Delete route_table
       oci_network_route_table:
+        # required
         rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_route_table:
+        # required
         compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyRouteTable
         state: absent
@@ -671,7 +705,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the RouteTable resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;route_rules&#x27;: [{&#x27;cidr_block&#x27;: &#x27;0.0.0.0/0&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;destination&#x27;: &#x27;destination_example&#x27;, &#x27;destination_type&#x27;: &#x27;CIDR_BLOCK&#x27;, &#x27;network_entity_id&#x27;: &#x27;ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -687,9 +721,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment containing the route table.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the route table.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -708,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -726,7 +760,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -745,7 +779,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -761,9 +795,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The route table&#x27;s Oracle ID (OCID).</div>
+                                            <div>The route table&#x27;s Oracle ID (<a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -781,7 +815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The route table&#x27;s current state.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -799,7 +833,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The collection of rules for routing destination IPs to network devices.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -819,7 +853,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Cannot be an IPv6 CIDR.</div>
                                             <div>Example: `0.0.0.0/0`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">0.0.0.0/0</div>
                                     </td>
             </tr>
@@ -838,7 +872,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An optional description of your choice for the rule.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -860,7 +894,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* IP address range in CIDR notation. Can be an IPv4 or IPv6 CIDR. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`. If you set this to an IPv6 CIDR, the route rule&#x27;s target can only be a DRG or internet gateway. IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a route rule for traffic destined for a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">destination_example</div>
                                     </td>
             </tr>
@@ -881,7 +915,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* `CIDR_BLOCK`: If the rule&#x27;s `destination` is an IP address range in CIDR notation.</div>
                                             <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `destination` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a> (the rule is for traffic destined for a particular `Service` through a service gateway).</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CIDR_BLOCK</div>
                                     </td>
             </tr>
@@ -898,9 +932,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID for the route rule&#x27;s target. For information about the type of targets you can specify, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm'>Route Tables</a>.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> for the route rule&#x27;s target. For information about the type of targets you can specify, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm'>Route Tables</a>.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -920,7 +954,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the route table was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
@@ -938,7 +972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN the route table list belongs to.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

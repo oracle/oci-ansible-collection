@@ -45,13 +45,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List volume_backup_policies
-  oci_blockstorage_volume_backup_policy_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific volume_backup_policy
   oci_blockstorage_volume_backup_policy_facts:
+    # required
     policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List volume_backup_policies
+  oci_blockstorage_volume_backup_policy_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -64,7 +67,7 @@ volume_backup_policies:
     contains:
         display_name:
             description:
-                - A user-friendly name for the volume backup policy. Does not have to be unique and it's changeable.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

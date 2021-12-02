@@ -48,13 +48,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List remote_peering_connections
-  oci_network_remote_peering_connection_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific remote_peering_connection
   oci_network_remote_peering_connection_facts:
+    # required
     remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List remote_peering_connections
+  oci_network_remote_peering_connection_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -67,7 +72,7 @@ remote_peering_connections:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment that contains the RPC.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the RPC.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -88,7 +93,7 @@ remote_peering_connections:
             sample: display_name_example
         drg_id:
             description:
-                - The OCID of the DRG that this RPC belongs to.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG that this RPC belongs to.
             returned: on success
             type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
@@ -103,7 +108,7 @@ remote_peering_connections:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The OCID of the RPC.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the RPC.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -122,7 +127,7 @@ remote_peering_connections:
             sample: AVAILABLE
         peer_id:
             description:
-                - If this RPC is peered, this value is the OCID of the other RPC.
+                - If this RPC is peered, this value is the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the other RPC.
             returned: on success
             type: str
             sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -135,7 +140,8 @@ remote_peering_connections:
             sample: us-ashburn-1
         peer_tenancy_id:
             description:
-                - If this RPC is peered, this value is the OCID of the other RPC's tenancy.
+                - If this RPC is peered, this value is the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the other
+                  RPC's tenancy.
             returned: on success
             type: str
             sample: "ocid1.peertenancy.oc1..xxxxxxEXAMPLExxxxxx"

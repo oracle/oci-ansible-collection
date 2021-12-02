@@ -58,14 +58,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
+- name: Get a specific boot_volume_attachment
+  oci_compute_boot_volume_attachment_facts:
+    # required
+    boot_volume_attachment_id: "ocid1.bootvolumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List boot_volume_attachments
   oci_compute_boot_volume_attachment_facts:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific boot_volume_attachment
-  oci_compute_boot_volume_attachment_facts:
-    boot_volume_attachment_id: "ocid1.bootvolumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -97,12 +103,11 @@ boot_volume_attachments:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it cannot be changed.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My boot volume`"
             returned: on success
             type: str
-            sample: My boot volume
+            sample: display_name_example
         id:
             description:
                 - The OCID of the boot volume attachment.
@@ -145,7 +150,7 @@ boot_volume_attachments:
         "availability_domain": "Uocm:PHX-AD-1",
         "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My boot volume",
+        "display_name": "display_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ATTACHING",

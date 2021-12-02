@@ -30,13 +30,9 @@ oracle.oci.oci_network_cpe_config_content_facts -- Fetches details about a CpeCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_cpe_config_content_facts`.
 
@@ -60,7 +56,7 @@ Synopsis
 - Renders a set of CPE configuration content that can help a network engineer configure the actual CPE device (for example, a hardware router) represented by the specified `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/>`_ object.
 - The rendered content is specific to the type of CPE device (for example, Cisco ASA). Therefore the `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/>`_ must have the CPE's device type specified by the `cpeDeviceShapeId` attribute. The content optionally includes answers that the customer provides (see `UpdateTunnelCpeDeviceConfig <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig>`_), merged with a template of other information specific to the CPE device type.
 - The operation returns configuration information for *all* of the `IPSecConnection <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/>`_ objects that use the specified CPE. Here are similar operations:
--  * `GetIpsecCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent>`_ returns CPE configuration content for all tunnels in a single IPSec connection. * `GetTunnelCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent>`_ returns CPE configuration content for a specific tunnel within an IPSec connection.
+-  * `GetIpsecCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent>`_ returns CPE configuration content for all IPSec tunnels in a single IPSec connection. * `GetTunnelCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent>`_ returns CPE configuration content for a specific IPSec tunnel in an IPSec connection.
 
 
 .. Aliases
@@ -273,6 +269,7 @@ Examples
     
     - name: Get a specific cpe_config_content
       oci_network_cpe_config_content_facts:
+        # required
         cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
 
 
@@ -309,7 +306,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>CpeConfigContent resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sample</div>
                                     </td>
             </tr>

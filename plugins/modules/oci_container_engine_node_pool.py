@@ -206,37 +206,126 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create node_pool
   oci_container_engine_node_pool:
+    # required
     compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
     cluster_id: ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw
     name: My Node Pool
     kubernetes_version: v1.9.4
     node_shape: VM.Standard2.4
 
-- name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_container_engine_node_pool:
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
-    name: My Node Pool
-    kubernetes_version: v1.9.4
+    # optional
+    node_metadata: null
+    node_image_name: Oracle-Linux-7.4
     node_source_details:
+      # required
       source_type: IMAGE
       image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-    node_shape: VM.Standard2.4
+
+      # optional
+      boot_volume_size_in_gbs: 56
+    node_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
+    initial_node_labels:
+    - # optional
+      key: key_example
+      value: myvalue
     ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2abc123..."
     quantity_per_subnet: 1
+    subnet_ids: [ "null" ]
+    node_config_details:
+      # optional
+      size: 56
+      nsg_ids: [ "null" ]
+      placement_configs:
+      - # required
+        availability_domain: Uocm:PHX-AD-1
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update node_pool
   oci_container_engine_node_pool:
+    # required
+    node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     name: My Node Pool
     kubernetes_version: v1.9.4
-    node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
+    node_metadata: null
+    node_source_details:
+      # required
+      source_type: IMAGE
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      boot_volume_size_in_gbs: 56
+    node_shape: VM.Standard2.4
+    node_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
+    initial_node_labels:
+    - # optional
+      key: key_example
+      value: myvalue
+    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2abc123..."
+    quantity_per_subnet: 1
+    subnet_ids: [ "null" ]
+    node_config_details:
+      # optional
+      size: 56
+      nsg_ids: [ "null" ]
+      placement_configs:
+      - # required
+        availability_domain: Uocm:PHX-AD-1
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_container_engine_node_pool:
+    # required
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+    name: My Node Pool
+
+    # optional
+    kubernetes_version: v1.9.4
+    node_metadata: null
+    node_source_details:
+      # required
+      source_type: IMAGE
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      boot_volume_size_in_gbs: 56
+    node_shape: VM.Standard2.4
+    node_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
+    initial_node_labels:
+    - # optional
+      key: key_example
+      value: myvalue
+    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2abc123..."
+    quantity_per_subnet: 1
+    subnet_ids: [ "null" ]
+    node_config_details:
+      # optional
+      size: 56
+      nsg_ids: [ "null" ]
+      placement_configs:
+      - # required
+        availability_domain: Uocm:PHX-AD-1
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete node_pool
   oci_container_engine_node_pool:
+    # required
     node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_node_pool:
+    # required
     compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
     name: My Node Pool
     state: absent
@@ -385,7 +474,7 @@ node_pool:
                         - The key of the pair.
                     returned: on success
                     type: str
-                    sample: mykey
+                    sample: key_example
                 value:
                     description:
                         - The value of the pair.
@@ -581,7 +670,7 @@ node_pool:
         },
         "node_shape": "VM.Standard2.4",
         "initial_node_labels": [{
-            "key": "mykey",
+            "key": "key_example",
             "value": "myvalue"
         }],
         "ssh_public_key": "ssh-rsa AAAAB3NzaC1yc2abc123...",

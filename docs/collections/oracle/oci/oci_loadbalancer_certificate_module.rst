@@ -30,13 +30,9 @@ oracle.oci.oci_loadbalancer_certificate -- Manage a Certificate resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_certificate`.
 
@@ -442,15 +438,19 @@ Examples
     
     - name: Create certificate
       oci_loadbalancer_certificate:
-        passphrase: "passphrase&gt</var>"
-        private_key: "private_key&gt</var>"
-        public_certificate: "public_certificate&gt</var>"
-        ca_certificate: "ca_certificate&gt</var>"
-        certificate_name: "example_certificate_bundle"
+        # required
+        certificate_name: example_certificate_bundle
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        passphrase: passphrase&gt</var>
+        private_key: private_key&gt</var>
+        public_certificate: public_certificate&gt</var>
+        ca_certificate: ca_certificate&gt</var>
 
     - name: Delete certificate
       oci_loadbalancer_certificate:
+        # required
         certificate_name: example_certificate_bundle
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
@@ -489,7 +489,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Certificate resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;ca_certificate&#x27;: &#x27;ca_certificate_example&#x27;, &#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;public_certificate&#x27;: &#x27;public_certificate_example&#x27;}</div>
                                     </td>
             </tr>
@@ -509,7 +509,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example:</div>
                                             <div>-----BEGIN CERTIFICATE----- MIIEczCCA1ugAwIBAgIBADANBgkqhkiG9w0BAQQFAD..AkGA1UEBhMCR0Ix EzARBgNVBAgTClNvbWUtU3RhdGUxFDASBgNVBAoTC0..0EgTHRkMTcwNQYD VQQLEy5DbGFzcyAxIFB1YmxpYyBQcmltYXJ5IENlcn..XRpb24gQXV0aG9y aXR5MRQwEgYDVQQDEwtCZXN0IENBIEx0ZDAeFw0wMD..TUwMTZaFw0wMTAy ... -----END CERTIFICATE-----</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ca_certificate_example</div>
                                     </td>
             </tr>
@@ -528,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A friendly name for the certificate bundle. It must be unique and it cannot be changed. Valid certificate bundle names include only alphanumeric characters, dashes, and underscores. Certificate bundle names cannot contain spaces. Avoid entering confidential information.</div>
                                             <div>Example: `example_certificate_bundle`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_certificate_bundle</div>
                                     </td>
             </tr>
@@ -548,7 +548,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example:</div>
                                             <div>-----BEGIN CERTIFICATE----- MIIC2jCCAkMCAg38MA0GCSqGSIb3DQEBBQUAMIGbMQswCQYDVQQGEwJKUDEOMAwG A1UECBMFVG9reW8xEDAOBgNVBAcTB0NodW8ta3UxETAPBgNVBAoTCEZyYW5rNERE MRgwFgYDVQQLEw9XZWJDZXJ0IFN1cHBvcnQxGDAWBgNVBAMTD0ZyYW5rNEREIFdl YiBDQTEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBmcmFuazRkZC5jb20wHhcNMTIw ... -----END CERTIFICATE-----</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">public_certificate_example</div>
                                     </td>
             </tr>

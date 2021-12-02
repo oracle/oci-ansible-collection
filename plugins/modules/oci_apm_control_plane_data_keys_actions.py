@@ -82,17 +82,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action generate on data_keys
   oci_apm_control_plane_data_keys_actions:
+    # required
     generate_data_keys_list_details:
-    - name: name_example
+    - # required
+      name: name_example
       type: PRIVATE
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     action: generate
 
 - name: Perform action remove on data_keys
   oci_apm_control_plane_data_keys_actions:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     remove_data_keys_list_details:
-    - name: name_example
+    - # required
+      name: name_example
     action: remove
 
 """

@@ -80,7 +80,17 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List announcements_collection
   oci_announcements_service_announcements_collection_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    announcement_type: announcement_type_example
+    lifecycle_state: ACTIVE
+    is_banner: true
+    sort_by: timeOneValue
+    sort_order: ASC
+    time_one_earliest_time: 2013-10-20T19:20:30+01:00
+    time_one_latest_time: 2013-10-20T19:20:30+01:00
 
 """
 

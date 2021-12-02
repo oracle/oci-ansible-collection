@@ -74,13 +74,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List clusters
-  oci_container_engine_cluster_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific cluster
   oci_container_engine_cluster_facts:
+    # required
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List clusters
+  oci_container_engine_cluster_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: [ "$p.getValue()" ]
+    name: name_example
+    sort_order: ASC
+    sort_by: ID
 
 """
 

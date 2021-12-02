@@ -63,13 +63,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List log_saved_searches
-  oci_logging_log_saved_search_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific log_saved_search
   oci_logging_log_saved_search_facts:
+    # required
     log_saved_search_id: "ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List log_saved_searches
+  oci_logging_log_saved_search_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    log_saved_search_id: "ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    sort_by: timeCreated
+    sort_order: ASC
 
 """
 

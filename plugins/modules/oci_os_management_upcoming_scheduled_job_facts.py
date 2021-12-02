@@ -92,8 +92,18 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List upcoming_scheduled_jobs
   oci_os_management_upcoming_scheduled_job_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     time_end: 2013-10-20T19:20:30+01:00
+
+    # optional
+    display_name: My new resource
+    sort_order: ASC
+    sort_by: TIMECREATED
+    tag_name: tag_name_example
+    tag_value: tag_value_example
+    lifecycle_state: CREATING
+    os_family: LINUX
 
 """
 

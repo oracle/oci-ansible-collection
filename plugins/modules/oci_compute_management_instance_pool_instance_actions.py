@@ -62,9 +62,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action detach on instance_pool_instance
   oci_compute_management_instance_pool_instance_actions:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach
+
+    # optional
+    is_decrement_size: true
+    is_auto_terminate: true
 
 """
 

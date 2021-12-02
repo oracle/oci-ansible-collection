@@ -65,7 +65,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List managed_list_types
   oci_cloud_guard_managed_list_type_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: displayName
 
 """
 

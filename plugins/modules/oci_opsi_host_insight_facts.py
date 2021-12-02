@@ -24,6 +24,8 @@ short_description: Fetches details about one or multiple HostInsight resources i
 description:
     - Fetches details about one or multiple HostInsight resources in Oracle Cloud Infrastructure
     - Gets a list of host insights based on the query parameters specified. Either compartmentId or id query parameter must be specified.
+      When both compartmentId and compartmentIdInSubtree are specified, a list of host insights in that compartment and in all sub-compartments will be
+      returned.
     - If I(host_insight_id) is specified, the details of a single HostInsight will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -88,17 +90,41 @@ options:
         choices:
             - "hostName"
             - "hostType"
+    enterprise_manager_bridge_id:
+        description:
+            - Unique Enterprise Manager bridge identifier
+        type: str
+    exadata_insight_id:
+        description:
+            - L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of exadata insight resource.
+        type: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List host_insights
-  oci_opsi_host_insight_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific host_insight
   oci_opsi_host_insight_facts:
+    # required
     host_insight_id: "ocid1.hostinsight.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List host_insights
+  oci_opsi_host_insight_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    status: [ "$p.getValue()" ]
+    lifecycle_state: [ "$p.getValue()" ]
+    host_type: [ "$p.getValue()" ]
+    platform_type: [ "$p.getValue()" ]
+    sort_order: ASC
+    sort_by: hostName
+    enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id_in_subtree: true
 
 """
 
@@ -203,30 +229,72 @@ host_insights:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        management_agent_id:
+        enterprise_manager_identifier:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+                - Enterprise Manager Unique Identifier
             returned: on success
             type: str
-            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-        platform_name:
+            sample: enterprise_manager_identifier_example
+        enterprise_manager_entity_name:
             description:
-                - Platform name.
+                - Enterprise Manager Entity Name
             returned: on success
             type: str
-            sample: platform_name_example
+            sample: enterprise_manager_entity_name_example
+        enterprise_manager_entity_type:
+            description:
+                - Enterprise Manager Entity Type
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_type_example
+        enterprise_manager_entity_identifier:
+            description:
+                - Enterprise Manager Entity Unique Identifier
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_identifier_example
+        enterprise_manager_entity_display_name:
+            description:
+                - Enterprise Manager Entity Display Name
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_display_name_example
+        enterprise_manager_bridge_id:
+            description:
+                - OPSI Enterprise Manager Bridge OCID
+            returned: on success
+            type: str
+            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
         platform_type:
             description:
                 - Platform type.
             returned: on success
             type: str
             sample: LINUX
+        platform_name:
+            description:
+                - Platform name.
+            returned: on success
+            type: str
+            sample: platform_name_example
         platform_version:
             description:
                 - Platform version.
             returned: on success
             type: str
-            sample: platform_version_example
+            sample: Oracle Linux Server release 7.9
+        exadata_insight_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+            returned: on success
+            type: str
+            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        management_agent_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+            returned: on success
+            type: str
+            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -243,10 +311,17 @@ host_insights:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
-        "platform_name": "platform_name_example",
+        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
+        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
+        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
+        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
+        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
+        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "platform_type": "LINUX",
-        "platform_version": "platform_version_example"
+        "platform_name": "platform_name_example",
+        "platform_version": "Oracle Linux Server release 7.9",
+        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 
@@ -291,6 +366,9 @@ class HostInsightFactsHelperGen(OCIResourceFactsHelperBase):
             "platform_type",
             "sort_order",
             "sort_by",
+            "enterprise_manager_bridge_id",
+            "exadata_insight_id",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -337,6 +415,9 @@ def main():
             platform_type=dict(type="list", elements="str", choices=["LINUX"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["hostName", "hostType"]),
+            enterprise_manager_bridge_id=dict(type="str"),
+            exadata_insight_id=dict(type="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

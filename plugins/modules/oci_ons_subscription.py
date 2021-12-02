@@ -28,7 +28,8 @@ description:
       For information about confirming subscriptions, see
       L(To confirm a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#confirmSub)."
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
-    - "This resource has the following action operations in the M(oci_subscription_actions) module: get_unsubscription, resend_subscription_confirmation."
+    - "This resource has the following action operations in the M(oracle.oci.oci_ons_subscription_actions) module: get_unsubscription,
+      resend_subscription_confirmation."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -133,18 +134,35 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create subscription
   oci_ons_subscription:
-    topic_id: "topic_OCID"
-    compartment_id: "compartment_OCID"
-    protocol: "EMAIL"
-    endpoint: "john.smith@example.com"
+    # required
+    topic_id: topic_OCID
+    compartment_id: compartment_OCID
+    protocol: EMAIL
+    endpoint: john.smith@example.com
+
+    # optional
+    metadata: metadata_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update subscription
   oci_ons_subscription:
-    freeform_tags: "{'Department': 'Finance'}"
+    # required
     subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    delivery_policy:
+      # optional
+      backoff_retry_policy:
+        # required
+        max_retry_duration: 56
+        policy_type: EXPONENTIAL
 
 - name: Delete subscription
   oci_ons_subscription:
+    # required
     subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

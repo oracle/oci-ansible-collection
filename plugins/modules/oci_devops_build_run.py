@@ -24,7 +24,7 @@ short_description: Manage a BuildRun resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create and update a BuildRun resource in Oracle Cloud Infrastructure
     - For I(state=present), starts a build pipeline run for a predefined build pipeline
-    - "This resource has the following action operations in the M(oci_build_run_actions) module: cancel."
+    - "This resource has the following action operations in the M(oracle.oci.oci_devops_build_run_actions) module: cancel."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -114,19 +114,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create build_run
   oci_devops_build_run:
+    # required
     build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update build_run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_devops_build_run:
+    # optional
     display_name: display_name_example
+    commit_info:
+      # required
+      repository_url: repository_url_example
+      repository_branch: repository_branch_example
+      commit_hash: commit_hash_example
+    build_run_arguments:
+      # required
+      items:
+      - # required
+        name: name_example
+        value: value_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update build_run
   oci_devops_build_run:
+    # required
+    build_run_id: "ocid1.buildrun.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    build_run_id: "ocid1.buildrun.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update build_run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_devops_build_run:
+    # required
+    display_name: display_name_example
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 """
 

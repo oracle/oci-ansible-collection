@@ -78,13 +78,22 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List oce_instances
-  oci_oce_instance_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific oce_instance
   oci_oce_instance_facts:
+    # required
     oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List oce_instances
+  oci_oce_instance_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: My new resource
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: CREATING
 
 """
 

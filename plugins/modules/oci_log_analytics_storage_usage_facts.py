@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific storage_usage
   oci_log_analytics_storage_usage_facts:
+    # required
     namespace_name: namespace_name_example
 
 """

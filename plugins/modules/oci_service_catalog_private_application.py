@@ -24,7 +24,7 @@ short_description: Manage a PrivateApplication resource in Oracle Cloud Infrastr
 description:
     - This module allows the user to create, update and delete a PrivateApplication resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a private application along with a single package to be hosted.
-    - "This resource has the following action operations in the M(oci_private_application_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_service_catalog_private_application_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -117,18 +117,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create private_application
   oci_service_catalog_private_application:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     short_description: short_description_example
     package_details:
+      # required
       package_type: STACK
       version: version_example
 
-- name: Update private_application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_service_catalog_private_application:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
-    short_description: short_description_example
+      # optional
+      zip_file_base64_encoded: zip_file_base64_encoded_example
+
+    # optional
     long_description: long_description_example
     logo_file_base64_encoded: logo_file_base64_encoded_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -136,17 +137,39 @@ EXAMPLES = """
 
 - name: Update private_application
   oci_service_catalog_private_application:
+    # required
+    private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     short_description: short_description_example
-    private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
+    long_description: long_description_example
+    logo_file_base64_encoded: logo_file_base64_encoded_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update private_application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_service_catalog_private_application:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    short_description: short_description_example
+    long_description: long_description_example
+    logo_file_base64_encoded: logo_file_base64_encoded_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete private_application
   oci_service_catalog_private_application:
+    # required
     private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete private_application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_service_catalog_private_application:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

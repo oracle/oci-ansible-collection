@@ -39,12 +39,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List services
-  oci_network_service_facts:
-
 - name: Get a specific service
   oci_network_service_facts:
+    # required
     service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List services
+  oci_network_service_facts:
 
 """
 

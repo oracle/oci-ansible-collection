@@ -60,11 +60,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_backup_policy_assignment
   oci_blockstorage_volume_backup_policy_assignment:
+    # required
     asset_id: "ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx"
     policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete volume_backup_policy_assignment
   oci_blockstorage_volume_backup_policy_assignment:
+    # required
     policy_assignment_id: "ocid1.policyassignment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

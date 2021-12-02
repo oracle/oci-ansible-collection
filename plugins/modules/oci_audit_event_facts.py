@@ -60,6 +60,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List audit_events
   oci_audit_event_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     start_time: 2013-10-20T19:20:30+01:00
     end_time: 2013-10-20T19:20:30+01:00

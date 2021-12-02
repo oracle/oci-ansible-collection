@@ -63,11 +63,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update generic_artifact
   oci_artifacts_generic_artifact:
+    # required
     artifact_id: "ocid1.genericartifact.oc1..exampleuniqueID"
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete generic_artifact
   oci_artifacts_generic_artifact:
+    # required
     artifact_id: "ocid1.genericartifact.oc1..exampleuniqueID"
     state: absent
 

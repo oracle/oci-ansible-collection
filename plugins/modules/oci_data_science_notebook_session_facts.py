@@ -87,13 +87,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List notebook_sessions
-  oci_data_science_notebook_session_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific notebook_session
   oci_data_science_notebook_session_facts:
+    # required
     notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List notebook_sessions
+  oci_data_science_notebook_session_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    created_by: created_by_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

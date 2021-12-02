@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Database resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new database in the specified Database Home. If the database version is provided, it must match the version of the
       Database Home. Applies to Exadata and Exadata Cloud@Customer systems.
-    - "This resource has the following action operations in the M(oci_database_actions) module: precheck, upgrade, rollback."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_database_actions) module: precheck, upgrade, rollback."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -236,7 +236,7 @@ options:
             backup_tde_password:
                 description:
                     - The password to open the TDE wallet.
-                    - Required when source is 'DB_BACKUP'
+                    - Applicable when source is 'DB_BACKUP'
                 type: str
     database_id:
         description:
@@ -380,30 +380,127 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create database
+- name: Create database with source = NONE
   oci_database_database:
-    db_home_id: "ocid1.dbhome.oc1.phx.unique_ID"
-    source: "NONE"
+    # required
+    db_home_id: ocid1.dbhome.oc1.phx.unique_ID
     database:
-      admin_password: "password"
-      db_name: "myTestDb"
+      # required
+      admin_password: example-password
+
+      # optional
+      db_name: myTestDb
+      db_unique_name: db_unique_name_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      pdb_name: pdb_name_example
+      tde_wallet_password: example-password
+      character_set: character_set_example
+      ncharacter_set: ncharacter_set_example
+      db_workload: OLTP
       db_backup_config:
-        recovery_window_in_days: 30
+        # optional
         auto_backup_enabled: true
+        recovery_window_in_days: 30
+        auto_backup_window: SLOT_TWO
+        backup_destination_details:
+        - # required
+          type: NFS
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          vpc_user: vpc_user_example
+          vpc_password: example-password
+          internet_proxy: internet_proxy_example
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      sid_prefix: sid_prefix_example
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+      backup_tde_password: example-password
+
+    # optional
+    db_version: db_version_example
+    source: NONE
+    kms_key_id: "ocid1.key.oc1..unique_ID"
+    kms_key_version_id: "ocid1.keyversion.oc1..unique_ID"
+
+- name: Create database with source = DB_BACKUP
+  oci_database_database:
+    # required
+    db_home_id: ocid1.dbhome.oc1.phx.unique_ID
+    source: DB_BACKUP
+    database:
+      # required
+      admin_password: example-password
+
+      # optional
+      db_name: myTestDb
+      db_unique_name: db_unique_name_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      pdb_name: pdb_name_example
+      tde_wallet_password: example-password
+      character_set: character_set_example
+      ncharacter_set: ncharacter_set_example
+      db_workload: OLTP
+      db_backup_config:
+        # optional
+        auto_backup_enabled: true
+        recovery_window_in_days: 30
+        auto_backup_window: SLOT_TWO
+        backup_destination_details:
+        - # required
+          type: NFS
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          vpc_user: vpc_user_example
+          vpc_password: example-password
+          internet_proxy: internet_proxy_example
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      sid_prefix: sid_prefix_example
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+      backup_tde_password: example-password
+
+    # optional
+    db_version: db_version_example
     kms_key_id: "ocid1.key.oc1..unique_ID"
     kms_key_version_id: "ocid1.keyversion.oc1..unique_ID"
 
 - name: Update database
   oci_database_database:
-    db_backup_config:
-      recovery_window_in_days: 30
-      auto_backup_enabled: true
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    db_home_id: ocid1.dbhome.oc1.phx.unique_ID
+    db_backup_config:
+      # optional
+      auto_backup_enabled: true
+      recovery_window_in_days: 30
+      auto_backup_window: SLOT_TWO
+      backup_destination_details:
+      - # required
+        type: NFS
+
+        # optional
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        vpc_user: vpc_user_example
+        vpc_password: example-password
+        internet_proxy: internet_proxy_example
+    new_admin_password: example-password
+    old_tde_wallet_password: example-password
+    new_tde_wallet_password: example-password
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete database
   oci_database_database:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    perform_final_backup: true
 
 """
 
@@ -569,7 +666,7 @@ database:
                                 - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
                             returned: on success
                             type: str
-                            sample: vpc_password_example
+                            sample: example-password
                         internet_proxy:
                             description:
                                 - Proxy URL to connect to object store.
@@ -688,7 +785,7 @@ database:
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "vpc_user": "vpc_user_example",
-                "vpc_password": "vpc_password_example",
+                "vpc_password": "example-password",
                 "internet_proxy": "internet_proxy_example"
             }]
         },

@@ -83,21 +83,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create listener
   oci_network_load_balancer_listener:
-    default_backend_set_name: "example_backend_set"
-    port: 80
-    protocol: "HTTP"
-    name: "example_listener"
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: example_listener
+    default_backend_set_name: example_backend_set
+    port: 80
+    protocol: HTTP
 
 - name: Update listener
   oci_network_load_balancer_listener:
-    default_backend_set_name: "example_backend_set"
-    port: 80
-    protocol: "HTTP"
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: example_listener
+
+    # optional
+    default_backend_set_name: example_backend_set
+    port: 80
+    protocol: HTTP
 
 - name: Delete listener
   oci_network_load_balancer_listener:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: example_listener
     state: absent

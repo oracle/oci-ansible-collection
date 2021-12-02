@@ -30,13 +30,9 @@ oracle.oci.oci_audit_configuration_facts -- Fetches details about a Configuratio
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_audit_configuration_facts`.
 
@@ -269,7 +265,8 @@ Examples
     
     - name: Get a specific configuration
       oci_audit_configuration_facts:
-        compartment_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -305,7 +302,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Configuration resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;retention_period_days&#x27;: 90}</div>
                                     </td>
             </tr>
@@ -324,7 +321,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The retention period setting, specified in days. The minimum is 90, the maximum 365.</div>
                                             <div>Example: `90`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">90</div>
                                     </td>
             </tr>

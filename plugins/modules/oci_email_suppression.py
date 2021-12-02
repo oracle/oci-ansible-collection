@@ -63,11 +63,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create suppression
   oci_email_suppression:
+    # required
     compartment_id: "ocid1.tenancy.oc1..."
-    email_address: "test.user@example.com"
+    email_address: test.user@example.com
 
 - name: Delete suppression
   oci_email_suppression:
+    # required
     suppression_id: "ocid1.suppression.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

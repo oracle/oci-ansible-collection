@@ -112,14 +112,31 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List types
-  oci_data_catalog_type_facts:
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific type
   oci_data_catalog_type_facts:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     type_key: type_key_example
+
+    # optional
+    fields: [ "$p.getValue()" ]
+
+- name: List types
+  oci_data_catalog_type_facts:
+    # required
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    fields: [ "$p.getValue()" ]
+    name: name_example
+    lifecycle_state: CREATING
+    is_internal: is_internal_example
+    is_tag: is_tag_example
+    is_approved: is_approved_example
+    external_type_name: external_type_name_example
+    type_category: type_category_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

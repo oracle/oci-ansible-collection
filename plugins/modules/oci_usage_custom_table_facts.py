@@ -61,14 +61,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific custom_table
+  oci_usage_custom_table_facts:
+    # required
+    custom_table_id: "ocid1.customtable.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List custom_tables
   oci_usage_custom_table_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     saved_report_id: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific custom_table
-  oci_usage_custom_table_facts:
-    custom_table_id: "ocid1.customtable.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    sort_by: displayName
+    sort_order: ASC
 
 """
 

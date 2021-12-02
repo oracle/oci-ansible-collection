@@ -96,21 +96,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on integration_instance
   oci_integration_instance_actions:
+    # required
     integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Perform action change_integration_instance_network_endpoint on integration_instance
   oci_integration_instance_actions:
+    # required
     integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_integration_instance_network_endpoint
 
+    # optional
+    network_endpoint_details:
+      # required
+      network_endpoint_type: PUBLIC
+
+      # optional
+      allowlisted_http_ips: [ "null" ]
+      allowlisted_http_vcns:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        allowlisted_ips: [ "null" ]
+      is_integration_vcn_allowlisted: true
+
 - name: Perform action start on integration_instance
   oci_integration_instance_actions:
+    # required
     integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on integration_instance
   oci_integration_instance_actions:
+    # required
     integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 

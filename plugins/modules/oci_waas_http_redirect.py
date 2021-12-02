@@ -24,7 +24,7 @@ short_description: Manage a HttpRedirect resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a HttpRedirect resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new HTTP Redirect on the WAF edge.
-    - "This resource has the following action operations in the M(oci_http_redirect_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_waas_http_redirect_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -131,44 +131,74 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create http_redirect
   oci_waas_http_redirect:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     domain: domain_example
     target:
+      # required
       protocol: HTTP
       host: host_example
       path: path_example
       query: query_example
 
-- name: Update http_redirect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_waas_http_redirect:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      # optional
+      port: 56
+
+    # optional
     display_name: display_name_example
-    target:
-      protocol: HTTP
-      host: host_example
-      path: path_example
-      query: query_example
     response_code: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update http_redirect
   oci_waas_http_redirect:
+    # required
+    http_redirect_id: "ocid1.httpredirect.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     target:
+      # required
       protocol: HTTP
       host: host_example
       path: path_example
       query: query_example
-    http_redirect_id: "ocid1.httpredirect.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      port: 56
+    response_code: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update http_redirect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_waas_http_redirect:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    target:
+      # required
+      protocol: HTTP
+      host: host_example
+      path: path_example
+      query: query_example
+
+      # optional
+      port: 56
+    response_code: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete http_redirect
   oci_waas_http_redirect:
+    # required
     http_redirect_id: "ocid1.httpredirect.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete http_redirect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_http_redirect:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

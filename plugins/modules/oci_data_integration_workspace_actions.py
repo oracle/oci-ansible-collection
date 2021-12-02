@@ -65,19 +65,26 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on workspace
   oci_data_integration_workspace_actions:
+    # required
     workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action start on workspace
   oci_data_integration_workspace_actions:
+    # required
     workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on workspace
   oci_data_integration_workspace_actions:
+    # required
     workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
+
+    # optional
+    quiesce_timeout: 789
+    is_force_operation: true
 
 """
 

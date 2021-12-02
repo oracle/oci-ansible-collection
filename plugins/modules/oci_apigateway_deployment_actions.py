@@ -52,6 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on deployment
   oci_apigateway_deployment_actions:
+    # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -187,7 +188,7 @@ deployment:
                                                 - Name of the claim.
                                             returned: on success
                                             type: str
-                                            sample: iss
+                                            sample: key_example
                                         values:
                                             description:
                                                 - "The list of acceptable values for a given claim.
@@ -305,7 +306,7 @@ deployment:
                                                         - The content of the PEM-encoded public key.
                                                     returned: on success
                                                     type: str
-                                                    sample: -----BEGIN PUBLIC KEY-----
+                                                    sample: key_example
                         rate_limiting:
                             description:
                                 - ""
@@ -1162,7 +1163,7 @@ deployment:
                     "issuers": [],
                     "audiences": [],
                     "verify_claims": [{
-                        "key": "iss",
+                        "key": "key_example",
                         "values": [],
                         "is_required": true
                     }],
@@ -1181,7 +1182,7 @@ deployment:
                             "alg": "alg_example",
                             "n": "n_example",
                             "e": "e_example",
-                            "key": "-----BEGIN PUBLIC KEY-----"
+                            "key": "key_example"
                         }]
                     }
                 },

@@ -81,13 +81,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List policies
-  oci_identity_policy_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific policy
   oci_identity_policy_facts:
+    # required
     policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List policies
+  oci_identity_policy_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

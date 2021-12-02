@@ -90,28 +90,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create sdk
   oci_apigateway_sdk:
+    # required
     target_language: target_language_example
     api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update sdk using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    display_name: My new resource
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    parameters: null
+
+- name: Update sdk
   oci_apigateway_sdk:
+    # required
+    sdk_id: "ocid1.sdk.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: My new resource
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update sdk
+- name: Update sdk using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_sdk:
+    # required
     display_name: My new resource
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
-    sdk_id: "ocid1.sdk.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete sdk
   oci_apigateway_sdk:
+    # required
     sdk_id: "ocid1.sdk.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete sdk using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_sdk:
+    # required
     display_name: My new resource
     state: absent
 

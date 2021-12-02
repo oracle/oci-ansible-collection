@@ -77,13 +77,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List database_tools_endpoint_services
-  oci_database_tools_endpoint_service_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific database_tools_endpoint_service
   oci_database_tools_endpoint_service_facts:
+    # required
     database_tools_endpoint_service_id: "ocid1.databasetoolsendpointservice.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List database_tools_endpoint_services
+  oci_database_tools_endpoint_service_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: CREATING
+    display_name: display_name_example
+    name: name_example
 
 """
 

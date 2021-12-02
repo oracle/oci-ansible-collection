@@ -24,7 +24,7 @@ short_description: Manage a BackupDestination resource in Oracle Cloud Infrastru
 description:
     - This module allows the user to create, update and delete a BackupDestination resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a backup destination in an Exadata Cloud@Customer system.
-    - "This resource has the following action operations in the M(oci_backup_destination_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_backup_destination_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -156,37 +156,77 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create backup_destination
+- name: Create backup_destination with type = NFS
   oci_database_backup_destination:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+    type: NFS
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    local_mount_point_path: local_mount_point_path_example
+    mount_type_details:
+      # required
+      local_mount_point_path: local_mount_point_path_example
+
+      # optional
+      mount_type: SELF_MOUNT
+
+- name: Create backup_destination with type = RECOVERY_APPLIANCE
+  oci_database_backup_destination:
+    # required
     display_name: display_name_example
     compartment_id: "ocid.compartment.oc1..unique_ID"
     type: RECOVERY_APPLIANCE
     connection_string: connection_string_example
+    vpc_users: [ "null" ]
 
-- name: Update backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update backup_destination
   oci_database_backup_destination:
-    display_name: display_name_example
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    # required
+    backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     local_mount_point_path: local_mount_point_path_example
     connection_string: connection_string_example
+    vpc_users: [ "null" ]
     nfs_mount_type: SELF_MOUNT
+    nfs_server: [ "null" ]
     nfs_server_export: nfs_server_export_example
 
-- name: Update backup_destination
+- name: Update backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup_destination:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
+    local_mount_point_path: local_mount_point_path_example
+    connection_string: connection_string_example
+    vpc_users: [ "null" ]
+    nfs_mount_type: SELF_MOUNT
+    nfs_server: [ "null" ]
+    nfs_server_export: nfs_server_export_example
 
 - name: Delete backup_destination
   oci_database_backup_destination:
+    # required
     backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup_destination:
+    # required
     display_name: display_name_example
     compartment_id: "ocid.compartment.oc1..unique_ID"
     state: absent

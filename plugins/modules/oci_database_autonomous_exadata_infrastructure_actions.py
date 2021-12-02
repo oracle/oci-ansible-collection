@@ -57,17 +57,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure_actions:
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    action: change_compartment
 
 - name: Perform action rotate_ords_certs on autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure_actions:
+    # required
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_ords_certs
 
 - name: Perform action rotate_ssl_certs on autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure_actions:
+    # required
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_ssl_certs
 

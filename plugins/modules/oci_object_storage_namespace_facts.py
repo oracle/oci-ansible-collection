@@ -46,6 +46,9 @@ EXAMPLES = """
 - name: Get a specific namespace
   oci_object_storage_namespace_facts:
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
 """
 
 RETURN = """

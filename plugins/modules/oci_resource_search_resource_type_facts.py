@@ -37,12 +37,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List resource_types
-  oci_resource_search_resource_type_facts:
-
 - name: Get a specific resource_type
   oci_resource_search_resource_type_facts:
+    # required
     name: name_example
+
+- name: List resource_types
+  oci_resource_search_resource_type_facts:
 
 """
 

@@ -100,32 +100,50 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create accepted_agreement
   oci_marketplace_accepted_agreement:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
     agreement_id: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
     signature: signature_example
 
-- name: Update accepted_agreement using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_marketplace_accepted_agreement:
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update accepted_agreement
   oci_marketplace_accepted_agreement:
+    # required
+    accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update accepted_agreement using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_marketplace_accepted_agreement:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete accepted_agreement
   oci_marketplace_accepted_agreement:
+    # required
     accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    signature: signature_example
+
 - name: Delete accepted_agreement using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_marketplace_accepted_agreement:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

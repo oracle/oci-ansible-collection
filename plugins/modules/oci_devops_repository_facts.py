@@ -82,13 +82,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List repositories
-  oci_devops_repository_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific repository
   oci_devops_repository_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    fields: [ "$p.getValue()" ]
+
+- name: List repositories
+  oci_devops_repository_facts:
+
+    # optional
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    name: name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

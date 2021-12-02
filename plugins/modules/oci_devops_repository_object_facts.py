@@ -47,7 +47,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific repository_object
   oci_devops_repository_object_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    file_path: file_path_example
+    ref_name: ref_name_example
 
 """
 

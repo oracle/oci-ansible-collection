@@ -48,7 +48,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List shapes
   oci_compute_shape_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

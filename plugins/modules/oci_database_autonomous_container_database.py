@@ -24,8 +24,8 @@ short_description: Manage an AutonomousContainerDatabase resource in Oracle Clou
 description:
     - This module allows the user to create, update and delete an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
-    - "This resource has the following action operations in the M(oci_autonomous_container_database_actions) module: change_compartment, restart,
-      rotate_autonomous_container_database_encryption_key."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_autonomous_container_database_actions) module: change_compartment,
+      restart, rotate_autonomous_container_database_encryption_key."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -334,25 +334,153 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create autonomous_container_database
   oci_database_autonomous_container_database:
+    # required
     display_name: containerDatabase2
     compartment_id: "ocid1.tenancy.oc1..unique_ID"
     patch_model: RELEASE_UPDATES
 
-- name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_autonomous_container_database:
-    display_name: "new Display name"
+    # optional
+    db_unique_name: db_unique_name_example
+    service_level_agreement_type: AUTONOMOUS_DATAGUARD
+    autonomous_exadata_infrastructure_id: ocid1.autonomousexainfrastructure.oc1.unique_ID
+    peer_autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1.unique_ID
+    peer_autonomous_container_database_display_name: StandbyContainerDatabase2
+    protection_mode: MAXIMUM_PERFORMANCE
+    peer_autonomous_vm_cluster_id: "ocid1.peerautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_autonomous_container_database_compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    peer_autonomous_container_database_backup_config:
+      # optional
+      backup_destination_details:
+      - # required
+        type: NFS
+
+        # optional
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        vpc_user: vpc_user_example
+        vpc_password: example-password
+        internet_proxy: internet_proxy_example
+      recovery_window_in_days: 56
+    peer_db_unique_name: peer_db_unique_name_example
+    autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    maintenance_window_details:
+      # required
+      preference: CUSTOM_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: FEBRUARY
+      weeks_of_month: [ "1" ]
+      days_of_week:
+      - # required
+        name: SUNDAY
+      hours_of_day: [ "0" ]
+      lead_time_in_weeks: 56
+    standby_maintenance_buffer_in_days: 7
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    backup_config:
+      # optional
+      backup_destination_details:
+      - # required
+        type: NFS
+
+        # optional
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        vpc_user: vpc_user_example
+        vpc_password: example-password
+        internet_proxy: internet_proxy_example
+      recovery_window_in_days: 30
+    kms_key_id: ocid1.key.oc1.unique_ID
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    vault_id: ocid1.vault.oc1.unique_ID
+    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update autonomous_container_database
   oci_database_autonomous_container_database:
+    # required
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: containerDatabase2
+    patch_model: RELEASE_UPDATES
+    maintenance_window_details:
+      # required
+      preference: CUSTOM_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: FEBRUARY
+      weeks_of_month: [ "1" ]
+      days_of_week:
+      - # required
+        name: SUNDAY
+      hours_of_day: [ "0" ]
+      lead_time_in_weeks: 56
+    standby_maintenance_buffer_in_days: 7
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    backup_config:
+      # optional
+      backup_destination_details:
+      - # required
+        type: NFS
+
+        # optional
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        vpc_user: vpc_user_example
+        vpc_password: example-password
+        internet_proxy: internet_proxy_example
+      recovery_window_in_days: 30
+
+- name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_autonomous_container_database:
+    # required
+    display_name: containerDatabase2
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+
+    # optional
+    patch_model: RELEASE_UPDATES
+    maintenance_window_details:
+      # required
+      preference: CUSTOM_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: FEBRUARY
+      weeks_of_month: [ "1" ]
+      days_of_week:
+      - # required
+        name: SUNDAY
+      hours_of_day: [ "0" ]
+      lead_time_in_weeks: 56
+    standby_maintenance_buffer_in_days: 7
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    backup_config:
+      # optional
+      backup_destination_details:
+      - # required
+        type: NFS
+
+        # optional
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        vpc_user: vpc_user_example
+        vpc_password: example-password
+        internet_proxy: internet_proxy_example
+      recovery_window_in_days: 30
 
 - name: Delete autonomous_container_database
   oci_database_autonomous_container_database:
+    # required
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_container_database:
+    # required
     display_name: containerDatabase2
     compartment_id: "ocid1.tenancy.oc1..unique_ID"
     state: absent
@@ -609,7 +737,7 @@ autonomous_container_database:
                                 - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
                             returned: on success
                             type: str
-                            sample: vpc_password_example
+                            sample: example-password
                         internet_proxy:
                             description:
                                 - Proxy URL to connect to object store.
@@ -678,7 +806,7 @@ autonomous_container_database:
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "vpc_user": "vpc_user_example",
-                "vpc_password": "vpc_password_example",
+                "vpc_password": "example-password",
                 "internet_proxy": "internet_proxy_example"
             }],
             "recovery_window_in_days": 56

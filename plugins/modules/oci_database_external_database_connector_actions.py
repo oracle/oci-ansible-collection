@@ -48,6 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action check_external_database_connector_connection_status on external_database_connector
   oci_database_external_database_connector_actions:
+    # required
     external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: check_external_database_connector_connection_status
 
@@ -206,7 +207,7 @@ external_database_connector:
                         - The password that will be used to connect to the database.
                     returned: on success
                     type: str
-                    sample: password_example
+                    sample: example-password
                 role:
                     description:
                         - The role of the user that will be connecting to the database.
@@ -244,7 +245,7 @@ external_database_connector:
             "credential_type": "NAME_REFERENCE",
             "credential_name": "credential_name_example",
             "username": "username_example",
-            "password": "password_example",
+            "password": "example-password",
             "role": "SYSDBA"
         },
         "connector_agent_id": "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"

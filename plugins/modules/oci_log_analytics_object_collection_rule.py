@@ -24,7 +24,7 @@ short_description: Manage a LogAnalyticsObjectCollectionRule resource in Oracle 
 description:
     - This module allows the user to create, update and delete a LogAnalyticsObjectCollectionRule resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a rule to collect logs from an object storage bucket.
-    - "This resource has the following action operations in the M(oci_log_analytics_object_collection_rule_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_log_analytics_object_collection_rule_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -162,6 +162,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create log_analytics_object_collection_rule
   oci_log_analytics_object_collection_rule:
+    # required
     namespace_name: namespace_name_example
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -170,34 +171,66 @@ EXAMPLES = """
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     log_source_name: log_source_name_example
 
-- name: Update log_analytics_object_collection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_log_analytics_object_collection_rule:
-    namespace_name: namespace_name_example
-    name: name_example
+    # optional
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
-    log_source_name: log_source_name_example
+    collection_type: LIVE
+    poll_since: poll_since_example
+    poll_till: poll_till_example
     entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
     char_encoding: char_encoding_example
     is_enabled: true
+    overrides: null
+    object_name_filters: [ "null" ]
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update log_analytics_object_collection_rule
   oci_log_analytics_object_collection_rule:
+    # required
     namespace_name: namespace_name_example
-    description: description_example
     log_analytics_object_collection_rule_id: "ocid1.loganalyticsobjectcollectionrule.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+    log_source_name: log_source_name_example
+    entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
+    char_encoding: char_encoding_example
+    is_enabled: true
+    overrides: null
+    object_name_filters: [ "null" ]
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update log_analytics_object_collection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_log_analytics_object_collection_rule:
+    # required
+    namespace_name: namespace_name_example
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+    log_source_name: log_source_name_example
+    entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
+    char_encoding: char_encoding_example
+    is_enabled: true
+    overrides: null
+    object_name_filters: [ "null" ]
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete log_analytics_object_collection_rule
   oci_log_analytics_object_collection_rule:
+    # required
     namespace_name: namespace_name_example
     log_analytics_object_collection_rule_id: "ocid1.loganalyticsobjectcollectionrule.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete log_analytics_object_collection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_object_collection_rule:
+    # required
     namespace_name: namespace_name_example
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

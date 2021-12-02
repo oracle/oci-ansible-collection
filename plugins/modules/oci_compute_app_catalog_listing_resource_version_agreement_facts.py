@@ -45,6 +45,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific app_catalog_listing_resource_version_agreement
   oci_compute_app_catalog_listing_resource_version_agreement_facts:
+    # required
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     resource_version: resource_version_example
 

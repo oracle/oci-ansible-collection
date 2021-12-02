@@ -81,3 +81,23 @@ class ContainerImageActionsHelperCustom:
                     resource=None
                 )
             raise
+
+
+# similar to BudgetAlertRuleHelperCustom (oci_budget_custom_helpers). Check the
+# comments for that on why this is needed.
+class ContainerImageSignatureHelperCustom:
+    def get_create_model(self):
+        create_model = super(
+            ContainerImageSignatureHelperCustom, self
+        ).get_create_model()
+        if self.module.params.get("msg"):
+            setattr(create_model, "message", self.module.params["msg"])
+        return create_model
+
+    def get_exclude_attributes(self):
+        exclude_attrs = super(
+            ContainerImageSignatureHelperCustom, self
+        ).get_exclude_attributes()
+        exclude_attrs.pop("msg", None)
+        exclude_attrs.append("message")
+        return exclude_attrs

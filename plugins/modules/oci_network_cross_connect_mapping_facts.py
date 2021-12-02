@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List cross_connect_mappings
   oci_network_cross_connect_mapping_facts:
+    # required
     virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -60,7 +61,8 @@ cross_connect_mappings:
             sample: bgp_md5_auth_key_example
         cross_connect_or_cross_connect_group_id:
             description:
-                - The OCID of the cross-connect or cross-connect group for this mapping.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect or cross-connect group for this
+                  mapping.
                   Specified by the owner of the cross-connect or cross-connect group (the
                   customer if the customer is colocated with Oracle, or the provider if the
                   customer is connecting via provider).

@@ -44,14 +44,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List autonomous_database_dataguard_associations
-  oci_database_autonomous_database_dataguard_association_facts:
-    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific autonomous_database_dataguard_association
   oci_database_autonomous_database_dataguard_association_facts:
+    # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_database_dataguard_association_id: "ocid1.autonomousdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List autonomous_database_dataguard_associations
+  oci_database_autonomous_database_dataguard_association_facts:
+    # required
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -61,13 +61,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List windows_updates
-  oci_os_management_windows_update_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific windows_update
   oci_os_management_windows_update_facts:
+    # required
     windows_update: windows_update_example
+
+- name: List windows_updates
+  oci_os_management_windows_update_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: My new resource
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 

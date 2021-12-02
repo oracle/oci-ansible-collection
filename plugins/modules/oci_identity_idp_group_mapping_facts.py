@@ -44,14 +44,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List idp_group_mappings
-  oci_identity_idp_group_mapping_facts:
-    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific idp_group_mapping
   oci_identity_idp_group_mapping_facts:
+    # required
     identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
     mapping_id: "ocid1.mapping.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List idp_group_mappings
+  oci_identity_idp_group_mapping_facts:
+    # required
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -47,6 +47,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action remove_import_drg_route_distribution on drg_route_table
   oci_network_drg_route_table_actions:
+    # required
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     action: remove_import_drg_route_distribution
 

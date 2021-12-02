@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.36.0] - 2021-12-02
+
+## Added
+- Support for Service Manager Proxy service.
+- Support added to integrate with Object Storage for BDS service.
+- Support for getting subnet topology in the Networking service.
+- Support for encrypted FastConnect resources in the Networking service.
+- Added new features like list-profile-levels, list-resource-action-queryable-fields, filter-resource-actions for cloud advisor service.
+- TDE Wallet Password Optional for ExaCS and DBCS for Database service.
+- Support for unprocessed data bucket actions for Logging Analytics service.
+- Support for the user and security assessment features in the Data Safe service.
+- Support for EM Managed Exadatas and EM Managed hosts In Operations Insights (OPSI) service.
+- Cross-compartment support to Operations Insights (OPSI) service.
+
+## Fixed
+- Installation script issues. Fixes [#129](https://github.com/oracle/oci-ansible-collection/issues/129) and [#107](https://github.com/oracle/oci-ansible-collection/issues/107)
+- Issue for modules having the message as a top-level module parameter. Fixes [#120](https://github.com/oracle/oci-ansible-collection/issues/120)
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.52.0
+
+
 ## [2.35.0] - 2021-11-18
 
 ## Added

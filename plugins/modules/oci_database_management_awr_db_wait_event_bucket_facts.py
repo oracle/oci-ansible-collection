@@ -103,9 +103,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific awr_db_wait_event_bucket
   oci_database_management_awr_db_wait_event_bucket_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     awr_db_id: "ocid1.awrdb.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
+
+    # optional
+    inst_num: inst_num_example
+    begin_sn_id_greater_than_or_equal_to: 56
+    end_sn_id_less_than_or_equal_to: 56
+    time_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    num_bucket: 56
+    min_value: 1.2
+    max_value: 1.2
+    container_id: 56
+    sort_by: CATEGORY
+    sort_order: ASC
 
 """
 

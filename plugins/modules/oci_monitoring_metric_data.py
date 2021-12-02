@@ -40,7 +40,7 @@ description:
     - "The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as
       in the following example:"
     - https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
-    - "This resource has the following action operations in the M(oci_metric_data_actions) module: summarize_metrics_data."
+    - "This resource has the following action operations in the M(oracle.oci.oci_monitoring_metric_data_actions) module: summarize_metrics_data."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -151,13 +151,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create metric_data
   oci_monitoring_metric_data:
+    # required
     metric_data:
-    - namespace: my_namespace
+    - # required
+      namespace: my_namespace
       compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
       name: my_app.success_rate
+      dimensions: null
       datapoints:
-      - timestamp: 2019-02-01T01:02:29.600Z
+      - # required
+        timestamp: 2019-02-01T01:02:29.600Z
         value: 10.23
+
+        # optional
+        count: 56
+
+      # optional
+      resource_group: frontend-fleet
+      metadata: null
+
+    # optional
+    batch_atomicity: NON_ATOMIC
 
 """
 

@@ -78,9 +78,17 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific rrset
   oci_dns_rrset_facts:
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     domain: domain_example
     rtype: rtype_example
+
+    # optional
+    if_modified_since: if_modified_since_example
+    zone_version: zone_version_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

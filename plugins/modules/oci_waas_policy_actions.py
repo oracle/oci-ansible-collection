@@ -79,19 +79,26 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action accept_recommendations on waas_policy
   oci_waas_policy_actions:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    protection_rule_keys: [ "$p.getValue()" ]
     action: accept_recommendations
 
 - name: Perform action change_compartment on waas_policy
   oci_waas_policy_actions:
-    compartment_id: "ocid1.compartment.oc1.."
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action purge_cache on waas_policy
   oci_waas_policy_actions:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     action: purge_cache
+
+    # optional
+    resources: [ "null" ]
 
 """
 

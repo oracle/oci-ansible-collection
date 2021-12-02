@@ -96,6 +96,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action attach_load_balancer on instance_pool
   oci_compute_management_instance_pool_actions:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
@@ -105,12 +106,14 @@ EXAMPLES = """
 
 - name: Perform action change_compartment on instance_pool
   oci_compute_management_instance_pool_actions:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action detach_load_balancer on instance_pool
   oci_compute_management_instance_pool_actions:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
@@ -118,21 +121,25 @@ EXAMPLES = """
 
 - name: Perform action reset on instance_pool
   oci_compute_management_instance_pool_actions:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     action: reset
 
 - name: Perform action softreset on instance_pool
   oci_compute_management_instance_pool_actions:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     action: softreset
 
 - name: Perform action start on instance_pool
   oci_compute_management_instance_pool_actions:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on instance_pool
   oci_compute_management_instance_pool_actions:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
@@ -168,7 +175,8 @@ instance_pool:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - The user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

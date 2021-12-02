@@ -60,16 +60,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action cancel_secret_version_deletion on secret_version
   oci_vault_secret_version_actions:
+    # required
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     secret_version_number: 789
     action: cancel_secret_version_deletion
 
 - name: Perform action schedule_secret_version_deletion on secret_version
   oci_vault_secret_version_actions:
-    time_of_deletion: "2018-04-03T21:10:29.600Z"
+    # required
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    secret_version_number: "789"
-    action: "schedule_secret_version_deletion"
+    secret_version_number: 789
+    action: schedule_secret_version_deletion
+
+    # optional
+    time_of_deletion: 2019-04-03T21:10:29.600Z
 
 """
 

@@ -29,7 +29,8 @@ description:
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
-    - "This resource has the following action operations in the M(oci_alarm_actions) module: change_compartment, remove_alarm_suppression."
+    - "This resource has the following action operations in the M(oracle.oci.oci_monitoring_alarm_actions) module: change_compartment,
+      remove_alarm_suppression."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -246,29 +247,104 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create alarm
   oci_monitoring_alarm:
+    # required
     display_name: System Down
     compartment_id: compartment_OCID
     metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
     namespace: oci_computeagent
     query: query_example
     severity: CRITICAL
+    destinations: [ "null" ]
     is_enabled: true
 
-- name: Update alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_monitoring_alarm:
-    display_name: "System Down"
+    # optional
+    metric_compartment_id_in_subtree: true
+    resource_group: frontend-fleet
+    resolution: resolution_example
+    pending_duration: PT5M
+    body: High CPU usage alert. Follow runbook instructions for resolution.
+    message_format: RAW
+    repeat_notification_duration: PT2H
+    suppression:
+      # required
+      time_suppress_from: 2019-02-01T01:02:29.600Z
+      time_suppress_until: 2019-02-01T02:02:29.600Z
+
+      # optional
+      description: Planned outage due to change IT-1234.
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update alarm
   oci_monitoring_alarm:
+    # required
     alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: System Down
+    compartment_id: compartment_OCID
+    metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
+    metric_compartment_id_in_subtree: true
+    namespace: oci_computeagent
+    resource_group: frontend-fleet
+    query: query_example
+    resolution: resolution_example
+    pending_duration: PT5M
+    severity: CRITICAL
+    body: High CPU usage alert. Follow runbook instructions for resolution.
+    message_format: RAW
+    destinations: [ "null" ]
+    repeat_notification_duration: PT2H
+    suppression:
+      # required
+      time_suppress_from: 2019-02-01T01:02:29.600Z
+      time_suppress_until: 2019-02-01T02:02:29.600Z
+
+      # optional
+      description: Planned outage due to change IT-1234.
+    is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_monitoring_alarm:
+    # required
+    display_name: System Down
+    compartment_id: compartment_OCID
+
+    # optional
+    metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
+    metric_compartment_id_in_subtree: true
+    namespace: oci_computeagent
+    resource_group: frontend-fleet
+    query: query_example
+    resolution: resolution_example
+    pending_duration: PT5M
+    severity: CRITICAL
+    body: High CPU usage alert. Follow runbook instructions for resolution.
+    message_format: RAW
+    destinations: [ "null" ]
+    repeat_notification_duration: PT2H
+    suppression:
+      # required
+      time_suppress_from: 2019-02-01T01:02:29.600Z
+      time_suppress_until: 2019-02-01T02:02:29.600Z
+
+      # optional
+      description: Planned outage due to change IT-1234.
+    is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete alarm
   oci_monitoring_alarm:
+    # required
     alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_monitoring_alarm:
+    # required
     display_name: System Down
     compartment_id: compartment_OCID
     state: absent

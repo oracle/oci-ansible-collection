@@ -78,13 +78,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List jobs
-  oci_database_migration_job_facts:
-    migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific job
   oci_database_migration_job_facts:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List jobs
+  oci_database_migration_job_facts:
+    # required
+    migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: timeCreated
+    sort_order: ASC
+    lifecycle_state: ACCEPTED
 
 """
 

@@ -77,13 +77,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List projects
-  oci_ai_anomaly_detection_project_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific project
   oci_ai_anomaly_detection_project_facts:
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List projects
+  oci_ai_anomaly_detection_project_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

@@ -64,7 +64,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List protection_capability_group_tags
   oci_waf_protection_capability_group_tag_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    type: type_example
+    sort_order: ASC
+    sort_by: name
+    name: name_example
 
 """
 

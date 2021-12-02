@@ -27,7 +27,8 @@ description:
       For more information, see
       L(To create a configuration source
       provider,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingconfigurationsourceproviders.htm#CreateConfigurationSourceProvider).
-    - "This resource has the following action operations in the M(oci_configuration_source_provider_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_resource_manager_configuration_source_provider_actions) module:
+      change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -108,30 +109,99 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create configuration_source_provider
+- name: Create configuration_source_provider with config_source_provider_type = GITLAB_ACCESS_TOKEN
   oci_resource_manager_configuration_source_provider:
-    config_source_provider_type: GITHUB_ACCESS_TOKEN
+    # required
+    config_source_provider_type: GITLAB_ACCESS_TOKEN
+
+    # optional
+    compartment_id: compartment_OCID
+    display_name: My Renamed Configuration Source Provider
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: https://gitlab.com
     access_token: access_token_example
 
-- name: Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Create configuration_source_provider with config_source_provider_type = GITHUB_ACCESS_TOKEN
   oci_resource_manager_configuration_source_provider:
-    display_name: "My Renamed Configuration Source Provider"
-
-- name: Update configuration_source_provider
-  oci_resource_manager_configuration_source_provider:
+    # required
     config_source_provider_type: GITHUB_ACCESS_TOKEN
+
+    # optional
+    compartment_id: compartment_OCID
+    display_name: My Renamed Configuration Source Provider
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: https://gitlab.com
     access_token: access_token_example
-    configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update configuration_source_provider with config_source_provider_type = GITLAB_ACCESS_TOKEN
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: GITLAB_ACCESS_TOKEN
+
+    # optional
+    display_name: My Renamed Configuration Source Provider
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: https://gitlab.com
+    access_token: access_token_example
+
+- name: Update configuration_source_provider with config_source_provider_type = GITHUB_ACCESS_TOKEN
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: GITHUB_ACCESS_TOKEN
+
+    # optional
+    display_name: My Renamed Configuration Source Provider
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: https://gitlab.com
+    access_token: access_token_example
+
+- name: >
+    Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with config_source_provider_type = GITLAB_ACCESS_TOKEN
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: GITLAB_ACCESS_TOKEN
+
+    # optional
+    display_name: My Renamed Configuration Source Provider
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: https://gitlab.com
+    access_token: access_token_example
+
+- name: >
+    Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with config_source_provider_type = GITHUB_ACCESS_TOKEN
+  oci_resource_manager_configuration_source_provider:
+    # required
+    config_source_provider_type: GITHUB_ACCESS_TOKEN
+
+    # optional
+    display_name: My Renamed Configuration Source Provider
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    api_endpoint: https://gitlab.com
+    access_token: access_token_example
 
 - name: Delete configuration_source_provider
   oci_resource_manager_configuration_source_provider:
+    # required
     configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_resource_manager_configuration_source_provider:
+    # required
     display_name: My Renamed Configuration Source Provider
     state: absent
 

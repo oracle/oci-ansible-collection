@@ -57,13 +57,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List tag_namespaces
-  oci_identity_tag_namespace_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific tag_namespace
   oci_identity_tag_namespace_facts:
+    # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List tag_namespaces
+  oci_identity_tag_namespace_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    include_subcompartments: true
+    lifecycle_state: lifecycle_state_example
 
 """
 

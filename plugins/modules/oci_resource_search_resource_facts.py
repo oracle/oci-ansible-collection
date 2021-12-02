@@ -64,11 +64,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List resources
+- name: List resources with type = Structured
   oci_resource_search_resource_facts:
-    type: "FreeText"
-    text: "jane"
-    matching_context_type: "HIGHLIGHTS"
+    # required
+    type: Structured
+    query: query_example
+
+    # optional
+    matching_context_type: NONE
+
+- name: List resources with type = FreeText
+  oci_resource_search_resource_facts:
+    # required
+    type: FreeText
+    text: text_example
+
+    # optional
+    matching_context_type: NONE
 
 """
 

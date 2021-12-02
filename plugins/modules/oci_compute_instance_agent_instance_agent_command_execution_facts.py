@@ -80,15 +80,22 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
+- name: Get a specific instance_agent_command_execution
+  oci_compute_instance_agent_instance_agent_command_execution_facts:
+    # required
+    instance_agent_command_id: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List instance_agent_command_executions
   oci_compute_instance_agent_instance_agent_command_execution_facts:
+    # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific instance_agent_command_execution
-  oci_compute_instance_agent_instance_agent_command_execution_facts:
-    instance_agent_command_id: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
-    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

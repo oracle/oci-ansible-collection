@@ -29,7 +29,7 @@ description:
       You may optionally specify a *display name* for the volume group, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
     - For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
-    - "This resource has the following action operations in the M(oci_volume_group_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_blockstorage_volume_group_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -59,8 +59,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the volume group. Does not have to be
-              unique, and it's changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -132,33 +132,51 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_group
   oci_blockstorage_volume_group:
-    availability_domain: "Uocm:PHX-AD-1"
+    # required
+    availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
     source_details:
-      type: "volumeIds"
-      volume_ids:
-      - "ocid1.volume.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+      # required
+      type: volumeIds
+      volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_blockstorage_volume_group:
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    # optional
+    backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update volume_group
   oci_blockstorage_volume_group:
+    # required
+    volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    volume_ids: [ "null" ]
+
+- name: Update volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_blockstorage_volume_group:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    volume_ids: [ "null" ]
 
 - name: Delete volume_group
   oci_blockstorage_volume_group:
+    # required
     volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_group:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
     display_name: display_name_example
     state: absent
@@ -194,8 +212,8 @@ volume_group:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the volume group. Does not have to be
-                  unique, and it's changeable. Avoid entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

@@ -89,13 +89,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List budgets
-  oci_budget_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific budget
   oci_budget_facts:
+    # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List budgets
+  oci_budget_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_order: ASC
+    sort_by: timeCreated
+    lifecycle_state: ACTIVE
+    display_name: My new resource
+    target_type: ALL
 
 """
 

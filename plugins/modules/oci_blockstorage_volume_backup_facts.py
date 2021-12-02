@@ -89,13 +89,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List volume_backups
-  oci_blockstorage_volume_backup_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific volume_backup
   oci_blockstorage_volume_backup_facts:
+    # required
     volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List volume_backups
+  oci_blockstorage_volume_backup_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    source_volume_backup_id: "ocid1.sourcevolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -129,7 +139,7 @@ volume_backups:
             sample: {}
         display_name:
             description:
-                - A user-friendly name for the volume backup. Does not have to be unique and it's changeable.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

@@ -24,7 +24,8 @@ short_description: Manage a ByoipRange resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ByoipRange resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a subrange of the BYOIP CIDR block.
-    - "This resource has the following action operations in the M(oci_byoip_range_actions) module: advertise, change_compartment, validate, withdraw."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_byoip_range_actions) module: advertise, change_compartment, validate,
+      withdraw."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -87,29 +88,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create byoip_range
   oci_network_byoip_range:
+    # required
     cidr_block: 10.0.1.0/24
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update byoip_range using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_byoip_range:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update byoip_range
   oci_network_byoip_range:
+    # required
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update byoip_range using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_byoip_range:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete byoip_range
   oci_network_byoip_range:
+    # required
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete byoip_range using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_byoip_range:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -145,8 +161,8 @@ byoip_range:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

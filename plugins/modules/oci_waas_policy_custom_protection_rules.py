@@ -90,7 +90,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update waas_policy_custom_protection_rules
   oci_waas_policy_custom_protection_rules:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    update_custom_protection_rules_details:
+    - # optional
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      action: DETECT
+      exclusions:
+      - # optional
+        target: REQUEST_COOKIES
+        exclusions: [ "null" ]
 
 """
 

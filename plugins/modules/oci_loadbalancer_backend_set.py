@@ -351,25 +351,119 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create backend_set
   oci_loadbalancer_backend_set:
+    # required
     name: example_backend_set
     policy: LEAST_CONNECTIONS
     health_checker:
+      # required
       protocol: HTTP
+
+      # optional
+      url_path: /healthcheck
+      port: 8080
+      return_code: 200
+      retries: 3
+      timeout_in_millis: 3000
+      interval_in_millis: 10000
+      response_body_regex: response_body_regex_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    backends:
+    - # required
+      ip_address: 10.0.0.3
+      port: 8080
+
+      # optional
+      weight: 3
+      backup: false
+      drain: false
+      offline: false
+    ssl_configuration:
+      # optional
+      verify_depth: 3
+      verify_peer_certificate: true
+      trusted_certificate_authority_ids: [ "null" ]
+      certificate_ids: [ "null" ]
+      certificate_name: example_certificate_bundle
+      protocols: [ "null" ]
+      cipher_suite_name: cipher_suite_name_example
+      server_order_preference: ENABLED
+    session_persistence_configuration:
+      # required
+      cookie_name: example_cookie
+
+      # optional
+      disable_fallback: false
+    lb_cookie_session_persistence_configuration:
+      # optional
+      cookie_name: example_cookie
+      disable_fallback: false
+      domain: example.com
+      path: /example
+      max_age_in_seconds: 3600
+      is_secure: true
+      is_http_only: true
 
 - name: Update backend_set
   oci_loadbalancer_backend_set:
+    # required
     name: example_backend_set
     policy: LEAST_CONNECTIONS
     backends:
-    - ip_address: 10.0.0.3
+    - # required
+      ip_address: 10.0.0.3
       port: 8080
+
+      # optional
+      weight: 3
+      backup: false
+      drain: false
+      offline: false
     health_checker:
+      # required
       protocol: HTTP
+
+      # optional
+      url_path: /healthcheck
+      port: 8080
+      return_code: 200
+      retries: 3
+      timeout_in_millis: 3000
+      interval_in_millis: 10000
+      response_body_regex: response_body_regex_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    ssl_configuration:
+      # optional
+      verify_depth: 3
+      verify_peer_certificate: true
+      trusted_certificate_authority_ids: [ "null" ]
+      certificate_ids: [ "null" ]
+      certificate_name: example_certificate_bundle
+      protocols: [ "null" ]
+      cipher_suite_name: cipher_suite_name_example
+      server_order_preference: ENABLED
+    session_persistence_configuration:
+      # required
+      cookie_name: example_cookie
+
+      # optional
+      disable_fallback: false
+    lb_cookie_session_persistence_configuration:
+      # optional
+      cookie_name: example_cookie
+      disable_fallback: false
+      domain: example.com
+      path: /example
+      max_age_in_seconds: 3600
+      is_secure: true
+      is_http_only: true
 
 - name: Delete backend_set
   oci_loadbalancer_backend_set:
+    # required
     name: example_backend_set
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -528,7 +622,7 @@ backend_set:
                         - "Example: `^((?!false).|\\\\s)*$`"
                     returned: on success
                     type: str
-                    sample: "^((?!false).|\\\\s)*$"
+                    sample: response_body_regex_example
         ssl_configuration:
             description:
                 - ""
@@ -767,7 +861,7 @@ backend_set:
             "retries": 3,
             "timeout_in_millis": 3000,
             "interval_in_millis": 10000,
-            "response_body_regex": "^((?!false).|\\\\s)*$"
+            "response_body_regex": "response_body_regex_example"
         },
         "ssl_configuration": {
             "verify_depth": 3,

@@ -24,8 +24,8 @@ short_description: Manage an InstancePool resource in Oracle Cloud Infrastructur
 description:
     - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
     - For I(state=present), create an instance pool.
-    - "This resource has the following action operations in the M(oci_instance_pool_actions) module: attach_load_balancer, change_compartment,
-      detach_load_balancer, reset, softreset, start, stop."
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_management_instance_pool_actions) module: attach_load_balancer,
+      change_compartment, detach_load_balancer, reset, softreset, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -45,8 +45,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the instance pool. Does not have to be unique, and it's
-              changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -180,60 +180,94 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_pool
   oci_compute_management_instance_pool:
-    display_name: "autoscaling-instance-pool"
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
+    placement_configurations:
+    - # required
+      availability_domain: Uocm:PHX-AD-1
+      primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+
+      # optional
+      fault_domains: [ "null" ]
+      secondary_vnic_subnets:
+      - # required
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        display_name: display_name_example
     size: 15
-    placement_configurations:
-    - availability_domain: "Uocm:PHX-AD-1"
-      primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
-    - availability_domain: "Uocm:PHX-AD-1"
-      primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
-    - availability_domain: "Uocm:PHX-AD-1"
-      primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: autoscaling-instance-pool
+    freeform_tags: {'Department': 'Finance'}
     load_balancers:
-    - load_balancer_id: "ocid1.loadbalancer.oc1.phx..unique_ID"
-      backend_set_name: "lb-20190410-1147-backend-set"
+    - # required
+      load_balancer_id: "ocid1.loadbalancer.oc1.phx..unique_ID"
+      backend_set_name: lb-20190410-1147-backend-set
       port: 80
-      vnic_selection: "PrimaryVnic"
+      vnic_selection: PrimaryVnic
 
-- name: Create instance_pool
+- name: Update instance_pool
   oci_compute_management_instance_pool:
-    display_name: "backend-servers-pool"
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
-    size: 10
-    placement_configurations:
-    - availability_domain: "Uocm:PHX-AD-1"
-      primary_subnet_id: "ocid1.subnet.oc1..unique_ID_1"
-    - availability_domain: "Uocm:PHX-AD-1"
-      primary_subnet_id: "ocid1.subnet.oc1..unique_ID_2"
+    # required
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_management_instance_pool:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: autoscaling-instance-pool
     freeform_tags: {'Department': 'Finance'}
     instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
     placement_configurations:
-    - availability_domain: Uocm:PHX-AD-1
+    - # required
+      availability_domain: Uocm:PHX-AD-1
       primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+
+      # optional
+      fault_domains: [ "null" ]
+      secondary_vnic_subnets:
+      - # required
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        display_name: display_name_example
     size: 15
 
-- name: Update instance_pool
+- name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_pool:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: autoscaling-instance-pool
-    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
+    placement_configurations:
+    - # required
+      availability_domain: Uocm:PHX-AD-1
+      primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+
+      # optional
+      fault_domains: [ "null" ]
+      secondary_vnic_subnets:
+      - # required
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        display_name: display_name_example
+    size: 15
 
 - name: Delete instance_pool
   oci_compute_management_instance_pool:
+    # required
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_pool:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: autoscaling-instance-pool
     state: absent
@@ -270,7 +304,8 @@ instance_pool:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - The user-friendly name. Does not have to be unique.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

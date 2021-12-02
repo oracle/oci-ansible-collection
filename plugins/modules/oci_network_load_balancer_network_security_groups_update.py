@@ -59,10 +59,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update network_security_groups_update
   oci_network_load_balancer_network_security_groups_update:
-    network_security_group_ids:
-    - "ocid1.networksecuritygroup.oc1.phx.unique_ID1"
-    - "ocid1.networksecuritygroup.oc1.phx.unique_ID2"
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    network_security_group_ids: [ "ocid1.networksecuritygroup.oc1.phx.unique_ID1" ]
 
 """
 

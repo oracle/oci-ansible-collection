@@ -24,7 +24,7 @@ short_description: Manage a CloudVmCluster resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a CloudVmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a cloud VM cluster.
-    - "This resource has the following action operations in the M(oci_cloud_vm_cluster_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_cloud_vm_cluster_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -230,6 +230,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cloud_vm_cluster
   oci_database_cloud_vm_cluster:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -240,30 +241,72 @@ EXAMPLES = """
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     gi_version: gi_version_example
 
-- name: Update cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    cluster_name: cluster_name_example
+    data_storage_percentage: 56
+    domain: domain_example
+    license_model: LICENSE_INCLUDED
+    is_sparse_diskgroup_enabled: true
+    is_local_backup_enabled: true
+    time_zone: time_zone_example
+    scan_listener_port_tcp: 56
+    scan_listener_port_tcp_ssl: 56
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update cloud_vm_cluster
   oci_database_cloud_vm_cluster:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     cpu_core_count: 56
     display_name: display_name_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    update_details:
+      # optional
+      update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
+      update_action: ROLLING_APPLY
+    compute_nodes: [ "null" ]
     storage_size_in_gbs: 56
 
-- name: Update cloud_vm_cluster
+- name: Update cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_vm_cluster:
-    cpu_core_count: 56
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    cpu_core_count: 56
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    license_model: LICENSE_INCLUDED
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    update_details:
+      # optional
+      update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
+      update_action: ROLLING_APPLY
+    compute_nodes: [ "null" ]
+    storage_size_in_gbs: 56
 
 - name: Delete cloud_vm_cluster
   oci_database_cloud_vm_cluster:
+    # required
     cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_vm_cluster:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

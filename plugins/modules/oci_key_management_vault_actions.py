@@ -106,32 +106,39 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action cancel_vault_deletion on vault
   oci_key_management_vault_actions:
+    # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel_vault_deletion
 
 - name: Perform action change_compartment on vault
   oci_key_management_vault_actions:
+    # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action create_vault_replica on vault
   oci_key_management_vault_actions:
+    # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     replica_region: replica_region_example
     action: create_vault_replica
 
 - name: Perform action delete_vault_replica on vault
   oci_key_management_vault_actions:
+    # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     replica_region: replica_region_example
     action: delete_vault_replica
 
 - name: Perform action schedule_vault_deletion on vault
   oci_key_management_vault_actions:
-    time_of_deletion: "2018-04-03T21:10:29.600Z"
+    # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "schedule_vault_deletion"
+    action: schedule_vault_deletion
+
+    # optional
+    time_of_deletion: 2013-10-20T19:20:30+01:00
 
 """
 

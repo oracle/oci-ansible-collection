@@ -7,6 +7,19 @@
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
+from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+
+
+class ResourceActionActionsHelperCustom:
+    """
+    resource_action_id is required for get_operation which we do not pass as the model for the action, does not require
+    that hence setting it non for get_resource()
+    """
+
+    def get_resource(self):
+        if self.module.params.get("action") == "filter":
+            return oci_common_utils.get_default_response_from_resource(resource=None)
+        return super(ResourceActionActionsHelperCustom, self).get_resource()
 
 
 class RecommendationActionsHelperCustom:

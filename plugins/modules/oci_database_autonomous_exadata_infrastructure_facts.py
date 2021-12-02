@@ -80,13 +80,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List autonomous_exadata_infrastructures
-  oci_database_autonomous_exadata_infrastructure_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure_facts:
+    # required
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List autonomous_exadata_infrastructures
+  oci_database_autonomous_exadata_infrastructure_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    availability_domain: Uocm:PHX-AD-1
+    display_name: display_name_example
 
 """
 

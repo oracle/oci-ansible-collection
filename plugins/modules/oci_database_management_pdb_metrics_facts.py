@@ -69,9 +69,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific pdb_metrics
   oci_database_management_pdb_metrics_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     start_time: start_time_example
     end_time: end_time_example
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compare_type: HOUR
+    filter_by_metric_names: filter_by_metric_names_example
 
 """
 

@@ -92,29 +92,45 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create dkim
   oci_email_dkim:
+    # required
     email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update dkim using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_email_dkim:
+    # optional
     name: mydomain-phx-20210228
-    email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update dkim
   oci_email_dkim:
+    # required
+    dkim_id: "ocid1.dkim.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     freeform_tags: {'Department': 'Finance'}
-    dkim_id: "ocid1.dkim.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update dkim using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_email_dkim:
+    # required
+    name: mydomain-phx-20210228
+    email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete dkim
   oci_email_dkim:
+    # required
     dkim_id: "ocid1.dkim.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete dkim using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_email_dkim:
+    # required
     name: mydomain-phx-20210228
     email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

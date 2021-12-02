@@ -13,6 +13,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 try:
     from oci.log_analytics.models import Namespace
     from oci.exceptions import ServiceError
+    from oci.util import to_dict
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -171,6 +172,9 @@ class ImportCustomContentActionsHelperCustom:
 
 
 class PreferencesManagementActionsHelperCustom:
+    UPDATE_PREFERENCES_ACTION = "update_preferences"
+    REMOVE_PREFERENCES_ACTION = "remove_preferences"
+
     # Preferences Management resource doesn't support get operation.
     def get_resource(self):
         return oci_common_utils.get_default_response_from_resource(
@@ -179,3 +183,68 @@ class PreferencesManagementActionsHelperCustom:
                 namespace_name=self.module.params.get("namespace_name"),
             )
         )
+
+    # Handling idempotency for `update_preferences` & `remove_preferences` action operations.
+    def is_action_necessary(self, action, resource=None):
+        resource_dict = to_dict(resource)
+        if action.lower() == self.UPDATE_PREFERENCES_ACTION:
+            source_list = self.module.params.get("items")
+            for item_dict in source_list:
+                if item_dict not in resource_dict:
+                    return True
+            return False
+        elif action.lower() == self.REMOVE_PREFERENCES_ACTION:
+            source_list = self.module.params.get("items")
+            for item_dict in source_list:
+                if item_dict in resource_dict:
+                    return True
+            return False
+        return super(
+            PreferencesManagementActionsHelperCustom, self
+        ).is_action_necessary(action, resource)
+
+
+class UnprocessedDataBucketFactsHelperCustom:
+    def get_resource(self):
+        """ hanlding the service error for 404. This response means the resource does not exist"""
+        try:
+            return oci_common_utils.call_with_backoff(
+                self.client.get_unprocessed_data_bucket,
+                namespace_name=self.module.params.get("namespace_name"),
+            )
+        # first time `set_unprocessed_data_bucket` action should be performed for bucket.
+        # otherwise, 404 error is received.
+        except ServiceError as se:
+            if se.status == 404 and se.code == "NotAuthorizedOrNotFound":
+                return oci_common_utils.get_default_response_from_resource(
+                    resource=None
+                )
+            raise
+
+
+class UnprocessedDataBucketActionsHelperCustom:
+    SET_ACTION = "set"
+
+    def get_resource(self):
+        """ hanlding the service error for 404. This response means the resource does not exist"""
+        try:
+            return oci_common_utils.call_with_backoff(
+                self.client.get_unprocessed_data_bucket,
+                namespace_name=self.module.params.get("namespace_name"),
+            )
+        # first time `set_unprocessed_data_bucket` action should be performed for bucket.
+        # otherwise, 404 error is received.
+        except ServiceError as se:
+            if se.status == 404 and se.code == "NotAuthorizedOrNotFound":
+                return oci_common_utils.get_default_response_from_resource(
+                    resource=None
+                )
+            raise
+
+    def is_action_necessary(self, action, resource=None):
+        if action.lower() == self.SET_ACTION:
+            if self.module.params.get("bucket_name") == resource.bucket_name:
+                return False
+        return super(
+            UnprocessedDataBucketActionsHelperCustom, self
+        ).is_action_necessary(action, resource)

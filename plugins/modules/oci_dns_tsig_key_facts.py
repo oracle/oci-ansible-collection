@@ -86,13 +86,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List tsig_keys
-  oci_dns_tsig_key_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific tsig_key
   oci_dns_tsig_key_facts:
+    # required
     tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    if_modified_since: if_modified_since_example
+    scope: GLOBAL
+
+- name: List tsig_keys
+  oci_dns_tsig_key_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    scope: GLOBAL
+    name: name_example
+    lifecycle_state: lifecycle_state_example
+    sort_by: name
+    sort_order: ASC
 
 """
 

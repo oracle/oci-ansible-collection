@@ -27,8 +27,8 @@ description:
       a set of managed instances or managed instance groups.  Can be created
       as a one-time execution in the future, or as a recurring execution
       that repeats on a defined interval.
-    - "This resource has the following action operations in the M(oci_scheduled_job_actions) module: change_compartment, run_scheduled_job_now,
-      skip_next_scheduled_job_execution."
+    - "This resource has the following action operations in the M(oracle.oci.oci_os_management_scheduled_job_actions) module: change_compartment,
+      run_scheduled_job_now, skip_next_scheduled_job_execution."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -205,15 +205,40 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create scheduled_job
   oci_os_management_scheduled_job:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     schedule_type: ONETIME
     time_next_execution: 2013-10-20T19:20:30+01:00
     operation_type: INSTALL
 
-- name: Update scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    description: description_example
+    interval_type: HOUR
+    interval_value: interval_value_example
+    managed_instances:
+    - # required
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      display_name: display_name_example
+    managed_instance_groups:
+    - # required
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      display_name: display_name_example
+    update_type: SECURITY
+    package_names:
+    - # required
+      name: name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    update_names: [ "null" ]
+    os_family: LINUX
+
+- name: Update scheduled_job
   oci_os_management_scheduled_job:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
     schedule_type: ONETIME
@@ -223,23 +248,42 @@ EXAMPLES = """
     operation_type: INSTALL
     update_type: SECURITY
     package_names:
-    - name: name_example
+    - # required
+      name: name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    update_names: [ "null" ]
 
-- name: Update scheduled_job
+- name: Update scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_scheduled_job:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+
+    # optional
     description: description_example
-    scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
+    schedule_type: ONETIME
+    time_next_execution: 2013-10-20T19:20:30+01:00
+    interval_type: HOUR
+    interval_value: interval_value_example
+    operation_type: INSTALL
+    update_type: SECURITY
+    package_names:
+    - # required
+      name: name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    update_names: [ "null" ]
 
 - name: Delete scheduled_job
   oci_os_management_scheduled_job:
+    # required
     scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_scheduled_job:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

@@ -60,21 +60,25 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action stop on db_node
   oci_database_db_node_actions:
+    # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 - name: Perform action start on db_node
   oci_database_db_node_actions:
+    # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action softreset on db_node
   oci_database_db_node_actions:
+    # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
     action: softreset
 
 - name: Perform action reset on db_node
   oci_database_db_node_actions:
+    # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
     action: reset
 

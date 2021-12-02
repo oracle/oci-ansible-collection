@@ -89,14 +89,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List logs
-  oci_logging_log_facts:
-    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific log
   oci_logging_log_facts:
+    # required
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List logs
+  oci_logging_log_facts:
+    # required
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    log_type: CUSTOM
+    source_service: source_service_example
+    source_resource: source_resource_example
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    sort_by: timeCreated
+    sort_order: ASC
 
 """
 

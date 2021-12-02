@@ -71,7 +71,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List repository_paths
   oci_devops_repository_path_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    ref: ref_example
+    paths_in_subtree: true
+    folder_path: folder_path_example
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: type
 
 """
 

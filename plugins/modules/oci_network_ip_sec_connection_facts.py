@@ -52,13 +52,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List ip_sec_connections
-  oci_network_ip_sec_connection_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific ip_sec_connection
   oci_network_ip_sec_connection_facts:
+    # required
     ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List ip_sec_connections
+  oci_network_ip_sec_connection_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -71,13 +77,14 @@ ip_sec_connections:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the IPSec connection.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the IPSec connection.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_id:
             description:
-                - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(Cpe,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
             type: str
             sample: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"

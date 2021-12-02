@@ -64,17 +64,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create tag_default
   oci_identity_tag_default:
+    # required
     compartment_id: "ocid1.compartment.oc1..aaaaaaaaexampleuniqueID"
     tag_definition_id: "ocid1.tagdefinition.oc1..aaaaaaaaexampleuniqueID"
-    value: "W123"
+    value: W123
 
 - name: Update tag_default
   oci_identity_tag_default:
-    value: "W123"
+    # required
+    value: W123
     tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete tag_default
   oci_identity_tag_default:
+    # required
     tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

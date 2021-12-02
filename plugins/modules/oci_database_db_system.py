@@ -37,7 +37,8 @@ description:
       us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure/) and
       L(CreateCloudVmCluster,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster/) APIs to provision a new
       Exadata Cloud Service instance.
-    - "This resource has the following action operations in the M(oci_db_system_actions) module: change_compartment, migrate_exadata_db_system_resource_model."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_db_system_actions) module: change_compartment,
+      migrate_exadata_db_system_resource_model."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -456,7 +457,7 @@ options:
                     backup_tde_password:
                         description:
                             - The password to open the TDE wallet.
-                            - Required when source is one of ['DATABASE', 'DB_BACKUP']
+                            - Applicable when source is one of ['DATABASE', 'DB_BACKUP']
                         type: str
                     time_stamp_for_point_in_time_recovery:
                         description:
@@ -647,70 +648,423 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create db_system
+- name: Create db_system with source = NONE
   oci_database_db_system:
-    availability_domain: "Uocm:PHX-AD-1"
+    # required
     compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    availability_domain: Uocm:PHX-AD-1
+    subnet_id: ocid1.subnet.oc1.phx.unique_ID
+    shape: BM.DenseIO1.36
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    hostname: athena
     cpu_core_count: 8
-    database_edition: "ENTERPRISE_EDITION"
     db_home:
+      # required
       database:
-        admin_password: "password"
-        db_name: "myTestDb"
+        # required
+        admin_password: example-password
+
+        # optional
+        db_name: myTestDb
+        db_unique_name: db_unique_name_example
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        pdb_name: pdb_name_example
+        tde_wallet_password: example-password
+        character_set: character_set_example
+        ncharacter_set: ncharacter_set_example
+        db_workload: OLTP
         db_backup_config:
-          backup_destination_details:
-          - type: "RECOVERY_APPLIANCE"
-            id: "ocid1.bkupdest.oc1.phx.unique_ID"
-            vpc_user: "vpcUser1"
-            vpc_password: "password"
-          recovery_window_in_days: 30
+          # optional
           auto_backup_enabled: true
-      db_version: "12.1.0.2"
+          recovery_window_in_days: 30
+          auto_backup_window: SLOT_TWO
+          backup_destination_details:
+          - # required
+            type: RECOVERY_APPLIANCE
+
+            # optional
+            id: ocid1.bkupdest.oc1.phx.unique_ID
+            vpc_user: vpcUser1
+            vpc_password: example-password
+            internet_proxy: internet_proxy_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        sid_prefix: sid_prefix_example
+        db_domain: db_domain_example
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_tde_password: example-password
+        time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+        backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
       display_name: null
+      db_version: 12.1.0.2
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    database_edition: ENTERPRISE_EDITION
+
+    # optional
+    fault_domains: [ "null" ]
+    display_name: tst3dbsys
+    backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    time_zone: time_zone_example
     db_system_options:
-      storage_management: "LVM"
+      # optional
+      storage_management: LVM
+    sparse_diskgroup: true
+    domain: example.com
+    cluster_name: cluster_name_example
+    data_storage_percentage: 56
+    data_storage_size_in_gbs: 56
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    node_count: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    source: NONE
+    private_ip: private_ip_example
     disk_redundancy: null
-    display_name: "tst3dbsys"
-    domain: "example.com"
-    hostname: "athena"
-    shape: "BM.DenseIO1.36"
-    source: "NONE"
-    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
-    subnet_id: "ocid1.subnet.oc1.phx.unique_ID"
+    license_model: LICENSE_INCLUDED
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
 
-- name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_db_system:
-    cpu_core_count: 10
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
 
-- name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Create db_system with source = DB_SYSTEM
   oci_database_db_system:
-    version:
-      patch_id: "ocid1.patch.oc1.phx.unique_ID"
-      action: "APPLY"
+    # required
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    availability_domain: Uocm:PHX-AD-1
+    subnet_id: ocid1.subnet.oc1.phx.unique_ID
+    shape: BM.DenseIO1.36
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    hostname: athena
+    cpu_core_count: 8
+    source: DB_SYSTEM
+    db_home:
+      # required
+      database:
+        # required
+        admin_password: example-password
 
-- name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_db_system:
-    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        # optional
+        db_name: myTestDb
+        db_unique_name: db_unique_name_example
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        pdb_name: pdb_name_example
+        tde_wallet_password: example-password
+        character_set: character_set_example
+        ncharacter_set: ncharacter_set_example
+        db_workload: OLTP
+        db_backup_config:
+          # optional
+          auto_backup_enabled: true
+          recovery_window_in_days: 30
+          auto_backup_window: SLOT_TWO
+          backup_destination_details:
+          - # required
+            type: RECOVERY_APPLIANCE
 
-- name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+            # optional
+            id: ocid1.bkupdest.oc1.phx.unique_ID
+            vpc_user: vpcUser1
+            vpc_password: example-password
+            internet_proxy: internet_proxy_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        sid_prefix: sid_prefix_example
+        db_domain: db_domain_example
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_tde_password: example-password
+        time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+        backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+      display_name: null
+      db_version: 12.1.0.2
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    source_db_system_id: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    fault_domains: [ "null" ]
+    display_name: tst3dbsys
+    backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    time_zone: time_zone_example
+    db_system_options:
+      # optional
+      storage_management: LVM
+    sparse_diskgroup: true
+    domain: example.com
+    cluster_name: cluster_name_example
+    data_storage_percentage: 56
+    data_storage_size_in_gbs: 56
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    node_count: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    private_ip: private_ip_example
+    license_model: LICENSE_INCLUDED
+
+- name: Create db_system with source = DATABASE
   oci_database_db_system:
-    cpu_core_count: 10
-    version:
-      patch_id: "ocid1.patch.oc1.phx.unique_ID"
-      action: "APPLY"
-    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    # required
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    availability_domain: Uocm:PHX-AD-1
+    subnet_id: ocid1.subnet.oc1.phx.unique_ID
+    shape: BM.DenseIO1.36
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    hostname: athena
+    cpu_core_count: 8
+    source: DATABASE
+    db_home:
+      # required
+      database:
+        # required
+        admin_password: example-password
+
+        # optional
+        db_name: myTestDb
+        db_unique_name: db_unique_name_example
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        pdb_name: pdb_name_example
+        tde_wallet_password: example-password
+        character_set: character_set_example
+        ncharacter_set: ncharacter_set_example
+        db_workload: OLTP
+        db_backup_config:
+          # optional
+          auto_backup_enabled: true
+          recovery_window_in_days: 30
+          auto_backup_window: SLOT_TWO
+          backup_destination_details:
+          - # required
+            type: RECOVERY_APPLIANCE
+
+            # optional
+            id: ocid1.bkupdest.oc1.phx.unique_ID
+            vpc_user: vpcUser1
+            vpc_password: example-password
+            internet_proxy: internet_proxy_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        sid_prefix: sid_prefix_example
+        db_domain: db_domain_example
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_tde_password: example-password
+        time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+        backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+      display_name: null
+      db_version: 12.1.0.2
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    database_edition: ENTERPRISE_EDITION
+
+    # optional
+    fault_domains: [ "null" ]
+    display_name: tst3dbsys
+    backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    time_zone: time_zone_example
+    db_system_options:
+      # optional
+      storage_management: LVM
+    sparse_diskgroup: true
+    domain: example.com
+    cluster_name: cluster_name_example
+    data_storage_percentage: 56
+    data_storage_size_in_gbs: 56
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    node_count: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    private_ip: private_ip_example
+    disk_redundancy: null
+    license_model: LICENSE_INCLUDED
+
+- name: Create db_system with source = DB_BACKUP
+  oci_database_db_system:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    availability_domain: Uocm:PHX-AD-1
+    subnet_id: ocid1.subnet.oc1.phx.unique_ID
+    shape: BM.DenseIO1.36
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    hostname: athena
+    cpu_core_count: 8
+    source: DB_BACKUP
+    db_home:
+      # required
+      database:
+        # required
+        admin_password: example-password
+
+        # optional
+        db_name: myTestDb
+        db_unique_name: db_unique_name_example
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        pdb_name: pdb_name_example
+        tde_wallet_password: example-password
+        character_set: character_set_example
+        ncharacter_set: ncharacter_set_example
+        db_workload: OLTP
+        db_backup_config:
+          # optional
+          auto_backup_enabled: true
+          recovery_window_in_days: 30
+          auto_backup_window: SLOT_TWO
+          backup_destination_details:
+          - # required
+            type: RECOVERY_APPLIANCE
+
+            # optional
+            id: ocid1.bkupdest.oc1.phx.unique_ID
+            vpc_user: vpcUser1
+            vpc_password: example-password
+            internet_proxy: internet_proxy_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        sid_prefix: sid_prefix_example
+        db_domain: db_domain_example
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_tde_password: example-password
+        time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+        backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+      display_name: null
+      db_version: 12.1.0.2
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    database_edition: ENTERPRISE_EDITION
+
+    # optional
+    fault_domains: [ "null" ]
+    display_name: tst3dbsys
+    backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    time_zone: time_zone_example
+    db_system_options:
+      # optional
+      storage_management: LVM
+    sparse_diskgroup: true
+    domain: example.com
+    cluster_name: cluster_name_example
+    data_storage_percentage: 56
+    data_storage_size_in_gbs: 56
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    node_count: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    private_ip: private_ip_example
+    disk_redundancy: null
+    license_model: LICENSE_INCLUDED
 
 - name: Update db_system
   oci_database_db_system:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    shape: BM.DenseIO1.36
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    cpu_core_count: 8
+    data_storage_size_in_gbs: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    license_model: LICENSE_INCLUDED
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    version:
+      # optional
+      patch_id: ocid1.patch.oc1.phx.unique_ID
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      action: APPLY
+
+- name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_db_system:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    display_name: tst3dbsys
+
+    # optional
+    nsg_ids: [ "null" ]
+    backup_network_nsg_ids: [ "null" ]
+    shape: BM.DenseIO1.36
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    cpu_core_count: 8
+    data_storage_size_in_gbs: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    license_model: LICENSE_INCLUDED
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "null" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "null" ]
+      lead_time_in_weeks: 56
+    version:
+      # optional
+      patch_id: ocid1.patch.oc1.phx.unique_ID
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      action: APPLY
 
 - name: Delete db_system
   oci_database_db_system:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
+    # required
     compartment_id: "ocid1.tenancy.oc1..unique_ID"
     display_name: tst3dbsys
     state: absent

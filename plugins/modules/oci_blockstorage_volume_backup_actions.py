@@ -50,7 +50,7 @@ options:
         type: str
     display_name:
         description:
-            - A user-friendly name for the volume backup. Does not have to be unique and it's changeable.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
             - Applicable only for I(action=copy).
         type: str
@@ -80,15 +80,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on volume_backup
   oci_blockstorage_volume_backup_actions:
+    # required
     volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action copy on volume_backup
   oci_blockstorage_volume_backup_actions:
+    # required
     volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
     destination_region: us-ashburn-1
     action: copy
+
+    # optional
+    display_name: display_name_example
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -122,7 +128,7 @@ volume_backup:
             sample: {}
         display_name:
             description:
-                - A user-friendly name for the volume backup. Does not have to be unique and it's changeable.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
             type: str

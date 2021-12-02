@@ -24,7 +24,7 @@ short_description: Manage an OceInstance resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an OceInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new OceInstance.
-    - "This resource has the following action operations in the M(oci_oce_instance_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_oce_instance_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -157,6 +157,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create oce_instance
   oci_oce_instance:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
@@ -165,30 +166,56 @@ EXAMPLES = """
     object_storage_namespace: object_storage_namespace_example
     admin_email: admin_email_example
 
-- name: Update oce_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_oce_instance:
+    # optional
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
+    identity_stripe:
+      # required
+      service_name: secondstripe
+      tenancy: idcs-8416ebdd0d674f84803f4193cce026e9
     instance_usage_type: PRIMARY
+    upgrade_schedule: upgrade_schedule_example
     waf_primary_domain: waf_primary_domain_example
+    instance_access_type: PUBLIC
     instance_license_type: NEW
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update oce_instance
   oci_oce_instance:
+    # required
+    oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     instance_usage_type: PRIMARY
-    oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    waf_primary_domain: waf_primary_domain_example
+    instance_license_type: NEW
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update oce_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_oce_instance:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+
+    # optional
+    description: description_example
+    instance_usage_type: PRIMARY
+    waf_primary_domain: waf_primary_domain_example
+    instance_license_type: NEW
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete oce_instance
   oci_oce_instance:
+    # required
     oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete oce_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_oce_instance:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent

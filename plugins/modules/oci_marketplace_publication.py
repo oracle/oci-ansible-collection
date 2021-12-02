@@ -24,7 +24,7 @@ short_description: Manage a Publication resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Publication resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a publication of the specified listing type with an optional default package.
-    - "This resource has the following action operations in the M(oci_publication_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_marketplace_publication_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -181,40 +181,86 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create publication
   oci_marketplace_publication:
+    # required
     listing_type: COMMUNITY
     name: name_example
     short_description: short_description_example
+    support_contacts:
+    - # optional
+      name: name_example
+      phone: phone_example
+      email: email_example
+      subject: subject_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     package_details:
+      # required
       package_version: package_version_example
       package_type: IMAGE
+      operating_system:
+        # optional
+        name: name_example
       eula:
-      - eula_type: TEXT
+      - # required
+        eula_type: TEXT
+
+        # optional
+        license_text: license_text_example
+
+        # optional
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     is_agreement_acknowledged: true
 
-- name: Update publication using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_marketplace_publication:
-    listing_type: COMMUNITY
-    name: name_example
-    short_description: short_description_example
+    # optional
     long_description: long_description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update publication
   oci_marketplace_publication:
+    # required
+    publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     name: name_example
     short_description: short_description_example
-    publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
+    long_description: long_description_example
+    support_contacts:
+    - # optional
+      name: name_example
+      phone: phone_example
+      email: email_example
+      subject: subject_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update publication using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_marketplace_publication:
+    # required
+    listing_type: COMMUNITY
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    short_description: short_description_example
+    long_description: long_description_example
+    support_contacts:
+    - # optional
+      name: name_example
+      phone: phone_example
+      email: email_example
+      subject: subject_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete publication
   oci_marketplace_publication:
+    # required
     publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete publication using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_marketplace_publication:
+    # required
     listing_type: COMMUNITY
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

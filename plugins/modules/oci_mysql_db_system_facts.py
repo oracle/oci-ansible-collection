@@ -98,13 +98,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List db_systems
-  oci_mysql_db_system_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific db_system
   oci_mysql_db_system_facts:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List db_systems
+  oci_mysql_db_system_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    is_analytics_cluster_attached: true
+    is_heat_wave_cluster_attached: true
+    display_name: display_name_example
+    lifecycle_state: lifecycle_state_example
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+    is_up_to_date: true
+    sort_by: displayName
+    sort_order: ASC
 
 """
 

@@ -86,13 +86,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List container_repositories
-  oci_artifacts_container_repository_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific container_repository
   oci_artifacts_container_repository_facts:
+    # required
     repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
+
+- name: List container_repositories
+  oci_artifacts_container_repository_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
+    compartment_id_in_subtree: true
+    display_name: display_name_example
+    is_public: true
+    lifecycle_state: lifecycle_state_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

@@ -94,7 +94,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update authentication_policy
   oci_identity_authentication_policy:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    password_policy:
+      # optional
+      minimum_password_length: 56
+      is_uppercase_characters_required: true
+      is_lowercase_characters_required: true
+      is_numeric_characters_required: true
+      is_special_characters_required: true
+      is_username_containment_allowed: true
+    network_policy:
+      # optional
+      network_source_ids: [ "null" ]
 
 """
 

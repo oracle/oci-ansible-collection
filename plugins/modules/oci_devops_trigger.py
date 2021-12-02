@@ -151,45 +151,264 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create trigger
+- name: Create trigger with trigger_source = GITHUB
   oci_devops_trigger:
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-    trigger_source: GITLAB
-    actions:
-    - type: TRIGGER_BUILD_PIPELINE
-      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    trigger_source: GITHUB
 
-- name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_devops_trigger:
+    # optional
     display_name: display_name_example
     description: description_example
-    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-    trigger_source: GITLAB
     actions:
-    - type: TRIGGER_BUILD_PIPELINE
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
       build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create trigger with trigger_source = DEVOPS_CODE_REPOSITORY
+  oci_devops_trigger:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    trigger_source: DEVOPS_CODE_REPOSITORY
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update trigger
+- name: Create trigger with trigger_source = GITLAB
   oci_devops_trigger:
-    display_name: display_name_example
-    description: description_example
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     trigger_source: GITLAB
+
+    # optional
+    display_name: display_name_example
+    description: description_example
     actions:
-    - type: TRIGGER_BUILD_PIPELINE
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
       build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    trigger_id: "ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update trigger with trigger_source = GITHUB
+  oci_devops_trigger:
+    # required
+    trigger_source: GITHUB
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update trigger with trigger_source = DEVOPS_CODE_REPOSITORY
+  oci_devops_trigger:
+    # required
+    trigger_source: DEVOPS_CODE_REPOSITORY
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update trigger with trigger_source = GITLAB
+  oci_devops_trigger:
+    # required
+    trigger_source: GITLAB
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = GITHUB
+  oci_devops_trigger:
+    # required
+    trigger_source: GITHUB
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = DEVOPS_CODE_REPOSITORY
+  oci_devops_trigger:
+    # required
+    trigger_source: DEVOPS_CODE_REPOSITORY
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = GITLAB
+  oci_devops_trigger:
+    # required
+    trigger_source: GITLAB
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "null" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete trigger
   oci_devops_trigger:
+    # required
     trigger_id: "ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_devops_trigger:
+    # required
     display_name: display_name_example
     state: absent
 

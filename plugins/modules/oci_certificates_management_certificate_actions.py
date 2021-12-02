@@ -69,20 +69,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action cancel_certificate_deletion on certificate
   oci_certificates_management_certificate_actions:
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel_certificate_deletion
 
 - name: Perform action change_compartment on certificate
   oci_certificates_management_certificate_actions:
-    compartment_id: "ocid1.tenancy.oc1..exampleauingds4uwkcvbxv4ijs7zxuqnoewldef4fauxs7vaax2fab4gcsq"
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action schedule_certificate_deletion on certificate
   oci_certificates_management_certificate_actions:
-    time_of_deletion: "2021-05-06T00:00:00.000Z"
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "schedule_certificate_deletion"
+    action: schedule_certificate_deletion
+
+    # optional
+    time_of_deletion: 2013-10-20T19:20:30+01:00
 
 """
 

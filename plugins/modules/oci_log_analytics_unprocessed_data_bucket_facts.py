@@ -38,6 +38,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific unprocessed_data_bucket
   oci_log_analytics_unprocessed_data_bucket_facts:
+    # required
     namespace_name: namespace_name_example
 
 """

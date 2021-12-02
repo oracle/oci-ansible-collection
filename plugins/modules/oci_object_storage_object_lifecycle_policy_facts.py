@@ -44,6 +44,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific object_lifecycle_policy
   oci_object_storage_object_lifecycle_policy_facts:
+    # required
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
 

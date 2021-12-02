@@ -41,6 +41,9 @@ EXAMPLES = """
 - name: List listener_protocols
   oci_network_load_balancer_listener_protocols_facts:
 
+    # optional
+    sort_order: ASC
+
 """
 
 RETURN = """

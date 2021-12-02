@@ -30,13 +30,9 @@ oracle.oci.oci_identity_tag_actions -- Perform actions on a Tag resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_identity_tag_actions`.
 
@@ -461,20 +457,24 @@ Examples
     
     - name: Perform action bulk_delete on tag
       oci_identity_tag_actions:
-        tag_definition_ids:
-        - "ocid1.tagdefinition.oc1..unique_ID_1"
-        - "ocid1.tagdefinition.oc1..unique_ID_2"
-        - "ocid1.tagdefinition.oc1..unique_ID_3"
-        action: "bulk_delete"
+        # required
+        tag_definition_ids: [ "null" ]
+        action: bulk_delete
 
     - name: Perform action bulk_edit on tag
       oci_identity_tag_actions:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resources:
-        - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        - # required
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
           resource_type: resource_type_example
+
+          # optional
+          metadata: null
         bulk_edit_operations:
-        - operation_type: ADD_WHERE_ABSENT
+        - # required
+          operation_type: ADD_WHERE_ABSENT
           defined_tags: {'Operations': {'CostCenter': 'US'}}
         action: bulk_edit
 

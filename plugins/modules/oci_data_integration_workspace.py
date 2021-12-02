@@ -24,7 +24,7 @@ short_description: Manage a Workspace resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Workspace resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Data Integration workspace ready for performing data integration tasks.
-    - "This resource has the following action operations in the M(oci_workspace_actions) module: change_compartment, start, stop."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_integration_workspace_actions) module: change_compartment, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -112,30 +112,55 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create workspace
   oci_data_integration_workspace:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    dns_server_ip: dns_server_ip_example
+    dns_server_zone: dns_server_zone_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    description: description_example
+    is_private_network_enabled: true
+
+- name: Update workspace
   oci_data_integration_workspace:
+    # required
+    workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
     display_name: display_name_example
+
+- name: Update workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_integration_workspace:
+    # required
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update workspace
-  oci_data_integration_workspace:
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
+    description: description_example
 
 - name: Delete workspace
   oci_data_integration_workspace:
+    # required
     workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    quiesce_timeout: 789
+    is_force_operation: true
+
 - name: Delete workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_integration_workspace:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

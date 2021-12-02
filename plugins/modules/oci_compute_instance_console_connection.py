@@ -83,18 +83,26 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_console_connection
   oci_compute_instance_console_connection:
-    instance_id: "ocid1.instance.oc1.phx.unique_ID"
-    compartment_id: "ocid1.compartment.oc1.phx.unique_ID"
+    # required
+    instance_id: ocid1.instance.oc1.phx.unique_ID
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Update instance_console_connection
   oci_compute_instance_console_connection:
+    # required
+    instance_console_connection_id: "ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    instance_console_connection_id: "ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete instance_console_connection
   oci_compute_instance_console_connection:
+    # required
     instance_console_connection_id: "ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

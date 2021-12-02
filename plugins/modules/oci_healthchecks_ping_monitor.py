@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a ping monitor. Vantage points will be automatically selected if not specified,
       and probes will be initiated from each vantage point to each of the targets at the frequency
       specified by `intervalInSeconds`.
-    - "This resource has the following action operations in the M(oci_ping_monitor_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_healthchecks_ping_monitor_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -127,29 +127,64 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create ping_monitor
   oci_healthchecks_ping_monitor:
+    # required
     compartment_id: "ocid1.tenancy.oc1..."
-    targets:
-    - "192.0.2.0"
-    protocol: "TCP"
-    display_name: "testPing"
+    targets: [ "192.0.2.0" ]
+    protocol: TCP
+    display_name: testPing
     interval_in_seconds: 300
 
-- name: Update ping_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_healthchecks_ping_monitor:
-    protocol: "ICMP"
+    # optional
+    vantage_point_names: [ "null" ]
+    port: 56
+    timeout_in_seconds: 56
+    is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update ping_monitor
   oci_healthchecks_ping_monitor:
-    protocol: "ICMP"
+    # required
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    targets: [ "192.0.2.0" ]
+    vantage_point_names: [ "null" ]
+    port: 56
+    timeout_in_seconds: 56
+    protocol: TCP
+    display_name: testPing
+    interval_in_seconds: 300
+    is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update ping_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_healthchecks_ping_monitor:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..."
+    display_name: testPing
+
+    # optional
+    targets: [ "192.0.2.0" ]
+    vantage_point_names: [ "null" ]
+    port: 56
+    timeout_in_seconds: 56
+    protocol: TCP
+    interval_in_seconds: 300
+    is_enabled: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete ping_monitor
   oci_healthchecks_ping_monitor:
+    # required
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete ping_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_healthchecks_ping_monitor:
+    # required
     compartment_id: "ocid1.tenancy.oc1..."
     display_name: testPing
     state: absent

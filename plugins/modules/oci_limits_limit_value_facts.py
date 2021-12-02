@@ -72,8 +72,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List limit_values
   oci_limits_limit_value_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     service_name: service_name_example
+
+    # optional
+    scope_type: GLOBAL
+    availability_domain: Uocm:PHX-AD-1
+    name: name_example
+    sort_by: name
+    sort_order: ASC
 
 """
 

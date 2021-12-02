@@ -43,7 +43,7 @@ description:
     - "You may optionally specify a *display name* for the image, which is simply a friendly name or description.
       It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Image/UpdateImage).
       Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_image_actions) module: change_compartment, export."
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_image_actions) module: change_compartment, export."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -180,42 +180,60 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create image
   oci_compute_image:
-    instance_id: "ocid1.instance.oc1.phx.unique_ID"
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "MyCustomImage"
 
-- name: Create image
-  oci_compute_image:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: MyCustomImage
+    freeform_tags: {'Department': 'Finance'}
     image_source_details:
-      object_name: "image-to-import.oci"
-      bucket_name: "MyBucket"
-      namespace_name: "MyNamespace"
-      source_type: "objectStorageTuple"
+      # required
+      source_type: objectStorageTuple
+      bucket_name: MyBucket
+      namespace_name: MyNamespace
+      object_name: image-to-import.oci
 
-- name: Create image
-  oci_compute_image:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "MyImportedImage"
-    image_source_details:
-      source_uri: "https://objectstorage.us-phoenix-1.oraclecloud.com/n/MyNamespace/b/MyBucket/o/image-to-import;.oci"
-      source_type: "objectStorageUri"
-
-- name: Update image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_image:
-    display_name: "MyFavoriteImage"
+      # optional
+      operating_system: operating_system_example
+      operating_system_version: operating_system_version_example
+      source_image_type: QCOW2
+    instance_id: ocid1.instance.oc1.phx.unique_ID
+    launch_mode: NATIVE
 
 - name: Update image
   oci_compute_image:
+    # required
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: MyCustomImage
+    freeform_tags: {'Department': 'Finance'}
+    operating_system: Oracle Linux
+    operating_system_version: 7.4
+
+- name: Update image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_image:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: MyCustomImage
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    operating_system: Oracle Linux
+    operating_system_version: 7.4
 
 - name: Delete image
   oci_compute_image:
+    # required
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyCustomImage
     state: absent

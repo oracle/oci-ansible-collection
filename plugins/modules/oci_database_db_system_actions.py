@@ -57,12 +57,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on db_system
   oci_database_db_system_actions:
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    action: change_compartment
 
 - name: Perform action migrate_exadata_db_system_resource_model on db_system
   oci_database_db_system_actions:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: migrate_exadata_db_system_resource_model
 

@@ -81,13 +81,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List database_tools_connections
-  oci_database_tools_connection_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific database_tools_connection
   oci_database_tools_connection_facts:
+    # required
     database_tools_connection_id: "ocid1.databasetoolsconnection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List database_tools_connections
+  oci_database_tools_connection_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: CREATING
+    display_name: display_name_example
+    type: [ "$p.getValue()" ]
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

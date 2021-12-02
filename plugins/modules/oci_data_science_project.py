@@ -24,7 +24,7 @@ short_description: Manage a Project resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Project resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new project.
-    - "This resource has the following action operations in the M(oci_project_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_science_project_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -83,29 +83,46 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create project
   oci_data_science_project:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update project using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_science_project:
+    # optional
     display_name: display_name_example
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update project
   oci_data_science_project:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update project using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_science_project:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete project
   oci_data_science_project:
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete project using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_project:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

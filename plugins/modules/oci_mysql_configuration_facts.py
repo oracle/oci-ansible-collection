@@ -89,13 +89,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List configurations
-  oci_mysql_configuration_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific configuration
   oci_mysql_configuration_facts:
+    # required
     configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List configurations
+  oci_mysql_configuration_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    type: [ "$p.getValue()" ]
+    display_name: display_name_example
+    shape_name: shape_name_example
+    sort_by: displayName
+    sort_order: ASC
 
 """
 

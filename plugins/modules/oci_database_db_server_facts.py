@@ -77,15 +77,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific db_server
+  oci_database_db_server_facts:
+    # required
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List db_servers
   oci_database_db_server_facts:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific db_server
-  oci_database_db_server_facts:
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-    db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    sort_order: ASC
+    sort_by: TIMECREATED
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
 
 """
 

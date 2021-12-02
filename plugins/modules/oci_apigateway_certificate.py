@@ -24,7 +24,7 @@ short_description: Manage a Certificate resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Certificate resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Certificate.
-    - "This resource has the following action operations in the M(oci_certificate_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_apigateway_certificate_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -97,30 +97,46 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create certificate
   oci_apigateway_certificate:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     private_key: private_key_example
     certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
 
-- name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_apigateway_certificate:
+    # optional
     display_name: My new resource
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    intermediate_certificates: intermediate_certificates_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update certificate
   oci_apigateway_certificate:
+    # required
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: My new resource
     freeform_tags: {'Department': 'Finance'}
-    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_apigateway_certificate:
+    # required
+    display_name: My new resource
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete certificate
   oci_apigateway_certificate:
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_certificate:
+    # required
     display_name: My new resource
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

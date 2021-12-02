@@ -88,13 +88,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List stacks
-  oci_resource_manager_stack_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific stack
   oci_resource_manager_stack_facts:
+    # required
     stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List stacks
+  oci_resource_manager_stack_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

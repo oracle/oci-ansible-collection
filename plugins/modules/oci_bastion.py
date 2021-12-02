@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a new bastion. A bastion provides secured, public access to target resources in the cloud that you cannot otherwise reach
       from the internet. A bastion resides in a public subnet and establishes the network infrastructure needed to connect a user to a target resource in a
       private subnet.
-    - "This resource has the following action operations in the M(oci_bastion_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_bastion_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -107,31 +107,54 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create bastion
   oci_bastion:
+    # required
     bastion_type: bastion_type_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     target_subnet_id: "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update bastion using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_bastion:
+    # optional
     name: name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    phone_book_entry: phone_book_entry_example
+    static_jump_host_ip_addresses: [ "null" ]
+    client_cidr_block_allow_list: [ "null" ]
     max_session_ttl_in_seconds: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update bastion
   oci_bastion:
+    # required
+    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    static_jump_host_ip_addresses: [ "null" ]
+    client_cidr_block_allow_list: [ "null" ]
     max_session_ttl_in_seconds: 56
     freeform_tags: {'Department': 'Finance'}
-    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update bastion using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_bastion:
+    # required
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    static_jump_host_ip_addresses: [ "null" ]
+    client_cidr_block_allow_list: [ "null" ]
+    max_session_ttl_in_seconds: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete bastion
   oci_bastion:
+    # required
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete bastion using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bastion:
+    # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

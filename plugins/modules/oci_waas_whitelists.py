@@ -71,9 +71,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update whitelists
   oci_waas_whitelists:
+    # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     whitelists:
-    - name: name_example
+    - # required
+      name: name_example
+
+      # optional
+      addresses: [ "null" ]
+      address_lists: [ "null" ]
 
 """
 

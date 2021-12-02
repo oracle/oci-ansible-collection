@@ -134,29 +134,40 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on domain
   oci_identity_domain_actions:
+    # required
     domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
 
 - name: Perform action change_compartment on domain
   oci_identity_domain_actions:
+    # required
     domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action change_domain_license_type on domain
   oci_identity_domain_actions:
+    # required
     domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_domain_license_type
 
+    # optional
+    license_type: license_type_example
+
 - name: Perform action deactivate on domain
   oci_identity_domain_actions:
+    # required
     domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     action: deactivate
 
 - name: Perform action enable_replication_to_region on domain
   oci_identity_domain_actions:
+    # required
     domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_replication_to_region
+
+    # optional
+    replica_region: us-phoenix-1
 
 """
 

@@ -948,7 +948,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         The tenancy is returned when compartment_name is the tenancy name.
 
-        When both compartment_ocid and compartment_name are not passed, all the compartments are returned
+        When both compartment_ocid and compartment_name are not passed, all the compartments are returned.
 
         :param str compartment_ocid: (optional)
             OCID of the compartment. If None, root compartment is assumed to be parent.

@@ -24,7 +24,7 @@ short_description: Manage a DataAsset resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DataAsset resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DataAsset.
-    - "This resource has the following action operations in the M(oci_data_asset_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_ai_anomaly_detection_data_asset_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -229,32 +229,56 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create data_asset
   oci_ai_anomaly_detection_data_asset:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     data_source_details:
+      # required
       data_source_type: ORACLE_OBJECT_STORAGE
 
-- name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_ai_anomaly_detection_data_asset:
+      # optional
+      namespace: namespace_example
+      bucket_name: bucket_name_example
+      object_name: object_name_example
+
+    # optional
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update data_asset
   oci_ai_anomaly_detection_data_asset:
+    # required
+    data_asset_id: "ocid1.dataasset.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    data_asset_id: "ocid1.dataasset.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_ai_anomaly_detection_data_asset:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete data_asset
   oci_ai_anomaly_detection_data_asset:
+    # required
     data_asset_id: "ocid1.dataasset.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ai_anomaly_detection_data_asset:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

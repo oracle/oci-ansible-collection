@@ -140,17 +140,39 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List objects
-  oci_object_storage_object_facts:
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-
 - name: Get a specific object
   oci_object_storage_object_facts:
+    # required
     dest: /tmp/myfile
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     object_name: test/object1.log
+
+    # optional
+    version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
+    range: range_example
+    opc_sse_customer_algorithm: opc_sse_customer_algorithm_example
+    opc_sse_customer_key: opc_sse_customer_key_example
+    opc_sse_customer_key_sha256: opc_sse_customer_key_sha256_example
+    http_response_content_disposition: http_response_content_disposition_example
+    http_response_cache_control: http_response_cache_control_example
+    http_response_content_type: http_response_content_type_example
+    http_response_content_language: http_response_content_language_example
+    http_response_content_encoding: http_response_content_encoding_example
+    http_response_expires: http_response_expires_example
+
+- name: List objects
+  oci_object_storage_object_facts:
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+
+    # optional
+    prefix: prefix_example
+    start: start_example
+    end: end_example
+    delimiter: delimiter_example
+    fields: name
 
 """
 

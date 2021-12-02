@@ -57,9 +57,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on waas_certificate
   oci_waas_certificate_actions:
-    compartment_id: "ocid1.compartment.oc1.."
+    # required
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 
@@ -310,7 +311,7 @@ waas_certificate:
                 - The data of the SSL certificate.
             returned: on success
             type: str
-            sample: certificate_data_example
+            sample: this-is-not-the-secret
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -354,7 +355,7 @@ waas_certificate:
         "lifecycle_state": "CREATING",
         "time_created": "2018-11-16T21:10:29Z",
         "is_trust_verification_disabled": true,
-        "certificate_data": "certificate_data_example"
+        "certificate_data": "this-is-not-the-secret"
     }
 """
 

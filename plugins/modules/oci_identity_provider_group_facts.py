@@ -53,7 +53,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List identity_provider_groups
   oci_identity_provider_group_facts:
+    # required
     identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    lifecycle_state: lifecycle_state_example
 
 """
 

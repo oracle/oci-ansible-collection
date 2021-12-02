@@ -78,12 +78,29 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create model_provenance
   oci_data_science_model_provenance:
+    # required
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    repository_url: http://git-remote.com/my-repo
+    git_branch: master
+    git_commit: 0978b63
+    script_dir: script_dir_example
+    training_script: model-dev/model1/model-training.ipynb
+    training_id: "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
 
 - name: Update model_provenance
   oci_data_science_model_provenance:
+    # required
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     repository_url: http://git-remote.com/my-repo
+    git_branch: master
+    git_commit: 0978b63
+    script_dir: script_dir_example
+    training_script: model-dev/model1/model-training.ipynb
+    training_id: "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
 
 """
 

@@ -89,29 +89,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create drg_route_distribution
   oci_network_drg_route_distribution:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     distribution_type: IMPORT
 
-- name: Update drg_route_distribution using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_drg_route_distribution:
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update drg_route_distribution
   oci_network_drg_route_distribution:
+    # required
+    drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update drg_route_distribution using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_drg_route_distribution:
+    # required
+    display_name: display_name_example
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete drg_route_distribution
   oci_network_drg_route_distribution:
+    # required
     drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete drg_route_distribution using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_route_distribution:
+    # required
     display_name: display_name_example
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

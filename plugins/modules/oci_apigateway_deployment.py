@@ -24,7 +24,7 @@ short_description: Manage a Deployment resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new deployment.
-    - "This resource has the following action operations in the M(oci_deployment_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_apigateway_deployment_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -1032,29 +1032,684 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create deployment
   oci_apigateway_deployment:
+    # required
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     path_prefix: path_prefix_example
 
-- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_apigateway_deployment:
+    # optional
     display_name: My new resource
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    specification:
+      # optional
+      request_policies:
+        # optional
+        authentication:
+          # required
+          type: JWT_AUTHENTICATION
+          issuers: [ "null" ]
+          audiences: [ "null" ]
+          public_keys:
+            # required
+            type: STATIC_KEYS
+
+            # optional
+            keys:
+            - # required
+              kid: kid_example
+              format: JSON_WEB_KEY
+              kty: RSA
+              alg: alg_example
+              n: n_example
+              e: e_example
+
+              # optional
+              use: sig
+              key_ops: [ "null" ]
+
+              # optional
+          is_anonymous_access_allowed: true
+          token_header: Authorization
+          token_query_param: tk
+          token_auth_scheme: Bearer
+          verify_claims:
+          - # required
+            key: key_example
+
+            # optional
+            values: [ "null" ]
+            is_required: true
+          max_clock_skew_in_seconds: 3.4
+        rate_limiting:
+          # required
+          rate_in_requests_per_second: 56
+          rate_key: CLIENT_IP
+        cors:
+          # required
+          allowed_origins: [ "null" ]
+
+          # optional
+          allowed_methods: [ "null" ]
+          allowed_headers: [ "null" ]
+          exposed_headers: [ "null" ]
+          is_allow_credentials_enabled: false
+          max_age_in_seconds: 600
+      logging_policies:
+        # optional
+        access_log:
+          # optional
+          is_enabled: true
+        execution_log:
+          # optional
+          is_enabled: true
+          log_level: INFO
+      routes:
+      - # required
+        path: /todos
+        backend:
+          # required
+          type: HTTP_BACKEND
+          url: https://1.2.3.4:9999
+
+          # optional
+          connect_timeout_in_seconds: 3.4
+          read_timeout_in_seconds: 3.4
+          send_timeout_in_seconds: 3.4
+          is_ssl_verify_disabled: true
+
+        # optional
+        methods: [ "null" ]
+        request_policies:
+          # optional
+          authorization:
+            # required
+            type: ANY_OF
+            allowed_scope: [ "null" ]
+          cors:
+            # required
+            allowed_origins: [ "null" ]
+
+            # optional
+            allowed_methods: [ "null" ]
+            allowed_headers: [ "null" ]
+            exposed_headers: [ "null" ]
+            is_allow_credentials_enabled: false
+            max_age_in_seconds: 600
+          query_parameter_validations:
+            # optional
+            parameters:
+            - # required
+              name: name_example
+
+              # optional
+              required: true
+            validation_mode: ENFORCING
+          header_validations:
+            # optional
+            headers:
+            - # required
+              name: name_example
+
+              # optional
+              required: true
+            validation_mode: ENFORCING
+          body_validation:
+            # required
+            content:
+              # optional
+              validation_type: NONE
+              # optional
+            required: true
+            validation_mode: ENFORCING
+          header_transformations:
+            # optional
+            set_headers:
+              # required
+              items:
+              - # required
+                name: X-CorrelationID
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_headers:
+              # required
+              items:
+              - # required
+                _from: X-Username
+                to: X-User-ID
+            filter_headers:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: User-Agent
+          query_parameter_transformations:
+            # optional
+            set_query_parameters:
+              # required
+              items:
+              - # required
+                name: bookIsbn
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_query_parameters:
+              # required
+              items:
+              - # required
+                _from: bookId
+                to: bookIsbn
+            filter_query_parameters:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: bookIsbn
+          response_cache_lookup:
+            # required
+            type: SIMPLE_LOOKUP_POLICY
+
+            # optional
+            is_enabled: true
+            is_private_caching_enabled: true
+            cache_key_additions: [ "null" ]
+        response_policies:
+          # optional
+          header_transformations:
+            # optional
+            set_headers:
+              # required
+              items:
+              - # required
+                name: X-CorrelationID
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_headers:
+              # required
+              items:
+              - # required
+                _from: X-Username
+                to: X-User-ID
+            filter_headers:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: User-Agent
+          response_cache_store:
+            # required
+            type: FIXED_TTL_STORE_POLICY
+            time_to_live_in_seconds: 300
+        logging_policies:
+          # optional
+          access_log:
+            # optional
+            is_enabled: true
+          execution_log:
+            # optional
+            is_enabled: true
+            log_level: INFO
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deployment
   oci_apigateway_deployment:
-    display_name: My new resource
+    # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    specification:
+      # optional
+      request_policies:
+        # optional
+        authentication:
+          # required
+          type: JWT_AUTHENTICATION
+          issuers: [ "null" ]
+          audiences: [ "null" ]
+          public_keys:
+            # required
+            type: STATIC_KEYS
+
+            # optional
+            keys:
+            - # required
+              kid: kid_example
+              format: JSON_WEB_KEY
+              kty: RSA
+              alg: alg_example
+              n: n_example
+              e: e_example
+
+              # optional
+              use: sig
+              key_ops: [ "null" ]
+
+              # optional
+          is_anonymous_access_allowed: true
+          token_header: Authorization
+          token_query_param: tk
+          token_auth_scheme: Bearer
+          verify_claims:
+          - # required
+            key: key_example
+
+            # optional
+            values: [ "null" ]
+            is_required: true
+          max_clock_skew_in_seconds: 3.4
+        rate_limiting:
+          # required
+          rate_in_requests_per_second: 56
+          rate_key: CLIENT_IP
+        cors:
+          # required
+          allowed_origins: [ "null" ]
+
+          # optional
+          allowed_methods: [ "null" ]
+          allowed_headers: [ "null" ]
+          exposed_headers: [ "null" ]
+          is_allow_credentials_enabled: false
+          max_age_in_seconds: 600
+      logging_policies:
+        # optional
+        access_log:
+          # optional
+          is_enabled: true
+        execution_log:
+          # optional
+          is_enabled: true
+          log_level: INFO
+      routes:
+      - # required
+        path: /todos
+        backend:
+          # required
+          type: HTTP_BACKEND
+          url: https://1.2.3.4:9999
+
+          # optional
+          connect_timeout_in_seconds: 3.4
+          read_timeout_in_seconds: 3.4
+          send_timeout_in_seconds: 3.4
+          is_ssl_verify_disabled: true
+
+        # optional
+        methods: [ "null" ]
+        request_policies:
+          # optional
+          authorization:
+            # required
+            type: ANY_OF
+            allowed_scope: [ "null" ]
+          cors:
+            # required
+            allowed_origins: [ "null" ]
+
+            # optional
+            allowed_methods: [ "null" ]
+            allowed_headers: [ "null" ]
+            exposed_headers: [ "null" ]
+            is_allow_credentials_enabled: false
+            max_age_in_seconds: 600
+          query_parameter_validations:
+            # optional
+            parameters:
+            - # required
+              name: name_example
+
+              # optional
+              required: true
+            validation_mode: ENFORCING
+          header_validations:
+            # optional
+            headers:
+            - # required
+              name: name_example
+
+              # optional
+              required: true
+            validation_mode: ENFORCING
+          body_validation:
+            # required
+            content:
+              # optional
+              validation_type: NONE
+              # optional
+            required: true
+            validation_mode: ENFORCING
+          header_transformations:
+            # optional
+            set_headers:
+              # required
+              items:
+              - # required
+                name: X-CorrelationID
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_headers:
+              # required
+              items:
+              - # required
+                _from: X-Username
+                to: X-User-ID
+            filter_headers:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: User-Agent
+          query_parameter_transformations:
+            # optional
+            set_query_parameters:
+              # required
+              items:
+              - # required
+                name: bookIsbn
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_query_parameters:
+              # required
+              items:
+              - # required
+                _from: bookId
+                to: bookIsbn
+            filter_query_parameters:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: bookIsbn
+          response_cache_lookup:
+            # required
+            type: SIMPLE_LOOKUP_POLICY
+
+            # optional
+            is_enabled: true
+            is_private_caching_enabled: true
+            cache_key_additions: [ "null" ]
+        response_policies:
+          # optional
+          header_transformations:
+            # optional
+            set_headers:
+              # required
+              items:
+              - # required
+                name: X-CorrelationID
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_headers:
+              # required
+              items:
+              - # required
+                _from: X-Username
+                to: X-User-ID
+            filter_headers:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: User-Agent
+          response_cache_store:
+            # required
+            type: FIXED_TTL_STORE_POLICY
+            time_to_live_in_seconds: 300
+        logging_policies:
+          # optional
+          access_log:
+            # optional
+            is_enabled: true
+          execution_log:
+            # optional
+            is_enabled: true
+            log_level: INFO
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_apigateway_deployment:
+    # required
+    display_name: My new resource
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    specification:
+      # optional
+      request_policies:
+        # optional
+        authentication:
+          # required
+          type: JWT_AUTHENTICATION
+          issuers: [ "null" ]
+          audiences: [ "null" ]
+          public_keys:
+            # required
+            type: STATIC_KEYS
+
+            # optional
+            keys:
+            - # required
+              kid: kid_example
+              format: JSON_WEB_KEY
+              kty: RSA
+              alg: alg_example
+              n: n_example
+              e: e_example
+
+              # optional
+              use: sig
+              key_ops: [ "null" ]
+
+              # optional
+          is_anonymous_access_allowed: true
+          token_header: Authorization
+          token_query_param: tk
+          token_auth_scheme: Bearer
+          verify_claims:
+          - # required
+            key: key_example
+
+            # optional
+            values: [ "null" ]
+            is_required: true
+          max_clock_skew_in_seconds: 3.4
+        rate_limiting:
+          # required
+          rate_in_requests_per_second: 56
+          rate_key: CLIENT_IP
+        cors:
+          # required
+          allowed_origins: [ "null" ]
+
+          # optional
+          allowed_methods: [ "null" ]
+          allowed_headers: [ "null" ]
+          exposed_headers: [ "null" ]
+          is_allow_credentials_enabled: false
+          max_age_in_seconds: 600
+      logging_policies:
+        # optional
+        access_log:
+          # optional
+          is_enabled: true
+        execution_log:
+          # optional
+          is_enabled: true
+          log_level: INFO
+      routes:
+      - # required
+        path: /todos
+        backend:
+          # required
+          type: HTTP_BACKEND
+          url: https://1.2.3.4:9999
+
+          # optional
+          connect_timeout_in_seconds: 3.4
+          read_timeout_in_seconds: 3.4
+          send_timeout_in_seconds: 3.4
+          is_ssl_verify_disabled: true
+
+        # optional
+        methods: [ "null" ]
+        request_policies:
+          # optional
+          authorization:
+            # required
+            type: ANY_OF
+            allowed_scope: [ "null" ]
+          cors:
+            # required
+            allowed_origins: [ "null" ]
+
+            # optional
+            allowed_methods: [ "null" ]
+            allowed_headers: [ "null" ]
+            exposed_headers: [ "null" ]
+            is_allow_credentials_enabled: false
+            max_age_in_seconds: 600
+          query_parameter_validations:
+            # optional
+            parameters:
+            - # required
+              name: name_example
+
+              # optional
+              required: true
+            validation_mode: ENFORCING
+          header_validations:
+            # optional
+            headers:
+            - # required
+              name: name_example
+
+              # optional
+              required: true
+            validation_mode: ENFORCING
+          body_validation:
+            # required
+            content:
+              # optional
+              validation_type: NONE
+              # optional
+            required: true
+            validation_mode: ENFORCING
+          header_transformations:
+            # optional
+            set_headers:
+              # required
+              items:
+              - # required
+                name: X-CorrelationID
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_headers:
+              # required
+              items:
+              - # required
+                _from: X-Username
+                to: X-User-ID
+            filter_headers:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: User-Agent
+          query_parameter_transformations:
+            # optional
+            set_query_parameters:
+              # required
+              items:
+              - # required
+                name: bookIsbn
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_query_parameters:
+              # required
+              items:
+              - # required
+                _from: bookId
+                to: bookIsbn
+            filter_query_parameters:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: bookIsbn
+          response_cache_lookup:
+            # required
+            type: SIMPLE_LOOKUP_POLICY
+
+            # optional
+            is_enabled: true
+            is_private_caching_enabled: true
+            cache_key_additions: [ "null" ]
+        response_policies:
+          # optional
+          header_transformations:
+            # optional
+            set_headers:
+              # required
+              items:
+              - # required
+                name: X-CorrelationID
+                values: [ "null" ]
+
+                # optional
+                if_exists: OVERWRITE
+            rename_headers:
+              # required
+              items:
+              - # required
+                _from: X-Username
+                to: X-User-ID
+            filter_headers:
+              # required
+              type: ALLOW
+              items:
+              - # required
+                name: User-Agent
+          response_cache_store:
+            # required
+            type: FIXED_TTL_STORE_POLICY
+            time_to_live_in_seconds: 300
+        logging_policies:
+          # optional
+          access_log:
+            # optional
+            is_enabled: true
+          execution_log:
+            # optional
+            is_enabled: true
+            log_level: INFO
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete deployment
   oci_apigateway_deployment:
+    # required
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
+    # required
     display_name: My new resource
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
@@ -1190,7 +1845,7 @@ deployment:
                                                 - Name of the claim.
                                             returned: on success
                                             type: str
-                                            sample: iss
+                                            sample: key_example
                                         values:
                                             description:
                                                 - "The list of acceptable values for a given claim.
@@ -1308,7 +1963,7 @@ deployment:
                                                         - The content of the PEM-encoded public key.
                                                     returned: on success
                                                     type: str
-                                                    sample: -----BEGIN PUBLIC KEY-----
+                                                    sample: key_example
                         rate_limiting:
                             description:
                                 - ""
@@ -2165,7 +2820,7 @@ deployment:
                     "issuers": [],
                     "audiences": [],
                     "verify_claims": [{
-                        "key": "iss",
+                        "key": "key_example",
                         "values": [],
                         "is_required": true
                     }],
@@ -2184,7 +2839,7 @@ deployment:
                             "alg": "alg_example",
                             "n": "n_example",
                             "e": "e_example",
-                            "key": "-----BEGIN PUBLIC KEY-----"
+                            "key": "key_example"
                         }]
                     }
                 },

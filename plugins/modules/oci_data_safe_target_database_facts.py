@@ -110,13 +110,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List target_databases
-  oci_data_safe_target_database_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific target_database
   oci_data_safe_target_database_facts:
+    # required
     target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List target_databases
+  oci_data_safe_target_database_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    lifecycle_state: CREATING
+    database_type: DATABASE_CLOUD_SERVICE
+    infrastructure_type: ORACLE_CLOUD
+    compartment_id_in_subtree: true
+    access_level: RESTRICTED
+    sort_order: ASC
+    sort_by: TIMECREATED
 
 """
 
@@ -228,7 +241,7 @@ target_databases:
                         - The password of the database user.
                     returned: on success
                     type: str
-                    sample: password_example
+                    sample: example-password
         tls_config:
             description:
                 - ""
@@ -252,7 +265,7 @@ target_databases:
                         - The password to read the trust store and key store files, if they are password protected.
                     returned: on success
                     type: str
-                    sample: store_password_example
+                    sample: example-password
                 trust_store_content:
                     description:
                         - Base64 encoded string of trust store file content.
@@ -368,12 +381,12 @@ target_databases:
         },
         "credentials": {
             "user_name": "user_name_example",
-            "password": "password_example"
+            "password": "example-password"
         },
         "tls_config": {
             "status": "ENABLED",
             "certificate_store_type": "JKS",
-            "store_password": "store_password_example",
+            "store_password": "example-password",
             "trust_store_content": "trust_store_content_example",
             "key_store_content": "key_store_content_example"
         },

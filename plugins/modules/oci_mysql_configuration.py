@@ -373,30 +373,104 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create configuration
   oci_mysql_configuration:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
 
-- name: Update configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_mysql_configuration:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     description: description_example
     display_name: display_name_example
+    variables:
+      # optional
+      completion_type: NO_CHAIN
+      default_authentication_plugin: mysql_native_password
+      transaction_isolation: READ-UNCOMMITTED
+      innodb_ft_server_stopword_table: innodb_ft_server_stopword_table_example
+      mandatory_roles: mandatory_roles_example
+      autocommit: true
+      foreign_key_checks: true
+      group_replication_consistency: EVENTUAL
+      innodb_ft_enable_stopword: true
+      local_infile: true
+      mysql_firewall_mode: true
+      mysqlx_enable_hello_notice: true
+      sql_require_primary_key: true
+      sql_warnings: true
+      binlog_expire_logs_seconds: 56
+      binlog_row_metadata: FULL
+      binlog_row_value_options: binlog_row_value_options_example
+      binlog_transaction_compression: true
+      innodb_buffer_pool_size: 56
+      innodb_ft_result_cache_limit: 56
+      max_connections: 56
+      max_prepared_stmt_count: 56
+      connect_timeout: 56
+      cte_max_recursion_depth: 56
+      generated_random_password_length: 56
+      information_schema_stats_expiry: 56
+      innodb_buffer_pool_instances: 56
+      innodb_ft_max_token_size: 56
+      innodb_ft_min_token_size: 56
+      innodb_ft_num_word_optimize: 56
+      innodb_lock_wait_timeout: 56
+      innodb_max_purge_lag: 56
+      innodb_max_purge_lag_delay: 56
+      max_execution_time: 56
+      mysqlx_connect_timeout: 56
+      mysqlx_document_id_unique_prefix: 56
+      mysqlx_idle_worker_thread_timeout: 56
+      mysqlx_interactive_timeout: 56
+      mysqlx_max_allowed_packet: 56
+      mysqlx_min_worker_threads: 56
+      mysqlx_read_timeout: 56
+      mysqlx_wait_timeout: 56
+      mysqlx_write_timeout: 56
+      parser_max_mem_size: 56
+      query_alloc_block_size: 56
+      query_prealloc_size: 56
+      sql_mode: sql_mode_example
+      mysqlx_deflate_default_compression_level: 56
+      mysqlx_deflate_max_client_compression_level: 56
+      mysqlx_lz4_max_client_compression_level: 56
+      mysqlx_lz4_default_compression_level: 56
+      mysqlx_zstd_max_client_compression_level: 56
+      mysqlx_zstd_default_compression_level: 56
+      mysql_zstd_default_compression_level: 56
+    parent_configuration_id: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update configuration
   oci_mysql_configuration:
+    # required
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     display_name: display_name_example
-    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_mysql_configuration:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete configuration
   oci_mysql_configuration:
+    # required
     configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_configuration:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

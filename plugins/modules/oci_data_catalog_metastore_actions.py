@@ -52,6 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on metastore
   oci_data_catalog_metastore_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

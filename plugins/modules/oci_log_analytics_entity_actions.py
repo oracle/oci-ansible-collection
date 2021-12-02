@@ -66,12 +66,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action add_entity_association on log_analytics_entity
   oci_log_analytics_entity_actions:
+    # required
     namespace_name: namespace_name_example
     log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
+    association_entities: [ "null" ]
     action: add_entity_association
 
 - name: Perform action change_compartment on log_analytics_entity
   oci_log_analytics_entity_actions:
+    # required
     namespace_name: namespace_name_example
     log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -79,8 +82,10 @@ EXAMPLES = """
 
 - name: Perform action remove_entity_associations on log_analytics_entity
   oci_log_analytics_entity_actions:
+    # required
     namespace_name: namespace_name_example
     log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
+    association_entities: [ "null" ]
     action: remove_entity_associations
 
 """

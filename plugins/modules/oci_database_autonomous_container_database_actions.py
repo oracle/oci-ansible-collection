@@ -58,17 +58,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on autonomous_container_database
   oci_database_autonomous_container_database_actions:
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    action: change_compartment
 
 - name: Perform action restart on autonomous_container_database
   oci_database_autonomous_container_database_actions:
+    # required
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart
 
 - name: Perform action rotate_autonomous_container_database_encryption_key on autonomous_container_database
   oci_database_autonomous_container_database_actions:
+    # required
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_autonomous_container_database_encryption_key
 
@@ -324,7 +327,7 @@ autonomous_container_database:
                                 - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
                             returned: on success
                             type: str
-                            sample: vpc_password_example
+                            sample: example-password
                         internet_proxy:
                             description:
                                 - Proxy URL to connect to object store.
@@ -393,7 +396,7 @@ autonomous_container_database:
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "vpc_user": "vpc_user_example",
-                "vpc_password": "vpc_password_example",
+                "vpc_password": "example-password",
                 "internet_proxy": "internet_proxy_example"
             }],
             "recovery_window_in_days": 56

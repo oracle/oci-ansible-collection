@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     drg_id:
         description:
-            - The L([OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)](/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             - Required to get a specific drg.
         type: str
         aliases: ["id"]
@@ -43,13 +43,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List drgs
-  oci_network_drg_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific drg
   oci_network_drg_facts:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List drgs
+  oci_network_drg_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -133,7 +135,8 @@ drgs:
                     sample: ipsec_tunnel_example
                 virtual_circuit:
                     description:
-                        - The OCID of the default DRG route table to be assigned to DRG attachments
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned
+                          to DRG attachments
                           of type VIRTUAL_CIRCUIT on creation.
                     returned: on success
                     type: str

@@ -61,13 +61,27 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action remove_preferences on preferences_management
   oci_log_analytics_preferences_management_actions:
+    # required
     namespace_name: namespace_name_example
     action: remove_preferences
 
+    # optional
+    items:
+    - # optional
+      name: name_example
+      value: value_example
+
 - name: Perform action update_preferences on preferences_management
   oci_log_analytics_preferences_management_actions:
+    # required
     namespace_name: namespace_name_example
     action: update_preferences
+
+    # optional
+    items:
+    - # optional
+      name: name_example
+      value: value_example
 
 """
 

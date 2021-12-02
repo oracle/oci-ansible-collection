@@ -30,13 +30,9 @@ oracle.oci.oci_database_management_database_parameter_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_management_database_parameter_actions`.
 
@@ -476,17 +472,36 @@ Examples
     
     - name: Perform action change on database_parameter
       oci_database_management_database_parameter_actions:
+        # required
         managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        credentials:
+          # optional
+          user_name: user_name_example
+          password: example-password
+          secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+          role: NORMAL
         scope: MEMORY
         change_parameters:
-        - name: name_example
+        - # required
+          name: name_example
           value: value_example
+
+          # optional
+          update_comment: update_comment_example
         action: change
 
     - name: Perform action reset on database_parameter
       oci_database_management_database_parameter_actions:
+        # required
         managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        credentials:
+          # optional
+          user_name: user_name_example
+          password: example-password
+          secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+          role: NORMAL
         scope: MEMORY
+        reset_parameters: [ "null" ]
         action: reset
 
 
@@ -523,7 +538,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the DatabaseParameter resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;status&#x27;: {&#x27;error_code&#x27;: &#x27;error_code_example&#x27;, &#x27;error_message&#x27;: &#x27;error_message_example&#x27;, &#x27;status&#x27;: &#x27;SUCCEEDED&#x27;}}</div>
                                     </td>
             </tr>
@@ -541,7 +556,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A map with the parameter name as key and its update status as value.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -558,7 +573,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An error code that defines the failure or `null` if the parameter was updated successfully.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">error_code_example</div>
                                     </td>
             </tr>
@@ -577,7 +592,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The error message indicating the reason for failure or `null` if the parameter was updated successfully.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">error_message_example</div>
                                     </td>
             </tr>
@@ -596,7 +611,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The status of the parameter update.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SUCCEEDED</div>
                                     </td>
             </tr>

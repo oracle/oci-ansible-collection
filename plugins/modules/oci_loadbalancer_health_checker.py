@@ -103,16 +103,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update health_checker
   oci_loadbalancer_health_checker:
+    # required
     protocol: HTTP
-    url_path: /healthcheck
     port: 8080
     return_code: 200
     retries: 3
     timeout_in_millis: 3000
     interval_in_millis: 10000
-    response_body_regex: "^((?!false).|\\\\s)*$"
+    response_body_regex: response_body_regex_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: example_backend_set
+
+    # optional
+    url_path: /healthcheck
 
 """
 
@@ -182,7 +185,7 @@ health_checker:
                 - "Example: `^((?!false).|\\\\s)*$`"
             returned: on success
             type: str
-            sample: "^((?!false).|\\\\s)*$"
+            sample: response_body_regex_example
     sample: {
         "protocol": "HTTP",
         "url_path": "/healthcheck",
@@ -191,7 +194,7 @@ health_checker:
         "retries": 3,
         "timeout_in_millis": 3000,
         "interval_in_millis": 10000,
-        "response_body_regex": "^((?!false).|\\\\s)*$"
+        "response_body_regex": "response_body_regex_example"
     }
 """
 

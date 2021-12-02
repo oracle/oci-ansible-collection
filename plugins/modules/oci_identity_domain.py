@@ -37,8 +37,8 @@ description:
       - If {@code isNotificationBypassed} is NOT provided when admin information is provided,
       returns 400 BAD REQUEST.
       - If any internal error occurs, return 500 INTERNAL SERVER ERROR."
-    - "This resource has the following action operations in the M(oci_domain_actions) module: activate, change_compartment, change_domain_license_type,
-      deactivate, enable_replication_to_region."
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_domain_actions) module: activate, change_compartment,
+      change_domain_license_type, deactivate, enable_replication_to_region."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -143,34 +143,57 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create domain
   oci_identity_domain:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     home_region: us-phoenix-1
     license_type: license_type_example
 
-- name: Update domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    is_hidden_on_login: true
+    admin_first_name: admin_first_name_example
+    admin_last_name: admin_last_name_example
+    admin_user_name: admin_user_name_example
+    admin_email: admin_email_example
+    is_notification_bypassed: true
+    is_primary_email_required: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update domain
   oci_identity_domain:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
     is_hidden_on_login: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update domain
+- name: Update domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_domain:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+
+    # optional
     description: description_example
-    domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+    is_hidden_on_login: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete domain
   oci_identity_domain:
+    # required
     domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_domain:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

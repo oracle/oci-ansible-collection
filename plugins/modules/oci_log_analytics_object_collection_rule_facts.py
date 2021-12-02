@@ -75,15 +75,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific log_analytics_object_collection_rule
+  oci_log_analytics_object_collection_rule_facts:
+    # required
+    namespace_name: namespace_name_example
+    log_analytics_object_collection_rule_id: "ocid1.loganalyticsobjectcollectionrule.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List log_analytics_object_collection_rules
   oci_log_analytics_object_collection_rule_facts:
+    # required
     namespace_name: namespace_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific log_analytics_object_collection_rule
-  oci_log_analytics_object_collection_rule_facts:
-    namespace_name: namespace_name_example
-    log_analytics_object_collection_rule_id: "ocid1.loganalyticsobjectcollectionrule.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    name: name_example
+    lifecycle_state: ACTIVE
+    sort_order: ASC
+    sort_by: timeUpdated
 
 """
 

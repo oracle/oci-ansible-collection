@@ -43,11 +43,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific node_pool_options
   oci_container_engine_node_pool_options_facts:
-    node_pool_option_id: "all"
+    # required
+    node_pool_option_id: "ocid1.nodepooloption.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Get a specific node_pool_options
-  oci_container_engine_node_pool_options_facts:
-    node_pool_option_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

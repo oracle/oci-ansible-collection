@@ -30,13 +30,9 @@ oracle.oci.oci_data_science_model_provenance -- Manage a ModelProvenance resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_data_science_model_provenance`.
 
@@ -419,12 +415,29 @@ Examples
     
     - name: Create model_provenance
       oci_data_science_model_provenance:
+        # required
         model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        repository_url: http://git-remote.com/my-repo
+        git_branch: master
+        git_commit: 0978b63
+        script_dir: script_dir_example
+        training_script: model-dev/model1/model-training.ipynb
+        training_id: "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
 
     - name: Update model_provenance
       oci_data_science_model_provenance:
+        # required
         model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
         repository_url: http://git-remote.com/my-repo
+        git_branch: master
+        git_commit: 0978b63
+        script_dir: script_dir_example
+        training_script: model-dev/model1/model-training.ipynb
+        training_id: "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
 
 
 
@@ -460,7 +473,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the ModelProvenance resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;git_branch&#x27;: &#x27;master&#x27;, &#x27;git_commit&#x27;: &#x27;0978b63&#x27;, &#x27;repository_url&#x27;: &#x27;http://git-remote.com/my-repo&#x27;, &#x27;script_dir&#x27;: &#x27;script_dir_example&#x27;, &#x27;training_id&#x27;: &#x27;ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3...&#x27;, &#x27;training_script&#x27;: &#x27;model-dev/model1/model-training.ipynb&#x27;}</div>
                                     </td>
             </tr>
@@ -478,7 +491,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For model reproducibility purposes. Branch of the git repository associated with model training.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">master</div>
                                     </td>
             </tr>
@@ -496,7 +509,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For model reproducibility purposes. Commit ID of the git repository associated with model training.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">0978b63</div>
                                     </td>
             </tr>
@@ -514,7 +527,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For model reproducibility purposes. URL of the git repository associated with model training.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">http://git-remote.com/my-repo</div>
                                     </td>
             </tr>
@@ -532,7 +545,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For model reproducibility purposes. Path to model artifacts.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">script_dir_example</div>
                                     </td>
             </tr>
@@ -550,7 +563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a training session(Job or NotebookSession) in which the model was trained. It is used for model reproducibility purposes.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3...</div>
                                     </td>
             </tr>
@@ -568,7 +581,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For model reproducibility purposes. Path to the python script or notebook in which the model was trained.&quot;</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">model-dev/model1/model-training.ipynb</div>
                                     </td>
             </tr>

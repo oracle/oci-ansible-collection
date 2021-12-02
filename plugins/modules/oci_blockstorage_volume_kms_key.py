@@ -54,11 +54,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update volume_kms_key
   oci_blockstorage_volume_kms_key:
+    # required
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete volume_kms_key
   oci_blockstorage_volume_kms_key:
+    # required
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

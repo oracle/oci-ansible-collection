@@ -24,13 +24,14 @@ short_description: Manage a ServiceGateway resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a ServiceGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new service gateway in the specified compartment.
-    - For the purposes of access control, you must provide the OCID of the compartment where you want
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment where you want
       the service gateway to reside. For more information about compartments and access control, see
       L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
       For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the service gateway, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_service_gateway_actions) module: attach_service_id, change_compartment,
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_service_gateway_actions) module: attach_service_id, change_compartment,
       detach_service_id."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -67,7 +68,7 @@ options:
         type: dict
     route_table_id:
         description:
-            - The OCID of the route table the service gateway will use.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the service gateway will use.
             - If you don't specify a route table here, the service gateway is created without an associated route
               table. The Networking service does NOT automatically associate the attached VCN's default route table
               with the service gateway.
@@ -130,35 +131,58 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create service_gateway
   oci_network_service_gateway:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     services:
-    - service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update service_gateway
   oci_network_service_gateway:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     services:
-    - service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
     block_traffic: true
 
-- name: Update service_gateway
+- name: Update service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_service_gateway:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    services:
+    - # required
+      service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
+    block_traffic: true
 
 - name: Delete service_gateway
   oci_network_service_gateway:
+    # required
     service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_service_gateway:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
@@ -225,7 +249,7 @@ service_gateway:
             sample: PROVISIONING
         route_table_id:
             description:
-                - "The OCID of the route table the service gateway is using.
+                - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the service gateway is using.
                   For information about why you would associate a route table with a service gateway, see
                   L(Transit Routing: Private Access to Oracle
                   Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)."

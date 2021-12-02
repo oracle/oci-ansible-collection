@@ -90,13 +90,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List volumes
-  oci_blockstorage_volume_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific volume
   oci_blockstorage_volume_facts:
+    # required
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List volumes
+  oci_blockstorage_volume_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -251,7 +261,8 @@ volumes:
             contains:
                 display_name:
                     description:
-                        - The display name of the block volume replica
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
                     returned: on success
                     type: str
                     sample: display_name_example

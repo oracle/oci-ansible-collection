@@ -38,6 +38,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific configuration
   oci_usage_configuration_facts:
+    # required
     tenant_id: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

@@ -84,13 +84,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List rules
-  oci_events_rule_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific rule
   oci_events_rule_facts:
+    # required
     rule_id: "ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List rules
+  oci_events_rule_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: Creating
+    display_name: display_name_example
+    sort_by: TIME_CREATED
+    sort_order: ASC
 
 """
 

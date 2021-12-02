@@ -63,16 +63,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action cancel_certificate_authority_version_deletion on certificate_authority_version
   oci_certificates_management_certificate_authority_version_actions:
+    # required
     certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
     certificate_authority_version_number: 789
     action: cancel_certificate_authority_version_deletion
 
 - name: Perform action schedule_certificate_authority_version_deletion on certificate_authority_version
   oci_certificates_management_certificate_authority_version_actions:
-    time_of_deletion: "2021-05-06T00:00:00.000Z"
+    # required
     certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
-    certificate_authority_version_number: "789"
-    action: "schedule_certificate_authority_version_deletion"
+    certificate_authority_version_number: 789
+    action: schedule_certificate_authority_version_deletion
+
+    # optional
+    time_of_deletion: 2019-04-03T21:10:29.600Z
 
 """
 

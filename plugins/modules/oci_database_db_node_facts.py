@@ -83,13 +83,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List db_nodes
-  oci_database_db_node_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific db_node
   oci_database_db_node_facts:
+    # required
     db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List db_nodes
+  oci_database_db_node_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

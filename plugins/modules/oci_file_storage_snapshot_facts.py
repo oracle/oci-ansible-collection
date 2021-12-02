@@ -63,13 +63,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List snapshots
-  oci_file_storage_snapshot_facts:
-    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific snapshot
   oci_file_storage_snapshot_facts:
+    # required
     snapshot_id: "ocid1.snapshot.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List snapshots
+  oci_file_storage_snapshot_facts:
+    # required
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: CREATING
+    sort_order: ASC
 
 """
 

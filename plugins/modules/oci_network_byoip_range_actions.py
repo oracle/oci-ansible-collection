@@ -64,22 +64,26 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action advertise on byoip_range
   oci_network_byoip_range_actions:
+    # required
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     action: advertise
 
 - name: Perform action change_compartment on byoip_range
   oci_network_byoip_range_actions:
+    # required
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action validate on byoip_range
   oci_network_byoip_range_actions:
+    # required
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     action: validate
 
 - name: Perform action withdraw on byoip_range
   oci_network_byoip_range_actions:
+    # required
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     action: withdraw
 
@@ -114,8 +118,8 @@ byoip_range:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                  entering confidential information.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

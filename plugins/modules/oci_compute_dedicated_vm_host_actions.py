@@ -52,6 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on dedicated_vm_host
   oci_compute_dedicated_vm_host_actions:
+    # required
     dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -97,10 +98,9 @@ dedicated_vm_host:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My Dedicated Vm Host`"
             returned: on success
             type: str
-            sample: My Dedicated Vm Host
+            sample: display_name_example
         fault_domain:
             description:
                 - The fault domain for the dedicated virtual machine host's assigned instances.
@@ -170,7 +170,7 @@ dedicated_vm_host:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_shape": "dedicated_vm_host_shape_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "My Dedicated Vm Host",
+        "display_name": "display_name_example",
         "fault_domain": "FAULT-DOMAIN-1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

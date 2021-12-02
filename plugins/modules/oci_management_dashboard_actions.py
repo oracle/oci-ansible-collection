@@ -371,24 +371,35 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action export_dashboard on management_dashboard
   oci_management_dashboard_actions:
+    # required
     export_dashboard_id: "ocid1.exportdashboard.oc1..xxxxxxEXAMPLExxxxxx"
     action: export_dashboard
 
 - name: Perform action import_dashboard on management_dashboard
   oci_management_dashboard_actions:
+    # required
     dashboards:
-    - dashboard_id: "ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx"
+    - # required
+      dashboard_id: "ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx"
       provider_id: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
       provider_name: provider_name_example
       provider_version: provider_version_example
       tiles:
-      - display_name: display_name_example
+      - # required
+        display_name: display_name_example
         saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
         row: 56
         column: 56
         height: 56
         width: 56
+        nls: null
+        ui_config: null
+        data_config: [ "null" ]
         state: DELETED
+        drilldown_config: null
+
+        # optional
+        parameters_map: null
       display_name: display_name_example
       description: description_example
       compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -397,10 +408,14 @@ EXAMPLES = """
       metadata_version: metadata_version_example
       is_show_description: true
       screen_image: screen_image_example
+      nls: null
+      ui_config: null
+      data_config: [ "null" ]
       type: type_example
       is_favorite: true
       saved_searches:
-      - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         provider_id: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
         provider_version: provider_version_example
@@ -408,12 +423,31 @@ EXAMPLES = """
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_oob_saved_search: true
         description: description_example
+        nls: null
         type: SEARCH_SHOW_IN_DASHBOARD
+        ui_config: null
+        data_config: [ "null" ]
         screen_image: screen_image_example
         metadata_version: metadata_version_example
         widget_template: widget_template_example
         widget_vm: widget_vm_example
+
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        parameters_config: [ "null" ]
+        drilldown_config: [ "null" ]
+
+      # optional
+      parameters_config: [ "null" ]
+      drilldown_config: [ "null" ]
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
     action: import_dashboard
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 """
 

@@ -30,13 +30,9 @@ oracle.oci.oci_network_load_balancer_backend_set_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_load_balancer_backend_set_facts`.
 
@@ -306,14 +302,19 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: List backend_sets
-      oci_network_load_balancer_backend_set_facts:
-        network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-
     - name: Get a specific backend_set
       oci_network_load_balancer_backend_set_facts:
+        # required
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: example_backend_set
+
+    - name: List backend_sets
+      oci_network_load_balancer_backend_set_facts:
+        # required
+        network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        sort_order: ASC
 
 
 
@@ -349,8 +350,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of BackendSet resources</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;backends&#x27;: [{&#x27;ip_address&#x27;: &#x27;10.0.0.3&#x27;, &#x27;is_backup&#x27;: False, &#x27;is_drain&#x27;: False, &#x27;is_offline&#x27;: False, &#x27;name&#x27;: &#x27;10.0.0.3:8080&#x27;, &#x27;port&#x27;: 8080, &#x27;target_id&#x27;: &#x27;ocid1.privateip..oc1.unique_ID&#x27;, &#x27;weight&#x27;: 3}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 10000, &#x27;port&#x27;: 8080, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_data&#x27;: &#x27;UNKNOWN TYPE - str&#x27;, &#x27;response_body_regex&#x27;: &#x27;^((?!false).|\\s)*$&#x27;, &#x27;response_data&#x27;: &#x27;UNKNOWN TYPE - str&#x27;, &#x27;retries&#x27;: 3, &#x27;return_code&#x27;: 0, &#x27;timeout_in_millis&#x27;: 3000, &#x27;url_path&#x27;: &#x27;/healthcheck&#x27;}, &#x27;is_preserve_source&#x27;: True, &#x27;name&#x27;: &#x27;example_backend_set&#x27;, &#x27;policy&#x27;: &#x27;FIVE_TUPLE&#x27;}]</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;backends&#x27;: [{&#x27;ip_address&#x27;: &#x27;10.0.0.3&#x27;, &#x27;is_backup&#x27;: False, &#x27;is_drain&#x27;: False, &#x27;is_offline&#x27;: False, &#x27;name&#x27;: &#x27;10.0.0.3:8080&#x27;, &#x27;port&#x27;: 8080, &#x27;target_id&#x27;: &#x27;ocid1.privateip..oc1.unique_ID&#x27;, &#x27;weight&#x27;: 3}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 10000, &#x27;port&#x27;: 8080, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_data&#x27;: &#x27;UNKNOWN TYPE - str&#x27;, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;response_data&#x27;: &#x27;UNKNOWN TYPE - str&#x27;, &#x27;retries&#x27;: 3, &#x27;return_code&#x27;: 0, &#x27;timeout_in_millis&#x27;: 3000, &#x27;url_path&#x27;: &#x27;/healthcheck&#x27;}, &#x27;is_preserve_source&#x27;: True, &#x27;name&#x27;: &#x27;example_backend_set&#x27;, &#x27;policy&#x27;: &#x27;FIVE_TUPLE&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -367,7 +368,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Array of backends.</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -384,7 +385,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IP address of the backend server. Example: `10.0.0.3`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.3</div>
                                     </td>
             </tr>
@@ -404,7 +405,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the network load balancer should treat this server as a backup unit. If `true`, then the network load balancer forwards no ingress traffic to this backend server unless all other backend servers not marked as &quot;isBackup&quot; fail the health check policy.</div>
                                             <div>Example: `false`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -422,7 +423,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the network load balancer should drain this server. Servers marked &quot;isDrain&quot; receive no incoming traffic.</div>
                                             <div>Example: `false`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -440,7 +441,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the network load balancer should treat this server as offline. Offline servers receive no incoming traffic.</div>
                                             <div>Example: `false`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -458,7 +459,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A read-only field showing the IP address/IP OCID and port that uniquely identify this backend server in the backend set.</div>
                                             <div>Example: `10.0.0.3:8080`, or `ocid1.privateip..oc1.&lt;var&gt;&amp;lt;unique_ID&amp;gt;&lt;/var&gt;:443` or `10.0.0.3:0`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.3:8080</div>
                                     </td>
             </tr>
@@ -478,7 +479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The communication port for the backend server.</div>
                                             <div>Example: `8080`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">8080</div>
                                     </td>
             </tr>
@@ -497,7 +498,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IP OCID/Instance OCID associated with the backend server. Example: `ocid1.privateip..oc1.&lt;var&gt;&amp;lt;unique_ID&amp;gt;&lt;/var&gt;`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.privateip..oc1.unique_ID</div>
                                     </td>
             </tr>
@@ -517,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The network load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger proportion of incoming traffic. For example, a server weighted &#x27;3&#x27; receives three times the number of new connections as a server weighted &#x27;1&#x27;. For more information about load balancing policies, see <a href='https://docs.cloud.oracle.com/Content/Balance/Reference/lbpolicies.htm'>How Network Load Balancing Policies Work</a>.</div>
                                             <div>Example: `3`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
                                     </td>
             </tr>
@@ -536,7 +537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -554,7 +555,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The interval between health checks, in milliseconds. The default value is 10000 (10 seconds).</div>
                                             <div>Example: `10000`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10000</div>
                                     </td>
             </tr>
@@ -574,7 +575,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The backend server port against which to run the health check. If the port is not specified, then the network load balancer uses the port information from the `Backend` object. The port must be specified if the backend port is 0.</div>
                                             <div>Example: `8080`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">8080</div>
                                     </td>
             </tr>
@@ -594,7 +595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The protocol the health check must use; either HTTP or HTTPS, or UDP or TCP.</div>
                                             <div>Example: `HTTP`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTP</div>
                                     </td>
             </tr>
@@ -613,7 +614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Base64 encoded pattern to be sent as UDP or TCP health check probe.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_request_data</div>
                                     </td>
             </tr>
@@ -633,8 +634,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A regular expression for parsing the response body from the backend server.</div>
                                             <div>Example: `^((?!false).|\s)*$`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">^((?!false).|\s)*$</div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">response_body_regex_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -652,7 +653,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Base64 encoded pattern to be validated as UDP or TCP health check probe response.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_response_data</div>
                                     </td>
             </tr>
@@ -672,7 +673,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The number of retries to attempt before a backend server is considered &quot;unhealthy&quot;. This number also applies when recovering a server to the &quot;healthy&quot; state. The default value is 3.</div>
                                             <div>Example: `3`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
                                     </td>
             </tr>
@@ -692,7 +693,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol, then you can use common HTTP status codes such as &quot;200&quot;.</div>
                                             <div>Example: `200`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -710,7 +711,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply returns within this timeout period. The default value is 3000 (3 seconds).</div>
                                             <div>Example: `3000`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3000</div>
                                     </td>
             </tr>
@@ -730,7 +731,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The path against which to run the health check.</div>
                                             <div>Example: `/healthcheck`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">/healthcheck</div>
                                     </td>
             </tr>
@@ -749,7 +750,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>If this parameter is enabled, then the network load balancer preserves the source IP of the packet when it is forwarded to backends. Backends see the original source IP. If the isPreserveSourceDestination parameter is enabled for the network load balancer resource, then this parameter cannot be disabled. The value is true by default.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -769,7 +770,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Valid backend set names include only alphanumeric characters, dashes, and underscores. Backend set names cannot contain spaces. Avoid entering confidential information.</div>
                                             <div>Example: `example_backend_set`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_backend_set</div>
                                     </td>
             </tr>
@@ -788,7 +789,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The network load balancer policy for the backend set.</div>
                                             <div>Example: `FIVE_TUPLE`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FIVE_TUPLE</div>
                                     </td>
             </tr>

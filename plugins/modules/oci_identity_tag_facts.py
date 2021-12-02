@@ -51,14 +51,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List tags
-  oci_identity_tag_facts:
-    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific tag
   oci_identity_tag_facts:
+    # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     tag_name: tag_name_example
+
+- name: List tags
+  oci_identity_tag_facts:
+    # required
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: lifecycle_state_example
 
 """
 

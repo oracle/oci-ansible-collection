@@ -110,13 +110,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List drg_attachments
-  oci_network_drg_attachment_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific drg_attachment
   oci_network_drg_attachment_facts:
+    # required
     drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List drg_attachments
+  oci_network_drg_attachment_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    network_id: "ocid1.network.oc1..xxxxxxEXAMPLExxxxxx"
+    attachment_type: VCN
+    drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 
@@ -227,7 +240,7 @@ drg_attachments:
             sample: {'Department': 'Finance'}
         route_table_id:
             description:
-                - The OCID of the route table the DRG attachment is using.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is using.
                 - "For information about why you would associate a route table with a DRG attachment, see:"
                 - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
                     * L(Transit Routing: Private Access to Oracle

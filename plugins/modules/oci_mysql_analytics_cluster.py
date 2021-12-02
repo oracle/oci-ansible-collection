@@ -23,7 +23,7 @@ module: oci_mysql_analytics_cluster
 short_description: Manage an AnalyticsCluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an AnalyticsCluster resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_analytics_cluster_actions) module: add, restart, start, stop."
+    - "This resource has the following action operations in the M(oracle.oci.oci_mysql_analytics_cluster_actions) module: add, restart, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -66,11 +66,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update analytics_cluster
   oci_mysql_analytics_cluster:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     shape_name: shape_name_example
+    cluster_size: 56
 
 - name: Delete analytics_cluster
   oci_mysql_analytics_cluster:
+    # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

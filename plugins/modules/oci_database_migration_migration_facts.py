@@ -93,13 +93,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List migrations
-  oci_database_migration_migration_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific migration
   oci_database_migration_migration_facts:
+    # required
     migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List migrations
+  oci_database_migration_migration_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    sort_by: timeCreated
+    sort_order: ASC
+    lifecycle_state: CREATING
+    lifecycle_details: READY
 
 """
 

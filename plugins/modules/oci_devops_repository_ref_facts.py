@@ -68,14 +68,23 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List repository_reves
-  oci_devops_repository_ref_facts:
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific repository_ref
   oci_devops_repository_ref_facts:
+    # required
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     ref_name: ref_name_example
+
+- name: List repository_reves
+  oci_devops_repository_ref_facts:
+    # required
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    ref_name: ref_name_example
+    ref_type: BRANCH
+    commit_id: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_order: ASC
+    sort_by: refType
 
 """
 

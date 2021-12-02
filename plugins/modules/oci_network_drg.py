@@ -25,7 +25,8 @@ description:
     - This module allows the user to create, update and delete a Drg resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new dynamic routing gateway (DRG) in the specified compartment. For more information,
       see L(Dynamic Routing Gateways (DRGs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDRGs.htm).
-    - For the purposes of access control, you must provide the OCID of the compartment where you want
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment where you want
       the DRG to reside. Notice that the DRG doesn't have to be in the same compartment as the VCN,
       the DRG attachment, or other Networking Service components. If you're not sure which compartment
       to use, put the DRG in the same compartment as the VCN. For more information about compartments
@@ -33,7 +34,8 @@ description:
       For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the DRG, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_drg_actions) module: change_compartment, get_all_drg_attachments, upgrade."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_drg_actions) module: change_compartment, get_all_drg_attachments,
+      upgrade."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -69,7 +71,7 @@ options:
         type: dict
     drg_id:
         description:
-            - The L([OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)](/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -96,7 +98,8 @@ options:
                 type: str
             virtual_circuit:
                 description:
-                    - The OCID of the default DRG route table to be assigned to DRG attachments
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned to
+                      DRG attachments
                       of type VIRTUAL_CIRCUIT on creation.
                     - This parameter is updatable.
                 type: str
@@ -122,29 +125,55 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create drg
   oci_network_drg:
-    display_name: "MyDrg"
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
 
-- name: Update drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_drg:
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDrg
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update drg
   oci_network_drg:
+    # required
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDrg
-    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    default_drg_route_tables:
+      # optional
+      vcn: vcn_example
+      ipsec_tunnel: ipsec_tunnel_example
+      virtual_circuit: virtual_circuit_example
+      remote_peering_connection: remote_peering_connection_example
+
+- name: Update drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_drg:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: MyDrg
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    default_drg_route_tables:
+      # optional
+      vcn: vcn_example
+      ipsec_tunnel: ipsec_tunnel_example
+      virtual_circuit: virtual_circuit_example
+      remote_peering_connection: remote_peering_connection_example
 
 - name: Delete drg
   oci_network_drg:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyDrg
     state: absent
@@ -231,7 +260,8 @@ drg:
                     sample: ipsec_tunnel_example
                 virtual_circuit:
                     description:
-                        - The OCID of the default DRG route table to be assigned to DRG attachments
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned
+                          to DRG attachments
                           of type VIRTUAL_CIRCUIT on creation.
                     returned: on success
                     type: str

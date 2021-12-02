@@ -76,8 +76,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update maintenance_run
   oci_database_maintenance_run:
-    is_enabled: false
+    # required
     maintenance_run_id: "ocid1.maintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    is_enabled: false
+    time_scheduled: 2013-10-20T19:20:30+01:00
+    is_patch_now_enabled: true
+    patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+    patching_mode: ROLLING
 
 """
 

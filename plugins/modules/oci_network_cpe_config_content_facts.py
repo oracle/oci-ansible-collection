@@ -35,9 +35,9 @@ description:
       L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/) objects that use the specified CPE.
       Here are similar operations:"
     - " * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent)
-        returns CPE configuration content for all tunnels in a single IPSec connection.
+        returns CPE configuration content for all IPSec tunnels in a single IPSec connection.
         * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
-        returns CPE configuration content for a specific tunnel within an IPSec connection."
+        returns CPE configuration content for a specific IPSec tunnel in an IPSec connection."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -53,6 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific cpe_config_content
   oci_network_cpe_config_content_facts:
+    # required
     cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

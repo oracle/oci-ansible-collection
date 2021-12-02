@@ -75,22 +75,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    activation_file: null
     action: activate
 
 - name: Perform action add_storage_capacity on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: add_storage_capacity
 
 - name: Perform action change_compartment on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action download_exadata_infrastructure_config_file on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
+    # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     config_file_dest: /tmp/exadata_config_file.zip
     action: download_exadata_infrastructure_config_file

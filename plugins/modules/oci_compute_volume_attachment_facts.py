@@ -60,13 +60,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List volume_attachments
-  oci_compute_volume_attachment_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific volume_attachment
   oci_compute_volume_attachment_facts:
+    # required
     volume_attachment_id: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List volume_attachments
+  oci_compute_volume_attachment_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -104,12 +111,11 @@ volume_attachments:
             sample: device_example
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it cannot be changed.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My volume attachment`"
             returned: on success
             type: str
-            sample: My volume attachment
+            sample: display_name_example
         id:
             description:
                 - The OCID of the volume attachment.
@@ -265,7 +271,7 @@ volume_attachments:
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "device": "device_example",
-        "display_name": "My volume attachment",
+        "display_name": "display_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "is_read_only": true,

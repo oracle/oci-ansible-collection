@@ -27,7 +27,7 @@ description:
       For general information about boot volumes, see L(Boot Volumes,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/bootvolumes.htm).
       You may optionally specify a *display name* for the volume, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_boot_volume_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_blockstorage_boot_volume_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -131,8 +131,8 @@ options:
         suboptions:
             display_name:
                 description:
-                    - "The display name of the boot volume replica. You may optionally specify a *display name* for
-                      the boot volume replica, otherwise a default is provided."
+                    - A user-friendly name. Does not have to be unique, and it's changeable.
+                      Avoid entering confidential information.
                 type: str
                 aliases: ["name"]
             availability_domain:
@@ -163,16 +163,36 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create boot_volume
   oci_blockstorage_boot_volume:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source_details:
+      # required
       type: bootVolumeBackup
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    size_in_gbs: 56
+    vpus_per_gb: 56
+    is_auto_tune_enabled: true
+    boot_volume_replicas:
+    - # required
+      availability_domain: Uocm:PHX-AD-1
+
+      # optional
+      display_name: display_name_example
+
+- name: Update boot_volume
   oci_blockstorage_boot_volume:
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -180,21 +200,41 @@ EXAMPLES = """
     vpus_per_gb: 56
     is_auto_tune_enabled: true
     boot_volume_replicas:
-    - availability_domain: Uocm:PHX-AD-1
+    - # required
+      availability_domain: Uocm:PHX-AD-1
 
-- name: Update boot_volume
+      # optional
+      display_name: display_name_example
+
+- name: Update boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_boot_volume:
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    # required
+    availability_domain: Uocm:PHX-AD-1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    size_in_gbs: 56
+    vpus_per_gb: 56
+    is_auto_tune_enabled: true
+    boot_volume_replicas:
+    - # required
+      availability_domain: Uocm:PHX-AD-1
+
+      # optional
+      display_name: display_name_example
 
 - name: Delete boot_volume
   oci_blockstorage_boot_volume:
+    # required
     boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_boot_volume:
+    # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
@@ -360,7 +400,8 @@ boot_volume:
             contains:
                 display_name:
                     description:
-                        - The display name of the boot volume replica
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
                     returned: on success
                     type: str
                     sample: display_name_example

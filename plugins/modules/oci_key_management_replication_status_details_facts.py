@@ -47,6 +47,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific replication_status_details
   oci_key_management_replication_status_details_facts:
+    # required
     replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 

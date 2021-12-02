@@ -35,7 +35,7 @@ options:
         required: true
     upgrade_history_entry_id:
         description:
-            - The database upgrade History L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The database/db system upgrade History L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required to get a specific database_upgrade_history_entry.
         type: str
         aliases: ["id"]
@@ -72,14 +72,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List database_upgrade_history_entries
-  oci_database_upgrade_history_entry_facts:
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific database_upgrade_history_entry
   oci_database_upgrade_history_entry_facts:
+    # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     upgrade_history_entry_id: "ocid1.upgradehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List database_upgrade_history_entries
+  oci_database_upgrade_history_entry_facts:
+    # required
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    upgrade_action: upgrade_action_example
+    lifecycle_state: lifecycle_state_example
+    sort_by: TIMESTARTED
+    sort_order: ASC
 
 """
 

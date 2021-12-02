@@ -73,13 +73,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List configuration_source_providers
-  oci_resource_manager_configuration_source_provider_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific configuration_source_provider
   oci_resource_manager_configuration_source_provider_facts:
+    # required
     configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List configuration_source_providers
+  oci_resource_manager_configuration_source_provider_facts:
+
+    # optional
+    configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    config_source_provider_type: config_source_provider_type_example
 
 """
 

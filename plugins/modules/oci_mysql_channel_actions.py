@@ -51,11 +51,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action reset on channel
   oci_mysql_channel_actions:
+    # required
     channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     action: reset
 
 - name: Perform action resume on channel
   oci_mysql_channel_actions:
+    # required
     channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     action: resume
 

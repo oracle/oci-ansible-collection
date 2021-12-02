@@ -43,13 +43,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 """
 
 EXAMPLES = """
-- name: List cpes
-  oci_network_cpe_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific cpe
   oci_network_cpe_facts:
+    # required
     cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List cpes
+  oci_network_cpe_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -62,7 +64,7 @@ cpes:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the CPE.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the CPE.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -107,7 +109,8 @@ cpes:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE's device type.
                   The Networking service maintains a general list of CPE device types (for example,
                   Cisco ASA). For each type, Oracle provides CPE configuration content that can help
-                  a network engineer configure the CPE. The OCID uniquely identifies the type of
+                  a network engineer configure the CPE. The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) uniquely
+                  identifies the type of
                   device. To get the OCIDs for the device types on the list, see
                   L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CpeDeviceShapeSummary/ListCpeDeviceShapes).
                 - "For information about how to generate CPE configuration content for a

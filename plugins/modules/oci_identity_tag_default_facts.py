@@ -52,13 +52,18 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List tag_defaults
-  oci_identity_tag_default_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific tag_default
   oci_identity_tag_default_facts:
+    # required
     tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List tag_defaults
+  oci_identity_tag_default_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    tag_definition_id: "ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: lifecycle_state_example
 
 """
 

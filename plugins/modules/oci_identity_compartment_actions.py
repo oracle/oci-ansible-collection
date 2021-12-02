@@ -120,29 +120,41 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action bulk_delete_resources on compartment
   oci_identity_compartment_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
-    - identifier: identifier_example
+    - # required
+      identifier: identifier_example
       entity_type: entity_type_example
+
+      # optional
+      metadata: null
     action: bulk_delete_resources
 
 - name: Perform action bulk_move_resources on compartment
   oci_identity_compartment_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
-    - identifier: identifier_example
+    - # required
+      identifier: identifier_example
       entity_type: entity_type_example
+
+      # optional
+      metadata: null
     target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: bulk_move_resources
 
 - name: Perform action move on compartment
   oci_identity_compartment_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: move
 
 - name: Perform action recover on compartment
   oci_identity_compartment_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: recover
 
@@ -152,7 +164,7 @@ RETURN = """
 compartment:
     description:
         - Details of the Compartment resource acted upon by the current operation
-    returned: on success for actions [ "move", "recover" ]
+    returned: on success
     type: complex
     contains:
         id:

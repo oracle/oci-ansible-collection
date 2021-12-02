@@ -70,11 +70,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action cascade_delete on tag_namespace
   oci_identity_tag_namespace_actions:
+    # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     action: cascade_delete
 
 - name: Perform action change_compartment on tag_namespace
   oci_identity_tag_namespace_actions:
+    # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
@@ -85,7 +87,7 @@ RETURN = """
 tag_namespace:
     description:
         - Details of the TagNamespace resource acted upon by the current operation
-    returned: on success for actions [ "change_compartment" ]
+    returned: on success
     type: complex
     contains:
         id:

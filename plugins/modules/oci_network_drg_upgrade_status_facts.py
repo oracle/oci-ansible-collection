@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     drg_id:
         description:
-            - The L([OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)](/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
         type: str
         aliases: ["id"]
         required: true
@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific drg_upgrade_status
   oci_network_drg_upgrade_status_facts:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
 """

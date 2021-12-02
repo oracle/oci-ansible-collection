@@ -384,73 +384,573 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create deploy_stage
+- name: Create deploy_stage with deploy_stage_type = MANUAL_APPROVAL
   oci_devops_deploy_stage:
-    deploy_stage_type: DEPLOY_FUNCTION
+    # required
+    deploy_stage_type: MANUAL_APPROVAL
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_stage_predecessor_collection:
-      items:
-      - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_devops_deploy_stage:
+    # optional
     description: description_example
     display_name: display_name_example
-    deploy_stage_type: DEPLOY_FUNCTION
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_stage_predecessor_collection:
+      # required
       items:
-      - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     approval_policy:
+      # required
       approval_policy_type: COUNT_BASED_APPROVAL
       number_of_approvals_required: 56
+
+- name: Create deploy_stage with deploy_stage_type = WAIT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: WAIT
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     wait_criteria:
+      # required
       wait_type: ABSOLUTE_WAIT
       wait_duration: PT10M5S
+
+- name: Create deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_DEPLOYMENT
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    kubernetes_manifest_deploy_artifact_ids: [ "null" ]
     namespace: namespace_example
     rollback_policy:
+      # required
       policy_type: NO_STAGE_ROLLBACK_POLICY
+
+- name: Create deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: LOAD_BALANCER_TRAFFIC_SHIFT
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    blue_backend_ips:
+      # optional
+      items: [ "null" ]
+    green_backend_ips:
+      # optional
+      items: [ "null" ]
     traffic_shift_target: traffic_shift_target_example
+    rollout_policy:
+      # required
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+      batch_percentage: 56
+
+      # optional
+      batch_delay_in_seconds: 56
     load_balancer_config:
+      # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
       listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+
+- name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    rollout_policy:
+      # required
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+      batch_percentage: 56
+
+      # optional
+      batch_delay_in_seconds: 56
+    load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
     compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "null" ]
     failure_policy:
+      # required
       policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+      failure_percentage: 56
+
+- name: Create deploy_stage with deploy_stage_type = INVOKE_FUNCTION
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: INVOKE_FUNCTION
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
     is_async: true
     is_validation_enabled: true
+
+- name: Create deploy_stage with deploy_stage_type = DEPLOY_FUNCTION
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: DEPLOY_FUNCTION
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    config: null
     max_memory_in_mbs: 56
     function_timeout_in_seconds: 56
 
-- name: Update deploy_stage
+- name: Update deploy_stage with deploy_stage_type = MANUAL_APPROVAL
   oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: MANUAL_APPROVAL
+
+    # optional
     description: description_example
     display_name: display_name_example
-    deploy_stage_type: DEPLOY_FUNCTION
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_stage_predecessor_collection:
+      # required
       items:
-      - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+
+- name: Update deploy_stage with deploy_stage_type = WAIT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: WAIT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    wait_criteria:
+      # required
+      wait_type: ABSOLUTE_WAIT
+      wait_duration: PT10M5S
+
+- name: Update deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_DEPLOYMENT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    kubernetes_manifest_deploy_artifact_ids: [ "null" ]
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+
+- name: Update deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: LOAD_BALANCER_TRAFFIC_SHIFT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    blue_backend_ips:
+      # optional
+      items: [ "null" ]
+    green_backend_ips:
+      # optional
+      items: [ "null" ]
+    traffic_shift_target: traffic_shift_target_example
+    rollout_policy:
+      # required
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+      batch_percentage: 56
+
+      # optional
+      batch_delay_in_seconds: 56
+    load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+
+- name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    rollout_policy:
+      # required
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+      batch_percentage: 56
+
+      # optional
+      batch_delay_in_seconds: 56
+    load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "null" ]
+    failure_policy:
+      # required
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+      failure_percentage: 56
+
+- name: Update deploy_stage with deploy_stage_type = INVOKE_FUNCTION
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: INVOKE_FUNCTION
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    is_async: true
+    is_validation_enabled: true
+
+- name: Update deploy_stage with deploy_stage_type = DEPLOY_FUNCTION
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: DEPLOY_FUNCTION
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+    config: null
+    max_memory_in_mbs: 56
+    function_timeout_in_seconds: 56
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = MANUAL_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: MANUAL_APPROVAL
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = WAIT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: WAIT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    wait_criteria:
+      # required
+      wait_type: ABSOLUTE_WAIT
+      wait_duration: PT10M5S
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_DEPLOYMENT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    kubernetes_manifest_deploy_artifact_ids: [ "null" ]
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: LOAD_BALANCER_TRAFFIC_SHIFT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    blue_backend_ips:
+      # optional
+      items: [ "null" ]
+    green_backend_ips:
+      # optional
+      items: [ "null" ]
+    traffic_shift_target: traffic_shift_target_example
+    rollout_policy:
+      # required
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+      batch_percentage: 56
+
+      # optional
+      batch_delay_in_seconds: 56
+    load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+
+- name: >
+    Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    rollout_policy:
+      # required
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+      batch_percentage: 56
+
+      # optional
+      batch_delay_in_seconds: 56
+    load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "null" ]
+    failure_policy:
+      # required
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+      failure_percentage: 56
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = INVOKE_FUNCTION
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: INVOKE_FUNCTION
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    is_async: true
+    is_validation_enabled: true
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = DEPLOY_FUNCTION
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: DEPLOY_FUNCTION
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    config: null
+    max_memory_in_mbs: 56
+    function_timeout_in_seconds: 56
 
 - name: Delete deploy_stage
   oci_devops_deploy_stage:
+    # required
     deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_devops_deploy_stage:
+    # required
     display_name: display_name_example
     state: absent
 

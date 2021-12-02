@@ -24,7 +24,8 @@ short_description: Manage a ModelDeployment resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to create, update and delete a ModelDeployment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new model deployment.
-    - "This resource has the following action operations in the M(oci_model_deployment_actions) module: activate, change_compartment, deactivate."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_science_model_deployment_actions) module: activate, change_compartment,
+      deactivate."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -187,34 +188,125 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create model_deployment
   oci_data_science_model_deployment:
+    # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     model_deployment_configuration_details:
+      # required
       deployment_type: SINGLE_MODEL
+      model_configuration_details:
+        # required
+        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update model_deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_data_science_model_deployment:
+        # optional
+        instance_configuration:
+          # required
+          instance_shape_name: instance_shape_name_example
+        scaling_policy:
+          # required
+          policy_type: FIXED_SIZE
+          instance_count: 56
+        bandwidth_mbps: 56
+
+    # optional
     display_name: My ModelDeployment
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    model_deployment_configuration_details:
-      deployment_type: SINGLE_MODEL
+    category_log_details:
+      # optional
+      access:
+        # required
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      predict:
+        # required
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update model_deployment
   oci_data_science_model_deployment:
+    # required
+    model_deployment_id: "ocid1.modeldeployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: My ModelDeployment
     description: description_example
-    model_deployment_id: "ocid1.modeldeployment.oc1..xxxxxxEXAMPLExxxxxx"
+    model_deployment_configuration_details:
+      # required
+      deployment_type: SINGLE_MODEL
+      model_configuration_details:
+        # required
+        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        instance_configuration:
+          # required
+          instance_shape_name: instance_shape_name_example
+        scaling_policy:
+          # required
+          policy_type: FIXED_SIZE
+          instance_count: 56
+        bandwidth_mbps: 56
+    category_log_details:
+      # optional
+      access:
+        # required
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      predict:
+        # required
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update model_deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_data_science_model_deployment:
+    # required
+    display_name: My ModelDeployment
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    model_deployment_configuration_details:
+      # required
+      deployment_type: SINGLE_MODEL
+      model_configuration_details:
+        # required
+        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        instance_configuration:
+          # required
+          instance_shape_name: instance_shape_name_example
+        scaling_policy:
+          # required
+          policy_type: FIXED_SIZE
+          instance_count: 56
+        bandwidth_mbps: 56
+    category_log_details:
+      # optional
+      access:
+        # required
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      predict:
+        # required
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete model_deployment
   oci_data_science_model_deployment:
+    # required
     model_deployment_id: "ocid1.modeldeployment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete model_deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_model_deployment:
+    # required
     display_name: My ModelDeployment
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

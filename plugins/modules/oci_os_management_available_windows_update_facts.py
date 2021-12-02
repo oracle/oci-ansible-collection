@@ -70,7 +70,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List available_windows_updates
   oci_os_management_available_windows_update_facts:
+    # required
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_order: ASC
+    sort_by: TIMECREATED
+    is_eligible_for_installation: INSTALLABLE
 
 """
 

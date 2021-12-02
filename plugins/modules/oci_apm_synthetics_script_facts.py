@@ -71,14 +71,22 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List scripts
-  oci_apm_synthetics_script_facts:
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific script
   oci_apm_synthetics_script_facts:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List scripts
+  oci_apm_synthetics_script_facts:
+    # required
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    content_type: content_type_example
+    sort_order: ASC
+    sort_by: displayName
 
 """
 

@@ -23,13 +23,15 @@ module: oci_compute_image_facts
 short_description: Fetches details about one or multiple Image resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Image resources in Oracle Cloud Infrastructure
-    - Lists the available images in the specified compartment, including
+    - Lists a subset of images available in the specified compartment, including
       L(platform images,https://docs.cloud.oracle.com/iaas/Content/Compute/References/images.htm) and
-      L(custom images,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm) that have
-      been created.
-    - The list of images that's returned is ordered to first show all
-      platform images, then all custom images. The order of images might
-      change when new images are released.
+      L(custom images,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm).
+      The list of platform images includes the three most recently published versions
+      of each major distribution.
+    - The list of images returned is ordered to first show the recent platform images,
+      then all of the custom images.
+    - "**Caution:** Platform images are refreshed regularly. When new images are released, older versions are replaced.
+      The image OCIDs remain available, but when the platform image is replaced, the image OCIDs are no longer returned as part of the platform image list."
     - If I(image_id) is specified, the details of a single Image will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -101,13 +103,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List images
-  oci_compute_image_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific image
   oci_compute_image_facts:
+    # required
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List images
+  oci_compute_image_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    operating_system: Oracle Linux
+    operating_system_version: 7.2
+    shape: shape_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

@@ -34,7 +34,7 @@ description:
     - "You must also specify a *description* for the namespace.
       It does not have to be unique, and you can change it with
       L(UpdateTagNamespace,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/TagNamespace/UpdateTagNamespace)."
-    - "This resource has the following action operations in the M(oci_tag_namespace_actions) module: cascade_delete, change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_tag_namespace_actions) module: cascade_delete, change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -99,32 +99,47 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create tag_namespace
   oci_identity_tag_namespace:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
 
-- name: Update tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update tag_namespace
   oci_identity_tag_namespace:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
+    # required
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_retired: true
 
-- name: Update tag_namespace
+- name: Update tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_tag_namespace:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+
+    # optional
     description: description_example
     freeform_tags: {'Department': 'Finance'}
-    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_retired: true
 
 - name: Delete tag_namespace
   oci_identity_tag_namespace:
+    # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_tag_namespace:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent

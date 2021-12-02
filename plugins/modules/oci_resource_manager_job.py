@@ -175,27 +175,55 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create job
   oci_resource_manager_job:
+    # required
     stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_resource_manager_job:
+    # optional
     display_name: display_name_example
+    operation: operation_example
+    job_operation_details:
+      # required
+      operation: IMPORT_TF_STATE
+      tf_state_base64_encoded: null
+    apply_job_plan_resolution:
+      # optional
+      plan_job_id: "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx"
+      is_use_latest_job_id: true
+      is_auto_approved: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update job
   oci_resource_manager_job:
+    # required
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_resource_manager_job:
+    # required
+    display_name: display_name_example
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete job
   oci_resource_manager_job:
+    # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    is_forced: true
+
 - name: Delete job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_resource_manager_job:
+    # required
     display_name: display_name_example
     state: absent
 

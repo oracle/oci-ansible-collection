@@ -23,8 +23,8 @@ module: oci_opsi_resource_statistics_facts
 short_description: Fetches details about a ResourceStatistics resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a ResourceStatistics resource in Oracle Cloud Infrastructure
-    - Lists the Resource statistics (usage,capacity, usage change percent, utilization percent, base capacity, isAutoScalingEnabled) for each database filtered
-      by utilization level
+    - Lists the Resource statistics (usage,capacity, usage change percent, utilization percent, base capacity, isAutoScalingEnabled)
+      for each database filtered by utilization level in a compartment and in all sub-compartments if specified.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -83,6 +83,16 @@ options:
     id:
         description:
             - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
+    exadata_insight_id:
+        description:
+            - Optional list of exadata insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
+    cdb_name:
+        description:
+            - Filter by one or more cdb name.
         type: list
         elements: str
     percentile:
@@ -160,14 +170,41 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific resource_statistics
   oci_opsi_resource_statistics_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resource_metric: resource_metric_example
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    database_type: [ "$p.getValue()" ]
+    database_id: [ "$p.getValue()" ]
+    id: [ "$p.getValue()" ]
+    exadata_insight_id: [ "$p.getValue()" ]
+    cdb_name: [ "$p.getValue()" ]
+    percentile: 56
+    insight_by: insight_by_example
+    forecast_days: 56
+    sort_order: ASC
+    sort_by: utilizationPercent
+    host_name: [ "$p.getValue()" ]
+    is_database_instance_level_metrics: true
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -226,6 +263,12 @@ resource_statistics:
                             returned: on success
                             type: str
                             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+                        compartment_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         database_name:
                             description:
                                 - The database name. The database name is unique within the tenancy.
@@ -268,6 +311,12 @@ resource_statistics:
                                     returned: on success
                                     type: str
                                     sample: instance_name_example
+                        cdb_name:
+                            description:
+                                - Name of the CDB.Only applies to PDB.
+                            returned: on success
+                            type: str
+                            sample: cdb_name_example
                 current_statistics:
                     description:
                         - ""
@@ -310,6 +359,48 @@ resource_statistics:
                             returned: on success
                             type: float
                             sample: 5.2
+                        instance_metrics:
+                            description:
+                                - Array of instance metrics
+                            returned: on success
+                            type: complex
+                            contains:
+                                host_name:
+                                    description:
+                                        - The hostname of the database insight resource.
+                                    returned: on success
+                                    type: str
+                                    sample: host_name_example
+                                instance_name:
+                                    description:
+                                        - The instance name of the database insight resource.
+                                    returned: on success
+                                    type: str
+                                    sample: instance_name_example
+                                usage:
+                                    description:
+                                        - Total amount used of the resource metric type (CPU, STORAGE).
+                                    returned: on success
+                                    type: float
+                                    sample: 34.5
+                                capacity:
+                                    description:
+                                        - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
+                                    returned: on success
+                                    type: float
+                                    sample: 222.3
+                                utilization_percent:
+                                    description:
+                                        - Resource utilization in percentage
+                                    returned: on success
+                                    type: float
+                                    sample: 35.1
+                                usage_change_percent:
+                                    description:
+                                        - Change in resource utilization in percentage
+                                    returned: on success
+                                    type: float
+                                    sample: 5.2
     sample: {
         "time_interval_start": "2020-12-06T00:00:00.000Z",
         "time_interval_end": "2020-12-06T00:00:00.000Z",
@@ -319,6 +410,7 @@ resource_statistics:
             "database_details": {
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "database_name": "database_name_example",
                 "database_display_name": "database_display_name_example",
                 "database_type": "database_type_example",
@@ -326,7 +418,8 @@ resource_statistics:
                 "instances": [{
                     "host_name": "host_name_example",
                     "instance_name": "instance_name_example"
-                }]
+                }],
+                "cdb_name": "cdb_name_example"
             },
             "current_statistics": {
                 "usage": 34.5,
@@ -334,7 +427,15 @@ resource_statistics:
                 "base_capacity": 222.3,
                 "is_auto_scaling_enabled": true,
                 "utilization_percent": 35.1,
-                "usage_change_percent": 5.2
+                "usage_change_percent": 5.2,
+                "instance_metrics": [{
+                    "host_name": "host_name_example",
+                    "instance_name": "instance_name_example",
+                    "usage": 34.5,
+                    "capacity": 222.3,
+                    "utilization_percent": 35.1,
+                    "usage_change_percent": 5.2
+                }]
             }
         }]
     }
@@ -372,6 +473,8 @@ class ResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
             "database_type",
             "database_id",
             "id",
+            "exadata_insight_id",
+            "cdb_name",
             "percentile",
             "insight_by",
             "forecast_days",
@@ -383,6 +486,7 @@ class ResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -431,6 +535,8 @@ def main():
             ),
             database_id=dict(type="list", elements="str"),
             id=dict(type="list", elements="str"),
+            exadata_insight_id=dict(type="list", elements="str"),
+            cdb_name=dict(type="list", elements="str"),
             percentile=dict(type="int"),
             insight_by=dict(type="str"),
             forecast_days=dict(type="int"),
@@ -451,6 +557,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

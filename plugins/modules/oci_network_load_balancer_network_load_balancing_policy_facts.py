@@ -41,6 +41,9 @@ EXAMPLES = """
 - name: List network_load_balancing_policies
   oci_network_load_balancer_network_load_balancing_policy_facts:
 
+    # optional
+    sort_order: ASC
+
 """
 
 RETURN = """

@@ -34,7 +34,7 @@ author: Oracle (@oracle)
 options:
     drg_id:
         description:
-            - The L([OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)](/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
         type: str
         aliases: ["id"]
         required: true
@@ -75,17 +75,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on drg
   oci_network_drg_actions:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action get_all_drg_attachments on drg
   oci_network_drg_actions:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     action: get_all_drg_attachments
 
+    # optional
+    attachment_type: VCN
+    is_cross_tenancy: true
+
 - name: Perform action upgrade on drg
   oci_network_drg_actions:
+    # required
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     action: upgrade
 
@@ -171,7 +178,8 @@ drg:
                     sample: ipsec_tunnel_example
                 virtual_circuit:
                     description:
-                        - The OCID of the default DRG route table to be assigned to DRG attachments
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned
+                          to DRG attachments
                           of type VIRTUAL_CIRCUIT on creation.
                     returned: on success
                     type: str

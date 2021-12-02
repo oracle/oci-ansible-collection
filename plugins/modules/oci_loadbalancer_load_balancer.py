@@ -45,7 +45,7 @@ description:
     - When you create a load balancer, the system assigns an IP address.
       To get the IP address, use the L(GetLoadBalancer,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/LoadBalancer/GetLoadBalancer)
       operation.
-    - "This resource has the following action operations in the M(oci_load_balancer_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_loadbalancer_load_balancer_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -170,34 +170,56 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create load_balancer
   oci_loadbalancer_load_balancer:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: "example_load_balancer"
-    shape_name: "100Mbps"
-    is_private: true
-    subnet_ids:
-    - "ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx"
-
-- name: Update load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_loadbalancer_load_balancer:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: example_load_balancer
     shape_name: 100Mbps
+    subnet_ids: [ "ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx" ]
+
+    # optional
+    shape_details:
+      # required
+      minimum_bandwidth_in_mbps: 150
+      maximum_bandwidth_in_mbps: 1500
+    is_private: true
+    ip_mode: IPV4
+    reserved_ips:
+    - # optional
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update load_balancer
   oci_loadbalancer_load_balancer:
+    # required
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: example_load_balancer
     shape_name: 100Mbps
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_loadbalancer_load_balancer:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: example_load_balancer
+
+    # optional
+    shape_name: 100Mbps
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete load_balancer
   oci_loadbalancer_load_balancer:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_loadbalancer_load_balancer:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: example_load_balancer
     state: absent
@@ -874,7 +896,7 @@ load_balancer:
                                 - "Example: `^((?!false).|\\\\s)*$`"
                             returned: on success
                             type: str
-                            sample: "^((?!false).|\\\\s)*$"
+                            sample: response_body_regex_example
                 ssl_configuration:
                     description:
                         - ""
@@ -1566,7 +1588,7 @@ load_balancer:
                 "retries": 3,
                 "timeout_in_millis": 3000,
                 "interval_in_millis": 10000,
-                "response_body_regex": "^((?!false).|\\\\s)*$"
+                "response_body_regex": "response_body_regex_example"
             },
             "ssl_configuration": {
                 "verify_depth": 3,

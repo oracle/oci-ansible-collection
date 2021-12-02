@@ -75,13 +75,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List network_load_balancers
-  oci_network_load_balancer_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific network_load_balancer
   oci_network_load_balancer_facts:
+    # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List network_load_balancers
+  oci_network_load_balancer_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    lifecycle_state: CREATING
+    display_name: display_name_example
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 
@@ -421,7 +429,7 @@ network_load_balancers:
                                 - "Example: `^((?!false).|\\\\s)*$`"
                             returned: on success
                             type: str
-                            sample: "^((?!false).|\\\\s)*$"
+                            sample: response_body_regex_example
                         return_code:
                             description:
                                 - "The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol,
@@ -511,7 +519,7 @@ network_load_balancers:
                 "timeout_in_millis": 3000,
                 "interval_in_millis": 10000,
                 "url_path": "/healthcheck",
-                "response_body_regex": "^((?!false).|\\\\s)*$",
+                "response_body_regex": "response_body_regex_example",
                 "return_code": 0,
                 "request_data": UNKNOWN TYPE - str,
                 "response_data": UNKNOWN TYPE - str

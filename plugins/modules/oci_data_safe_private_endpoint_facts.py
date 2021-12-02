@@ -96,13 +96,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List data_safe_private_endpoints
-  oci_data_safe_private_endpoint_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific data_safe_private_endpoint
   oci_data_safe_private_endpoint_facts:
+    # required
     data_safe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List data_safe_private_endpoints
+  oci_data_safe_private_endpoint_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    lifecycle_state: CREATING
+    sort_order: ASC
+    sort_by: TIMECREATED
+    compartment_id_in_subtree: true
+    access_level: RESTRICTED
 
 """
 

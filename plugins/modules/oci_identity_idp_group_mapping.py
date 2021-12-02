@@ -70,19 +70,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create idp_group_mapping
   oci_identity_idp_group_mapping:
+    # required
     idp_group_name: idp_group_name_example
     group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
     identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update idp_group_mapping
   oci_identity_idp_group_mapping:
-    idp_group_name: idp_group_name_example
-    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
+    # required
     identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
     mapping_id: "ocid1.mapping.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    idp_group_name: idp_group_name_example
+    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Delete idp_group_mapping
   oci_identity_idp_group_mapping:
+    # required
     identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
     mapping_id: "ocid1.mapping.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

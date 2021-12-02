@@ -75,13 +75,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List software_sources
-  oci_os_management_software_source_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific software_source
   oci_os_management_software_source_facts:
+    # required
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List software_sources
+  oci_os_management_software_source_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: My new resource
+    sort_order: ASC
+    sort_by: TIMECREATED
+    lifecycle_state: CREATING
 
 """
 

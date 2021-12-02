@@ -24,7 +24,7 @@ short_description: Manage a ServiceCatalog resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a ServiceCatalog resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a brand new service catalog in a given compartment.
-    - "This resource has the following action operations in the M(oci_service_catalog_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_service_catalog_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -76,29 +76,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create service_catalog
   oci_service_catalog:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
-- name: Update service_catalog using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_service_catalog:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update service_catalog
   oci_service_catalog:
+    # required
     display_name: display_name_example
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     service_catalog_id: "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+
+- name: Update service_catalog using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_service_catalog:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete service_catalog
   oci_service_catalog:
+    # required
     service_catalog_id: "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete service_catalog using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_service_catalog:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

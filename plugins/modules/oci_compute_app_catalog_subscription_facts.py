@@ -63,7 +63,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List app_catalog_subscriptions
   oci_compute_app_catalog_subscription_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -100,7 +106,8 @@ app_catalog_subscriptions:
             sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The display name of the listing.
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example

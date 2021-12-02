@@ -194,22 +194,39 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update domain_records
   oci_dns_domain_records:
-    update_items:
-    - domain: "www.example.com"
-      record_hash: "8f356bd7e9c2007c5c898f441fb663e9"
-      is_protected: false
-      rdata: "v=spf1 include:example.net -all"
-      rrset_version: "9"
-      rtype: "TXT"
-      ttl: 30
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
-    domain: "domain_example"
+    domain: domain_example
+
+    # optional
+    update_items:
+    - # required
+      domain: www.example.com
+      rdata: v=spf1 include:example.net -all
+      rtype: TXT
+      ttl: 30
+
+      # optional
+      record_hash: 8f356bd7e9c2007c5c898f441fb663e9
+      is_protected: false
+      rrset_version: 9
+    if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete domain_records
   oci_dns_domain_records:
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     domain: domain_example
     state: absent
+
+    # optional
+    if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

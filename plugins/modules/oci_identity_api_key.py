@@ -68,11 +68,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create api_key
   oci_identity_api_key:
-    key: "-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A..."
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    key: key_example
 
 - name: Delete api_key
   oci_identity_api_key:
+    # required
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     fingerprint: fingerprint_example
     state: absent

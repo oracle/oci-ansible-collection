@@ -45,6 +45,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific private_application_logo
   oci_service_catalog_private_application_logo_facts:
+    # required
     dest: /tmp/myfile
     private_application_id: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
 

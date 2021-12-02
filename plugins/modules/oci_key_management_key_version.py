@@ -29,7 +29,8 @@ description:
       of requests across all  management write operations. Key Management might throttle this call to reject an
       otherwise valid request when the total rate of management write operations exceeds 10 requests per second
       for a given tenancy.
-    - "This resource has the following action operations in the M(oci_key_version_actions) module: cancel_key_version_deletion, schedule_key_version_deletion."
+    - "This resource has the following action operations in the M(oracle.oci.oci_key_management_key_version_actions) module: cancel_key_version_deletion,
+      schedule_key_version_deletion."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -57,6 +58,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create key_version
   oci_key_management_key_version:
+    # required
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 

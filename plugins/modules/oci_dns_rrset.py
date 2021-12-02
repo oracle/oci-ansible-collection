@@ -199,24 +199,41 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update rrset
   oci_dns_rrset:
-    update_items:
-    - domain: "www.example.com"
-      record_hash: "e86155f805706f45b4820db76f0dd71f"
-      is_protected: false
-      rdata: "v=spf1 include:example.net -all"
-      rrset_version: "10"
-      rtype: "TXT"
-      ttl: 60
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
-    domain: "domain_example"
-    rtype: "rtype_example"
+    domain: domain_example
+    rtype: rtype_example
+
+    # optional
+    update_items:
+    - # required
+      domain: www.example.com
+      rdata: v=spf1 include:example.net -all
+      rtype: TXT
+      ttl: 60
+
+      # optional
+      record_hash: e86155f805706f45b4820db76f0dd71f
+      is_protected: false
+      rrset_version: 10
+    if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete rrset
   oci_dns_rrset:
+    # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     domain: domain_example
     rtype: rtype_example
     state: absent
+
+    # optional
+    if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

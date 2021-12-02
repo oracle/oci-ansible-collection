@@ -45,6 +45,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific job_content
   oci_database_migration_job_content_facts:
+    # required
     dest: /tmp/myfile
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 

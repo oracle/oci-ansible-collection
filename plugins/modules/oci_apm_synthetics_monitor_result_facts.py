@@ -63,6 +63,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific monitor_result
   oci_apm_synthetics_monitor_result_facts:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
     vantage_point: vantage_point_example

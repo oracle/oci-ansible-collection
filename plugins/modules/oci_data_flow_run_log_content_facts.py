@@ -49,6 +49,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific run_log_content
   oci_data_flow_run_log_content_facts:
+    # required
     dest: /tmp/myfile
     run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example

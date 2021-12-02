@@ -62,18 +62,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action failover on autonomous_container_database_dataguard_association
   oci_database_autonomous_container_database_dataguard_association_actions:
+    # required
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_container_database_dataguard_association_id: "ocid1.autonomouscontainerdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
     action: failover
 
 - name: Perform action reinstate on autonomous_container_database_dataguard_association
   oci_database_autonomous_container_database_dataguard_association_actions:
+    # required
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_container_database_dataguard_association_id: "ocid1.autonomouscontainerdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
     action: reinstate
 
 - name: Perform action switchover on autonomous_container_database_dataguard_association
   oci_database_autonomous_container_database_dataguard_association_actions:
+    # required
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_container_database_dataguard_association_id: "ocid1.autonomouscontainerdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
     action: switchover

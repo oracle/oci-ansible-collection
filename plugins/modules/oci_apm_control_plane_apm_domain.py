@@ -24,7 +24,7 @@ short_description: Manage an ApmDomain resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an ApmDomain resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new APM Domain.
-    - "This resource has the following action operations in the M(oci_apm_domain_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_apm_control_plane_apm_domain_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -86,30 +86,47 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create apm_domain
   oci_apm_control_plane_apm_domain:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update apm_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_apm_control_plane_apm_domain:
-    display_name: display_name_example
+    # optional
     description: description_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_free_tier: true
 
 - name: Update apm_domain
   oci_apm_control_plane_apm_domain:
+    # required
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update apm_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_apm_control_plane_apm_domain:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete apm_domain
   oci_apm_control_plane_apm_domain:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete apm_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_control_plane_apm_domain:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

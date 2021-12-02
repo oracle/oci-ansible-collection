@@ -47,6 +47,11 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    aggregation_interval_in_days:
+        description:
+            - The time period over which to collect data for the recommendations, measured in number of days.
+            - This parameter is updatable.
+        type: int
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -91,7 +96,7 @@ options:
         suboptions:
             items:
                 description:
-                    - The list of target compartment OCIDs attached to the current profile override.
+                    - The list of OCIDs attached to the compartments specified in the current profile override.
                 type: list
                 elements: str
                 required: true
@@ -103,7 +108,7 @@ options:
         suboptions:
             items:
                 description:
-                    - The list of target tags attached to the current profile override.
+                    - The list of tags specified in the current profile override.
                 type: list
                 elements: dict
                 required: true
@@ -115,12 +120,16 @@ options:
                         required: true
                     tag_definition_name:
                         description:
-                            - The name of the tag definition.
+                            - The name you use to refer to the tag, also known as the tag key.
                         type: str
                         required: true
                     tag_value_type:
                         description:
-                            - The tag value type.
+                            - Specifies which tag value types in the `tagValues` field result in overrides of the recommendation criteria.
+                            - When the value for this field is `ANY`, the `tagValues` field should be empty, which enforces overrides to the recommendation
+                              for resources with any tag values attached to them.
+                            - When the value for this field value is `VALUE`, the `tagValues` field must include a specific value or list of values.
+                              Overrides to the recommendation criteria only occur for resources that match the values in the `tagValues` fields.
                         type: str
                         choices:
                             - "VALUE"
@@ -128,7 +137,7 @@ options:
                         required: true
                     tag_values:
                         description:
-                            - The list of tag values.
+                            - The list of tag values. The tag value is the value that the user applying the tag adds to the tag key.
                         type: list
                         elements: str
     profile_id:
@@ -153,36 +162,106 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create profile
   oci_optimizer_profile:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
+    levels_configuration:
+      # optional
+      items:
+      - # optional
+        recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+        level: level_example
 
-- name: Update profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_optimizer_profile:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
-    description: description_example
+    # optional
+    aggregation_interval_in_days: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    target_compartments:
+      # required
+      items: [ "null" ]
     target_tags:
+      # required
       items:
-      - tag_namespace_name: tag_namespace_name_example
+      - # required
+        tag_namespace_name: tag_namespace_name_example
         tag_definition_name: tag_definition_name_example
         tag_value_type: VALUE
 
+        # optional
+        tag_values: [ "null" ]
+
 - name: Update profile
   oci_optimizer_profile:
+    # required
+    profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     name: name_example
     description: description_example
-    profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
+    aggregation_interval_in_days: 56
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    levels_configuration:
+      # optional
+      items:
+      - # optional
+        recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+        level: level_example
+    target_compartments:
+      # required
+      items: [ "null" ]
+    target_tags:
+      # required
+      items:
+      - # required
+        tag_namespace_name: tag_namespace_name_example
+        tag_definition_name: tag_definition_name_example
+        tag_value_type: VALUE
+
+        # optional
+        tag_values: [ "null" ]
+
+- name: Update profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_optimizer_profile:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+
+    # optional
+    description: description_example
+    aggregation_interval_in_days: 56
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    levels_configuration:
+      # optional
+      items:
+      - # optional
+        recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+        level: level_example
+    target_compartments:
+      # required
+      items: [ "null" ]
+    target_tags:
+      # required
+      items:
+      - # required
+        tag_namespace_name: tag_namespace_name_example
+        tag_definition_name: tag_definition_name_example
+        tag_value_type: VALUE
+
+        # optional
+        tag_values: [ "null" ]
 
 - name: Delete profile
   oci_optimizer_profile:
+    # required
     profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_optimizer_profile:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
@@ -220,6 +299,12 @@ profile:
             returned: on success
             type: str
             sample: description_example
+        aggregation_interval_in_days:
+            description:
+                - The time period over which to collect data for the recommendations, measured in number of days.
+            returned: on success
+            type: int
+            sample: 56
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -269,7 +354,7 @@ profile:
             contains:
                 items:
                     description:
-                        - The list of target compartment OCIDs attached to the current profile override.
+                        - The list of OCIDs attached to the compartments specified in the current profile override.
                     returned: on success
                     type: list
                     sample: []
@@ -281,7 +366,7 @@ profile:
             contains:
                 items:
                     description:
-                        - The list of target tags attached to the current profile override.
+                        - The list of tags specified in the current profile override.
                     returned: on success
                     type: complex
                     contains:
@@ -293,19 +378,23 @@ profile:
                             sample: tag_namespace_name_example
                         tag_definition_name:
                             description:
-                                - The name of the tag definition.
+                                - The name you use to refer to the tag, also known as the tag key.
                             returned: on success
                             type: str
                             sample: tag_definition_name_example
                         tag_value_type:
                             description:
-                                - The tag value type.
+                                - Specifies which tag value types in the `tagValues` field result in overrides of the recommendation criteria.
+                                - When the value for this field is `ANY`, the `tagValues` field should be empty, which enforces overrides to the recommendation
+                                  for resources with any tag values attached to them.
+                                - When the value for this field value is `VALUE`, the `tagValues` field must include a specific value or list of values.
+                                  Overrides to the recommendation criteria only occur for resources that match the values in the `tagValues` fields.
                             returned: on success
                             type: str
                             sample: VALUE
                         tag_values:
                             description:
-                                - The list of tag values.
+                                - The list of tag values. The tag value is the value that the user applying the tag adds to the tag key.
                             returned: on success
                             type: list
                             sample: []
@@ -332,6 +421,7 @@ profile:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
+        "aggregation_interval_in_days": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
         "levels_configuration": {
@@ -496,6 +586,7 @@ def main():
             compartment_id=dict(type="str"),
             name=dict(type="str"),
             description=dict(type="str"),
+            aggregation_interval_in_days=dict(type="int"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             levels_configuration=dict(

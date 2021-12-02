@@ -99,13 +99,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List dedicated_vm_hosts
-  oci_compute_dedicated_vm_host_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific dedicated_vm_host
   oci_compute_dedicated_vm_host_facts:
+    # required
     dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List dedicated_vm_hosts
+  oci_compute_dedicated_vm_host_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    availability_domain: Uocm:PHX-AD-1
+    lifecycle_state: CREATING
+    display_name: display_name_example
+    instance_shape_name: instance_shape_name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    remaining_memory_in_gbs_greater_than_or_equal_to: 3.4
+    remaining_ocpus_greater_than_or_equal_to: 3.4
 
 """
 
@@ -148,10 +160,9 @@ dedicated_vm_hosts:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My Dedicated Vm Host`"
             returned: on success
             type: str
-            sample: My Dedicated Vm Host
+            sample: display_name_example
         fault_domain:
             description:
                 - The fault domain for the dedicated virtual machine host's assigned instances.
@@ -221,7 +232,7 @@ dedicated_vm_hosts:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_shape": "dedicated_vm_host_shape_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "My Dedicated Vm Host",
+        "display_name": "display_name_example",
         "fault_domain": "FAULT-DOMAIN-1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

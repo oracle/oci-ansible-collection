@@ -80,13 +80,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List network_sources
-  oci_identity_network_sources_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific network_sources
   oci_identity_network_sources_facts:
+    # required
     network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List network_sources
+  oci_identity_network_sources_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
+    sort_by: TIMECREATED
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
 
 """
 

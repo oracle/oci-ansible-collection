@@ -24,7 +24,7 @@ short_description: Manage a ManagedList resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ManagedList resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new ManagedList.
-    - "This resource has the following action operations in the M(oci_managed_list_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_cloud_guard_managed_list_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -109,30 +109,51 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create managed_list
   oci_cloud_guard_managed_list:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_cloud_guard_managed_list:
-    display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
+    source_managed_list_id: "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
+    list_type: CIDR_BLOCK
+    list_items: [ "null" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update managed_list
   oci_cloud_guard_managed_list:
+    # required
+    managed_list_id: "ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     description: description_example
-    managed_list_id: "ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx"
+    list_items: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_cloud_guard_managed_list:
+    # required
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
+    list_items: [ "null" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete managed_list
   oci_cloud_guard_managed_list:
+    # required
     managed_list_id: "ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_managed_list:
+    # required
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

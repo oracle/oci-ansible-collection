@@ -45,14 +45,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List backend_sets
-  oci_loadbalancer_backend_set_facts:
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific backend_set
   oci_loadbalancer_backend_set_facts:
+    # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: example_backend_set
+
+- name: List backend_sets
+  oci_loadbalancer_backend_set_facts:
+    # required
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -208,7 +210,7 @@ backend_sets:
                         - "Example: `^((?!false).|\\\\s)*$`"
                     returned: on success
                     type: str
-                    sample: "^((?!false).|\\\\s)*$"
+                    sample: response_body_regex_example
         ssl_configuration:
             description:
                 - ""
@@ -447,7 +449,7 @@ backend_sets:
             "retries": 3,
             "timeout_in_millis": 3000,
             "interval_in_millis": 10000,
-            "response_body_regex": "^((?!false).|\\\\s)*$"
+            "response_body_regex": "response_body_regex_example"
         },
         "ssl_configuration": {
             "verify_depth": 3,

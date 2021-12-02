@@ -24,7 +24,7 @@ short_description: Manage a DatabaseToolsPrivateEndpoint resource in Oracle Clou
 description:
     - This module allows the user to create, update and delete a DatabaseToolsPrivateEndpoint resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DatabaseToolsPrivateEndpoint.
-    - "This resource has the following action operations in the M(oci_database_tools_private_endpoint_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_tools_private_endpoint_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -104,30 +104,52 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create database_tools_private_endpoint
   oci_database_tools_private_endpoint:
-    display_name: "MyPE"
+    # required
     compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
-    description: "Private Endpoint for mySubnet"
-    endpoint_service_id: "ocid1.dbtoolsendpointservice.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q"
-    subnet_id: "ocid1.subnet.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a"
-    private_endpoint_ip: "10.0.0.4"
-    nsg_ids:
-    - "ocid1.networksecuritygroup.oc1.phx.exampleamuwsqopnr4rxtz3ejobj4suzabgosma3rspaaoufy4d35droem5q"
+    display_name: MyPE
+    endpoint_service_id: ocid1.dbtoolsendpointservice.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q
+    subnet_id: ocid1.subnet.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a
 
-- name: Update database_tools_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_tools_private_endpoint:
-    display_name: "MyPE-appSubnet"
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    description: Private Endpoint for mySubnet
+    private_endpoint_ip: 10.0.0.4
+    nsg_ids: [ "ocid1.networksecuritygroup.oc1.phx.exampleamuwsqopnr4rxtz3ejobj4suzabgosma3rspaaoufy4d35droem5q" ]
 
 - name: Update database_tools_private_endpoint
   oci_database_tools_private_endpoint:
+    # required
     database_tools_private_endpoint_id: "ocid1.databasetoolsprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    display_name: MyPE
+    description: Private Endpoint for mySubnet
+    nsg_ids: [ "ocid1.networksecuritygroup.oc1.phx.exampleamuwsqopnr4rxtz3ejobj4suzabgosma3rspaaoufy4d35droem5q" ]
+
+- name: Update database_tools_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_tools_private_endpoint:
+    # required
+    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
+    display_name: MyPE
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    description: Private Endpoint for mySubnet
+    nsg_ids: [ "ocid1.networksecuritygroup.oc1.phx.exampleamuwsqopnr4rxtz3ejobj4suzabgosma3rspaaoufy4d35droem5q" ]
 
 - name: Delete database_tools_private_endpoint
   oci_database_tools_private_endpoint:
+    # required
     database_tools_private_endpoint_id: "ocid1.databasetoolsprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete database_tools_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_tools_private_endpoint:
+    # required
     compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
     display_name: MyPE
     state: absent

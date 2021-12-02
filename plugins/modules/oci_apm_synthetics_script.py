@@ -121,37 +121,75 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create script
   oci_apm_synthetics_script:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: exampleName
     content_type: SIDE
     content: sample_content
 
-- name: Update script using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_apm_synthetics_script:
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: exampleName
-    content_type: SIDE
-    content: sample_content
+    # optional
     content_file_name: testscript.side
     parameters:
-    - param_name: testName
+    - # required
+      param_name: testName
+
+      # optional
+      param_value: openPage
+      is_secret: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update script
   oci_apm_synthetics_script:
+    # required
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
+    script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: exampleName
+    content_type: SIDE
+    content: sample_content
+    content_file_name: testscript.side
+    parameters:
+    - # required
+      param_name: testName
+
+      # optional
+      param_value: openPage
+      is_secret: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update script using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_apm_synthetics_script:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: exampleName
-    script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    content_type: SIDE
+    content: sample_content
+    content_file_name: testscript.side
+    parameters:
+    - # required
+      param_name: testName
+
+      # optional
+      param_value: openPage
+      is_secret: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete script
   oci_apm_synthetics_script:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete script using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_synthetics_script:
+    # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: exampleName
     state: absent

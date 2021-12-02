@@ -76,12 +76,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific sdk
+  oci_apigateway_sdk_facts:
+    # required
+    sdk_id: "ocid1.sdk.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: List sdks
   oci_apigateway_sdk_facts:
 
-- name: Get a specific sdk
-  oci_apigateway_sdk_facts:
+    # optional
     sdk_id: "ocid1.sdk.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: My new resource
+    lifecycle_state: ACTIVE
+    sort_order: ASC
+    sort_by: timeCreated
+    api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

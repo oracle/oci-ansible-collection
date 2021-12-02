@@ -25,6 +25,7 @@ description:
     - Fetches details about a HostInsightResourceCapacityTrend resource in Oracle Cloud Infrastructure
     - Returns response with time series data (endTimestamp, capacity) for the time period specified.
       The maximum time range for analysis is 2 years, hence this is intentionally not paginated.
+      If compartmentIdInSubtree is specified, aggregates resources in a compartment and in all sub-compartments.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -73,6 +74,11 @@ options:
     id:
         description:
             - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: list
+        elements: str
+    exadata_insight_id:
+        description:
+            - Optional list of exadata insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
         elements: str
     utilization_level:
@@ -135,14 +141,35 @@ options:
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
         elements: str
+    compartment_id_in_subtree:
+        description:
+            - A flag to search all resources within a given compartment and all sub-compartments.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific host_insight_resource_capacity_trend
   oci_opsi_host_insight_resource_capacity_trend_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resource_metric: resource_metric_example
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    platform_type: [ "$p.getValue()" ]
+    id: [ "$p.getValue()" ]
+    exadata_insight_id: [ "$p.getValue()" ]
+    utilization_level: HIGH_UTILIZATION
+    sort_order: ASC
+    sort_by: endTimestamp
+    defined_tag_equals: [ "$p.getValue()" ]
+    freeform_tag_equals: [ "$p.getValue()" ]
+    defined_tag_exists: [ "$p.getValue()" ]
+    freeform_tag_exists: [ "$p.getValue()" ]
+    compartment_id_in_subtree: true
 
 """
 
@@ -245,6 +272,7 @@ class HostInsightResourceCapacityTrendFactsHelperGen(OCIResourceFactsHelperBase)
             "time_interval_end",
             "platform_type",
             "id",
+            "exadata_insight_id",
             "utilization_level",
             "sort_order",
             "sort_by",
@@ -252,6 +280,7 @@ class HostInsightResourceCapacityTrendFactsHelperGen(OCIResourceFactsHelperBase)
             "freeform_tag_equals",
             "defined_tag_exists",
             "freeform_tag_exists",
+            "compartment_id_in_subtree",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -289,6 +318,7 @@ def main():
             time_interval_end=dict(type="str"),
             platform_type=dict(type="list", elements="str", choices=["LINUX"]),
             id=dict(type="list", elements="str"),
+            exadata_insight_id=dict(type="list", elements="str"),
             utilization_level=dict(
                 type="str",
                 choices=[
@@ -304,6 +334,7 @@ def main():
             freeform_tag_equals=dict(type="list", elements="str"),
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
+            compartment_id_in_subtree=dict(type="bool"),
         )
     )
 

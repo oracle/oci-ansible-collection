@@ -84,31 +84,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action attach_catalog_private_endpoint on catalog
   oci_data_catalog_catalog_actions:
+    # required
     catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_catalog_private_endpoint
 
 - name: Perform action change_compartment on catalog
   oci_data_catalog_catalog_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action detach_catalog_private_endpoint on catalog
   oci_data_catalog_catalog_actions:
+    # required
     catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_catalog_private_endpoint
 
 - name: Perform action object_stats on catalog
   oci_data_catalog_catalog_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: object_stats
 
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
+
 - name: Perform action users on catalog
   oci_data_catalog_catalog_actions:
+    # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: users
+
+    # optional
+    sort_by: TIMECREATED
+    sort_order: ASC
 
 """
 

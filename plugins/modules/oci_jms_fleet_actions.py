@@ -52,9 +52,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on fleet
   oci_jms_fleet_actions:
-    compartment_id: "ocid1.compartment.oc1..<compartment_OCID>"
+    # required
     fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
-    action: "change_compartment"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 

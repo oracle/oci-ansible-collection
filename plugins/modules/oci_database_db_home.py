@@ -81,7 +81,7 @@ options:
             backup_tde_password:
                 description:
                     - The password to open the TDE wallet.
-                    - Required when source is one of ['VM_CLUSTER_BACKUP', 'DATABASE', 'DB_BACKUP']
+                    - Applicable when source is one of ['VM_CLUSTER_BACKUP', 'DATABASE', 'DB_BACKUP']
                 type: str
             admin_password:
                 description:
@@ -332,36 +332,282 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create db_home
+- name: Create db_home with source = DATABASE
   oci_database_db_home:
-    db_system_id: "ocid1.dbsystem.oc1.phx.unique_ID"
-    display_name: "createdDbHome"
-    source: "NONE"
-    db_version: "12.1.0.2"
+    # required
+    source: DATABASE
+    db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
     database:
-      admin_password: "password"
-      db_name: "myTestDb"
-      db_unique_name: "myTestDb_phx1cs"
-      db_backup_config:
-        recovery_window_in_days: 30
-        auto_backup_enabled: true
+      # required
+      admin_password: example-password
 
-- name: Update db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_db_home:
+      # optional
+      database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+      backup_tde_password: example-password
+      db_unique_name: myTestDb_phx1cs
+      db_name: myTestDb
+      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+      sid_prefix: sid_prefix_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      pdb_name: pdb_name_example
+      tde_wallet_password: example-password
+      character_set: character_set_example
+      ncharacter_set: ncharacter_set_example
+      db_workload: OLTP
+      db_backup_config:
+        # optional
+        auto_backup_enabled: true
+        recovery_window_in_days: 30
+        auto_backup_window: SLOT_TWO
+        backup_destination_details:
+        - # required
+          type: NFS
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          vpc_user: vpc_user_example
+          vpc_password: example-password
+          internet_proxy: internet_proxy_example
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    # optional
     display_name: createdDbHome
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    is_desupported_version: true
+
+- name: Create db_home with source = DB_BACKUP
+  oci_database_db_home:
+    # required
+    source: DB_BACKUP
+    db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
+    database:
+      # required
+      admin_password: example-password
+
+      # optional
+      database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+      backup_tde_password: example-password
+      db_unique_name: myTestDb_phx1cs
+      db_name: myTestDb
+      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+      sid_prefix: sid_prefix_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      pdb_name: pdb_name_example
+      tde_wallet_password: example-password
+      character_set: character_set_example
+      ncharacter_set: ncharacter_set_example
+      db_workload: OLTP
+      db_backup_config:
+        # optional
+        auto_backup_enabled: true
+        recovery_window_in_days: 30
+        auto_backup_window: SLOT_TWO
+        backup_destination_details:
+        - # required
+          type: NFS
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          vpc_user: vpc_user_example
+          vpc_password: example-password
+          internet_proxy: internet_proxy_example
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    # optional
+    display_name: createdDbHome
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    is_desupported_version: true
+
+- name: Create db_home with source = VM_CLUSTER_BACKUP
+  oci_database_db_home:
+    # required
+    source: VM_CLUSTER_BACKUP
+    database:
+      # required
+      admin_password: example-password
+
+      # optional
+      database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+      backup_tde_password: example-password
+      db_unique_name: myTestDb_phx1cs
+      db_name: myTestDb
+      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+      sid_prefix: sid_prefix_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      pdb_name: pdb_name_example
+      tde_wallet_password: example-password
+      character_set: character_set_example
+      ncharacter_set: ncharacter_set_example
+      db_workload: OLTP
+      db_backup_config:
+        # optional
+        auto_backup_enabled: true
+        recovery_window_in_days: 30
+        auto_backup_window: SLOT_TWO
+        backup_destination_details:
+        - # required
+          type: NFS
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          vpc_user: vpc_user_example
+          vpc_password: example-password
+          internet_proxy: internet_proxy_example
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: createdDbHome
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    is_desupported_version: true
+
+- name: Create db_home with source = NONE
+  oci_database_db_home:
+    # required
+    db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
+
+    # optional
+    display_name: createdDbHome
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    source: NONE
+    is_desupported_version: true
+    database:
+      # required
+      admin_password: example-password
+
+      # optional
+      database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+      backup_tde_password: example-password
+      db_unique_name: myTestDb_phx1cs
+      db_name: myTestDb
+      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+      sid_prefix: sid_prefix_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      pdb_name: pdb_name_example
+      tde_wallet_password: example-password
+      character_set: character_set_example
+      ncharacter_set: ncharacter_set_example
+      db_workload: OLTP
+      db_backup_config:
+        # optional
+        auto_backup_enabled: true
+        recovery_window_in_days: 30
+        auto_backup_window: SLOT_TWO
+        backup_destination_details:
+        - # required
+          type: NFS
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          vpc_user: vpc_user_example
+          vpc_password: example-password
+          internet_proxy: internet_proxy_example
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_version: 12.1.0.2
+
+- name: Create db_home with source = VM_CLUSTER_NEW
+  oci_database_db_home:
+    # required
+    source: VM_CLUSTER_NEW
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: createdDbHome
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    is_desupported_version: true
+    database:
+      # required
+      admin_password: example-password
+
+      # optional
+      database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+      backup_tde_password: example-password
+      db_unique_name: myTestDb_phx1cs
+      db_name: myTestDb
+      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+      sid_prefix: sid_prefix_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      pdb_name: pdb_name_example
+      tde_wallet_password: example-password
+      character_set: character_set_example
+      ncharacter_set: ncharacter_set_example
+      db_workload: OLTP
+      db_backup_config:
+        # optional
+        auto_backup_enabled: true
+        recovery_window_in_days: 30
+        auto_backup_window: SLOT_TWO
+        backup_destination_details:
+        - # required
+          type: NFS
+
+          # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          vpc_user: vpc_user_example
+          vpc_password: example-password
+          internet_proxy: internet_proxy_example
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_version: 12.1.0.2
 
 - name: Update db_home
   oci_database_db_home:
+    # required
     db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    patch_details:
+      # optional
+      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      action: APPLY
+    one_off_patches: [ "null" ]
+
+- name: Update db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_db_home:
+    # required
+    display_name: createdDbHome
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    patch_details:
+      # optional
+      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      action: APPLY
+    one_off_patches: [ "null" ]
 
 - name: Delete db_home
   oci_database_db_home:
+    # required
     db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    perform_final_backup: true
+
 - name: Delete db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_home:
+    # required
     display_name: createdDbHome
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

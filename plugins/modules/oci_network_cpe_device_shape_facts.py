@@ -48,12 +48,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List cpe_device_shapes
-  oci_network_cpe_device_shape_facts:
-
 - name: Get a specific cpe_device_shape
   oci_network_cpe_device_shape_facts:
+    # required
     cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List cpe_device_shapes
+  oci_network_cpe_device_shape_facts:
 
 """
 

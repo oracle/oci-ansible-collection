@@ -87,8 +87,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: Get a specific awr_db_report
   oci_database_management_awr_db_report_facts:
+    # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     awr_db_id: "ocid1.awrdb.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    inst_nums: [ "$p.getValue()" ]
+    begin_sn_id_greater_than_or_equal_to: 56
+    end_sn_id_less_than_or_equal_to: 56
+    time_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    report_type: AWR
+    container_id: 56
+    report_format: HTML
 
 """
 

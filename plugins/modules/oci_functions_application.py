@@ -24,7 +24,7 @@ short_description: Manage an Application resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an Application resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new application.
-    - "This resource has the following action operations in the M(oci_application_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_functions_application_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -148,29 +148,88 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create application
   oci_functions_application:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "ExampleApplication"
-    subnet_ids:
-    - "ocid1.subnet.oc1..unique_ID"
+    display_name: ExampleApplication
+    subnet_ids: [ "ocid1.subnet.oc1..unique_ID" ]
 
-- name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_functions_application:
-    syslog_url: "tcp://logserver.myserver:1234"
-    display_name: "myapplication"
-    config:
-      EXAMPLE_KEY: "example-value"
+    # optional
+    config: null
+    network_security_group_ids: [ "null" ]
+    syslog_url: tcp://logserver.myserver:1234
+    trace_config:
+      # optional
+      is_enabled: true
+      domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    image_policy_config:
+      # required
+      is_policy_enabled: true
+
+      # optional
+      key_details:
+      - # required
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update application
   oci_functions_application:
+    # required
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    config: null
+    network_security_group_ids: [ "null" ]
+    syslog_url: tcp://logserver.myserver:1234
+    trace_config:
+      # optional
+      is_enabled: true
+      domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    image_policy_config:
+      # required
+      is_policy_enabled: true
+
+      # optional
+      key_details:
+      - # required
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_functions_application:
+    # required
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: ExampleApplication
+
+    # optional
+    config: null
+    network_security_group_ids: [ "null" ]
+    syslog_url: tcp://logserver.myserver:1234
+    trace_config:
+      # optional
+      is_enabled: true
+      domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    image_policy_config:
+      # required
+      is_policy_enabled: true
+
+      # optional
+      key_details:
+      - # required
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete application
   oci_functions_application:
+    # required
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_application:
+    # required
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: ExampleApplication
     state: absent

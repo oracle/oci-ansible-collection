@@ -76,8 +76,15 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update cloud_vm_cluster_iorm_config
   oci_database_cloud_vm_cluster_iorm_config:
+    # required
     cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     objective: LOW_LATENCY
+    db_plans:
+    - # optional
+      db_name: db_name_example
+      share: 56
 
 """
 

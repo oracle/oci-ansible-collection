@@ -30,13 +30,9 @@ oracle.oci.oci_loadbalancer_backend_set_health_facts -- Fetches details about a 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_backend_set_health_facts`.
 
@@ -286,6 +282,7 @@ Examples
     
     - name: Get a specific backend_set_health
       oci_loadbalancer_backend_set_health_facts:
+        # required
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: example_backend_set
 
@@ -323,7 +320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>BackendSetHealth resource</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;critical_state_backend_names&#x27;: [], &#x27;status&#x27;: &#x27;OK&#x27;, &#x27;total_backend_count&#x27;: 7, &#x27;unknown_state_backend_names&#x27;: [], &#x27;warning_state_backend_names&#x27;: []}</div>
                                     </td>
             </tr>
@@ -342,7 +339,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A list of backend servers that are currently in the `CRITICAL` health state. The list identifies each backend server by IP address and port.</div>
                                             <div>Example: `10.0.0.4:8080`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -362,7 +359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  **CRITICAL:** Fewer than half of the backend set&#x27;s backend servers return a status of `OK`.</div>
                                             <div>*  **UNKNOWN:** More than half of the backend set&#x27;s backend servers return a status of `UNKNOWN`, the system was unable to retrieve metrics, or the backend set does not have a listener attached.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OK</div>
                                     </td>
             </tr>
@@ -381,7 +378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The total number of backend servers in this backend set.</div>
                                             <div>Example: `7`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">7</div>
                                     </td>
             </tr>
@@ -400,7 +397,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A list of backend servers that are currently in the `UNKNOWN` health state. The list identifies each backend server by IP address and port.</div>
                                             <div>Example: `10.0.0.5:8080`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -417,7 +414,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A list of backend servers that are currently in the `WARNING` health state. The list identifies each backend server by IP address and port.</div>
                                             <div>Example: `10.0.0.3:8080`</div>
                                         <br/>
-                                                        </td>
+                                    </td>
             </tr>
                     
                         </table>

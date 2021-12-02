@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
     - For I(state=present), create a Database Connection resource that contains the details to connect to either a Source or Target Database
       in the migration.
-    - "This resource has the following action operations in the M(oci_connection_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_migration_connection_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -226,33 +226,134 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create connection
   oci_database_migration_connection:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     database_type: MANUAL
+    admin_credentials:
+      # optional
+      username: username_example
+      password: example-password
+    vault_details:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_migration_connection:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    # optional
     display_name: display_name_example
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    connect_descriptor:
+      # optional
+      host: host_example
+      port: 56
+      database_service_name: database_service_name_example
+      connect_string: connect_string_example
     certificate_tdn: certificate_tdn_example
     tls_wallet: tls_wallet_example
     tls_keystore: tls_keystore_example
+    ssh_details:
+      # optional
+      host: host_example
+      sshkey: sshkey_example
+      user: user_example
+      sudo_location: sudo_location_example
+    private_endpoint:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update connection
   oci_database_migration_connection:
+    # required
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     display_name: display_name_example
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+    connect_descriptor:
+      # optional
+      host: host_example
+      port: 56
+      database_service_name: database_service_name_example
+      connect_string: connect_string_example
+    certificate_tdn: certificate_tdn_example
+    tls_wallet: tls_wallet_example
+    tls_keystore: tls_keystore_example
+    ssh_details:
+      # optional
+      host: host_example
+      sshkey: sshkey_example
+      user: user_example
+      sudo_location: sudo_location_example
+    admin_credentials:
+      # optional
+      username: username_example
+      password: example-password
+    private_endpoint:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    vault_details:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_migration_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+
+    # optional
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    connect_descriptor:
+      # optional
+      host: host_example
+      port: 56
+      database_service_name: database_service_name_example
+      connect_string: connect_string_example
+    certificate_tdn: certificate_tdn_example
+    tls_wallet: tls_wallet_example
+    tls_keystore: tls_keystore_example
+    ssh_details:
+      # optional
+      host: host_example
+      sshkey: sshkey_example
+      user: user_example
+      sudo_location: sudo_location_example
+    admin_credentials:
+      # optional
+      username: username_example
+      password: example-password
+    private_endpoint:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    vault_details:
+      # optional
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete connection
   oci_database_migration_connection:
+    # required
     connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_connection:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent

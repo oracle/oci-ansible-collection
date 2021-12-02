@@ -86,13 +86,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action cluster_migrate_to_native_vcn on cluster
   oci_container_engine_cluster_actions:
+    # required
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    endpoint_config:
+      # optional
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      nsg_ids: [ "null" ]
+      is_public_ip_enabled: true
     action: cluster_migrate_to_native_vcn
+
+    # optional
+    decommission_delay_duration: P1DT6H
 
 - name: Perform action update_cluster_endpoint_config on cluster
   oci_container_engine_cluster_actions:
+    # required
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     action: update_cluster_endpoint_config
+
+    # optional
+    nsg_ids: [ "null" ]
+    is_public_ip_enabled: true
 
 """
 

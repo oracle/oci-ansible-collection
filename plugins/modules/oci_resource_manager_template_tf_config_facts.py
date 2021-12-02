@@ -46,6 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific template_tf_config
   oci_resource_manager_template_tf_config_facts:
+    # required
     dest: /tmp/myfile
     template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
 

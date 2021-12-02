@@ -24,7 +24,7 @@ short_description: Manage a Cpe resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Cpe resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new virtual customer-premises equipment (CPE) object in the specified compartment. For
-      more information, see L(IPSec VPNs,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPsec.htm).
+      more information, see L(Site-to-Site VPN Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm).
     - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
       where you want
       the CPE to reside. Notice that the CPE doesn't have to be in the same compartment as the IPSec
@@ -33,16 +33,16 @@ description:
       compartments and access control, see L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
       For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - You must provide the public IP address of your on-premises router. See
-      L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
+      L(CPE Configuration,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
     - "You may optionally specify a *display name* for the CPE, otherwise a default is provided. It does not have to
       be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_cpe_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_cpe_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the CPE.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the CPE.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -113,13 +113,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cpe
   oci_network_cpe:
-    ip_address: "203.0.113.6"
-    display_name: "MyCpe"
+    # required
     compartment_id: "ocid1.compartment.oc1..compartment_OCID"
+    ip_address: 203.0.113.6
 
-- name: Update cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_network_cpe:
-    compartment_id: "ocid1.compartment.oc1..compartment_OCID"
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyCpe
     freeform_tags: {'Department': 'Finance'}
@@ -127,17 +125,35 @@ EXAMPLES = """
 
 - name: Update cpe
   oci_network_cpe:
+    # required
+    cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyCpe
-    cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_network_cpe:
+    # required
+    compartment_id: "ocid1.compartment.oc1..compartment_OCID"
+    display_name: MyCpe
+
+    # optional
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cpe
   oci_network_cpe:
+    # required
     cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cpe:
+    # required
     compartment_id: "ocid1.compartment.oc1..compartment_OCID"
     display_name: MyCpe
     state: absent
@@ -153,7 +169,7 @@ cpe:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the CPE.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the CPE.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -198,7 +214,8 @@ cpe:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE's device type.
                   The Networking service maintains a general list of CPE device types (for example,
                   Cisco ASA). For each type, Oracle provides CPE configuration content that can help
-                  a network engineer configure the CPE. The OCID uniquely identifies the type of
+                  a network engineer configure the CPE. The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) uniquely
+                  identifies the type of
                   device. To get the OCIDs for the device types on the list, see
                   L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CpeDeviceShapeSummary/ListCpeDeviceShapes).
                 - "For information about how to generate CPE configuration content for a

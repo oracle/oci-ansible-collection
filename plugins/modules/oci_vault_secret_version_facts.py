@@ -56,14 +56,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 """
 
 EXAMPLES = """
-- name: List secret_versions
-  oci_vault_secret_version_facts:
-    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific secret_version
   oci_vault_secret_version_facts:
+    # required
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     secret_version_number: 789
+
+- name: List secret_versions
+  oci_vault_secret_version_facts:
+    # required
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: VERSION_NUMBER
+    sort_order: ASC
 
 """
 

@@ -53,7 +53,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_db_preview_versions
   oci_database_autonomous_db_preview_version_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    sort_by: DBWORKLOAD
+    sort_order: ASC
 
 """
 

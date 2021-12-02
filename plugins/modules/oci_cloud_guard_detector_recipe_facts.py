@@ -110,13 +110,24 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List detector_recipes
-  oci_cloud_guard_detector_recipe_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific detector_recipe
   oci_cloud_guard_detector_recipe_facts:
+    # required
     detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List detector_recipes
+  oci_cloud_guard_detector_recipe_facts:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
+    resource_metadata_only: true
+    lifecycle_state: CREATING
+    compartment_id_in_subtree: true
+    access_level: RESTRICTED
+    sort_order: ASC
+    sort_by: timeCreated
 
 """
 

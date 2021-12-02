@@ -68,6 +68,10 @@ options:
         elements: str
         choices:
             - "LINUX"
+    exadata_insight_id:
+        description:
+            - L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of exadata insight resource.
+        type: str
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -88,8 +92,18 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List host_insight_hosted_entities
   oci_opsi_host_insight_hosted_entity_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    analysis_time_interval: analysis_time_interval_example
+    time_interval_start: 2013-10-20T19:20:30+01:00
+    time_interval_end: 2013-10-20T19:20:30+01:00
+    platform_type: [ "$p.getValue()" ]
+    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_order: ASC
+    sort_by: entityName
 
 """
 
@@ -155,6 +169,7 @@ class HostInsightHostedEntityFactsHelperGen(OCIResourceFactsHelperBase):
             "time_interval_start",
             "time_interval_end",
             "platform_type",
+            "exadata_insight_id",
             "sort_order",
             "sort_by",
         ]
@@ -192,6 +207,7 @@ def main():
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
             platform_type=dict(type="list", elements="str", choices=["LINUX"]),
+            exadata_insight_id=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["entityName", "entityType"]),
         )

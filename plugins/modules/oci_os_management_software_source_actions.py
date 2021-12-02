@@ -63,17 +63,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action add_packages on software_source
   oci_os_management_software_source_actions:
+    # required
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+    package_names: [ "null" ]
     action: add_packages
 
 - name: Perform action change_compartment on software_source
   oci_os_management_software_source_actions:
+    # required
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Perform action remove_packages on software_source
   oci_os_management_software_source_actions:
+    # required
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+    package_names: [ "null" ]
     action: remove_packages
 
 """

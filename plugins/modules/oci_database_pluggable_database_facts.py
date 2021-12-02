@@ -76,13 +76,21 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List pluggable_databases
-  oci_database_pluggable_database_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
 - name: Get a specific pluggable_database
   oci_database_pluggable_database_facts:
+    # required
     pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: List pluggable_databases
+  oci_database_pluggable_database_facts:
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    sort_by: PDBNAME
+    sort_order: ASC
+    lifecycle_state: lifecycle_state_example
+    pdb_name: pdb_name_example
 
 """
 

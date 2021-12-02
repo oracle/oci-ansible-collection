@@ -213,22 +213,69 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create listener
   oci_loadbalancer_listener:
+    # required
     default_backend_set_name: example_backend_set
     port: 80
     protocol: HTTP
     name: example_listener
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    hostname_names: [ "null" ]
+    path_route_set_name: example_path_route_set
+    ssl_configuration:
+      # optional
+      verify_depth: 3
+      verify_peer_certificate: true
+      trusted_certificate_authority_ids: [ "null" ]
+      certificate_ids: [ "null" ]
+      certificate_name: example_certificate_bundle
+      protocols: [ "null" ]
+      cipher_suite_name: cipher_suite_name_example
+      server_order_preference: ENABLED
+    connection_configuration:
+      # required
+      idle_timeout: 1200
+
+      # optional
+      backend_tcp_proxy_protocol_version: 1
+    routing_policy_name: example_routing_policy
+    rule_set_names: [ "null" ]
 
 - name: Update listener
   oci_loadbalancer_listener:
+    # required
     default_backend_set_name: example_backend_set
     port: 80
     protocol: HTTP
     name: example_listener
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    hostname_names: [ "null" ]
+    path_route_set_name: example_path_route_set
+    ssl_configuration:
+      # optional
+      verify_depth: 3
+      verify_peer_certificate: true
+      trusted_certificate_authority_ids: [ "null" ]
+      certificate_ids: [ "null" ]
+      certificate_name: example_certificate_bundle
+      protocols: [ "null" ]
+      cipher_suite_name: cipher_suite_name_example
+      server_order_preference: ENABLED
+    connection_configuration:
+      # required
+      idle_timeout: 1200
+
+      # optional
+      backend_tcp_proxy_protocol_version: 1
+    routing_policy_name: example_routing_policy
+    rule_set_names: [ "null" ]
+
 - name: Delete listener
   oci_loadbalancer_listener:
+    # required
     name: example_listener
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent

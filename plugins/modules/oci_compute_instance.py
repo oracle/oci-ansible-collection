@@ -59,7 +59,7 @@ description:
       with the signature. To get the image ID for the LaunchInstance operation, call
       L(GetAppCatalogListingResourceVersion,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion).
-    - "This resource has the following action operations in the M(oci_instance_actions) module: stop, start, softreset, reset, softstop,
+    - "This resource has the following action operations in the M(oracle.oci.oci_compute_instance_actions) module: stop, start, softreset, reset, softstop,
       senddiagnosticinterrupt."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -126,7 +126,7 @@ options:
                 type: dict
             display_name:
                 description:
-                    - A user-friendly name for the VNIC. Does not have to be unique.
+                    - A user-friendly name. Does not have to be unique, and it's changeable.
                       Avoid entering confidential information.
                 type: str
                 aliases: ["name"]
@@ -197,7 +197,8 @@ options:
                 type: bool
             subnet_id:
                 description:
-                    - The OCID of the subnet to create the VNIC in. When launching an instance,
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create the VNIC in. When
+                      launching an instance,
                       use this `subnetId` instead of the deprecated `subnetId` in
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       At least one of them is required; if you provide both, the values must match.
@@ -208,7 +209,8 @@ options:
             vlan_id:
                 description:
                     - Provide this attribute only if you are an Oracle Cloud VMware Solution
-                      customer and creating a secondary VNIC in a VLAN. The value is the OCID of the VLAN.
+                      customer and creating a secondary VNIC in a VLAN. The value is the
+                      L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN.
                       See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                     - Provide a `vlanId` instead of a `subnetId`. If you provide both a
                       `vlanId` and `subnetId`, the request fails.
@@ -228,7 +230,6 @@ options:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
-            - "Example: `My bare metal instance`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -284,16 +285,21 @@ options:
               instance boots, the iPXE firmware that runs on the instance is
               configured to run an iPXE script to continue the boot process.
             - If you want more control over the boot process, you can provide
-              your own custom iPXE script that will run when the instance boots;
-              however, you should be aware that the same iPXE script will run
-              every time an instance boots; not only after the initial
+              your own custom iPXE script that will run when the instance boots.
+              Be aware that the same iPXE script will run
+              every time an instance boots, not only after the initial
               LaunchInstance call.
             - "The default iPXE script connects to the instance's local boot
               volume over iSCSI and performs a network boot. If you use a custom iPXE
               script and want to network-boot from the instance's local boot volume
-              over iSCSI the same way as the default iPXE script, you should use the
+              over iSCSI the same way as the default iPXE script, use the
               following iSCSI IP address: 169.254.0.2, and boot volume IQN:
               iqn.2015-02.oracle.boot."
+            - If your instance boot volume type is paravirtualized,
+              the boot volume is attached to the instance through virtio-scsi and no iPXE script is used.
+              If your instance boot volume type is paravirtualized
+              and you use custom iPXE to network boot into your instance,
+              the primary boot volume is attached as a data volume through virtio-scsi drive.
             - For more information about the Bring Your Own Image feature of
               Oracle Cloud Infrastructure, see
               L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
@@ -693,73 +699,192 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance
   oci_compute_instance:
-    display_name: "myinstance1"
-    availability_domain: "Uocm:PHX-AD-1"
+    # required
+    availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-    shape: "VM.Standard2.1"
-    metadata:
-      foo: "bar"
-      baz: "quux"
-    source_details:
-      source_type: "image"
-      image_id: "ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx"
-    create_vnic_details:
-      hostname_label: "myinstance1"
-      private_ip: "10.0.0.5"
-      subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
+    shape: VM.Standard2.1
 
-- name: Create instance
-  oci_compute_instance:
-    display_name: "myinstance1"
-    availability_domain: "Uocm:PHX-AD-1"
-    fault_domain: "FAULT-DOMAIN-2"
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-    shape: "VM.Standard2.1"
-    source_details:
-      source_type: "bootVolume"
-      boot_volume_id: "ocid1.bootvolume.oc1.iad.xxxxxEXAMPLExxxxx"
-    create_vnic_details:
-      hostname_label: "myinstance1"
-      private_ip: "10.0.0.5"
-      subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
-
-- name: Create instance
-  oci_compute_instance:
-    display_name: "myinstance1"
-    availability_domain: "Uocm:PHX-AD-1"
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-    shape: "VM.Standard2.1"
-    source_details:
-      source_type: "image"
-      image_id: "ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx"
-      boot_volume_size_in_gbs: 100
-    create_vnic_details:
-      hostname_label: "myinstance1"
-      subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
-
-- name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_compute_instance:
+    # optional
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    create_vnic_details:
+      # optional
+      assign_public_ip: false
+      assign_private_dns_record: true
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      freeform_tags: {'Department': 'Finance'}
+      hostname_label: myinstance1
+      nsg_ids: [ "null" ]
+      private_ip: 10.0.0.5
+      skip_source_dest_check: true
+      subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
+      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+    dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: myinstance1
+    extended_metadata: null
     fault_domain: FAULT-DOMAIN-2
     freeform_tags: {'Department': 'Finance'}
-    shape: VM.Standard2.1
+    hostname_label: hostname_label_example
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+    ipxe_script: ipxe_script_example
+    launch_options:
+      # optional
+      boot_volume_type: ISCSI
+      firmware: BIOS
+      network_type: E1000
+      remote_data_volume_type: ISCSI
+      is_pv_encryption_in_transit_enabled: true
+      is_consistent_volume_naming_enabled: true
+    instance_options:
+      # optional
+      are_legacy_imds_endpoints_disabled: true
+    availability_config:
+      # optional
+      is_live_migration_preferred: true
+      recovery_action: RESTORE_INSTANCE
+    preemptible_instance_config:
+      # required
+      preemption_action:
+        # required
+        type: TERMINATE
+
+        # optional
+        preserve_boot_volume: true
+    metadata: null
+    agent_config:
+      # optional
+      is_monitoring_disabled: true
+      is_management_disabled: true
+      are_all_plugins_disabled: true
+      plugins_config:
+      - # required
+        name: name_example
+        desired_state: ENABLED
+    shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
+      baseline_ocpu_utilization: BASELINE_1_8
+    source_details:
+      # required
+      source_type: image
+      image_id: ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx
+
+      # optional
+      boot_volume_size_in_gbs: 100
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    is_pv_encryption_in_transit_enabled: true
+    platform_config:
+      # required
+      type: AMD_ROME_BM
+
+      # optional
+      is_secure_boot_enabled: true
+      is_trusted_platform_module_enabled: true
+      is_measured_boot_enabled: true
 
 - name: Update instance
   oci_compute_instance:
+    # required
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: myinstance1
+    extended_metadata: null
+    fault_domain: FAULT-DOMAIN-2
+    freeform_tags: {'Department': 'Finance'}
+    launch_options:
+      # optional
+      boot_volume_type: ISCSI
+      firmware: BIOS
+      network_type: E1000
+      remote_data_volume_type: ISCSI
+      is_pv_encryption_in_transit_enabled: true
+      is_consistent_volume_naming_enabled: true
+    instance_options:
+      # optional
+      are_legacy_imds_endpoints_disabled: true
+    availability_config:
+      # optional
+      is_live_migration_preferred: true
+      recovery_action: RESTORE_INSTANCE
+    metadata: null
+    agent_config:
+      # optional
+      is_monitoring_disabled: true
+      is_management_disabled: true
+      are_all_plugins_disabled: true
+      plugins_config:
+      - # required
+        name: name_example
+        desired_state: ENABLED
+    shape: VM.Standard2.1
+    shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
+      baseline_ocpu_utilization: BASELINE_1_8
+
+- name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_compute_instance:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    display_name: myinstance1
+
+    # optional
+    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    extended_metadata: null
+    fault_domain: FAULT-DOMAIN-2
+    freeform_tags: {'Department': 'Finance'}
+    launch_options:
+      # optional
+      boot_volume_type: ISCSI
+      firmware: BIOS
+      network_type: E1000
+      remote_data_volume_type: ISCSI
+      is_pv_encryption_in_transit_enabled: true
+      is_consistent_volume_naming_enabled: true
+    instance_options:
+      # optional
+      are_legacy_imds_endpoints_disabled: true
+    availability_config:
+      # optional
+      is_live_migration_preferred: true
+      recovery_action: RESTORE_INSTANCE
+    metadata: null
+    agent_config:
+      # optional
+      is_monitoring_disabled: true
+      is_management_disabled: true
+      are_all_plugins_disabled: true
+      plugins_config:
+      - # required
+        name: name_example
+        desired_state: ENABLED
+    shape: VM.Standard2.1
+    shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
+      baseline_ocpu_utilization: BASELINE_1_8
 
 - name: Delete instance
   oci_compute_instance:
+    # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    preserve_boot_volume: true
+
 - name: Delete instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
     display_name: myinstance1
     state: absent
@@ -812,10 +937,9 @@ instance:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - "Example: `My bare metal instance`"
             returned: on success
             type: str
-            sample: My bare metal instance
+            sample: display_name_example
         extended_metadata:
             description:
                 - Additional metadata key/value pairs that you provide. They serve the same purpose and functionality
@@ -865,16 +989,21 @@ instance:
                   instance boots, the iPXE firmware that runs on the instance is
                   configured to run an iPXE script to continue the boot process.
                 - If you want more control over the boot process, you can provide
-                  your own custom iPXE script that will run when the instance boots;
-                  however, you should be aware that the same iPXE script will run
-                  every time an instance boots; not only after the initial
+                  your own custom iPXE script that will run when the instance boots.
+                  Be aware that the same iPXE script will run
+                  every time an instance boots, not only after the initial
                   LaunchInstance call.
                 - "The default iPXE script connects to the instance's local boot
                   volume over iSCSI and performs a network boot. If you use a custom iPXE
                   script and want to network-boot from the instance's local boot volume
-                  over iSCSI the same way as the default iPXE script, you should use the
+                  over iSCSI the same way as the default iPXE script, use the
                   following iSCSI IP address: 169.254.0.2, and boot volume IQN:
                   iqn.2015-02.oracle.boot."
+                - If your instance boot volume type is paravirtualized,
+                  the boot volume is attached to the instance through virtio-scsi and no iPXE script is used.
+                  If your instance boot volume type is paravirtualized
+                  and you use custom iPXE to network boot into your instance,
+                  the primary boot volume is attached as a data volume through virtio-scsi drive.
                 - For more information about the Bring Your Own Image feature of
                   Oracle Cloud Infrastructure, see
                   L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
@@ -1313,7 +1442,7 @@ instance:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "My bare metal instance",
+        "display_name": "display_name_example",
         "extended_metadata": {},
         "fault_domain": "FAULT-DOMAIN-1",
         "freeform_tags": {'Department': 'Finance'},

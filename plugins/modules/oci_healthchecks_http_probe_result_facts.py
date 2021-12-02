@@ -59,7 +59,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List http_probe_results
   oci_healthchecks_http_probe_result_facts:
+    # required
     probe_configuration_id: "ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    start_time_greater_than_or_equal_to: 1.2
+    start_time_less_than_or_equal_to: 1.2
+    sort_order: ASC
+    target: target_example
 
 """
 

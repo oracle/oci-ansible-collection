@@ -76,7 +76,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List alarm_statuses
   oci_monitoring_alarm_status_facts:
+    # required
     compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
+
+    # optional
+    compartment_id_in_subtree: true
+    display_name: display_name_example
+    sort_by: severity
+    sort_order: ASC
 
 """
 

@@ -23,7 +23,7 @@ module: oci_compute_measured_boot_report_facts
 short_description: Fetches details about a MeasuredBootReport resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a MeasuredBootReport resource in Oracle Cloud Infrastructure
-    - Gets the measured boot report for this Shielded Instance.
+    - Gets the measured boot report for this shielded instance.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -39,6 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific measured_boot_report
   oci_compute_measured_boot_report_facts:
+    # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -52,7 +53,7 @@ measured_boot_report:
     contains:
         is_policy_verification_successful:
             description:
-                - Whether the verification succeeded and the new values matched the expected values.
+                - Whether the verification succeeded, and the new values match the expected values.
             returned: on success
             type: bool
             sample: true

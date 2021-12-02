@@ -30,13 +30,9 @@ oracle.oci.oci_artifacts_container_image_signature -- Manage a ContainerImageSig
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
 
-    You might already have this collection installed if you are using the ``ansible`` package.
-    It is not included in ``ansible-core``.
-    To check whether it is installed, run :code:`ansible-galaxy collection list`.
-
-    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
+    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_artifacts_container_image_signature`.
 
@@ -318,9 +314,9 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-message"></div>
-                    <b>message</b>
-                    <a class="ansibleOptionLink" href="#parameter-message" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-msg"></div>
+                    <b>msg</b>
+                    <a class="ansibleOptionLink" href="#parameter-msg" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
                                                                     </div>
@@ -330,7 +326,8 @@ Parameters
                                                                 <td>
                                             <div>The base64 encoded signature payload that was signed.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
-                                                        </td>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: message</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -448,16 +445,18 @@ Examples
     
     - name: Create container_image_signature
       oci_artifacts_container_image_signature:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         image_id: "ocid1.containerimage.oc1..exampleuniqueID"
         kms_key_id: "ocid1.key.oc1..exampleuniqueID"
         kms_key_version_id: "ocid1.keyversion.oc1..exampleuniqueID"
-        message: message_example
+        msg: message_example
         signature: signature_example
         signing_algorithm: SHA_224_RSA_PKCS_PSS
 
     - name: Delete container_image_signature
       oci_artifacts_container_image_signature:
+        # required
         image_signature_id: "ocid1.containersignature.oc1..exampleuniqueID"
         state: absent
 
@@ -495,7 +494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the ContainerImageSignature resource acted upon by the current operation</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;display_name&#x27;: &#x27;wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva&#x27;, &#x27;id&#x27;: &#x27;ocid1.containerimagesignature.oc1..exampleuniqueID&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.containerimage.oc1..exampleuniqueID&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.key.oc1..exampleuniqueID&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.keyversion.oc1..exampleuniqueID&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;signature&#x27;: &#x27;signature_example&#x27;, &#x27;signing_algorithm&#x27;: &#x27;SHA_224_RSA_PKCS_PSS&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
@@ -513,7 +512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment in which the container repository exists.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -531,7 +530,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The id of the user or principal that created the resource.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
                                     </td>
             </tr>
@@ -550,7 +549,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The last 10 characters of the kmsKeyId, the last 10 characters of the kmsKeyVersionId, the signingAlgorithm, and the last 10 characters of the signatureId.</div>
                                             <div>Example: `wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva</div>
                                     </td>
             </tr>
@@ -569,7 +568,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the container image signature.</div>
                                             <div>Example: `ocid1.containerimagesignature.oc1..exampleuniqueID`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.containerimagesignature.oc1..exampleuniqueID</div>
                                     </td>
             </tr>
@@ -588,7 +587,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the container image.</div>
                                             <div>Example: `ocid1.containerimage.oc1..exampleuniqueID`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.containerimage.oc1..exampleuniqueID</div>
                                     </td>
             </tr>
@@ -607,7 +606,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the kmsKeyId used to sign the container image.</div>
                                             <div>Example: `ocid1.key.oc1..exampleuniqueID`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.key.oc1..exampleuniqueID</div>
                                     </td>
             </tr>
@@ -626,7 +625,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the kmsKeyVersionId used to sign the container image.</div>
                                             <div>Example: `ocid1.keyversion.oc1..exampleuniqueID`</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.keyversion.oc1..exampleuniqueID</div>
                                     </td>
             </tr>
@@ -644,7 +643,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The base64 encoded signature payload that was signed.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
                                     </td>
             </tr>
@@ -662,7 +661,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The signature of the message field using the kmsKeyId, the kmsKeyVersionId, and the signingAlgorithm.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">signature_example</div>
                                     </td>
             </tr>
@@ -680,7 +679,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The algorithm to be used for signing. These are the only supported signing algorithms for container images.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SHA_224_RSA_PKCS_PSS</div>
                                     </td>
             </tr>
@@ -698,7 +697,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An RFC 3339 timestamp indicating when the image was created.</div>
                                         <br/>
-                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>

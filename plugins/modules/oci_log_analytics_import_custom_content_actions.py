@@ -61,9 +61,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action import_custom_content on import_custom_content
   oci_log_analytics_import_custom_content_actions:
+    # required
     namespace_name: namespace_name_example
     import_custom_content_file_body_input_file: import_custom_content.zip
     action: import_custom_content
+
+    # optional
+    is_overwrite: true
+    expect: expect_example
 
 """
 

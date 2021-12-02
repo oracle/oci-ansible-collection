@@ -71,6 +71,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action add_public_ip_pool_capacity on public_ip_pool
   oci_network_public_ip_pool_actions:
+    # required
     public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     cidr_block: 10.0.1.0/24
@@ -78,12 +79,14 @@ EXAMPLES = """
 
 - name: Perform action change_compartment on public_ip_pool
   oci_network_public_ip_pool_actions:
+    # required
     public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action remove_public_ip_pool_capacity on public_ip_pool
   oci_network_public_ip_pool_actions:
+    # required
     public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     cidr_block: 10.0.1.0/24
     action: remove_public_ip_pool_capacity

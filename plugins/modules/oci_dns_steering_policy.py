@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a new steering policy in the specified compartment. For more information on
       creating policies with templates, see L(Traffic Management API
       Guide,https://docs.cloud.oracle.com/iaas/Content/TrafficManagement/Concepts/trafficmanagementapi.htm).
-    - "This resource has the following action operations in the M(oci_steering_policy_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_dns_steering_policy_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -359,77 +359,148 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create steering_policy
   oci_dns_steering_policy:
+    # required
     compartment_id: "ocid1.compartment.oc1.."
-    display_name: "failover between endpoints"
-    ttl: 30
-    health_check_monitor_id: "ocid1.httpmonitor.oc1.."
-    template: "FAILOVER"
-    answers:
-    - name: "server-primary"
-      rtype: "A"
-      rdata: "192.0.2.0"
-      pool: "primary"
-    - name: "server-secondary"
-      rtype: "A"
-      rdata: "192.0.4.6"
-      pool: "secondary"
-    rules:
-    - rule_type: "FILTER"
-      default_answer_data:
-      - answer_condition: "answer.isDisabled != true"
-        should_keep: true
-    - rule_type: "HEALTH"
-    - rule_type: "PRIORITY"
-      default_answer_data:
-      - answer_condition: "answer.pool == 'primary'"
-        value: 1
-      - answer_condition: "answer.pool == 'secondary'"
-        value: 99
-    - rule_type: "LIMIT"
-      default_count: 1
+    display_name: failover between endpoints
+    template: FAILOVER
 
-- name: Update steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_dns_steering_policy:
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: "LA data center failover"
+    # optional
     ttl: 30
     health_check_monitor_id: "ocid1.httpmonitor.oc1.."
-    template: "FAILOVER"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     answers:
-    - name: "server-primary"
-      rtype: "A"
-      rdata: "192.0.2.0"
-      pool: "primary"
-    - name: "server-secondary"
-      rtype: "A"
-      rdata: "192.0.4.1"
-      pool: "secondary"
+    - # required
+      name: server-primary
+      rtype: A
+      rdata: 192.0.2.0
+
+      # optional
+      pool: primary
+      is_disabled: true
     rules:
-    - rule_type: "FILTER"
+    - # required
+      rule_type: FILTER
+
+      # optional
+      description: description_example
+      cases:
+      - # optional
+        case_condition: query.client.address in (subnet '198.51.100.0/24')
+        answer_data:
+        - # optional
+          answer_condition: answer.pool == 'A'
+          should_keep: true
+          value: 56
+        count: 56
       default_answer_data:
-      - answer_condition: "answer.isDisabled != true"
+      - # optional
+        answer_condition: answer.isDisabled != true
         should_keep: true
-    - rule_type: "HEALTH"
-    - rule_type: "PRIORITY"
-      default_answer_data:
-      - answer_condition: "answer.pool == 'primary'"
         value: 1
-      - answer_condition: "answer.pool == 'secondary'"
-        value: 99
-    - rule_type: "LIMIT"
-      default_count: 1
+    scope: GLOBAL
 
 - name: Update steering_policy
   oci_dns_steering_policy:
+    # required
     steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: failover between endpoints
+    ttl: 30
+    health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+    template: FAILOVER
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    answers:
+    - # required
+      name: server-primary
+      rtype: A
+      rdata: 192.0.2.0
+
+      # optional
+      pool: primary
+      is_disabled: true
+    rules:
+    - # required
+      rule_type: FILTER
+
+      # optional
+      description: description_example
+      cases:
+      - # optional
+        case_condition: query.client.address in (subnet '198.51.100.0/24')
+        answer_data:
+        - # optional
+          answer_condition: answer.pool == 'A'
+          should_keep: true
+          value: 56
+        count: 56
+      default_answer_data:
+      - # optional
+        answer_condition: answer.isDisabled != true
+        should_keep: true
+        value: 1
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
+
+- name: Update steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_dns_steering_policy:
+    # required
+    compartment_id: "ocid1.compartment.oc1.."
+    display_name: failover between endpoints
+
+    # optional
+    ttl: 30
+    health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+    template: FAILOVER
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    answers:
+    - # required
+      name: server-primary
+      rtype: A
+      rdata: 192.0.2.0
+
+      # optional
+      pool: primary
+      is_disabled: true
+    rules:
+    - # required
+      rule_type: FILTER
+
+      # optional
+      description: description_example
+      cases:
+      - # optional
+        case_condition: query.client.address in (subnet '198.51.100.0/24')
+        answer_data:
+        - # optional
+          answer_condition: answer.pool == 'A'
+          should_keep: true
+          value: 56
+        count: 56
+      default_answer_data:
+      - # optional
+        answer_condition: answer.isDisabled != true
+        should_keep: true
+        value: 1
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
 
 - name: Delete steering_policy
   oci_dns_steering_policy:
+    # required
     steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    scope: GLOBAL
+    if_unmodified_since: if_unmodified_since_example
+
 - name: Delete steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy:
+    # required
     compartment_id: "ocid1.compartment.oc1.."
     display_name: failover between endpoints
     state: absent

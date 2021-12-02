@@ -77,20 +77,25 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action bulk_add_virtual_circuit_public_prefixes on virtual_circuit
   oci_network_virtual_circuit_actions:
+    # required
     virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     public_prefixes:
-    - cidr_block: cidr_block_example
+    - # required
+      cidr_block: cidr_block_example
     action: bulk_add_virtual_circuit_public_prefixes
 
 - name: Perform action bulk_delete_virtual_circuit_public_prefixes on virtual_circuit
   oci_network_virtual_circuit_actions:
+    # required
     virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     public_prefixes:
-    - cidr_block: cidr_block_example
+    - # required
+      cidr_block: cidr_block_example
     action: bulk_delete_virtual_circuit_public_prefixes
 
 - name: Perform action change_compartment on virtual_circuit
   oci_network_virtual_circuit_actions:
+    # required
     virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment

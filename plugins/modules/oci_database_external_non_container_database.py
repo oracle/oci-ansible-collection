@@ -24,7 +24,7 @@ short_description: Manage an ExternalNonContainerDatabase resource in Oracle Clo
 description:
     - This module allows the user to create, update and delete an ExternalNonContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new ExternalNonContainerDatabase resource
-    - "This resource has the following action operations in the M(oci_external_non_container_database_actions) module: change_compartment,
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_external_non_container_database_actions) module: change_compartment,
       disable_external_non_container_database_database_management, disable_external_non_container_database_operations_insights,
       enable_external_non_container_database_database_management, enable_external_non_container_database_operations_insights."
 version_added: "2.9.0"
@@ -79,25 +79,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create external_non_container_database
   oci_database_external_non_container_database:
-    compartment_id: "ocid1.[tenancy|compartment].oc1.unique_ID"
-    display_name: "myExternalNonCdb"
+    # required
+    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
+    display_name: myExternalNonCdb
 
-- name: Update external_non_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_database_external_non_container_database:
-    display_name: "myOPNonCdb"
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update external_non_container_database
   oci_database_external_non_container_database:
+    # required
     display_name: myExternalNonCdb
     external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update external_non_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_external_non_container_database:
+    # required
+    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
+    display_name: myExternalNonCdb
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Delete external_non_container_database
   oci_database_external_non_container_database:
+    # required
     external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete external_non_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_non_container_database:
+    # required
     compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
     display_name: myExternalNonCdb
     state: absent
