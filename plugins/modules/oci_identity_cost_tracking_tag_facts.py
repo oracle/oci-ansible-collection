@@ -126,7 +126,7 @@ cost_tracking_tags:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_cost_tracking:
             description:
                 - Indicates whether the tag is enabled for cost tracking.
@@ -162,7 +162,7 @@ cost_tracking_tags:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "is_retired": true,
         "lifecycle_state": "ACTIVE",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_cost_tracking": true,
         "validator": {
             "validator_type": "ENUM",

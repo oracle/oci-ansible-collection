@@ -180,8 +180,8 @@ EXAMPLES = """
 - name: Create zone with migration_source = NONE
   oci_dns_zone:
     # required
-    name: example.com
-    compartment_id: "ocid1.compartment.oc1.."
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     migration_source: NONE
@@ -202,8 +202,8 @@ EXAMPLES = """
   oci_dns_zone:
     # required
     migration_source: DYNECT
-    name: example.com
-    compartment_id: "ocid1.compartment.oc1.."
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -223,7 +223,7 @@ EXAMPLES = """
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    compartment_id: "ocid1.compartment.oc1.."
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
@@ -240,8 +240,8 @@ EXAMPLES = """
 - name: Update zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_zone:
     # required
-    name: example.com
-    compartment_id: "ocid1.compartment.oc1.."
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -264,7 +264,7 @@ EXAMPLES = """
     state: absent
 
     # optional
-    compartment_id: "ocid1.compartment.oc1.."
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
     scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
@@ -272,8 +272,8 @@ EXAMPLES = """
 - name: Delete zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_zone:
     # required
-    name: example.com
-    compartment_id: "ocid1.compartment.oc1.."
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """

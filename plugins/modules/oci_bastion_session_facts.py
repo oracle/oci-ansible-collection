@@ -127,6 +127,7 @@ sessions:
         bastion_user_name:
             description:
                 - The username that the session uses to connect to the target resource.
+                - Returned for get operation
             returned: on success
             type: str
             sample: bastion_user_name_example
@@ -176,18 +177,21 @@ sessions:
         ssh_metadata:
             description:
                 - The connection message for the session.
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
         key_type:
             description:
                 - The type of the key used to connect to the session. PUB is a standard public key in OpenSSH format.
+                - Returned for get operation
             returned: on success
             type: str
             sample: PUB
         key_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -201,6 +205,7 @@ sessions:
         bastion_public_host_key_info:
             description:
                 - The public key of the bastion host. You can use this to verify that you're connecting to the correct bastion.
+                - Returned for get operation
             returned: on success
             type: str
             sample: bastion_public_host_key_info_example
@@ -210,14 +215,14 @@ sessions:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the session was updated. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the session.
@@ -256,8 +261,8 @@ sessions:
             "public_key_content": "public_key_content_example"
         },
         "bastion_public_host_key_info": "bastion_public_host_key_info_example",
-        "time_created": "2020-01-25T21:10:29.600Z",
-        "time_updated": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "session_ttl_in_seconds": 56

@@ -127,7 +127,7 @@ EXAMPLES = """
     # optional
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     cloud_resource_id: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
-    timezone_region: timezone_region_example
+    timezone_region: Asia/Kolkata
     hostname: hostname_example
     source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
     properties: null
@@ -143,7 +143,7 @@ EXAMPLES = """
     # optional
     name: name_example
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-    timezone_region: timezone_region_example
+    timezone_region: Asia/Kolkata
     hostname: hostname_example
     properties: null
     freeform_tags: {'Department': 'Finance'}
@@ -158,7 +158,7 @@ EXAMPLES = """
 
     # optional
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-    timezone_region: timezone_region_example
+    timezone_region: Asia/Kolkata
     hostname: hostname_example
     properties: null
     freeform_tags: {'Department': 'Finance'}
@@ -254,7 +254,7 @@ log_analytics_entity:
                 - The timezone region of the log analytics entity.
             returned: on success
             type: str
-            sample: timezone_region_example
+            sample: Asia/Kolkata
         properties:
             description:
                 - The name/value pairs for parameter values to be used in file patterns specified in log sources.
@@ -345,7 +345,7 @@ log_analytics_entity:
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_display_name": "management_agent_display_name_example",
         "management_agent_compartment_id": "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "timezone_region": "timezone_region_example",
+        "timezone_region": "Asia/Kolkata",
         "properties": {},
         "creation_source": {
             "type": "EM_BRIDGE",

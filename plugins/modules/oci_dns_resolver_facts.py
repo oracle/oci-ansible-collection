@@ -111,7 +111,7 @@ EXAMPLES = """
     display_name: display_name_example
     sort_order: ASC
     sort_by: displayName
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
 
 """
 
@@ -205,6 +205,7 @@ resolvers:
         endpoints:
             description:
                 - Read-only array of endpoints for the resolver.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -290,6 +291,7 @@ resolvers:
         attached_views:
             description:
                 - The attached views. Views are evaluated in order.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -302,6 +304,7 @@ resolvers:
         rules:
             description:
                 - Rules for the resolver. Rules are evaluated in order.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

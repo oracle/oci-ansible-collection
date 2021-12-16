@@ -963,6 +963,13 @@ _WAITER_OVERRIDE_MAP = {
         "tag",
         "{0}_{1}".format("BULK_DELETE", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NoneWaiter,
+    (
+        "identity",
+        "tag",
+        "{0}_{1}".format(
+            "IMPORT_STANDARD_TAGS", oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): NoneWaiter,
     # identity_tag_namespace's cascade_delete action does not return anything by default.
     # Hence, cannot wait for any lifecycle state change
     (

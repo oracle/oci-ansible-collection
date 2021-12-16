@@ -188,6 +188,7 @@ on_prem_connectors:
         available_version:
             description:
                 - Latest available version of the on-premises connector.
+                - Returned for get operation
             returned: on success
             type: str
             sample: available_version_example

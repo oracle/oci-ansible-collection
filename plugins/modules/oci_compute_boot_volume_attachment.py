@@ -167,7 +167,7 @@ boot_volume_attachment:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_pv_encryption_in_transit_enabled:
             description:
                 - Whether in-transit encryption for the boot volume's paravirtualized attachment is enabled or not.
@@ -189,7 +189,7 @@ boot_volume_attachment:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ATTACHING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_pv_encryption_in_transit_enabled": true,
         "encryption_in_transit_type": "NONE"
     }

@@ -121,7 +121,7 @@ exadata_insight:
                 - Indicates the status of an Exadata insight in Operations Insights
             returned: on success
             type: str
-            sample: ENABLED
+            sample: DISABLED
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -220,7 +220,7 @@ exadata_insight:
         "exadata_type": "DBMACHINE",
         "exadata_rack_type": "FULL",
         "is_virtualized_exadata": true,
-        "status": "ENABLED",
+        "status": "DISABLED",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},

@@ -647,7 +647,7 @@ EXAMPLES = """
     - # required
       type: RETURN_HTTP_RESPONSE
       name: name_example
-      code: 200
+      code: 56
 
       # optional
       headers:
@@ -676,7 +676,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: REQUEST_RATE_LIMITING
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         configurations:
@@ -694,7 +694,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: PROTECTION
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         protection_capabilities:
@@ -705,8 +705,8 @@ EXAMPLES = """
           # optional
           exclusions:
             # optional
-            request_cookies: [ "null" ]
-            args: [ "null" ]
+            request_cookies: [ "request_cookies_example" ]
+            args: [ "args_example" ]
           action_name: action_name_example
           collaborative_action_threshold: 56
           collaborative_weights:
@@ -724,7 +724,7 @@ EXAMPLES = """
           max_total_argument_length: 56
           max_http_request_headers: 56
           max_http_request_header_length: 56
-          allowed_http_methods: [ "null" ]
+          allowed_http_methods: [ "allowed_http_methods_example" ]
     response_access_control:
       # optional
       rules:
@@ -740,7 +740,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: PROTECTION
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         protection_capabilities:
@@ -751,8 +751,8 @@ EXAMPLES = """
           # optional
           exclusions:
             # optional
-            request_cookies: [ "null" ]
-            args: [ "null" ]
+            request_cookies: [ "request_cookies_example" ]
+            args: [ "args_example" ]
           action_name: action_name_example
           collaborative_action_threshold: 56
           collaborative_weights:
@@ -770,7 +770,7 @@ EXAMPLES = """
           max_total_argument_length: 56
           max_http_request_headers: 56
           max_http_request_header_length: 56
-          allowed_http_methods: [ "null" ]
+          allowed_http_methods: [ "allowed_http_methods_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
@@ -786,7 +786,7 @@ EXAMPLES = """
     - # required
       type: RETURN_HTTP_RESPONSE
       name: name_example
-      code: 200
+      code: 56
 
       # optional
       headers:
@@ -815,7 +815,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: REQUEST_RATE_LIMITING
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         configurations:
@@ -833,7 +833,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: PROTECTION
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         protection_capabilities:
@@ -844,8 +844,8 @@ EXAMPLES = """
           # optional
           exclusions:
             # optional
-            request_cookies: [ "null" ]
-            args: [ "null" ]
+            request_cookies: [ "request_cookies_example" ]
+            args: [ "args_example" ]
           action_name: action_name_example
           collaborative_action_threshold: 56
           collaborative_weights:
@@ -863,7 +863,7 @@ EXAMPLES = """
           max_total_argument_length: 56
           max_http_request_headers: 56
           max_http_request_header_length: 56
-          allowed_http_methods: [ "null" ]
+          allowed_http_methods: [ "allowed_http_methods_example" ]
     response_access_control:
       # optional
       rules:
@@ -879,7 +879,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: PROTECTION
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         protection_capabilities:
@@ -890,8 +890,8 @@ EXAMPLES = """
           # optional
           exclusions:
             # optional
-            request_cookies: [ "null" ]
-            args: [ "null" ]
+            request_cookies: [ "request_cookies_example" ]
+            args: [ "args_example" ]
           action_name: action_name_example
           collaborative_action_threshold: 56
           collaborative_weights:
@@ -909,7 +909,7 @@ EXAMPLES = """
           max_total_argument_length: 56
           max_http_request_headers: 56
           max_http_request_header_length: 56
-          allowed_http_methods: [ "null" ]
+          allowed_http_methods: [ "allowed_http_methods_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
@@ -925,7 +925,7 @@ EXAMPLES = """
     - # required
       type: RETURN_HTTP_RESPONSE
       name: name_example
-      code: 200
+      code: 56
 
       # optional
       headers:
@@ -954,7 +954,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: REQUEST_RATE_LIMITING
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         configurations:
@@ -972,7 +972,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: PROTECTION
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         protection_capabilities:
@@ -983,8 +983,8 @@ EXAMPLES = """
           # optional
           exclusions:
             # optional
-            request_cookies: [ "null" ]
-            args: [ "null" ]
+            request_cookies: [ "request_cookies_example" ]
+            args: [ "args_example" ]
           action_name: action_name_example
           collaborative_action_threshold: 56
           collaborative_weights:
@@ -1002,7 +1002,7 @@ EXAMPLES = """
           max_total_argument_length: 56
           max_http_request_headers: 56
           max_http_request_header_length: 56
-          allowed_http_methods: [ "null" ]
+          allowed_http_methods: [ "allowed_http_methods_example" ]
     response_access_control:
       # optional
       rules:
@@ -1018,7 +1018,7 @@ EXAMPLES = """
       # optional
       rules:
       - # required
-        type: PROTECTION
+        type: ACCESS_CONTROL
         name: name_example
         action_name: action_name_example
         protection_capabilities:
@@ -1029,8 +1029,8 @@ EXAMPLES = """
           # optional
           exclusions:
             # optional
-            request_cookies: [ "null" ]
-            args: [ "null" ]
+            request_cookies: [ "request_cookies_example" ]
+            args: [ "args_example" ]
           action_name: action_name_example
           collaborative_action_threshold: 56
           collaborative_weights:
@@ -1048,7 +1048,7 @@ EXAMPLES = """
           max_total_argument_length: 56
           max_http_request_headers: 56
           max_http_request_header_length: 56
-          allowed_http_methods: [ "null" ]
+          allowed_http_methods: [ "allowed_http_methods_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
@@ -1185,7 +1185,7 @@ web_app_firewall_policy:
                         - "Example: `200`"
                     returned: on success
                     type: int
-                    sample: 200
+                    sample: 56
                 headers:
                     description:
                         - Adds headers defined in this array for HTTP response.
@@ -1756,7 +1756,7 @@ web_app_firewall_policy:
         "actions": [{
             "type": "CHECK",
             "name": "name_example",
-            "code": 200,
+            "code": 56,
             "headers": [{
                 "name": "name_example",
                 "value": "value_example"

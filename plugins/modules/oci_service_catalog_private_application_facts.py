@@ -121,6 +121,7 @@ private_applications:
         long_description:
             description:
                 - A long description of the private application.
+                - Returned for get operation
             returned: on success
             type: str
             sample: long_description_example
@@ -161,19 +162,21 @@ private_applications:
                 - "Example: `2021-05-26T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2021-05-26T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the private application was last modified, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                 - "Example: `2021-12-10T05:10:29.721Z`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2021-12-10T05:10:29.721Z"
+            sample: "2013-10-20T19:20:30+01:00"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
                   Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -181,6 +184,7 @@ private_applications:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -197,8 +201,8 @@ private_applications:
             "mime_type": "mime_type_example"
         },
         "package_type": "STACK",
-        "time_created": "2021-05-26T21:10:29.600Z",
-        "time_updated": "2021-12-10T05:10:29.721Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'}
     }]

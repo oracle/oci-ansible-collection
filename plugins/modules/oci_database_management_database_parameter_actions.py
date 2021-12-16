@@ -155,7 +155,7 @@ EXAMPLES = """
       secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
       role: NORMAL
     scope: MEMORY
-    reset_parameters: [ "null" ]
+    reset_parameters: [ "reset_parameters_example" ]
     action: reset
 
 """

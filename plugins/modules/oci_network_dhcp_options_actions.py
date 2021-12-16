@@ -171,7 +171,7 @@ dhcp_options:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the set of DHCP options belongs to.
@@ -197,7 +197,7 @@ dhcp_options:
             "server_type": "VcnLocal",
             "search_domain_names": []
         }],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "domain_name_type": "SUBNET_DOMAIN"
     }

@@ -112,8 +112,8 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    hostname_label: bminstance-1
-    ip_address: 10.0.3.3
+    hostname_label: hostname_label_example
+    ip_address: ip_address_example
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -126,7 +126,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    hostname_label: bminstance-1
+    hostname_label: hostname_label_example
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update private_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -137,7 +137,7 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    hostname_label: bminstance-1
+    hostname_label: hostname_label_example
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete private_ip
@@ -212,7 +212,7 @@ private_ip:
                 - "Example: `bminstance-1`"
             returned: on success
             type: str
-            sample: bminstance-1
+            sample: hostname_label_example
         id:
             description:
                 - The private IP's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
@@ -229,7 +229,7 @@ private_ip:
                 - "Example: `10.0.3.3`"
             returned: on success
             type: str
-            sample: 10.0.3.3
+            sample: ip_address_example
         is_primary:
             description:
                 - Whether this private IP is the primary one on the VNIC. Primary private IPs
@@ -261,7 +261,7 @@ private_ip:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC the private IP is assigned to. The VNIC
@@ -278,13 +278,13 @@ private_ip:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
-        "hostname_label": "bminstance-1",
+        "hostname_label": "hostname_label_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "ip_address": "10.0.3.3",
+        "ip_address": "ip_address_example",
         "is_primary": true,
         "vlan_id": "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vnic_id": "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

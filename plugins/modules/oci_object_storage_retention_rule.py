@@ -99,50 +99,50 @@ EXAMPLES = """
   oci_object_storage_retention_rule:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
     # optional
-    display_name: sampleRetentionRule
+    display_name: display_name_example
     duration:
       # required
-      time_amount: 30
-      time_unit: DAYS
-    time_rule_locked: 2019-12-13T17:23:46.000Z
+      time_amount: 56
+      time_unit: YEARS
+    time_rule_locked: time_rule_locked_example
 
 - name: Update retention_rule
   oci_object_storage_retention_rule:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
     retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: sampleRetentionRule
+    display_name: display_name_example
     duration:
       # required
-      time_amount: 30
-      time_unit: DAYS
-    time_rule_locked: 2019-12-13T17:23:46.000Z
+      time_amount: 56
+      time_unit: YEARS
+    time_rule_locked: time_rule_locked_example
 
 - name: Update retention_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_object_storage_retention_rule:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    display_name: sampleRetentionRule
+    bucket_name: bucket_name_example
+    display_name: display_name_example
 
     # optional
     duration:
       # required
-      time_amount: 30
-      time_unit: DAYS
-    time_rule_locked: 2019-12-13T17:23:46.000Z
+      time_amount: 56
+      time_unit: YEARS
+    time_rule_locked: time_rule_locked_example
 
 - name: Delete retention_rule
   oci_object_storage_retention_rule:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
     retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -150,8 +150,8 @@ EXAMPLES = """
   oci_object_storage_retention_rule:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    display_name: sampleRetentionRule
+    bucket_name: bucket_name_example
+    display_name: display_name_example
     state: absent
 
 """

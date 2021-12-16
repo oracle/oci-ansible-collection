@@ -179,6 +179,7 @@ database_registrations:
         ip_address:
             description:
                 - The private IP address in the customer's VCN of the customer's endpoint, typically a database.
+                - Returned for get operation
             returned: on success
             type: str
             sample: ip_address_example
@@ -199,6 +200,7 @@ database_registrations:
                 - A Private Endpoint IP Address created in the customer's subnet.  A customer database can expect network traffic initiated by GGS from this IP
                   address and send network traffic to this IP address, typically in response to requests from GGS (OGG).  The customer may utilize this IP
                   address in Security Lists or Network Security Groups (NSG) as needed.
+                - Returned for get operation
             returned: on success
             type: str
             sample: rce_private_ip_example
@@ -235,6 +237,7 @@ database_registrations:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being referenced. If provided, this
                   will reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage
                   secrets contained within this vault.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
@@ -243,6 +246,7 @@ database_registrations:
                 - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being referenced. If
                   provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate
                   Service to utilize this key to manage secrets."
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
@@ -251,6 +255,7 @@ database_registrations:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the the GGS Secret will be
                   created. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the
                   GoldenGate Service to utilize this Compartment in which to create a Secret.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"

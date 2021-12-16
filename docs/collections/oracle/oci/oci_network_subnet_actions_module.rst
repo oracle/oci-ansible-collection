@@ -30,9 +30,13 @@ oracle.oci.oci_network_subnet_actions -- Perform actions on a Subnet resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_subnet_actions`.
 
@@ -372,8 +376,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Subnet resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;10.0.1.0/24&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;subnet123&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_block&#x27;: &#x27;2001:0db8:0123:1111::/64&#x27;, &#x27;ipv6_virtual_router_ip&#x27;: &#x27;2001:0db8:0123:1111:89ab:cdef:1234:5678&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_internet_ingress&#x27;: True, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet123.vcn1.oraclevcn.com&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;10.0.14.1&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;00:00:00:00:00:01&#x27;}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;dns_label_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_block&#x27;: &#x27;ipv6_cidr_block_example&#x27;, &#x27;ipv6_virtual_router_ip&#x27;: &#x27;ipv6_virtual_router_ip_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_internet_ingress&#x27;: True, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet_domain_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;virtual_router_ip_example&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;virtual_router_mac_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -391,7 +395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The subnet&#x27;s availability domain. This attribute will be null if this is a regional subnet instead of an AD-specific subnet. Oracle recommends creating regional subnets.</div>
                                             <div>Example: `Uocm:PHX-AD-1`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
                                     </td>
             </tr>
@@ -410,8 +414,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The subnet&#x27;s CIDR block.</div>
                                             <div>Example: `10.0.1.0/24`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.1.0/24</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cidr_block_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -428,7 +432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the subnet.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -447,7 +451,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -465,7 +469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the set of DHCP options that the subnet uses.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -483,7 +487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -504,8 +508,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>Example: `subnet123`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">subnet123</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dns_label_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -523,7 +527,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -541,7 +545,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The subnet&#x27;s Oracle ID (<a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -560,8 +564,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet&#x27;s IP address space. The subnet size is always /64. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>Example: `2001:0db8:0123:1111::/64`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:0db8:0123:1111::/64</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ipv6_cidr_block_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -579,8 +583,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.</div>
                                             <div>Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:0db8:0123:1111:89ab:cdef:1234:5678</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ipv6_virtual_router_ip_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -597,7 +601,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The subnet&#x27;s current state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -618,7 +622,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For IPv6, if `prohibitInternetIngress` is set to `true`, internet access is not allowed for any IPv6s assigned to VNICs in the subnet. Otherwise, ingress internet traffic is allowed by default.</div>
                                             <div>Example: `true`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -637,7 +641,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether VNICs within this subnet can have public IP addresses. Defaults to false, which means VNICs created in this subnet will automatically be assigned public IP addresses unless specified otherwise during instance launch or VNIC creation (with the `assignPublicIp` flag in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/'>CreateVnicDetails</a>). If `prohibitPublicIpOnVnic` is set to true, VNICs created in this subnet cannot have public IP addresses (that is, it&#x27;s a private subnet).</div>
                                             <div>Example: `true`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -655,7 +659,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table that the subnet uses.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -673,7 +677,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCIDs of the security list or lists that the subnet uses. Remember that security lists are associated *with the subnet*, but the rules are applied to the individual VNICs in the subnet.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -691,8 +695,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>Example: `subnet123.vcn1.oraclevcn.com`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">subnet123.vcn1.oraclevcn.com</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">subnet_domain_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -710,8 +714,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the subnet was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -728,7 +732,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN the subnet is in.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -747,8 +751,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The IP address of the virtual router.</div>
                                             <div>Example: `10.0.14.1`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.14.1</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">virtual_router_ip_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -766,8 +770,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The MAC address of the virtual router.</div>
                                             <div>Example: `00:00:00:00:00:01`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">00:00:00:00:00:01</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">virtual_router_mac_example</div>
                                     </td>
             </tr>
                     

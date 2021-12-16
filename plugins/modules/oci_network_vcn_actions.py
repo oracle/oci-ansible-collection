@@ -145,7 +145,7 @@ vcn:
                 - "Example: `172.16.0.0/16`"
             returned: on success
             type: str
-            sample: 172.16.0.0/16
+            sample: cidr_block_example
         cidr_blocks:
             description:
                 - The list of IPv4 CIDR blocks the VCN will use.
@@ -205,7 +205,7 @@ vcn:
                 - "Example: `vcn1`"
             returned: on success
             type: str
-            sample: vcn1
+            sample: dns_label_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -240,7 +240,7 @@ vcn:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_domain_name:
             description:
                 - The VCN's domain name, which consists of the VCN's DNS label, and the
@@ -250,9 +250,9 @@ vcn:
                 - "Example: `vcn1.oraclevcn.com`"
             returned: on success
             type: str
-            sample: vcn1.oraclevcn.com
+            sample: vcn_domain_name_example
     sample: {
-        "cidr_block": "172.16.0.0/16",
+        "cidr_block": "cidr_block_example",
         "cidr_blocks": [],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "default_dhcp_options_id": "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx",
@@ -260,13 +260,13 @@ vcn:
         "default_security_list_id": "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
-        "dns_label": "vcn1",
+        "dns_label": "dns_label_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "ipv6_cidr_blocks": [],
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "vcn_domain_name": "vcn1.oraclevcn.com"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "vcn_domain_name": "vcn_domain_name_example"
     }
 """
 

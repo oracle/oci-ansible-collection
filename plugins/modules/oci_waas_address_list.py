@@ -89,9 +89,9 @@ EXAMPLES = """
 - name: Create address_list
   oci_waas_address_list:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: addresslist
-    addresses: [ "192.0.2.0" ]
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    addresses: [ "addresses_example" ]
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -103,19 +103,19 @@ EXAMPLES = """
     address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: addresslist
-    addresses: [ "192.0.2.0" ]
+    display_name: display_name_example
+    addresses: [ "addresses_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_address_list:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: addresslist
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    addresses: [ "192.0.2.0" ]
+    addresses: [ "addresses_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -128,8 +128,8 @@ EXAMPLES = """
 - name: Delete address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_address_list:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: addresslist
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -198,7 +198,7 @@ address_list:
                 - The date and time the address list was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -208,7 +208,7 @@ address_list:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

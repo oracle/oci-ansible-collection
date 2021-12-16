@@ -399,11 +399,11 @@ EXAMPLES = """
 - name: Create security_list
   oci_network_security_list:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     egress_security_rules:
     - # required
-      destination: 10.0.2.0/24
-      protocol: 6
+      destination: destination_example
+      protocol: protocol_example
 
       # optional
       destination_type: CIDR_BLOCK
@@ -418,8 +418,8 @@ EXAMPLES = """
         # optional
         destination_port_range:
           # required
-          max: 1521
-          min: 1521
+          max: 56
+          min: 56
         source_port_range:
           # required
           max: 56
@@ -437,8 +437,8 @@ EXAMPLES = """
       description: description_example
     ingress_security_rules:
     - # required
-      protocol: 6
-      source: 10.0.1.0/24
+      protocol: protocol_example
+      source: source_example
 
       # optional
       icmp_options:
@@ -453,8 +453,8 @@ EXAMPLES = """
         # optional
         destination_port_range:
           # required
-          max: 1521
-          min: 1521
+          max: 56
+          min: 56
         source_port_range:
           # required
           max: 56
@@ -470,11 +470,11 @@ EXAMPLES = """
           max: 56
           min: 56
       description: description_example
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyPrivateSubnetSecurityList
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update security_list
@@ -484,11 +484,11 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyPrivateSubnetSecurityList
+    display_name: display_name_example
     egress_security_rules:
     - # required
-      destination: 10.0.2.0/24
-      protocol: 6
+      destination: destination_example
+      protocol: protocol_example
 
       # optional
       destination_type: CIDR_BLOCK
@@ -503,8 +503,8 @@ EXAMPLES = """
         # optional
         destination_port_range:
           # required
-          max: 1521
-          min: 1521
+          max: 56
+          min: 56
         source_port_range:
           # required
           max: 56
@@ -523,8 +523,8 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     ingress_security_rules:
     - # required
-      protocol: 6
-      source: 10.0.1.0/24
+      protocol: protocol_example
+      source: source_example
 
       # optional
       icmp_options:
@@ -539,8 +539,8 @@ EXAMPLES = """
         # optional
         destination_port_range:
           # required
-          max: 1521
-          min: 1521
+          max: 56
+          min: 56
         source_port_range:
           # required
           max: 56
@@ -562,15 +562,15 @@ EXAMPLES = """
 - name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_list:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyPrivateSubnetSecurityList
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     egress_security_rules:
     - # required
-      destination: 10.0.2.0/24
-      protocol: 6
+      destination: destination_example
+      protocol: protocol_example
 
       # optional
       destination_type: CIDR_BLOCK
@@ -585,8 +585,8 @@ EXAMPLES = """
         # optional
         destination_port_range:
           # required
-          max: 1521
-          min: 1521
+          max: 56
+          min: 56
         source_port_range:
           # required
           max: 56
@@ -605,8 +605,8 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     ingress_security_rules:
     - # required
-      protocol: 6
-      source: 10.0.1.0/24
+      protocol: protocol_example
+      source: source_example
 
       # optional
       icmp_options:
@@ -621,8 +621,8 @@ EXAMPLES = """
         # optional
         destination_port_range:
           # required
-          max: 1521
-          min: 1521
+          max: 56
+          min: 56
         source_port_range:
           # required
           max: 56
@@ -650,8 +650,8 @@ EXAMPLES = """
 - name: Delete security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_list:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyPrivateSubnetSecurityList
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -1034,7 +1034,7 @@ security_list:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the security list belongs to.
@@ -1110,7 +1110,7 @@ security_list:
             "description": "description_example"
         }],
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

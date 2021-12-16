@@ -23,7 +23,7 @@ module: oci_devops_repository_archive_content_facts
 short_description: Fetches details about a RepositoryArchiveContent resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a RepositoryArchiveContent resource in Oracle Cloud Infrastructure
-    - Return the archived repository information
+    - Returns the archived repository information.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -35,17 +35,17 @@ options:
         required: true
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         aliases: ["id"]
         required: true
     ref_name:
         description:
-            - A filter to return only resources that match the given Ref name.
+            - A filter to return only resources that match the given reference name.
         type: str
     format:
         description:
-            - The archive format query parm for download repo endpoint.
+            - The archive format query parameter for downloading repository endpoint.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """

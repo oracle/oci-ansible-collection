@@ -92,7 +92,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     content: content_example
@@ -103,7 +103,7 @@ EXAMPLES = """
     api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     content: content_example
@@ -111,7 +111,7 @@ EXAMPLES = """
 - name: Update api using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_api:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -128,7 +128,7 @@ EXAMPLES = """
 - name: Delete api using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_api:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -154,7 +154,7 @@ api:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -239,7 +239,7 @@ api:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

@@ -98,7 +98,7 @@ EXAMPLES = """
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
@@ -144,7 +144,7 @@ stacks:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the stack.
@@ -156,6 +156,7 @@ stacks:
         config_source:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -187,7 +188,7 @@ stacks:
                           supported resource types in this region.
                     returned: on success
                     type: str
-                    sample: region_example
+                    sample: us-phoenix-1
                 services_to_discover:
                     description:
                         - "Filter for L(services to use with Resource
@@ -236,6 +237,7 @@ stacks:
                   Maximum number of variables supported is 250.
                   The maximum size of each variable, including both name and value, is 8192 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -244,11 +246,12 @@ stacks:
                 - "The version of Terraform specified for the stack. Example: `0.12.x`"
             returned: on success
             type: str
-            sample: 0.12.x
+            sample: terraform_version_example
         stack_drift_status:
             description:
                 - Drift status of the stack.
                   Drift refers to differences between the actual (current) state of the stack and the expected (defined) state of the stack.
+                - Returned for get operation
             returned: on success
             type: str
             sample: NOT_CHECKED
@@ -257,9 +260,10 @@ stacks:
                 - "The date and time when the drift detection was last executed.
                   Format is defined by RFC3339.
                   Example: `2020-01-25T21:10:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -281,13 +285,13 @@ stacks:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
-        "time_created": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "config_source": {
             "config_source_type": "ZIP_UPLOAD",
             "working_directory": "working_directory_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "region_example",
+            "region": "us-phoenix-1",
             "services_to_discover": [],
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
@@ -296,9 +300,9 @@ stacks:
             "bucket_name": "bucket_name_example"
         },
         "variables": {},
-        "terraform_version": "0.12.x",
+        "terraform_version": "terraform_version_example",
         "stack_drift_status": "NOT_CHECKED",
-        "time_drift_last_checked": "2020-01-25T21:10:29.600Z",
+        "time_drift_last_checked": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

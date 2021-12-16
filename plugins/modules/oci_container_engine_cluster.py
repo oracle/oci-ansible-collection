@@ -172,32 +172,32 @@ EXAMPLES = """
 - name: Create cluster
   oci_container_engine_cluster:
     # required
-    name: My Cluster
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
-    vcn_id: ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa
-    kubernetes_version: v1.9.4
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    kubernetes_version: kubernetes_version_example
 
     # optional
     endpoint_config:
       # optional
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-      nsg_ids: [ "null" ]
+      nsg_ids: [ "nsg_ids_example" ]
       is_public_ip_enabled: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     options:
       # optional
-      service_lb_subnet_ids: [ "null" ]
+      service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
       kubernetes_network_config:
         # optional
-        pods_cidr: 10.244.0.0/16
-        services_cidr: 10.96.0.0/16
+        pods_cidr: pods_cidr_example
+        services_cidr: services_cidr_example
       add_ons:
         # optional
         is_kubernetes_dashboard_enabled: true
         is_tiller_enabled: true
       admission_controller_options:
         # optional
-        is_pod_security_policy_enabled: false
+        is_pod_security_policy_enabled: true
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -211,22 +211,22 @@ EXAMPLES = """
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    name: My Cluster
-    kubernetes_version: v1.9.4
+    name: name_example
+    kubernetes_version: kubernetes_version_example
     options:
       # optional
-      service_lb_subnet_ids: [ "null" ]
+      service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
       kubernetes_network_config:
         # optional
-        pods_cidr: 10.244.0.0/16
-        services_cidr: 10.96.0.0/16
+        pods_cidr: pods_cidr_example
+        services_cidr: services_cidr_example
       add_ons:
         # optional
         is_kubernetes_dashboard_enabled: true
         is_tiller_enabled: true
       admission_controller_options:
         # optional
-        is_pod_security_policy_enabled: false
+        is_pod_security_policy_enabled: true
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -237,25 +237,25 @@ EXAMPLES = """
 - name: Update cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_cluster:
     # required
-    name: My Cluster
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    kubernetes_version: v1.9.4
+    kubernetes_version: kubernetes_version_example
     options:
       # optional
-      service_lb_subnet_ids: [ "null" ]
+      service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
       kubernetes_network_config:
         # optional
-        pods_cidr: 10.244.0.0/16
-        services_cidr: 10.96.0.0/16
+        pods_cidr: pods_cidr_example
+        services_cidr: services_cidr_example
       add_ons:
         # optional
         is_kubernetes_dashboard_enabled: true
         is_tiller_enabled: true
       admission_controller_options:
         # optional
-        is_pod_security_policy_enabled: false
+        is_pod_security_policy_enabled: true
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -272,8 +272,8 @@ EXAMPLES = """
 - name: Delete cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_cluster:
     # required
-    name: My Cluster
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -290,19 +290,19 @@ cluster:
                 - The OCID of the cluster.
             returned: on success
             type: str
-            sample: ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the cluster.
             returned: on success
             type: str
-            sample: My Cluster
+            sample: name_example
         compartment_id:
             description:
                 - The OCID of the compartment in which the cluster exists.
             returned: on success
             type: str
-            sample: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         endpoint_config:
             description:
                 - The network configuration for access to the Cluster control plane.
@@ -334,13 +334,13 @@ cluster:
                 - The OCID of the virtual cloud network (VCN) in which the cluster exists.
             returned: on success
             type: str
-            sample: ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         kubernetes_version:
             description:
                 - The version of Kubernetes running on the cluster masters.
             returned: on success
             type: str
-            sample: v1.9.4
+            sample: kubernetes_version_example
         kms_key_id:
             description:
                 - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
@@ -370,13 +370,13 @@ cluster:
                                 - The CIDR block for Kubernetes pods.
                             returned: on success
                             type: str
-                            sample: 10.244.0.0/16
+                            sample: pods_cidr_example
                         services_cidr:
                             description:
                                 - The CIDR block for Kubernetes services.
                             returned: on success
                             type: str
-                            sample: 10.96.0.0/16
+                            sample: services_cidr_example
                 add_ons:
                     description:
                         - Configurable cluster add-ons
@@ -406,7 +406,7 @@ cluster:
                                 - Whether or not to enable the Pod Security Policy admission controller.
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
         metadata:
             description:
                 - Metadata about the cluster.
@@ -418,67 +418,67 @@ cluster:
                         - The time the cluster was created.
                     returned: on success
                     type: str
-                    sample: "2017-07-21T16:11:29Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 created_by_user_id:
                     description:
                         - The user who created the cluster.
                     returned: on success
                     type: str
-                    sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
+                    sample: "ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx"
                 created_by_work_request_id:
                     description:
                         - The OCID of the work request which created the cluster.
                     returned: on success
                     type: str
-                    sample: ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                    sample: "ocid1.createdbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
                 time_deleted:
                     description:
                         - The time the cluster was deleted.
                     returned: on success
                     type: str
-                    sample: "2017-07-21T16:11:29Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 deleted_by_user_id:
                     description:
                         - The user who deleted the cluster.
                     returned: on success
                     type: str
-                    sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
+                    sample: "ocid1.deletedbyuser.oc1..xxxxxxEXAMPLExxxxxx"
                 deleted_by_work_request_id:
                     description:
                         - The OCID of the work request which deleted the cluster.
                     returned: on success
                     type: str
-                    sample: ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                    sample: "ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
                 time_updated:
                     description:
                         - The time the cluster was updated.
                     returned: on success
                     type: str
-                    sample: "2017-07-21T16:11:29Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 updated_by_user_id:
                     description:
                         - The user who updated the cluster.
                     returned: on success
                     type: str
-                    sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
+                    sample: "ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx"
                 updated_by_work_request_id:
                     description:
                         - The OCID of the work request which updated the cluster.
                     returned: on success
                     type: str
-                    sample: ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                    sample: "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The state of the cluster masters.
             returned: on success
             type: str
-            sample: UPDATING
+            sample: CREATING
         lifecycle_details:
             description:
                 - Details about the state of the cluster masters.
             returned: on success
             type: str
-            sample: waiting for node pools
+            sample: lifecycle_details_example
         endpoints:
             description:
                 - Endpoints served up by the cluster masters.
@@ -490,19 +490,19 @@ cluster:
                         - The non-native networking Kubernetes API server endpoint.
                     returned: on success
                     type: str
-                    sample: https://yourkubernetes
+                    sample: kubernetes_example
                 public_endpoint:
                     description:
                         - The public native networking Kubernetes API server endpoint, if one was requested.
                     returned: on success
                     type: str
-                    sample: https://yourPublicEndpoint
+                    sample: public_endpoint_example
                 private_endpoint:
                     description:
                         - The private native networking Kubernetes API server endpoint.
                     returned: on success
                     type: str
-                    sample: https://yourPrivateEndpoint
+                    sample: private_endpoint_example
         available_kubernetes_upgrades:
             description:
                 - Available Kubernetes versions to which the clusters masters may be upgraded.
@@ -535,48 +535,48 @@ cluster:
                             type: str
                             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
-        "id": "ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw",
-        "name": "My Cluster",
-        "compartment_id": "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "endpoint_config": {
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
             "nsg_ids": [],
             "is_public_ip_enabled": true
         },
-        "vcn_id": "ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa",
-        "kubernetes_version": "v1.9.4",
+        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "kubernetes_version": "kubernetes_version_example",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "options": {
             "service_lb_subnet_ids": [],
             "kubernetes_network_config": {
-                "pods_cidr": "10.244.0.0/16",
-                "services_cidr": "10.96.0.0/16"
+                "pods_cidr": "pods_cidr_example",
+                "services_cidr": "services_cidr_example"
             },
             "add_ons": {
                 "is_kubernetes_dashboard_enabled": true,
                 "is_tiller_enabled": true
             },
             "admission_controller_options": {
-                "is_pod_security_policy_enabled": false
+                "is_pod_security_policy_enabled": true
             }
         },
         "metadata": {
-            "time_created": "2017-07-21T16:11:29Z",
-            "created_by_user_id": "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
-            "created_by_work_request_id": "ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
-            "time_deleted": "2017-07-21T16:11:29Z",
-            "deleted_by_user_id": "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
-            "deleted_by_work_request_id": "ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
-            "time_updated": "2017-07-21T16:11:29Z",
-            "updated_by_user_id": "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
-            "updated_by_work_request_id": "ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "created_by_user_id": "ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx",
+            "created_by_work_request_id": "ocid1.createdbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_deleted": "2013-10-20T19:20:30+01:00",
+            "deleted_by_user_id": "ocid1.deletedbyuser.oc1..xxxxxxEXAMPLExxxxxx",
+            "deleted_by_work_request_id": "ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_updated": "2013-10-20T19:20:30+01:00",
+            "updated_by_user_id": "ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx",
+            "updated_by_work_request_id": "ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx"
         },
-        "lifecycle_state": "UPDATING",
-        "lifecycle_details": "waiting for node pools",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
         "endpoints": {
-            "kubernetes": "https://yourkubernetes",
-            "public_endpoint": "https://yourPublicEndpoint",
-            "private_endpoint": "https://yourPrivateEndpoint"
+            "kubernetes": "kubernetes_example",
+            "public_endpoint": "public_endpoint_example",
+            "private_endpoint": "private_endpoint_example"
         },
         "available_kubernetes_upgrades": [],
         "image_policy_config": {

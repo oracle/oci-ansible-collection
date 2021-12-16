@@ -96,7 +96,7 @@ EXAMPLES = """
 - name: Create signed_data
   oci_key_management_signed_data:
     # required
-    msg: message_example
+    msg: msg_example
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     signing_algorithm: SHA_224_RSA_PKCS_PSS
 
@@ -185,6 +185,7 @@ class SignedDataHelperGen(OCIResourceHelperBase):
 
     def create_resource(self):
         create_details = self.get_create_model()
+        setattr(create_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.sign,
             call_fn_args=(),

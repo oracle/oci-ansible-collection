@@ -163,12 +163,14 @@ data_safe_private_endpoints:
         private_endpoint_ip:
             description:
                 - The private IP address of the private endpoint.
+                - Returned for get operation
             returned: on success
             type: str
             sample: private_endpoint_ip_example
         endpoint_fqdn:
             description:
                 - The three-label fully qualified domain name (FQDN) of the private endpoint. The customer VCN's DNS records are updated with this FQDN.
+                - Returned for get operation
             returned: on success
             type: str
             sample: endpoint_fqdn_example
@@ -193,6 +195,7 @@ data_safe_private_endpoints:
         nsg_ids:
             description:
                 - The OCIDs of the network security groups that the private endpoint belongs to.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []

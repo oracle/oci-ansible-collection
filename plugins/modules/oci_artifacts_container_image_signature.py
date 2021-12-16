@@ -95,17 +95,17 @@ EXAMPLES = """
   oci_artifacts_container_image_signature:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    image_id: "ocid1.containerimage.oc1..exampleuniqueID"
-    kms_key_id: "ocid1.key.oc1..exampleuniqueID"
-    kms_key_version_id: "ocid1.keyversion.oc1..exampleuniqueID"
-    msg: message_example
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    msg: msg_example
     signature: signature_example
     signing_algorithm: SHA_224_RSA_PKCS_PSS
 
 - name: Delete container_image_signature
   oci_artifacts_container_image_signature:
     # required
-    image_signature_id: "ocid1.containersignature.oc1..exampleuniqueID"
+    image_signature_id: "ocid1.imagesignature.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -137,35 +137,35 @@ container_image_signature:
                 - "Example: `wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva`"
             returned: on success
             type: str
-            sample: wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva
+            sample: display_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image signature.
                 - "Example: `ocid1.containerimagesignature.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.containerimagesignature.oc1..exampleuniqueID"
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image.
                 - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.containerimage.oc1..exampleuniqueID"
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the kmsKeyId used to sign the container image.
                 - "Example: `ocid1.key.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.key.oc1..exampleuniqueID"
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_version_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the kmsKeyVersionId used to sign the container image.
                 - "Example: `ocid1.keyversion.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.keyversion.oc1..exampleuniqueID"
+            sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         message:
             description:
                 - The base64 encoded signature payload that was signed.
@@ -193,11 +193,11 @@ container_image_signature:
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
-        "display_name": "wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva",
-        "id": "ocid1.containerimagesignature.oc1..exampleuniqueID",
-        "image_id": "ocid1.containerimage.oc1..exampleuniqueID",
-        "kms_key_id": "ocid1.key.oc1..exampleuniqueID",
-        "kms_key_version_id": "ocid1.keyversion.oc1..exampleuniqueID",
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
         "message": "message_example",
         "signature": "signature_example",
         "signing_algorithm": "SHA_224_RSA_PKCS_PSS",
@@ -289,6 +289,7 @@ class ContainerImageSignatureHelperGen(OCIResourceHelperBase):
 
     def create_resource(self):
         create_details = self.get_create_model()
+        setattr(create_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_container_image_signature,
             call_fn_args=(),

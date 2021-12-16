@@ -179,7 +179,7 @@ backup:
                         - The name of the Fault Domain the DB System is located in.
                     returned: on success
                     type: str
-                    sample: fault_domain_example
+                    sample: FAULT-DOMAIN-1
                 shape_name:
                     description:
                         - "The shape of the primary instances of the DB System. The shape
@@ -442,7 +442,7 @@ backup:
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
             "availability_domain": "Uocm:PHX-AD-1",
-            "fault_domain": "fault_domain_example",
+            "fault_domain": "FAULT-DOMAIN-1",
             "shape_name": "shape_name_example",
             "mysql_version": "mysql_version_example",
             "admin_username": "admin_username_example",

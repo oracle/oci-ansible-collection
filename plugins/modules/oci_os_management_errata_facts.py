@@ -75,7 +75,7 @@ EXAMPLES = """
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     erratum_id: "ocid1.erratum.oc1..xxxxxxEXAMPLExxxxxx"
-    advisory_name: ELSA-2020-5804
+    advisory_name: advisory_name_example
     time_issue_date_start: 2013-10-20T19:20:30+01:00
     time_issue_date_end: 2013-10-20T19:20:30+01:00
     sort_order: ASC

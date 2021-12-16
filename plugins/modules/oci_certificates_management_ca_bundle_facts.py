@@ -123,7 +123,7 @@ ca_bundles:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the CA bundle.
@@ -162,7 +162,7 @@ ca_bundles:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "time_created": "2019-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

@@ -23,13 +23,13 @@ module: oci_devops_repository_object_facts
 short_description: Fetches details about a RepositoryObject resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a RepositoryObject resource in Oracle Cloud Infrastructure
-    - Get blob of specific branch name/commit id and file path
+    - Retrieves blob of specific branch name/commit ID and file path.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         aliases: ["id"]
         required: true
@@ -39,7 +39,7 @@ options:
         type: str
     ref_name:
         description:
-            - A filter to return only resources that match the given Ref name.
+            - A filter to return only resources that match the given reference name.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -71,19 +71,19 @@ repository_object:
             sample: BLOB
         size_in_bytes:
             description:
-                - Size in Bytes
+                - Size in bytes.
             returned: on success
             type: int
             sample: 56
         sha:
             description:
-                - SHA-1 hash of git object
+                - SHA-1 hash of git object.
             returned: on success
             type: str
             sample: sha_example
         is_binary:
             description:
-                - flag to determine is the object contains binary file content or not.
+                - Flag to determine if the object contains binary file content or not.
             returned: on success
             type: bool
             sample: true

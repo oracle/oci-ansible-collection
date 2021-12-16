@@ -99,7 +99,7 @@ secret_bundle_versions:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_expiry:
             description:
                 - "An optional property indicating when the secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
@@ -107,7 +107,7 @@ secret_bundle_versions:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         stages:
             description:
                 - A list of possible rotation states for the secret bundle.
@@ -119,8 +119,8 @@ secret_bundle_versions:
         "time_created": "2013-10-20T19:20:30+01:00",
         "version_number": 56,
         "version_name": "version_name_example",
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
-        "time_of_expiry": "2019-04-03T21:10:29.600Z",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
+        "time_of_expiry": "2013-10-20T19:20:30+01:00",
         "stages": []
     }]
 """

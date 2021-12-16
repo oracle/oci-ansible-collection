@@ -120,7 +120,7 @@ EXAMPLES = """
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "key" ]
 
 - name: List namespaces
   oci_data_catalog_namespace_facts:
@@ -128,7 +128,7 @@ EXAMPLES = """
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "key" ]
     display_name: display_name_example
     display_name_contains: display_name_contains_example
     lifecycle_state: CREATING
@@ -184,22 +184,25 @@ namespaces:
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-03-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The last time that any change was made to the namespace. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         created_by_id:
             description:
                 - OCID of the user who created the namespace.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the namespace.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
@@ -209,7 +212,7 @@ namespaces:
         "description": "description_example",
         "is_service_defined": true,
         "lifecycle_state": "CREATING",
-        "time_created": "2019-03-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"

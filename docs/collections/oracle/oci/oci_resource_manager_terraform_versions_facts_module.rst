@@ -30,9 +30,13 @@ oracle.oci.oci_resource_manager_terraform_versions_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_resource_manager_terraform_versions_facts`.
 
@@ -318,8 +322,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of TerraformVersions resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;is_default&#x27;: True, &#x27;name&#x27;: &#x27;0.12.x&#x27;}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;is_default&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -336,7 +340,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether this Terraform version is used by default in <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/resourcemanager/latest/Stack/CreateStack'>CreateStack</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -354,8 +358,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A supported Terraform version. Example: `0.12.x`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">0.12.x</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                     

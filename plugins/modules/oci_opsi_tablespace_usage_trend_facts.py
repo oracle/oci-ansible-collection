@@ -113,26 +113,26 @@ tablespace_usage_trend:
                         - The timestamp in which the current sampling period ends in RFC 3339 format.
                     returned: on success
                     type: str
-                    sample: "2020-05-01T00:00:00.000Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 usage:
                     description:
                         - Total amount used of the resource metric type (CPU, STORAGE).
                     returned: on success
                     type: float
-                    sample: 34.5
+                    sample: 1.2
                 capacity:
                     description:
                         - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
                     returned: on success
                     type: float
-                    sample: 222.3
+                    sample: 1.2
     sample: {
         "tablespace_name": "tablespace_name_example",
         "tablespace_type": "tablespace_type_example",
         "usage_data": [{
-            "end_timestamp": "2020-05-01T00:00:00.000Z",
-            "usage": 34.5,
-            "capacity": 222.3
+            "end_timestamp": "2013-10-20T19:20:30+01:00",
+            "usage": 1.2,
+            "capacity": 1.2
         }]
     }
 """

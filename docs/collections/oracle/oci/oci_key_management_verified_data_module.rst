@@ -30,9 +30,13 @@ oracle.oci.oci_key_management_verified_data -- Manage a VerifiedData resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_key_management_verified_data`.
 
@@ -259,21 +263,6 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-message"></div>
-                    <b>message</b>
-                    <a class="ansibleOptionLink" href="#parameter-message" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The base64-encoded binary data object denoting the message or message digest to sign. You can have a message up to 4096 bytes in size. To sign a larger message, provide the message digest.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-message_type"></div>
                     <b>message_type</b>
                     <a class="ansibleOptionLink" href="#parameter-message_type" title="Permalink to this option"></a>
@@ -290,6 +279,22 @@ Parameters
                                                                 <td>
                                             <div>Denotes whether the value of the message parameter is a raw message or a message digest. The default value, `RAW`, indicates a message. To indicate a message digest, use `DIGEST`.</div>
                                                         </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-msg"></div>
+                    <b>msg</b>
+                    <a class="ansibleOptionLink" href="#parameter-msg" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The base64-encoded binary data object denoting the message or message digest to sign. You can have a message up to 4096 bytes in size. To sign a larger message, provide the message digest.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: message</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -426,11 +431,11 @@ Examples
     - name: Create verified_data
       oci_key_management_verified_data:
         # required
-        key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
-        key_version_id: ocid1.keyversion.oc1.iad.exampledaaeug.xd5q23tteidhj4q2c6qfauxm32i577yuamplestkvmbjdnbickxasfaf
-        signature: dsdfsljfnsjnfsnfdsnf
-        message: message_example
-        signing_algorithm: SHA256_RSA_PKCS_PSS
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        signature: signature_example
+        msg: msg_example
+        signing_algorithm: SHA_224_RSA_PKCS_PSS
 
         # optional
         message_type: RAW
@@ -470,7 +475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the VerifiedData resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;is_signature_valid&#x27;: True}</div>
                                     </td>
             </tr>
@@ -488,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A Boolean value that indicates whether the signature was verified.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>

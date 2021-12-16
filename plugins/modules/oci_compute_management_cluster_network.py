@@ -164,7 +164,7 @@ EXAMPLES = """
 - name: Create cluster_network
   oci_compute_management_cluster_network:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     instance_pools:
     - # optional
       defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -188,7 +188,7 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_cluster_network
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update cluster_network
@@ -198,7 +198,7 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_cluster_network
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     instance_pools:
     - # optional
@@ -212,8 +212,8 @@ EXAMPLES = """
 - name: Update cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_cluster_network:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: example_cluster_network
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -236,8 +236,8 @@ EXAMPLES = """
 - name: Delete cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_cluster_network:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: example_cluster_network
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -408,7 +408,7 @@ cluster_network:
                           Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2016-08-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 load_balancers:
                     description:
                         - The load balancers attached to the instance pool.
@@ -512,14 +512,14 @@ cluster_network:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the resource was updated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -544,7 +544,7 @@ cluster_network:
                 }]
             }],
             "size": 56,
-            "time_created": "2016-08-25T21:10:29.600Z",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "load_balancers": [{
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "instance_pool_id": "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx",
@@ -564,8 +564,8 @@ cluster_network:
             }]
         },
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "time_updated": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }
 """
 

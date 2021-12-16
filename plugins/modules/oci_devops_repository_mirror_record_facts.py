@@ -23,21 +23,21 @@ module: oci_devops_repository_mirror_record_facts
 short_description: Fetches details about one or multiple RepositoryMirrorRecord resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple RepositoryMirrorRecord resources in Oracle Cloud Infrastructure
-    - Returns a list of mirror entry in history within 30 days
+    - Returns a list of mirror entry in history within 30 days.
     - If I(mirror_record_type) is specified, the details of a single RepositoryMirrorRecord will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     mirror_record_type:
         description:
-            - "The field of mirror record type. Only one mirror record type may be provided.
+            - "The field of mirror record type. Only one mirror record type can be provided:
               current - The current mirror record.
-              lastSuccessful - The last successful mirror record"
+              lastSuccessful - The last successful mirror record."
             - Required to get a specific repository_mirror_record.
         type: str
         choices:
@@ -89,7 +89,7 @@ repository_mirror_records:
             sample: NONE
         work_request_id:
             description:
-                - Workrequest Id to track current mirror operation
+                - Workrequest ID to track current mirror operation.
             returned: on success
             type: str
             sample: "ocid1.workrequest.oc1..xxxxxxEXAMPLExxxxxx"
@@ -107,13 +107,15 @@ repository_mirror_records:
             sample: "2013-10-20T19:20:30+01:00"
         time_ended:
             description:
-                - Time that the mirror operation ended or null if it hasn't yet ended.
+                - The time taken to complete a mirror operation. Value is null if not completed.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_completed:
             description:
-                - The time complete a mirror operation.
+                - The time to complete a mirror operation.
+                - Returned for list operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -121,6 +123,7 @@ repository_mirror_records:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for list operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -128,6 +131,7 @@ repository_mirror_records:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Returned for list operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}

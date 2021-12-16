@@ -133,12 +133,14 @@ events:
         compartment_id:
             description:
                 - OCI identifier of the compartement where the instance is
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tenancy_id:
             description:
                 - OCID identifier of the instance tenancy.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
@@ -158,6 +160,7 @@ events:
             description:
                 - Unique ID used to group event with the same characteristics together.
                   The list of such groups of event can be retrieved via /recurringEvents/{EventFingerprint}
+                - Returned for get operation
             returned: on success
             type: str
             sample: event_fingerprint_example
@@ -197,18 +200,21 @@ events:
         reason:
             description:
                 - reason of the crash
+                - Returned for get operation
             returned: on success
             type: str
             sample: reason_example
         time_first_occurred:
             description:
                 - First occurrence time of the event
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         vmcore:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -227,6 +233,7 @@ events:
         content:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -251,6 +258,7 @@ events:
         system:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

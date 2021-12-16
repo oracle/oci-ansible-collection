@@ -158,17 +158,17 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    database_type: [ "$p.getValue()" ]
-    database_id: [ "$p.getValue()" ]
-    id: [ "$p.getValue()" ]
-    exadata_insight_id: [ "$p.getValue()" ]
-    host_name: [ "$p.getValue()" ]
+    database_type: [ "ADW-S" ]
+    database_id: [ "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx" ]
+    id: [ "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    host_name: [ "host_name_example" ]
     is_database_instance_level_metrics: true
-    percentile: 56
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    percentile: 1
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """
@@ -185,51 +185,51 @@ resource_usage:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         resource_metric:
             description:
                 - "Defines the type of resource metric (example: CPU, STORAGE)"
             returned: on success
             type: str
-            sample: STORAGE
+            sample: CPU
         usage_unit:
             description:
                 - Displays usage unit (CORES, GB)
             returned: on success
             type: str
-            sample: GB
+            sample: CORES
         usage:
             description:
                 - Total amount used of the resource metric type (CPU, STORAGE).
             returned: on success
             type: float
-            sample: 34.5
+            sample: 1.2
         capacity:
             description:
                 - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
             returned: on success
             type: float
-            sample: 222.3
+            sample: 1.2
         usage_change_percent:
             description:
                 - Percentage change in resource usage during the current period calculated using linear regression functions
             returned: on success
             type: float
-            sample: 10.23
+            sample: 1.2
     sample: {
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
-        "resource_metric": "STORAGE",
-        "usage_unit": "GB",
-        "usage": 34.5,
-        "capacity": 222.3,
-        "usage_change_percent": 10.23
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
+        "resource_metric": "CPU",
+        "usage_unit": "CORES",
+        "usage": 1.2,
+        "capacity": 1.2,
+        "usage_change_percent": 1.2
     }
 """
 

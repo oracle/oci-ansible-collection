@@ -180,7 +180,7 @@ EXAMPLES = """
     char_encoding: char_encoding_example
     is_enabled: true
     overrides: null
-    object_name_filters: [ "null" ]
+    object_name_filters: [ "object_name_filters_example" ]
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -198,7 +198,7 @@ EXAMPLES = """
     char_encoding: char_encoding_example
     is_enabled: true
     overrides: null
-    object_name_filters: [ "null" ]
+    object_name_filters: [ "object_name_filters_example" ]
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -217,7 +217,7 @@ EXAMPLES = """
     char_encoding: char_encoding_example
     is_enabled: true
     overrides: null
-    object_name_filters: [ "null" ]
+    object_name_filters: [ "object_name_filters_example" ]
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 

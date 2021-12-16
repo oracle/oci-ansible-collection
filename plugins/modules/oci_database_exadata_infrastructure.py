@@ -271,21 +271,21 @@ EXAMPLES = """
 - name: Create exadata_infrastructure
   oci_database_exadata_infrastructure:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tstExaInfra
-    shape: Exadata.Full2.336
-    time_zone: PST
-    cloud_control_plane_server1: 192.168.19.1
-    cloud_control_plane_server2: 192.168.19.2
-    netmask: 255.255.0.0
-    gateway: 192.168.20.1
-    admin_network_cidr: 192.168.19.2/16
-    infini_band_network_cidr: 10.172.19.1/24
-    dns_server: [ "192.168.10.10" ]
-    ntp_server: [ "192.168.10.20" ]
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    shape: shape_example
+    time_zone: time_zone_example
+    cloud_control_plane_server1: cloud_control_plane_server1_example
+    cloud_control_plane_server2: cloud_control_plane_server2_example
+    netmask: netmask_example
+    gateway: gateway_example
+    admin_network_cidr: admin_network_cidr_example
+    infini_band_network_cidr: infini_band_network_cidr_example
+    dns_server: [ "dns_server_example" ]
+    ntp_server: [ "ntp_server_example" ]
 
     # optional
-    corporate_proxy: 192.168.20.1
+    corporate_proxy: corporate_proxy_example
     contacts:
     - # required
       name: name_example
@@ -303,11 +303,11 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     storage_count: 56
     compute_count: 56
@@ -320,14 +320,14 @@ EXAMPLES = """
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    time_zone: PST
-    cloud_control_plane_server1: 192.168.19.1
-    cloud_control_plane_server2: 192.168.19.2
-    netmask: 255.255.0.0
-    gateway: 192.168.20.1
-    admin_network_cidr: 192.168.19.2/16
-    infini_band_network_cidr: 10.172.19.1/24
-    corporate_proxy: 192.168.20.1
+    time_zone: time_zone_example
+    cloud_control_plane_server1: cloud_control_plane_server1_example
+    cloud_control_plane_server2: cloud_control_plane_server2_example
+    netmask: netmask_example
+    gateway: gateway_example
+    admin_network_cidr: admin_network_cidr_example
+    infini_band_network_cidr: infini_band_network_cidr_example
+    corporate_proxy: corporate_proxy_example
     contacts:
     - # required
       name: name_example
@@ -345,14 +345,14 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
-    dns_server: [ "192.168.10.10" ]
-    ntp_server: [ "192.168.10.20" ]
+    dns_server: [ "dns_server_example" ]
+    ntp_server: [ "ntp_server_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     additional_storage_count: 56
@@ -360,18 +360,18 @@ EXAMPLES = """
 - name: Update exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_exadata_infrastructure:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tstExaInfra
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    time_zone: PST
-    cloud_control_plane_server1: 192.168.19.1
-    cloud_control_plane_server2: 192.168.19.2
-    netmask: 255.255.0.0
-    gateway: 192.168.20.1
-    admin_network_cidr: 192.168.19.2/16
-    infini_band_network_cidr: 10.172.19.1/24
-    corporate_proxy: 192.168.20.1
+    time_zone: time_zone_example
+    cloud_control_plane_server1: cloud_control_plane_server1_example
+    cloud_control_plane_server2: cloud_control_plane_server2_example
+    netmask: netmask_example
+    gateway: gateway_example
+    admin_network_cidr: admin_network_cidr_example
+    infini_band_network_cidr: infini_band_network_cidr_example
+    corporate_proxy: corporate_proxy_example
     contacts:
     - # required
       name: name_example
@@ -389,14 +389,14 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
-    dns_server: [ "192.168.10.10" ]
-    ntp_server: [ "192.168.10.20" ]
+    dns_server: [ "dns_server_example" ]
+    ntp_server: [ "ntp_server_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     additional_storage_count: 56
@@ -410,8 +410,8 @@ EXAMPLES = """
 - name: Delete exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_exadata_infrastructure:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tstExaInfra
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

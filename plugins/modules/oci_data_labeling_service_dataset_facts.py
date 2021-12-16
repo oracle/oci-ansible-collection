@@ -91,7 +91,7 @@ EXAMPLES = """
 
     # optional
     annotation_format: annotation_format_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -126,6 +126,7 @@ datasets:
         description:
             description:
                 - A user provided description of the dataset
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -170,6 +171,7 @@ datasets:
         dataset_source_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -212,6 +214,7 @@ datasets:
         label_set:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -230,6 +233,7 @@ datasets:
         initial_record_generation_configuration:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

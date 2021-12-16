@@ -68,7 +68,7 @@ EXAMPLES = """
     status: PENDING
 
     # optional
-    time_status_end: 2013-10-20T19:20:30+01:00
+    time_status_end: time_status_end_example
 
 """
 
@@ -215,13 +215,13 @@ resource_action:
                 - The date and time the resource action details were created, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the resource action details were last updated, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "category_id": "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx",
@@ -243,8 +243,8 @@ resource_action:
         "time_status_end": "2013-10-20T19:20:30+01:00",
         "metadata": {},
         "extended_metadata": {},
-        "time_created": "2020-08-25T21:10:29.600Z",
-        "time_updated": "2020-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }
 """
 

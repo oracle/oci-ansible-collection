@@ -214,69 +214,69 @@ EXAMPLES = """
 - name: Create listener
   oci_loadbalancer_listener:
     # required
-    default_backend_set_name: example_backend_set
-    port: 80
-    protocol: HTTP
-    name: example_listener
+    default_backend_set_name: default_backend_set_name_example
+    port: 56
+    protocol: protocol_example
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    hostname_names: [ "null" ]
-    path_route_set_name: example_path_route_set
+    hostname_names: [ "hostname_names_example" ]
+    path_route_set_name: path_route_set_name_example
     ssl_configuration:
       # optional
-      verify_depth: 3
+      verify_depth: 56
       verify_peer_certificate: true
-      trusted_certificate_authority_ids: [ "null" ]
-      certificate_ids: [ "null" ]
-      certificate_name: example_certificate_bundle
-      protocols: [ "null" ]
+      trusted_certificate_authority_ids: [ "trusted_certificate_authority_ids_example" ]
+      certificate_ids: [ "certificate_ids_example" ]
+      certificate_name: certificate_name_example
+      protocols: [ "protocols_example" ]
       cipher_suite_name: cipher_suite_name_example
       server_order_preference: ENABLED
     connection_configuration:
       # required
-      idle_timeout: 1200
+      idle_timeout: 56
 
       # optional
-      backend_tcp_proxy_protocol_version: 1
-    routing_policy_name: example_routing_policy
-    rule_set_names: [ "null" ]
+      backend_tcp_proxy_protocol_version: 56
+    routing_policy_name: routing_policy_name_example
+    rule_set_names: [ "rule_set_names_example" ]
 
 - name: Update listener
   oci_loadbalancer_listener:
     # required
-    default_backend_set_name: example_backend_set
-    port: 80
-    protocol: HTTP
-    name: example_listener
+    default_backend_set_name: default_backend_set_name_example
+    port: 56
+    protocol: protocol_example
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    hostname_names: [ "null" ]
-    path_route_set_name: example_path_route_set
+    hostname_names: [ "hostname_names_example" ]
+    path_route_set_name: path_route_set_name_example
     ssl_configuration:
       # optional
-      verify_depth: 3
+      verify_depth: 56
       verify_peer_certificate: true
-      trusted_certificate_authority_ids: [ "null" ]
-      certificate_ids: [ "null" ]
-      certificate_name: example_certificate_bundle
-      protocols: [ "null" ]
+      trusted_certificate_authority_ids: [ "trusted_certificate_authority_ids_example" ]
+      certificate_ids: [ "certificate_ids_example" ]
+      certificate_name: certificate_name_example
+      protocols: [ "protocols_example" ]
       cipher_suite_name: cipher_suite_name_example
       server_order_preference: ENABLED
     connection_configuration:
       # required
-      idle_timeout: 1200
+      idle_timeout: 56
 
       # optional
-      backend_tcp_proxy_protocol_version: 1
-    routing_policy_name: example_routing_policy
-    rule_set_names: [ "null" ]
+      backend_tcp_proxy_protocol_version: 56
+    routing_policy_name: routing_policy_name_example
+    rule_set_names: [ "rule_set_names_example" ]
 
 - name: Delete listener
   oci_loadbalancer_listener:
     # required
-    name: example_listener
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -295,21 +295,21 @@ listener:
                 - "Example: `example_listener`"
             returned: on success
             type: str
-            sample: example_listener
+            sample: name_example
         default_backend_set_name:
             description:
                 - The name of the associated backend set.
                 - "Example: `example_backend_set`"
             returned: on success
             type: str
-            sample: example_backend_set
+            sample: default_backend_set_name_example
         port:
             description:
                 - The communication port for the listener.
                 - "Example: `80`"
             returned: on success
             type: int
-            sample: 0
+            sample: 56
         protocol:
             description:
                 - The protocol on which the listener accepts connection requests.
@@ -319,7 +319,7 @@ listener:
                 - "Example: `HTTP`"
             returned: on success
             type: str
-            sample: HTTP
+            sample: protocol_example
         hostname_names:
             description:
                 - An array of hostname resource names.
@@ -335,7 +335,7 @@ listener:
                 - "Example: `example_path_route_set`"
             returned: on success
             type: str
-            sample: example_path_route_set
+            sample: path_route_set_name_example
         ssl_configuration:
             description:
                 - ""
@@ -348,7 +348,7 @@ listener:
                         - "Example: `3`"
                     returned: on success
                     type: int
-                    sample: 3
+                    sample: 56
                 verify_peer_certificate:
                     description:
                         - Whether the load balancer listener should verify peer certificates.
@@ -378,7 +378,7 @@ listener:
                         - "Example: `example_certificate_bundle`"
                     returned: on success
                     type: str
-                    sample: example_certificate_bundle
+                    sample: certificate_name_example
                 server_order_preference:
                     description:
                         - When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client
@@ -451,14 +451,14 @@ listener:
                         - "Example: `1200`"
                     returned: on success
                     type: int
-                    sample: 1200
+                    sample: 56
                 backend_tcp_proxy_protocol_version:
                     description:
                         - The backend TCP Proxy Protocol version.
                         - "Example: `1`"
                     returned: on success
                     type: int
-                    sample: 1
+                    sample: 56
         rule_set_names:
             description:
                 - The names of the L(rule sets,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/) to apply to the listener.
@@ -472,30 +472,30 @@ listener:
                 - "Example: `example_routing_policy_name`"
             returned: on success
             type: str
-            sample: example_routing_policy_name
+            sample: routing_policy_name_example
     sample: {
-        "name": "example_listener",
-        "default_backend_set_name": "example_backend_set",
-        "port": 0,
-        "protocol": "HTTP",
+        "name": "name_example",
+        "default_backend_set_name": "default_backend_set_name_example",
+        "port": 56,
+        "protocol": "protocol_example",
         "hostname_names": [],
-        "path_route_set_name": "example_path_route_set",
+        "path_route_set_name": "path_route_set_name_example",
         "ssl_configuration": {
-            "verify_depth": 3,
+            "verify_depth": 56,
             "verify_peer_certificate": true,
             "trusted_certificate_authority_ids": [],
             "certificate_ids": [],
-            "certificate_name": "example_certificate_bundle",
+            "certificate_name": "certificate_name_example",
             "server_order_preference": "ENABLED",
             "cipher_suite_name": "cipher_suite_name_example",
             "protocols": []
         },
         "connection_configuration": {
-            "idle_timeout": 1200,
-            "backend_tcp_proxy_protocol_version": 1
+            "idle_timeout": 56,
+            "backend_tcp_proxy_protocol_version": 56
         },
         "rule_set_names": [],
-        "routing_policy_name": "example_routing_policy_name"
+        "routing_policy_name": "routing_policy_name_example"
     }
 """
 

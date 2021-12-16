@@ -94,7 +94,7 @@ EXAMPLES = """
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
 
 """
 
@@ -160,7 +160,7 @@ cross_connect_groups:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         macsec_properties:
             description:
                 - ""
@@ -219,7 +219,7 @@ cross_connect_groups:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "customer_reference_name": "customer_reference_name_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "macsec_properties": {
             "state": "ENABLED",
             "primary_key": {

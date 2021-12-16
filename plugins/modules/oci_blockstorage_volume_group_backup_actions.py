@@ -89,7 +89,7 @@ EXAMPLES = """
   oci_blockstorage_volume_group_backup_actions:
     # required
     volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
-    destination_region: us-ashburn-1
+    destination_region: us-phoenix-1
     action: copy
 
     # optional

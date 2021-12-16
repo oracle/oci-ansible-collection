@@ -148,7 +148,7 @@ http_redirect:
                 - The date and time the policy was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the HTTP Redirect.
@@ -184,7 +184,7 @@ http_redirect:
             "query": "query_example"
         },
         "response_code": 56,
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

@@ -92,7 +92,7 @@ EXAMPLES = """
     awr_db_id: "ocid1.awrdb.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    inst_nums: [ "$p.getValue()" ]
+    inst_nums: [ "56" ]
     begin_sn_id_greater_than_or_equal_to: 56
     end_sn_id_less_than_or_equal_to: 56
     time_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00

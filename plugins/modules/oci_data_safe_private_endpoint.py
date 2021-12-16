@@ -112,7 +112,7 @@ EXAMPLES = """
     # optional
     private_endpoint_ip: private_endpoint_ip_example
     description: description_example
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -124,7 +124,7 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -136,7 +136,7 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 

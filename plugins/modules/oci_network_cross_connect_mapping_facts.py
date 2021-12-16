@@ -80,7 +80,7 @@ cross_connect_mappings:
                 - "Example: `10.0.0.18/31`"
             returned: on success
             type: str
-            sample: 10.0.0.18/31
+            sample: customer_bgp_peering_ip_example
         oracle_bgp_peering_ip:
             description:
                 - The IPv4 address for Oracle's end of the BGP session. Must use a /30 or /31
@@ -91,7 +91,7 @@ cross_connect_mappings:
                 - "Example: `10.0.0.19/31`"
             returned: on success
             type: str
-            sample: 10.0.0.19/31
+            sample: oracle_bgp_peering_ip_example
         customer_bgp_peering_ipv6:
             description:
                 - The BGP IPv6 address for the router on the other end of the BGP session from
@@ -103,7 +103,7 @@ cross_connect_mappings:
                 - "Example: `2001:db8::1/64`"
             returned: on success
             type: str
-            sample: 2001:db8::1/64
+            sample: customer_bgp_peering_ipv6_example
         oracle_bgp_peering_ipv6:
             description:
                 - The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed.
@@ -114,7 +114,7 @@ cross_connect_mappings:
                 - "Example: `2001:db8::2/64`"
             returned: on success
             type: str
-            sample: 2001:db8::2/64
+            sample: oracle_bgp_peering_ipv6_example
         vlan:
             description:
                 - The number of the specific VLAN (on the cross-connect or cross-connect group)
@@ -124,7 +124,7 @@ cross_connect_mappings:
                 - "Example: `200`"
             returned: on success
             type: int
-            sample: 200
+            sample: 56
         ipv4_bgp_status:
             description:
                 - The state of the Ipv4 BGP session.
@@ -140,11 +140,11 @@ cross_connect_mappings:
     sample: [{
         "bgp_md5_auth_key": "bgp_md5_auth_key_example",
         "cross_connect_or_cross_connect_group_id": "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx",
-        "customer_bgp_peering_ip": "10.0.0.18/31",
-        "oracle_bgp_peering_ip": "10.0.0.19/31",
-        "customer_bgp_peering_ipv6": "2001:db8::1/64",
-        "oracle_bgp_peering_ipv6": "2001:db8::2/64",
-        "vlan": 200,
+        "customer_bgp_peering_ip": "customer_bgp_peering_ip_example",
+        "oracle_bgp_peering_ip": "oracle_bgp_peering_ip_example",
+        "customer_bgp_peering_ipv6": "customer_bgp_peering_ipv6_example",
+        "oracle_bgp_peering_ipv6": "oracle_bgp_peering_ipv6_example",
+        "vlan": 56,
         "ipv4_bgp_status": "UP",
         "ipv6_bgp_status": "UP"
     }]

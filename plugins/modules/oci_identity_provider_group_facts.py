@@ -58,7 +58,7 @@ EXAMPLES = """
 
     # optional
     name: name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
 
 """
 
@@ -105,22 +105,22 @@ identity_provider_groups:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_modified:
             description:
                 - Date and time the `IdentityProviderGroup` was last modified, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "identity_provider_id": "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "name": "name_example",
         "external_identifier": "external_identifier_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "time_modified": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_modified": "2013-10-20T19:20:30+01:00"
     }]
 """
 

@@ -47,7 +47,7 @@ EXAMPLES = """
   oci_network_load_balancer_health_checker_facts:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: example_backend_set
+    backend_set_name: backend_set_name_example
 
 """
 
@@ -72,7 +72,7 @@ health_checker:
                 - "Example: `8080`"
             returned: on success
             type: int
-            sample: 8080
+            sample: 56
         retries:
             description:
                 - "The number of retries to attempt before a backend server is considered \\"unhealthy\\". This number also applies
@@ -80,7 +80,7 @@ health_checker:
                 - "Example: `3`"
             returned: on success
             type: int
-            sample: 3
+            sample: 56
         timeout_in_millis:
             description:
                 - The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply
@@ -88,21 +88,21 @@ health_checker:
                 - "Example: `3000`"
             returned: on success
             type: int
-            sample: 3000
+            sample: 56
         interval_in_millis:
             description:
                 - The interval between health checks, in milliseconds. The default value is 10000 (10 seconds).
                 - "Example: `10000`"
             returned: on success
             type: int
-            sample: 10000
+            sample: 56
         url_path:
             description:
                 - The path against which to run the health check.
                 - "Example: `/healthcheck`"
             returned: on success
             type: str
-            sample: /healthcheck
+            sample: url_path_example
         response_body_regex:
             description:
                 - A regular expression for parsing the response body from the backend server.
@@ -117,30 +117,32 @@ health_checker:
                 - "Example: `200`"
             returned: on success
             type: int
-            sample: 0
+            sample: 56
         request_data:
             description:
                 - Base64 encoded pattern to be sent as UDP or TCP health check probe.
             returned: on success
             type: str
-            sample: "example_request_data"
+            sample: "null"
+
         response_data:
             description:
                 - Base64 encoded pattern to be validated as UDP or TCP health check probe response.
             returned: on success
             type: str
-            sample: "example_response_data"
+            sample: "null"
+
     sample: {
         "protocol": "HTTP",
-        "port": 8080,
-        "retries": 3,
-        "timeout_in_millis": 3000,
-        "interval_in_millis": 10000,
-        "url_path": "/healthcheck",
+        "port": 56,
+        "retries": 56,
+        "timeout_in_millis": 56,
+        "interval_in_millis": 56,
+        "url_path": "url_path_example",
         "response_body_regex": "response_body_regex_example",
-        "return_code": 0,
-        "request_data": UNKNOWN TYPE - str,
-        "response_data": UNKNOWN TYPE - str
+        "return_code": 56,
+        "request_data": null,
+        "response_data": null
     }
 """
 

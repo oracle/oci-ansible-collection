@@ -154,7 +154,7 @@ EXAMPLES = """
     target_selected:
       # required
       kind: ALL
-    data_mask_categories: [ "null" ]
+    data_mask_categories: [ "ACTOR" ]
 
     # optional
     description: description_example
@@ -175,7 +175,7 @@ EXAMPLES = """
     target_selected:
       # required
       kind: ALL
-    data_mask_categories: [ "null" ]
+    data_mask_categories: [ "ACTOR" ]
     data_mask_rule_status: ENABLED
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -191,7 +191,7 @@ EXAMPLES = """
     target_selected:
       # required
       kind: ALL
-    data_mask_categories: [ "null" ]
+    data_mask_categories: [ "ACTOR" ]
     data_mask_rule_status: ENABLED
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}

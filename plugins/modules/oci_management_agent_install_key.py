@@ -83,7 +83,7 @@ EXAMPLES = """
 
     # optional
     allowed_key_install_count: 56
-    time_expires: 2013-10-20T19:20:30+01:00
+    time_expires: time_expires_example
 
 - name: Update management_agent_install_key
   oci_management_agent_install_key:

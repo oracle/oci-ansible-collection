@@ -53,11 +53,12 @@ options:
         choices:
             - "RAW"
             - "DIGEST"
-    message:
+    msg:
         description:
             - The base64-encoded binary data object denoting the message or message digest to sign. You can have a message up to 4096 bytes in size. To sign a
               larger message, provide the message digest.
         type: str
+        aliases: ["message"]
         required: true
     signing_algorithm:
         description:
@@ -101,11 +102,11 @@ EXAMPLES = """
 - name: Create verified_data
   oci_key_management_verified_data:
     # required
-    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
-    key_version_id: ocid1.keyversion.oc1.iad.exampledaaeug.xd5q23tteidhj4q2c6qfauxm32i577yuamplestkvmbjdnbickxasfaf
-    signature: dsdfsljfnsjnfsnfdsnf
-    message: message_example
-    signing_algorithm: SHA256_RSA_PKCS_PSS
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    signature: signature_example
+    msg: msg_example
+    signing_algorithm: SHA_224_RSA_PKCS_PSS
 
     # optional
     message_type: RAW
@@ -165,6 +166,7 @@ class VerifiedDataHelperGen(OCIResourceHelperBase):
 
     def create_resource(self):
         create_details = self.get_create_model()
+        setattr(create_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.verify,
             call_fn_args=(),
@@ -196,7 +198,7 @@ def main():
             key_version_id=dict(type="str", required=True),
             signature=dict(type="str", required=True),
             message_type=dict(type="str", choices=["RAW", "DIGEST"]),
-            message=dict(type="str", required=True),
+            msg=dict(aliases=["message"], type="str", required=True),
             signing_algorithm=dict(
                 type="str",
                 required=True,

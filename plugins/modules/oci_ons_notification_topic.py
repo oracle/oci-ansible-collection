@@ -93,18 +93,18 @@ EXAMPLES = """
 - name: Create notification_topic
   oci_ons_notification_topic:
     # required
-    name: Admins
-    compartment_id: compartment_OCID
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    description: Channel for admin messages
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update notification_topic
   oci_ons_notification_topic:
     # required
-    description: Channel for admin messages
+    description: description_example
     topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -114,11 +114,11 @@ EXAMPLES = """
 - name: Update notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ons_notification_topic:
     # required
-    name: Admins
-    compartment_id: compartment_OCID
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    description: Channel for admin messages
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -131,8 +131,8 @@ EXAMPLES = """
 - name: Delete notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ons_notification_topic:
     # required
-    name: Admins
-    compartment_id: compartment_OCID
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """

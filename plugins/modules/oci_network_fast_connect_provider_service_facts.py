@@ -74,7 +74,7 @@ fast_connect_provider_services:
                 - "Example: `https://example.com`"
             returned: on success
             type: str
-            sample: https://example.com
+            sample: description_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service offered by the provider.
@@ -143,7 +143,7 @@ fast_connect_provider_services:
             type: str
             sample: LAYER2
     sample: [{
-        "description": "https://example.com",
+        "description": "description_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "private_peering_bgp_management": "CUSTOMER_MANAGED",
         "provider_name": "provider_name_example",

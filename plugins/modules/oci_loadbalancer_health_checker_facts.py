@@ -48,7 +48,7 @@ EXAMPLES = """
   oci_loadbalancer_health_checker_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: example_backend_set
+    backend_set_name: backend_set_name_example
 
 """
 
@@ -65,14 +65,14 @@ health_checker:
                 - "Example: `HTTP`"
             returned: on success
             type: str
-            sample: HTTP
+            sample: protocol_example
         url_path:
             description:
                 - The path against which to run the health check.
                 - "Example: `/healthcheck`"
             returned: on success
             type: str
-            sample: /healthcheck
+            sample: url_path_example
         port:
             description:
                 - The backend server port against which to run the health check. If the port is not specified, the load balancer uses the
@@ -80,7 +80,7 @@ health_checker:
                 - "Example: `8080`"
             returned: on success
             type: int
-            sample: 0
+            sample: 56
         return_code:
             description:
                 - "The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol,
@@ -88,7 +88,7 @@ health_checker:
                 - "Example: `200`"
             returned: on success
             type: int
-            sample: 0
+            sample: 56
         retries:
             description:
                 - "The number of retries to attempt before a backend server is considered \\"unhealthy\\". This number also applies
@@ -96,7 +96,7 @@ health_checker:
                 - "Example: `3`"
             returned: on success
             type: int
-            sample: 3
+            sample: 56
         timeout_in_millis:
             description:
                 - The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply
@@ -104,14 +104,14 @@ health_checker:
                 - "Example: `3000`"
             returned: on success
             type: int
-            sample: 3000
+            sample: 56
         interval_in_millis:
             description:
                 - The interval between health checks, in milliseconds. The default is 10000 (10 seconds).
                 - "Example: `10000`"
             returned: on success
             type: int
-            sample: 10000
+            sample: 56
         response_body_regex:
             description:
                 - A regular expression for parsing the response body from the backend server.
@@ -120,13 +120,13 @@ health_checker:
             type: str
             sample: response_body_regex_example
     sample: {
-        "protocol": "HTTP",
-        "url_path": "/healthcheck",
-        "port": 0,
-        "return_code": 0,
-        "retries": 3,
-        "timeout_in_millis": 3000,
-        "interval_in_millis": 10000,
+        "protocol": "protocol_example",
+        "url_path": "url_path_example",
+        "port": 56,
+        "return_code": 56,
+        "retries": 56,
+        "timeout_in_millis": 56,
+        "interval_in_millis": 56,
         "response_body_regex": "response_body_regex_example"
     }
 """

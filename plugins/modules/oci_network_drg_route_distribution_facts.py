@@ -95,7 +95,7 @@ EXAMPLES = """
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
 
 """
 
@@ -160,7 +160,7 @@ drg_route_distributions:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         distribution_type:
             description:
                 - Whether this distribution defines how routes get imported into route tables or exported through DRG attachments.
@@ -175,7 +175,7 @@ drg_route_distributions:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "distribution_type": "IMPORT"
     }]
 """

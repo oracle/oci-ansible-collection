@@ -151,6 +151,12 @@ managed_database_group:
                     returned: on success
                     type: str
                     sample: ONPREMISE
+                workload_type:
+                    description:
+                        - The workload type of the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: OLTP
                 database_type:
                     description:
                         - The type of Oracle Database installation.
@@ -159,8 +165,8 @@ managed_database_group:
                     sample: EXTERNAL_SIDB
                 database_sub_type:
                     description:
-                        - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container
-                          Database.
+                        - The subtype of the Oracle Database. Indicates whether the database is a Container Database,
+                          Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.
                     returned: on success
                     type: str
                     sample: CDB
@@ -198,6 +204,7 @@ managed_database_group:
             "name": "name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "deployment_type": "ONPREMISE",
+            "workload_type": "OLTP",
             "database_type": "EXTERNAL_SIDB",
             "database_sub_type": "CDB",
             "time_added": "2013-10-20T19:20:30+01:00"

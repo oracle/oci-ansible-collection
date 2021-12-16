@@ -96,14 +96,14 @@ EXAMPLES = """
     export_set_id: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: mount-target-5-new-exportset
+    display_name: display_name_example
     max_fs_stat_bytes: 56
     max_fs_stat_files: 56
 
 - name: Update export_set using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_export_set:
     # required
-    display_name: mount-target-5-new-exportset
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
 
@@ -141,7 +141,7 @@ export_set:
                 - "Example: `My export set`"
             returned: on success
             type: str
-            sample: My export set
+            sample: display_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export set.
@@ -189,7 +189,7 @@ export_set:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the virtual cloud network (VCN) the export set is in.
@@ -199,12 +199,12 @@ export_set:
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My export set",
+        "display_name": "display_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "max_fs_stat_bytes": 56,
         "max_fs_stat_files": 56,
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

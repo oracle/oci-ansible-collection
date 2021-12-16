@@ -118,10 +118,10 @@ EXAMPLES = """
     # optional
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
-    infrastructure_type: infrastructure_type_example
+    infrastructure_type: CLOUD
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     availability_domain: Uocm:PHX-AD-1
     display_name: display_name_example
     service_level_agreement_type: service_level_agreement_type_example

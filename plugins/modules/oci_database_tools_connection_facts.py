@@ -94,7 +94,7 @@ EXAMPLES = """
     # optional
     lifecycle_state: CREATING
     display_name: display_name_example
-    type: [ "$p.getValue()" ]
+    type: [ "ORACLE_DATABASE" ]
     sort_order: ASC
     sort_by: timeCreated
 
@@ -180,6 +180,7 @@ database_tools_connections:
         related_resource:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -198,18 +199,21 @@ database_tools_connections:
         connection_string:
             description:
                 - Connect descriptor or Easy Connect Naming method to connect to the database.
+                - Returned for get operation
             returned: on success
             type: str
             sample: connection_string_example
         user_name:
             description:
                 - Database user name.
+                - Returned for get operation
             returned: on success
             type: str
             sample: user_name_example
         user_password:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -228,6 +232,7 @@ database_tools_connections:
         advanced_properties:
             description:
                 - Advanced connection properties key-value pair (e.g., oracle.net.ssl_server_dn_match).
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -235,6 +240,7 @@ database_tools_connections:
             description:
                 - Oracle wallet or Java Keystores containing trusted certificates for authenticating the server's public certificate and
                   the client private key and associated certificates required for client authentication.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -285,6 +291,7 @@ database_tools_connections:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsPrivateEndpoint used to access the
                   database in the Customer VCN.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"

@@ -48,7 +48,7 @@ EXAMPLES = """
   oci_generic_artifacts_content_generic_artifact_facts:
     # required
     dest: /tmp/myfile
-    artifact_id: "ocid1.genericartifact.oc1..exampleuniqueID"
+    artifact_id: "ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

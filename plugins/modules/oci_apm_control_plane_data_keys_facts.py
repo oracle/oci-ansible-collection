@@ -23,14 +23,14 @@ module: oci_apm_control_plane_data_keys_facts
 short_description: Fetches details about one or multiple DataKeys resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DataKeys resources in Oracle Cloud Infrastructure
-    - Lists all Data Keys for the specified APM Domain. The caller may filter the list by specifying the 'dataKeyType'
+    - Lists all Data Keys for the specified APM domain. The caller may filter the list by specifying the 'dataKeyType'
       query parameter.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
         description:
-            - OCID of the APM Domain
+            - The OCID of the APM domain
         type: str
         required: true
     data_key_type:

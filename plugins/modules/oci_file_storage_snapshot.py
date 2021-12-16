@@ -83,8 +83,8 @@ EXAMPLES = """
 - name: Create snapshot
   oci_file_storage_snapshot:
     # required
-    file_system_id: "ocid1.filesystem.oc1..unique_ID"
-    name: snapshot-1
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -93,7 +93,7 @@ EXAMPLES = """
 - name: Update snapshot
   oci_file_storage_snapshot:
     # required
-    snapshot_id: string
+    snapshot_id: "ocid1.snapshot.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -102,8 +102,8 @@ EXAMPLES = """
 - name: Update snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
     # required
-    file_system_id: "ocid1.filesystem.oc1..unique_ID"
-    name: snapshot-1
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -112,14 +112,14 @@ EXAMPLES = """
 - name: Delete snapshot
   oci_file_storage_snapshot:
     # required
-    snapshot_id: string
+    snapshot_id: "ocid1.snapshot.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
     # required
-    file_system_id: "ocid1.filesystem.oc1..unique_ID"
-    name: snapshot-1
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -157,7 +157,7 @@ snapshot:
                 - "Example: `Sunday`"
             returned: on success
             type: str
-            sample: Sunday
+            sample: name_example
         time_created:
             description:
                 - The date and time the snapshot was created, expressed
@@ -165,7 +165,7 @@ snapshot:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         provenance_id:
             description:
                 - An L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) identifying the parent from which this snapshot was cloned.
@@ -209,8 +209,8 @@ snapshot:
         "file_system_id": "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "name": "Sunday",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "name": "name_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "provenance_id": "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx",
         "is_clone_source": true,
         "lifecycle_details": "lifecycle_details_example",

@@ -90,7 +90,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
 
 """

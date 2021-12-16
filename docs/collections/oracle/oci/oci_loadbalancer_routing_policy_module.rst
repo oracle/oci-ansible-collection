@@ -30,9 +30,13 @@ oracle.oci.oci_loadbalancer_routing_policy -- Manage a RoutingPolicy resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_routing_policy`.
 
@@ -495,34 +499,34 @@ Examples
     - name: Create routing_policy
       oci_loadbalancer_routing_policy:
         # required
-        name: example_routing_rules
+        name: name_example
         condition_language_version: V1
         rules:
         - # required
-          name: HR_mobile_user_rule
-          condition: all(http.request.headers[(i 'user-agent')] eq (i 'mobile'), http.request.url.query[(i 'department')] eq (i 'HR'))
+          name: name_example
+          condition: condition_example
           actions:
           - # required
             name: FORWARD_TO_BACKENDSET
 
             # optional
-            backend_set_name: backendSetForHRMobileUsers
+            backend_set_name: backend_set_name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update routing_policy
       oci_loadbalancer_routing_policy:
         # required
-        name: example_routing_rules
+        name: name_example
         rules:
         - # required
-          name: HR_mobile_user_rule
-          condition: all(http.request.headers[(i 'user-agent')] eq (i 'mobile'), http.request.url.query[(i 'department')] eq (i 'HR'))
+          name: name_example
+          condition: condition_example
           actions:
           - # required
             name: FORWARD_TO_BACKENDSET
 
             # optional
-            backend_set_name: backendSetForHRMobileUsers
+            backend_set_name: backend_set_name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
@@ -531,7 +535,7 @@ Examples
     - name: Delete routing_policy
       oci_loadbalancer_routing_policy:
         # required
-        name: example_routing_rules
+        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
@@ -569,8 +573,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the RoutingPolicy resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;condition_language_version&#x27;: &#x27;V1&#x27;, &#x27;name&#x27;: &#x27;example_routing_policy&#x27;, &#x27;rules&#x27;: [{&#x27;actions&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backendSetForImages&#x27;, &#x27;name&#x27;: &#x27;FORWARD_TO_BACKENDSET&#x27;}], &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;condition_language_version&#x27;: &#x27;V1&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;rules&#x27;: [{&#x27;actions&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backend_set_name_example&#x27;, &#x27;name&#x27;: &#x27;FORWARD_TO_BACKENDSET&#x27;}], &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -587,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The version of the language in which `condition` of `rules` are composed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">V1</div>
                                     </td>
             </tr>
@@ -606,8 +610,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The unique name for this list of routing rules. Avoid entering confidential information.</div>
                                             <div>Example: `example_routing_policy`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_routing_policy</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -624,7 +628,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ordered list of routing rules.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -641,7 +645,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of actions to be applied when conditions of the routing rule are met.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -660,8 +664,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Name of the backend set the listener will forward the traffic to.</div>
                                             <div>Example: `backendSetForImages`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">backendSetForImages</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">backend_set_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -680,7 +684,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FORWARD_TO_BACKENDSET</div>
                                     </td>
             </tr>
@@ -700,7 +704,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A routing rule to evaluate defined conditions against the incoming HTTP request and perform an action.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">condition_example</div>
                                     </td>
             </tr>
@@ -719,7 +723,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A unique name for the routing policy rule. Avoid entering confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>

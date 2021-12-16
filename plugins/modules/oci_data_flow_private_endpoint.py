@@ -111,17 +111,17 @@ EXAMPLES = """
 - name: Create private_endpoint
   oci_data_flow_private_endpoint:
     # required
-    compartment_id: compartmentId
-    dns_zones: [ "app.examplecorp.com" ]
-    subnet_id: subnetId
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    dns_zones: [ "dns_zones_example" ]
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
-    display_name: pe_1234
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    max_host_count: 256
-    nsg_ids: [ "nsgId" ]
+    max_host_count: 56
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update private_endpoint
   oci_data_flow_private_endpoint:
@@ -131,25 +131,25 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
-    display_name: pe_1234
-    dns_zones: [ "app.examplecorp.com" ]
+    display_name: display_name_example
+    dns_zones: [ "dns_zones_example" ]
     freeform_tags: {'Department': 'Finance'}
-    max_host_count: 256
-    nsg_ids: [ "nsgId" ]
+    max_host_count: 56
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_private_endpoint:
     # required
-    compartment_id: compartmentId
-    display_name: pe_1234
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
-    dns_zones: [ "app.examplecorp.com" ]
+    dns_zones: [ "dns_zones_example" ]
     freeform_tags: {'Department': 'Finance'}
-    max_host_count: 256
-    nsg_ids: [ "nsgId" ]
+    max_host_count: 56
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Delete private_endpoint
   oci_data_flow_private_endpoint:
@@ -160,8 +160,8 @@ EXAMPLES = """
 - name: Delete private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_private_endpoint:
     # required
-    compartment_id: compartmentId
-    display_name: pe_1234
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -272,14 +272,14 @@ private_endpoint:
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -295,8 +295,8 @@ private_endpoint:
         "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
         "owner_user_name": "owner_user_name_example",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2018-04-03T21:10:29.600Z",
-        "time_updated": "2018-04-03T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }
 """
 

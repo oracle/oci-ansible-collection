@@ -53,8 +53,8 @@ EXAMPLES = """
     instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    offset: 56
-    length: 56
+    offset: 0
+    length: 10240
 
 """
 

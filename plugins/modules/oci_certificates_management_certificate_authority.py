@@ -309,14 +309,14 @@ EXAMPLES = """
 - name: Create certificate_authority
   oci_certificates_management_certificate_authority:
     # required
-    name: test-ca-1
-    compartment_id: "ocid1.tenancy.oc1..exampleauingds4uwkcvbxv4ijs7zxuqnoewldef4fauxs7vaax2fab4gcsq"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     certificate_authority_config:
       # required
       config_type: ROOT_CA_GENERATED_INTERNALLY
       subject:
         # required
-        common_name: www.example.com
+        common_name: common_name_example
 
         # optional
         country: country_example
@@ -340,19 +340,19 @@ EXAMPLES = """
       version_name: version_name_example
       validity:
         # required
-        time_of_validity_not_after: 2031-05-06T00:00:00.000Z
+        time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
-        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
-      signing_algorithm: SHA512_WITH_RSA
+        time_of_validity_not_before: time_of_validity_not_before_example
+      signing_algorithm: SHA256_WITH_RSA
       stage: CURRENT
-    kms_key_id: ocid1.key.oc1.iad.examplegaag4s.abzwkljsd4iacvbv3s2e57hhwyljoc2zfxcgugfauxafqyxm7ljawezfc3cq
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
     certificate_authority_rules:
     - # required
-      rule_type: CERTIFICATE_AUTHORITY_RENEWAL_RULE
+      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
 
       # optional
       leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
@@ -361,14 +361,14 @@ EXAMPLES = """
       # required
       object_storage_config:
         # required
-        object_storage_bucket_name: ca-crl-bucket
-        object_storage_object_name_format: ca-1-crl
+        object_storage_bucket_name: object_storage_bucket_name_example
+        object_storage_object_name_format: object_storage_object_name_format_example
 
         # optional
-        object_storage_namespace: example-namespace
+        object_storage_namespace: object_storage_namespace_example
 
         # optional
-      custom_formatted_urls: [ "null" ]
+      custom_formatted_urls: [ "custom_formatted_urls_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -381,7 +381,7 @@ EXAMPLES = """
     description: description_example
     certificate_authority_rules:
     - # required
-      rule_type: CERTIFICATE_AUTHORITY_RENEWAL_RULE
+      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
 
       # optional
       leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
@@ -391,7 +391,7 @@ EXAMPLES = """
       config_type: ROOT_CA_GENERATED_INTERNALLY
       subject:
         # required
-        common_name: www.example.com
+        common_name: common_name_example
 
         # optional
         country: country_example
@@ -415,24 +415,24 @@ EXAMPLES = """
       version_name: version_name_example
       validity:
         # required
-        time_of_validity_not_after: 2031-05-06T00:00:00.000Z
+        time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
-        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
-      signing_algorithm: SHA512_WITH_RSA
+        time_of_validity_not_before: time_of_validity_not_before_example
+      signing_algorithm: SHA256_WITH_RSA
       stage: CURRENT
     certificate_revocation_list_details:
       # required
       object_storage_config:
         # required
-        object_storage_bucket_name: ca-crl-bucket
-        object_storage_object_name_format: ca-1-crl
+        object_storage_bucket_name: object_storage_bucket_name_example
+        object_storage_object_name_format: object_storage_object_name_format_example
 
         # optional
-        object_storage_namespace: example-namespace
+        object_storage_namespace: object_storage_namespace_example
 
         # optional
-      custom_formatted_urls: [ "null" ]
+      custom_formatted_urls: [ "custom_formatted_urls_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     current_version_number: 56
@@ -440,13 +440,13 @@ EXAMPLES = """
 - name: Update certificate_authority using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_certificates_management_certificate_authority:
     # required
-    name: test-ca-1
+    name: name_example
 
     # optional
     description: description_example
     certificate_authority_rules:
     - # required
-      rule_type: CERTIFICATE_AUTHORITY_RENEWAL_RULE
+      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
 
       # optional
       leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
@@ -456,7 +456,7 @@ EXAMPLES = """
       config_type: ROOT_CA_GENERATED_INTERNALLY
       subject:
         # required
-        common_name: www.example.com
+        common_name: common_name_example
 
         # optional
         country: country_example
@@ -480,24 +480,24 @@ EXAMPLES = """
       version_name: version_name_example
       validity:
         # required
-        time_of_validity_not_after: 2031-05-06T00:00:00.000Z
+        time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
-        time_of_validity_not_before: 2019-04-03T21:10:29.600Z
-      signing_algorithm: SHA512_WITH_RSA
+        time_of_validity_not_before: time_of_validity_not_before_example
+      signing_algorithm: SHA256_WITH_RSA
       stage: CURRENT
     certificate_revocation_list_details:
       # required
       object_storage_config:
         # required
-        object_storage_bucket_name: ca-crl-bucket
-        object_storage_object_name_format: ca-1-crl
+        object_storage_bucket_name: object_storage_bucket_name_example
+        object_storage_object_name_format: object_storage_object_name_format_example
 
         # optional
-        object_storage_namespace: example-namespace
+        object_storage_namespace: object_storage_namespace_example
 
         # optional
-      custom_formatted_urls: [ "null" ]
+      custom_formatted_urls: [ "custom_formatted_urls_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     current_version_number: 56
@@ -542,14 +542,14 @@ certificate_authority:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the CA version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         kms_key_id:
             description:
                 - The OCID of the Oracle Cloud Infrastructure Vault key used to encrypt the CA.
@@ -626,7 +626,7 @@ certificate_authority:
                           Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`"
                     returned: on success
                     type: str
-                    sample: 03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF
+                    sample: serial_number_example
                 time_created:
                     description:
                         - "A optional property indicating when the CA version was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -634,7 +634,7 @@ certificate_authority:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 version_number:
                     description:
                         - The version number of the CA.
@@ -654,7 +654,7 @@ certificate_authority:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 validity:
                     description:
                         - ""
@@ -668,7 +668,7 @@ certificate_authority:
                                   Example: `2019-04-03T21:10:29.600Z`"
                             returned: on success
                             type: str
-                            sample: "2019-04-03T21:10:29.600Z"
+                            sample: "2013-10-20T19:20:30+01:00"
                         time_of_validity_not_after:
                             description:
                                 - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -676,7 +676,7 @@ certificate_authority:
                                   Example: `2019-04-03T21:10:29.600Z`"
                             returned: on success
                             type: str
-                            sample: "2019-04-03T21:10:29.600Z"
+                            sample: "2013-10-20T19:20:30+01:00"
                 stages:
                     description:
                         - A list of rotation states for this CA version.
@@ -695,7 +695,7 @@ certificate_authority:
                                   Example: `2019-04-03T21:10:29.600Z`"
                             returned: on success
                             type: str
-                            sample: "2019-04-03T21:10:29.600Z"
+                            sample: "2013-10-20T19:20:30+01:00"
                         revocation_reason:
                             description:
                                 - The reason the certificate or certificate authority (CA) was revoked.
@@ -882,8 +882,8 @@ certificate_authority:
         "issuer_certificate_authority_id": "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "time_created": "2019-04-03T21:10:29.600Z",
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
@@ -896,18 +896,18 @@ certificate_authority:
         "current_version": {
             "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
             "issuer_ca_version_number": 56,
-            "serial_number": "03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF",
-            "time_created": "2019-04-03T21:10:29.600Z",
+            "serial_number": "serial_number_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "version_number": 56,
             "version_name": "version_name_example",
-            "time_of_deletion": "2019-04-03T21:10:29.600Z",
+            "time_of_deletion": "2013-10-20T19:20:30+01:00",
             "validity": {
-                "time_of_validity_not_before": "2019-04-03T21:10:29.600Z",
-                "time_of_validity_not_after": "2019-04-03T21:10:29.600Z"
+                "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",
+                "time_of_validity_not_after": "2013-10-20T19:20:30+01:00"
             },
             "stages": [],
             "revocation_status": {
-                "time_of_revocation": "2019-04-03T21:10:29.600Z",
+                "time_of_revocation": "2013-10-20T19:20:30+01:00",
                 "revocation_reason": "UNSPECIFIED"
             }
         },

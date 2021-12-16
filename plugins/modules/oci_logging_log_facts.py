@@ -127,6 +127,7 @@ logs:
         tenancy_id:
             description:
                 - The OCID of the tenancy.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"

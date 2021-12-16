@@ -221,23 +221,23 @@ EXAMPLES = """
 - name: Create application
   oci_data_flow_application:
     # required
-    compartment_id: compartmentId
-    display_name: test_wordcount_app
-    driver_shape: VM.Standard2.1
-    executor_shape: VM.Standard2.1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    driver_shape: driver_shape_example
+    executor_shape: executor_shape_example
     file_uri: file_uri_example
-    language: JAVA
-    num_executors: 1
-    spark_version: 2.4
+    language: SCALA
+    num_executors: 56
+    spark_version: spark_version_example
 
     # optional
     archive_uri: archive_uri_example
-    arguments: [ "oci://.../WordCount.txt" ]
-    class_name: org.apache.spark.examples.JavaWordCount
+    arguments: [ "arguments_example" ]
+    class_name: class_name_example
     configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
-    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
+    execute: execute_example
     freeform_tags: {'Department': 'Finance'}
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
@@ -255,57 +255,57 @@ EXAMPLES = """
 
     # optional
     archive_uri: archive_uri_example
-    arguments: [ "oci://.../WordCount.txt" ]
-    class_name: org.apache.spark.examples.JavaWordCount
+    arguments: [ "arguments_example" ]
+    class_name: class_name_example
     configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
-    display_name: test_wordcount_app
-    driver_shape: VM.Standard2.1
-    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
-    executor_shape: VM.Standard2.1
+    display_name: display_name_example
+    driver_shape: driver_shape_example
+    execute: execute_example
+    executor_shape: executor_shape_example
     file_uri: file_uri_example
     freeform_tags: {'Department': 'Finance'}
-    language: JAVA
+    language: SCALA
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
-    num_executors: 1
+    num_executors: 56
     parameters:
     - # required
       name: name_example
       value: value_example
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-    spark_version: 2.4
+    spark_version: spark_version_example
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_application:
     # required
-    compartment_id: compartmentId
-    display_name: test_wordcount_app
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     archive_uri: archive_uri_example
-    arguments: [ "oci://.../WordCount.txt" ]
-    class_name: org.apache.spark.examples.JavaWordCount
+    arguments: [ "arguments_example" ]
+    class_name: class_name_example
     configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
-    driver_shape: VM.Standard2.1
-    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
-    executor_shape: VM.Standard2.1
+    driver_shape: driver_shape_example
+    execute: execute_example
+    executor_shape: executor_shape_example
     file_uri: file_uri_example
     freeform_tags: {'Department': 'Finance'}
-    language: JAVA
+    language: SCALA
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
-    num_executors: 1
+    num_executors: 56
     parameters:
     - # required
       name: name_example
       value: value_example
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-    spark_version: 2.4
+    spark_version: spark_version_example
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Delete application
@@ -317,8 +317,8 @@ EXAMPLES = """
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_application:
     # required
-    compartment_id: compartmentId
-    display_name: test_wordcount_app
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -527,14 +527,14 @@ application:
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         warehouse_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
@@ -571,8 +571,8 @@ application:
         }],
         "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "spark_version": "spark_version_example",
-        "time_created": "2018-04-03T21:10:29.600Z",
-        "time_updated": "2018-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "warehouse_bucket_uri": "warehouse_bucket_uri_example"
     }
 """

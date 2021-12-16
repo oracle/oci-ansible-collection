@@ -371,21 +371,21 @@ EXAMPLES = """
   oci_apm_synthetics_monitor:
     # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: exampleName
+    display_name: display_name_example
     monitor_type: SCRIPTED_BROWSER
-    vantage_points: [ "null" ]
-    repeat_interval_in_seconds: 600
+    vantage_points: [ "vantage_points_example" ]
+    repeat_interval_in_seconds: 56
 
     # optional
-    script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+    script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
     status: ENABLED
     is_run_once: true
-    timeout_in_seconds: 180
-    target: https://www.oracle.com/index.html
+    timeout_in_seconds: 56
+    target: target_example
     script_parameters:
     - # required
-      param_name: testName
-      param_value: openPageMonitor
+      param_name: param_name_example
+      param_value: param_value_example
     configuration:
       # required
       config_type: SCRIPTED_REST_CONFIG
@@ -397,7 +397,7 @@ EXAMPLES = """
         number_of_hops: 56
         probe_per_hop: 56
         transmission_rate: 56
-        protocol: TCP
+        protocol: ICMP
         probe_mode: SACK
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -409,18 +409,18 @@ EXAMPLES = """
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: exampleName
-    vantage_points: [ "null" ]
-    script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+    display_name: display_name_example
+    vantage_points: [ "vantage_points_example" ]
+    script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
     status: ENABLED
-    repeat_interval_in_seconds: 600
+    repeat_interval_in_seconds: 56
     is_run_once: true
-    timeout_in_seconds: 180
-    target: https://www.oracle.com/index.html
+    timeout_in_seconds: 56
+    target: target_example
     script_parameters:
     - # required
-      param_name: testName
-      param_value: openPageMonitor
+      param_name: param_name_example
+      param_value: param_value_example
     configuration:
       # required
       config_type: SCRIPTED_REST_CONFIG
@@ -432,7 +432,7 @@ EXAMPLES = """
         number_of_hops: 56
         probe_per_hop: 56
         transmission_rate: 56
-        protocol: TCP
+        protocol: ICMP
         probe_mode: SACK
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -441,20 +441,20 @@ EXAMPLES = """
   oci_apm_synthetics_monitor:
     # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: exampleName
+    display_name: display_name_example
 
     # optional
-    vantage_points: [ "null" ]
-    script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+    vantage_points: [ "vantage_points_example" ]
+    script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
     status: ENABLED
-    repeat_interval_in_seconds: 600
+    repeat_interval_in_seconds: 56
     is_run_once: true
-    timeout_in_seconds: 180
-    target: https://www.oracle.com/index.html
+    timeout_in_seconds: 56
+    target: target_example
     script_parameters:
     - # required
-      param_name: testName
-      param_value: openPageMonitor
+      param_name: param_name_example
+      param_value: param_value_example
     configuration:
       # required
       config_type: SCRIPTED_REST_CONFIG
@@ -466,7 +466,7 @@ EXAMPLES = """
         number_of_hops: 56
         probe_per_hop: 56
         transmission_rate: 56
-        protocol: TCP
+        protocol: ICMP
         probe_mode: SACK
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -482,7 +482,7 @@ EXAMPLES = """
   oci_apm_synthetics_monitor:
     # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: exampleName
+    display_name: display_name_example
     state: absent
 
 """
@@ -499,13 +499,13 @@ monitor:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the monitor.
             returned: on success
             type: str
-            sample: ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Unique name that can be edited. The name should not contain any confidential information.
             returned: on success
             type: str
-            sample: exampleName
+            sample: display_name_example
         monitor_type:
             description:
                 - Type of the monitor.
@@ -523,32 +523,32 @@ monitor:
                         - Name of the vantage point.
                     returned: on success
                     type: str
-                    sample: us_phoenix
+                    sample: name_example
                 display_name:
                     description:
                         - Unique name that can be edited. The name should not contain any confidential information.
                     returned: on success
                     type: str
-                    sample: exampleName
+                    sample: display_name_example
         vantage_point_count:
             description:
                 - Number of vantage points where monitor is running.
             returned: on success
             type: int
-            sample: 2
+            sample: 56
         script_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
                   scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
             returned: on success
             type: str
-            sample: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+            sample: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
         script_name:
             description:
                 - Name of the script.
             returned: on success
             type: str
-            sample: testScript
+            sample: script_name_example
         status:
             description:
                 - Enables or disables the monitor.
@@ -561,7 +561,7 @@ monitor:
                   Minimum repeatIntervalInSeconds should be 300 seconds.
             returned: on success
             type: int
-            sample: 600
+            sample: 56
         is_run_once:
             description:
                 - If runOnce is enabled, then the monitor will run once.
@@ -585,7 +585,7 @@ monitor:
                   If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.
             returned: on success
             type: str
-            sample: https://www.oracle.com/index.html
+            sample: target_example
         script_parameters:
             description:
                 - "List of script parameters. Example: `[{\\"monitorScriptParameter\\": {\\"paramName\\": \\"userid\\", \\"paramValue\\":\\"testuser\\"},
@@ -604,13 +604,13 @@ monitor:
                                 - Name of the parameter.
                             returned: on success
                             type: str
-                            sample: testName
+                            sample: param_name_example
                         param_value:
                             description:
                                 - Value of the parameter.
                             returned: on success
                             type: str
-                            sample: openPageMonitor
+                            sample: param_value_example
                 is_secret:
                     description:
                         - Describes if  the parameter value is secret and should be kept confidential.
@@ -623,7 +623,7 @@ monitor:
                         - If parameter value is default or overwritten.
                     returned: on success
                     type: bool
-                    sample: false
+                    sample: true
         configuration:
             description:
                 - ""
@@ -660,7 +660,7 @@ monitor:
                                 - Verification text in the response.
                             returned: on success
                             type: str
-                            sample: searchString
+                            sample: text_example
                 network_configuration:
                     description:
                         - ""
@@ -690,7 +690,7 @@ monitor:
                                 - Type of protocol.
                             returned: on success
                             type: str
-                            sample: TCP
+                            sample: ICMP
                         probe_mode:
                             description:
                                 - Type of probe mode when TCP protocol is selected.
@@ -714,7 +714,7 @@ monitor:
                         - Request http authentication scheme.
                     returned: on success
                     type: str
-                    sample: NONE
+                    sample: OAUTH
                 req_authentication_details:
                     description:
                         - ""
@@ -732,7 +732,7 @@ monitor:
                                 - Username for authentication.
                             returned: on success
                             type: str
-                            sample: user
+                            sample: auth_user_name_example
                         auth_user_password:
                             description:
                                 - User password for authentication.
@@ -744,13 +744,13 @@ monitor:
                                 - Authentication token.
                             returned: on success
                             type: str
-                            sample: token
+                            sample: auth_token_example
                         auth_url:
                             description:
                                 - URL to get authetication token.
                             returned: on success
                             type: str
-                            sample: https://www.example.com/token
+                            sample: auth_url_example
                         auth_headers:
                             description:
                                 - "List of authentication headers. Example: `[{\\"headerName\\": \\"content-type\\", \\"headerValue\\":\\"json\\"}]`"
@@ -762,13 +762,13 @@ monitor:
                                         - Name of the header.
                                     returned: on success
                                     type: str
-                                    sample: content-type
+                                    sample: header_name_example
                                 header_value:
                                     description:
                                         - Value of the header.
                                     returned: on success
                                     type: str
-                                    sample: json
+                                    sample: header_value_example
                         auth_request_method:
                             description:
                                 - Request method.
@@ -780,7 +780,7 @@ monitor:
                                 - Request post body.
                             returned: on success
                             type: str
-                            sample: openPageMonitor
+                            sample: auth_request_post_body_example
                 request_headers:
                     description:
                         - "List of request headers. Example: `[{\\"headerName\\": \\"content-type\\", \\"headerValue\\":\\"json\\"}]`"
@@ -792,13 +792,13 @@ monitor:
                                 - Name of the header.
                             returned: on success
                             type: str
-                            sample: content-type
+                            sample: header_name_example
                         header_value:
                             description:
                                 - Value of the header.
                             returned: on success
                             type: str
-                            sample: json
+                            sample: header_value_example
                 request_query_params:
                     description:
                         - "List of request query params. Example: `[{\\"paramName\\": \\"sortOrder\\", \\"paramValue\\": \\"asc\\"}]`"
@@ -810,26 +810,26 @@ monitor:
                                 - Name of request query parameter.
                             returned: on success
                             type: str
-                            sample: sortOrder
+                            sample: param_name_example
                         param_value:
                             description:
                                 - Value of request query parameter.
                             returned: on success
                             type: str
-                            sample: asc
+                            sample: param_value_example
                 request_post_body:
                     description:
                         - Request post body content.
                     returned: on success
                     type: str
-                    sample: openPageMonitor
+                    sample: request_post_body_example
                 verify_response_content:
                     description:
                         - Verify response content against regular expression based string.
                           If response content does not match the verifyResponseContent value, then it will be considered a failure.
                     returned: on success
                     type: str
-                    sample: "^searchText*"
+                    sample: verify_response_content_example
                 verify_response_codes:
                     description:
                         - Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.
@@ -843,7 +843,7 @@ monitor:
                   Example: `2020-02-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2020-02-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -851,7 +851,7 @@ monitor:
                   Example: `2020-02-13T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2020-02-13T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -867,73 +867,73 @@ monitor:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: {
-        "id": "ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva",
-        "display_name": "exampleName",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
         "monitor_type": "SCRIPTED_BROWSER",
         "vantage_points": [{
-            "name": "us_phoenix",
-            "display_name": "exampleName"
+            "name": "name_example",
+            "display_name": "display_name_example"
         }],
-        "vantage_point_count": 2,
-        "script_id": "ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq",
-        "script_name": "testScript",
+        "vantage_point_count": 56,
+        "script_id": "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx",
+        "script_name": "script_name_example",
         "status": "ENABLED",
-        "repeat_interval_in_seconds": 600,
+        "repeat_interval_in_seconds": 56,
         "is_run_once": true,
         "timeout_in_seconds": 56,
-        "target": "https://www.oracle.com/index.html",
+        "target": "target_example",
         "script_parameters": [{
             "monitor_script_parameter": {
-                "param_name": "testName",
-                "param_value": "openPageMonitor"
+                "param_name": "param_name_example",
+                "param_value": "param_value_example"
             },
             "is_secret": true,
-            "is_overwritten": false
+            "is_overwritten": true
         }],
         "configuration": {
             "config_type": "BROWSER_CONFIG",
             "is_failure_retried": true,
             "is_certificate_validation_enabled": true,
             "verify_texts": [{
-                "text": "searchString"
+                "text": "text_example"
             }],
             "network_configuration": {
                 "number_of_hops": 56,
                 "probe_per_hop": 56,
                 "transmission_rate": 56,
-                "protocol": "TCP",
+                "protocol": "ICMP",
                 "probe_mode": "SACK"
             },
             "is_redirection_enabled": true,
             "request_method": "GET",
-            "req_authentication_scheme": "NONE",
+            "req_authentication_scheme": "OAUTH",
             "req_authentication_details": {
                 "oauth_scheme": "NONE",
-                "auth_user_name": "user",
+                "auth_user_name": "auth_user_name_example",
                 "auth_user_password": "example-password",
-                "auth_token": "token",
-                "auth_url": "https://www.example.com/token",
+                "auth_token": "auth_token_example",
+                "auth_url": "auth_url_example",
                 "auth_headers": [{
-                    "header_name": "content-type",
-                    "header_value": "json"
+                    "header_name": "header_name_example",
+                    "header_value": "header_value_example"
                 }],
                 "auth_request_method": "GET",
-                "auth_request_post_body": "openPageMonitor"
+                "auth_request_post_body": "auth_request_post_body_example"
             },
             "request_headers": [{
-                "header_name": "content-type",
-                "header_value": "json"
+                "header_name": "header_name_example",
+                "header_value": "header_value_example"
             }],
             "request_query_params": [{
-                "param_name": "sortOrder",
-                "param_value": "asc"
+                "param_name": "param_name_example",
+                "param_value": "param_value_example"
             }],
-            "request_post_body": "openPageMonitor",
-            "verify_response_content": "^searchText*",
+            "request_post_body": "request_post_body_example",
+            "verify_response_content": "verify_response_content_example",
             "verify_response_codes": []
         },
-        "time_created": "2020-02-12T22:47:12.613Z",
-        "time_updated": "2020-02-13T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

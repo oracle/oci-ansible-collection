@@ -96,7 +96,7 @@ EXAMPLES = """
     email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    name: mydomain-phx-20210228
+    name: name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -114,7 +114,7 @@ EXAMPLES = """
 - name: Update dkim using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_email_dkim:
     # required
-    name: mydomain-phx-20210228
+    name: name_example
     email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -131,7 +131,7 @@ EXAMPLES = """
 - name: Delete dkim using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_email_dkim:
     # required
-    name: mydomain-phx-20210228
+    name: name_example
     email_domain_id: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -197,7 +197,7 @@ dkim:
                 - "Example: `2021-02-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2021-02-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time of the last change to the DKIM configuration, due to a state change or
@@ -260,7 +260,7 @@ dkim:
         "lifecycle_state": "ACTIVE",
         "lifecycle_details": "lifecycle_details_example",
         "description": "description_example",
-        "time_created": "2021-02-12T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "dns_subdomain_name": "dns_subdomain_name_example",
         "cname_record_value": "cname_record_value_example",

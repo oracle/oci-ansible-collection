@@ -119,7 +119,7 @@ EXAMPLES = """
     type_key: type_key_example
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "key" ]
 
 - name: List types
   oci_data_catalog_type_facts:
@@ -127,7 +127,7 @@ EXAMPLES = """
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "key" ]
     name: name_example
     lifecycle_state: CREATING
     is_internal: is_internal_example
@@ -193,6 +193,7 @@ types:
                        }
                      }
                    }`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -205,18 +206,21 @@ types:
         is_internal:
             description:
                 - Indicates whether the type is internal, making it unavailable for use by metadata elements.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         is_tag:
             description:
                 - Indicates whether the type can be used for tagging metadata elements.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         is_approved:
             description:
                 - Indicates whether the type is approved for use as a classifying object.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -229,6 +233,7 @@ types:
         external_type_name:
             description:
                 - Mapping type equivalence in the external system.
+                - Returned for get operation
             returned: on success
             type: str
             sample: external_type_name_example
@@ -241,6 +246,7 @@ types:
         custom_properties:
             description:
                 - Custom properties associated with this Type.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -328,7 +334,7 @@ types:
                           Example: `2019-03-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-03-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 lifecycle_state:
                     description:
                         - The current state of the custom property.
@@ -444,7 +450,7 @@ types:
                                   Example: `2019-03-25T21:10:29.600Z`"
                             returned: on success
                             type: str
-                            sample: "2019-03-25T21:10:29.600Z"
+                            sample: "2013-10-20T19:20:30+01:00"
                         time_updated:
                             description:
                                 - The last time that any change was made to the configuration. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted
@@ -503,7 +509,7 @@ types:
             "is_shown_in_list": true,
             "is_service_defined": true,
             "is_hidden_in_search": true,
-            "time_created": "2019-03-25T21:10:29.600Z",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "lifecycle_state": "CREATING",
             "usage_count": 56,
             "scope": [{
@@ -523,7 +529,7 @@ types:
                 "property_id": "ocid1.property.oc1..xxxxxxEXAMPLExxxxxx",
                 "property_name": "property_name_example",
                 "event_config_status": "ENABLED",
-                "time_created": "2019-03-25T21:10:29.600Z",
+                "time_created": "2013-10-20T19:20:30+01:00",
                 "time_updated": "2013-10-20T19:20:30+01:00",
                 "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
                 "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"

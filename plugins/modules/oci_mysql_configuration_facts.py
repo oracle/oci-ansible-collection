@@ -101,8 +101,8 @@ EXAMPLES = """
 
     # optional
     configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
-    type: [ "$p.getValue()" ]
+    lifecycle_state: ACTIVE
+    type: [ "DEFAULT" ]
     display_name: display_name_example
     shape_name: shape_name_example
     sort_by: displayName
@@ -174,6 +174,7 @@ configurations:
         variables:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -549,6 +550,7 @@ configurations:
                 - "The OCID of the Configuration from which this Configuration is
                   \\"derived\\". This is entirely a metadata relationship. There is no
                   relation between the values in this Configuration and its parent."
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"

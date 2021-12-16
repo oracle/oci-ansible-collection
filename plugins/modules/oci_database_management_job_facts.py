@@ -95,7 +95,7 @@ EXAMPLES = """
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     sort_by: TIMECREATED
     sort_order: ASC
 
@@ -148,6 +148,7 @@ jobs:
         managed_databases_details:
             description:
                 - The details of the Managed Databases where the job has to be executed.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -188,6 +189,12 @@ jobs:
                     returned: on success
                     type: bool
                     sample: true
+                workload_type:
+                    description:
+                        - The workload type of the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: OLTP
         database_sub_type:
             description:
                 - The subtype of the Oracle Database where the job has to be executed. Applicable only when managedDatabaseGroupId is provided.
@@ -221,6 +228,7 @@ jobs:
         result_location:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -293,18 +301,21 @@ jobs:
         sql_type:
             description:
                 - The type of SQL. This is a mandatory field for the EXECUTE_SQL operationType.
+                - Returned for get operation
             returned: on success
             type: str
             sample: QUERY
         sql_text:
             description:
                 - The SQL text to be executed in the job. This is a mandatory field for the EXECUTE_SQL operationType.
+                - Returned for get operation
             returned: on success
             type: str
             sample: sql_text_example
         operation_type:
             description:
                 - The SQL operation type.
+                - Returned for get operation
             returned: on success
             type: str
             sample: EXECUTE_SQL
@@ -312,12 +323,14 @@ jobs:
             description:
                 - The database user name used to execute the SQL job. If the job is being executed on a Managed Database Group,
                   then the user name should exist on all the databases in the group with the same password.
+                - Returned for get operation
             returned: on success
             type: str
             sample: user_name_example
         role:
             description:
                 - The role of the database user. Indicates whether the database user is a normal user or sysdba.
+                - Returned for get operation
             returned: on success
             type: str
             sample: NORMAL
@@ -334,7 +347,8 @@ jobs:
             "database_type": "EXTERNAL_SIDB",
             "database_sub_type": "CDB",
             "deployment_type": "ONPREMISE",
-            "is_cluster": true
+            "is_cluster": true,
+            "workload_type": "OLTP"
         }],
         "database_sub_type": "CDB",
         "schedule_type": "IMMEDIATE",

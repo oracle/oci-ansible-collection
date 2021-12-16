@@ -47,6 +47,11 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
         type: str
+    is_cluster:
+        description:
+            - The option to filter Database Management private endpoints that can used for Oracle Databases in a cluster. This should be used along with the
+              vcnId query parameter.
+        type: bool
     lifecycle_state:
         description:
             - The lifecycle state of a resource.
@@ -91,6 +96,7 @@ EXAMPLES = """
     # optional
     name: name_example
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    is_cluster: true
     lifecycle_state: CREATING
     sort_order: ASC
     sort_by: TIMECREATED
@@ -106,61 +112,71 @@ db_management_private_endpoints:
     contains:
         id:
             description:
-                - The OCID of the Database Management private endpoint.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Management private endpoint.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
-                - The display name of the private endpoint.
+                - The display name of the Database Management private endpoint.
             returned: on success
             type: str
             sample: name_example
         compartment_id:
             description:
-                - The OCID of the compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        is_cluster:
+            description:
+                - Specifies whether the Database Management private endpoint can be used for Oracle Databases in a cluster.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         vcn_id:
             description:
-                - The OCID of the VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
-                - The OCID of the subnet.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_ip:
             description:
-                - The private IP addresses assigned to the private endpoint.
+                - The IP addresses assigned to the Database Management private endpoint.
+                - Returned for get operation
             returned: on success
             type: str
             sample: private_ip_example
         description:
             description:
-                - The description of the private endpoint.
+                - The description of the Database Management private endpoint.
             returned: on success
             type: str
             sample: description_example
         time_created:
             description:
-                - The date and time the private endpoint was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the Database Managament private endpoint was created, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the private endpoint.
+                - The current lifecycle state of the Database Management private endpoint.
             returned: on success
             type: str
             sample: CREATING
         nsg_ids:
             description:
-                - The OCIDs of the network security groups that the private endpoint belongs to.
+                - The OCIDs of the Network Security Groups to which the Database Management private endpoint belongs.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -168,6 +184,7 @@ db_management_private_endpoints:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_cluster": true,
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "private_ip": "private_ip_example",
@@ -218,6 +235,7 @@ class DbManagementPrivateEndpointFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "name",
             "vcn_id",
+            "is_cluster",
             "lifecycle_state",
             "sort_order",
             "sort_by",
@@ -254,6 +272,7 @@ def main():
             compartment_id=dict(type="str"),
             name=dict(type="str"),
             vcn_id=dict(type="str"),
+            is_cluster=dict(type="bool"),
             lifecycle_state=dict(
                 type="str",
                 choices=[

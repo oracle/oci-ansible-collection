@@ -70,6 +70,7 @@ options:
         choices:
             - "LINUX"
             - "WINDOWS"
+            - "SOLARIS"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
@@ -84,7 +85,7 @@ EXAMPLES = """
     sort_order: ASC
     sort_by: displayName
     lifecycle_state: CREATING
-    platform_type: [ "$p.getValue()" ]
+    platform_type: [ "LINUX" ]
 
 """
 
@@ -232,7 +233,7 @@ def main():
                 ],
             ),
             platform_type=dict(
-                type="list", elements="str", choices=["LINUX", "WINDOWS"]
+                type="list", elements="str", choices=["LINUX", "WINDOWS", "SOLARIS"]
             ),
             name=dict(type="str"),
         )

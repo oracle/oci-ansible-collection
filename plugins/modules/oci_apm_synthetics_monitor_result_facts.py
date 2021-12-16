@@ -105,14 +105,15 @@ monitor_result:
                         - Name of the data.
                     returned: on success
                     type: str
-                    sample: name.zip
+                    sample: name_example
                 byte_content:
                     description:
                         - "Data content in byte format.
                           Example: Zip or Screenshot."
                     returned: on success
                     type: str
-                    sample: "example_byte_content"
+                    sample: "null"
+
                 string_content:
                     description:
                         - "Data content in string format.
@@ -127,37 +128,37 @@ monitor_result:
                           Example: `2020-02-13T22:47:12.613Z`"
                     returned: on success
                     type: str
-                    sample: "2020-02-13T22:47:12.613Z"
+                    sample: "2013-10-20T19:20:30+01:00"
         monitor_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the monitor.
             returned: on success
             type: str
-            sample: ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva
+            sample: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
         vantage_point:
             description:
                 - The name of the vantage point.
             returned: on success
             type: str
-            sample: us-phoenix
+            sample: vantage_point_example
         execution_time:
             description:
                 - The specific point of time when the result of an execution is collected.
             returned: on success
             type: str
-            sample: 1603790400000
+            sample: execution_time_example
     sample: {
         "result_type": "result_type_example",
         "result_content_type": "result_content_type_example",
         "result_data_set": [{
-            "name": "name.zip",
-            "byte_content": UNKNOWN TYPE - str,
+            "name": "name_example",
+            "byte_content": null,
             "string_content": "string_content_example",
-            "timestamp": "2020-02-13T22:47:12.613Z"
+            "timestamp": "2013-10-20T19:20:30+01:00"
         }],
-        "monitor_id": "ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva",
-        "vantage_point": "us-phoenix",
-        "execution_time": "1603790400000"
+        "monitor_id": "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx",
+        "vantage_point": "vantage_point_example",
+        "execution_time": "execution_time_example"
     }
 """
 

@@ -73,7 +73,7 @@ EXAMPLES = """
 
     # optional
     update_type: GI_UPGRADE
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: AVAILABLE
 
 """
 

@@ -145,8 +145,8 @@ EXAMPLES = """
     # required
     dest: /tmp/myfile
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    object_name: test/object1.log
+    bucket_name: bucket_name_example
+    object_name: object_name_example
 
     # optional
     version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
@@ -165,14 +165,14 @@ EXAMPLES = """
   oci_object_storage_object_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
     # optional
     prefix: prefix_example
     start: start_example
     end: end_example
     delimiter: delimiter_example
-    fields: name
+    fields: fields_example
 
 """
 

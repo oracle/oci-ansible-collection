@@ -88,7 +88,7 @@ EXAMPLES = """
     # optional
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -173,13 +173,14 @@ deploy_artifacts:
                         - Users can set this as a placeholder value that refers to a pipeline parameter, for example, ${appVersion}.
                     returned: on success
                     type: str
-                    sample: ${appVersion}
+                    sample: deploy_artifact_version_example
                 base64_encoded_content:
                     description:
                         - base64 Encoded String
                     returned: on success
                     type: str
-                    sample: "example_base64_encoded_content"
+                    sample: "null"
+
                 image_uri:
                     description:
                         - "Specifies OCIR Image Path - optionally include tag."
@@ -250,8 +251,8 @@ deploy_artifacts:
             "deploy_artifact_source_type": "INLINE",
             "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "deploy_artifact_path": "deploy_artifact_path_example",
-            "deploy_artifact_version": "${appVersion}",
-            "base64_encoded_content": UNKNOWN TYPE - str,
+            "deploy_artifact_version": "deploy_artifact_version_example",
+            "base64_encoded_content": null,
             "image_uri": "image_uri_example",
             "image_digest": "image_digest_example"
         },

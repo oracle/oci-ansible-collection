@@ -122,9 +122,9 @@ EXAMPLES = """
 - name: Create budget
   oci_budget:
     # required
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
-    amount: 100.00
-    reset_period: Monthly
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    amount: 3.4
+    reset_period: MONTHLY
 
     # optional
     target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -132,7 +132,7 @@ EXAMPLES = """
     description: description_example
     budget_processing_period_start_offset: 56
     target_type: COMPARTMENT
-    targets: [ "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq" ]
+    targets: [ "targets_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -144,8 +144,8 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
-    amount: 100.00
-    reset_period: Monthly
+    amount: 3.4
+    reset_period: MONTHLY
     budget_processing_period_start_offset: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -153,13 +153,13 @@ EXAMPLES = """
 - name: Update budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget:
     # required
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
     # optional
     description: description_example
-    amount: 100.00
-    reset_period: Monthly
+    amount: 3.4
+    reset_period: MONTHLY
     budget_processing_period_start_offset: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -173,7 +173,7 @@ EXAMPLES = """
 - name: Delete budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget:
     # required
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 

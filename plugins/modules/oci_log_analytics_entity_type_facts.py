@@ -127,6 +127,7 @@ log_analytics_entity_types:
         compartment_id:
             description:
                 - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -145,6 +146,7 @@ log_analytics_entity_types:
         properties:
             description:
                 - The parameters used in file patterns specified in log sources for this log analytics entity type.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

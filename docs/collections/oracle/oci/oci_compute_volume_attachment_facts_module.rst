@@ -30,9 +30,13 @@ oracle.oci.oci_compute_volume_attachment_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_volume_attachment_facts`.
 
@@ -393,8 +397,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of VolumeAttachment resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;attachment_type&#x27;: &#x27;emulated&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;ocid1.volume.oc1.phx.&lt;unique_ID&gt;&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;encryption_in_transit_type&#x27;: &#x27;NONE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;169.254.0.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;&#x27;, &#x27;is_multipath&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;iscsi_login_state&#x27;: &#x27;UNKNOWN&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;multipath_devices&#x27;: [{&#x27;ipv4&#x27;: &#x27;169.254.2.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195&#x27;, &#x27;port&#x27;: 3260}], &#x27;port&#x27;: 3260, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;attachment_type&#x27;: &#x27;emulated&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;chap_username_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;encryption_in_transit_type&#x27;: &#x27;NONE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;ipv4_example&#x27;, &#x27;iqn&#x27;: &#x27;iqn_example&#x27;, &#x27;is_multipath&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;iscsi_login_state&#x27;: &#x27;UNKNOWN&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;multipath_devices&#x27;: [{&#x27;ipv4&#x27;: &#x27;ipv4_example&#x27;, &#x27;iqn&#x27;: &#x27;iqn_example&#x27;, &#x27;port&#x27;: 56}], &#x27;port&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -411,7 +415,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of volume attachment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">emulated</div>
                                     </td>
             </tr>
@@ -430,7 +434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The availability domain of an instance.</div>
                                             <div>Example: `Uocm:PHX-AD-1`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
                                     </td>
             </tr>
@@ -448,7 +452,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Challenge-Handshake-Authentication-Protocol (CHAP) secret valid for the associated CHAP user name. (Also called the &quot;CHAP password&quot;.)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">chap_secret_example</div>
                                     </td>
             </tr>
@@ -467,8 +471,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The volume&#x27;s system-generated Challenge-Handshake-Authentication-Protocol (CHAP) user name. See <a href='https://tools.ietf.org/html/rfc1994'>RFC 1994</a> for more on CHAP.</div>
                                             <div>Example: `ocid1.volume.oc1.phx.&lt;unique_ID&gt;`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.volume.oc1.phx.&lt;unique_ID&gt;</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">chap_username_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -485,7 +489,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the compartment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -503,7 +507,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The device name.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">device_example</div>
                                     </td>
             </tr>
@@ -521,7 +525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -539,7 +543,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Refer the top-level definition of encryptionInTransitType. The default value is NONE.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NONE</div>
                                     </td>
             </tr>
@@ -557,7 +561,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the volume attachment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -575,7 +579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the instance the volume is attached to.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -594,8 +598,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The volume&#x27;s iSCSI IP address.</div>
                                             <div>Example: `169.254.0.2`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">169.254.0.2</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ipv4_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -613,8 +617,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The target volume&#x27;s iSCSI Qualified Name in the format defined by <a href='https://tools.ietf.org/html/rfc3720#page-32'>RFC 3720</a>.</div>
                                             <div>Example: `iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">iqn_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -631,7 +635,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether the attachment is multipath or not.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -649,7 +653,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether in-transit encryption for the data volume&#x27;s paravirtualized attachment is enabled or not.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -667,7 +671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether the attachment was created in read-only mode.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -685,7 +689,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether the attachment should be created in shareable mode. If an attachment is created in shareable mode, then other instances can attach the same volume, provided that they also create their attachments in shareable mode. Only certain volume types can be attached in shareable mode. Defaults to false if not specified.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -703,7 +707,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;]</div>
                                     </td>
             </tr>
@@ -721,7 +725,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Commands to detach the iSCSI block volume. Empty if attachment_type is not iscsi.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;]</div>
                                     </td>
             </tr>
@@ -739,7 +743,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The iscsi login state of the volume attachment. For a multipath volume attachment, all iscsi sessions need to be all logged-in or logged-out to be in logged-in or logged-out state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UNKNOWN</div>
                                     </td>
             </tr>
@@ -757,7 +761,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the volume attachment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ATTACHING</div>
                                     </td>
             </tr>
@@ -775,7 +779,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of secondary multipath devices</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -793,8 +797,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The volume&#x27;s iSCSI IP address.</div>
                                             <div>Example: `169.254.2.2`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">169.254.2.2</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ipv4_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -813,8 +817,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The target volume&#x27;s iSCSI Qualified Name in the format defined by <a href='https://tools.ietf.org/html/rfc3720#page-32'>RFC 3720</a>.</div>
                                             <div>Example: `iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">iqn_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -833,8 +837,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The volume&#x27;s iSCSI port, usually port 860 or 3260.</div>
                                             <div>Example: `3260`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3260</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     
@@ -853,8 +857,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The volume&#x27;s iSCSI port, usually port 860 or 3260.</div>
                                             <div>Example: `3260`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3260</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -872,8 +876,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the volume was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -890,7 +894,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the volume.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

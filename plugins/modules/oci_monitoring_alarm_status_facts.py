@@ -77,12 +77,12 @@ EXAMPLES = """
 - name: List alarm_statuses
   oci_monitoring_alarm_status_facts:
     # required
-    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     compartment_id_in_subtree: true
     display_name: display_name_example
-    sort_by: severity
+    sort_by: displayName
     sort_order: ASC
 
 """
@@ -106,7 +106,7 @@ alarm_statuses:
                 - "Example: `High CPU Utilization`"
             returned: on success
             type: str
-            sample: High CPU Utilization
+            sample: display_name_example
         severity:
             description:
                 - The configured severity of the alarm.
@@ -121,7 +121,7 @@ alarm_statuses:
                 - "Example: `2019-02-01T01:02:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-02-01T01:02:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         status:
             description:
                 - The status of this alarm.
@@ -145,31 +145,31 @@ alarm_statuses:
                         - "Example: `Planned outage due to change IT-1234.`"
                     returned: on success
                     type: str
-                    sample: Planned outage due to change IT-1234.
+                    sample: description_example
                 time_suppress_from:
                     description:
                         - The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T01:02:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_suppress_until:
                     description:
                         - The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T02:02:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T02:02:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "High CPU Utilization",
+        "display_name": "display_name_example",
         "severity": "CRITICAL",
-        "timestamp_triggered": "2019-02-01T01:02:29.600Z",
+        "timestamp_triggered": "2013-10-20T19:20:30+01:00",
         "status": "FIRING",
         "suppression": {
-            "description": "Planned outage due to change IT-1234.",
-            "time_suppress_from": "2019-02-01T01:02:29.600Z",
-            "time_suppress_until": "2019-02-01T02:02:29.600Z"
+            "description": "description_example",
+            "time_suppress_from": "2013-10-20T19:20:30+01:00",
+            "time_suppress_until": "2013-10-20T19:20:30+01:00"
         }
     }]
 """

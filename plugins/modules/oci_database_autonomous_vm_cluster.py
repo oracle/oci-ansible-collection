@@ -106,10 +106,10 @@ EXAMPLES = """
 - name: Create autonomous_vm_cluster
   oci_database_autonomous_vm_cluster:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: autonomousVmCluster
-    exadata_infrastructure_id: ocid1.exadataInfrastructure.oc1.unique_ID
-    vm_cluster_network_id: ocid1.vmclusternetwork.oc1.unique_ID
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     time_zone: time_zone_example
@@ -131,8 +131,8 @@ EXAMPLES = """
 - name: Update autonomous_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_vm_cluster:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: autonomousVmCluster
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     license_model: LICENSE_INCLUDED
@@ -148,8 +148,8 @@ EXAMPLES = """
 - name: Delete autonomous_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_vm_cluster:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: autonomousVmCluster
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

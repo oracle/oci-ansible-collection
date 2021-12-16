@@ -682,6 +682,168 @@ database_home_metrics:
                                             returned: on success
                                             type: str
                                             sample: dimension_value_example
+                cpu_utilization_aggregate_metrics:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        cpu_utilization:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                value:
+                                    description:
+                                        - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                statements_aggregate_metrics:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        queued_statements:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                value:
+                                    description:
+                                        - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                        running_statements:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                value:
+                                    description:
+                                        - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                failed_connections_aggregate_metrics:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        failed_connections:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                value:
+                                    description:
+                                        - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
         database_instance_home_metrics:
             description:
                 - The metrics for the RAC database instances.
@@ -1202,6 +1364,48 @@ database_home_metrics:
                                             returned: on success
                                             type: str
                                             sample: dimension_value_example
+                cpu_utilization_aggregate_metrics:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        cpu_utilization:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                value:
+                                    description:
+                                        - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
     sample: {
         "database_home_metrics": {
             "activity_time_series_metrics": [{
@@ -1342,6 +1546,44 @@ database_home_metrics:
                         "dimension_value": "dimension_value_example"
                     }]
                 }]
+            },
+            "cpu_utilization_aggregate_metrics": {
+                "cpu_utilization": {
+                    "value": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                }
+            },
+            "statements_aggregate_metrics": {
+                "queued_statements": {
+                    "value": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                },
+                "running_statements": {
+                    "value": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                }
+            },
+            "failed_connections_aggregate_metrics": {
+                "failed_connections": {
+                    "value": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                }
             }
         },
         "database_instance_home_metrics": [{
@@ -1459,6 +1701,16 @@ database_home_metrics:
                         "dimension_value": "dimension_value_example"
                     }]
                 }]
+            },
+            "cpu_utilization_aggregate_metrics": {
+                "cpu_utilization": {
+                    "value": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                }
             }
         }]
     }

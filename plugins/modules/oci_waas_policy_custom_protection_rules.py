@@ -99,7 +99,7 @@ EXAMPLES = """
       exclusions:
       - # optional
         target: REQUEST_COOKIES
-        exclusions: [ "null" ]
+        exclusions: [ "exclusions_example" ]
 
 """
 

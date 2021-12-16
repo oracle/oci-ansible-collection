@@ -211,6 +211,7 @@ zones:
             description:
                 - External master servers for the zone. `externalMasters` becomes a
                   required parameter when the `zoneType` value is `SECONDARY`.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -282,6 +283,7 @@ zones:
         nameservers:
             description:
                 - The authoritative nameservers for the zone.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -294,6 +296,7 @@ zones:
         zone_transfer_servers:
             description:
                 - The OCI nameservers that transfer the zone data with external nameservers.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

@@ -280,7 +280,9 @@ deployment:
             sample: "2013-10-20T19:20:30+01:00"
         deployment_type:
             description:
-                - The deployment type.
+                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
+                  for backward compatibility purposes.  Its use is discouraged
+                        in favor of the equivalent DATABASE_ORACLE value."
             returned: on success
             type: str
             sample: OGG
@@ -302,7 +304,7 @@ deployment:
                         - The GoldenGate deployment console username.
                     returned: on success
                     type: str
-                    sample: oggadmin
+                    sample: admin_username_example
                 ogg_version:
                     description:
                         - Version of OGG
@@ -345,7 +347,7 @@ deployment:
         "deployment_type": "OGG",
         "ogg_data": {
             "deployment_name": "deployment_name_example",
-            "admin_username": "oggadmin",
+            "admin_username": "admin_username_example",
             "ogg_version": "ogg_version_example",
             "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         }

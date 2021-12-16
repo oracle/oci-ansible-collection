@@ -90,7 +90,7 @@ EXAMPLES = """
 
     # optional
     tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
     lifecycle_state: CREATING
@@ -162,6 +162,7 @@ oce_instances:
         identity_stripe:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -171,14 +172,14 @@ oce_instances:
                           Example: `secondstripe`"
                     returned: on success
                     type: str
-                    sample: secondstripe
+                    sample: service_name_example
                 tenancy:
                     description:
                         - "Value of the Identity Cloud Service tenancy.
                           Example: `idcs-8416ebdd0d674f84803f4193cce026e9`"
                     returned: on success
                     type: str
-                    sample: idcs-8416ebdd0d674f84803f4193cce026e9
+                    sample: tenancy_example
         instance_usage_type:
             description:
                 - Instance type based on its usage
@@ -279,8 +280,8 @@ oce_instances:
         "tenancy_name": "tenancy_name_example",
         "upgrade_schedule": "UPGRADE_IMMEDIATELY",
         "identity_stripe": {
-            "service_name": "secondstripe",
-            "tenancy": "idcs-8416ebdd0d674f84803f4193cce026e9"
+            "service_name": "service_name_example",
+            "tenancy": "tenancy_example"
         },
         "instance_usage_type": "PRIMARY",
         "object_storage_namespace": "object_storage_namespace_example",

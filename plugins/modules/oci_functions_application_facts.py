@@ -93,7 +93,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    lifecycle_state: Creating
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -139,6 +139,7 @@ applications:
                 - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
                 - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each
                   key and value in UTF-8.
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -163,9 +164,10 @@ applications:
                   Note: If you enable the OCI Logging service for this application, the syslogUrl value is ignored. Function logs are sent to the OCI Logging
                   service, and not to the syslog URL."
                 - "Example: `tcp://logserver.myserver:1234`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: tcp://logserver.myserver:1234
+            sample: syslog_url_example
         trace_config:
             description:
                 - ""
@@ -207,7 +209,7 @@ applications:
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -215,7 +217,7 @@ applications:
                   Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         image_policy_config:
             description:
                 - ""
@@ -249,15 +251,15 @@ applications:
         "config": {},
         "subnet_ids": [],
         "network_security_group_ids": [],
-        "syslog_url": "tcp://logserver.myserver:1234",
+        "syslog_url": "syslog_url_example",
         "trace_config": {
             "is_enabled": true,
             "domain_id": "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "time_created": "2018-09-12T22:47:12.613Z",
-        "time_updated": "2018-09-12T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "image_policy_config": {
             "is_policy_enabled": true,
             "key_details": [{

@@ -55,19 +55,19 @@ job_shapes:
                 - The name of the job shape.
             returned: on success
             type: str
-            sample: VM.STANDARD2.1
+            sample: name_example
         core_count:
             description:
                 - The number of cores associated with this job run shape.
             returned: on success
             type: int
-            sample: 1
+            sample: 56
         memory_in_gbs:
             description:
                 - The number of cores associated with this job shape.
             returned: on success
             type: int
-            sample: 15
+            sample: 56
         shape_series:
             description:
                 - The family that the compute shape belongs to.
@@ -75,9 +75,9 @@ job_shapes:
             type: str
             sample: AMD_ROME
     sample: [{
-        "name": "VM.STANDARD2.1",
-        "core_count": 1,
-        "memory_in_gbs": 15,
+        "name": "name_example",
+        "core_count": 56,
+        "memory_in_gbs": 56,
         "shape_series": "AMD_ROME"
     }]
 """

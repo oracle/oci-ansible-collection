@@ -78,7 +78,7 @@ EXAMPLES = """
   oci_opsi_sql_plan_insights_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    sql_identifier: 6rgjh9bjmy2s7
+    sql_identifier: sql_identifier_example
 
     # optional
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -119,13 +119,13 @@ sql_plan_insights:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         insights:
             description:
                 - List of SQL plan insights.
@@ -194,8 +194,8 @@ sql_plan_insights:
         "sql_identifier": "sql_identifier_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
         "insights": [{
             "text": "text_example",
             "value": 56,

@@ -121,14 +121,14 @@ EXAMPLES = """
     # required
     budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     type: ACTUAL
-    threshold: 10
+    threshold: 3.4
     threshold_type: PERCENTAGE
 
     # optional
     display_name: display_name_example
     description: description_example
     recipients: recipients_example
-    msg: message_example
+    msg: msg_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -142,10 +142,10 @@ EXAMPLES = """
     display_name: display_name_example
     description: description_example
     type: ACTUAL
-    threshold: 10
+    threshold: 3.4
     threshold_type: PERCENTAGE
     recipients: recipients_example
-    msg: message_example
+    msg: msg_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -158,10 +158,10 @@ EXAMPLES = """
     # optional
     description: description_example
     type: ACTUAL
-    threshold: 10
+    threshold: 3.4
     threshold_type: PERCENTAGE
     recipients: recipients_example
-    msg: message_example
+    msg: msg_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -384,6 +384,7 @@ class BudgetAlertRuleHelperGen(OCIResourceHelperBase):
 
     def create_resource(self):
         create_details = self.get_create_model()
+        setattr(create_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_alert_rule,
             call_fn_args=(),
@@ -405,6 +406,7 @@ class BudgetAlertRuleHelperGen(OCIResourceHelperBase):
 
     def update_resource(self):
         update_details = self.get_update_model()
+        setattr(update_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.update_alert_rule,
             call_fn_args=(),

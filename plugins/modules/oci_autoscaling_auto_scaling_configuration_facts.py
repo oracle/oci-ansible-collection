@@ -165,6 +165,7 @@ auto_scaling_configurations:
             description:
                 - Autoscaling policy definitions for the autoscaling configuration. An autoscaling policy defines the criteria that
                   trigger autoscaling actions and the actions to take.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -225,7 +226,7 @@ auto_scaling_configurations:
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2016-08-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 is_enabled:
                     description:
                         - Whether the autoscaling policy is enabled.
@@ -259,7 +260,7 @@ auto_scaling_configurations:
                                 - "Example: `0 15 10 ? * *`"
                             returned: on success
                             type: str
-                            sample: "0 15 10 ? * *"
+                            sample: expression_example
                 resource_action:
                     description:
                         - ""
@@ -352,16 +353,18 @@ auto_scaling_configurations:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         max_resource_count:
             description:
                 - The maximum number of resources to scale out to.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         min_resource_count:
             description:
                 - The minimum number of resources to scale in to.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -386,12 +389,12 @@ auto_scaling_configurations:
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example",
             "policy_type": "scheduled",
-            "time_created": "2016-08-25T21:10:29.600Z",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "is_enabled": true,
             "execution_schedule": {
                 "type": "cron",
                 "timezone": "UTC",
-                "expression": "0 15 10 ? * *"
+                "expression": "expression_example"
             },
             "resource_action": {
                 "action_type": "power",
@@ -413,7 +416,7 @@ auto_scaling_configurations:
                 }
             }]
         }],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "max_resource_count": 56,
         "min_resource_count": 56
     }]

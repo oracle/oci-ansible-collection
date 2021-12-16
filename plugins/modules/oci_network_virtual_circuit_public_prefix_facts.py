@@ -54,7 +54,7 @@ EXAMPLES = """
     virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    verification_state: verification_state_example
+    verification_state: IN_PROGRESS
 
 """
 

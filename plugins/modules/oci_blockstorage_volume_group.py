@@ -134,10 +134,10 @@ EXAMPLES = """
   oci_blockstorage_volume_group:
     # required
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source_details:
       # required
-      type: volumeIds
+      type: volumeGroupId
       volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -155,18 +155,18 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    volume_ids: [ "null" ]
+    volume_ids: [ "volume_ids_example" ]
 
 - name: Update volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_group:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    volume_ids: [ "null" ]
+    volume_ids: [ "volume_ids_example" ]
 
 - name: Delete volume_group
   oci_blockstorage_volume_group:
@@ -177,7 +177,7 @@ EXAMPLES = """
 - name: Delete volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_group:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 

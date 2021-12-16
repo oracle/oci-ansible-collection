@@ -133,14 +133,14 @@ oce_instance:
                           Example: `secondstripe`"
                     returned: on success
                     type: str
-                    sample: secondstripe
+                    sample: service_name_example
                 tenancy:
                     description:
                         - "Value of the Identity Cloud Service tenancy.
                           Example: `idcs-8416ebdd0d674f84803f4193cce026e9`"
                     returned: on success
                     type: str
-                    sample: idcs-8416ebdd0d674f84803f4193cce026e9
+                    sample: tenancy_example
         instance_usage_type:
             description:
                 - Instance type based on its usage
@@ -241,8 +241,8 @@ oce_instance:
         "tenancy_name": "tenancy_name_example",
         "upgrade_schedule": "UPGRADE_IMMEDIATELY",
         "identity_stripe": {
-            "service_name": "secondstripe",
-            "tenancy": "idcs-8416ebdd0d674f84803f4193cce026e9"
+            "service_name": "service_name_example",
+            "tenancy": "tenancy_example"
         },
         "instance_usage_type": "PRIMARY",
         "object_storage_namespace": "object_storage_namespace_example",

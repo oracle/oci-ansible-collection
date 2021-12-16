@@ -110,7 +110,7 @@ drgs:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         default_drg_route_tables:
             description:
                 - ""
@@ -163,7 +163,7 @@ drgs:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "default_drg_route_tables": {
             "vcn": "vcn_example",
             "ipsec_tunnel": "ipsec_tunnel_example",

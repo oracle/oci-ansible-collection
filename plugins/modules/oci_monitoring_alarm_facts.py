@@ -98,12 +98,12 @@ EXAMPLES = """
 - name: List alarms
   oci_monitoring_alarm_facts:
     # required
-    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     display_name: display_name_example
-    lifecycle_state: lifecycle_state_example
-    sort_by: severity
+    lifecycle_state: ACTIVE
+    sort_by: displayName
     sort_order: ASC
     compartment_id_in_subtree: true
 
@@ -129,7 +129,7 @@ alarms:
                 - "Example: `High CPU Utilization`"
             returned: on success
             type: str
-            sample: High CPU Utilization
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the alarm.
@@ -151,6 +151,7 @@ alarms:
                   then the call is rejected. When false, the alarm evaluates metrics from only the compartment specified
                   in metricCompartmentId. Default is false.
                 - "Example: `true`"
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -160,7 +161,7 @@ alarms:
                 - "Example: `oci_computeagent`"
             returned: on success
             type: str
-            sample: oci_computeagent
+            sample: namespace_example
         resource_group:
             description:
                 - Resource group to match for metric data retrieved by the alarm. A resource group is a custom string that you can match when retrieving custom
@@ -168,9 +169,10 @@ alarms:
                   A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_),
                   hyphens (-), and dollar signs ($).
                 - "Example: `frontend-fleet`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: frontend-fleet
+            sample: resource_group_example
         query:
             description:
                 - "The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of
@@ -198,6 +200,7 @@ alarms:
         resolution:
             description:
                 - "The time between calculated aggregation windows for the alarm. Supported value: `1m`"
+                - Returned for get operation
             returned: on success
             type: str
             sample: resolution_example
@@ -214,9 +217,10 @@ alarms:
                 - "The alarm updates its status to \\"OK\\" when the breaching condition has been clear for
                   the most recent minute."
                 - "Example: `PT5M`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: PT5M
+            sample: pending_duration_example
         severity:
             description:
                 - "The perceived type of response required when the alarm is in the \\"FIRING\\" state."
@@ -230,9 +234,10 @@ alarms:
                   to operators for resolving the alarm condition. Consider adding links to standard runbook
                   practices.
                 - "Example: `High CPU usage alert. Follow runbook instructions for resolution.`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: High CPU usage alert. Follow runbook instructions for resolution.
+            sample: body_example
         message_format:
             description:
                 - "The format to use for notification messages sent from this alarm. The formats are:
@@ -240,6 +245,7 @@ alarms:
                   * `PRETTY_JSON`: JSON with new lines and indents.
                   * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Applies only to messages sent through the Notifications service to the following
                   subscription types: Email."
+                - Returned for get operation
             returned: on success
             type: str
             sample: RAW
@@ -260,9 +266,10 @@ alarms:
                   Minimum: PT1M. Maximum: P30D."
                 - "Default value: null (notifications are not re-submitted)."
                 - "Example: `PT2H`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: PT2H
+            sample: repeat_notification_duration_example
         suppression:
             description:
                 - The configuration details for suppressing an alarm.
@@ -279,21 +286,21 @@ alarms:
                         - "Example: `Planned outage due to change IT-1234.`"
                     returned: on success
                     type: str
-                    sample: Planned outage due to change IT-1234.
+                    sample: description_example
                 time_suppress_from:
                     description:
                         - The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T01:02:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_suppress_until:
                     description:
                         - The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T02:02:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T02:02:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
         is_enabled:
             description:
                 - Whether the alarm is enabled.
@@ -321,48 +328,50 @@ alarms:
                 - "Example: `DELETED`"
             returned: on success
             type: str
-            sample: DELETED
+            sample: ACTIVE
         time_created:
             description:
                 - The date and time the alarm was created. Format defined by RFC3339.
                 - "Example: `2019-02-01T01:02:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2019-02-01T01:02:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the alarm was last updated. Format defined by RFC3339.
                 - "Example: `2019-02-03T01:02:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2019-02-03T01:02:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "High CPU Utilization",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "metric_compartment_id": "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "metric_compartment_id_in_subtree": true,
-        "namespace": "oci_computeagent",
-        "resource_group": "frontend-fleet",
+        "namespace": "namespace_example",
+        "resource_group": "resource_group_example",
         "query": "query_example",
         "resolution": "resolution_example",
-        "pending_duration": "PT5M",
+        "pending_duration": "pending_duration_example",
         "severity": "CRITICAL",
-        "body": "High CPU usage alert. Follow runbook instructions for resolution.",
+        "body": "body_example",
         "message_format": "RAW",
         "destinations": [],
-        "repeat_notification_duration": "PT2H",
+        "repeat_notification_duration": "repeat_notification_duration_example",
         "suppression": {
-            "description": "Planned outage due to change IT-1234.",
-            "time_suppress_from": "2019-02-01T01:02:29.600Z",
-            "time_suppress_until": "2019-02-01T02:02:29.600Z"
+            "description": "description_example",
+            "time_suppress_from": "2013-10-20T19:20:30+01:00",
+            "time_suppress_until": "2013-10-20T19:20:30+01:00"
         },
         "is_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "lifecycle_state": "DELETED",
-        "time_created": "2019-02-01T01:02:29.600Z",
-        "time_updated": "2019-02-03T01:02:29.600Z"
+        "lifecycle_state": "ACTIVE",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }]
 """
 

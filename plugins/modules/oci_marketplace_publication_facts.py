@@ -90,8 +90,8 @@ EXAMPLES = """
 
     # optional
     publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
-    name: [ "$p.getValue()" ]
-    operating_systems: [ "$p.getValue()" ]
+    name: [ "name_example" ]
+    operating_systems: [ "operating_systems_example" ]
     sort_by: TIMERELEASED
     sort_order: ASC
 
@@ -137,12 +137,14 @@ publications:
         long_description:
             description:
                 - A long description of the publication to use in the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: long_description_example
         support_contacts:
             description:
                 - Contact information for getting support from the publisher for the listing.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -231,12 +233,13 @@ publications:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         defined_tags:
             description:
                 - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                   Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -246,6 +249,7 @@ publications:
                   predefined name, type, or namespace. For more information, see L(Resource
                   Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                   Example: `{\\"Department\\": \\"Finance\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -273,7 +277,7 @@ publications:
         "supported_operating_systems": [{
             "name": "name_example"
         }],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'}
     }]

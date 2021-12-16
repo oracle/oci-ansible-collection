@@ -90,7 +90,7 @@ EXAMPLES = """
     # optional
     name: name_example
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     sort_by: TIMECREATED
 
 """
@@ -108,7 +108,7 @@ email_domains:
                 - "Example: `example.net`"
             returned: on success
             type: str
-            sample: example.net
+            sample: name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the email domain.
@@ -138,6 +138,7 @@ email_domains:
             description:
                 - Value of the SPF field. For more information about SPF, please see
                   L(SPF Authentication,https://docs.cloud.oracle.com/iaas/Content/Email/Concepts/overview.htm#components).
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -154,7 +155,7 @@ email_domains:
                 - "Example: `2021-02-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2021-02-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -179,14 +180,14 @@ email_domains:
             type: dict
             sample: {}
     sample: [{
-        "name": "example.net",
+        "name": "name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ACTIVE",
         "active_dkim_id": "ocid1.activedkim.oc1..xxxxxxEXAMPLExxxxxx",
         "is_spf": true,
         "description": "description_example",
-        "time_created": "2021-02-12T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

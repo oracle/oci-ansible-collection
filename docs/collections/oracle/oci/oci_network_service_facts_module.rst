@@ -30,9 +30,13 @@ oracle.oci.oci_network_service_facts -- Fetches details about one or multiple Se
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_service_facts`.
 
@@ -323,8 +327,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of Service resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cidr_block&#x27;: &#x27;oci-phx-objectstorage&#x27;, &#x27;description&#x27;: &#x27;OCI PHX Object Storage&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;OCI PHX Object Storage&#x27;}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -343,8 +347,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When you set up a route rule to route traffic to the service gateway, use this value as the rule&#x27;s destination. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/RouteTable/'>Route Table</a>. Also, when you set up a security list rule to cover traffic with the service gateway, use the `cidrBlock` value as the rule&#x27;s destination (for an egress rule) or the source (for an ingress rule). See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/SecurityList/'>Security List</a>.</div>
                                             <div>Example: `oci-phx-objectstorage`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci-phx-objectstorage</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cidr_block_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -362,8 +366,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Description of the Oracle service or services covered by this `Service` object.</div>
                                             <div>Example: `OCI PHX Object Storage`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OCI PHX Object Storage</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -380,7 +384,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The `Service` object&#x27;s <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -399,8 +403,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Name of the `Service` object. This name can change and is not guaranteed to be unique.</div>
                                             <div>Example: `OCI PHX Object Storage`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OCI PHX Object Storage</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                     

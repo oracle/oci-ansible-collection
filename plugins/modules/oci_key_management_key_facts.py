@@ -139,6 +139,7 @@ keys:
                 - The OCID of the key version used in cryptographic operations. During key rotation, the service might be
                   in a transitional state where this or a newer key version are used intermittently. The `currentKeyVersion`
                   property is updated when the service is guaranteed to use the new key version for all subsequent encryption operations.
+                - Returned for get operation
             returned: on success
             type: str
             sample: current_key_version_example
@@ -174,6 +175,7 @@ keys:
         key_shape:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -215,21 +217,22 @@ keys:
                 - "Example: `ENABLED`"
             returned: on success
             type: str
-            sample: ENABLED
+            sample: CREATING
         time_created:
             description:
                 - The date and time the key was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                 - "Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the key, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
                 - The OCID of the vault that contains this key.
@@ -239,6 +242,7 @@ keys:
         replica_details:
             description:
                 - The value to assign to the replica_details property of this Key.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -251,12 +255,14 @@ keys:
         is_primary:
             description:
                 - The value to assign to the is_primary property of this Key.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         algorithm:
             description:
                 - The algorithm used by a key's key versions to encrypt or decrypt data.
+                - Returned for list operation
             returned: on success
             type: str
             sample: AES
@@ -273,9 +279,9 @@ keys:
             "curve_id": "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "protection_mode": "HSM",
-        "lifecycle_state": "ENABLED",
-        "time_created": "2018-04-03T21:10:29.600Z",
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
+        "lifecycle_state": "CREATING",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "replica_details": {
             "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"

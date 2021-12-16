@@ -63,10 +63,10 @@ cross_connect_locations:
                 - "Example: `CyrusOne, Chandler, AZ`"
             returned: on success
             type: str
-            sample: CyrusOne, Chandler, AZ
+            sample: name_example
     sample: [{
         "description": "description_example",
-        "name": "CyrusOne, Chandler, AZ"
+        "name": "name_example"
     }]
 """
 

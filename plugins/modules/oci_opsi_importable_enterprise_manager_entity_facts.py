@@ -61,7 +61,7 @@ EXAMPLES = """
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    enterprise_manager_entity_type: [ "$p.getValue()" ]
+    enterprise_manager_entity_type: [ "enterprise_manager_entity_type_example" ]
     enterprise_manager_identifier: enterprise_manager_identifier_example
     enterprise_manager_parent_entity_identifier: enterprise_manager_parent_entity_identifier_example
 

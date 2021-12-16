@@ -101,8 +101,8 @@ EXAMPLES = """
     # optional
     sort_by: id
     sort_order: ASC
-    display_name: [ "$p.getValue()" ]
-    lifecycle_state: [ "$p.getValue()" ]
+    display_name: [ "display_name_example" ]
+    lifecycle_state: [ "CREATING" ]
     time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_created_less_than: 2013-10-20T19:20:30+01:00
 
@@ -136,6 +136,7 @@ custom_protection_rules:
         description:
             description:
                 - The description of the custom protection rule.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -178,6 +179,7 @@ custom_protection_rules:
                   Syntax,https://www.modsecurity.org/CRS/Documentation/making.html)."
                 - For more information about ModSecurity's open source WAF rules, see L(Mod Security's OWASP Core Rule Set
                   documentation,https://www.modsecurity.org/CRS/Documentation/index.html).
+                - Returned for get operation
             returned: on success
             type: str
             sample: template_example
@@ -192,7 +194,7 @@ custom_protection_rules:
                 - The date and time the protection rule was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -217,7 +219,7 @@ custom_protection_rules:
         "mod_security_rule_ids": [],
         "template": "template_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

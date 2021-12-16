@@ -171,21 +171,21 @@ EXAMPLES = """
 - name: Create route_table
   oci_network_route_table:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     route_rules:
     - # required
-      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+      network_entity_id: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
-      cidr_block: 0.0.0.0/0
+      cidr_block: cidr_block_example
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyRouteTable
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update route_table
@@ -195,14 +195,14 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyRouteTable
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     route_rules:
     - # required
-      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+      network_entity_id: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
-      cidr_block: 0.0.0.0/0
+      cidr_block: cidr_block_example
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
@@ -212,18 +212,18 @@ EXAMPLES = """
 - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyRouteTable
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     route_rules:
     - # required
-      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+      network_entity_id: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
-      cidr_block: 0.0.0.0/0
+      cidr_block: cidr_block_example
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
@@ -239,8 +239,8 @@ EXAMPLES = """
 - name: Delete route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyRouteTable
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -310,7 +310,7 @@ route_table:
                         - "Example: `0.0.0.0/0`"
                     returned: on success
                     type: str
-                    sample: 0.0.0.0/0
+                    sample: cidr_block_example
                 destination:
                     description:
                         - Conceptually, this is the range of IP addresses used for matching when routing
@@ -358,7 +358,7 @@ route_table:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the route table list belongs to.
@@ -373,13 +373,13 @@ route_table:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "route_rules": [{
-            "cidr_block": "0.0.0.0/0",
+            "cidr_block": "cidr_block_example",
             "destination": "destination_example",
             "destination_type": "CIDR_BLOCK",
             "network_entity_id": "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx",
             "description": "description_example"
         }],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

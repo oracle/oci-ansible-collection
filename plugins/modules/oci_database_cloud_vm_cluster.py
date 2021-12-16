@@ -251,8 +251,8 @@ EXAMPLES = """
     time_zone: time_zone_example
     scan_listener_port_tcp: 56
     scan_listener_port_tcp_ssl: 56
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -266,15 +266,15 @@ EXAMPLES = """
     display_name: display_name_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     update_details:
       # optional
       update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
       update_action: ROLLING_APPLY
-    compute_nodes: [ "null" ]
+    compute_nodes: [ "compute_nodes_example" ]
     storage_size_in_gbs: 56
 
 - name: Update cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -287,15 +287,15 @@ EXAMPLES = """
     cpu_core_count: 56
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     update_details:
       # optional
       update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
       update_action: ROLLING_APPLY
-    compute_nodes: [ "null" ]
+    compute_nodes: [ "compute_nodes_example" ]
     storage_size_in_gbs: 56
 
 - name: Delete cloud_vm_cluster

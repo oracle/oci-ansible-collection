@@ -291,7 +291,7 @@ EXAMPLES = """
           # required
           max: 56
           min: 56
-      id: 04ABEC
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action remove on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
@@ -300,7 +300,7 @@ EXAMPLES = """
     action: remove
 
     # optional
-    security_rule_ids: [ "null" ]
+    security_rule_ids: [ "security_rule_ids_example" ]
 
 - name: Perform action update on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
@@ -347,7 +347,7 @@ EXAMPLES = """
           # required
           max: 56
           min: 56
-      id: 04ABEC
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -434,7 +434,7 @@ network_security_group_security_rule:
                         - "Example: `04ABEC`"
                     returned: on success
                     type: str
-                    sample: 04ABEC
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 is_stateless:
                     description:
                         - A stateless rule allows traffic in one direction. Remember to add a corresponding
@@ -597,7 +597,7 @@ network_security_group_security_rule:
                 "code": 56,
                 "type": 56
             },
-            "id": "04ABEC",
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "is_stateless": true,
             "is_valid": true,
             "protocol": "protocol_example",

@@ -293,9 +293,9 @@ EXAMPLES = """
   oci_object_storage_object_actions:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
     source_object_name: source_object_name_example
-    destination_region: destination_region_example
+    destination_region: us-phoenix-1
     destination_namespace: destination_namespace_example
     destination_bucket: destination_bucket_example
     destination_object_name: destination_object_name_example
@@ -320,8 +320,8 @@ EXAMPLES = """
   oci_object_storage_object_actions:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    object_name: test/object1.log
+    bucket_name: bucket_name_example
+    object_name: object_name_example
     action: reencrypt
 
     # optional
@@ -342,7 +342,7 @@ EXAMPLES = """
   oci_object_storage_object_actions:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
     source_name: source_name_example
     new_name: new_name_example
     action: rename
@@ -356,8 +356,8 @@ EXAMPLES = """
   oci_object_storage_object_actions:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    object_name: test/object1.log
+    bucket_name: bucket_name_example
+    object_name: object_name_example
     action: restore
 
     # optional
@@ -368,8 +368,8 @@ EXAMPLES = """
   oci_object_storage_object_actions:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    object_name: test/object1.log
+    bucket_name: bucket_name_example
+    object_name: object_name_example
     storage_tier: Standard
     action: update_object_storage_tier
 

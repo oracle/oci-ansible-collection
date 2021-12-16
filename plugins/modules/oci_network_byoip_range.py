@@ -89,7 +89,7 @@ EXAMPLES = """
 - name: Create byoip_range
   oci_network_byoip_range:
     # required
-    cidr_block: 10.0.1.0/24
+    cidr_block: cidr_block_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -199,14 +199,14 @@ byoip_range:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_validated:
             description:
                 - The date and time the `ByoipRange` resource was validated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_advertised:
             description:
                 - The date and time the `ByoipRange` resource was advertised to the internet by BGP, in the format defined by
@@ -214,7 +214,7 @@ byoip_range:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_withdrawn:
             description:
                 - The date and time the `ByoipRange` resource was withdrawn from advertisement by BGP to the internet, in the format defined by
@@ -222,7 +222,7 @@ byoip_range:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         validation_token:
             description:
                 - The validation token is an internally-generated ASCII string used in the validation process. See L(Importing a CIDR
@@ -239,10 +239,10 @@ byoip_range:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_details": "CREATING",
         "lifecycle_state": "INACTIVE",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "time_validated": "2016-08-25T21:10:29.600Z",
-        "time_advertised": "2016-08-25T21:10:29.600Z",
-        "time_withdrawn": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_validated": "2013-10-20T19:20:30+01:00",
+        "time_advertised": "2013-10-20T19:20:30+01:00",
+        "time_withdrawn": "2013-10-20T19:20:30+01:00",
         "validation_token": "validation_token_example"
     }
 """

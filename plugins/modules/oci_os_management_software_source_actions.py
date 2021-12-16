@@ -65,7 +65,7 @@ EXAMPLES = """
   oci_os_management_software_source_actions:
     # required
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
-    package_names: [ "null" ]
+    package_names: [ "package_names_example" ]
     action: add_packages
 
 - name: Perform action change_compartment on software_source
@@ -81,7 +81,7 @@ EXAMPLES = """
   oci_os_management_software_source_actions:
     # required
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
-    package_names: [ "null" ]
+    package_names: [ "package_names_example" ]
     action: remove_packages
 
 """

@@ -30,9 +30,13 @@ oracle.oci.oci_apm_synthetics_monitor -- Manage a Monitor resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_apm_synthetics_monitor`.
 
@@ -1249,21 +1253,21 @@ Examples
       oci_apm_synthetics_monitor:
         # required
         apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: exampleName
+        display_name: display_name_example
         monitor_type: SCRIPTED_BROWSER
-        vantage_points: [ "null" ]
-        repeat_interval_in_seconds: 600
+        vantage_points: [ "vantage_points_example" ]
+        repeat_interval_in_seconds: 56
 
         # optional
-        script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+        script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
         status: ENABLED
         is_run_once: true
-        timeout_in_seconds: 180
-        target: https://www.oracle.com/index.html
+        timeout_in_seconds: 56
+        target: target_example
         script_parameters:
         - # required
-          param_name: testName
-          param_value: openPageMonitor
+          param_name: param_name_example
+          param_value: param_value_example
         configuration:
           # required
           config_type: SCRIPTED_REST_CONFIG
@@ -1275,7 +1279,7 @@ Examples
             number_of_hops: 56
             probe_per_hop: 56
             transmission_rate: 56
-            protocol: TCP
+            protocol: ICMP
             probe_mode: SACK
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1287,18 +1291,18 @@ Examples
         monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: exampleName
-        vantage_points: [ "null" ]
-        script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+        display_name: display_name_example
+        vantage_points: [ "vantage_points_example" ]
+        script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
         status: ENABLED
-        repeat_interval_in_seconds: 600
+        repeat_interval_in_seconds: 56
         is_run_once: true
-        timeout_in_seconds: 180
-        target: https://www.oracle.com/index.html
+        timeout_in_seconds: 56
+        target: target_example
         script_parameters:
         - # required
-          param_name: testName
-          param_value: openPageMonitor
+          param_name: param_name_example
+          param_value: param_value_example
         configuration:
           # required
           config_type: SCRIPTED_REST_CONFIG
@@ -1310,7 +1314,7 @@ Examples
             number_of_hops: 56
             probe_per_hop: 56
             transmission_rate: 56
-            protocol: TCP
+            protocol: ICMP
             probe_mode: SACK
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1319,20 +1323,20 @@ Examples
       oci_apm_synthetics_monitor:
         # required
         apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: exampleName
+        display_name: display_name_example
 
         # optional
-        vantage_points: [ "null" ]
-        script_id: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+        vantage_points: [ "vantage_points_example" ]
+        script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
         status: ENABLED
-        repeat_interval_in_seconds: 600
+        repeat_interval_in_seconds: 56
         is_run_once: true
-        timeout_in_seconds: 180
-        target: https://www.oracle.com/index.html
+        timeout_in_seconds: 56
+        target: target_example
         script_parameters:
         - # required
-          param_name: testName
-          param_value: openPageMonitor
+          param_name: param_name_example
+          param_value: param_value_example
         configuration:
           # required
           config_type: SCRIPTED_REST_CONFIG
@@ -1344,7 +1348,7 @@ Examples
             number_of_hops: 56
             probe_per_hop: 56
             transmission_rate: 56
-            protocol: TCP
+            protocol: ICMP
             probe_mode: SACK
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1360,7 +1364,7 @@ Examples
       oci_apm_synthetics_monitor:
         # required
         apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: exampleName
+        display_name: display_name_example
         state: absent
 
 
@@ -1397,8 +1401,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Monitor resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;configuration&#x27;: {&#x27;config_type&#x27;: &#x27;BROWSER_CONFIG&#x27;, &#x27;is_certificate_validation_enabled&#x27;: True, &#x27;is_failure_retried&#x27;: True, &#x27;is_redirection_enabled&#x27;: True, &#x27;network_configuration&#x27;: {&#x27;number_of_hops&#x27;: 56, &#x27;probe_mode&#x27;: &#x27;SACK&#x27;, &#x27;probe_per_hop&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;transmission_rate&#x27;: 56}, &#x27;req_authentication_details&#x27;: {&#x27;auth_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;content-type&#x27;, &#x27;header_value&#x27;: &#x27;json&#x27;}], &#x27;auth_request_method&#x27;: &#x27;GET&#x27;, &#x27;auth_request_post_body&#x27;: &#x27;openPageMonitor&#x27;, &#x27;auth_token&#x27;: &#x27;token&#x27;, &#x27;auth_url&#x27;: &#x27;https://www.example.com/token&#x27;, &#x27;auth_user_name&#x27;: &#x27;user&#x27;, &#x27;auth_user_password&#x27;: &#x27;example-password&#x27;, &#x27;oauth_scheme&#x27;: &#x27;NONE&#x27;}, &#x27;req_authentication_scheme&#x27;: &#x27;NONE&#x27;, &#x27;request_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;content-type&#x27;, &#x27;header_value&#x27;: &#x27;json&#x27;}], &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;request_post_body&#x27;: &#x27;openPageMonitor&#x27;, &#x27;request_query_params&#x27;: [{&#x27;param_name&#x27;: &#x27;sortOrder&#x27;, &#x27;param_value&#x27;: &#x27;asc&#x27;}], &#x27;verify_response_codes&#x27;: [], &#x27;verify_response_content&#x27;: &#x27;^searchText*&#x27;, &#x27;verify_texts&#x27;: [{&#x27;text&#x27;: &#x27;searchString&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;exampleName&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva&#x27;, &#x27;is_run_once&#x27;: True, &#x27;monitor_type&#x27;: &#x27;SCRIPTED_BROWSER&#x27;, &#x27;repeat_interval_in_seconds&#x27;: 600, &#x27;script_id&#x27;: &#x27;ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq&#x27;, &#x27;script_name&#x27;: &#x27;testScript&#x27;, &#x27;script_parameters&#x27;: [{&#x27;is_overwritten&#x27;: False, &#x27;is_secret&#x27;: True, &#x27;monitor_script_parameter&#x27;: {&#x27;param_name&#x27;: &#x27;testName&#x27;, &#x27;param_value&#x27;: &#x27;openPageMonitor&#x27;}}], &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;target&#x27;: &#x27;https://www.oracle.com/index.html&#x27;, &#x27;time_created&#x27;: &#x27;2020-02-12T22:47:12.613Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-02-13T22:47:12.613Z&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;vantage_point_count&#x27;: 2, &#x27;vantage_points&#x27;: [{&#x27;display_name&#x27;: &#x27;exampleName&#x27;, &#x27;name&#x27;: &#x27;us_phoenix&#x27;}]}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;configuration&#x27;: {&#x27;config_type&#x27;: &#x27;BROWSER_CONFIG&#x27;, &#x27;is_certificate_validation_enabled&#x27;: True, &#x27;is_failure_retried&#x27;: True, &#x27;is_redirection_enabled&#x27;: True, &#x27;network_configuration&#x27;: {&#x27;number_of_hops&#x27;: 56, &#x27;probe_mode&#x27;: &#x27;SACK&#x27;, &#x27;probe_per_hop&#x27;: 56, &#x27;protocol&#x27;: &#x27;ICMP&#x27;, &#x27;transmission_rate&#x27;: 56}, &#x27;req_authentication_details&#x27;: {&#x27;auth_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;auth_request_method&#x27;: &#x27;GET&#x27;, &#x27;auth_request_post_body&#x27;: &#x27;auth_request_post_body_example&#x27;, &#x27;auth_token&#x27;: &#x27;auth_token_example&#x27;, &#x27;auth_url&#x27;: &#x27;auth_url_example&#x27;, &#x27;auth_user_name&#x27;: &#x27;auth_user_name_example&#x27;, &#x27;auth_user_password&#x27;: &#x27;example-password&#x27;, &#x27;oauth_scheme&#x27;: &#x27;NONE&#x27;}, &#x27;req_authentication_scheme&#x27;: &#x27;OAUTH&#x27;, &#x27;request_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;request_post_body&#x27;: &#x27;request_post_body_example&#x27;, &#x27;request_query_params&#x27;: [{&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}], &#x27;verify_response_codes&#x27;: [], &#x27;verify_response_content&#x27;: &#x27;verify_response_content_example&#x27;, &#x27;verify_texts&#x27;: [{&#x27;text&#x27;: &#x27;text_example&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_run_once&#x27;: True, &#x27;monitor_type&#x27;: &#x27;SCRIPTED_BROWSER&#x27;, &#x27;repeat_interval_in_seconds&#x27;: 56, &#x27;script_id&#x27;: &#x27;ocid1.script.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;script_name&#x27;: &#x27;script_name_example&#x27;, &#x27;script_parameters&#x27;: [{&#x27;is_overwritten&#x27;: True, &#x27;is_secret&#x27;: True, &#x27;monitor_script_parameter&#x27;: {&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}}], &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;target&#x27;: &#x27;target_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;vantage_point_count&#x27;: 56, &#x27;vantage_points&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1415,7 +1419,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1432,7 +1436,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of configuration.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BROWSER_CONFIG</div>
                                     </td>
             </tr>
@@ -1451,7 +1455,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>If certificate validation is enabled, then the call will fail in case of certification errors.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1470,7 +1474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>If isFailureRetried is enabled, then a failed call will be retried.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1489,7 +1493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>If redirection enabled, then redirects will be allowed while accessing target URL.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1508,7 +1512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1526,7 +1530,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of hops.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1546,7 +1550,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of probe mode when TCP protocol is selected.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SACK</div>
                                     </td>
             </tr>
@@ -1566,7 +1570,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of probes per hop.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1586,8 +1590,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of protocol.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TCP</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ICMP</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1606,7 +1610,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of probe packets sent out simultaneously.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1626,7 +1630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1644,7 +1648,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of authentication headers. Example: `[{&quot;headerName&quot;: &quot;content-type&quot;, &quot;headerValue&quot;:&quot;json&quot;}]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1663,8 +1667,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the header.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">content-type</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">header_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1684,8 +1688,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Value of the header.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">json</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">header_value_example</div>
                                     </td>
             </tr>
                     
@@ -1705,7 +1709,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Request method.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GET</div>
                                     </td>
             </tr>
@@ -1725,8 +1729,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Request post body.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">openPageMonitor</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">auth_request_post_body_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1745,8 +1749,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Authentication token.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">token</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">auth_token_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1765,8 +1769,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>URL to get authetication token.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://www.example.com/token</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">auth_url_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1785,8 +1789,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Username for authentication.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">user</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">auth_user_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1805,7 +1809,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>User password for authentication.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example-password</div>
                                     </td>
             </tr>
@@ -1825,7 +1829,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Request http oauth scheme.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NONE</div>
                                     </td>
             </tr>
@@ -1845,8 +1849,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Request http authentication scheme.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NONE</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OAUTH</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1864,7 +1868,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of request headers. Example: `[{&quot;headerName&quot;: &quot;content-type&quot;, &quot;headerValue&quot;:&quot;json&quot;}]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1882,8 +1886,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the header.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">content-type</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">header_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1902,8 +1906,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Value of the header.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">json</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">header_value_example</div>
                                     </td>
             </tr>
                     
@@ -1922,7 +1926,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Request HTTP method.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GET</div>
                                     </td>
             </tr>
@@ -1941,8 +1945,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Request post body content.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">openPageMonitor</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">request_post_body_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1960,7 +1964,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of request query params. Example: `[{&quot;paramName&quot;: &quot;sortOrder&quot;, &quot;paramValue&quot;: &quot;asc&quot;}]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1978,8 +1982,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of request query parameter.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sortOrder</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">param_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1998,8 +2002,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Value of request query parameter.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">asc</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">param_value_example</div>
                                     </td>
             </tr>
                     
@@ -2018,7 +2022,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2035,8 +2039,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Verify response content against regular expression based string. If response content does not match the verifyResponseContent value, then it will be considered a failure.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">^searchText*</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">verify_response_content_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2054,7 +2058,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Verify all the search strings present in response. If any search string is not present in the response, then it will be considered as a failure.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2072,8 +2076,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Verification text in the response.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">searchString</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_example</div>
                                     </td>
             </tr>
                     
@@ -2092,7 +2096,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -2110,8 +2114,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique name that can be edited. The name should not contain any confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">exampleName</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2128,7 +2132,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -2146,8 +2150,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the monitor.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2164,7 +2168,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>If runOnce is enabled, then the monitor will run once.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2182,7 +2186,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of the monitor.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SCRIPTED_BROWSER</div>
                                     </td>
             </tr>
@@ -2200,8 +2204,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Interval in seconds after the start time when the job should be repeated. Minimum repeatIntervalInSeconds should be 300 seconds.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">600</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2218,8 +2222,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the script. scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.script.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2236,8 +2240,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the script.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">testScript</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">script_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2254,7 +2258,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of script parameters. Example: `[{&quot;monitorScriptParameter&quot;: {&quot;paramName&quot;: &quot;userid&quot;, &quot;paramValue&quot;:&quot;testuser&quot;}, &quot;isSecret&quot;: false, &quot;isOverwritten&quot;: false}]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2271,6 +2275,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>If parameter value is default or overwritten.</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2288,7 +2294,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Describes if  the parameter value is secret and should be kept confidential. isSecret is specified in either CreateScript or UpdateScript API.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2307,7 +2313,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2325,8 +2331,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the parameter.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">testName</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">param_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2345,8 +2351,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Value of the parameter.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">openPageMonitor</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">param_value_example</div>
                                     </td>
             </tr>
                     
@@ -2365,7 +2371,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Enables or disables the monitor.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
                                     </td>
             </tr>
@@ -2383,8 +2389,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Specify the endpoint on which to run the monitor. For BROWSER and REST monitor types, target is mandatory. If target is specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script (specified by scriptId in monitor) against the specified target endpoint. If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://www.oracle.com/index.html</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2401,8 +2407,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the resource was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2020-02-12T22:47:12.613Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-02-12T22:47:12.613Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2419,8 +2425,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the resource was updated, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2020-02-13T22:47:12.613Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-02-13T22:47:12.613Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2437,7 +2443,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors. Also, timeoutInSeconds should be a multiple of 60. Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2455,8 +2461,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Number of vantage points where monitor is running.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2473,7 +2479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of vantage points from where monitor is running.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2490,8 +2496,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique name that can be edited. The name should not contain any confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">exampleName</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2509,8 +2515,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the vantage point.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">us_phoenix</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                     

@@ -30,9 +30,13 @@ oracle.oci.oci_opsi_summarize_exadata_insight_resource_forecast_trend_facts -- F
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_summarize_exadata_insight_resource_forecast_trend_facts`.
 
@@ -577,17 +581,17 @@ Examples
         analysis_time_interval: analysis_time_interval_example
         time_interval_start: 2013-10-20T19:20:30+01:00
         time_interval_end: 2013-10-20T19:20:30+01:00
-        database_insight_id: [ "$p.getValue()" ]
-        host_insight_id: [ "$p.getValue()" ]
-        storage_server_name: [ "$p.getValue()" ]
-        exadata_type: [ "$p.getValue()" ]
+        database_insight_id: [ "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+        host_insight_id: [ "ocid1.hostinsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+        storage_server_name: [ "storage_server_name_example" ]
+        exadata_type: [ "exadata_type_example" ]
         statistic: AVG
-        forecast_start_day: 56
-        forecast_days: 56
+        forecast_start_day: 0
+        forecast_days: 0
         forecast_model: LINEAR
-        cdb_name: [ "$p.getValue()" ]
-        host_name: [ "$p.getValue()" ]
-        confidence: 56
+        cdb_name: [ "cdb_name_example" ]
+        host_name: [ "host_name_example" ]
+        confidence: 1
         sort_order: ASC
         sort_by: id
 
@@ -625,8 +629,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of SummarizeExadataInsightResourceForecastTrend resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;days_to_reach_capacity&#x27;: 56, &#x27;historical_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2020-05-01T00:00:00.000Z&#x27;, &#x27;usage&#x27;: 34.5}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;LINEAR&#x27;, &#x27;projected_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2020-05-01T00:00:00.000Z&#x27;, &#x27;high_value&#x27;: 1.2, &#x27;low_value&#x27;: 1.2, &#x27;usage&#x27;: 34.5}]}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;days_to_reach_capacity&#x27;: 56, &#x27;historical_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage&#x27;: 1.2}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;LINEAR&#x27;, &#x27;projected_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;high_value&#x27;: 1.2, &#x27;low_value&#x27;: 1.2, &#x27;usage&#x27;: 1.2}]}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -643,7 +647,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Days to reach capacity for a storage server</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -661,7 +665,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Time series data used for the forecast analysis.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -678,8 +682,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The timestamp in which the current sampling period ends in RFC 3339 format.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-05-01T00:00:00.000Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -697,8 +701,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total amount used of the resource metric type (CPU, STORAGE).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">34.5</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
                     
@@ -716,7 +720,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -734,7 +738,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -752,7 +756,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Time series patterns used in the forecasting.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LINEAR</div>
                                     </td>
             </tr>
@@ -770,7 +774,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Time series data result of the forecasting analysis.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -787,8 +791,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The timestamp in which the current sampling period ends in RFC 3339 format.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-05-01T00:00:00.000Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -806,7 +810,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Upper uncertainty bound of the current usage value.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -825,7 +829,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Lower uncertainty bound of the current usage value.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -844,8 +848,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total amount used of the resource metric type (CPU, STORAGE).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">34.5</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
                     

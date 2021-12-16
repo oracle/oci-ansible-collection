@@ -203,15 +203,15 @@ EXAMPLES = """
 - name: Create autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
-    subnet_id: ocid1.subnet.oc1.unique_ID
-    shape: Exadata.Half1.168
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    shape: shape_example
 
     # optional
-    display_name: tst3dbsys
-    nsg_ids: [ "null" ]
-    domain: my.company.com
+    display_name: display_name_example
+    nsg_ids: [ "nsg_ids_example" ]
+    domain: domain_example
     license_model: LICENSE_INCLUDED
     maintenance_window_details:
       # required
@@ -221,11 +221,11 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -236,8 +236,8 @@ EXAMPLES = """
     autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: tst3dbsys
-    nsg_ids: [ "null" ]
+    display_name: display_name_example
+    nsg_ids: [ "nsg_ids_example" ]
     maintenance_window_details:
       # required
       preference: NO_PREFERENCE
@@ -246,11 +246,11 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -258,11 +258,11 @@ EXAMPLES = """
 - name: Update autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_exadata_infrastructure:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tst3dbsys
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     maintenance_window_details:
       # required
       preference: NO_PREFERENCE
@@ -271,11 +271,11 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -289,8 +289,8 @@ EXAMPLES = """
 - name: Delete autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_exadata_infrastructure:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tst3dbsys
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

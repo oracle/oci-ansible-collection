@@ -143,9 +143,9 @@ EXAMPLES = """
 
       # optional
       key: key_example
-      caching_duration: PT1H
+      caching_duration: caching_duration_example
       is_client_caching_enabled: true
-      client_caching_duration: PT1H
+      client_caching_duration: client_caching_duration_example
 
 """
 
@@ -184,7 +184,7 @@ caching_rules:
                   Example: `PT1H`"
             returned: on success
             type: str
-            sample: PT1H
+            sample: caching_duration_example
         is_client_caching_enabled:
             description:
                 - Enables or disables client caching.
@@ -201,7 +201,7 @@ caching_rules:
                   Example: `PT1H`"
             returned: on success
             type: str
-            sample: PT1H
+            sample: client_caching_duration_example
         criteria:
             description:
                 - The array of the rule criteria with condition and value. The caching rule would be applied for the requests that matched any of the listed
@@ -231,9 +231,9 @@ caching_rules:
         "key": "key_example",
         "name": "name_example",
         "action": "CACHE",
-        "caching_duration": "PT1H",
+        "caching_duration": "caching_duration_example",
         "is_client_caching_enabled": true,
-        "client_caching_duration": "PT1H",
+        "client_caching_duration": "client_caching_duration_example",
         "criteria": [{
             "condition": "URL_IS",
             "value": "value_example"

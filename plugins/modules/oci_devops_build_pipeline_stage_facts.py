@@ -23,7 +23,7 @@ module: oci_devops_build_pipeline_stage_facts
 short_description: Fetches details about one or multiple BuildPipelineStage resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple BuildPipelineStage resources in Oracle Cloud Infrastructure
-    - Returns summary of list of all Stages in a compartment or buildPipeline
+    - Returns a list of all stages in a compartment or build pipeline.
     - If I(build_pipeline_stage_id) is specified, the details of a single BuildPipelineStage will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     build_pipeline_id:
         description:
-            - The ID of the parent build pipeline.
+            - The OCID of the parent build pipeline.
         type: str
     compartment_id:
         description:
@@ -44,7 +44,7 @@ options:
         type: str
     lifecycle_state:
         description:
-            - A filter to return the stages that match with the given lifecycleState.
+            - A filter to return the stages that matches the given lifecycle state.
         type: str
         choices:
             - "CREATING"
@@ -88,7 +88,7 @@ EXAMPLES = """
     # optional
     build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -104,62 +104,61 @@ build_pipeline_stages:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Stage identifier which can be renamed and is not necessarily unique
+                - Stage display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Optional description about the BuildStage
+                - Optional description about the build stage.
             returned: on success
             type: str
             sample: description_example
         project_id:
             description:
-                - Project Identifier
+                - The OCID of the DevOps project.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         build_pipeline_id:
             description:
-                - Build Pipeline Identifier
+                - The OCID of the build pipeline.
             returned: on success
             type: str
             sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - Compartment Identifier
+                - The OCID of the compartment where the pipeline is created.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         build_pipeline_stage_type:
             description:
-                - List of stage types. It includes 'Wait stage', 'Build Stage', 'Deliver Artifact Stage'
-                  and 'Trigger Deployment Stage'.
+                - "Defines the stage type, which is one of the following: Build, Deliver Artifacts, Wait, and Trigger Deployment."
             returned: on success
             type: str
             sample: WAIT
         time_created:
             description:
-                - The time at which the Stage was created. An RFC3339 formatted datetime string
+                - The time the stage was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time at which the Stage was updated. An RFC3339 formatted datetime string
+                - The time the stage was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the Stage.
+                - The current state of the stage.
             returned: on success
             type: str
             sample: CREATING
@@ -178,13 +177,13 @@ build_pipeline_stages:
             contains:
                 items:
                     description:
-                        - A list of BuildPipelineStagePredecessors for a stage.
+                        - A list of build pipeline stage predecessors for a stage.
                     returned: on success
                     type: complex
                     contains:
                         id:
                             description:
-                                - The id of the predecessor stage. If a stages is the first stage in the pipeline, then the id is the pipeline's id.
+                                - The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's ID.
                             returned: on success
                             type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -212,119 +211,128 @@ build_pipeline_stages:
             sample: {}
         image:
             description:
-                - Image name for the Build Environment
+                - Image name for the build environment.
+                - Returned for get operation
             returned: on success
             type: str
             sample: OL7_X86_64_STANDARD_10
         build_spec_file:
             description:
-                - The path to the build specification file for this Environment. The default location if not specified is build_spec.yaml
+                - The path to the build specification file for this environment. The default location of the file if not specified is build_spec.yaml.
+                - Returned for get operation
             returned: on success
             type: str
             sample: build_spec_file_example
         stage_execution_timeout_in_seconds:
             description:
-                - Timeout for the Build Stage Execution. Value in seconds.
+                - Timeout for the build stage execution. Specify value in seconds.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         build_source_collection:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
                 items:
                     description:
-                        - Collection of Build sources. In case of UPDATE operation, replaces existing Build sources list. Merging with existing Build Sources is
+                        - Collection of build sources. In case of UPDATE operation, replaces existing build sources list. Merging with existing build sources is
                           not supported.
                     returned: on success
                     type: complex
                     contains:
                         name:
                             description:
-                                - Name of the Build source. This must be unique within a BuildSourceCollection. The name can be used by customers to locate the
-                                  working directory pertinent to this repository.
+                                - Name of the build source. This must be unique within a build source collection. The name can be used by customers to locate
+                                  the working directory pertinent to this repository.
                             returned: on success
                             type: str
                             sample: name_example
                         connection_type:
                             description:
-                                - The type of Source Provider.
+                                - The type of source provider.
                             returned: on success
                             type: str
                             sample: GITHUB
                         repository_url:
                             description:
-                                - Url for repository
+                                - URL for the repository.
                             returned: on success
                             type: str
                             sample: repository_url_example
                         branch:
                             description:
-                                - branch name
+                                - Branch name.
                             returned: on success
                             type: str
                             sample: branch_example
                         repository_id:
                             description:
-                                - The Devops Code Repository Id
+                                - The DevOps code repository ID.
                             returned: on success
                             type: str
                             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                         connection_id:
                             description:
-                                - Connection identifier pertinent to GITHUB source provider
+                                - Connection identifier pertinent to GitHub source provider.
                             returned: on success
                             type: str
                             sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         primary_build_source:
             description:
-                - Name of the BuildSource in which the build_spec.yml file need to be located. If not specified, the 1st entry in the BuildSource collection
-                  will be chosen as Primary.
+                - Name of the build source where the build_spec.yml file is located. If not specified, then the first entry in the build source collection is
+                  chosen as primary build source.
+                - Returned for get operation
             returned: on success
             type: str
             sample: primary_build_source_example
         deliver_artifact_collection:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
                 items:
                     description:
-                        - Collection of Artifacts that were generated in the Build Stage and need to be pushed to the artifactory stores. In case of UPDATE
+                        - Collection of artifacts that were generated in the Build stage and need to be pushed to the artifactory stores. In case of UPDATE
                           operation, replaces existing artifacts list. Merging with existing artifacts is not supported.
                     returned: on success
                     type: complex
                     contains:
                         artifact_name:
                             description:
-                                - Name of the artifact specified in the build_spec.yml file.
+                                - Name of the artifact specified in the build_spec.yaml file.
                             returned: on success
                             type: str
                             sample: artifact_name_example
                         artifact_id:
                             description:
-                                - Artifact Identifier which contains the Artifact Definition.
+                                - Artifact identifier that contains the artifact definition.
                             returned: on success
                             type: str
                             sample: "ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_id:
             description:
-                - A target Pipeline ocid that will be run in this stage.
+                - A target deployment pipeline OCID that will run in this stage.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
         is_pass_all_parameters_enabled:
             description:
-                - A boolean flag specifies whether the parameters should be passed during the deployment trigger.
+                - A boolean flag that specifies whether all the parameters must be passed when the deployment is triggered.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         wait_criteria:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -340,7 +348,7 @@ build_pipeline_stages:
                           be up to 2 days.
                     returned: on success
                     type: str
-                    sample: PT10M5S
+                    sample: wait_duration_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -385,7 +393,7 @@ build_pipeline_stages:
         "is_pass_all_parameters_enabled": true,
         "wait_criteria": {
             "wait_type": "ABSOLUTE_WAIT",
-            "wait_duration": "PT10M5S"
+            "wait_duration": "wait_duration_example"
         }
     }]
 """

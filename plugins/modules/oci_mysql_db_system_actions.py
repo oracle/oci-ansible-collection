@@ -142,7 +142,7 @@ db_system:
                         - The fault domain in which the DB System is placed.
                     returned: on success
                     type: str
-                    sample: fault_domain_example
+                    sample: FAULT-DOMAIN-1
         is_analytics_cluster_attached:
             description:
                 - "DEPRECATED -- please use `isHeatWaveClusterAttached` instead.
@@ -253,7 +253,7 @@ db_system:
                 - For a standalone DB System, this defines the fault domain in which the DB System is placed.
             returned: on success
             type: str
-            sample: fault_domain_example
+            sample: FAULT-DOMAIN-1
         shape_name:
             description:
                 - "The shape of the primary instances of the DB System. The shape
@@ -647,7 +647,7 @@ db_system:
         "is_highly_available": true,
         "current_placement": {
             "availability_domain": "Uocm:PHX-AD-1",
-            "fault_domain": "fault_domain_example"
+            "fault_domain": "FAULT-DOMAIN-1"
         },
         "is_analytics_cluster_attached": true,
         "analytics_cluster": {
@@ -666,7 +666,7 @@ db_system:
             "time_updated": "2013-10-20T19:20:30+01:00"
         },
         "availability_domain": "Uocm:PHX-AD-1",
-        "fault_domain": "fault_domain_example",
+        "fault_domain": "FAULT-DOMAIN-1",
         "shape_name": "shape_name_example",
         "mysql_version": "mysql_version_example",
         "backup_policy": {

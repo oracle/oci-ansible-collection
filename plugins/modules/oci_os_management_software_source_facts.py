@@ -86,7 +86,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: TIMECREATED
     lifecycle_state: CREATING
@@ -133,12 +133,14 @@ software_sources:
         arch_type:
             description:
                 - The architecture type supported by the Software Source
+                - Returned for get operation
             returned: on success
             type: str
             sample: IA_32
         url:
             description:
                 - URL for the repostiory
+                - Returned for get operation
             returned: on success
             type: str
             sample: url_example
@@ -157,42 +159,49 @@ software_sources:
         checksum_type:
             description:
                 - The yum repository checksum type used by this software source
+                - Returned for get operation
             returned: on success
             type: str
             sample: SHA1
         maintainer_name:
             description:
                 - Name of the person maintaining this software source
+                - Returned for get operation
             returned: on success
             type: str
             sample: maintainer_name_example
         maintainer_email:
             description:
                 - Email address of the person maintaining this software source
+                - Returned for get operation
             returned: on success
             type: str
             sample: maintainer_email_example
         maintainer_phone:
             description:
                 - Phone number of the person maintaining this software source
+                - Returned for get operation
             returned: on success
             type: str
             sample: maintainer_phone_example
         gpg_key_url:
             description:
                 - URL of the GPG key for this software source
+                - Returned for get operation
             returned: on success
             type: str
             sample: gpg_key_url_example
         gpg_key_id:
             description:
                 - ID of the GPG key for this software source
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx"
         gpg_key_fingerprint:
             description:
                 - Fingerprint of the GPG key for this software source
+                - Returned for get operation
             returned: on success
             type: str
             sample: gpg_key_fingerprint_example
@@ -217,6 +226,7 @@ software_sources:
         associated_managed_instances:
             description:
                 - list of the Managed Instances associated with this Software Sources
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

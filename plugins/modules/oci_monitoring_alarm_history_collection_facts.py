@@ -68,8 +68,8 @@ EXAMPLES = """
 
     # optional
     alarm_historytype: STATE_HISTORY
-    timestamp_greater_than_or_equal_to: 2019-01-01T01:00:00.789Z
-    timestamp_less_than: 2019-01-02T01:00:00.789Z
+    timestamp_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    timestamp_less_than: 2013-10-20T19:20:30+01:00
 
 """
 
@@ -113,7 +113,7 @@ alarm_history_collection:
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T01:02:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 timestamp_triggered:
                     description:
                         - "Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing.
@@ -121,14 +121,14 @@ alarm_history_collection:
                         - "Example: `2019-02-01T0:59:00.789Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T0:59:00.789Z"
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "alarm_id": "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx",
         "is_enabled": true,
         "entries": [{
             "summary": "summary_example",
-            "timestamp": "2019-02-01T01:02:29.600Z",
-            "timestamp_triggered": "2019-02-01T0:59:00.789Z"
+            "timestamp": "2013-10-20T19:20:30+01:00",
+            "timestamp_triggered": "2013-10-20T19:20:30+01:00"
         }]
     }
 """

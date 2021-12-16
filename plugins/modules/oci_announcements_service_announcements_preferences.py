@@ -76,7 +76,7 @@ EXAMPLES = """
 - name: Create announcements_preferences
   oci_announcements_service_announcements_preferences:
     # required
-    type: CreateAnnouncementsPreferencesDetails
+    type: type_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     preference_type: OPT_IN_TENANT_ANNOUNCEMENTS
 
@@ -86,7 +86,7 @@ EXAMPLES = """
 - name: Update announcements_preferences
   oci_announcements_service_announcements_preferences:
     # required
-    type: CreateAnnouncementsPreferencesDetails
+    type: type_example
     preference_type: OPT_IN_TENANT_ANNOUNCEMENTS
     preference_id: "ocid1.preference.oc1..xxxxxxEXAMPLExxxxxx"
 

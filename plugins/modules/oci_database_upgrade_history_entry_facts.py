@@ -84,8 +84,8 @@ EXAMPLES = """
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    upgrade_action: upgrade_action_example
-    lifecycle_state: lifecycle_state_example
+    upgrade_action: PRECHECK
+    lifecycle_state: SUCCEEDED
     sort_by: TIMESTARTED
     sort_order: ASC
 

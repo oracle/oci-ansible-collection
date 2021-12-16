@@ -30,9 +30,13 @@ oracle.oci.oci_devops_repository_ref -- Manage a RepositoryRef resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_devops_repository_ref`.
 
@@ -238,7 +242,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources that match the given Ref name.</div>
+                                            <div>A filter to return only resources that match the given reference name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -257,7 +261,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of Ref (Branch or Tag)</div>
+                                            <div>The type of reference (Branch or Tag).</div>
                                             <div>Required for update using <em>state=present</em> with ref_name present.</div>
                                                         </td>
             </tr>
@@ -288,7 +292,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>unique Repository identifier.</div>
+                                            <div>Unique repository identifier.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -439,7 +443,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the RepositoryRef resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;full_ref_name&#x27;: &#x27;full_ref_name_example&#x27;, &#x27;object_id&#x27;: &#x27;ocid1.object.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ref_name&#x27;: &#x27;ref_name_example&#x27;, &#x27;ref_type&#x27;: &#x27;BRANCH&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -457,7 +461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Commit ID pointed to by the new branch.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -473,9 +477,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique full ref name inside a repository</div>
+                                            <div>Unique full reference name inside a repository.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">full_ref_name_example</div>
                                     </td>
             </tr>
@@ -493,7 +497,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>SHA-1 hash value of the object pointed to by the tag.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.object.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -509,9 +513,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique Ref name inside a repository</div>
+                                            <div>Unique reference name inside a repository.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ref_name_example</div>
                                     </td>
             </tr>
@@ -527,9 +531,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of Ref (Branch or Tag)</div>
+                                            <div>The type of reference (Branch or Tag).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BRANCH</div>
                                     </td>
             </tr>
@@ -545,9 +549,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the repository containing the ref.</div>
+                                            <div>The OCID of the repository containing the reference.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

@@ -67,7 +67,7 @@ EXAMPLES = """
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sort_order: ASC
     sort_by: TIMECREATED

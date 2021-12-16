@@ -26,6 +26,7 @@ description:
     - For I(action=change_compartment), change Blockchain Platform Compartment
     - For I(action=start), start a Blockchain Platform
     - For I(action=stop), stop a Blockchain Platform
+    - For I(action=upgrade), upgrade a Blockchain Platform version
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -40,6 +41,11 @@ options:
             - The OCID of the new compartment.
             - Required for I(action=change_compartment).
         type: str
+    patch_id:
+        description:
+            - The patch ID corresponding to the version to which platform will be upgraded.
+            - Required for I(action=upgrade).
+        type: str
     action:
         description:
             - The action to perform on the BlockchainPlatform.
@@ -49,6 +55,7 @@ options:
             - "change_compartment"
             - "start"
             - "stop"
+            - "upgrade"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -71,6 +78,13 @@ EXAMPLES = """
     # required
     blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
+
+- name: Perform action upgrade on blockchain_platform
+  oci_blockchain_platform_actions:
+    # required
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+    patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+    action: upgrade
 
 """
 
@@ -123,6 +137,12 @@ blockchain_platform:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        platform_version:
+            description:
+                - Platform Version
+            returned: on success
+            type: str
+            sample: platform_version_example
         service_version:
             description:
                 - The version of the Platform Instance.
@@ -219,7 +239,7 @@ blockchain_platform:
                                 - Availability Domain of OSN
                             returned: on success
                             type: str
-                            sample: ad_example
+                            sample: Uocm:PHX-AD-1
                         ocpu_allocation_param:
                             description:
                                 - ""
@@ -285,7 +305,7 @@ blockchain_platform:
                                 - Availability Domain of peer
                             returned: on success
                             type: str
-                            sample: ad_example
+                            sample: Uocm:PHX-AD-1
                         lifecycle_state:
                             description:
                                 - The current state of the peer.
@@ -362,6 +382,7 @@ blockchain_platform:
         "is_byol": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "platform_version": "platform_version_example",
         "service_version": "service_version_example",
         "platform_role": "FOUNDER",
         "compute_shape": "STANDARD",
@@ -377,7 +398,7 @@ blockchain_platform:
         "component_details": {
             "osns": [{
                 "osn_key": "osn_key_example",
-                "ad": "ad_example",
+                "ad": "Uocm:PHX-AD-1",
                 "ocpu_allocation_param": {
                     "ocpu_allocation_number": 3.4
                 },
@@ -391,7 +412,7 @@ blockchain_platform:
                     "ocpu_allocation_number": 3.4
                 },
                 "host": "host_example",
-                "ad": "ad_example",
+                "ad": "Uocm:PHX-AD-1",
                 "lifecycle_state": "ACTIVE"
             }]
         },
@@ -423,6 +444,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.blockchain import BlockchainPlatformClient
     from oci.blockchain.models import ChangeBlockchainPlatformCompartmentDetails
+    from oci.blockchain.models import UpgradeBlockchainPlatformDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -435,6 +457,7 @@ class BlockchainPlatformActionsHelperGen(OCIActionsHelperBase):
         change_compartment
         start
         stop
+        upgrade
     """
 
     @staticmethod
@@ -508,6 +531,27 @@ class BlockchainPlatformActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def upgrade(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, UpgradeBlockchainPlatformDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.upgrade_blockchain_platform,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                upgrade_blockchain_platform_details=action_details,
+                blockchain_platform_id=self.module.params.get("blockchain_platform_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 BlockchainPlatformActionsHelperCustom = get_custom_class(
     "BlockchainPlatformActionsHelperCustom"
@@ -528,10 +572,11 @@ def main():
         dict(
             blockchain_platform_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            patch_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["change_compartment", "start", "stop"],
+                choices=["change_compartment", "start", "stop", "upgrade"],
             ),
         )
     )

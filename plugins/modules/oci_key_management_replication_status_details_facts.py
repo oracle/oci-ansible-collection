@@ -71,7 +71,7 @@ replication_status_details:
                         - The replica region
                     returned: on success
                     type: str
-                    sample: region_example
+                    sample: us-phoenix-1
                 status:
                     description:
                         - Replication status associated with a replicationId
@@ -80,7 +80,7 @@ replication_status_details:
                     sample: REPLICATING
     sample: {
         "replica_details": [{
-            "region": "region_example",
+            "region": "us-phoenix-1",
             "status": "REPLICATING"
         }]
     }

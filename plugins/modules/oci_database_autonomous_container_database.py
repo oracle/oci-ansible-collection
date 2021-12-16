@@ -335,19 +335,19 @@ EXAMPLES = """
 - name: Create autonomous_container_database
   oci_database_autonomous_container_database:
     # required
-    display_name: containerDatabase2
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     patch_model: RELEASE_UPDATES
 
     # optional
     db_unique_name: db_unique_name_example
-    service_level_agreement_type: AUTONOMOUS_DATAGUARD
-    autonomous_exadata_infrastructure_id: ocid1.autonomousexainfrastructure.oc1.unique_ID
-    peer_autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1.unique_ID
-    peer_autonomous_container_database_display_name: StandbyContainerDatabase2
-    protection_mode: MAXIMUM_PERFORMANCE
+    service_level_agreement_type: STANDARD
+    autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_autonomous_exadata_infrastructure_id: "ocid1.peerautonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_autonomous_container_database_display_name: peer_autonomous_container_database_display_name_example
+    protection_mode: MAXIMUM_AVAILABILITY
     peer_autonomous_vm_cluster_id: "ocid1.peerautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
-    peer_autonomous_container_database_compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    peer_autonomous_container_database_compartment_id: "ocid1.peerautonomouscontainerdatabasecompartment.oc1..xxxxxxEXAMPLExxxxxx"
     peer_autonomous_container_database_backup_config:
       # optional
       backup_destination_details:
@@ -364,19 +364,19 @@ EXAMPLES = """
     autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     maintenance_window_details:
       # required
-      preference: CUSTOM_PREFERENCE
+      preference: NO_PREFERENCE
 
       # optional
       months:
       - # required
-        name: FEBRUARY
-      weeks_of_month: [ "1" ]
+        name: JANUARY
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
-        name: SUNDAY
-      hours_of_day: [ "0" ]
+        name: MONDAY
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
-    standby_maintenance_buffer_in_days: 7
+    standby_maintenance_buffer_in_days: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     backup_config:
@@ -390,10 +390,10 @@ EXAMPLES = """
         vpc_user: vpc_user_example
         vpc_password: example-password
         internet_proxy: internet_proxy_example
-      recovery_window_in_days: 30
-    kms_key_id: ocid1.key.oc1.unique_ID
+      recovery_window_in_days: 56
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
-    vault_id: ocid1.vault.oc1.unique_ID
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update autonomous_container_database
@@ -402,23 +402,23 @@ EXAMPLES = """
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: containerDatabase2
+    display_name: display_name_example
     patch_model: RELEASE_UPDATES
     maintenance_window_details:
       # required
-      preference: CUSTOM_PREFERENCE
+      preference: NO_PREFERENCE
 
       # optional
       months:
       - # required
-        name: FEBRUARY
-      weeks_of_month: [ "1" ]
+        name: JANUARY
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
-        name: SUNDAY
-      hours_of_day: [ "0" ]
+        name: MONDAY
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
-    standby_maintenance_buffer_in_days: 7
+    standby_maintenance_buffer_in_days: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     backup_config:
@@ -432,31 +432,31 @@ EXAMPLES = """
         vpc_user: vpc_user_example
         vpc_password: example-password
         internet_proxy: internet_proxy_example
-      recovery_window_in_days: 30
+      recovery_window_in_days: 56
 
 - name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_container_database:
     # required
-    display_name: containerDatabase2
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     patch_model: RELEASE_UPDATES
     maintenance_window_details:
       # required
-      preference: CUSTOM_PREFERENCE
+      preference: NO_PREFERENCE
 
       # optional
       months:
       - # required
-        name: FEBRUARY
-      weeks_of_month: [ "1" ]
+        name: JANUARY
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
-        name: SUNDAY
-      hours_of_day: [ "0" ]
+        name: MONDAY
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
-    standby_maintenance_buffer_in_days: 7
+    standby_maintenance_buffer_in_days: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     backup_config:
@@ -470,7 +470,7 @@ EXAMPLES = """
         vpc_user: vpc_user_example
         vpc_password: example-password
         internet_proxy: internet_proxy_example
-      recovery_window_in_days: 30
+      recovery_window_in_days: 56
 
 - name: Delete autonomous_container_database
   oci_database_autonomous_container_database:
@@ -481,8 +481,8 @@ EXAMPLES = """
 - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_container_database:
     # required
-    display_name: containerDatabase2
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """

@@ -88,7 +88,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     lifecycle_state: CREATING
     sort_order: ASC
     sort_by: TIMECREATED
@@ -156,6 +156,7 @@ integration_instances:
                 - "Simple key-value pair that is applied without any predefined name,
                   type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -164,6 +165,7 @@ integration_instances:
                 - "Usage of predefined tag keys. These predefined keys are scoped to
                   namespaces.
                   Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}

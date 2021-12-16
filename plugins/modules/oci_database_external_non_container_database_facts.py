@@ -90,7 +90,7 @@ EXAMPLES = """
     # optional
     sort_by: DISPLAYNAME
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     display_name: display_name_example
 
 """

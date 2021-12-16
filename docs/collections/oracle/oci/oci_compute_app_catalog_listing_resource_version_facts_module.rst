@@ -30,9 +30,13 @@ oracle.oci.oci_compute_app_catalog_listing_resource_version_facts -- Fetches det
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_app_catalog_listing_resource_version_facts`.
 
@@ -348,8 +352,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of AppCatalogListingResourceVersion resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;accessible_ports&#x27;: [], &#x27;allowed_actions&#x27;: [], &#x27;available_regions&#x27;: [], &#x27;compatible_shapes&#x27;: [], &#x27;listing_id&#x27;: &#x27;ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_resource_id&#x27;: &#x27;ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_resource_version&#x27;: &#x27;listing_resource_version_example&#x27;, &#x27;time_published&#x27;: &#x27;2018-03-20T12:32:53.532Z&#x27;}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;accessible_ports&#x27;: [], &#x27;allowed_actions&#x27;: [], &#x27;available_regions&#x27;: [], &#x27;compatible_shapes&#x27;: [], &#x27;listing_id&#x27;: &#x27;ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_resource_id&#x27;: &#x27;ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_resource_version&#x27;: &#x27;listing_resource_version_example&#x27;, &#x27;time_published&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -366,7 +370,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of accessible ports for instances launched with this listing resource version.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -382,7 +386,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Allowed actions for the listing resource.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -400,7 +404,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For information about Regions, see <a href='https://docs.cloud.oracle.com/#General/Concepts/regions.htm'>Regions</a>.</div>
                                             <div>Example: `[&quot;us-ashburn-1&quot;, &quot;us-phoenix-1&quot;]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -418,7 +422,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>You may enumerate all available shapes by calling listShapes.</div>
                                             <div>Example: `[&quot;VM.Standard1.1&quot;, &quot;VM.Standard1.2&quot;]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -434,7 +438,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the listing this resource version belongs to.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -452,7 +456,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the listing resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -470,7 +474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Resource Version.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listing_resource_version_example</div>
                                     </td>
             </tr>
@@ -488,8 +492,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Date and time the listing resource version was published, in <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> format. Example: `2018-03-20T12:32:53.532Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-03-20T12:32:53.532Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

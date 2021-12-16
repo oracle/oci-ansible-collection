@@ -23,9 +23,10 @@ module: oci_database_management_pdb_metrics_facts
 short_description: Fetches details about a PdbMetrics resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a PdbMetrics resource in Oracle Cloud Infrastructure
-    - Gets a summary of the resource usage metrics like DB Time, CPU, User I/O, Wait, Storage, and Memory
-      for each Pdb under specified Container database in same compartment as container database.
-      If comparmentId is provided then for each Pdb under specified compartmentId.
+    - Gets a summary of the resource usage metrics such as CPU, User I/O, and Storage for each
+      PDB within a specific CDB. If comparmentId is specified, then the metrics for
+      each PDB (within the CDB) in the specified compartment are retrieved.
+      If compartmentId is not specified, then the metrics for all the PDBs within the CDB are retrieved.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -90,7 +91,7 @@ pdb_metrics:
     contains:
         database_usage_metrics:
             description:
-                - The summary of Pdb's and it's resource usage metrics (CPU, IO, Storage and Active sessions) for a specified Container database.
+                - A summary of PDBs and their resource usage metrics such as CPU, User I/O, and Storage, within a specific CDB.
             returned: on success
             type: complex
             contains:
@@ -115,8 +116,8 @@ pdb_metrics:
                     sample: EXTERNAL_SIDB
                 database_sub_type:
                     description:
-                        - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container
-                          Database.
+                        - The subtype of the Oracle Database. Indicates whether the database is a Container Database,
+                          Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.
                     returned: on success
                     type: str
                     sample: CDB
@@ -132,6 +133,12 @@ pdb_metrics:
                     returned: on success
                     type: str
                     sample: database_version_example
+                workload_type:
+                    description:
+                        - The workload type of the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: OLTP
                 database_name:
                     description:
                         - The display name of the Managed Database.
@@ -213,6 +220,7 @@ pdb_metrics:
             "database_sub_type": "CDB",
             "deployment_type": "ONPREMISE",
             "database_version": "database_version_example",
+            "workload_type": "OLTP",
             "database_name": "database_name_example",
             "database_container_id": "ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx",
             "metrics": [{

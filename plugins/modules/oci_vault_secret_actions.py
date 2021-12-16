@@ -85,7 +85,7 @@ EXAMPLES = """
     action: schedule_secret_deletion
 
     # optional
-    time_of_deletion: 2013-10-20T19:20:30+01:00
+    time_of_deletion: time_of_deletion_example
 
 """
 
@@ -201,7 +201,7 @@ secret:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 is_secret_content_retrieval_blocked_on_expiry:
                     description:
                         - A property indicating whether to block retrieval of the secret content, on expiry. The default is false.
@@ -222,7 +222,7 @@ secret:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_current_version_expiry:
             description:
                 - "An optional property indicating when the current secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -230,14 +230,14 @@ secret:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the secret, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
                 - The OCID of the vault where the secret exists.
@@ -259,13 +259,13 @@ secret:
         "secret_rules": [{
             "rule_type": "SECRET_EXPIRY_RULE",
             "secret_version_expiry_interval": "secret_version_expiry_interval_example",
-            "time_of_absolute_expiry": "2019-04-03T21:10:29.600Z",
+            "time_of_absolute_expiry": "2013-10-20T19:20:30+01:00",
             "is_secret_content_retrieval_blocked_on_expiry": true,
             "is_enforced_on_deleted_secret_versions": true
         }],
-        "time_created": "2019-04-03T21:10:29.600Z",
-        "time_of_current_version_expiry": "2019-04-03T21:10:29.600Z",
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_current_version_expiry": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

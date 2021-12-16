@@ -28,17 +28,17 @@ author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     ref_name:
         description:
-            - A filter to return only resources that match the given Ref name.
+            - A filter to return only resources that match the given reference name.
         type: str
         required: true
     ref_type:
         description:
-            - The type of Ref (Branch or Tag)
+            - The type of reference (Branch or Tag).
             - Required for update using I(state=present) with ref_name present.
         type: str
         choices:
@@ -99,25 +99,25 @@ repository_ref:
     contains:
         ref_name:
             description:
-                - Unique Ref name inside a repository
+                - Unique reference name inside a repository.
             returned: on success
             type: str
             sample: ref_name_example
         ref_type:
             description:
-                - The type of Ref (Branch or Tag)
+                - The type of reference (Branch or Tag).
             returned: on success
             type: str
             sample: BRANCH
         full_ref_name:
             description:
-                - Unique full ref name inside a repository
+                - Unique full reference name inside a repository.
             returned: on success
             type: str
             sample: full_ref_name_example
         repository_id:
             description:
-                - The OCID of the repository containing the ref.
+                - The OCID of the repository containing the reference.
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"

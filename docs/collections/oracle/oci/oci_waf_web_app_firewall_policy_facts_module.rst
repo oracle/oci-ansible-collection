@@ -30,9 +30,13 @@ oracle.oci.oci_waf_web_app_firewall_policy_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_waf_web_app_firewall_policy_facts`.
 
@@ -362,7 +366,7 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        lifecycle_state: [ "$p.getValue()" ]
+        lifecycle_state: [ "lifecycle_state_example" ]
         display_name: display_name_example
         sort_order: ASC
         sort_by: timeCreated
@@ -401,8 +405,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of WebAppFirewallPolicy resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;actions&#x27;: [{&#x27;body&#x27;: {&#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;type&#x27;: &#x27;STATIC_TEXT&#x27;}, &#x27;code&#x27;: 200, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;CHECK&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;request_access_control&#x27;: {&#x27;default_action_name&#x27;: &#x27;default_action_name_example&#x27;, &#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;request_protection&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;protection_capabilities&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;collaborative_action_threshold&#x27;: 56, &#x27;collaborative_weights&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;weight&#x27;: 56}], &#x27;exclusions&#x27;: {&#x27;args&#x27;: [], &#x27;request_cookies&#x27;: []}, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;version&#x27;: 56}], &#x27;protection_capability_settings&#x27;: {&#x27;allowed_http_methods&#x27;: [], &#x27;max_http_request_header_length&#x27;: 56, &#x27;max_http_request_headers&#x27;: 56, &#x27;max_number_of_arguments&#x27;: 56, &#x27;max_single_argument_length&#x27;: 56, &#x27;max_total_argument_length&#x27;: 56}, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;request_rate_limiting&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;configurations&#x27;: [{&#x27;action_duration_in_seconds&#x27;: 56, &#x27;period_in_seconds&#x27;: 56, &#x27;requests_limit&#x27;: 56}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;response_access_control&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;response_protection&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;protection_capabilities&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;collaborative_action_threshold&#x27;: 56, &#x27;collaborative_weights&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;weight&#x27;: 56}], &#x27;exclusions&#x27;: {&#x27;args&#x27;: [], &#x27;request_cookies&#x27;: []}, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;version&#x27;: 56}], &#x27;protection_capability_settings&#x27;: {&#x27;allowed_http_methods&#x27;: [], &#x27;max_http_request_header_length&#x27;: 56, &#x27;max_http_request_headers&#x27;: 56, &#x27;max_number_of_arguments&#x27;: 56, &#x27;max_single_argument_length&#x27;: 56, &#x27;max_total_argument_length&#x27;: 56}, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;actions&#x27;: [{&#x27;body&#x27;: {&#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;type&#x27;: &#x27;STATIC_TEXT&#x27;}, &#x27;code&#x27;: 56, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;CHECK&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;request_access_control&#x27;: {&#x27;default_action_name&#x27;: &#x27;default_action_name_example&#x27;, &#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;request_protection&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;protection_capabilities&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;collaborative_action_threshold&#x27;: 56, &#x27;collaborative_weights&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;weight&#x27;: 56}], &#x27;exclusions&#x27;: {&#x27;args&#x27;: [], &#x27;request_cookies&#x27;: []}, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;version&#x27;: 56}], &#x27;protection_capability_settings&#x27;: {&#x27;allowed_http_methods&#x27;: [], &#x27;max_http_request_header_length&#x27;: 56, &#x27;max_http_request_headers&#x27;: 56, &#x27;max_number_of_arguments&#x27;: 56, &#x27;max_single_argument_length&#x27;: 56, &#x27;max_total_argument_length&#x27;: 56}, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;request_rate_limiting&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;configurations&#x27;: [{&#x27;action_duration_in_seconds&#x27;: 56, &#x27;period_in_seconds&#x27;: 56, &#x27;requests_limit&#x27;: 56}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;response_access_control&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;response_protection&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;protection_capabilities&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;collaborative_action_threshold&#x27;: 56, &#x27;collaborative_weights&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;weight&#x27;: 56}], &#x27;exclusions&#x27;: {&#x27;args&#x27;: [], &#x27;request_cookies&#x27;: []}, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;version&#x27;: 56}], &#x27;protection_capability_settings&#x27;: {&#x27;allowed_http_methods&#x27;: [], &#x27;max_http_request_header_length&#x27;: 56, &#x27;max_http_request_headers&#x27;: 56, &#x27;max_number_of_arguments&#x27;: 56, &#x27;max_single_argument_length&#x27;: 56, &#x27;max_total_argument_length&#x27;: 56}, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -418,8 +422,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Predefined actions for use in multiple different rules. Not all actions are supported in every module. Some actions terminate further execution of modules and rules in a module and some do not. Actions names must be unique within this array.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -436,7 +441,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -454,7 +459,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Static response body text.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_example</div>
                                     </td>
             </tr>
@@ -474,7 +479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of HttpResponseBody.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STATIC_TEXT</div>
                                     </td>
             </tr>
@@ -504,8 +509,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>500 Internal Server Error 501 Not Implemented 502 Bad Gateway 503 Service Unavailable 504 Gateway Timeout 507 Insufficient Storage</div>
                                             <div>Example: `200`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">200</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -525,7 +530,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Hop-by-hop headers are not allowed to be set:</div>
                                             <div>* Connection * Keep-Alive * Proxy-Authenticate * Proxy-Authorization * TE * Trailer * Transfer-Encoding * Upgrade</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -543,7 +548,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the header field.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -563,7 +568,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The value of the header field.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>
@@ -583,7 +588,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Action name. Can be used to reference the action.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -604,7 +609,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* **ALLOW** is a non-terminating action which upon matching rule skips all remaining rules in the current module.</div>
                                             <div>* **RETURN_HTTP_RESPONSE** is a terminating action which is executed immediately, returns a defined HTTP response.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CHECK</div>
                                     </td>
             </tr>
@@ -623,7 +628,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -641,7 +646,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -659,7 +664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>WebAppFirewallPolicy display name, can be renamed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -677,7 +682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -695,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the WebAppFirewallPolicy.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -713,7 +718,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in FAILED state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -731,7 +736,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the WebAppFirewallPolicy.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
@@ -748,8 +753,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div></div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -768,7 +774,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* **ALLOW** continues execution of other modules and their rules.</div>
                                             <div>* **RETURN_HTTP_RESPONSE** terminates further execution of modules and rules and returns defined HTTP response.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_action_name_example</div>
                                     </td>
             </tr>
@@ -787,7 +793,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Ordered list of AccessControlRules. Rules are executed in order of appearance in this array.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -805,7 +811,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>References action by name from actions defined in WebAppFirewallPolicy.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_name_example</div>
                                     </td>
             </tr>
@@ -825,7 +831,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An expression that determines whether or not the rule action should be executed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">condition_example</div>
                                     </td>
             </tr>
@@ -846,7 +852,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The language used to parse condition from field `condition`. Available languages:</div>
                                             <div>* **JMESPATH** an extended JMESPath language syntax.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JMESPATH</div>
                                     </td>
             </tr>
@@ -866,7 +872,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Rule name. Must be unique within the module.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -886,7 +892,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of WebAppFirewallPolicyRule.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACCESS_CONTROL</div>
                                     </td>
             </tr>
@@ -905,8 +911,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div></div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -923,7 +930,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Ordered list of ProtectionRules. Rules are executed in order of appearance in this array. ProtectionRules in this array can only use protection cCapabilities of REQUEST_PROTECTION_CAPABILITY type.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -941,7 +948,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>References action by name from actions defined in WebAppFirewallPolicy.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_name_example</div>
                                     </td>
             </tr>
@@ -961,7 +968,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An expression that determines whether or not the rule action should be executed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">condition_example</div>
                                     </td>
             </tr>
@@ -982,7 +989,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The language used to parse condition from field `condition`. Available languages:</div>
                                             <div>* **JMESPATH** an extended JMESPath language syntax.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JMESPATH</div>
                                     </td>
             </tr>
@@ -1002,7 +1009,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Rule name. Must be unique within the module.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -1022,7 +1029,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An ordered list that references OCI-managed protection capabilities. Referenced protection capabilities are executed in order of appearance. The array cannot contain entries with the same pair of capability key and version more than once.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1041,7 +1048,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Override action to take if capability was triggered, defined in Protection Rule for this capability. Only actions of type CHECK are allowed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_name_example</div>
                                     </td>
             </tr>
@@ -1062,7 +1069,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The minimum sum of weights of associated collaborative protection capabilities that have triggered which must be reached in order for _this_ capability to trigger. This field is ignored for non-collaborative capabilities.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1083,7 +1090,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Explicit weight values to use for associated collaborative protection capabilities.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1103,7 +1110,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique key of collaborative capability for which weight will be overridden.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
                                     </td>
             </tr>
@@ -1125,7 +1132,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The value of weight to set.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1147,7 +1154,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1167,7 +1174,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of URL query parameter values from form-urlencoded XML, JSON, AMP, or POST payloads to exclude from inspecting. Example: If we have query parameter &#x27;argumentName=argumentValue&#x27; and args=[&#x27;argumentName&#x27;], both &#x27;argumentName&#x27; and &#x27;argumentValue&#x27; will not be inspected.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1187,7 +1194,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of HTTP request cookie values (by cookie name) to exclude from inspecting. Example: If we have cookie &#x27;cookieName=cookieValue&#x27; and requestCookies=[&#x27;cookieName&#x27;], both &#x27;cookieName&#x27; and &#x27;cookieValue&#x27; will not be inspected.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                     
                                 <tr>
@@ -1207,7 +1214,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique key of referenced protection capability.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
                                     </td>
             </tr>
@@ -1228,7 +1235,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Version of referenced protection capability.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1249,7 +1256,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1268,7 +1275,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of allowed HTTP methods. Each value as a RFC7230 formated token string. Used in protection capability 911100: Restrict HTTP Request Methods.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1287,7 +1294,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum allowed length of headers in an HTTP request. Used in protection capability: 9200024: Limit length of request header size.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1308,7 +1315,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum number of headers allowed in an HTTP request. Used in protection capability 9200014: Limit Number of Request Headers.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1329,7 +1336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum number of arguments allowed. Used in protection capability 920380: Number of Arguments Limits.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1350,7 +1357,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum allowed length of a single argument. Used in protection capability 920370: Limit argument value length.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1371,7 +1378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum allowed total length of all arguments. Used in protection capability 920390: Limit arguments total length.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1392,7 +1399,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of WebAppFirewallPolicyRule.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACCESS_CONTROL</div>
                                     </td>
             </tr>
@@ -1411,8 +1418,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div></div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1429,7 +1437,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Ordered list of RequestRateLimitingRules. Rules are executed in order of appearance in this array.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1447,7 +1455,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>References action by name from actions defined in WebAppFirewallPolicy.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_name_example</div>
                                     </td>
             </tr>
@@ -1467,7 +1475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An expression that determines whether or not the rule action should be executed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">condition_example</div>
                                     </td>
             </tr>
@@ -1488,7 +1496,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The language used to parse condition from field `condition`. Available languages:</div>
                                             <div>* **JMESPATH** an extended JMESPath language syntax.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JMESPATH</div>
                                     </td>
             </tr>
@@ -1508,7 +1516,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Rate Limiting Configurations. Each configuration counts requests towards its own `requestsLimit`.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1527,7 +1535,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Duration of block action application in seconds when `requestsLimit` is reached. Optional and can be 0 (no block duration).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1548,7 +1556,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Evaluation period in seconds.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1569,7 +1577,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Requests allowed per evaluation period.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1590,7 +1598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Rule name. Must be unique within the module.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -1610,7 +1618,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of WebAppFirewallPolicyRule.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACCESS_CONTROL</div>
                                     </td>
             </tr>
@@ -1629,8 +1637,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div></div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1647,7 +1656,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Ordered list of AccessControlRules. Rules are executed in order of appearance in this array.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1665,7 +1674,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>References action by name from actions defined in WebAppFirewallPolicy.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_name_example</div>
                                     </td>
             </tr>
@@ -1685,7 +1694,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An expression that determines whether or not the rule action should be executed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">condition_example</div>
                                     </td>
             </tr>
@@ -1706,7 +1715,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The language used to parse condition from field `condition`. Available languages:</div>
                                             <div>* **JMESPATH** an extended JMESPath language syntax.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JMESPATH</div>
                                     </td>
             </tr>
@@ -1726,7 +1735,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Rule name. Must be unique within the module.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -1746,7 +1755,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of WebAppFirewallPolicyRule.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACCESS_CONTROL</div>
                                     </td>
             </tr>
@@ -1765,8 +1774,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div></div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1783,7 +1793,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Ordered list of ProtectionRules. Rules are executed in order of appearance in this array. ProtectionRules in this array can only use protection capabilities of RESPONSE_PROTECTION_CAPABILITY type.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1801,7 +1811,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>References action by name from actions defined in WebAppFirewallPolicy.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_name_example</div>
                                     </td>
             </tr>
@@ -1821,7 +1831,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An expression that determines whether or not the rule action should be executed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">condition_example</div>
                                     </td>
             </tr>
@@ -1842,7 +1852,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The language used to parse condition from field `condition`. Available languages:</div>
                                             <div>* **JMESPATH** an extended JMESPath language syntax.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JMESPATH</div>
                                     </td>
             </tr>
@@ -1862,7 +1872,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Rule name. Must be unique within the module.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -1882,7 +1892,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An ordered list that references OCI-managed protection capabilities. Referenced protection capabilities are executed in order of appearance. The array cannot contain entries with the same pair of capability key and version more than once.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1901,7 +1911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Override action to take if capability was triggered, defined in Protection Rule for this capability. Only actions of type CHECK are allowed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_name_example</div>
                                     </td>
             </tr>
@@ -1922,7 +1932,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The minimum sum of weights of associated collaborative protection capabilities that have triggered which must be reached in order for _this_ capability to trigger. This field is ignored for non-collaborative capabilities.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1943,7 +1953,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Explicit weight values to use for associated collaborative protection capabilities.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1963,7 +1973,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique key of collaborative capability for which weight will be overridden.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
                                     </td>
             </tr>
@@ -1985,7 +1995,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The value of weight to set.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2007,7 +2017,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2027,7 +2037,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of URL query parameter values from form-urlencoded XML, JSON, AMP, or POST payloads to exclude from inspecting. Example: If we have query parameter &#x27;argumentName=argumentValue&#x27; and args=[&#x27;argumentName&#x27;], both &#x27;argumentName&#x27; and &#x27;argumentValue&#x27; will not be inspected.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2047,7 +2057,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of HTTP request cookie values (by cookie name) to exclude from inspecting. Example: If we have cookie &#x27;cookieName=cookieValue&#x27; and requestCookies=[&#x27;cookieName&#x27;], both &#x27;cookieName&#x27; and &#x27;cookieValue&#x27; will not be inspected.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                     
                                 <tr>
@@ -2067,7 +2077,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique key of referenced protection capability.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
                                     </td>
             </tr>
@@ -2088,7 +2098,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Version of referenced protection capability.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2109,7 +2119,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2128,7 +2138,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of allowed HTTP methods. Each value as a RFC7230 formated token string. Used in protection capability 911100: Restrict HTTP Request Methods.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2147,7 +2157,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum allowed length of headers in an HTTP request. Used in protection capability: 9200024: Limit length of request header size.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2168,7 +2178,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum number of headers allowed in an HTTP request. Used in protection capability 9200014: Limit Number of Request Headers.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2189,7 +2199,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum number of arguments allowed. Used in protection capability 920380: Number of Arguments Limits.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2210,7 +2220,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum allowed length of a single argument. Used in protection capability 920370: Limit argument value length.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2231,7 +2241,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum allowed total length of all arguments. Used in protection capability 920390: Limit arguments total length.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2252,7 +2262,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of WebAppFirewallPolicyRule.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACCESS_CONTROL</div>
                                     </td>
             </tr>
@@ -2272,7 +2282,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2288,7 +2298,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the WebAppFirewallPolicy was created. An RFC3339 formatted datetime string.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -2306,7 +2316,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the WebAppFirewallPolicy was updated. An RFC3339 formatted datetime string.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>

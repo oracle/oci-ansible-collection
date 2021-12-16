@@ -99,7 +99,7 @@ EXAMPLES = """
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
 
 """
 
@@ -165,7 +165,7 @@ internet_gateways:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the internet gateway belongs to.
@@ -180,7 +180,7 @@ internet_gateways:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "is_enabled": true,
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """

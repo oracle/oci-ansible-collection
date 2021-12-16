@@ -101,7 +101,7 @@ key_version:
                 - "Example: `ENABLED`"
             returned: on success
             type: str
-            sample: ENABLED
+            sample: CREATING
         origin:
             description:
                 - The source of the key material. When this value is `INTERNAL`, Key Management
@@ -124,7 +124,7 @@ key_version:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
                 - The OCID of the vault that contains this key version.
@@ -154,10 +154,10 @@ key_version:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
         "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
-        "lifecycle_state": "ENABLED",
+        "lifecycle_state": "CREATING",
         "origin": "INTERNAL",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "replica_details": {
             "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"

@@ -248,30 +248,30 @@ EXAMPLES = """
 - name: Create alarm
   oci_monitoring_alarm:
     # required
-    display_name: System Down
-    compartment_id: compartment_OCID
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
-    namespace: oci_computeagent
+    namespace: namespace_example
     query: query_example
-    severity: CRITICAL
-    destinations: [ "null" ]
+    severity: severity_example
+    destinations: [ "destinations_example" ]
     is_enabled: true
 
     # optional
     metric_compartment_id_in_subtree: true
-    resource_group: frontend-fleet
+    resource_group: resource_group_example
     resolution: resolution_example
-    pending_duration: PT5M
-    body: High CPU usage alert. Follow runbook instructions for resolution.
+    pending_duration: pending_duration_example
+    body: body_example
     message_format: RAW
-    repeat_notification_duration: PT2H
+    repeat_notification_duration: repeat_notification_duration_example
     suppression:
       # required
-      time_suppress_from: 2019-02-01T01:02:29.600Z
-      time_suppress_until: 2019-02-01T02:02:29.600Z
+      time_suppress_from: time_suppress_from_example
+      time_suppress_until: time_suppress_until_example
 
       # optional
-      description: Planned outage due to change IT-1234.
+      description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -281,27 +281,27 @@ EXAMPLES = """
     alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: System Down
-    compartment_id: compartment_OCID
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
     metric_compartment_id_in_subtree: true
-    namespace: oci_computeagent
-    resource_group: frontend-fleet
+    namespace: namespace_example
+    resource_group: resource_group_example
     query: query_example
     resolution: resolution_example
-    pending_duration: PT5M
-    severity: CRITICAL
-    body: High CPU usage alert. Follow runbook instructions for resolution.
+    pending_duration: pending_duration_example
+    severity: severity_example
+    body: body_example
     message_format: RAW
-    destinations: [ "null" ]
-    repeat_notification_duration: PT2H
+    destinations: [ "destinations_example" ]
+    repeat_notification_duration: repeat_notification_duration_example
     suppression:
       # required
-      time_suppress_from: 2019-02-01T01:02:29.600Z
-      time_suppress_until: 2019-02-01T02:02:29.600Z
+      time_suppress_from: time_suppress_from_example
+      time_suppress_until: time_suppress_until_example
 
       # optional
-      description: Planned outage due to change IT-1234.
+      description: description_example
     is_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -309,29 +309,29 @@ EXAMPLES = """
 - name: Update alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_monitoring_alarm:
     # required
-    display_name: System Down
-    compartment_id: compartment_OCID
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
     metric_compartment_id_in_subtree: true
-    namespace: oci_computeagent
-    resource_group: frontend-fleet
+    namespace: namespace_example
+    resource_group: resource_group_example
     query: query_example
     resolution: resolution_example
-    pending_duration: PT5M
-    severity: CRITICAL
-    body: High CPU usage alert. Follow runbook instructions for resolution.
+    pending_duration: pending_duration_example
+    severity: severity_example
+    body: body_example
     message_format: RAW
-    destinations: [ "null" ]
-    repeat_notification_duration: PT2H
+    destinations: [ "destinations_example" ]
+    repeat_notification_duration: repeat_notification_duration_example
     suppression:
       # required
-      time_suppress_from: 2019-02-01T01:02:29.600Z
-      time_suppress_until: 2019-02-01T02:02:29.600Z
+      time_suppress_from: time_suppress_from_example
+      time_suppress_until: time_suppress_until_example
 
       # optional
-      description: Planned outage due to change IT-1234.
+      description: description_example
     is_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -345,8 +345,8 @@ EXAMPLES = """
 - name: Delete alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_monitoring_alarm:
     # required
-    display_name: System Down
-    compartment_id: compartment_OCID
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -371,7 +371,7 @@ alarm:
                 - "Example: `High CPU Utilization`"
             returned: on success
             type: str
-            sample: High CPU Utilization
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the alarm.
@@ -402,7 +402,7 @@ alarm:
                 - "Example: `oci_computeagent`"
             returned: on success
             type: str
-            sample: oci_computeagent
+            sample: namespace_example
         resource_group:
             description:
                 - Resource group to match for metric data retrieved by the alarm. A resource group is a custom string that you can match when retrieving custom
@@ -412,7 +412,7 @@ alarm:
                 - "Example: `frontend-fleet`"
             returned: on success
             type: str
-            sample: frontend-fleet
+            sample: resource_group_example
         query:
             description:
                 - "The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of
@@ -458,7 +458,7 @@ alarm:
                 - "Example: `PT5M`"
             returned: on success
             type: str
-            sample: PT5M
+            sample: pending_duration_example
         severity:
             description:
                 - "The perceived type of response required when the alarm is in the \\"FIRING\\" state."
@@ -474,7 +474,7 @@ alarm:
                 - "Example: `High CPU usage alert. Follow runbook instructions for resolution.`"
             returned: on success
             type: str
-            sample: High CPU usage alert. Follow runbook instructions for resolution.
+            sample: body_example
         message_format:
             description:
                 - "The format to use for notification messages sent from this alarm. The formats are:
@@ -504,7 +504,7 @@ alarm:
                 - "Example: `PT2H`"
             returned: on success
             type: str
-            sample: PT2H
+            sample: repeat_notification_duration_example
         suppression:
             description:
                 - The configuration details for suppressing an alarm.
@@ -521,21 +521,21 @@ alarm:
                         - "Example: `Planned outage due to change IT-1234.`"
                     returned: on success
                     type: str
-                    sample: Planned outage due to change IT-1234.
+                    sample: description_example
                 time_suppress_from:
                     description:
                         - The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T01:02:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_suppress_until:
                     description:
                         - The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T02:02:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T02:02:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
         is_enabled:
             description:
                 - Whether the alarm is enabled.
@@ -563,48 +563,48 @@ alarm:
                 - "Example: `DELETED`"
             returned: on success
             type: str
-            sample: DELETED
+            sample: ACTIVE
         time_created:
             description:
                 - The date and time the alarm was created. Format defined by RFC3339.
                 - "Example: `2019-02-01T01:02:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-02-01T01:02:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the alarm was last updated. Format defined by RFC3339.
                 - "Example: `2019-02-03T01:02:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-02-03T01:02:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "High CPU Utilization",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "metric_compartment_id": "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "metric_compartment_id_in_subtree": true,
-        "namespace": "oci_computeagent",
-        "resource_group": "frontend-fleet",
+        "namespace": "namespace_example",
+        "resource_group": "resource_group_example",
         "query": "query_example",
         "resolution": "resolution_example",
-        "pending_duration": "PT5M",
+        "pending_duration": "pending_duration_example",
         "severity": "CRITICAL",
-        "body": "High CPU usage alert. Follow runbook instructions for resolution.",
+        "body": "body_example",
         "message_format": "RAW",
         "destinations": [],
-        "repeat_notification_duration": "PT2H",
+        "repeat_notification_duration": "repeat_notification_duration_example",
         "suppression": {
-            "description": "Planned outage due to change IT-1234.",
-            "time_suppress_from": "2019-02-01T01:02:29.600Z",
-            "time_suppress_until": "2019-02-01T02:02:29.600Z"
+            "description": "description_example",
+            "time_suppress_from": "2013-10-20T19:20:30+01:00",
+            "time_suppress_until": "2013-10-20T19:20:30+01:00"
         },
         "is_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "lifecycle_state": "DELETED",
-        "time_created": "2019-02-01T01:02:29.600Z",
-        "time_updated": "2019-02-03T01:02:29.600Z"
+        "lifecycle_state": "ACTIVE",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }
 """
 

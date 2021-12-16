@@ -48,7 +48,7 @@ EXAMPLES = """
   oci_loadbalancer_rule_set_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    rule_set_name: example_rule_set
+    rule_set_name: rule_set_name_example
 
 - name: List rule_sets
   oci_loadbalancer_rule_set_facts:
@@ -71,7 +71,7 @@ rule_sets:
                 - "Example: `example_rule_set`"
             returned: on success
             type: str
-            sample: example_rule_set
+            sample: name_example
         items:
             description:
                 - An array of rules that compose the rule set.
@@ -90,7 +90,7 @@ rule_sets:
                         - "Example: `example_header_name`"
                     returned: on success
                     type: str
-                    sample: example_header_name
+                    sample: header_example
                 value:
                     description:
                         - "A header value that conforms to RFC 7230. With the following exceptions:
@@ -99,7 +99,7 @@ rule_sets:
                         - "Example: `example_value`"
                     returned: on success
                     type: str
-                    sample: example_value
+                    sample: value_example
                 conditions:
                     description:
                         - ""
@@ -118,7 +118,7 @@ rule_sets:
                                 - "Example: `/example`"
                             returned: on success
                             type: str
-                            sample: /example
+                            sample: attribute_value_example
                         operator:
                             description:
                                 - A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
@@ -172,7 +172,7 @@ rule_sets:
                         - "Example: `example_prefix_value`"
                     returned: on success
                     type: str
-                    sample: example_prefix_value
+                    sample: prefix_example
                 suffix:
                     description:
                         - "A string to append to the header value. The resulting header value must conform to RFC 7230.
@@ -182,7 +182,7 @@ rule_sets:
                         - "Example: `example_suffix_value`"
                     returned: on success
                     type: str
-                    sample: example_suffix_value
+                    sample: suffix_example
                 are_invalid_characters_allowed:
                     description:
                         - "Indicates whether or not invalid characters in client header fields will be allowed.
@@ -214,7 +214,7 @@ rule_sets:
                         - "Example: `301`"
                     returned: on success
                     type: int
-                    sample: 301
+                    sample: 56
                 redirect_uri:
                     description:
                         - ""
@@ -233,7 +233,7 @@ rule_sets:
                                 - "Example: `HTTPS`"
                             returned: on success
                             type: str
-                            sample: HTTPS
+                            sample: protocol_example
                         host:
                             description:
                                 - The valid domain name (hostname) or IP address to use in the redirect URI.
@@ -258,7 +258,7 @@ rule_sets:
                                 - "Example: `8081`"
                             returned: on success
                             type: int
-                            sample: 8081
+                            sample: 56
                         path:
                             description:
                                 - The HTTP URI path to use in the redirect URI.
@@ -313,28 +313,28 @@ rule_sets:
                             type: str
                             sample: query_example
     sample: [{
-        "name": "example_rule_set",
+        "name": "name_example",
         "items": [{
             "action": "ADD_HTTP_REQUEST_HEADER",
-            "header": "example_header_name",
-            "value": "example_value",
+            "header": "header_example",
+            "value": "value_example",
             "conditions": [{
                 "attribute_name": "SOURCE_IP_ADDRESS",
-                "attribute_value": "/example",
+                "attribute_value": "attribute_value_example",
                 "operator": "EXACT_MATCH"
             }],
             "description": "description_example",
             "allowed_methods": [],
             "status_code": 56,
-            "prefix": "example_prefix_value",
-            "suffix": "example_suffix_value",
+            "prefix": "prefix_example",
+            "suffix": "suffix_example",
             "are_invalid_characters_allowed": true,
             "http_large_header_size_in_kb": 56,
-            "response_code": 301,
+            "response_code": 56,
             "redirect_uri": {
-                "protocol": "HTTPS",
+                "protocol": "protocol_example",
                 "host": "host_example",
-                "port": 8081,
+                "port": 56,
                 "path": "path_example",
                 "query": "query_example"
             }

@@ -80,7 +80,7 @@ certificate_bundle_versions:
                   Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`"
             returned: on success
             type: str
-            sample: 03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF
+            sample: serial_number_example
         version_name:
             description:
                 - The name of the certificate version.
@@ -106,7 +106,7 @@ certificate_bundle_versions:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         validity:
             description:
                 - ""
@@ -120,7 +120,7 @@ certificate_bundle_versions:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_of_validity_not_after:
                     description:
                         - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
@@ -128,7 +128,7 @@ certificate_bundle_versions:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the certificate version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -136,7 +136,7 @@ certificate_bundle_versions:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         stages:
             description:
                 - A list of rotation states for this certificate bundle version.
@@ -163,16 +163,16 @@ certificate_bundle_versions:
                     sample: UNSPECIFIED
     sample: [{
         "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx",
-        "serial_number": "03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF",
+        "serial_number": "serial_number_example",
         "version_name": "version_name_example",
         "certificate_name": "certificate_name_example",
         "version_number": 56,
-        "time_created": "2019-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "validity": {
-            "time_of_validity_not_before": "2019-04-03T21:10:29.600Z",
-            "time_of_validity_not_after": "2019-04-03T21:10:29.600Z"
+            "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",
+            "time_of_validity_not_after": "2013-10-20T19:20:30+01:00"
         },
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "stages": [],
         "revocation_status": {
             "time_revoked": "2013-10-20T19:20:30+01:00",

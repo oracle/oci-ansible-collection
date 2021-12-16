@@ -198,11 +198,17 @@ database_fleet_health_metrics:
                             sample: EXTERNAL_SIDB
                         database_sub_type:
                             description:
-                                - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-
-                                  container Database.
+                                - The subtype of the Oracle Database. Indicates whether the database is a Container Database,
+                                  Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.
                             returned: on success
                             type: str
                             sample: CDB
+                        deployment_type:
+                            description:
+                                - The infrastructure used to deploy the Oracle Database.
+                            returned: on success
+                            type: str
+                            sample: ONPREMISE
                         inventory_count:
                             description:
                                 - The number of databases in the fleet.
@@ -236,8 +242,8 @@ database_fleet_health_metrics:
                     sample: EXTERNAL_SIDB
                 database_sub_type:
                     description:
-                        - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container
-                          Database.
+                        - The subtype of the Oracle Database. Indicates whether the database is a Container Database,
+                          Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.
                     returned: on success
                     type: str
                     sample: CDB
@@ -253,6 +259,12 @@ database_fleet_health_metrics:
                     returned: on success
                     type: str
                     sample: database_version_example
+                workload_type:
+                    description:
+                        - The workload type of the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: OLTP
                 database_name:
                     description:
                         - The display name of the Managed Database.
@@ -345,6 +357,7 @@ database_fleet_health_metrics:
             "inventory": [{
                 "database_type": "EXTERNAL_SIDB",
                 "database_sub_type": "CDB",
+                "deployment_type": "ONPREMISE",
                 "inventory_count": 56
             }]
         },
@@ -355,6 +368,7 @@ database_fleet_health_metrics:
             "database_sub_type": "CDB",
             "deployment_type": "ONPREMISE",
             "database_version": "database_version_example",
+            "workload_type": "OLTP",
             "database_name": "database_name_example",
             "database_container_id": "ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx",
             "metrics": [{

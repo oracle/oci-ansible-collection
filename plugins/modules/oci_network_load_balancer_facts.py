@@ -118,7 +118,7 @@ network_load_balancers:
                 - "Example: `example_load_balancer`"
             returned: on success
             type: str
-            sample: example_load_balancer
+            sample: display_name_example
         lifecycle_state:
             description:
                 - The current state of the network load balancer.
@@ -138,14 +138,14 @@ network_load_balancers:
                 - "Example: `2020-05-01T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-05-01T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the network load balancer was updated. An RFC3339 formatted date-time string.
                 - "Example: `2020-05-01T22:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-05-01T22:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         ip_addresses:
             description:
                 - An array of IP addresses.
@@ -158,7 +158,7 @@ network_load_balancers:
                         - "Example: `192.168.0.3`"
                     returned: on success
                     type: str
-                    sample: 192.168.0.3
+                    sample: ip_address_example
                 is_public:
                     description:
                         - Whether the IP address is public or private.
@@ -242,21 +242,21 @@ network_load_balancers:
                         - "Example: `example_listener`"
                     returned: on success
                     type: str
-                    sample: example_listener
+                    sample: name_example
                 default_backend_set_name:
                     description:
                         - The name of the associated backend set.
                         - "Example: `example_backend_set`"
                     returned: on success
                     type: str
-                    sample: example_backend_set
+                    sample: default_backend_set_name_example
                 port:
                     description:
                         - The communication port for the listener.
                         - "Example: `80`"
                     returned: on success
                     type: int
-                    sample: 0
+                    sample: 56
                 protocol:
                     description:
                         - The protocol on which the listener accepts connection requests.
@@ -269,7 +269,7 @@ network_load_balancers:
                         - "Example: `TCP`"
                     returned: on success
                     type: str
-                    sample: TCP
+                    sample: ANY
         backend_sets:
             description:
                 - Backend sets associated with the network load balancer.
@@ -284,14 +284,14 @@ network_load_balancers:
                         - "Example: `example_backend_set`"
                     returned: on success
                     type: str
-                    sample: example_backend_set
+                    sample: name_example
                 policy:
                     description:
                         - The network load balancer policy for the backend set.
                         - "Example: `FIVE_TUPLE`"
                     returned: on success
                     type: str
-                    sample: FIVE_TUPLE
+                    sample: TWO_TUPLE
                 is_preserve_source:
                     description:
                         - If this parameter is enabled, then the network load balancer preserves the source IP of the packet when it is forwarded to backends.
@@ -313,28 +313,28 @@ network_load_balancers:
                                 - "Example: `10.0.0.3:8080`, or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:443` or `10.0.0.3:0`"
                             returned: on success
                             type: str
-                            sample: 10.0.0.3:8080
+                            sample: name_example
                         ip_address:
                             description:
                                 - "The IP address of the backend server.
                                   Example: `10.0.0.3`"
                             returned: on success
                             type: str
-                            sample: 10.0.0.3
+                            sample: ip_address_example
                         target_id:
                             description:
                                 - "The IP OCID/Instance OCID associated with the backend server.
                                   Example: `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>`"
                             returned: on success
                             type: str
-                            sample: "ocid1.privateip..oc1.unique_ID"
+                            sample: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
                         port:
                             description:
                                 - The communication port for the backend server.
                                 - "Example: `8080`"
                             returned: on success
                             type: int
-                            sample: 8080
+                            sample: 56
                         weight:
                             description:
                                 - The network load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger
@@ -345,7 +345,7 @@ network_load_balancers:
                                 - "Example: `3`"
                             returned: on success
                             type: int
-                            sample: 3
+                            sample: 56
                         is_drain:
                             description:
                                 - "Whether the network load balancer should drain this server. Servers marked \\"isDrain\\" receive no
@@ -353,7 +353,7 @@ network_load_balancers:
                                 - "Example: `false`"
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
                         is_backup:
                             description:
                                 - "Whether the network load balancer should treat this server as a backup unit. If `true`, then the network load balancer
@@ -362,7 +362,7 @@ network_load_balancers:
                                 - "Example: `false`"
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
                         is_offline:
                             description:
                                 - Whether the network load balancer should treat this server as offline. Offline servers receive no incoming
@@ -370,7 +370,7 @@ network_load_balancers:
                                 - "Example: `false`"
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
                 health_checker:
                     description:
                         - ""
@@ -392,7 +392,7 @@ network_load_balancers:
                                 - "Example: `8080`"
                             returned: on success
                             type: int
-                            sample: 8080
+                            sample: 56
                         retries:
                             description:
                                 - "The number of retries to attempt before a backend server is considered \\"unhealthy\\". This number also applies
@@ -400,7 +400,7 @@ network_load_balancers:
                                 - "Example: `3`"
                             returned: on success
                             type: int
-                            sample: 3
+                            sample: 56
                         timeout_in_millis:
                             description:
                                 - The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply
@@ -408,21 +408,21 @@ network_load_balancers:
                                 - "Example: `3000`"
                             returned: on success
                             type: int
-                            sample: 3000
+                            sample: 56
                         interval_in_millis:
                             description:
                                 - The interval between health checks, in milliseconds. The default value is 10000 (10 seconds).
                                 - "Example: `10000`"
                             returned: on success
                             type: int
-                            sample: 10000
+                            sample: 56
                         url_path:
                             description:
                                 - The path against which to run the health check.
                                 - "Example: `/healthcheck`"
                             returned: on success
                             type: str
-                            sample: /healthcheck
+                            sample: url_path_example
                         response_body_regex:
                             description:
                                 - A regular expression for parsing the response body from the backend server.
@@ -437,19 +437,21 @@ network_load_balancers:
                                 - "Example: `200`"
                             returned: on success
                             type: int
-                            sample: 0
+                            sample: 56
                         request_data:
                             description:
                                 - Base64 encoded pattern to be sent as UDP or TCP health check probe.
                             returned: on success
                             type: str
-                            sample: "example_request_data"
+                            sample: "null"
+
                         response_data:
                             description:
                                 - Base64 encoded pattern to be validated as UDP or TCP health check probe response.
                             returned: on success
                             type: str
-                            sample: "example_response_data"
+                            sample: "null"
+
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -476,13 +478,13 @@ network_load_balancers:
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "example_load_balancer",
+        "display_name": "display_name_example",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "time_created": "2020-05-01T21:10:29.600Z",
-        "time_updated": "2020-05-01T22:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "ip_addresses": [{
-            "ip_address": "192.168.0.3",
+            "ip_address": "ip_address_example",
             "is_public": true,
             "reserved_ip": {
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -493,36 +495,36 @@ network_load_balancers:
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "network_security_group_ids": [],
         "listeners": {
-            "name": "example_listener",
-            "default_backend_set_name": "example_backend_set",
-            "port": 0,
-            "protocol": "TCP"
+            "name": "name_example",
+            "default_backend_set_name": "default_backend_set_name_example",
+            "port": 56,
+            "protocol": "ANY"
         },
         "backend_sets": {
-            "name": "example_backend_set",
-            "policy": "FIVE_TUPLE",
+            "name": "name_example",
+            "policy": "TWO_TUPLE",
             "is_preserve_source": true,
             "backends": [{
-                "name": "10.0.0.3:8080",
-                "ip_address": "10.0.0.3",
-                "target_id": "ocid1.privateip..oc1.unique_ID",
-                "port": 8080,
-                "weight": 3,
-                "is_drain": false,
-                "is_backup": false,
-                "is_offline": false
+                "name": "name_example",
+                "ip_address": "ip_address_example",
+                "target_id": "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx",
+                "port": 56,
+                "weight": 56,
+                "is_drain": true,
+                "is_backup": true,
+                "is_offline": true
             }],
             "health_checker": {
                 "protocol": "HTTP",
-                "port": 8080,
-                "retries": 3,
-                "timeout_in_millis": 3000,
-                "interval_in_millis": 10000,
-                "url_path": "/healthcheck",
+                "port": 56,
+                "retries": 56,
+                "timeout_in_millis": 56,
+                "interval_in_millis": 56,
+                "url_path": "url_path_example",
                 "response_body_regex": "response_body_regex_example",
-                "return_code": 0,
-                "request_data": UNKNOWN TYPE - str,
-                "response_data": UNKNOWN TYPE - str
+                "return_code": 56,
+                "request_data": null,
+                "response_data": null
             }
         },
         "freeform_tags": {'Department': 'Finance'},

@@ -177,7 +177,7 @@ compute_image_capability_schema:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -196,7 +196,7 @@ compute_image_capability_schema:
             "enum_string_values": [],
             "enum_string_default_value": "default_value_example"
         },
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

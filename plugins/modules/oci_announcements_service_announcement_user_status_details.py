@@ -64,11 +64,11 @@ EXAMPLES = """
   oci_announcements_service_announcement_user_status_details:
     # required
     announcement_id: "ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx"
-    user_status_announcement_id: "ocid1.announcement.region1..examplear73oue4jdywjjvietoc6im3cvb6xae4falm3faux5us3iwra3t6q"
-    user_id: "ocid1.user.region1..exampleaorxz3psplonigcvbzy5oaiwiubh7k7ip6zgklfauxic67kksu4oq"
+    user_status_announcement_id: "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx"
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    time_acknowledged: 2019-01-28T23:21:57.342Z
+    time_acknowledged: time_acknowledged_example
 
 """
 
@@ -97,11 +97,11 @@ announcement_user_status_details:
                   Example: `2019-01-01T17:43:01.389+0000`"
             returned: on success
             type: str
-            sample: "2019-01-01T17:43:01.389+0000"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "user_status_announcement_id": "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_acknowledged": "2019-01-01T17:43:01.389+0000"
+        "time_acknowledged": "2013-10-20T19:20:30+01:00"
     }
 """
 

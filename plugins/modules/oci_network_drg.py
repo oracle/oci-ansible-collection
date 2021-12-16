@@ -126,11 +126,11 @@ EXAMPLES = """
 - name: Create drg
   oci_network_drg:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyDrg
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update drg
@@ -140,7 +140,7 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyDrg
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     default_drg_route_tables:
       # optional
@@ -152,8 +152,8 @@ EXAMPLES = """
 - name: Update drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyDrg
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -174,8 +174,8 @@ EXAMPLES = """
 - name: Delete drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyDrg
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -235,7 +235,7 @@ drg:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         default_drg_route_tables:
             description:
                 - ""
@@ -288,7 +288,7 @@ drg:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "default_drg_route_tables": {
             "vcn": "vcn_example",
             "ipsec_tunnel": "ipsec_tunnel_example",

@@ -78,7 +78,7 @@ EXAMPLES = """
   oci_opsi_sql_response_time_distributions_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    sql_identifier: 6rgjh9bjmy2s7
+    sql_identifier: sql_identifier_example
 
     # optional
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"

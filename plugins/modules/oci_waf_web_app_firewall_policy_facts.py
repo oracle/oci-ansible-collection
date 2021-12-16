@@ -81,7 +81,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    lifecycle_state: [ "$p.getValue()" ]
+    lifecycle_state: [ "lifecycle_state_example" ]
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -143,6 +143,7 @@ web_app_firewall_policies:
                 - Predefined actions for use in multiple different rules. Not all actions are supported in every module.
                   Some actions terminate further execution of modules and rules in a module and some do not.
                   Actions names must be unique within this array.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -205,7 +206,7 @@ web_app_firewall_policies:
                         - "Example: `200`"
                     returned: on success
                     type: int
-                    sample: 200
+                    sample: 56
                 headers:
                     description:
                         - Adds headers defined in this array for HTTP response.
@@ -254,6 +255,7 @@ web_app_firewall_policies:
         request_access_control:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -305,6 +307,7 @@ web_app_firewall_policies:
         request_rate_limiting:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -374,6 +377,7 @@ web_app_firewall_policies:
         request_protection:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -539,6 +543,7 @@ web_app_firewall_policies:
         response_access_control:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -582,6 +587,7 @@ web_app_firewall_policies:
         response_protection:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -776,7 +782,7 @@ web_app_firewall_policies:
         "actions": [{
             "type": "CHECK",
             "name": "name_example",
-            "code": 200,
+            "code": 56,
             "headers": [{
                 "name": "name_example",
                 "value": "value_example"

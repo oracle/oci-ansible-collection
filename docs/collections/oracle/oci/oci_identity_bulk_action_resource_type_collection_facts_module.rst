@@ -30,9 +30,13 @@ oracle.oci.oci_identity_bulk_action_resource_type_collection_facts -- Fetches de
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_identity_bulk_action_resource_type_collection_facts`.
 
@@ -321,7 +325,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of BulkActionResourceTypeCollection resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;metadata_keys&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -339,7 +343,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of metadata keys required to identify a specific resource. Some resource-types require information besides an OCID to identify a specific resource. For example, the resource-type `buckets` requires metadataKeys <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/objectstorage/20160918/Bucket/DeleteBucket'>&quot;namespaceName&quot;, &quot;bucketName&quot;] to identify a specific bucket. The required information to identify a resource is in the API documentation for the resource-type. For example, the required information for `buckets` is found in the [DeleteBucket API</a>.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -355,7 +359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique name of the resource-type.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>

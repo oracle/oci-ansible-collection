@@ -115,15 +115,15 @@ EXAMPLES = """
 - name: Create key_store
   oci_database_key_store:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: Key Store1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     type_details:
       # required
       type: ORACLE_KEY_VAULT
-      connection_ips: [ "198.12.34.56" ]
-      admin_username: username1
-      vault_id: ocid1.vault.oc1.unique_ID
-      secret_id: ocid1.key.oc1.unique_ID
+      connection_ips: [ "connection_ips_example" ]
+      admin_username: admin_username_example
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -138,27 +138,27 @@ EXAMPLES = """
     type_details:
       # required
       type: ORACLE_KEY_VAULT
-      connection_ips: [ "198.12.34.56" ]
-      admin_username: username1
-      vault_id: ocid1.vault.oc1.unique_ID
-      secret_id: ocid1.key.oc1.unique_ID
+      connection_ips: [ "connection_ips_example" ]
+      admin_username: admin_username_example
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_key_store:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: Key Store1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     type_details:
       # required
       type: ORACLE_KEY_VAULT
-      connection_ips: [ "198.12.34.56" ]
-      admin_username: username1
-      vault_id: ocid1.vault.oc1.unique_ID
-      secret_id: ocid1.key.oc1.unique_ID
+      connection_ips: [ "connection_ips_example" ]
+      admin_username: admin_username_example
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -171,8 +171,8 @@ EXAMPLES = """
 - name: Delete key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_key_store:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: Key Store1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

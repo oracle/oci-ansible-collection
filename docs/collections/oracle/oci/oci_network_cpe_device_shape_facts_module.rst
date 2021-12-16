@@ -30,9 +30,13 @@ oracle.oci.oci_network_cpe_device_shape_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_cpe_device_shape_facts`.
 
@@ -311,7 +315,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of CpeDeviceShape resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cpe_device_info&#x27;: {&#x27;platform_software_version&#x27;: &#x27;platform_software_version_example&#x27;, &#x27;vendor&#x27;: &#x27;vendor_example&#x27;}, &#x27;cpe_device_shape_id&#x27;: &#x27;ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parameters&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;explanation&#x27;: &#x27;explanation_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;}], &#x27;template&#x27;: &#x27;template_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -329,7 +333,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -346,7 +350,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The platform or software version of the CPE device.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">platform_software_version_example</div>
                                     </td>
             </tr>
@@ -365,7 +369,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The vendor that makes the CPE device.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vendor_example</div>
                                     </td>
             </tr>
@@ -384,7 +388,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the CPE device shape. This value uniquely identifies the type of CPE device.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -402,7 +406,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the CPE device shape. This value uniquely identifies the type of CPE device.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -420,7 +424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For certain CPE devices types, the customer can provide answers to questions that are specific to the device type. This attribute contains a list of those questions. The Networking service merges the answers with other information and renders a set of CPE configuration content. To provide the answers, use <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig'>UpdateTunnelCpeDeviceConfig</a>.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -437,7 +441,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A descriptive label for the question (for example, to display in a form in a graphical interface). Avoid entering confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -456,7 +460,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A description or explanation of the question, to help the customer answer accurately.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">explanation_example</div>
                                     </td>
             </tr>
@@ -475,7 +479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A string that identifies the question.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
                                     </td>
             </tr>
@@ -495,7 +499,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A template of CPE device configuration information that will be merged with the customer&#x27;s answers to the questions to render the final CPE device configuration content. Also see:</div>
                                             <div>* <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/GetCpeDeviceConfigContent'>GetCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent'>GetIpsecCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent'>GetTunnelCpeDeviceConfigContent</a></div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">template_example</div>
                                     </td>
             </tr>

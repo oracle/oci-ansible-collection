@@ -103,7 +103,7 @@ EXAMPLES = """
     # optional
     sort_order: ASC
     display_name: display_name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     sort_by: NONE
     clone_type: REFRESHABLE_CLONE
 

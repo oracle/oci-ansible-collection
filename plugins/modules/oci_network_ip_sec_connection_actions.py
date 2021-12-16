@@ -166,7 +166,7 @@ ip_sec_connection:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cpe_id": "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx",
@@ -179,7 +179,7 @@ ip_sec_connection:
         "cpe_local_identifier": "cpe_local_identifier_example",
         "cpe_local_identifier_type": "IP_ADDRESS",
         "static_routes": [],
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

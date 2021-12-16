@@ -84,7 +84,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     name: name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -162,6 +162,7 @@ projects:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
+                - Returned for get operation
             returned: on success
             type: str
             sample: lifecycle_details_example

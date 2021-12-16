@@ -89,10 +89,10 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
 
 """
 
@@ -145,6 +145,12 @@ blockchain_platforms:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        platform_version:
+            description:
+                - Platform Version
+            returned: on success
+            type: str
+            sample: platform_version_example
         service_version:
             description:
                 - The version of the Platform Instance.
@@ -241,7 +247,7 @@ blockchain_platforms:
                                 - Availability Domain of OSN
                             returned: on success
                             type: str
-                            sample: ad_example
+                            sample: Uocm:PHX-AD-1
                         ocpu_allocation_param:
                             description:
                                 - ""
@@ -307,7 +313,7 @@ blockchain_platforms:
                                 - Availability Domain of peer
                             returned: on success
                             type: str
-                            sample: ad_example
+                            sample: Uocm:PHX-AD-1
                         lifecycle_state:
                             description:
                                 - The current state of the peer.
@@ -384,6 +390,7 @@ blockchain_platforms:
         "is_byol": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "platform_version": "platform_version_example",
         "service_version": "service_version_example",
         "platform_role": "FOUNDER",
         "compute_shape": "STANDARD",
@@ -399,7 +406,7 @@ blockchain_platforms:
         "component_details": {
             "osns": [{
                 "osn_key": "osn_key_example",
-                "ad": "ad_example",
+                "ad": "Uocm:PHX-AD-1",
                 "ocpu_allocation_param": {
                     "ocpu_allocation_number": 3.4
                 },
@@ -413,7 +420,7 @@ blockchain_platforms:
                     "ocpu_allocation_number": 3.4
                 },
                 "host": "host_example",
-                "ad": "ad_example",
+                "ad": "Uocm:PHX-AD-1",
                 "lifecycle_state": "ACTIVE"
             }]
         },

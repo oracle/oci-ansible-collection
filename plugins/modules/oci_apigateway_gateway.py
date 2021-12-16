@@ -177,12 +177,12 @@ EXAMPLES = """
   oci_apigateway_gateway:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    endpoint_type: PUBLIC
+    endpoint_type: endpoint_type_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
-    network_security_group_ids: [ "null" ]
+    display_name: display_name_example
+    network_security_group_ids: [ "network_security_group_ids_example" ]
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     response_cache_details:
       # required
@@ -209,8 +209,8 @@ EXAMPLES = """
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
-    network_security_group_ids: [ "null" ]
+    display_name: display_name_example
+    network_security_group_ids: [ "network_security_group_ids_example" ]
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     response_cache_details:
       # required
@@ -234,11 +234,11 @@ EXAMPLES = """
 - name: Update gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_gateway:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    network_security_group_ids: [ "null" ]
+    network_security_group_ids: [ "network_security_group_ids_example" ]
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     response_cache_details:
       # required
@@ -268,7 +268,7 @@ EXAMPLES = """
 - name: Delete gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_gateway:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -294,7 +294,7 @@ gateway:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -465,7 +465,7 @@ gateway:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "endpoint_type": "PUBLIC",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",

@@ -94,12 +94,14 @@ custom_tables:
         saved_report_id:
             description:
                 - The custom table associated saved report OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The custom table compartment OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

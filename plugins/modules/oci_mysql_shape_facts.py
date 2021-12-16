@@ -62,7 +62,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    is_supported_for: [ "$p.getValue()" ]
+    is_supported_for: [ "DBSYSTEM" ]
     availability_domain: Uocm:PHX-AD-1
     name: name_example
 

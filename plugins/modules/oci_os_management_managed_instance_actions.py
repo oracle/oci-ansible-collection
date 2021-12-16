@@ -163,7 +163,7 @@ EXAMPLES = """
   oci_os_management_managed_instance_actions:
     # required
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    windows_update_name: 6981d463-cd91-4a26-b7c4-ea4ded9183ed
+    windows_update_name: windows_update_name_example
     action: install_windows_update
 
 - name: Perform action remove_package on managed_instance

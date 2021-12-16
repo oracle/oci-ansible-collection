@@ -121,6 +121,7 @@ scheduled_tasks:
         kind:
             description:
                 - Discriminator.
+                - Returned for get operation
             returned: on success
             type: str
             sample: ACCELERATION
@@ -148,6 +149,7 @@ scheduled_tasks:
         schedules:
             description:
                 - Schedules.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -202,6 +204,7 @@ scheduled_tasks:
         action:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -334,6 +337,7 @@ scheduled_tasks:
         num_occurrences:
             description:
                 - Number of execution occurrences.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -359,6 +363,7 @@ scheduled_tasks:
             description:
                 - The date and time the scheduled task will execute next,
                   in the format defined by RFC3339.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

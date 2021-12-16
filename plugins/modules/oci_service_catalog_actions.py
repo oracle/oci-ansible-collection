@@ -97,7 +97,7 @@ service_catalog:
                 - "Example: `2021-05-26T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2021-05-26T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the service catalog was last modified, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -105,7 +105,7 @@ service_catalog:
                 - "Example: `2021-12-10T05:10:29.721Z`"
             returned: on success
             type: str
-            sample: "2021-12-10T05:10:29.721Z"
+            sample: "2013-10-20T19:20:30+01:00"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -125,8 +125,8 @@ service_catalog:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "lifecycle_state": "ACTIVE",
-        "time_created": "2021-05-26T21:10:29.600Z",
-        "time_updated": "2021-12-10T05:10:29.721Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'}
     }

@@ -113,7 +113,7 @@ EXAMPLES = """
     is_analytics_cluster_attached: true
     is_heat_wave_cluster_attached: true
     display_name: display_name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     is_up_to_date: true
     sort_by: displayName
@@ -155,6 +155,7 @@ db_systems:
         subnet_id:
             description:
                 - The OCID of the subnet the DB System is associated with.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -182,7 +183,7 @@ db_systems:
                         - The fault domain in which the DB System is placed.
                     returned: on success
                     type: str
-                    sample: fault_domain_example
+                    sample: FAULT-DOMAIN-1
         is_analytics_cluster_attached:
             description:
                 - "DEPRECATED -- please use `isHeatWaveClusterAttached` instead.
@@ -293,7 +294,7 @@ db_systems:
                 - For a standalone DB System, this defines the fault domain in which the DB System is placed.
             returned: on success
             type: str
-            sample: fault_domain_example
+            sample: FAULT-DOMAIN-1
         shape_name:
             description:
                 - "The shape of the primary instances of the DB System. The shape
@@ -301,6 +302,7 @@ db_systems:
                   and memory for VM shapes; CPU cores, memory and storage for non-VM
                   (or bare metal) shapes. To get a list of shapes, use (the
                   L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20181021/ShapeSummary/ListShapes) operation."
+                - Returned for get operation
             returned: on success
             type: str
             sample: shape_name_example
@@ -313,6 +315,7 @@ db_systems:
         backup_policy:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -362,6 +365,7 @@ db_systems:
         source:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -380,12 +384,14 @@ db_systems:
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - Initial size of the data volume in GiBs that will be created and attached.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -395,6 +401,7 @@ db_systems:
                   The value is the hostname portion of the primary private IP's fully qualified domain name (FQDN)
                   (for example, \\"dbsystem-1\\" in FQDN \\"dbsystem-1.subnet123.vcn1.oraclevcn.com\\").
                   Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123."
+                - Returned for get operation
             returned: on success
             type: str
             sample: hostname_label_example
@@ -404,18 +411,21 @@ db_systems:
                   IP address of the primary endpoint of the DB System. Must be an
                   available IP address within the subnet's CIDR. This will be a
                   \\"dotted-quad\\" style IPv4 address."
+                - Returned for get operation
             returned: on success
             type: str
             sample: ip_address_example
         port:
             description:
                 - The port for primary endpoint of the DB System to listen on.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         port_x:
             description:
                 - The network port on which X Plugin listens for TCP/IP connections. This is the X Plugin equivalent of port.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -471,6 +481,7 @@ db_systems:
         channels:
             description:
                 - A list with a summary of all the Channels attached to the DB System.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -633,12 +644,14 @@ db_systems:
         lifecycle_details:
             description:
                 - Additional information about the current lifecycleState.
+                - Returned for get operation
             returned: on success
             type: str
             sample: lifecycle_details_example
         maintenance:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -687,7 +700,7 @@ db_systems:
         "is_highly_available": true,
         "current_placement": {
             "availability_domain": "Uocm:PHX-AD-1",
-            "fault_domain": "fault_domain_example"
+            "fault_domain": "FAULT-DOMAIN-1"
         },
         "is_analytics_cluster_attached": true,
         "analytics_cluster": {
@@ -706,7 +719,7 @@ db_systems:
             "time_updated": "2013-10-20T19:20:30+01:00"
         },
         "availability_domain": "Uocm:PHX-AD-1",
-        "fault_domain": "fault_domain_example",
+        "fault_domain": "FAULT-DOMAIN-1",
         "shape_name": "shape_name_example",
         "mysql_version": "mysql_version_example",
         "backup_policy": {

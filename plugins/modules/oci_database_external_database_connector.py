@@ -181,19 +181,19 @@ EXAMPLES = """
 - name: Create external_database_connector with connector_type = MACS
   oci_database_external_database_connector:
     # required
-    external_database_id: ocid
-    connector_agent_id: ocid
+    external_database_id: "ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    connector_agent_id: "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: myTestConn
+    display_name: display_name_example
     connector_type: MACS
     connection_string:
       # required
-      hostname: myHost.test
-      port: 1521
-      service: testService
+      hostname: hostname_example
+      port: 56
+      service: service_example
       protocol: TCP
     connection_credentials:
       # required
@@ -206,13 +206,13 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: myTestConn
+    display_name: display_name_example
     connector_type: MACS
     connection_string:
       # required
-      hostname: myHost.test
-      port: 1521
-      service: testService
+      hostname: hostname_example
+      port: 56
+      service: service_example
       protocol: TCP
     connection_credentials:
       # required
@@ -222,18 +222,18 @@ EXAMPLES = """
 - name: Update external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connector_type = MACS
   oci_database_external_database_connector:
     # required
-    external_database_id: ocid
+    external_database_id: "ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: myTestConn
+    display_name: display_name_example
     connector_type: MACS
     connection_string:
       # required
-      hostname: myHost.test
-      port: 1521
-      service: testService
+      hostname: hostname_example
+      port: 56
+      service: service_example
       protocol: TCP
     connection_credentials:
       # required
@@ -249,8 +249,8 @@ EXAMPLES = """
 - name: Delete external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_database_connector:
     # required
-    display_name: myTestConn
-    external_database_id: ocid
+    display_name: display_name_example
+    external_database_id: "ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

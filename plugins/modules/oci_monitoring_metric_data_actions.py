@@ -114,16 +114,16 @@ EXAMPLES = """
 - name: Perform action summarize_metrics_data on metric_data
   oci_monitoring_metric_data_actions:
     # required
-    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
-    namespace: oci_computeagent
-    query: CpuUtilization[1m].sum()
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
+    query: query_example
     action: summarize_metrics_data
 
     # optional
-    resource_group: frontend-fleet
-    start_time: 2019-02-01T01:02:29.600Z
-    end_time: 2019-02-01T02:02:29.600Z
-    resolution: 5m
+    resource_group: resource_group_example
+    start_time: start_time_example
+    end_time: end_time_example
+    resolution: resolution_example
     compartment_id_in_subtree: true
 
 """
@@ -142,7 +142,7 @@ metric_data:
                 - "Example: `oci_computeagent`"
             returned: on success
             type: str
-            sample: oci_computeagent
+            sample: namespace_example
         resource_group:
             description:
                 - Resource group provided with the posted metric. A resource group is a custom string that you can match when retrieving custom metrics. Only
@@ -152,21 +152,21 @@ metric_data:
                 - "Example: `frontend-fleet`"
             returned: on success
             type: str
-            sample: frontend-fleet
+            sample: resource_group_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the
                   resources from which the aggregated data was returned.
             returned: on success
             type: str
-            sample: "ocid1.compartment.oc1..exampleuniqueID"
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the metric.
                 - "Example: `CpuUtilization`"
             returned: on success
             type: str
-            sample: CpuUtilization
+            sample: name_example
         dimensions:
             description:
                 - Qualifiers provided in the definition of the returned metric.
@@ -192,7 +192,7 @@ metric_data:
                 - "Example: `5m`"
             returned: on success
             type: str
-            sample: 5m
+            sample: resolution_example
         aggregated_datapoints:
             description:
                 - The list of timestamp-value pairs returned for the specified request. Metric values are rolled up to the start time specified in the request.
@@ -206,25 +206,25 @@ metric_data:
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-02-01T01:02:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 value:
                     description:
                         - Numeric value of the metric.
                         - "Example: `10.4`"
                     returned: on success
                     type: float
-                    sample: 10.4
+                    sample: 1.2
     sample: {
-        "namespace": "oci_computeagent",
-        "resource_group": "frontend-fleet",
-        "compartment_id": "ocid1.compartment.oc1..exampleuniqueID",
-        "name": "CpuUtilization",
+        "namespace": "namespace_example",
+        "resource_group": "resource_group_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
         "dimensions": {},
         "metadata": {},
-        "resolution": "5m",
+        "resolution": "resolution_example",
         "aggregated_datapoints": [{
-            "timestamp": "2019-02-01T01:02:29.600Z",
-            "value": 10.4
+            "timestamp": "2013-10-20T19:20:30+01:00",
+            "value": 1.2
         }]
     }
 """

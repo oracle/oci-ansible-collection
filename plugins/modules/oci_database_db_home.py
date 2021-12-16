@@ -336,7 +336,7 @@ EXAMPLES = """
   oci_database_db_home:
     # required
     source: DATABASE
-    db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     database:
       # required
       admin_password: example-password
@@ -344,9 +344,9 @@ EXAMPLES = """
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
-      db_unique_name: myTestDb_phx1cs
-      db_name: myTestDb
-      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      db_unique_name: db_unique_name_example
+      db_name: db_name_example
+      time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -358,8 +358,8 @@ EXAMPLES = """
       db_backup_config:
         # optional
         auto_backup_enabled: true
-        recovery_window_in_days: 30
-        auto_backup_window: SLOT_TWO
+        recovery_window_in_days: 56
+        auto_backup_window: SLOT_ONE
         backup_destination_details:
         - # required
           type: NFS
@@ -373,7 +373,7 @@ EXAMPLES = """
       defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     # optional
-    display_name: createdDbHome
+    display_name: display_name_example
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -383,7 +383,7 @@ EXAMPLES = """
   oci_database_db_home:
     # required
     source: DB_BACKUP
-    db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     database:
       # required
       admin_password: example-password
@@ -391,9 +391,9 @@ EXAMPLES = """
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
-      db_unique_name: myTestDb_phx1cs
-      db_name: myTestDb
-      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      db_unique_name: db_unique_name_example
+      db_name: db_name_example
+      time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -405,8 +405,8 @@ EXAMPLES = """
       db_backup_config:
         # optional
         auto_backup_enabled: true
-        recovery_window_in_days: 30
-        auto_backup_window: SLOT_TWO
+        recovery_window_in_days: 56
+        auto_backup_window: SLOT_ONE
         backup_destination_details:
         - # required
           type: NFS
@@ -420,7 +420,7 @@ EXAMPLES = """
       defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     # optional
-    display_name: createdDbHome
+    display_name: display_name_example
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -437,9 +437,9 @@ EXAMPLES = """
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
-      db_unique_name: myTestDb_phx1cs
-      db_name: myTestDb
-      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      db_unique_name: db_unique_name_example
+      db_name: db_name_example
+      time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -451,8 +451,8 @@ EXAMPLES = """
       db_backup_config:
         # optional
         auto_backup_enabled: true
-        recovery_window_in_days: 30
-        auto_backup_window: SLOT_TWO
+        recovery_window_in_days: 56
+        auto_backup_window: SLOT_ONE
         backup_destination_details:
         - # required
           type: NFS
@@ -467,7 +467,7 @@ EXAMPLES = """
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: createdDbHome
+    display_name: display_name_example
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -476,10 +476,10 @@ EXAMPLES = """
 - name: Create db_home with source = NONE
   oci_database_db_home:
     # required
-    db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: createdDbHome
+    display_name: display_name_example
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -492,9 +492,9 @@ EXAMPLES = """
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
-      db_unique_name: myTestDb_phx1cs
-      db_name: myTestDb
-      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      db_unique_name: db_unique_name_example
+      db_name: db_name_example
+      time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -506,8 +506,8 @@ EXAMPLES = """
       db_backup_config:
         # optional
         auto_backup_enabled: true
-        recovery_window_in_days: 30
-        auto_backup_window: SLOT_TWO
+        recovery_window_in_days: 56
+        auto_backup_window: SLOT_ONE
         backup_destination_details:
         - # required
           type: NFS
@@ -519,7 +519,7 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    db_version: 12.1.0.2
+    db_version: db_version_example
 
 - name: Create db_home with source = VM_CLUSTER_NEW
   oci_database_db_home:
@@ -528,7 +528,7 @@ EXAMPLES = """
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: createdDbHome
+    display_name: display_name_example
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -540,9 +540,9 @@ EXAMPLES = """
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
-      db_unique_name: myTestDb_phx1cs
-      db_name: myTestDb
-      time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+      db_unique_name: db_unique_name_example
+      db_name: db_name_example
+      time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
@@ -554,8 +554,8 @@ EXAMPLES = """
       db_backup_config:
         # optional
         auto_backup_enabled: true
-        recovery_window_in_days: 30
-        auto_backup_window: SLOT_TWO
+        recovery_window_in_days: 56
+        auto_backup_window: SLOT_ONE
         backup_destination_details:
         - # required
           type: NFS
@@ -567,7 +567,7 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    db_version: 12.1.0.2
+    db_version: db_version_example
 
 - name: Update db_home
   oci_database_db_home:
@@ -580,12 +580,12 @@ EXAMPLES = """
       patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       action: APPLY
-    one_off_patches: [ "null" ]
+    one_off_patches: [ "one_off_patches_example" ]
 
 - name: Update db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_home:
     # required
-    display_name: createdDbHome
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -594,7 +594,7 @@ EXAMPLES = """
       patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       action: APPLY
-    one_off_patches: [ "null" ]
+    one_off_patches: [ "one_off_patches_example" ]
 
 - name: Delete db_home
   oci_database_db_home:
@@ -608,7 +608,7 @@ EXAMPLES = """
 - name: Delete db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_home:
     # required
-    display_name: createdDbHome
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

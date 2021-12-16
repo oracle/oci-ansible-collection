@@ -160,7 +160,7 @@ EXAMPLES = """
   oci_database_backup_destination:
     # required
     display_name: display_name_example
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: NFS
 
     # optional
@@ -178,10 +178,10 @@ EXAMPLES = """
   oci_database_backup_destination:
     # required
     display_name: display_name_example
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: RECOVERY_APPLIANCE
     connection_string: connection_string_example
-    vpc_users: [ "null" ]
+    vpc_users: [ "vpc_users_example" ]
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -197,25 +197,25 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     local_mount_point_path: local_mount_point_path_example
     connection_string: connection_string_example
-    vpc_users: [ "null" ]
+    vpc_users: [ "vpc_users_example" ]
     nfs_mount_type: SELF_MOUNT
-    nfs_server: [ "null" ]
+    nfs_server: [ "nfs_server_example" ]
     nfs_server_export: nfs_server_export_example
 
 - name: Update backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup_destination:
     # required
     display_name: display_name_example
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     local_mount_point_path: local_mount_point_path_example
     connection_string: connection_string_example
-    vpc_users: [ "null" ]
+    vpc_users: [ "vpc_users_example" ]
     nfs_mount_type: SELF_MOUNT
-    nfs_server: [ "null" ]
+    nfs_server: [ "nfs_server_example" ]
     nfs_server_export: nfs_server_export_example
 
 - name: Delete backup_destination
@@ -228,7 +228,7 @@ EXAMPLES = """
   oci_database_backup_destination:
     # required
     display_name: display_name_example
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """

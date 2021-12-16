@@ -83,7 +83,7 @@ EXAMPLES = """
     sort_by: id
     sort_order: ASC
     display_name: display_name_example
-    home_region: home_region_example
+    home_region: us-phoenix-1
 
 """
 
@@ -111,7 +111,7 @@ ping_monitors:
                 - The region where updates must be made and where results must be fetched from.
             returned: on success
             type: str
-            sample: home_region_example
+            sample: us-phoenix-1
         time_created:
             description:
                 - The RFC 3339-formatted creation date and time of the probe.
@@ -127,12 +127,14 @@ ping_monitors:
         targets:
             description:
                 - A list of targets (hostnames or IP addresses) of the probe.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         vantage_point_names:
             description:
                 - A list of names of vantage points from which to execute the probe.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -140,6 +142,7 @@ ping_monitors:
             description:
                 - The port on which to probe endpoints. If unspecified, probes will use the
                   default port of their protocol.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -147,6 +150,7 @@ ping_monitors:
             description:
                 - "The probe timeout in seconds. Valid values: 10, 20, 30, and 60.
                   The probe timeout must be less than or equal to `intervalInSeconds` for monitors."
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -194,7 +198,7 @@ ping_monitors:
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "results_url": "results_url_example",
-        "home_region": "home_region_example",
+        "home_region": "us-phoenix-1",
         "time_created": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "targets": [],

@@ -118,7 +118,7 @@ EXAMPLES = """
 - name: Get a specific container_image_signature
   oci_artifacts_container_image_signature_facts:
     # required
-    image_signature_id: "ocid1.containersignature.oc1..exampleuniqueID"
+    image_signature_id: "ocid1.imagesignature.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List container_image_signatures
   oci_artifacts_container_image_signature_facts:
@@ -129,11 +129,11 @@ EXAMPLES = """
     compartment_id_in_subtree: true
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-    repository_name: foo
-    image_digest: sha256:e7d38b3517548a1c71e41bffe9c8ae6d6d29546ce46bf62159837aad072c90aa
+    repository_name: repository_name_example
+    image_digest: image_digest_example
     display_name: display_name_example
-    kms_key_id: "ocid1.keyversion.oc1..exampleuniqueID"
-    kms_key_version_id: "ocid1.keyversion.oc1..exampleuniqueID"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     signing_algorithm: SHA_224_RSA_PKCS_PSS
     sort_by: TIMECREATED
     sort_order: ASC
@@ -157,6 +157,7 @@ container_image_signatures:
         created_by:
             description:
                 - The id of the user or principal that created the resource.
+                - Returned for get operation
             returned: on success
             type: str
             sample: created_by_example
@@ -167,35 +168,35 @@ container_image_signatures:
                 - "Example: `wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva`"
             returned: on success
             type: str
-            sample: wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva
+            sample: display_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image signature.
                 - "Example: `ocid1.containerimagesignature.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.containerimagesignature.oc1..exampleuniqueID"
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image.
                 - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.containerimage.oc1..exampleuniqueID"
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the kmsKeyId used to sign the container image.
                 - "Example: `ocid1.key.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.key.oc1..exampleuniqueID"
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_version_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the kmsKeyVersionId used to sign the container image.
                 - "Example: `ocid1.keyversion.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.keyversion.oc1..exampleuniqueID"
+            sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         message:
             description:
                 - The base64 encoded signature payload that was signed.
@@ -223,11 +224,11 @@ container_image_signatures:
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
-        "display_name": "wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva",
-        "id": "ocid1.containerimagesignature.oc1..exampleuniqueID",
-        "image_id": "ocid1.containerimage.oc1..exampleuniqueID",
-        "kms_key_id": "ocid1.key.oc1..exampleuniqueID",
-        "kms_key_version_id": "ocid1.keyversion.oc1..exampleuniqueID",
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
         "message": "message_example",
         "signature": "signature_example",
         "signing_algorithm": "SHA_224_RSA_PKCS_PSS",

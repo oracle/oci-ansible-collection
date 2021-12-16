@@ -256,7 +256,7 @@ histories:
                 - The date and time the recommendation history was created, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -278,7 +278,7 @@ histories:
         "status": "PENDING",
         "metadata": {},
         "extended_metadata": {},
-        "time_created": "2020-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

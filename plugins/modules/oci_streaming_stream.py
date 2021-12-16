@@ -98,13 +98,13 @@ EXAMPLES = """
 - name: Create stream
   oci_streaming_stream:
     # required
-    name: mynewstream
-    partitions: 4
+    name: name_example
+    partitions: 56
 
     # optional
-    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
-    stream_pool_id: ocid1.streampool.realm.region.zxcvbn432765
-    retention_in_hours: 24
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
+    retention_in_hours: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -114,17 +114,17 @@ EXAMPLES = """
     stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    stream_pool_id: ocid1.streampool.realm.region.zxcvbn432765
+    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update stream using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_stream:
     # required
-    name: mynewstream
+    name: name_example
 
     # optional
-    stream_pool_id: ocid1.streampool.realm.region.zxcvbn432765
+    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -137,7 +137,7 @@ EXAMPLES = """
 - name: Delete stream using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_stream:
     # required
-    name: mynewstream
+    name: name_example
     state: absent
 
 """
@@ -155,37 +155,37 @@ stream:
                 - "Example: `TelemetryEvents`"
             returned: on success
             type: str
-            sample: TelemetryEvents
+            sample: name_example
         id:
             description:
                 - The OCID of the stream.
             returned: on success
             type: str
-            sample: ocid1.stream.realm.region.mnopqr789
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         partitions:
             description:
                 - The number of partitions in the stream.
             returned: on success
             type: int
-            sample: 10
+            sample: 56
         retention_in_hours:
             description:
                 - The retention period of the stream, in hours. This property is read-only.
             returned: on success
             type: int
-            sample: 24
+            sample: 56
         compartment_id:
             description:
                 - The OCID of the stream.
             returned: on success
             type: str
-            sample: ocid1.compinstance.realm.region.zxcvbn432765
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         stream_pool_id:
             description:
                 - The OCID of the stream pool that contains the stream.
             returned: on success
             type: str
-            sample: ocid1.streampool.realm.region.zxcvbn432765
+            sample: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the stream.
@@ -204,7 +204,7 @@ stream:
                 - "Example: `2018-04-20T00:00:07.405Z`"
             returned: on success
             type: str
-            sample: "2018-04-20T00:00:07.405Z"
+            sample: "2013-10-20T19:20:30+01:00"
         messages_endpoint:
             description:
                 - The endpoint to use when creating the StreamClient to consume or publish messages in the stream.
@@ -231,15 +231,15 @@ stream:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: {
-        "name": "TelemetryEvents",
-        "id": "ocid1.stream.realm.region.mnopqr789",
-        "partitions": 10,
-        "retention_in_hours": 24,
-        "compartment_id": "ocid1.compinstance.realm.region.zxcvbn432765",
-        "stream_pool_id": "ocid1.streampool.realm.region.zxcvbn432765",
+        "name": "name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "partitions": 56,
+        "retention_in_hours": 56,
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "stream_pool_id": "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "lifecycle_state_details": "lifecycle_state_details_example",
-        "time_created": "2018-04-20T00:00:07.405Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "messages_endpoint": "messages_endpoint_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

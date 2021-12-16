@@ -97,9 +97,9 @@ EXAMPLES = """
     entity_type: entity_type_example
     display_name: display_name_example
     entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
-    publisher_id: [ "$p.getValue()" ]
-    package_type: [ "$p.getValue()" ]
-    pricing: [ "$p.getValue()" ]
+    publisher_id: [ "ocid1.publisher.oc1..xxxxxxEXAMPLExxxxxx" ]
+    package_type: [ "STACK" ]
+    pricing: [ "FREE" ]
     is_featured: true
     sort_order: ASC
 

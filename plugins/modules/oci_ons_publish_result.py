@@ -84,11 +84,11 @@ EXAMPLES = """
   oci_ons_publish_result:
     # required
     topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
-    body: High CPU usage
+    body: body_example
 
     # optional
-    title: Alarm notification
-    message_type: message_type_example
+    title: title_example
+    message_type: JSON
 
 """
 

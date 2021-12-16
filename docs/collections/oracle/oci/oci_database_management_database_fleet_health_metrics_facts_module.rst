@@ -30,9 +30,13 @@ oracle.oci.oci_database_management_database_fleet_health_metrics_facts -- Fetche
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_management_database_fleet_health_metrics_facts`.
 
@@ -452,8 +456,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>DatabaseFleetHealthMetrics resource</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compare_baseline_time&#x27;: &#x27;compare_baseline_time_example&#x27;, &#x27;compare_target_time&#x27;: &#x27;compare_target_time_example&#x27;, &#x27;compare_type&#x27;: &#x27;HOUR&#x27;, &#x27;fleet_databases&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_container_id&#x27;: &#x27;ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;ONPREMISE&#x27;, &#x27;metrics&#x27;: [{&#x27;baseline_value&#x27;: 1.2, &#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;percentage_change&#x27;: 1.2, &#x27;target_value&#x27;: 1.2, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;}]}], &#x27;fleet_summary&#x27;: {&#x27;aggregated_metrics&#x27;: [{&#x27;baseline_value&#x27;: 1.2, &#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;percentage_change&#x27;: 1.2, &#x27;target_value&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;}], &#x27;inventory&#x27;: [{&#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;inventory_count&#x27;: 56}]}}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compare_baseline_time&#x27;: &#x27;compare_baseline_time_example&#x27;, &#x27;compare_target_time&#x27;: &#x27;compare_target_time_example&#x27;, &#x27;compare_type&#x27;: &#x27;HOUR&#x27;, &#x27;fleet_databases&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_container_id&#x27;: &#x27;ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;ONPREMISE&#x27;, &#x27;metrics&#x27;: [{&#x27;baseline_value&#x27;: 1.2, &#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;percentage_change&#x27;: 1.2, &#x27;target_value&#x27;: 1.2, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;}], &#x27;workload_type&#x27;: &#x27;OLTP&#x27;}], &#x27;fleet_summary&#x27;: {&#x27;aggregated_metrics&#x27;: [{&#x27;baseline_value&#x27;: 1.2, &#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;percentage_change&#x27;: 1.2, &#x27;target_value&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;}], &#x27;inventory&#x27;: [{&#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;deployment_type&#x27;: &#x27;ONPREMISE&#x27;, &#x27;inventory_count&#x27;: 56}]}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -470,7 +474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The baseline date and time in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;. This is the date and time against which percentage change is calculated.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">compare_baseline_time_example</div>
                                     </td>
             </tr>
@@ -488,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The target date and time in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;. All the metrics are returned for the target date and time and the percentage change is calculated against the baseline date and time.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">compare_target_time_example</div>
                                     </td>
             </tr>
@@ -506,7 +510,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time window used for metrics comparison.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HOUR</div>
                                     </td>
             </tr>
@@ -524,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of the databases present in the fleet and their usage metrics.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -541,7 +545,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment where the Managed Database resides.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -560,7 +564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the parent Container Database, in the case of a Pluggable Database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -579,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The display name of the Managed Database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_name_example</div>
                                     </td>
             </tr>
@@ -596,9 +600,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container Database.</div>
+                                            <div>The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CDB</div>
                                     </td>
             </tr>
@@ -617,7 +621,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of Oracle Database installation.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_SIDB</div>
                                     </td>
             </tr>
@@ -636,7 +640,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Database version.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_version_example</div>
                                     </td>
             </tr>
@@ -655,7 +659,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Managed Database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.db.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -674,7 +678,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The infrastructure used to deploy the Oracle Database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ONPREMISE</div>
                                     </td>
             </tr>
@@ -693,7 +697,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of the database health metrics like CPU, Storage, and Memory.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -711,7 +715,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The baseline value of the metric.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -731,7 +735,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The dimensions of the metric.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -750,7 +754,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the dimension.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_name_example</div>
                                     </td>
             </tr>
@@ -771,7 +775,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The value of the dimension.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_value_example</div>
                                     </td>
             </tr>
@@ -792,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the metric.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">metric_name_example</div>
                                     </td>
             </tr>
@@ -812,7 +816,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The percentage change in the metric aggregated value compared to the baseline value.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -832,7 +836,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The target value of the metric.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -852,7 +856,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The data point date and time in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -872,11 +876,30 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unit of the value.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_fleet_health_metrics/fleet_databases/workload_type"></div>
+                    <b>workload_type</b>
+                    <a class="ansibleOptionLink" href="#return-database_fleet_health_metrics/fleet_databases/workload_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The workload type of the Autonomous Database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OLTP</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -892,7 +915,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -909,7 +932,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of databases present in the fleet and their usage metrics.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -927,7 +950,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The metric aggregated value at the baseline date and time.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -947,7 +970,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique dimension key and values of the baseline metric.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -966,7 +989,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the dimension.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_name_example</div>
                                     </td>
             </tr>
@@ -987,7 +1010,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The value of the dimension.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_value_example</div>
                                     </td>
             </tr>
@@ -1008,7 +1031,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the metric.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">metric_name_example</div>
                                     </td>
             </tr>
@@ -1028,7 +1051,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The percentage change in the metric aggregated value compared to the baseline value.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -1048,7 +1071,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The metric aggregated value at the target date and time.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -1068,7 +1091,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unit of the value.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
                                     </td>
             </tr>
@@ -1088,7 +1111,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of the databases in the fleet, grouped by database type and subtype.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1104,9 +1127,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non- container Database.</div>
+                                            <div>The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CDB</div>
                                     </td>
             </tr>
@@ -1126,8 +1149,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of Oracle Database installation.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_SIDB</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_fleet_health_metrics/fleet_summary/inventory/deployment_type"></div>
+                    <b>deployment_type</b>
+                    <a class="ansibleOptionLink" href="#return-database_fleet_health_metrics/fleet_summary/inventory/deployment_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The infrastructure used to deploy the Oracle Database.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ONPREMISE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1146,7 +1189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The number of databases in the fleet.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

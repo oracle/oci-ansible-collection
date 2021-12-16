@@ -136,7 +136,7 @@ vaults:
                 - "Example: `DELETED`"
             returned: on success
             type: str
-            sample: DELETED
+            sample: CREATING
         management_endpoint:
             description:
                 - "The service endpoint to perform management operations against. Management operations include \\"Create,\\" \\"Update,\\" \\"List,\\"
@@ -150,14 +150,15 @@ vaults:
                 - "Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property to indicate when to delete the vault, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_type:
             description:
                 - The type of vault. Each type of vault stores the key with different
@@ -168,12 +169,14 @@ vaults:
         wrappingkey_id:
             description:
                 - The OCID of the vault's wrapping key.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
         replica_details:
             description:
                 - The value to assign to the replica_details property of this Vault.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -186,6 +189,7 @@ vaults:
         is_primary:
             description:
                 - The value to assign to the is_primary property of this Vault.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -196,10 +200,10 @@ vaults:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "DELETED",
+        "lifecycle_state": "CREATING",
         "management_endpoint": "management_endpoint_example",
-        "time_created": "2018-04-03T21:10:29.600Z",
-        "time_of_deletion": "2018-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "vault_type": "VIRTUAL_PRIVATE",
         "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx",
         "replica_details": {

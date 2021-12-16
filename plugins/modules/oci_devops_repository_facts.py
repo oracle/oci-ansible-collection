@@ -23,20 +23,20 @@ module: oci_devops_repository_facts
 short_description: Fetches details about one or multiple Repository resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Repository resources in Oracle Cloud Infrastructure
-    - Returns a list of Repositories given a compartmentId or a projectId.
+    - Returns a list of repositories given a compartment ID or a project ID.
     - If I(repository_id) is specified, the details of a single Repository will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
             - Required to get a specific repository.
         type: str
         aliases: ["id"]
     fields:
         description:
-            - Fields param can contain multiple flags useful in deciding the API functionality
+            - Fields parameter can contain multiple flags useful in deciding the API functionality.
         type: list
         elements: str
         choices:
@@ -53,7 +53,7 @@ options:
         type: str
     lifecycle_state:
         description:
-            - A filter to return only resources their lifecycleState matches the given lifecycleState.
+            - A filter to return only resources whose lifecycle state matches the given lifecycle state.
         type: str
         choices:
             - "ACTIVE"
@@ -72,8 +72,8 @@ options:
             - "DESC"
     sort_by:
         description:
-            - The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for name is ascending. If no
-              value is specified timeCreated is default.
+            - The field to sort by. Only one sort order may be provided. Default order for time created is descending. Default order for name is ascending. If
+              no value is specified time created is default.
         type: str
         choices:
             - "timeCreated"
@@ -88,7 +88,7 @@ EXAMPLES = """
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "branchCount" ]
 
 - name: List repositories
   oci_devops_repository_facts:
@@ -97,7 +97,7 @@ EXAMPLES = """
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     name: name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -125,57 +125,57 @@ repositories:
             sample: name_example
         compartment_id:
             description:
-                - The OCID of the repository's Compartment.
+                - The OCID of the repository's compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         namespace:
             description:
-                - Tenancy unique namespace
+                - Tenancy unique namespace.
             returned: on success
             type: str
             sample: namespace_example
         project_id:
             description:
-                - The OCID of the Project containing the repository.
+                - The OCID of the DevOps project containing the repository.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         project_name:
             description:
-                - Project unique Name under namespace
+                - Unique project name in a namespace.
             returned: on success
             type: str
             sample: project_name_example
         ssh_url:
             description:
-                - ssh url user utilized to git clone, pull and push
+                - SSH URL that you use to git clone, pull and push.
             returned: on success
             type: str
             sample: ssh_url_example
         http_url:
             description:
-                - http url user utilized to git clone, pull and push
+                - HTTP URL that you use to git clone, pull and push.
             returned: on success
             type: str
             sample: http_url_example
         description:
             description:
-                - The description of this repository. Avoid entering confidential information
+                - Details of the repository. Avoid entering confidential information.
             returned: on success
             type: str
             sample: description_example
         default_branch:
             description:
-                - The default branch of the repository
+                - The default branch of the repository.
             returned: on success
             type: str
             sample: default_branch_example
         repository_type:
             description:
-                - "Type of repository
-                  MIRRORED - Repository was created by mirroring an existing repository.
-                  HOSTED - Repository was created and hosted using OCI Devops Code Repository."
+                - "Type of repository:
+                  Mirrored - Repository created by mirroring an existing repository.
+                  Hosted - Repository created and hosted using OCI DevOps code repository."
             returned: on success
             type: str
             sample: MIRRORED
@@ -193,7 +193,7 @@ repositories:
                     sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
-                        - Url of external repository we'd like to mirror
+                        - URL of external repository you want to mirror.
                     returned: on success
                     type: str
                     sample: repository_url_example
@@ -205,10 +205,10 @@ repositories:
                     contains:
                         schedule_type:
                             description:
-                                - "Different types to trigger schedule
-                                  - NONE - No automated sync schedule.
-                                  - DEFAULT - Trigger Schedule will be every 30 minutes.
-                                  - CUSTOM - Custom triggering schedule."
+                                - "Different types of trigger schedule:
+                                  None - No automated synchronization schedule.
+                                  Default - Trigger schedule is every 30 minutes.
+                                  Custom - Custom triggering schedule."
                             returned: on success
                             type: str
                             sample: NONE
@@ -217,26 +217,26 @@ repositories:
                                 - Valid if type is CUSTOM. Following RFC 5545 recurrence rules, we can specify starting time, occurrence frequency, and interval
                                   size.
                                   Example for frequency could be DAILY/WEEKLY/HOURLY or any RFC 5545 supported frequency, which is followed by start time of
-                                  this window, we can
-                                  control the start time with BYHOUR, BYMINUTE and BYSECONDS. It is followed by the interval size.
+                                  this window.
+                                  You can control the start time with BYHOUR, BYMINUTE and BYSECONDS. It is followed by the interval size.
                             returned: on success
                             type: str
                             sample: custom_schedule_example
         time_created:
             description:
-                - The time the the Repository was created. An RFC3339 formatted datetime string
+                - The time the repository was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Repository was updated. An RFC3339 formatted datetime string
+                - The time the repository was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the Repository.
+                - The current state of the repository.
             returned: on success
             type: str
             sample: ACTIVE
@@ -244,32 +244,37 @@ repositories:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
+                - Returned for get operation
             returned: on success
             type: str
             sample: lifecyle_details_example
         branch_count:
             description:
                 - The count of the branches present in the repository.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         commit_count:
             description:
                 - The count of the commits present in the repository.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         size_in_bytes:
             description:
                 - The size of the repository in bytes.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         trigger_build_events:
             description:
-                - "Trigger Build Events supported for this repository
-                  PUSH - Build is triggered when a push event occurs
-                  COMMIT_UPDATES - Build is triggered when new commits are mirrored into repository"
+                - "Trigger build events supported for this repository:
+                  Push - Build is triggered when a push event occurs.
+                  Commit updates - Build is triggered when new commits are mirrored into a repository."
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -299,6 +304,7 @@ repositories:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
+                - Returned for list operation
             returned: on success
             type: str
             sample: lifecycle_details_example

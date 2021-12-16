@@ -119,7 +119,7 @@ template:
                   Example: `2020-11-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-11-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         template_config_source:
             description:
                 - ""
@@ -162,7 +162,7 @@ template:
         "description": "description_example",
         "long_description": "long_description_example",
         "is_free_tier": true,
-        "time_created": "2020-11-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "template_config_source": {
             "template_config_source_type": "ZIP_UPLOAD"
         },

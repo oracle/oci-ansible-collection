@@ -192,36 +192,36 @@ EXAMPLES = """
   oci_database_vm_cluster_network:
     # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: ocid1.tenancy.oc1.example_unique_ID
-    display_name: testVmClusterNw
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     scans:
     - # required
-      hostname: sea2410c4-scan
-      port: 1521
-      ips: [ "10.0.20.20" ]
+      hostname: hostname_example
+      port: 56
+      ips: [ "ips_example" ]
 
       # optional
-      scan_listener_port_tcp: 1521
-      scan_listener_port_tcp_ssl: 2484
+      scan_listener_port_tcp: 56
+      scan_listener_port_tcp_ssl: 56
     vm_networks:
     - # required
-      vlan_id: 0-4095
+      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
       network_type: CLIENT
-      netmask: 255.255.255.0
-      gateway: 10.0.20.1
+      netmask: netmask_example
+      gateway: gateway_example
       domain_name: domain_name_example
       nodes:
       - # required
-        hostname: sea2410c4n7
-        ip: 10.0.20.14
+        hostname: hostname_example
+        ip: ip_example
 
         # optional
-        vip_hostname: sea2410c4n7-vip
-        vip: 10.0.20.15
+        vip_hostname: vip_hostname_example
+        vip: vip_example
 
     # optional
-    dns: [ "null" ]
-    ntp: [ "null" ]
+    dns: [ "dns_example" ]
+    ntp: [ "ntp_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -234,30 +234,30 @@ EXAMPLES = """
     # optional
     scans:
     - # required
-      hostname: sea2410c4-scan
-      port: 1521
-      ips: [ "10.0.20.20" ]
+      hostname: hostname_example
+      port: 56
+      ips: [ "ips_example" ]
 
       # optional
-      scan_listener_port_tcp: 1521
-      scan_listener_port_tcp_ssl: 2484
-    dns: [ "null" ]
-    ntp: [ "null" ]
+      scan_listener_port_tcp: 56
+      scan_listener_port_tcp_ssl: 56
+    dns: [ "dns_example" ]
+    ntp: [ "ntp_example" ]
     vm_networks:
     - # required
-      vlan_id: 0-4095
+      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
       network_type: CLIENT
-      netmask: 255.255.255.0
-      gateway: 10.0.20.1
+      netmask: netmask_example
+      gateway: gateway_example
       domain_name: domain_name_example
       nodes:
       - # required
-        hostname: sea2410c4n7
-        ip: 10.0.20.14
+        hostname: hostname_example
+        ip: ip_example
 
         # optional
-        vip_hostname: sea2410c4n7-vip
-        vip: 10.0.20.15
+        vip_hostname: vip_hostname_example
+        vip: vip_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -265,36 +265,36 @@ EXAMPLES = """
   oci_database_vm_cluster_network:
     # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: ocid1.tenancy.oc1.example_unique_ID
-    display_name: testVmClusterNw
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     scans:
     - # required
-      hostname: sea2410c4-scan
-      port: 1521
-      ips: [ "10.0.20.20" ]
+      hostname: hostname_example
+      port: 56
+      ips: [ "ips_example" ]
 
       # optional
-      scan_listener_port_tcp: 1521
-      scan_listener_port_tcp_ssl: 2484
-    dns: [ "null" ]
-    ntp: [ "null" ]
+      scan_listener_port_tcp: 56
+      scan_listener_port_tcp_ssl: 56
+    dns: [ "dns_example" ]
+    ntp: [ "ntp_example" ]
     vm_networks:
     - # required
-      vlan_id: 0-4095
+      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
       network_type: CLIENT
-      netmask: 255.255.255.0
-      gateway: 10.0.20.1
+      netmask: netmask_example
+      gateway: gateway_example
       domain_name: domain_name_example
       nodes:
       - # required
-        hostname: sea2410c4n7
-        ip: 10.0.20.14
+        hostname: hostname_example
+        ip: ip_example
 
         # optional
-        vip_hostname: sea2410c4n7-vip
-        vip: 10.0.20.15
+        vip_hostname: vip_hostname_example
+        vip: vip_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -309,8 +309,8 @@ EXAMPLES = """
   oci_database_vm_cluster_network:
     # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: ocid1.tenancy.oc1.example_unique_ID
-    display_name: testVmClusterNw
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

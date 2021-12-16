@@ -98,19 +98,19 @@ EXAMPLES = """
 - name: Create certificate
   oci_loadbalancer_certificate:
     # required
-    certificate_name: example_certificate_bundle
+    certificate_name: certificate_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    passphrase: passphrase&gt</var>
-    private_key: private_key&gt</var>
-    public_certificate: public_certificate&gt</var>
-    ca_certificate: ca_certificate&gt</var>
+    passphrase: passphrase_example
+    private_key: private_key_example
+    public_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+    ca_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
 
 - name: Delete certificate
   oci_loadbalancer_certificate:
     # required
-    certificate_name: example_certificate_bundle
+    certificate_name: certificate_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -131,7 +131,7 @@ certificate:
                 - "Example: `example_certificate_bundle`"
             returned: on success
             type: str
-            sample: example_certificate_bundle
+            sample: certificate_name_example
         public_certificate:
             description:
                 - The public certificate, in PEM format, that you received from your SSL certificate provider.
@@ -145,7 +145,7 @@ certificate:
                       -----END CERTIFICATE-----"
             returned: on success
             type: str
-            sample: public_certificate_example
+            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         ca_certificate:
             description:
                 - The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider.
@@ -159,11 +159,11 @@ certificate:
                       -----END CERTIFICATE-----"
             returned: on success
             type: str
-            sample: ca_certificate_example
+            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     sample: {
-        "certificate_name": "example_certificate_bundle",
-        "public_certificate": "public_certificate_example",
-        "ca_certificate": "ca_certificate_example"
+        "certificate_name": "certificate_name_example",
+        "public_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----",
+        "ca_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     }
 """
 

@@ -123,7 +123,7 @@ EXAMPLES = """
     display_name: display_name_example
     current_sku: HOUR
     next_sku: HOUR
-    compute_availability_domain: compute_availability_domain_example
+    compute_availability_domain: Uocm:PHX-AD-1
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -211,7 +211,7 @@ esxi_host:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the ESXi host was updated, in the format defined by
@@ -247,13 +247,13 @@ esxi_host:
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         compute_availability_domain:
             description:
                 - The availability domain of the ESXi host.
             returned: on success
             type: str
-            sample: compute_availability_domain_example
+            sample: Uocm:PHX-AD-1
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -277,13 +277,13 @@ esxi_host:
         "sddc_id": "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_instance_id": "ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "current_sku": "HOUR",
         "next_sku": "HOUR",
-        "billing_contract_end_date": "2016-08-25T21:10:29.600Z",
-        "compute_availability_domain": "compute_availability_domain_example",
+        "billing_contract_end_date": "2013-10-20T19:20:30+01:00",
+        "compute_availability_domain": "Uocm:PHX-AD-1",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

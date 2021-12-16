@@ -71,8 +71,8 @@ EXAMPLES = """
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    mod_security_rule_id: [ "$p.getValue()" ]
-    action: [ "$p.getValue()" ]
+    mod_security_rule_id: [ "ocid1.modsecurityrule.oc1..xxxxxxEXAMPLExxxxxx" ]
+    action: [ "OFF" ]
 
 """
 

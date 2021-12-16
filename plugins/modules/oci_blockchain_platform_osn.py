@@ -72,7 +72,7 @@ EXAMPLES = """
   oci_blockchain_platform_osn:
     # required
     blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
-    ad: ad_example
+    ad: Uocm:PHX-AD-1
 
     # optional
     ocpu_allocation_param:
@@ -115,7 +115,7 @@ blockchain_platform_osn:
                 - Availability Domain of OSN
             returned: on success
             type: str
-            sample: ad_example
+            sample: Uocm:PHX-AD-1
         ocpu_allocation_param:
             description:
                 - ""
@@ -136,7 +136,7 @@ blockchain_platform_osn:
             sample: ACTIVE
     sample: {
         "osn_key": "osn_key_example",
-        "ad": "ad_example",
+        "ad": "Uocm:PHX-AD-1",
         "ocpu_allocation_param": {
             "ocpu_allocation_number": 3.4
         },

@@ -106,9 +106,9 @@ EXAMPLES = """
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
-    status: [ "$p.getValue()" ]
-    lifecycle_state: [ "$p.getValue()" ]
-    exadata_type: [ "$p.getValue()" ]
+    status: [ "DISABLED" ]
+    lifecycle_state: [ "CREATING" ]
+    exadata_type: [ "exadata_type_example" ]
     sort_order: ASC
     sort_by: timeCreated
     compartment_id_in_subtree: true
@@ -168,6 +168,7 @@ exadata_insights:
         is_virtualized_exadata:
             description:
                 - true if virtualization is used in the Exadata system
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -176,7 +177,7 @@ exadata_insights:
                 - Indicates the status of an Exadata insight in Operations Insights
             returned: on success
             type: str
-            sample: ENABLED
+            sample: DISABLED
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -226,36 +227,42 @@ exadata_insights:
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_identifier_example
         enterprise_manager_entity_name:
             description:
                 - Enterprise Manager Entity Name
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_name_example
         enterprise_manager_entity_type:
             description:
                 - Enterprise Manager Entity Type
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_type_example
         enterprise_manager_entity_identifier:
             description:
                 - Enterprise Manager Entity Unique Identifier
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_identifier_example
         enterprise_manager_entity_display_name:
             description:
                 - Enterprise Manager Entity Display Name
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_display_name_example
         enterprise_manager_bridge_id:
             description:
                 - OPSI Enterprise Manager Bridge OCID
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
@@ -263,6 +270,7 @@ exadata_insights:
             description:
                 - Set to true to enable automatic enablement and disablement of related targets from Enterprise Manager. New resources (e.g. Database Insights)
                   will be placed in the same compartment as the related Exadata Insight.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -275,7 +283,7 @@ exadata_insights:
         "exadata_type": "DBMACHINE",
         "exadata_rack_type": "FULL",
         "is_virtualized_exadata": true,
-        "status": "ENABLED",
+        "status": "DISABLED",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},

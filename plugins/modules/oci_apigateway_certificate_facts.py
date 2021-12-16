@@ -89,8 +89,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
-    lifecycle_state: ACTIVE
+    display_name: display_name_example
+    lifecycle_state: CREATING
     sort_order: ASC
     sort_by: timeCreated
 
@@ -116,7 +116,7 @@ certificates:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -139,12 +139,14 @@ certificates:
         certificate:
             description:
                 - The data of the leaf certificate in pem format.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         intermediate_certificates:
             description:
                 - The intermediate certificate data associated with the certificate in pem format.
+                - Returned for get operation
             returned: on success
             type: str
             sample: intermediate_certificates_example
@@ -194,7 +196,7 @@ certificates:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subject_names": [],
         "time_not_valid_after": "2013-10-20T19:20:30+01:00",

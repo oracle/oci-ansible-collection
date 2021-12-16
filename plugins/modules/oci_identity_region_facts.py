@@ -58,10 +58,10 @@ regions:
                 - "Example: `us-phoenix-1`"
             returned: on success
             type: str
-            sample: us-phoenix-1
+            sample: name_example
     sample: [{
         "key": "key_example",
-        "name": "us-phoenix-1"
+        "name": "name_example"
     }]
 """
 

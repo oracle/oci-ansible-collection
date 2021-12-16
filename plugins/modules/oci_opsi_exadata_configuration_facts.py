@@ -99,14 +99,14 @@ EXAMPLES = """
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    exadata_insight_id: [ "$p.getValue()" ]
-    exadata_type: [ "$p.getValue()" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_type: [ "exadata_type_example" ]
     sort_order: ASC
     sort_by: exadataName
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
 
 """
 

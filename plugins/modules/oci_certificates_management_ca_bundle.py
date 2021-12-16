@@ -89,7 +89,7 @@ EXAMPLES = """
   oci_certificates_management_ca_bundle:
     # required
     name: name_example
-    compartment_id: "ocid1.tenancy.oc1..exampleauingds4uwkcvbxv4ijs7zxuqnoewldef4fauxs7vaax2fab4gcsq"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     ca_bundle_pem: ca_bundle_pem_example
 
     # optional
@@ -165,7 +165,7 @@ ca_bundle:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the CA bundle.
@@ -204,7 +204,7 @@ ca_bundle:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "time_created": "2019-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

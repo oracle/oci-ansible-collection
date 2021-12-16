@@ -135,14 +135,14 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    platform_type: [ "$p.getValue()" ]
-    id: [ "$p.getValue()" ]
-    exadata_insight_id: [ "$p.getValue()" ]
-    forecast_days: 56
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    platform_type: [ "LINUX" ]
+    id: [ "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    forecast_days: 30
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """
@@ -159,13 +159,13 @@ host_insight_resource_utilization_insight:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         resource_metric:
             description:
                 - Defines the type of resource metric (CPU, Physical Memory, Logical Memory)
@@ -189,13 +189,13 @@ host_insight_resource_utilization_insight:
                                 - Db id
                             returned: on success
                             type: str
-                            sample: id1
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         days_to_reach:
                             description:
                                 - Days to reach projected utilization
                             returned: on success
                             type: int
-                            sample: 5
+                            sample: 56
                 high:
                     description:
                         - List of db ids with high usage
@@ -207,13 +207,13 @@ host_insight_resource_utilization_insight:
                                 - Db id
                             returned: on success
                             type: str
-                            sample: id1
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         days_to_reach:
                             description:
                                 - Days to reach projected utilization
                             returned: on success
                             type: int
-                            sample: 5
+                            sample: 56
         current_utilization:
             description:
                 - ""
@@ -233,17 +233,17 @@ host_insight_resource_utilization_insight:
                     type: list
                     sample: []
     sample: {
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
         "resource_metric": "CPU",
         "projected_utilization": {
             "low": [{
-                "id": "id1",
-                "days_to_reach": 5
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "days_to_reach": 56
             }],
             "high": [{
-                "id": "id1",
-                "days_to_reach": 5
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "days_to_reach": 56
             }]
         },
         "current_utilization": {

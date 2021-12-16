@@ -119,7 +119,7 @@ EXAMPLES = """
     endpoint_type: VNIC
     forwarding_address: forwarding_address_example
     listening_address: listening_address_example
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update resolver_endpoint with endpoint_type = VNIC
   oci_dns_resolver_endpoint:
@@ -128,7 +128,7 @@ EXAMPLES = """
 
     # optional
     endpoint_type: VNIC
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Delete resolver_endpoint
   oci_dns_resolver_endpoint:

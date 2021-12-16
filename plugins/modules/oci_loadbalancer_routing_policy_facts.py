@@ -47,7 +47,7 @@ EXAMPLES = """
   oci_loadbalancer_routing_policy_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    routing_policy_name: example_routing_policy
+    routing_policy_name: routing_policy_name_example
 
 - name: List routing_policies
   oci_loadbalancer_routing_policy_facts:
@@ -69,7 +69,7 @@ routing_policies:
                 - "Example: `example_routing_policy`"
             returned: on success
             type: str
-            sample: example_routing_policy
+            sample: name_example
         condition_language_version:
             description:
                 - The version of the language in which `condition` of `rules` are composed.
@@ -112,16 +112,16 @@ routing_policies:
                                 - "Example: `backendSetForImages`"
                             returned: on success
                             type: str
-                            sample: backendSetForImages
+                            sample: backend_set_name_example
     sample: [{
-        "name": "example_routing_policy",
+        "name": "name_example",
         "condition_language_version": "V1",
         "rules": [{
             "name": "name_example",
             "condition": "condition_example",
             "actions": [{
                 "name": "FORWARD_TO_BACKENDSET",
-                "backend_set_name": "backendSetForImages"
+                "backend_set_name": "backend_set_name_example"
             }]
         }]
     }]

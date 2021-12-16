@@ -91,7 +91,7 @@ EXAMPLES = """
 
     # optional
     name: name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     sort_order: ASC
     sort_by: TIME_CREATED
 
@@ -107,30 +107,35 @@ workspaces:
         vcn_id:
             description:
                 - The OCID of the VCN the subnet is in.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet for customer connected databases.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         dns_server_ip:
             description:
                 - The IP of the custom DNS.
+                - Returned for get operation
             returned: on success
             type: str
             sample: dns_server_ip_example
         dns_server_zone:
             description:
                 - The DNS zone of the custom DNS to use to resolve names.
+                - Returned for get operation
             returned: on success
             type: str
             sample: dns_server_zone_example
         is_private_network_enabled:
             description:
                 - Specifies whether the private network connection is enabled or disabled.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -173,13 +178,13 @@ workspaces:
                 - The date and time the workspace was created, in the timestamp format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2019-08-25T21:10:29.410+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the workspace was updated, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
-            sample: "2019-08-25T21:10:29.410+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - "Lifecycle states for workspaces in Data Integration Service
@@ -221,8 +226,8 @@ workspaces:
         "description": "description_example",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2019-08-25T21:10:29.410+0000",
-        "time_updated": "2019-08-25T21:10:29.410+0000",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "state_message": "state_message_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

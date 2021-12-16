@@ -74,7 +74,7 @@ EXAMPLES = """
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    version_number: 789
+    version_number: 56
     certificate_version_name: certificate_version_name_example
     stage: CURRENT
     certificate_bundle_type: CERTIFICATE_CONTENT_PUBLIC_ONLY
@@ -118,7 +118,7 @@ certificate_bundle:
                   Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`"
             returned: on success
             type: str
-            sample: 03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF
+            sample: serial_number_example
         certificate_pem:
             description:
                 - The certificate in PEM format.
@@ -138,7 +138,7 @@ certificate_bundle:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         validity:
             description:
                 - ""
@@ -152,7 +152,7 @@ certificate_bundle:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_of_validity_not_after:
                     description:
                         - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
@@ -160,7 +160,7 @@ certificate_bundle:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
         version_name:
             description:
                 - The name of the certificate version.
@@ -208,13 +208,13 @@ certificate_bundle:
         "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx",
         "certificate_name": "certificate_name_example",
         "version_number": 56,
-        "serial_number": "03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF",
+        "serial_number": "serial_number_example",
         "certificate_pem": "certificate_pem_example",
         "cert_chain_pem": "cert_chain_pem_example",
-        "time_created": "2019-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "validity": {
-            "time_of_validity_not_before": "2019-04-03T21:10:29.600Z",
-            "time_of_validity_not_after": "2019-04-03T21:10:29.600Z"
+            "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",
+            "time_of_validity_not_after": "2013-10-20T19:20:30+01:00"
         },
         "version_name": "version_name_example",
         "stages": [],

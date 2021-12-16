@@ -30,9 +30,13 @@ oracle.oci.oci_compute_image_capability_schema -- Manage a ComputeImageCapabilit
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_image_capability_schema`.
 
@@ -573,17 +577,17 @@ Examples
     - name: Create compute_image_capability_schema
       oci_compute_image_capability_schema:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-        compute_global_image_capability_schema_version_name: 2c0xx226-xxx-xxxx-xxxx-193cc17xx90b
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compute_global_image_capability_schema_version_name: compute_global_image_capability_schema_version_name_example
         image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         schema_data:
           # required
           descriptor_type: enumstring
           source: GLOBAL
-          enum_string_values: [ "null" ]
+          enum_string_values: [ "enum_string_values_example" ]
 
           # optional
-          enum_string_default_value: default_value_example
+          enum_string_default_value: enum_string_default_value_example
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -603,10 +607,10 @@ Examples
           # required
           descriptor_type: enumstring
           source: GLOBAL
-          enum_string_values: [ "null" ]
+          enum_string_values: [ "enum_string_values_example" ]
 
           # optional
-          enum_string_default_value: default_value_example
+          enum_string_default_value: enum_string_default_value_example
 
     - name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_image_capability_schema:
@@ -620,10 +624,10 @@ Examples
           # required
           descriptor_type: enumstring
           source: GLOBAL
-          enum_string_values: [ "null" ]
+          enum_string_values: [ "enum_string_values_example" ]
 
           # optional
-          enum_string_default_value: default_value_example
+          enum_string_default_value: enum_string_default_value_example
 
     - name: Delete compute_image_capability_schema
       oci_compute_image_capability_schema:
@@ -671,8 +675,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the ComputeImageCapabilitySchema resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_global_image_capability_schema_id&#x27;: &#x27;ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_global_image_capability_schema_version_name&#x27;: &#x27;compute_global_image_capability_schema_version_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schema_data&#x27;: {&#x27;boolean_default_value&#x27;: True, &#x27;descriptor_type&#x27;: &#x27;boolean&#x27;, &#x27;enum_integer_default_value&#x27;: 56, &#x27;enum_integer_values&#x27;: [], &#x27;enum_string_default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;enum_string_values&#x27;: [], &#x27;source&#x27;: &#x27;GLOBAL&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_global_image_capability_schema_id&#x27;: &#x27;ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_global_image_capability_schema_version_name&#x27;: &#x27;compute_global_image_capability_schema_version_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schema_data&#x27;: {&#x27;boolean_default_value&#x27;: True, &#x27;descriptor_type&#x27;: &#x27;boolean&#x27;, &#x27;enum_integer_default_value&#x27;: 56, &#x27;enum_integer_values&#x27;: [], &#x27;enum_string_default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;enum_string_values&#x27;: [], &#x27;source&#x27;: &#x27;GLOBAL&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -689,7 +693,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the compartment that contains the resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -707,7 +711,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ocid of the compute global image capability schema</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -725,7 +729,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the compute global image capability schema version</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">compute_global_image_capability_schema_version_name_example</div>
                                     </td>
             </tr>
@@ -744,7 +748,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -762,7 +766,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -781,7 +785,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -799,7 +803,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The id of the compute global image capability schema version</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -817,7 +821,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the image associated with this compute image capability schema</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.image.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -835,7 +839,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The map of each capability name to its ImageCapabilityDescriptor.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -852,7 +856,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the default value</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -871,7 +875,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The image capability schema descriptor type for the capability</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">boolean</div>
                                     </td>
             </tr>
@@ -890,7 +894,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the default value</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -909,7 +913,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the list of values for the enum</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -926,7 +930,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the default value</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_value_example</div>
                                     </td>
             </tr>
@@ -945,7 +949,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the list of values for the enum</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -962,7 +966,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GLOBAL</div>
                                     </td>
             </tr>
@@ -982,8 +986,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the compute image capability schema was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

@@ -109,7 +109,7 @@ EXAMPLES = """
     end_sn_id_less_than_or_equal_to: 56
     time_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
-    name: [ "$p.getValue()" ]
+    name: [ "name_example" ]
     session_type: FOREGROUND
     container_id: 56
     sort_by: TIME_BEGIN

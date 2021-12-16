@@ -88,9 +88,9 @@ EXAMPLES = """
 
     # optional
     key: key_example
-    is_latest_version: [ "$p.getValue()" ]
-    type: type_example
-    group_tag: [ "$p.getValue()" ]
+    is_latest_version: [ "true" ]
+    type: REQUEST_PROTECTION_CAPABILITY
+    group_tag: [ "group_tag_example" ]
     display_name: display_name_example
     sort_order: ASC
     sort_by: key

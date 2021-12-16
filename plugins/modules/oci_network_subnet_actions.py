@@ -82,7 +82,7 @@ subnet:
                 - "Example: `10.0.1.0/24`"
             returned: on success
             type: str
-            sample: 10.0.1.0/24
+            sample: cidr_block_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the subnet.
@@ -124,7 +124,7 @@ subnet:
                 - "Example: `subnet123`"
             returned: on success
             type: str
-            sample: subnet123
+            sample: dns_label_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -147,14 +147,14 @@ subnet:
                 - "Example: `2001:0db8:0123:1111::/64`"
             returned: on success
             type: str
-            sample: 2001:0db8:0123:1111::/64
+            sample: ipv6_cidr_block_example
         ipv6_virtual_router_ip:
             description:
                 - For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.
                 - "Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`"
             returned: on success
             type: str
-            sample: 2001:0db8:0123:1111:89ab:cdef:1234:5678
+            sample: ipv6_virtual_router_ip_example
         lifecycle_state:
             description:
                 - The subnet's current state.
@@ -214,14 +214,14 @@ subnet:
                 - "Example: `subnet123.vcn1.oraclevcn.com`"
             returned: on success
             type: str
-            sample: subnet123.vcn1.oraclevcn.com
+            sample: subnet_domain_name_example
         time_created:
             description:
                 - The date and time the subnet was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the subnet is in.
@@ -234,36 +234,36 @@ subnet:
                 - "Example: `10.0.14.1`"
             returned: on success
             type: str
-            sample: 10.0.14.1
+            sample: virtual_router_ip_example
         virtual_router_mac:
             description:
                 - The MAC address of the virtual router.
                 - "Example: `00:00:00:00:00:01`"
             returned: on success
             type: str
-            sample: 00:00:00:00:00:01
+            sample: virtual_router_mac_example
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
-        "cidr_block": "10.0.1.0/24",
+        "cidr_block": "cidr_block_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "dhcp_options_id": "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "dns_label": "subnet123",
+        "dns_label": "dns_label_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "ipv6_cidr_block": "2001:0db8:0123:1111::/64",
-        "ipv6_virtual_router_ip": "2001:0db8:0123:1111:89ab:cdef:1234:5678",
+        "ipv6_cidr_block": "ipv6_cidr_block_example",
+        "ipv6_virtual_router_ip": "ipv6_virtual_router_ip_example",
         "lifecycle_state": "PROVISIONING",
         "prohibit_internet_ingress": true,
         "prohibit_public_ip_on_vnic": true,
         "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "security_list_ids": [],
-        "subnet_domain_name": "subnet123.vcn1.oraclevcn.com",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "subnet_domain_name": "subnet_domain_name_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
-        "virtual_router_ip": "10.0.14.1",
-        "virtual_router_mac": "00:00:00:00:00:01"
+        "virtual_router_ip": "virtual_router_ip_example",
+        "virtual_router_mac": "virtual_router_mac_example"
     }
 """
 

@@ -90,7 +90,7 @@ EXAMPLES = """
   oci_data_safe_target_database_actions:
     # required
     target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaaqkb3jtub4lnlha7vfvp4f2mj6zxraqfnxernheayom3pljsfppca"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on target_database
@@ -119,7 +119,7 @@ target_database:
                 - The OCID of the compartment which contains the Data Safe target database.
             returned: on success
             type: str
-            sample: "ocid1.compartment.oc1..aaaaaaaaqkb3jtub4lnlha7vfvp4f2mj6zxraqfnxernheayom3pljsfppca"
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the Data Safe target database.
@@ -161,19 +161,19 @@ target_database:
                         - The OCID of the autonomous database registered as a target database in Data Safe.
                     returned: on success
                     type: str
-                    sample: ocid1.autonomousdatabase.oc1.iad.abuwcljs4hz5fnsyazyoblbm3o24ykw5iiwa44it2jzvhby73r6324522c2q
+                    sample: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
                 vm_cluster_id:
                     description:
                         - The OCID of the VM cluster in which the database is running.
                     returned: on success
                     type: str
-                    sample: ocid1.vmcluster.oc1.iad.abuwc33era5gex4puvmuphzxrfukxaxwqit7ze6egqquxe75ojb3lytlvtkq
+                    sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
                 db_system_id:
                     description:
                         - The OCID of the cloud database system registered as a target database in Data Safe.
                     returned: on success
                     type: str
-                    sample: ocid1.dbsystem.oc1.iad.abuwcljsgz57qgikkkpzenfya3uznj356vwjcgqrcy6x2dzcgierhbsonz7q
+                    sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                 service_name:
                     description:
                         - The database service name.
@@ -185,7 +185,7 @@ target_database:
                         - The OCID of the compute instance on which the database is running.
                     returned: on success
                     type: str
-                    sample: ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq
+                    sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_addresses:
                     description:
                         - The list of database host IP Addresses. Fully qualified domain names can be used if connectionType is 'ONPREM_CONNECTOR'.
@@ -326,18 +326,18 @@ target_database:
             type: dict
             sample: {}
     sample: {
-        "compartment_id": "ocid1.compartment.oc1..aaaaaaaaqkb3jtub4lnlha7vfvp4f2mj6zxraqfnxernheayom3pljsfppca",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
         "database_details": {
             "database_type": "DATABASE_CLOUD_SERVICE",
             "infrastructure_type": "ORACLE_CLOUD",
-            "autonomous_database_id": "ocid1.autonomousdatabase.oc1.iad.abuwcljs4hz5fnsyazyoblbm3o24ykw5iiwa44it2jzvhby73r6324522c2q",
-            "vm_cluster_id": "ocid1.vmcluster.oc1.iad.abuwc33era5gex4puvmuphzxrfukxaxwqit7ze6egqquxe75ojb3lytlvtkq",
-            "db_system_id": "ocid1.dbsystem.oc1.iad.abuwcljsgz57qgikkkpzenfya3uznj356vwjcgqrcy6x2dzcgierhbsonz7q",
+            "autonomous_database_id": "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx",
+            "vm_cluster_id": "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx",
+            "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
             "service_name": "service_name_example",
-            "instance_id": "ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq",
+            "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
             "ip_addresses": [],
             "listener_port": 56
         },

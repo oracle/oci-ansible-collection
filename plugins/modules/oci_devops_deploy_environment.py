@@ -157,7 +157,7 @@ EXAMPLES = """
       items:
       - # required
         selector_type: INSTANCE_IDS
-        compute_instance_ids: [ "null" ]
+        compute_instance_ids: [ "compute_instance_ids_example" ]
 
 - name: Create deploy_environment with deploy_environment_type = OKE_CLUSTER
   oci_devops_deploy_environment:
@@ -200,7 +200,7 @@ EXAMPLES = """
       items:
       - # required
         selector_type: INSTANCE_IDS
-        compute_instance_ids: [ "null" ]
+        compute_instance_ids: [ "compute_instance_ids_example" ]
 
 - name: Update deploy_environment with deploy_environment_type = OKE_CLUSTER
   oci_devops_deploy_environment:
@@ -241,7 +241,7 @@ EXAMPLES = """
       items:
       - # required
         selector_type: INSTANCE_IDS
-        compute_instance_ids: [ "null" ]
+        compute_instance_ids: [ "compute_instance_ids_example" ]
 
 - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = OKE_CLUSTER
   oci_devops_deploy_environment:
@@ -401,7 +401,7 @@ deploy_environment:
                                   us/iaas/Content/General/Concepts/regions.htm
                             returned: on success
                             type: str
-                            sample: region_example
+                            sample: us-phoenix-1
                         query:
                             description:
                                 - Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is
@@ -439,7 +439,7 @@ deploy_environment:
             "items": [{
                 "selector_type": "INSTANCE_IDS",
                 "compute_instance_ids": [],
-                "region": "region_example",
+                "region": "us-phoenix-1",
                 "query": "query_example"
             }]
         },

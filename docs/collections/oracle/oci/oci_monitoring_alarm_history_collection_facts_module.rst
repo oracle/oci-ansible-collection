@@ -30,9 +30,13 @@ oracle.oci.oci_monitoring_alarm_history_collection_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_monitoring_alarm_history_collection_facts`.
 
@@ -324,8 +328,8 @@ Examples
 
         # optional
         alarm_historytype: STATE_HISTORY
-        timestamp_greater_than_or_equal_to: 2019-01-01T01:00:00.789Z
-        timestamp_less_than: 2019-01-02T01:00:00.789Z
+        timestamp_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+        timestamp_less_than: 2013-10-20T19:20:30+01:00
 
 
 
@@ -361,8 +365,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>AlarmHistoryCollection resource</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alarm_id&#x27;: &#x27;ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;entries&#x27;: [{&#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;timestamp&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;timestamp_triggered&#x27;: &#x27;2019-02-01T0:59:00.789Z&#x27;}], &#x27;is_enabled&#x27;: True}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alarm_id&#x27;: &#x27;ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;entries&#x27;: [{&#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timestamp_triggered&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;is_enabled&#x27;: True}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -379,7 +383,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the alarm for which to retrieve history.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -397,7 +401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The set of history entries retrieved for the alarm.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -416,7 +420,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example 1 - alarm state history entry: `The alarm state is FIRING`</div>
                                             <div>Example 2 - alarm state transition history entry: `State transitioned from OK to Firing`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">summary_example</div>
                                     </td>
             </tr>
@@ -436,8 +440,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Timestamp for this alarm history entry. Format defined by RFC3339.</div>
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -456,8 +460,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing. Available for state transition entries only. Note: A three-minute lag for this value accounts for any late-arriving metrics.</div>
                                             <div>Example: `2019-02-01T0:59:00.789Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T0:59:00.789Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     
@@ -476,7 +480,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the alarm is enabled.</div>
                                             <div>Example: `true`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>

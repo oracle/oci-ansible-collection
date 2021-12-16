@@ -49,7 +49,7 @@ EXAMPLES = """
   oci_loadbalancer_path_route_set_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    path_route_set_name: example_path_route_set
+    path_route_set_name: path_route_set_name_example
 
 - name: List path_route_sets
   oci_loadbalancer_path_route_set_facts:
@@ -71,7 +71,7 @@ path_route_sets:
                 - "Example: `example_path_route_set`"
             returned: on success
             type: str
-            sample: example_path_route_set
+            sample: name_example
         path_routes:
             description:
                 - The set of path route rules.
@@ -87,7 +87,7 @@ path_route_sets:
                         - "Example: `/example/video/123`"
                     returned: on success
                     type: str
-                    sample: /example/video/123
+                    sample: path_example
                 path_match_type:
                     description:
                         - The type of matching to apply to incoming URIs.
@@ -115,15 +115,15 @@ path_route_sets:
                         - "Example: `example_backend_set`"
                     returned: on success
                     type: str
-                    sample: example_backend_set
+                    sample: backend_set_name_example
     sample: [{
-        "name": "example_path_route_set",
+        "name": "name_example",
         "path_routes": [{
-            "path": "/example/video/123",
+            "path": "path_example",
             "path_match_type": {
                 "match_type": "EXACT_MATCH"
             },
-            "backend_set_name": "example_backend_set"
+            "backend_set_name": "backend_set_name_example"
         }]
     }]
 """

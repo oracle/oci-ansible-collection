@@ -89,6 +89,7 @@ instance_agent_commands:
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -128,12 +129,14 @@ instance_agent_commands:
             description:
                 - The amount of time that Oracle Cloud Agent is given to run the command on the instance before timing
                   out. The timer starts when Oracle Cloud Agent starts the command. Zero means no timeout.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         target:
             description:
                 - The target instance that the command runs on.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -146,6 +149,7 @@ instance_agent_commands:
         content:
             description:
                 - The contents of the command.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -246,6 +250,7 @@ instance_agent_commands:
         instance_agent_command_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
+                - Returned for list operation
             returned: on success
             type: str
             sample: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"

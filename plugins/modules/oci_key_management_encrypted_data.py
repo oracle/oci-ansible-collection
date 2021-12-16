@@ -87,8 +87,8 @@ EXAMPLES = """
 - name: Create encrypted_data
   oci_key_management_encrypted_data:
     # required
-    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
-    plaintext: aGVsbG8sIHdvcmxk
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    plaintext: plaintext_example
 
     # optional
     associated_data: null

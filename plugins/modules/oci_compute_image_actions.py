@@ -186,7 +186,7 @@ image:
                 - "Example: `My custom Oracle Linux image`"
             returned: on success
             type: str
-            sample: My custom Oracle Linux image
+            sample: display_name_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -289,14 +289,14 @@ image:
                 - "Example: `Oracle Linux`"
             returned: on success
             type: str
-            sample: Oracle Linux
+            sample: operating_system_example
         operating_system_version:
             description:
                 - The image's operating system version.
                 - "Example: `7.2`"
             returned: on success
             type: str
-            sample: 7.2
+            sample: operating_system_version_example
         agent_features:
             description:
                 - ""
@@ -328,27 +328,27 @@ image:
                 - "Example: `47694`"
             returned: on success
             type: int
-            sample: 47694
+            sample: 56
         billable_size_in_gbs:
             description:
                 - The size of the internal storage for this image that is subject to billing (1 GB = 1,073,741,824 bytes).
                 - "Example: `100`"
             returned: on success
             type: int
-            sample: 100
+            sample: 56
         time_created:
             description:
                 - The date and time the image was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "base_image_id": "ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "create_image_allowed": true,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "My custom Oracle Linux image",
+        "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "launch_mode": "NATIVE",
@@ -361,16 +361,16 @@ image:
             "is_consistent_volume_naming_enabled": true
         },
         "lifecycle_state": "PROVISIONING",
-        "operating_system": "Oracle Linux",
-        "operating_system_version": "7.2",
+        "operating_system": "operating_system_example",
+        "operating_system_version": "operating_system_version_example",
         "agent_features": {
             "is_monitoring_supported": true,
             "is_management_supported": true
         },
         "listing_type": "COMMUNITY",
-        "size_in_mbs": 47694,
-        "billable_size_in_gbs": 100,
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "size_in_mbs": 56,
+        "billable_size_in_gbs": 56,
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

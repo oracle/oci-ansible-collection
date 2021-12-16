@@ -126,13 +126,13 @@ EXAMPLES = """
 - name: Create function
   oci_functions_function:
     # required
-    display_name: ExampleFunction
-    application_id: application_OCID
-    image: phx.ocir.io/example-namespace/example-repo/example-image:0.0.1
-    memory_in_mbs: 128
+    display_name: display_name_example
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+    image: image_example
+    memory_in_mbs: 56
 
     # optional
-    image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+    image_digest: image_digest_example
     config: null
     timeout_in_seconds: 56
     trace_config:
@@ -147,9 +147,9 @@ EXAMPLES = """
     function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    image: phx.ocir.io/example-namespace/example-repo/example-image:0.0.1
-    image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
-    memory_in_mbs: 128
+    image: image_example
+    image_digest: image_digest_example
+    memory_in_mbs: 56
     config: null
     timeout_in_seconds: 56
     trace_config:
@@ -161,13 +161,13 @@ EXAMPLES = """
 - name: Update function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_function:
     # required
-    display_name: ExampleFunction
-    application_id: application_OCID
+    display_name: display_name_example
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    image: phx.ocir.io/example-namespace/example-repo/example-image:0.0.1
-    image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
-    memory_in_mbs: 128
+    image: image_example
+    image_digest: image_digest_example
+    memory_in_mbs: 56
     config: null
     timeout_in_seconds: 56
     trace_config:
@@ -185,8 +185,8 @@ EXAMPLES = """
 - name: Delete function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_function:
     # required
-    display_name: ExampleFunction
-    application_id: application_OCID
+    display_name: display_name_example
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -235,7 +235,7 @@ function:
                   Example: `phx.ocir.io/ten/functions/function:0.0.1`"
             returned: on success
             type: str
-            sample: phx.ocir.io/ten/functions/function:0.0.1
+            sample: image_example
         image_digest:
             description:
                 - "The image digest for the version of the image that will be pulled when invoking this function.
@@ -243,7 +243,7 @@ function:
                   Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`"
             returned: on success
             type: str
-            sample: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+            sample: image_digest_example
         memory_in_mbs:
             description:
                 - Maximum usable memory for the function (MiB).
@@ -309,7 +309,7 @@ function:
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the function was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -317,15 +317,15 @@ function:
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "lifecycle_state": "CREATING",
         "application_id": "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "image": "phx.ocir.io/ten/functions/function:0.0.1",
-        "image_digest": "sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7",
+        "image": "image_example",
+        "image_digest": "image_digest_example",
         "memory_in_mbs": 56,
         "config": {},
         "timeout_in_seconds": 56,
@@ -335,8 +335,8 @@ function:
         "freeform_tags": {'Department': 'Finance'},
         "invoke_endpoint": "invoke_endpoint_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "time_created": "2018-09-12T22:47:12.613Z",
-        "time_updated": "2018-09-12T22:47:12.613Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }
 """
 

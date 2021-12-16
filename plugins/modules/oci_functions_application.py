@@ -149,14 +149,14 @@ EXAMPLES = """
 - name: Create application
   oci_functions_application:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: ExampleApplication
-    subnet_ids: [ "ocid1.subnet.oc1..unique_ID" ]
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    subnet_ids: [ "subnet_ids_example" ]
 
     # optional
     config: null
-    network_security_group_ids: [ "null" ]
-    syslog_url: tcp://logserver.myserver:1234
+    network_security_group_ids: [ "network_security_group_ids_example" ]
+    syslog_url: syslog_url_example
     trace_config:
       # optional
       is_enabled: true
@@ -179,8 +179,8 @@ EXAMPLES = """
 
     # optional
     config: null
-    network_security_group_ids: [ "null" ]
-    syslog_url: tcp://logserver.myserver:1234
+    network_security_group_ids: [ "network_security_group_ids_example" ]
+    syslog_url: syslog_url_example
     trace_config:
       # optional
       is_enabled: true
@@ -199,13 +199,13 @@ EXAMPLES = """
 - name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_application:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: ExampleApplication
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     config: null
-    network_security_group_ids: [ "null" ]
-    syslog_url: tcp://logserver.myserver:1234
+    network_security_group_ids: [ "network_security_group_ids_example" ]
+    syslog_url: syslog_url_example
     trace_config:
       # optional
       is_enabled: true
@@ -230,8 +230,8 @@ EXAMPLES = """
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_application:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: ExampleApplication
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -301,7 +301,7 @@ application:
                 - "Example: `tcp://logserver.myserver:1234`"
             returned: on success
             type: str
-            sample: tcp://logserver.myserver:1234
+            sample: syslog_url_example
         trace_config:
             description:
                 - ""
@@ -343,7 +343,7 @@ application:
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -351,7 +351,7 @@ application:
                   Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         image_policy_config:
             description:
                 - ""
@@ -385,15 +385,15 @@ application:
         "config": {},
         "subnet_ids": [],
         "network_security_group_ids": [],
-        "syslog_url": "tcp://logserver.myserver:1234",
+        "syslog_url": "syslog_url_example",
         "trace_config": {
             "is_enabled": true,
             "domain_id": "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "time_created": "2018-09-12T22:47:12.613Z",
-        "time_updated": "2018-09-12T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "image_policy_config": {
             "is_policy_enabled": true,
             "key_details": [{

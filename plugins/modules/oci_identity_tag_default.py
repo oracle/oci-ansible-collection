@@ -65,14 +65,14 @@ EXAMPLES = """
 - name: Create tag_default
   oci_identity_tag_default:
     # required
-    compartment_id: "ocid1.compartment.oc1..aaaaaaaaexampleuniqueID"
-    tag_definition_id: "ocid1.tagdefinition.oc1..aaaaaaaaexampleuniqueID"
-    value: W123
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    tag_definition_id: "ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx"
+    value: value_example
 
 - name: Update tag_default
   oci_identity_tag_default:
     # required
-    value: W123
+    value: value_example
     tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete tag_default
@@ -133,7 +133,7 @@ tag_default:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The tag default's current state. After creating a `TagDefault`, make sure its `lifecycleState` is ACTIVE before using it.
@@ -147,7 +147,7 @@ tag_default:
         "tag_definition_id": "ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx",
         "tag_definition_name": "tag_definition_name_example",
         "value": "value_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE"
     }
 """

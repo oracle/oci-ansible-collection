@@ -173,7 +173,7 @@ EXAMPLES = """
     action: autonomous_database_manual_refresh
 
     # optional
-    time_refresh_cutoff: 2013-10-20T19:20:30+01:00
+    time_refresh_cutoff: time_refresh_cutoff_example
 
 - name: Perform action change_compartment on autonomous_database
   oci_database_autonomous_database_actions:
@@ -231,7 +231,7 @@ EXAMPLES = """
 
     # optional
     generate_type: ALL
-    force: $utils.AnsibleRenderingUtils.escapeStringExampleValue($p.getValue())
+    force: true
 
 - name: Perform action register_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
@@ -250,7 +250,7 @@ EXAMPLES = """
   oci_database_autonomous_database_actions:
     # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    timestamp: 2013-10-20T19:20:30+01:00
+    timestamp: timestamp_example
     action: restore
 
     # optional

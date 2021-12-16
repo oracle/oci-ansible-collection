@@ -195,13 +195,13 @@ EXAMPLES = """
   oci_database_cloud_exadata_infrastructure:
     # required
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tstExaInfra
-    shape: Exadata.X8M
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    shape: shape_example
 
     # optional
-    compute_count: 2
-    storage_count: 3
+    compute_count: 56
+    storage_count: 56
     maintenance_window:
       # required
       preference: NO_PREFERENCE
@@ -210,11 +210,11 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -228,9 +228,9 @@ EXAMPLES = """
     cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: tstExaInfra
-    compute_count: 2
-    storage_count: 3
+    display_name: display_name_example
+    compute_count: 56
+    storage_count: 56
     maintenance_window:
       # required
       preference: NO_PREFERENCE
@@ -239,11 +239,11 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -254,12 +254,12 @@ EXAMPLES = """
 - name: Update cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_exadata_infrastructure:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tstExaInfra
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    compute_count: 2
-    storage_count: 3
+    compute_count: 56
+    storage_count: 56
     maintenance_window:
       # required
       preference: NO_PREFERENCE
@@ -268,11 +268,11 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -292,8 +292,8 @@ EXAMPLES = """
 - name: Delete cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_exadata_infrastructure:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tstExaInfra
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

@@ -23,7 +23,7 @@ module: oci_database_management_associated_database_facts
 short_description: Fetches details about one or multiple AssociatedDatabase resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AssociatedDatabase resources in Oracle Cloud Infrastructure
-    - Gets the list of Databases using the specified Database Management private endpoint.
+    - Gets the list of databases using a specific Database Management private endpoint.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -46,7 +46,7 @@ options:
             - "DESC"
     sort_by:
         description:
-            - The field to sort Databases using a specific Database Management Private Endpoint
+            - The option to sort databases using a specific Database Management private endpoint.
         type: str
         choices:
             - "timeRegistered"
@@ -75,7 +75,7 @@ associated_databases:
     contains:
         id:
             description:
-                - The OCID of the database.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -87,13 +87,13 @@ associated_databases:
             sample: name_example
         compartment_id:
             description:
-                - The compartment ID of the database.
+                - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_registered:
             description:
-                - The time when the database was registered for Database Management.
+                - The time when Database Management was enabled for the database.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

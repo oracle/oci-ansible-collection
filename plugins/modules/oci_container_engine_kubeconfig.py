@@ -66,9 +66,9 @@ EXAMPLES = """
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    token_version: 2.0.0
+    token_version: token_version_example
     expiration: 56
-    endpoint: PUBLIC_ENDPOINT
+    endpoint: LEGACY_KUBERNETES
 
 """
 

@@ -134,16 +134,16 @@ EXAMPLES = """
     # optional
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: [ "$p.getValue()" ]
+    name: [ "name_example" ]
     publisher_id: "ocid1.publisher.oc1..xxxxxxEXAMPLExxxxxx"
     package_type: package_type_example
     sort_by: TIMERELEASED
     sort_order: ASC
-    category: [ "$p.getValue()" ]
-    pricing: [ "$p.getValue()" ]
+    category: [ "category_example" ]
+    pricing: [ "FREE" ]
     is_featured: true
-    listing_types: [ "$p.getValue()" ]
-    operating_systems: [ "$p.getValue()" ]
+    listing_types: [ "COMMUNITY" ]
+    operating_systems: [ "operating_systems_example" ]
 
 """
 
@@ -169,6 +169,7 @@ listings:
         version:
             description:
                 - The version of the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: version_example
@@ -181,6 +182,7 @@ listings:
         keywords:
             description:
                 - Keywords associated with the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: keywords_example
@@ -193,36 +195,42 @@ listings:
         usage_information:
             description:
                 - Usage information for the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: usage_information_example
         long_description:
             description:
                 - A long description of the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: long_description_example
         license_model_description:
             description:
                 - A description of the publisher's licensing model for the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: license_model_description_example
         system_requirements:
             description:
                 - System requirements for the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: system_requirements_example
         time_released:
             description:
                 - The release date of the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         release_notes:
             description:
                 - Release notes for the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: release_notes_example
@@ -337,6 +345,7 @@ listings:
         languages:
             description:
                 - Languages supported by the listing.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -355,6 +364,7 @@ listings:
         screenshots:
             description:
                 - Screenshots of the listing.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -391,6 +401,7 @@ listings:
         videos:
             description:
                 - Videos of the listing.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -409,6 +420,7 @@ listings:
         support_contacts:
             description:
                 - Contact information to use to get support from the publisher for the listing.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -439,6 +451,7 @@ listings:
         support_links:
             description:
                 - Links to support resources for the listing.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -457,6 +470,7 @@ listings:
         documentation_links:
             description:
                 - Links to additional documentation provided by the publisher specifically for the listing.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -511,6 +525,7 @@ listings:
         banner:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -583,12 +598,14 @@ listings:
         default_package_version:
             description:
                 - The default package version.
+                - Returned for get operation
             returned: on success
             type: str
             sample: default_package_version_example
         links:
             description:
                 - Links to reference material.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -631,6 +648,7 @@ listings:
         pricing_types:
             description:
                 - Summary of the pricing types available across all packages in the listing.
+                - Returned for list operation
             returned: on success
             type: list
             sample: []

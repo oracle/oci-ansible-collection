@@ -46,7 +46,7 @@ EXAMPLES = """
   oci_object_storage_replication_source_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
 """
 
@@ -68,7 +68,7 @@ replication_sources:
                 - "The source region replicating data from, for example \\"us-ashburn-1\\"."
             returned: on success
             type: str
-            sample: source_region_name_example
+            sample: us-phoenix-1
         source_bucket_name:
             description:
                 - The source bucket replicating data from.
@@ -77,7 +77,7 @@ replication_sources:
             sample: source_bucket_name_example
     sample: [{
         "policy_name": "policy_name_example",
-        "source_region_name": "source_region_name_example",
+        "source_region_name": "us-phoenix-1",
         "source_bucket_name": "source_bucket_name_example"
     }]
 """

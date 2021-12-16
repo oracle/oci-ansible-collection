@@ -167,7 +167,7 @@ job:
                         - The size of the block storage volume to attach to the instance running the job
                     returned: on success
                     type: int
-                    sample: 1024
+                    sample: 56
         job_log_configuration_details:
             description:
                 - ""
@@ -203,7 +203,7 @@ job:
                 - The state of the job.
             returned: on success
             type: str
-            sample: ACTIVE
+            sample: CREATING
         lifecycle_details:
             description:
                 - The state of the job.
@@ -244,7 +244,7 @@ job:
             "job_infrastructure_type": "STANDALONE",
             "shape_name": "shape_name_example",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "block_storage_size_in_gbs": 1024
+            "block_storage_size_in_gbs": 56
         },
         "job_log_configuration_details": {
             "enable_logging": true,
@@ -252,7 +252,7 @@ job:
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         },
-        "lifecycle_state": "ACTIVE",
+        "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

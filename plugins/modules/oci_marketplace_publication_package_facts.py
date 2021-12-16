@@ -90,6 +90,7 @@ publication_packages:
         description:
             description:
                 - A description of the package.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -102,6 +103,7 @@ publication_packages:
         version:
             description:
                 - The package version.
+                - Returned for get operation
             returned: on success
             type: str
             sample: version_example
@@ -124,10 +126,11 @@ publication_packages:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         operating_system:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -141,30 +144,35 @@ publication_packages:
             description:
                 - The ID of the listing resource associated with this publication package. For more information, see
                   L(AppCatalogListing,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/AppCatalogListing/) in the Core Services API.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
         app_catalog_listing_resource_version:
             description:
                 - The resource version of the listing resource associated with this publication package.
+                - Returned for get operation
             returned: on success
             type: str
             sample: app_catalog_listing_resource_version_example
         image_id:
             description:
                 - The ID of the image that corresponds to the package.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         resource_link:
             description:
                 - A link to the stack resource.
+                - Returned for get operation
             returned: on success
             type: str
             sample: resource_link_example
         variables:
             description:
                 - A list of variables for the stack resource.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -207,6 +215,7 @@ publication_packages:
         package_version:
             description:
                 - The version of the specified package.
+                - Returned for list operation
             returned: on success
             type: str
             sample: package_version_example
@@ -216,7 +225,7 @@ publication_packages:
         "version": "version_example",
         "package_type": "ORCHESTRATION",
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "operating_system": {
             "name": "name_example"
         },

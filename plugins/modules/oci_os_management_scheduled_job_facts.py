@@ -115,7 +115,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     operation_type: INSTALL
@@ -155,6 +155,7 @@ scheduled_jobs:
         description:
             description:
                 - Details describing the Scheduled Job.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -179,12 +180,14 @@ scheduled_jobs:
         interval_type:
             description:
                 - the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
+                - Returned for get operation
             returned: on success
             type: str
             sample: HOUR
         interval_value:
             description:
                 - the value for the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
+                - Returned for get operation
             returned: on success
             type: str
             sample: interval_value_example
@@ -233,12 +236,14 @@ scheduled_jobs:
         update_type:
             description:
                 - Type of the update (only if operation type is UPDATEALL)
+                - Returned for get operation
             returned: on success
             type: str
             sample: SECURITY
         package_names:
             description:
                 - the names of the updates (only if operation type is INSTALL/UPDATE/REMOVE)
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -251,6 +256,7 @@ scheduled_jobs:
         work_requests:
             description:
                 - list of Work Requests associated with this Scheduled Job
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -290,6 +296,7 @@ scheduled_jobs:
             description:
                 - The unique names of the Windows Updates (only if operation type is INSTALL).
                   This is only applicable when the osFamily is for Windows managed instances.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []

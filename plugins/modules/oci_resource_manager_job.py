@@ -184,7 +184,7 @@ EXAMPLES = """
     job_operation_details:
       # required
       operation: IMPORT_TF_STATE
-      tf_state_base64_encoded: null
+      tf_state_base64_encoded: tf_state_base64_encoded_example
     apply_job_plan_resolution:
       # optional
       plan_job_id: "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx"
@@ -370,7 +370,7 @@ job:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_finished:
             description:
                 - "The date and time when the job stopped running, irrespective of whether the job ran successfully.
@@ -378,7 +378,7 @@ job:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - Current state of the specified job.
@@ -479,7 +479,7 @@ job:
                           Example: `PHX`"
                     returned: on success
                     type: str
-                    sample: PHX
+                    sample: us-phoenix-1
                 namespace:
                     description:
                         - The Object Storage namespace that contains the bucket.
@@ -530,8 +530,8 @@ job:
             "is_auto_approved": true
         },
         "resolved_plan_job_id": "ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2020-01-25T21:10:29.600Z",
-        "time_finished": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_finished": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACCEPTED",
         "failure_details": {
             "code": "INTERNAL_SERVICE_ERROR",
@@ -548,7 +548,7 @@ job:
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
             "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "PHX",
+            "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example"
         },

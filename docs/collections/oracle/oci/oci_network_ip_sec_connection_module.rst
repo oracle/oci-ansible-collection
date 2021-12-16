@@ -30,9 +30,13 @@ oracle.oci.oci_network_ip_sec_connection -- Manage an IpSecConnection resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_ip_sec_connection`.
 
@@ -621,6 +625,61 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/dpd_config"></div>
+                    <b>dpd_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/dpd_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/dpd_config/dpd_mode"></div>
+                    <b>dpd_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/dpd_config/dpd_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>INITIATE_AND_RESPOND</li>
+                                                                                                                                                                                                <li>RESPOND_ONLY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>dpd mode</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/dpd_config/dpd_timeout_in_sec"></div>
+                    <b>dpd_timeout_in_sec</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/dpd_config/dpd_timeout_in_sec" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>DPD Timeout in seconds.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/encryption_domain_config"></div>
                     <b>encryption_domain_config</b>
                     <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/encryption_domain_config" title="Permalink to this option"></a>
@@ -689,6 +748,318 @@ Parameters
                                             <div>Internet Key Exchange protocol version.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/nat_translation_enabled"></div>
+                    <b>nat_translation_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/nat_translation_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ENABLED</li>
+                                                                                                                                                                                                <li>DISABLED</li>
+                                                                                                                                                                                                <li>AUTO</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether NAT-T Enabled on the tunnel</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/oracle_initiation"></div>
+                    <b>oracle_initiation</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/oracle_initiation" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>INITIATOR_OR_RESPONDER</li>
+                                                                                                                                                                                                <li>RESPONDER_ONLY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether Oracle side is the initiator for negotiation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_one_config"></div>
+                    <b>phase_one_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_one_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_one_config/authentication_algorithm"></div>
+                    <b>authentication_algorithm</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_one_config/authentication_algorithm" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SHA2_384</li>
+                                                                                                                                                                                                <li>SHA2_256</li>
+                                                                                                                                                                                                <li>SHA1_96</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Phase one authentication algorithm supported during tunnel negotiation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_one_config/diffie_helman_group"></div>
+                    <b>diffie_helman_group</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_one_config/diffie_helman_group" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GROUP2</li>
+                                                                                                                                                                                                <li>GROUP5</li>
+                                                                                                                                                                                                <li>GROUP14</li>
+                                                                                                                                                                                                <li>GROUP19</li>
+                                                                                                                                                                                                <li>GROUP20</li>
+                                                                                                                                                                                                <li>GROUP24</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Phase One Diffie Hellman group supported during tunnel negotiation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_one_config/encryption_algorithm"></div>
+                    <b>encryption_algorithm</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_one_config/encryption_algorithm" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AES_256_CBC</li>
+                                                                                                                                                                                                <li>AES_192_CBC</li>
+                                                                                                                                                                                                <li>AES_128_CBC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Phase one encryption algorithm supported during tunnel negotiation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_one_config/is_custom_phase_one_config"></div>
+                    <b>is_custom_phase_one_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_one_config/is_custom_phase_one_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether custom phase one configuration is enabled.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_one_config/lifetime_in_seconds"></div>
+                    <b>lifetime_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_one_config/lifetime_in_seconds" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>IKE session key lifetime in seconds for IPSec phase one.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_two_config"></div>
+                    <b>phase_two_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_two_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_two_config/authentication_algorithm"></div>
+                    <b>authentication_algorithm</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_two_config/authentication_algorithm" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>HMAC_SHA2_256_128</li>
+                                                                                                                                                                                                <li>HMAC_SHA1_128</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Phase two authentication algorithm supported during tunnel negotiation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_two_config/encryption_algorithm"></div>
+                    <b>encryption_algorithm</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_two_config/encryption_algorithm" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AES_256_GCM</li>
+                                                                                                                                                                                                <li>AES_192_GCM</li>
+                                                                                                                                                                                                <li>AES_128_GCM</li>
+                                                                                                                                                                                                <li>AES_256_CBC</li>
+                                                                                                                                                                                                <li>AES_192_CBC</li>
+                                                                                                                                                                                                <li>AES_128_CBC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Phase two encryption algorithm supported during tunnel negotiation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_two_config/is_custom_phase_two_config"></div>
+                    <b>is_custom_phase_two_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_two_config/is_custom_phase_two_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether custom phase two configuration is enabled.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_two_config/is_pfs_enabled"></div>
+                    <b>is_pfs_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_two_config/is_pfs_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether perfect forward secrecy (PFS) is enabled.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_two_config/lifetime_in_seconds"></div>
+                    <b>lifetime_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_two_config/lifetime_in_seconds" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Lifetime in seconds for IPSec phase two.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/phase_two_config/pfs_dh_group"></div>
+                    <b>pfs_dh_group</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/phase_two_config/pfs_dh_group" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GROUP2</li>
+                                                                                                                                                                                                <li>GROUP5</li>
+                                                                                                                                                                                                <li>GROUP14</li>
+                                                                                                                                                                                                <li>GROUP19</li>
+                                                                                                                                                                                                <li>GROUP20</li>
+                                                                                                                                                                                                <li>GROUP24</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Diffie-Hellman group used for PFS.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
@@ -789,14 +1160,14 @@ Examples
     - name: Create ip_sec_connection
       oci_network_ip_sec_connection:
         # required
-        compartment_id: "ocid1.compartment.oc1..unique_ID"
-        cpe_id: ocid1.cpe.oc1.phx.unique_ID
-        drg_id: ocid1.drg.oc1.phx.unique_ID
-        static_routes: [ "192.0.2.0/24" ]
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
+        drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+        static_routes: [ "static_routes_example" ]
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: MyIPSecConnection
+        display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         cpe_local_identifier: cpe_local_identifier_example
         cpe_local_identifier_type: IP_ADDRESS
@@ -808,15 +1179,15 @@ Examples
           shared_secret: shared_secret_example
           bgp_session_config:
             # optional
-            oracle_interface_ip: 10.0.0.4/31
-            customer_interface_ip: 10.0.0.5/31
-            oracle_interface_ipv6: 2001:db8::1/64
-            customer_interface_ipv6: 2001:db8::1/64
-            customer_bgp_asn: 12345
+            oracle_interface_ip: oracle_interface_ip_example
+            customer_interface_ip: customer_interface_ip_example
+            oracle_interface_ipv6: oracle_interface_ipv6_example
+            customer_interface_ipv6: customer_interface_ipv6_example
+            customer_bgp_asn: customer_bgp_asn_example
           encryption_domain_config:
             # optional
-            oracle_traffic_selector: [ "null" ]
-            cpe_traffic_selector: [ "null" ]
+            oracle_traffic_selector: [ "oracle_traffic_selector_example" ]
+            cpe_traffic_selector: [ "cpe_traffic_selector_example" ]
 
     - name: Update ip_sec_connection
       oci_network_ip_sec_connection:
@@ -825,24 +1196,24 @@ Examples
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: MyIPSecConnection
+        display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         cpe_local_identifier: cpe_local_identifier_example
         cpe_local_identifier_type: IP_ADDRESS
-        static_routes: [ "192.0.2.0/24" ]
+        static_routes: [ "static_routes_example" ]
 
     - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
         # required
-        compartment_id: "ocid1.compartment.oc1..unique_ID"
-        display_name: MyIPSecConnection
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
         cpe_local_identifier: cpe_local_identifier_example
         cpe_local_identifier_type: IP_ADDRESS
-        static_routes: [ "192.0.2.0/24" ]
+        static_routes: [ "static_routes_example" ]
 
     - name: Delete ip_sec_connection
       oci_network_ip_sec_connection:
@@ -853,8 +1224,8 @@ Examples
     - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
         # required
-        compartment_id: "ocid1.compartment.oc1..unique_ID"
-        display_name: MyIPSecConnection
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 
@@ -891,8 +1262,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the IpSecConnection resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_id&#x27;: &#x27;ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_local_identifier&#x27;: &#x27;cpe_local_identifier_example&#x27;, &#x27;cpe_local_identifier_type&#x27;: &#x27;IP_ADDRESS&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drg_id&#x27;: &#x27;ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;static_routes&#x27;: [], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_id&#x27;: &#x27;ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_local_identifier&#x27;: &#x27;cpe_local_identifier_example&#x27;, &#x27;cpe_local_identifier_type&#x27;: &#x27;IP_ADDRESS&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drg_id&#x27;: &#x27;ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;static_routes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -909,7 +1280,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the IPSec connection.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -927,7 +1298,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -949,7 +1320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example IP address: `10.0.3.3`</div>
                                             <div>Example hostname: `cpe.example.com`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cpe_local_identifier_example</div>
                                     </td>
             </tr>
@@ -967,7 +1338,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of identifier for your CPE device. The value here must correspond to the value for `cpeLocalIdentifier`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IP_ADDRESS</div>
                                     </td>
             </tr>
@@ -986,7 +1357,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -1004,7 +1375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -1022,7 +1393,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1041,7 +1412,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -1059,7 +1430,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IPSec connection&#x27;s Oracle ID (<a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1077,7 +1448,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The IPSec connection&#x27;s current state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -1099,7 +1470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `10.0.1.0/24`</div>
                                             <div>Example: `2001:db8::/32`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1116,8 +1487,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the IPSec connection was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

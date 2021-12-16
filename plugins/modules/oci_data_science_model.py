@@ -178,24 +178,24 @@ EXAMPLES = """
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My Model
+    display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     custom_metadata_list:
     - # optional
       key: key_example
-      value: oci.datasciencemodel.aaa12934190b32g9823589
-      description: The base model on which the current model was derived
-      category: Performance
+      value: value_example
+      description: description_example
+      category: category_example
     defined_metadata_list:
     - # optional
       key: key_example
-      value: oci.datasciencemodel.aaa12934190b32g9823589
-      description: The base model on which the current model was derived
-      category: Performance
-    input_schema: "{"predict_arguments":{"sepal_length_(cm)":{"type":"continuous","dtype":"float64"},"sepal_width_(c..."
-    output_schema: {"class":3,"probabilities":[0.1,0.2,0.7]}
+      value: value_example
+      description: description_example
+      category: category_example
+    input_schema: input_schema_example
+    output_schema: output_schema_example
 
 - name: Update model
   oci_data_science_model:
@@ -203,28 +203,28 @@ EXAMPLES = """
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My Model
+    display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     custom_metadata_list:
     - # optional
       key: key_example
-      value: oci.datasciencemodel.aaa12934190b32g9823589
-      description: The base model on which the current model was derived
-      category: Performance
+      value: value_example
+      description: description_example
+      category: category_example
     defined_metadata_list:
     - # optional
       key: key_example
-      value: oci.datasciencemodel.aaa12934190b32g9823589
-      description: The base model on which the current model was derived
-      category: Performance
+      value: value_example
+      description: description_example
+      category: category_example
 
 - name: Update model using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_model:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: My Model
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -233,15 +233,15 @@ EXAMPLES = """
     custom_metadata_list:
     - # optional
       key: key_example
-      value: oci.datasciencemodel.aaa12934190b32g9823589
-      description: The base model on which the current model was derived
-      category: Performance
+      value: value_example
+      description: description_example
+      category: category_example
     defined_metadata_list:
     - # optional
       key: key_example
-      value: oci.datasciencemodel.aaa12934190b32g9823589
-      description: The base model on which the current model was derived
-      category: Performance
+      value: value_example
+      description: description_example
+      category: category_example
 
 - name: Delete model
   oci_data_science_model:
@@ -253,7 +253,7 @@ EXAMPLES = """
   oci_data_science_model:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: My Model
+    display_name: display_name_example
     state: absent
 
 """
@@ -361,20 +361,20 @@ model:
                                        bert, gensim, flair, word2vec, ensemble, other"
                     returned: on success
                     type: str
-                    sample: oci.datasciencemodel.aaa12934190b32g9823589
+                    sample: value_example
                 description:
                     description:
                         - Description of model metadata
                     returned: on success
                     type: str
-                    sample: The base model on which the current model was derived
+                    sample: description_example
                 category:
                     description:
                         - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
                           \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
                     returned: on success
                     type: str
-                    sample: Performance
+                    sample: category_example
         defined_metadata_list:
             description:
                 - An array of defined metadata details for the model.
@@ -406,32 +406,32 @@ model:
                                        bert, gensim, flair, word2vec, ensemble, other"
                     returned: on success
                     type: str
-                    sample: oci.datasciencemodel.aaa12934190b32g9823589
+                    sample: value_example
                 description:
                     description:
                         - Description of model metadata
                     returned: on success
                     type: str
-                    sample: The base model on which the current model was derived
+                    sample: description_example
                 category:
                     description:
                         - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
                           \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
                     returned: on success
                     type: str
-                    sample: Performance
+                    sample: category_example
         input_schema:
             description:
                 - Input schema file content in String format
             returned: on success
             type: str
-            sample: "{"predict_arguments":{"sepal_length_(cm)":{"type":"continuous","dtype":"float64"},"sepal_width_(c..."
+            sample: input_schema_example
         output_schema:
             description:
                 - Output schema file content in String format
             returned: on success
             type: str
-            sample: {"class":3,"probabilities":[0.1,0.2,0.7]}
+            sample: output_schema_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -445,18 +445,18 @@ model:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "custom_metadata_list": [{
             "key": "key_example",
-            "value": "oci.datasciencemodel.aaa12934190b32g9823589",
-            "description": "The base model on which the current model was derived",
-            "category": "Performance"
+            "value": "value_example",
+            "description": "description_example",
+            "category": "category_example"
         }],
         "defined_metadata_list": [{
             "key": "key_example",
-            "value": "oci.datasciencemodel.aaa12934190b32g9823589",
-            "description": "The base model on which the current model was derived",
-            "category": "Performance"
+            "value": "value_example",
+            "description": "description_example",
+            "category": "category_example"
         }],
-        "input_schema": "{"predict_arguments":{"sepal_length_(cm)":{"type":"continuous","dtype":"float64"},"sepal_width_(c...",
-        "output_schema": "{"class":3,"probabilities":[0.1,0.2,0.7]}"
+        "input_schema": "input_schema_example",
+        "output_schema": "output_schema_example"
     }
 """
 

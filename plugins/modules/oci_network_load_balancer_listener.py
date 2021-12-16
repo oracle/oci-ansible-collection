@@ -85,27 +85,27 @@ EXAMPLES = """
   oci_network_load_balancer_listener:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: example_listener
-    default_backend_set_name: example_backend_set
-    port: 80
-    protocol: HTTP
+    name: name_example
+    default_backend_set_name: default_backend_set_name_example
+    port: 56
+    protocol: ANY
 
 - name: Update listener
   oci_network_load_balancer_listener:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: example_listener
+    name: name_example
 
     # optional
-    default_backend_set_name: example_backend_set
-    port: 80
-    protocol: HTTP
+    default_backend_set_name: default_backend_set_name_example
+    port: 56
+    protocol: ANY
 
 - name: Delete listener
   oci_network_load_balancer_listener:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: example_listener
+    name: name_example
     state: absent
 
 """
@@ -123,21 +123,21 @@ listener:
                 - "Example: `example_listener`"
             returned: on success
             type: str
-            sample: example_listener
+            sample: name_example
         default_backend_set_name:
             description:
                 - The name of the associated backend set.
                 - "Example: `example_backend_set`"
             returned: on success
             type: str
-            sample: example_backend_set
+            sample: default_backend_set_name_example
         port:
             description:
                 - The communication port for the listener.
                 - "Example: `80`"
             returned: on success
             type: int
-            sample: 0
+            sample: 56
         protocol:
             description:
                 - The protocol on which the listener accepts connection requests.
@@ -150,12 +150,12 @@ listener:
                 - "Example: `TCP`"
             returned: on success
             type: str
-            sample: TCP
+            sample: ANY
     sample: {
-        "name": "example_listener",
-        "default_backend_set_name": "example_backend_set",
-        "port": 0,
-        "protocol": "TCP"
+        "name": "name_example",
+        "default_backend_set_name": "default_backend_set_name_example",
+        "port": 56,
+        "protocol": "ANY"
     }
 """
 

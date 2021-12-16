@@ -64,7 +64,7 @@ ui_password_information:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The password's current state. After creating a password, make sure its `lifecycleState` changes from
@@ -74,7 +74,7 @@ ui_password_information:
             sample: CREATING
     sample: {
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING"
     }
 """

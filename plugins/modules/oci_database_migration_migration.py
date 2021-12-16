@@ -589,7 +589,7 @@ EXAMPLES = """
         is_cluster: true
         estimate: BLOCKS
         table_exists_action: TRUNCATE
-        exclude_parameters: [ "null" ]
+        exclude_parameters: [ "exclude_parameters_example" ]
         import_parallelism_degree: 56
         export_parallelism_degree: 56
       metadata_remaps:
@@ -710,7 +710,7 @@ EXAMPLES = """
         is_cluster: true
         estimate: BLOCKS
         table_exists_action: TRUNCATE
-        exclude_parameters: [ "null" ]
+        exclude_parameters: [ "exclude_parameters_example" ]
         import_parallelism_degree: 56
         export_parallelism_degree: 56
       metadata_remaps:
@@ -831,7 +831,7 @@ EXAMPLES = """
         is_cluster: true
         estimate: BLOCKS
         table_exists_action: TRUNCATE
-        exclude_parameters: [ "null" ]
+        exclude_parameters: [ "exclude_parameters_example" ]
         import_parallelism_degree: 56
         export_parallelism_degree: 56
       metadata_remaps:

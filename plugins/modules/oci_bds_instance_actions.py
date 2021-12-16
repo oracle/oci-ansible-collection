@@ -250,7 +250,7 @@ bds_instance:
                         - The CIDR IP address block of the VCN.
                     returned: on success
                     type: str
-                    sample: 172.16.0.0/16
+                    sample: cidr_block_example
         cluster_details:
             description:
                 - ""
@@ -304,13 +304,13 @@ bds_instance:
                         - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
                     returned: on success
                     type: str
-                    sample: "2019-03-29T09:36:42.000+0000"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_refreshed:
                     description:
                         - The time the cluster was automatically or manually refreshed, shown as an RFC 3339 formatted datetime string.
                     returned: on success
                     type: str
-                    sample: "2019-03-29T09:36:42.000+0000"
+                    sample: "2013-10-20T19:20:30+01:00"
                 cloudera_manager_url:
                     description:
                         - The URL of Cloudera Manager
@@ -430,19 +430,19 @@ bds_instance:
                         - The name of the fault domain in which the node is running.
                     returned: on success
                     type: str
-                    sample: fault_domain_example
+                    sample: FAULT-DOMAIN-1
                 time_created:
                     description:
                         - The time the node was created, shown as an RFC 3339 formatted datetime string.
                     returned: on success
                     type: str
-                    sample: "2019-03-29T09:36:42.000+0000"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The time the cluster was updated, shown as an RFC 3339 formatted datetime string.
                     returned: on success
                     type: str
-                    sample: "2019-03-29T09:36:42.000+0000"
+                    sample: "2013-10-20T19:20:30+01:00"
         cloud_sql_details:
             description:
                 - ""
@@ -504,13 +504,13 @@ bds_instance:
                 - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: str
-            sample: "2019-03-29T09:36:42.000+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the cluster was updated, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: str
-            sample: "2019-03-29T09:36:42.000+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         number_of_nodes:
             description:
                 - Number of nodes that forming the cluster
@@ -542,7 +542,7 @@ bds_instance:
         "is_cloud_sql_configured": true,
         "network_config": {
             "is_nat_gateway_required": true,
-            "cidr_block": "172.16.0.0/16"
+            "cidr_block": "cidr_block_example"
         },
         "cluster_details": {
             "bda_version": "bda_version_example",
@@ -552,8 +552,8 @@ bds_instance:
             "db_version": "db_version_example",
             "bd_cell_version": "bd_cell_version_example",
             "csql_cell_version": "csql_cell_version_example",
-            "time_created": "2019-03-29T09:36:42.000+0000",
-            "time_refreshed": "2019-03-29T09:36:42.000+0000",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_refreshed": "2013-10-20T19:20:30+01:00",
             "cloudera_manager_url": "cloudera_manager_url_example",
             "ambari_url": "ambari_url_example",
             "big_data_manager_url": "big_data_manager_url_example",
@@ -575,9 +575,9 @@ bds_instance:
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
             "ssh_fingerprint": "ssh_fingerprint_example",
             "availability_domain": "Uocm:PHX-AD-1",
-            "fault_domain": "fault_domain_example",
-            "time_created": "2019-03-29T09:36:42.000+0000",
-            "time_updated": "2019-03-29T09:36:42.000+0000"
+            "fault_domain": "FAULT-DOMAIN-1",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00"
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -590,8 +590,8 @@ bds_instance:
             }]
         },
         "created_by": "created_by_example",
-        "time_created": "2019-03-29T09:36:42.000+0000",
-        "time_updated": "2019-03-29T09:36:42.000+0000",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "number_of_nodes": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

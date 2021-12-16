@@ -310,7 +310,7 @@ EXAMPLES = """
     # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    items: [ "null" ]
+    items: [ "items_example" ]
     action: add_data_selector_patterns
 
 - name: Perform action import_connection on data_asset
@@ -318,7 +318,7 @@ EXAMPLES = """
     # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    connection_payload: null
+    connection_payload: connection_payload_example
     action: import_connection
 
     # optional
@@ -342,17 +342,17 @@ EXAMPLES = """
         is_shown_in_list: true
         is_event_enabled: true
         is_list_type: true
-        allowed_values: [ "null" ]
+        allowed_values: [ "allowed_values_example" ]
       properties: null
       enc_properties: null
       is_default: true
       key: key_example
-      time_created: 2019-03-25T21:10:29.600Z
-      time_updated: 2013-10-20T19:20:30+01:00
+      time_created: time_created_example
+      time_updated: time_updated_example
       created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
       updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       external_key: external_key_example
-      time_status_updated: 2013-10-20T19:20:30+01:00
+      time_status_updated: time_status_updated_example
       lifecycle_state: CREATING
       data_asset_key: data_asset_key_example
       uri: uri_example
@@ -362,8 +362,8 @@ EXAMPLES = """
     # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    import_file_contents: null
-    import_type: [ "$p.getValue()" ]
+    import_file_contents: import_file_contents_example
+    import_type: [ "CUSTOM_PROPERTY_VALUES" ]
     action: import_data_asset
 
     # optional
@@ -397,21 +397,21 @@ EXAMPLES = """
         is_shown_in_list: true
         is_event_enabled: true
         is_list_type: true
-        allowed_values: [ "null" ]
+        allowed_values: [ "allowed_values_example" ]
       properties: null
       enc_properties: null
       is_default: true
       key: key_example
-      time_created: 2019-03-25T21:10:29.600Z
-      time_updated: 2013-10-20T19:20:30+01:00
+      time_created: time_created_example
+      time_updated: time_updated_example
       created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
       updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       external_key: external_key_example
-      time_status_updated: 2013-10-20T19:20:30+01:00
+      time_status_updated: time_status_updated_example
       lifecycle_state: CREATING
       data_asset_key: data_asset_key_example
       uri: uri_example
-    connection_payload: null
+    connection_payload: connection_payload_example
     wallet_secret_id: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
     wallet_secret_name: wallet_secret_name_example
     connection_key: connection_key_example
@@ -421,7 +421,7 @@ EXAMPLES = """
     # required
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    items: [ "null" ]
+    items: [ "items_example" ]
     action: remove_data_selector_patterns
 
 - name: Perform action synchronous_export on data_asset
@@ -430,14 +430,14 @@ EXAMPLES = """
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     dest: /tmp/myfile
-    export_type: [ "$p.getValue()" ]
+    export_type: [ "CUSTOM_PROPERTY_VALUES" ]
     action: synchronous_export
 
     # optional
     export_scope:
     - # optional
       object_key: object_key_example
-      export_type_ids: [ "null" ]
+      export_type_ids: [ "export_type_ids_example" ]
 
 - name: Perform action validate_connection on data_asset
   oci_data_catalog_data_asset_actions:
@@ -467,21 +467,21 @@ EXAMPLES = """
         is_shown_in_list: true
         is_event_enabled: true
         is_list_type: true
-        allowed_values: [ "null" ]
+        allowed_values: [ "allowed_values_example" ]
       properties: null
       enc_properties: null
       is_default: true
       key: key_example
-      time_created: 2019-03-25T21:10:29.600Z
-      time_updated: 2013-10-20T19:20:30+01:00
+      time_created: time_created_example
+      time_updated: time_updated_example
       created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
       updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       external_key: external_key_example
-      time_status_updated: 2013-10-20T19:20:30+01:00
+      time_status_updated: time_status_updated_example
       lifecycle_state: CREATING
       data_asset_key: data_asset_key_example
       uri: uri_example
-    connection_payload: null
+    connection_payload: connection_payload_example
 
 """
 
@@ -541,7 +541,7 @@ data_asset:
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-03-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The last time that any change was made to the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
@@ -699,7 +699,7 @@ data_asset:
                           Example: `2019-03-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-03-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 expression:
                     description:
                         - The expression used in the pattern that may include qualifiers.
@@ -730,7 +730,7 @@ data_asset:
         "external_key": "external_key_example",
         "type_key": "type_key_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2019-03-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "time_harvested": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
@@ -757,7 +757,7 @@ data_asset:
             "display_name": "display_name_example",
             "description": "description_example",
             "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
-            "time_created": "2019-03-25T21:10:29.600Z",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "expression": "expression_example",
             "lifecycle_state": "CREATING"
         }],

@@ -217,7 +217,7 @@ EXAMPLES = """
 
     # optional
     database_scn: database_scn_example
-    timestamp: 2013-10-20T19:20:30+01:00
+    timestamp: timestamp_example
     latest: true
 
 - name: Perform action rotate_vault_key on database
@@ -230,7 +230,7 @@ EXAMPLES = """
   oci_database_database_actions:
     # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    action: precheck
+    action: PRECHECK
 
     # optional
     database_upgrade_source_details:
@@ -245,7 +245,7 @@ EXAMPLES = """
   oci_database_database_actions:
     # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    action: upgrade
+    action: PRECHECK
 
     # optional
     database_upgrade_source_details:
@@ -260,7 +260,7 @@ EXAMPLES = """
   oci_database_database_actions:
     # required
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    action: rollback
+    action: PRECHECK
 
     # optional
     database_upgrade_source_details:
@@ -404,7 +404,7 @@ database:
                         - "Example: `SLOT_TWO`"
                     returned: on success
                     type: str
-                    sample: SLOT_TWO
+                    sample: SLOT_ONE
                 backup_destination_details:
                     description:
                         - Backup destination details.
@@ -549,7 +549,7 @@ database:
         "db_backup_config": {
             "auto_backup_enabled": true,
             "recovery_window_in_days": 56,
-            "auto_backup_window": "SLOT_TWO",
+            "auto_backup_window": "SLOT_ONE",
             "backup_destination_details": [{
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

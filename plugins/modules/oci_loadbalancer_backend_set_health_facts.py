@@ -48,7 +48,7 @@ EXAMPLES = """
   oci_loadbalancer_backend_set_health_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: example_backend_set
+    backend_set_name: backend_set_name_example
 
 """
 
@@ -101,13 +101,13 @@ backend_set_health:
                 - "Example: `7`"
             returned: on success
             type: int
-            sample: 7
+            sample: 56
     sample: {
         "status": "OK",
         "warning_state_backend_names": [],
         "critical_state_backend_names": [],
         "unknown_state_backend_names": [],
-        "total_backend_count": 7
+        "total_backend_count": 56
     }
 """
 

@@ -85,7 +85,7 @@ EXAMPLES = """
 - name: Create decrypted_data
   oci_key_management_decrypted_data:
     # required
-    ciphertext: AAwgpauIe9AAAM6dU7pS7AKwmDFyXOqNh0uAvNY9a3E95rw7Ae3LZNBnDtHWdkB1l/pIDBfg
+    ciphertext: ciphertext_example
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional

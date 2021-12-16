@@ -109,7 +109,7 @@ capacity_reservation_instances:
                 - The fault domain the instance is running in.
             returned: on success
             type: str
-            sample: fault_domain_example
+            sample: FAULT-DOMAIN-1
         shape_config:
             description:
                 - ""
@@ -141,7 +141,7 @@ capacity_reservation_instances:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "fault_domain": "fault_domain_example",
+        "fault_domain": "FAULT-DOMAIN-1",
         "shape_config": {
             "ocpus": 3.4,
             "memory_in_gbs": 3.4

@@ -193,23 +193,23 @@ EXAMPLES = """
 - name: Create vm_cluster
   oci_database_vm_cluster:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: vmCluster
-    exadata_infrastructure_id: ocid1.tenancy.oc1.oc1.unique_ID
-    cpu_core_count: 4
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    cpu_core_count: 56
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-    vm_cluster_network_id: ocid1.vmclusternetwork.oc1.unique_ID
-    gi_version: 19.1.0.0
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+    gi_version: gi_version_example
 
     # optional
-    memory_size_in_gbs: 30
-    db_node_storage_size_in_gbs: 60
-    data_storage_size_in_tbs: 84
+    memory_size_in_gbs: 56
+    db_node_storage_size_in_gbs: 56
+    data_storage_size_in_tbs: 3.4
     license_model: LICENSE_INCLUDED
-    is_sparse_diskgroup_enabled: false
+    is_sparse_diskgroup_enabled: true
     is_local_backup_enabled: true
-    time_zone: PST
-    db_servers: [ "ocid1.dbserver.oc1.<example_unique_ID>" ]
+    time_zone: time_zone_example
+    db_servers: [ "db_servers_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -219,10 +219,10 @@ EXAMPLES = """
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    cpu_core_count: 4
-    memory_size_in_gbs: 30
-    db_node_storage_size_in_gbs: 60
-    data_storage_size_in_tbs: 84
+    cpu_core_count: 56
+    memory_size_in_gbs: 56
+    db_node_storage_size_in_gbs: 56
+    data_storage_size_in_tbs: 3.4
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
     freeform_tags: {'Department': 'Finance'}
@@ -240,14 +240,14 @@ EXAMPLES = """
 - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: vmCluster
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    cpu_core_count: 4
-    memory_size_in_gbs: 30
-    db_node_storage_size_in_gbs: 60
-    data_storage_size_in_tbs: 84
+    cpu_core_count: 56
+    memory_size_in_gbs: 56
+    db_node_storage_size_in_gbs: 56
+    data_storage_size_in_tbs: 3.4
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
     freeform_tags: {'Department': 'Finance'}
@@ -271,8 +271,8 @@ EXAMPLES = """
 - name: Delete vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
     # required
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: vmCluster
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

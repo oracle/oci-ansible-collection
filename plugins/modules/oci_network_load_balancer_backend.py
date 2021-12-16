@@ -110,37 +110,37 @@ EXAMPLES = """
   oci_network_load_balancer_backend:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    port: 8080
-    backend_set_name: example_backend_set
+    port: 56
+    backend_set_name: backend_set_name_example
 
     # optional
-    name: webServer1
-    ip_address: 10.0.0.3
-    target_id: "ocid1.privateip..oc1.unique_ID"
-    weight: 3
-    is_drain: false
-    is_backup: false
-    is_offline: false
+    name: name_example
+    ip_address: ip_address_example
+    target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
+    weight: 56
+    is_drain: true
+    is_backup: true
+    is_offline: true
 
 - name: Update backend
   oci_network_load_balancer_backend:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: webServer1
-    backend_set_name: example_backend_set
+    name: name_example
+    backend_set_name: backend_set_name_example
 
     # optional
-    weight: 3
-    is_drain: false
-    is_backup: false
-    is_offline: false
+    weight: 56
+    is_drain: true
+    is_backup: true
+    is_offline: true
 
 - name: Delete backend
   oci_network_load_balancer_backend:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: webServer1
-    backend_set_name: example_backend_set
+    name: name_example
+    backend_set_name: backend_set_name_example
     state: absent
 
 """
@@ -158,28 +158,28 @@ backend:
                 - "Example: `10.0.0.3:8080`, or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:443` or `10.0.0.3:0`"
             returned: on success
             type: str
-            sample: 10.0.0.3:8080
+            sample: name_example
         ip_address:
             description:
                 - "The IP address of the backend server.
                   Example: `10.0.0.3`"
             returned: on success
             type: str
-            sample: 10.0.0.3
+            sample: ip_address_example
         target_id:
             description:
                 - "The IP OCID/Instance OCID associated with the backend server.
                   Example: `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>`"
             returned: on success
             type: str
-            sample: "ocid1.privateip..oc1.unique_ID"
+            sample: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
         port:
             description:
                 - The communication port for the backend server.
                 - "Example: `8080`"
             returned: on success
             type: int
-            sample: 8080
+            sample: 56
         weight:
             description:
                 - The network load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger
@@ -190,7 +190,7 @@ backend:
                 - "Example: `3`"
             returned: on success
             type: int
-            sample: 3
+            sample: 56
         is_drain:
             description:
                 - "Whether the network load balancer should drain this server. Servers marked \\"isDrain\\" receive no
@@ -198,7 +198,7 @@ backend:
                 - "Example: `false`"
             returned: on success
             type: bool
-            sample: false
+            sample: true
         is_backup:
             description:
                 - "Whether the network load balancer should treat this server as a backup unit. If `true`, then the network load balancer forwards no ingress
@@ -206,7 +206,7 @@ backend:
                 - "Example: `false`"
             returned: on success
             type: bool
-            sample: false
+            sample: true
         is_offline:
             description:
                 - Whether the network load balancer should treat this server as offline. Offline servers receive no incoming
@@ -214,16 +214,16 @@ backend:
                 - "Example: `false`"
             returned: on success
             type: bool
-            sample: false
+            sample: true
     sample: {
-        "name": "10.0.0.3:8080",
-        "ip_address": "10.0.0.3",
-        "target_id": "ocid1.privateip..oc1.unique_ID",
-        "port": 8080,
-        "weight": 3,
-        "is_drain": false,
-        "is_backup": false,
-        "is_offline": false
+        "name": "name_example",
+        "ip_address": "ip_address_example",
+        "target_id": "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx",
+        "port": 56,
+        "weight": 56,
+        "is_drain": true,
+        "is_backup": true,
+        "is_offline": true
     }
 """
 

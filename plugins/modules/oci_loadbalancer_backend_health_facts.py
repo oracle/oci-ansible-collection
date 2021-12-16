@@ -54,8 +54,8 @@ EXAMPLES = """
   oci_loadbalancer_backend_health_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: example_backend_set
-    backend_name: 10.0.0.3:8080
+    backend_set_name: backend_set_name_example
+    backend_name: backend_name_example
 
 """
 
@@ -96,14 +96,14 @@ backend_health:
                         - "Example: `10.0.0.7`"
                     returned: on success
                     type: str
-                    sample: 10.0.0.7
+                    sample: source_ip_address_example
                 timestamp:
                     description:
                         - The date and time the data was retrieved, in the format defined by RFC3339.
                         - "Example: `2017-06-02T18:28:11+00:00`"
                     returned: on success
                     type: str
-                    sample: "2017-06-02T18:28:11+00:00"
+                    sample: "2013-10-20T19:20:30+01:00"
                 health_check_status:
                     description:
                         - The result of the most recent health check.
@@ -114,8 +114,8 @@ backend_health:
         "status": "OK",
         "health_check_results": [{
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "source_ip_address": "10.0.0.7",
-            "timestamp": "2017-06-02T18:28:11+00:00",
+            "source_ip_address": "source_ip_address_example",
+            "timestamp": "2013-10-20T19:20:30+01:00",
             "health_check_status": "OK"
         }]
     }

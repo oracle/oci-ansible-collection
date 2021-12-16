@@ -107,16 +107,16 @@ EXAMPLES = """
   oci_opsi_sql_searches_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    sql_identifier: 6rgjh9bjmy2s7
+    sql_identifier: sql_identifier_example
 
     # optional
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """

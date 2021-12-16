@@ -23,13 +23,13 @@ module: oci_devops_repository_actions
 short_description: Perform actions on a Repository resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Repository resource in Oracle Cloud Infrastructure
-    - For I(action=mirror), synchronize a mirrored repository to the latest version from external providers
+    - For I(action=mirror), synchronize a mirrored repository to the latest version from external providers.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         aliases: ["id"]
         required: true
@@ -73,57 +73,57 @@ repository:
             sample: name_example
         compartment_id:
             description:
-                - The OCID of the repository's Compartment.
+                - The OCID of the repository's compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         namespace:
             description:
-                - Tenancy unique namespace
+                - Tenancy unique namespace.
             returned: on success
             type: str
             sample: namespace_example
         project_id:
             description:
-                - The OCID of the Project containing the repository.
+                - The OCID of the DevOps project containing the repository.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         project_name:
             description:
-                - Project unique Name under namespace
+                - Unique project name in a namespace.
             returned: on success
             type: str
             sample: project_name_example
         ssh_url:
             description:
-                - ssh url user utilized to git clone, pull and push
+                - SSH URL that you use to git clone, pull and push.
             returned: on success
             type: str
             sample: ssh_url_example
         http_url:
             description:
-                - http url user utilized to git clone, pull and push
+                - HTTP URL that you use to git clone, pull and push.
             returned: on success
             type: str
             sample: http_url_example
         description:
             description:
-                - The description of this repository. Avoid entering confidential information
+                - Details of the repository. Avoid entering confidential information.
             returned: on success
             type: str
             sample: description_example
         default_branch:
             description:
-                - The default branch of the repository
+                - The default branch of the repository.
             returned: on success
             type: str
             sample: default_branch_example
         repository_type:
             description:
-                - "Type of repository
-                  MIRRORED - Repository was created by mirroring an existing repository.
-                  HOSTED - Repository was created and hosted using OCI Devops Code Repository."
+                - "Type of repository:
+                  Mirrored - Repository created by mirroring an existing repository.
+                  Hosted - Repository created and hosted using OCI DevOps code repository."
             returned: on success
             type: str
             sample: MIRRORED
@@ -141,7 +141,7 @@ repository:
                     sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
-                        - Url of external repository we'd like to mirror
+                        - URL of external repository you want to mirror.
                     returned: on success
                     type: str
                     sample: repository_url_example
@@ -153,10 +153,10 @@ repository:
                     contains:
                         schedule_type:
                             description:
-                                - "Different types to trigger schedule
-                                  - NONE - No automated sync schedule.
-                                  - DEFAULT - Trigger Schedule will be every 30 minutes.
-                                  - CUSTOM - Custom triggering schedule."
+                                - "Different types of trigger schedule:
+                                  None - No automated synchronization schedule.
+                                  Default - Trigger schedule is every 30 minutes.
+                                  Custom - Custom triggering schedule."
                             returned: on success
                             type: str
                             sample: NONE
@@ -165,26 +165,26 @@ repository:
                                 - Valid if type is CUSTOM. Following RFC 5545 recurrence rules, we can specify starting time, occurrence frequency, and interval
                                   size.
                                   Example for frequency could be DAILY/WEEKLY/HOURLY or any RFC 5545 supported frequency, which is followed by start time of
-                                  this window, we can
-                                  control the start time with BYHOUR, BYMINUTE and BYSECONDS. It is followed by the interval size.
+                                  this window.
+                                  You can control the start time with BYHOUR, BYMINUTE and BYSECONDS. It is followed by the interval size.
                             returned: on success
                             type: str
                             sample: custom_schedule_example
         time_created:
             description:
-                - The time the the Repository was created. An RFC3339 formatted datetime string
+                - The time the repository was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Repository was updated. An RFC3339 formatted datetime string
+                - The time the repository was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the Repository.
+                - The current state of the repository.
             returned: on success
             type: str
             sample: ACTIVE
@@ -215,9 +215,9 @@ repository:
             sample: 56
         trigger_build_events:
             description:
-                - "Trigger Build Events supported for this repository
-                  PUSH - Build is triggered when a push event occurs
-                  COMMIT_UPDATES - Build is triggered when new commits are mirrored into repository"
+                - "Trigger build events supported for this repository:
+                  Push - Build is triggered when a push event occurs.
+                  Commit updates - Build is triggered when new commits are mirrored into a repository."
             returned: on success
             type: list
             sample: []

@@ -172,18 +172,18 @@ EXAMPLES = """
 
     # optional
     block_action: SHOW_ERROR_PAGE
-    block_response_code: 403
-    block_error_page_message: Access to the website is blocked.
-    block_error_page_code: 403
-    block_error_page_description: Access blocked by website owner. Please contact support.
-    max_argument_count: 255
-    max_name_length_per_argument: 200
-    max_total_name_length_of_arguments: 64000
-    recommendations_period_in_days: 10
-    is_response_inspected: false
-    max_response_size_in_ki_b: 1024
-    allowed_http_methods: [ "GET" ]
-    media_types: [ "text/html" ]
+    block_response_code: 56
+    block_error_page_message: block_error_page_message_example
+    block_error_page_code: block_error_page_code_example
+    block_error_page_description: block_error_page_description_example
+    max_argument_count: 56
+    max_name_length_per_argument: 56
+    max_total_name_length_of_arguments: 56
+    recommendations_period_in_days: 56
+    is_response_inspected: true
+    max_response_size_in_ki_b: 56
+    allowed_http_methods: [ "OPTIONS" ]
+    media_types: [ "media_types_example" ]
 
 """
 

@@ -88,6 +88,7 @@ options:
         choices:
             - "LINUX"
             - "WINDOWS"
+            - "SOLARIS"
     is_customer_deployed:
         description:
             - true, if the agent image is manually downloaded and installed. false, if the agent is deployed as a plugin in Oracle Cloud Agent.
@@ -134,13 +135,13 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    plugin_name: [ "$p.getValue()" ]
-    version: [ "$p.getValue()" ]
+    plugin_name: [ "plugin_name_example" ]
+    version: [ "version_example" ]
     display_name: display_name_example
     lifecycle_state: CREATING
     availability_status: ACTIVE
     host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
-    platform_type: [ "$p.getValue()" ]
+    platform_type: [ "LINUX" ]
     is_customer_deployed: true
     install_type: AGENT
     sort_order: ASC
@@ -222,6 +223,7 @@ management_agents:
         install_path:
             description:
                 - Path where Management Agent is installed
+                - Returned for get operation
             returned: on success
             type: str
             sample: install_path_example
@@ -468,7 +470,7 @@ def main():
             ),
             host_id=dict(type="str"),
             platform_type=dict(
-                type="list", elements="str", choices=["LINUX", "WINDOWS"]
+                type="list", elements="str", choices=["LINUX", "WINDOWS", "SOLARIS"]
             ),
             is_customer_deployed=dict(type="bool"),
             install_type=dict(type="str", choices=["AGENT", "GATEWAY"]),

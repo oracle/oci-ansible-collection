@@ -91,7 +91,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     lifecycle_state: CREATING
     sort_order: ASC
     sort_by: TIMECREATED
@@ -139,12 +139,14 @@ oda_instances:
         web_app_url:
             description:
                 - URL for the Digital Assistant web application that's associated with the instance.
+                - Returned for get operation
             returned: on success
             type: str
             sample: web_app_url_example
         connector_url:
             description:
                 - URL for the connector's endpoint.
+                - Returned for get operation
             returned: on success
             type: str
             sample: connector_url_example

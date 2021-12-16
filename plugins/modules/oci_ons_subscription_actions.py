@@ -117,7 +117,7 @@ subscription:
                   L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             returned: on success
             type: str
-            sample: EMAIL
+            sample: protocol_example
         endpoint:
             description:
                 - A locator that corresponds to the subscription protocol.
@@ -175,7 +175,7 @@ subscription:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
-        "protocol": "EMAIL",
+        "protocol": "protocol_example",
         "endpoint": "endpoint_example",
         "lifecycle_state": "PENDING",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

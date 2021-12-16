@@ -267,7 +267,7 @@ instance_pool:
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         load_balancers:
             description:
                 - The load balancers attached to the instance pool.
@@ -338,7 +338,7 @@ instance_pool:
             }]
         }],
         "size": 56,
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "load_balancers": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "instance_pool_id": "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx",

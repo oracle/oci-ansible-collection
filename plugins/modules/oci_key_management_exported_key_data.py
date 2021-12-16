@@ -81,12 +81,12 @@ EXAMPLES = """
 - name: Create exported_key_data
   oci_key_management_exported_key_data:
     # required
-    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     algorithm: RSA_OAEP_AES_SHA256
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
     # optional
-    key_version_id: ocid1.keyversion.oc1.iad.examplevriiaa.examples4h2bocax3damnsxw4cvbbndged2gftlho4ufxwa4faux2eiqwija
+    key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
     logging_context: null
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
@@ -116,7 +116,7 @@ exported_key_data:
                 - The date and time this key version was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
                 - The OCID of the vault that contains this key version.
@@ -144,7 +144,7 @@ exported_key_data:
     sample: {
         "key_version_id": "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2018-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "encrypted_key": "encrypted_key_example",
         "algorithm": "RSA_OAEP_AES_SHA256"

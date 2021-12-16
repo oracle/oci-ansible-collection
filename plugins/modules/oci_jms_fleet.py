@@ -84,7 +84,7 @@ EXAMPLES = """
   oci_jms_fleet:
     # required
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..<compartment_OCID>"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example

@@ -201,8 +201,8 @@ EXAMPLES = """
   oci_network_cross_connect:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    location_name: CyrusOne, Chandler, AZ
-    port_speed_shape_name: 10 Gbps
+    location_name: location_name_example
+    port_speed_shape_name: port_speed_shape_name_example
 
     # optional
     cross_connect_group_id: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
@@ -368,7 +368,7 @@ cross_connect:
                 - "Example: `10 Gbps`"
             returned: on success
             type: str
-            sample: 10 Gbps
+            sample: port_speed_shape_name_example
         customer_reference_name:
             description:
                 - A reference name or identifier for the physical fiber connection that this cross-connect
@@ -382,7 +382,7 @@ cross_connect:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         macsec_properties:
             description:
                 - ""
@@ -443,9 +443,9 @@ cross_connect:
         "lifecycle_state": "PENDING_CUSTOMER",
         "location_name": "location_name_example",
         "port_name": "port_name_example",
-        "port_speed_shape_name": "10 Gbps",
+        "port_speed_shape_name": "port_speed_shape_name_example",
         "customer_reference_name": "customer_reference_name_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "macsec_properties": {
             "state": "ENABLED",
             "primary_key": {

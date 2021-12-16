@@ -30,9 +30,13 @@ oracle.oci.oci_network_virtual_circuit -- Manage a VirtualCircuit resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_virtual_circuit`.
 
@@ -835,19 +839,19 @@ Examples
         type: PUBLIC
 
         # optional
-        bandwidth_shape_name: 10 Gbps
+        bandwidth_shape_name: bandwidth_shape_name_example
         cross_connect_mappings:
         - # optional
           bgp_md5_auth_key: bgp_md5_auth_key_example
           cross_connect_or_cross_connect_group_id: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
-          customer_bgp_peering_ip: 10.0.0.18/31
-          oracle_bgp_peering_ip: 10.0.0.19/31
-          customer_bgp_peering_ipv6: 2001:db8::1/64
-          oracle_bgp_peering_ipv6: 2001:db8::2/64
-          vlan: 200
-        routing_policy: [ "null" ]
+          customer_bgp_peering_ip: customer_bgp_peering_ip_example
+          oracle_bgp_peering_ip: oracle_bgp_peering_ip_example
+          customer_bgp_peering_ipv6: customer_bgp_peering_ipv6_example
+          oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
+          vlan: 56
+        routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
         customer_bgp_asn: 56
-        customer_asn: 12345
+        customer_asn: 56
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -859,7 +863,7 @@ Examples
         public_prefixes:
         - # required
           cidr_block: cidr_block_example
-        region: phx
+        region: us-phoenix-1
         ip_mtu: MTU_1500
 
     - name: Update virtual_circuit
@@ -868,19 +872,19 @@ Examples
         virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        bandwidth_shape_name: 10 Gbps
+        bandwidth_shape_name: bandwidth_shape_name_example
         cross_connect_mappings:
         - # optional
           bgp_md5_auth_key: bgp_md5_auth_key_example
           cross_connect_or_cross_connect_group_id: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
-          customer_bgp_peering_ip: 10.0.0.18/31
-          oracle_bgp_peering_ip: 10.0.0.19/31
-          customer_bgp_peering_ipv6: 2001:db8::1/64
-          oracle_bgp_peering_ipv6: 2001:db8::2/64
-          vlan: 200
-        routing_policy: [ "null" ]
+          customer_bgp_peering_ip: customer_bgp_peering_ip_example
+          oracle_bgp_peering_ip: oracle_bgp_peering_ip_example
+          customer_bgp_peering_ipv6: customer_bgp_peering_ipv6_example
+          oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
+          vlan: 56
+        routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
         customer_bgp_asn: 56
-        customer_asn: 12345
+        customer_asn: 56
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -897,19 +901,19 @@ Examples
         display_name: display_name_example
 
         # optional
-        bandwidth_shape_name: 10 Gbps
+        bandwidth_shape_name: bandwidth_shape_name_example
         cross_connect_mappings:
         - # optional
           bgp_md5_auth_key: bgp_md5_auth_key_example
           cross_connect_or_cross_connect_group_id: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
-          customer_bgp_peering_ip: 10.0.0.18/31
-          oracle_bgp_peering_ip: 10.0.0.19/31
-          customer_bgp_peering_ipv6: 2001:db8::1/64
-          oracle_bgp_peering_ipv6: 2001:db8::2/64
-          vlan: 200
-        routing_policy: [ "null" ]
+          customer_bgp_peering_ip: customer_bgp_peering_ip_example
+          oracle_bgp_peering_ip: oracle_bgp_peering_ip_example
+          customer_bgp_peering_ipv6: customer_bgp_peering_ipv6_example
+          oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
+          vlan: 56
+        routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
         customer_bgp_asn: 56
-        customer_asn: 12345
+        customer_asn: 56
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
         gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
@@ -965,8 +969,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the VirtualCircuit resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bandwidth_shape_name&#x27;: &#x27;10 Gbps&#x27;, &#x27;bgp_ipv6_session_state&#x27;: &#x27;UP&#x27;, &#x27;bgp_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;bgp_session_state&#x27;: &#x27;UP&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cross_connect_mappings&#x27;: [{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;10.0.0.18/31&#x27;, &#x27;customer_bgp_peering_ipv6&#x27;: &#x27;2001:db8::1/64&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;10.0.0.19/31&#x27;, &#x27;oracle_bgp_peering_ipv6&#x27;: &#x27;2001:db8::2/64&#x27;, &#x27;vlan&#x27;: 200}], &#x27;customer_asn&#x27;: 56, &#x27;customer_bgp_asn&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_mtu&#x27;: &#x27;MTU_1500&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PENDING_PROVIDER&#x27;, &#x27;oracle_bgp_asn&#x27;: 56, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_service_id&#x27;: &#x27;ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_service_key_name&#x27;: &#x27;provider_service_key_name_example&#x27;, &#x27;provider_service_name&#x27;: &#x27;provider_service_name_example&#x27;, &#x27;provider_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;public_prefixes&#x27;: [], &#x27;reference_comment&#x27;: &#x27;reference_comment_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;routing_policy&#x27;: [], &#x27;service_type&#x27;: &#x27;COLOCATED&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;type&#x27;: &#x27;PUBLIC&#x27;}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bandwidth_shape_name&#x27;: &#x27;bandwidth_shape_name_example&#x27;, &#x27;bgp_ipv6_session_state&#x27;: &#x27;UP&#x27;, &#x27;bgp_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;bgp_session_state&#x27;: &#x27;UP&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cross_connect_mappings&#x27;: [{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;customer_bgp_peering_ip_example&#x27;, &#x27;customer_bgp_peering_ipv6&#x27;: &#x27;customer_bgp_peering_ipv6_example&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;oracle_bgp_peering_ip_example&#x27;, &#x27;oracle_bgp_peering_ipv6&#x27;: &#x27;oracle_bgp_peering_ipv6_example&#x27;, &#x27;vlan&#x27;: 56}], &#x27;customer_asn&#x27;: 56, &#x27;customer_bgp_asn&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_mtu&#x27;: &#x27;MTU_1500&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PENDING_PROVIDER&#x27;, &#x27;oracle_bgp_asn&#x27;: 56, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_service_id&#x27;: &#x27;ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_service_key_name&#x27;: &#x27;provider_service_key_name_example&#x27;, &#x27;provider_service_name&#x27;: &#x27;provider_service_name_example&#x27;, &#x27;provider_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;public_prefixes&#x27;: [], &#x27;reference_comment&#x27;: &#x27;reference_comment_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;routing_policy&#x27;: [], &#x27;service_type&#x27;: &#x27;COLOCATED&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;PUBLIC&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -984,8 +988,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10 Gbps</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bandwidth_shape_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1002,7 +1006,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The state of the Ipv6 BGP session associated with the virtual circuit.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
@@ -1020,7 +1024,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Deprecated. Instead use the information in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/FastConnectProviderService/'>FastConnectProviderService</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER_MANAGED</div>
                                     </td>
             </tr>
@@ -1038,7 +1042,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The state of the Ipv4 BGP session associated with the virtual circuit.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
@@ -1056,7 +1060,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the virtual circuit.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1074,7 +1078,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An array of mappings, each containing properties for a cross-connect or cross-connect group that is associated with this virtual circuit.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1091,7 +1095,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The key for BGP MD5 authentication. Only applicable if your system requires MD5 authentication. If empty or not set (null), that means you don&#x27;t use BGP MD5 authentication.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bgp_md5_auth_key_example</div>
                                     </td>
             </tr>
@@ -1110,7 +1114,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the cross-connect or cross-connect group for this mapping. Specified by the owner of the cross-connect or cross-connect group (the customer if the customer is colocated with Oracle, or the provider if the customer is connecting via provider).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1131,8 +1135,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses.</div>
                                             <div>Example: `10.0.0.18/31`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.18/31</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">customer_bgp_peering_ip_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1153,8 +1157,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>Example: `2001:db8::1/64`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:db8::1/64</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">customer_bgp_peering_ipv6_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1174,8 +1178,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses.</div>
                                             <div>Example: `10.0.0.19/31`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.19/31</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oracle_bgp_peering_ip_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1196,8 +1200,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Note that IPv6 addressing is currently supported only in certain regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>Example: `2001:db8::2/64`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:db8::2/64</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oracle_bgp_peering_ipv6_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1216,8 +1220,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The number of the specific VLAN (on the cross-connect or cross-connect group) that is assigned to this virtual circuit. Specified by the owner of the cross-connect or cross-connect group (the customer if the customer is colocated with Oracle, or the provider if the customer is connecting via provider).</div>
                                             <div>Example: `200`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">200</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     
@@ -1235,7 +1239,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The BGP ASN of the network at the other end of the BGP session from Oracle. If the session is between the customer&#x27;s edge router and Oracle, the value is the customer&#x27;s ASN. If the BGP session is between the provider&#x27;s edge router and Oracle, the value is the provider&#x27;s ASN. Can be a 2-byte or 4-byte ASN. Uses &quot;asplain&quot; format.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1253,7 +1257,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Deprecated. Instead use `customerAsn`. If you specify values for both, the request will be rejected.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1272,7 +1276,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -1290,7 +1294,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -1309,7 +1313,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -1327,7 +1331,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer&#x27;s L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Drg) that this virtual circuit uses. Applicable only to private virtual circuits.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1345,7 +1349,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The virtual circuit&#x27;s Oracle ID (<a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1363,7 +1367,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The layer 3 IP MTU to use on this virtual circuit.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MTU_1500</div>
                                     </td>
             </tr>
@@ -1381,7 +1385,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The virtual circuit&#x27;s current state. For information about the different states, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm'>FastConnect Overview</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PENDING_PROVIDER</div>
                                     </td>
             </tr>
@@ -1399,7 +1403,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle BGP ASN.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1417,7 +1421,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Deprecated. Instead use `providerServiceId`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_name_example</div>
                                     </td>
             </tr>
@@ -1435,7 +1439,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the service offered by the provider (if the customer is connecting via a provider).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1453,7 +1457,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The service key name offered by the provider (if the customer is connecting via a provider).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_service_key_name_example</div>
                                     </td>
             </tr>
@@ -1471,7 +1475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Deprecated. Instead use `providerServiceId`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_service_name_example</div>
                                     </td>
             </tr>
@@ -1489,7 +1493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The provider&#x27;s state in relation to this virtual circuit (if the customer is connecting via a provider). ACTIVE means the provider has provisioned the virtual circuit from their end. INACTIVE means the provider has not yet provisioned the virtual circuit, or has de-provisioned it.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
                                     </td>
             </tr>
@@ -1507,7 +1511,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to advertise across the connection. All prefix sizes are allowed.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1523,7 +1527,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Provider-supplied reference information about this virtual circuit (if the customer is connecting via a provider).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">reference_comment_example</div>
                                     </td>
             </tr>
@@ -1541,8 +1545,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Cloud Infrastructure region where this virtual circuit is located.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_example</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">us-phoenix-1</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1559,7 +1563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The routing policy sets how routing information about the Oracle cloud is shared over a public virtual circuit. Policies available are: `ORACLE_SERVICE_NETWORK`, `REGIONAL`, `MARKET_LEVEL`, and `GLOBAL`. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/routingonprem.htm#route_filtering'>Route Filtering</a> for details. By default, routing information is shared for all routes in the same market.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1575,7 +1579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Provider service type.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COLOCATED</div>
                                     </td>
             </tr>
@@ -1594,8 +1598,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the virtual circuit was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1612,7 +1616,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether the virtual circuit supports private or public peering. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm'>FastConnect Overview</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PUBLIC</div>
                                     </td>
             </tr>

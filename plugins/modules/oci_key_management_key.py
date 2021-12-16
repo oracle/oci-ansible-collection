@@ -130,12 +130,12 @@ EXAMPLES = """
 - name: Create key
   oci_key_management_key:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5lsdneskcfy7lr4a6wfauxuwrwed5b3xea"
-    display_name: Key C
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     key_shape:
       # required
       algorithm: AES
-      length: 16
+      length: 56
 
       # optional
       curve_id: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
@@ -153,15 +153,15 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: Key C
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Update key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_key_management_key:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5lsdneskcfy7lr4a6wfauxuwrwed5b3xea"
-    display_name: Key C
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -264,21 +264,21 @@ key:
                 - "Example: `ENABLED`"
             returned: on success
             type: str
-            sample: ENABLED
+            sample: CREATING
         time_created:
             description:
                 - The date and time the key was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                 - "Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the key, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
                 - The OCID of the vault that contains this key.
@@ -316,9 +316,9 @@ key:
             "curve_id": "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "protection_mode": "HSM",
-        "lifecycle_state": "ENABLED",
-        "time_created": "2018-04-03T21:10:29.600Z",
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
+        "lifecycle_state": "CREATING",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "replica_details": {
             "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"

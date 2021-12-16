@@ -868,7 +868,7 @@ EXAMPLES = """
 - name: Create instance_configuration with source = NONE
   oci_compute_management_instance_configuration:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     instance_details:
       # required
       instance_type: compute
@@ -917,7 +917,7 @@ EXAMPLES = """
           display_name: display_name_example
           freeform_tags: {'Department': 'Finance'}
           hostname_label: hostname_label_example
-          nsg_ids: [ "null" ]
+          nsg_ids: [ "nsg_ids_example" ]
           private_ip: private_ip_example
           skip_source_dest_check: true
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -995,7 +995,7 @@ EXAMPLES = """
           display_name: display_name_example
           freeform_tags: {'Department': 'Finance'}
           hostname_label: hostname_label_example
-          nsg_ids: [ "null" ]
+          nsg_ids: [ "nsg_ids_example" ]
           private_ip: private_ip_example
           skip_source_dest_check: true
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1004,20 +1004,20 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example-instance-configuration
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     source: NONE
 
 - name: Create instance_configuration with source = INSTANCE
   oci_compute_management_instance_configuration:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source: INSTANCE
-    instance_id: ocid1.instance.oc1.phx.unique_ID
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example-instance-configuration
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update instance_configuration
@@ -1027,14 +1027,14 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example-instance-configuration
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_configuration:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: example-instance-configuration
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1049,8 +1049,8 @@ EXAMPLES = """
 - name: Delete instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_configuration:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: example-instance-configuration
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -1960,7 +1960,7 @@ instance_configuration:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -2090,7 +2090,7 @@ instance_configuration:
             }]
         },
         "deferred_fields": [],
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

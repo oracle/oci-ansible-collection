@@ -57,9 +57,9 @@ load_balancer_shapes:
                 - "Example: `100Mbps`"
             returned: on success
             type: str
-            sample: 100Mbps
+            sample: name_example
     sample: [{
-        "name": "100Mbps"
+        "name": "name_example"
     }]
 """
 

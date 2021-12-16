@@ -30,9 +30,13 @@ oracle.oci.oci_devops_object_content_facts -- Fetches details about a ObjectCont
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_devops_object_content_facts`.
 
@@ -53,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a ObjectContent resource in Oracle Cloud Infrastructure
-- Get contents of a specified Object
+- Retrieve contents of a specified object.
 
 
 .. Aliases
@@ -250,7 +254,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>unique Repository identifier.</div>
+                                            <div>Unique repository identifier.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -265,7 +269,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The SHA of a blob or tree</div>
+                                            <div>The SHA of a blob or tree.</div>
                                                         </td>
             </tr>
                                 <tr>

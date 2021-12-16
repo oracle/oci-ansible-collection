@@ -30,9 +30,13 @@ oracle.oci.oci_container_engine_cluster -- Manage a Cluster resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_container_engine_cluster`.
 
@@ -764,32 +768,32 @@ Examples
     - name: Create cluster
       oci_container_engine_cluster:
         # required
-        name: My Cluster
-        compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
-        vcn_id: ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa
-        kubernetes_version: v1.9.4
+        name: name_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        kubernetes_version: kubernetes_version_example
 
         # optional
         endpoint_config:
           # optional
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-          nsg_ids: [ "null" ]
+          nsg_ids: [ "nsg_ids_example" ]
           is_public_ip_enabled: true
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         options:
           # optional
-          service_lb_subnet_ids: [ "null" ]
+          service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
           kubernetes_network_config:
             # optional
-            pods_cidr: 10.244.0.0/16
-            services_cidr: 10.96.0.0/16
+            pods_cidr: pods_cidr_example
+            services_cidr: services_cidr_example
           add_ons:
             # optional
             is_kubernetes_dashboard_enabled: true
             is_tiller_enabled: true
           admission_controller_options:
             # optional
-            is_pod_security_policy_enabled: false
+            is_pod_security_policy_enabled: true
         image_policy_config:
           # optional
           is_policy_enabled: true
@@ -803,22 +807,22 @@ Examples
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        name: My Cluster
-        kubernetes_version: v1.9.4
+        name: name_example
+        kubernetes_version: kubernetes_version_example
         options:
           # optional
-          service_lb_subnet_ids: [ "null" ]
+          service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
           kubernetes_network_config:
             # optional
-            pods_cidr: 10.244.0.0/16
-            services_cidr: 10.96.0.0/16
+            pods_cidr: pods_cidr_example
+            services_cidr: services_cidr_example
           add_ons:
             # optional
             is_kubernetes_dashboard_enabled: true
             is_tiller_enabled: true
           admission_controller_options:
             # optional
-            is_pod_security_policy_enabled: false
+            is_pod_security_policy_enabled: true
         image_policy_config:
           # optional
           is_policy_enabled: true
@@ -829,25 +833,25 @@ Examples
     - name: Update cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_container_engine_cluster:
         # required
-        name: My Cluster
-        compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+        name: name_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        kubernetes_version: v1.9.4
+        kubernetes_version: kubernetes_version_example
         options:
           # optional
-          service_lb_subnet_ids: [ "null" ]
+          service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
           kubernetes_network_config:
             # optional
-            pods_cidr: 10.244.0.0/16
-            services_cidr: 10.96.0.0/16
+            pods_cidr: pods_cidr_example
+            services_cidr: services_cidr_example
           add_ons:
             # optional
             is_kubernetes_dashboard_enabled: true
             is_tiller_enabled: true
           admission_controller_options:
             # optional
-            is_pod_security_policy_enabled: false
+            is_pod_security_policy_enabled: true
         image_policy_config:
           # optional
           is_policy_enabled: true
@@ -864,8 +868,8 @@ Examples
     - name: Delete cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_container_engine_cluster:
         # required
-        name: My Cluster
-        compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+        name: name_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -902,8 +906,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Cluster resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;available_kubernetes_upgrades&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq&#x27;, &#x27;endpoint_config&#x27;: {&#x27;is_public_ip_enabled&#x27;: True, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;endpoints&#x27;: {&#x27;kubernetes&#x27;: &#x27;https://yourkubernetes&#x27;, &#x27;private_endpoint&#x27;: &#x27;https://yourPrivateEndpoint&#x27;, &#x27;public_endpoint&#x27;: &#x27;https://yourPublicEndpoint&#x27;}, &#x27;id&#x27;: &#x27;ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw&#x27;, &#x27;image_policy_config&#x27;: {&#x27;is_policy_enabled&#x27;: True, &#x27;key_details&#x27;: [{&#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;v1.9.4&#x27;, &#x27;lifecycle_details&#x27;: &#x27;waiting for node pools&#x27;, &#x27;lifecycle_state&#x27;: &#x27;UPDATING&#x27;, &#x27;metadata&#x27;: {&#x27;created_by_user_id&#x27;: &#x27;ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;created_by_work_request_id&#x27;: &#x27;ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;deleted_by_user_id&#x27;: &#x27;ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;deleted_by_work_request_id&#x27;: &#x27;ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;time_created&#x27;: &#x27;2017-07-21T16:11:29Z&#x27;, &#x27;time_deleted&#x27;: &#x27;2017-07-21T16:11:29Z&#x27;, &#x27;time_updated&#x27;: &#x27;2017-07-21T16:11:29Z&#x27;, &#x27;updated_by_user_id&#x27;: &#x27;ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;updated_by_work_request_id&#x27;: &#x27;ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;}, &#x27;name&#x27;: &#x27;My Cluster&#x27;, &#x27;options&#x27;: {&#x27;add_ons&#x27;: {&#x27;is_kubernetes_dashboard_enabled&#x27;: True, &#x27;is_tiller_enabled&#x27;: True}, &#x27;admission_controller_options&#x27;: {&#x27;is_pod_security_policy_enabled&#x27;: False}, &#x27;kubernetes_network_config&#x27;: {&#x27;pods_cidr&#x27;: &#x27;10.244.0.0/16&#x27;, &#x27;services_cidr&#x27;: &#x27;10.96.0.0/16&#x27;}, &#x27;service_lb_subnet_ids&#x27;: []}, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa&#x27;}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;available_kubernetes_upgrades&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;endpoint_config&#x27;: {&#x27;is_public_ip_enabled&#x27;: True, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;endpoints&#x27;: {&#x27;kubernetes&#x27;: &#x27;kubernetes_example&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;public_endpoint&#x27;: &#x27;public_endpoint_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_policy_config&#x27;: {&#x27;is_policy_enabled&#x27;: True, &#x27;key_details&#x27;: [{&#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metadata&#x27;: {&#x27;created_by_user_id&#x27;: &#x27;ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by_work_request_id&#x27;: &#x27;ocid1.createdbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deleted_by_user_id&#x27;: &#x27;ocid1.deletedbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deleted_by_work_request_id&#x27;: &#x27;ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deleted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_user_id&#x27;: &#x27;ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;updated_by_work_request_id&#x27;: &#x27;ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;options&#x27;: {&#x27;add_ons&#x27;: {&#x27;is_kubernetes_dashboard_enabled&#x27;: True, &#x27;is_tiller_enabled&#x27;: True}, &#x27;admission_controller_options&#x27;: {&#x27;is_pod_security_policy_enabled&#x27;: True}, &#x27;kubernetes_network_config&#x27;: {&#x27;pods_cidr&#x27;: &#x27;pods_cidr_example&#x27;, &#x27;services_cidr&#x27;: &#x27;services_cidr_example&#x27;}, &#x27;service_lb_subnet_ids&#x27;: []}, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -920,7 +924,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Available Kubernetes versions to which the clusters masters may be upgraded.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -936,8 +940,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the compartment in which the cluster exists.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -954,7 +958,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The network configuration for access to the Cluster control plane.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -971,7 +975,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether the cluster should be assigned a public IP address. Defaults to false. If set to true on a private subnet, the cluster provisioning will fail.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -990,7 +994,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of the OCIDs of the network security groups (NSGs) to apply to the cluster endpoint. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/'>NetworkSecurityGroup</a>.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1007,7 +1011,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the regional subnet in which to place the Cluster endpoint.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1026,7 +1030,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Endpoints served up by the cluster masters.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1043,8 +1047,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The non-native networking Kubernetes API server endpoint.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://yourkubernetes</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">kubernetes_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1062,8 +1066,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The private native networking Kubernetes API server endpoint.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://yourPrivateEndpoint</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">private_endpoint_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1081,8 +1085,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The public native networking Kubernetes API server endpoint, if one was requested.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://yourPublicEndpoint</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">public_endpoint_example</div>
                                     </td>
             </tr>
                     
@@ -1100,8 +1104,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the cluster.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1118,7 +1122,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The image verification policy for signature validation.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1135,7 +1139,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether the image verification policy is enabled. Defaults to false. If set to true, the images will be verified against the policy at runtime.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1154,7 +1158,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of KMS key details.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1172,7 +1176,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCIDs of the KMS key that will be used to verify whether the images are signed by an approved source.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1192,7 +1196,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1210,8 +1214,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The version of Kubernetes running on the cluster masters.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">v1.9.4</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">kubernetes_version_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1228,8 +1232,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details about the state of the cluster masters.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">waiting for node pools</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1246,8 +1250,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The state of the cluster masters.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UPDATING</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1264,7 +1268,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Metadata about the cluster.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1281,8 +1285,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The user who created the cluster.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1300,8 +1304,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the work request which created the cluster.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.createdbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1319,8 +1323,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The user who deleted the cluster.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.deletedbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1338,8 +1342,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the work request which deleted the cluster.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.deletedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1357,8 +1361,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the cluster was created.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2017-07-21T16:11:29Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1376,8 +1380,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the cluster was deleted.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2017-07-21T16:11:29Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1395,8 +1399,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the cluster was updated.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2017-07-21T16:11:29Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1414,8 +1418,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The user who updated the cluster.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1433,8 +1437,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the work request which updated the cluster.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.updatedbyworkrequest.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     
@@ -1452,8 +1456,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the cluster.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">My Cluster</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1470,7 +1474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Optional attributes for the cluster.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1487,7 +1491,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Configurable cluster add-ons</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1505,7 +1509,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether or not to enable the Kubernetes Dashboard add-on.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1525,7 +1529,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether or not to enable the Tiller add-on.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1545,7 +1549,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Configurable cluster admission controllers</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1563,6 +1567,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether or not to enable the Pod Security Policy admission controller.</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                     
@@ -1581,7 +1587,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Network configuration for Kubernetes.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1599,8 +1605,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The CIDR block for Kubernetes pods.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.244.0.0/16</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pods_cidr_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1619,8 +1625,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The CIDR block for Kubernetes services.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.96.0.0/16</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">services_cidr_example</div>
                                     </td>
             </tr>
                     
@@ -1639,7 +1645,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCIDs of the subnets used for Kubernetes services load balancers.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                     
                                 <tr>
@@ -1656,8 +1662,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the virtual cloud network (VCN) in which the cluster exists.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     

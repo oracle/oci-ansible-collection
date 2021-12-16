@@ -213,27 +213,27 @@ EXAMPLES = """
   oci_usage_facts:
     # required
     tenant_id: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
-    time_usage_started: 2013-10-20T19:20:30+01:00
-    time_usage_ended: 2013-10-20T19:20:30+01:00
+    time_usage_started: time_usage_started_example
+    time_usage_ended: time_usage_ended_example
     granularity: HOURLY
 
     # optional
     is_aggregate_by_time: true
     forecast:
       # required
-      time_forecast_ended: 2013-10-20T19:20:30+01:00
+      time_forecast_ended: time_forecast_ended_example
 
       # optional
       forecast_type: BASIC
-      time_forecast_started: 2013-10-20T19:20:30+01:00
+      time_forecast_started: time_forecast_started_example
     query_type: USAGE
-    group_by: [ "null" ]
+    group_by: [ "group_by_example" ]
     group_by_tag:
     - # optional
       namespace: namespace_example
       key: key_example
       value: value_example
-    compartment_depth: 10
+    compartment_depth: 3.4
     filter:
       # optional
       operator: AND
@@ -249,9 +249,9 @@ EXAMPLES = """
       filters:
       - # optional
         operator: AND
-        dimensions: [ "null" ]
-        tags: [ "null" ]
-        filters: [ "null" ]
+        dimensions: [ "dimensions_example" ]
+        tags: [ "tags_example" ]
+        filters: [ "filters_example" ]
 
 """
 
@@ -315,13 +315,13 @@ usages:
                 - The region of the usage.
             returned: on success
             type: str
-            sample: region_example
+            sample: us-phoenix-1
         ad:
             description:
                 - The availability domain of the usage.
             returned: on success
             type: str
-            sample: ad_example
+            sample: Uocm:PHX-AD-1
         weight:
             description:
                 - The resource size being metered.
@@ -463,8 +463,8 @@ usages:
         "service": "service_example",
         "resource_name": "resource_name_example",
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "region": "region_example",
-        "ad": "ad_example",
+        "region": "us-phoenix-1",
+        "ad": "Uocm:PHX-AD-1",
         "weight": 10,
         "shape": "shape_example",
         "sku_part_number": "sku_part_number_example",

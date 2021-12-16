@@ -352,119 +352,119 @@ EXAMPLES = """
 - name: Create backend_set
   oci_loadbalancer_backend_set:
     # required
-    name: example_backend_set
-    policy: LEAST_CONNECTIONS
+    name: name_example
+    policy: policy_example
     health_checker:
       # required
-      protocol: HTTP
+      protocol: protocol_example
 
       # optional
-      url_path: /healthcheck
-      port: 8080
-      return_code: 200
-      retries: 3
-      timeout_in_millis: 3000
-      interval_in_millis: 10000
+      url_path: url_path_example
+      port: 56
+      return_code: 56
+      retries: 56
+      timeout_in_millis: 56
+      interval_in_millis: 56
       response_body_regex: response_body_regex_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     backends:
     - # required
-      ip_address: 10.0.0.3
-      port: 8080
+      ip_address: ip_address_example
+      port: 56
 
       # optional
-      weight: 3
-      backup: false
-      drain: false
-      offline: false
+      weight: 56
+      backup: true
+      drain: true
+      offline: true
     ssl_configuration:
       # optional
-      verify_depth: 3
+      verify_depth: 56
       verify_peer_certificate: true
-      trusted_certificate_authority_ids: [ "null" ]
-      certificate_ids: [ "null" ]
-      certificate_name: example_certificate_bundle
-      protocols: [ "null" ]
+      trusted_certificate_authority_ids: [ "trusted_certificate_authority_ids_example" ]
+      certificate_ids: [ "certificate_ids_example" ]
+      certificate_name: certificate_name_example
+      protocols: [ "protocols_example" ]
       cipher_suite_name: cipher_suite_name_example
       server_order_preference: ENABLED
     session_persistence_configuration:
       # required
-      cookie_name: example_cookie
+      cookie_name: cookie_name_example
 
       # optional
-      disable_fallback: false
+      disable_fallback: true
     lb_cookie_session_persistence_configuration:
       # optional
-      cookie_name: example_cookie
-      disable_fallback: false
-      domain: example.com
-      path: /example
-      max_age_in_seconds: 3600
+      cookie_name: cookie_name_example
+      disable_fallback: true
+      domain: domain_example
+      path: path_example
+      max_age_in_seconds: 56
       is_secure: true
       is_http_only: true
 
 - name: Update backend_set
   oci_loadbalancer_backend_set:
     # required
-    name: example_backend_set
-    policy: LEAST_CONNECTIONS
+    name: name_example
+    policy: policy_example
     backends:
     - # required
-      ip_address: 10.0.0.3
-      port: 8080
+      ip_address: ip_address_example
+      port: 56
 
       # optional
-      weight: 3
-      backup: false
-      drain: false
-      offline: false
+      weight: 56
+      backup: true
+      drain: true
+      offline: true
     health_checker:
       # required
-      protocol: HTTP
+      protocol: protocol_example
 
       # optional
-      url_path: /healthcheck
-      port: 8080
-      return_code: 200
-      retries: 3
-      timeout_in_millis: 3000
-      interval_in_millis: 10000
+      url_path: url_path_example
+      port: 56
+      return_code: 56
+      retries: 56
+      timeout_in_millis: 56
+      interval_in_millis: 56
       response_body_regex: response_body_regex_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     ssl_configuration:
       # optional
-      verify_depth: 3
+      verify_depth: 56
       verify_peer_certificate: true
-      trusted_certificate_authority_ids: [ "null" ]
-      certificate_ids: [ "null" ]
-      certificate_name: example_certificate_bundle
-      protocols: [ "null" ]
+      trusted_certificate_authority_ids: [ "trusted_certificate_authority_ids_example" ]
+      certificate_ids: [ "certificate_ids_example" ]
+      certificate_name: certificate_name_example
+      protocols: [ "protocols_example" ]
       cipher_suite_name: cipher_suite_name_example
       server_order_preference: ENABLED
     session_persistence_configuration:
       # required
-      cookie_name: example_cookie
+      cookie_name: cookie_name_example
 
       # optional
-      disable_fallback: false
+      disable_fallback: true
     lb_cookie_session_persistence_configuration:
       # optional
-      cookie_name: example_cookie
-      disable_fallback: false
-      domain: example.com
-      path: /example
-      max_age_in_seconds: 3600
+      cookie_name: cookie_name_example
+      disable_fallback: true
+      domain: domain_example
+      path: path_example
+      max_age_in_seconds: 56
       is_secure: true
       is_http_only: true
 
 - name: Delete backend_set
   oci_loadbalancer_backend_set:
     # required
-    name: example_backend_set
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -485,7 +485,7 @@ backend_set:
                 - "Example: `example_backend_set`"
             returned: on success
             type: str
-            sample: example_backend_set
+            sample: name_example
         policy:
             description:
                 - The load balancer policy for the backend set. To get a list of available policies, use the
@@ -493,7 +493,7 @@ backend_set:
                 - "Example: `LEAST_CONNECTIONS`"
             returned: on success
             type: str
-            sample: LEAST_CONNECTIONS
+            sample: policy_example
         backends:
             description:
                 - ""
@@ -506,21 +506,21 @@ backend_set:
                         - "Example: `10.0.0.3:8080`"
                     returned: on success
                     type: str
-                    sample: 10.0.0.3:8080
+                    sample: name_example
                 ip_address:
                     description:
                         - The IP address of the backend server.
                         - "Example: `10.0.0.3`"
                     returned: on success
                     type: str
-                    sample: 10.0.0.3
+                    sample: ip_address_example
                 port:
                     description:
                         - The communication port for the backend server.
                         - "Example: `8080`"
                     returned: on success
                     type: int
-                    sample: 8080
+                    sample: 56
                 weight:
                     description:
                         - The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger
@@ -531,7 +531,7 @@ backend_set:
                         - "Example: `3`"
                     returned: on success
                     type: int
-                    sample: 3
+                    sample: 56
                 drain:
                     description:
                         - "Whether the load balancer should drain this server. Servers marked \\"drain\\" receive no new
@@ -539,7 +539,7 @@ backend_set:
                         - "Example: `false`"
                     returned: on success
                     type: bool
-                    sample: false
+                    sample: true
                 backup:
                     description:
                         - "Whether the load balancer should treat this server as a backup unit. If `true`, the load balancer forwards no ingress
@@ -548,7 +548,7 @@ backend_set:
                         - "Example: `false`"
                     returned: on success
                     type: bool
-                    sample: false
+                    sample: true
                 offline:
                     description:
                         - Whether the load balancer should treat this server as offline. Offline servers receive no incoming
@@ -556,7 +556,7 @@ backend_set:
                         - "Example: `false`"
                     returned: on success
                     type: bool
-                    sample: false
+                    sample: true
         health_checker:
             description:
                 - ""
@@ -569,14 +569,14 @@ backend_set:
                         - "Example: `HTTP`"
                     returned: on success
                     type: str
-                    sample: HTTP
+                    sample: protocol_example
                 url_path:
                     description:
                         - The path against which to run the health check.
                         - "Example: `/healthcheck`"
                     returned: on success
                     type: str
-                    sample: /healthcheck
+                    sample: url_path_example
                 port:
                     description:
                         - The backend server port against which to run the health check. If the port is not specified, the load balancer uses the
@@ -584,7 +584,7 @@ backend_set:
                         - "Example: `8080`"
                     returned: on success
                     type: int
-                    sample: 0
+                    sample: 56
                 return_code:
                     description:
                         - "The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol,
@@ -592,7 +592,7 @@ backend_set:
                         - "Example: `200`"
                     returned: on success
                     type: int
-                    sample: 0
+                    sample: 56
                 retries:
                     description:
                         - "The number of retries to attempt before a backend server is considered \\"unhealthy\\". This number also applies
@@ -600,7 +600,7 @@ backend_set:
                         - "Example: `3`"
                     returned: on success
                     type: int
-                    sample: 3
+                    sample: 56
                 timeout_in_millis:
                     description:
                         - The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply
@@ -608,14 +608,14 @@ backend_set:
                         - "Example: `3000`"
                     returned: on success
                     type: int
-                    sample: 3000
+                    sample: 56
                 interval_in_millis:
                     description:
                         - The interval between health checks, in milliseconds. The default is 10000 (10 seconds).
                         - "Example: `10000`"
                     returned: on success
                     type: int
-                    sample: 10000
+                    sample: 56
                 response_body_regex:
                     description:
                         - A regular expression for parsing the response body from the backend server.
@@ -635,7 +635,7 @@ backend_set:
                         - "Example: `3`"
                     returned: on success
                     type: int
-                    sample: 3
+                    sample: 56
                 verify_peer_certificate:
                     description:
                         - Whether the load balancer listener should verify peer certificates.
@@ -665,7 +665,7 @@ backend_set:
                         - "Example: `example_certificate_bundle`"
                     returned: on success
                     type: str
-                    sample: example_certificate_bundle
+                    sample: certificate_name_example
                 server_order_preference:
                     description:
                         - When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client
@@ -735,7 +735,7 @@ backend_set:
                         - "Example: `example_cookie`"
                     returned: on success
                     type: str
-                    sample: example_cookie
+                    sample: cookie_name_example
                 disable_fallback:
                     description:
                         - Whether the load balancer is prevented from directing traffic from a persistent session client to
@@ -743,7 +743,7 @@ backend_set:
                         - "Example: `false`"
                     returned: on success
                     type: bool
-                    sample: false
+                    sample: true
         lb_cookie_session_persistence_configuration:
             description:
                 - ""
@@ -767,7 +767,7 @@ backend_set:
                              names are different, the client or browser treats them as two different cookies."
                     returned: on success
                     type: str
-                    sample: example_cookie
+                    sample: cookie_name_example
                 disable_fallback:
                     description:
                         - Whether the load balancer is prevented from directing traffic from a persistent session client to
@@ -775,7 +775,7 @@ backend_set:
                         - "Example: `false`"
                     returned: on success
                     type: bool
-                    sample: false
+                    sample: true
                 domain:
                     description:
                         - The domain in which the cookie is valid. The `Set-cookie` header inserted by the load balancer contains a
@@ -797,7 +797,7 @@ backend_set:
                         - "Example: `example.com`"
                     returned: on success
                     type: str
-                    sample: example.com
+                    sample: domain_example
                 path:
                     description:
                         - The path in which the cookie is valid. The `Set-cookie header` inserted by the load balancer contains a `Path`
@@ -808,7 +808,7 @@ backend_set:
                         - "Example: `/example`"
                     returned: on success
                     type: str
-                    sample: /example
+                    sample: path_example
                 max_age_in_seconds:
                     description:
                         - The amount of time the cookie remains valid. The `Set-cookie` header inserted by the load balancer contains
@@ -819,7 +819,7 @@ backend_set:
                         - "Example: `3600`"
                     returned: on success
                     type: int
-                    sample: 3600
+                    sample: 56
                 is_secure:
                     description:
                         - Whether the `Set-cookie` header should contain the `Secure` attribute. If `true`, the `Set-cookie` header
@@ -842,47 +842,47 @@ backend_set:
                     type: bool
                     sample: true
     sample: {
-        "name": "example_backend_set",
-        "policy": "LEAST_CONNECTIONS",
+        "name": "name_example",
+        "policy": "policy_example",
         "backends": [{
-            "name": "10.0.0.3:8080",
-            "ip_address": "10.0.0.3",
-            "port": 8080,
-            "weight": 3,
-            "drain": false,
-            "backup": false,
-            "offline": false
+            "name": "name_example",
+            "ip_address": "ip_address_example",
+            "port": 56,
+            "weight": 56,
+            "drain": true,
+            "backup": true,
+            "offline": true
         }],
         "health_checker": {
-            "protocol": "HTTP",
-            "url_path": "/healthcheck",
-            "port": 0,
-            "return_code": 0,
-            "retries": 3,
-            "timeout_in_millis": 3000,
-            "interval_in_millis": 10000,
+            "protocol": "protocol_example",
+            "url_path": "url_path_example",
+            "port": 56,
+            "return_code": 56,
+            "retries": 56,
+            "timeout_in_millis": 56,
+            "interval_in_millis": 56,
             "response_body_regex": "response_body_regex_example"
         },
         "ssl_configuration": {
-            "verify_depth": 3,
+            "verify_depth": 56,
             "verify_peer_certificate": true,
             "trusted_certificate_authority_ids": [],
             "certificate_ids": [],
-            "certificate_name": "example_certificate_bundle",
+            "certificate_name": "certificate_name_example",
             "server_order_preference": "ENABLED",
             "cipher_suite_name": "cipher_suite_name_example",
             "protocols": []
         },
         "session_persistence_configuration": {
-            "cookie_name": "example_cookie",
-            "disable_fallback": false
+            "cookie_name": "cookie_name_example",
+            "disable_fallback": true
         },
         "lb_cookie_session_persistence_configuration": {
-            "cookie_name": "example_cookie",
-            "disable_fallback": false,
-            "domain": "example.com",
-            "path": "/example",
-            "max_age_in_seconds": 3600,
+            "cookie_name": "cookie_name_example",
+            "disable_fallback": true,
+            "domain": "domain_example",
+            "path": "path_example",
+            "max_age_in_seconds": 56,
             "is_secure": true,
             "is_http_only": true
         }

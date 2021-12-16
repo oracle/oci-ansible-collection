@@ -115,8 +115,8 @@ EXAMPLES = """
     # optional
     name: name_example
     phone_book_entry: phone_book_entry_example
-    static_jump_host_ip_addresses: [ "null" ]
-    client_cidr_block_allow_list: [ "null" ]
+    static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
+    client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
     max_session_ttl_in_seconds: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -127,8 +127,8 @@ EXAMPLES = """
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    static_jump_host_ip_addresses: [ "null" ]
-    client_cidr_block_allow_list: [ "null" ]
+    static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
+    client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
     max_session_ttl_in_seconds: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -140,8 +140,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    static_jump_host_ip_addresses: [ "null" ]
-    client_cidr_block_allow_list: [ "null" ]
+    static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
+    client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
     max_session_ttl_in_seconds: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -246,14 +246,14 @@ bastion:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the bastion was updated. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the bastion.
@@ -300,8 +300,8 @@ bastion:
         "private_endpoint_ip_address": "private_endpoint_ip_address_example",
         "max_session_ttl_in_seconds": 56,
         "max_sessions_allowed": 56,
-        "time_created": "2020-01-25T21:10:29.600Z",
-        "time_updated": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},

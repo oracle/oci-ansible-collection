@@ -52,8 +52,8 @@ EXAMPLES = """
 - name: Update configuration
   oci_audit_configuration:
     # required
-    compartment_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
-    retention_period_days: 90
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    retention_period_days: 56
 
 """
 
@@ -70,9 +70,9 @@ configuration:
                 - "Example: `90`"
             returned: on success
             type: int
-            sample: 90
+            sample: 56
     sample: {
-        "retention_period_days": 90
+        "retention_period_days": 56
     }
 """
 

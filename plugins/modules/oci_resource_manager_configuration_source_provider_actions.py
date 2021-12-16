@@ -100,7 +100,7 @@ configuration_source_provider:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the configuration source provider.
@@ -139,18 +139,18 @@ configuration_source_provider:
                   Example: `https://github.com/`"
             returned: on success
             type: str
-            sample: https://github.com/
+            sample: api_endpoint_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
-        "time_created": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "api_endpoint": "https://github.com/"
+        "api_endpoint": "api_endpoint_example"
     }
 """
 

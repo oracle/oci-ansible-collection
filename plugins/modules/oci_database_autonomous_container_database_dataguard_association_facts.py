@@ -136,14 +136,14 @@ autonomous_container_database_dataguard_associations:
                 - "Example: `9 seconds`"
             returned: on success
             type: str
-            sample: 9 seconds
+            sample: apply_lag_example
         apply_rate:
             description:
                 - The rate at which redo logs are synchronized between the associated Autonomous Container Databases.
                 - "Example: `180 Mb per second`"
             returned: on success
             type: str
-            sample: 180 Mb per second
+            sample: apply_rate_example
         transport_lag:
             description:
                 - The approximate number of seconds of redo data not yet available on the standby Autonomous Container Database,
@@ -151,7 +151,7 @@ autonomous_container_database_dataguard_associations:
                 - "Example: `7 seconds`"
             returned: on success
             type: str
-            sample: 7 seconds
+            sample: transport_lag_example
         time_last_synced:
             description:
                 - The date and time of the last update to the apply lag, apply rate, and transport lag values.
@@ -181,9 +181,9 @@ autonomous_container_database_dataguard_associations:
         "peer_role": "PRIMARY",
         "peer_lifecycle_state": "PROVISIONING",
         "protection_mode": "MAXIMUM_AVAILABILITY",
-        "apply_lag": "9 seconds",
-        "apply_rate": "180 Mb per second",
-        "transport_lag": "7 seconds",
+        "apply_lag": "apply_lag_example",
+        "apply_rate": "apply_rate_example",
+        "transport_lag": "transport_lag_example",
         "time_last_synced": "2013-10-20T19:20:30+01:00",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_last_role_changed": "2013-10-20T19:20:30+01:00"

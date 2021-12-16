@@ -102,12 +102,12 @@ EXAMPLES = """
 - name: Create waas_certificate
   oci_waas_certificate:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     certificate_data: this-is-not-the-secret
     private_key_data: this-is-not-the-secret
 
     # optional
-    display_name: example.com Certificate
+    display_name: display_name_example
     is_trust_verification_disabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -118,15 +118,15 @@ EXAMPLES = """
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: example.com Certificate
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_certificate:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: example.com Certificate
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -141,8 +141,8 @@ EXAMPLES = """
 - name: Delete waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_certificate:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: example.com Certificate
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -299,13 +299,13 @@ waas_certificate:
                 - The date and time the certificate will become valid, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_not_valid_after:
             description:
                 - The date and time the certificate will expire, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         public_key_info:
             description:
                 - ""
@@ -381,7 +381,7 @@ waas_certificate:
                 - The date and time the certificate was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_trust_verification_disabled:
             description:
                 - This indicates whether trust verification was disabled during the creation of SSL certificate.
@@ -421,8 +421,8 @@ waas_certificate:
         "serial_number": "serial_number_example",
         "version": 56,
         "signature_algorithm": "signature_algorithm_example",
-        "time_not_valid_before": "2018-11-16T21:10:29Z",
-        "time_not_valid_after": "2018-11-16T21:10:29Z",
+        "time_not_valid_before": "2013-10-20T19:20:30+01:00",
+        "time_not_valid_after": "2013-10-20T19:20:30+01:00",
         "public_key_info": {
             "algorithm": "algorithm_example",
             "exponent": 56,
@@ -436,7 +436,7 @@ waas_certificate:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_trust_verification_disabled": true,
         "certificate_data": "this-is-not-the-secret"
     }

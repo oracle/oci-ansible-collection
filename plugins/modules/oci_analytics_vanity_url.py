@@ -87,10 +87,10 @@ EXAMPLES = """
   oci_analytics_vanity_url:
     # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    hosts: [ "null" ]
+    hosts: [ "hosts_example" ]
     private_key: private_key_example
-    public_certificate: public_certificate_example
-    ca_certificate: ca_certificate_example
+    public_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+    ca_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
 
     # optional
     description: description_example
@@ -101,8 +101,8 @@ EXAMPLES = """
     # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     private_key: private_key_example
-    public_certificate: public_certificate_example
-    ca_certificate: ca_certificate_example
+    public_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+    ca_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     vanity_url_key: vanity_url_key_example
 
     # optional
@@ -153,13 +153,13 @@ vanity_url:
                 - PEM certificate for HTTPS connections.
             returned: on success
             type: str
-            sample: public_certificate_example
+            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     sample: {
         "key": "key_example",
         "description": "description_example",
         "urls": [],
         "hosts": [],
-        "public_certificate": "public_certificate_example"
+        "public_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     }
 """
 

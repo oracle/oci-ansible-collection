@@ -112,13 +112,13 @@ EXAMPLES = """
 - name: Create policy
   oci_identity_policy:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
-    name: LaunchInstances
-    statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
-    description: Policy for users who need to launch instances, attach volumes, manage images
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    statements: [ "statements_example" ]
+    description: description_example
 
     # optional
-    version_date: 2013-10-20T19:20:30+01:00
+    version_date: version_date_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -128,22 +128,22 @@ EXAMPLES = """
     policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
-    description: Policy for users who need to launch instances, attach volumes, manage images
-    version_date: 2013-10-20T19:20:30+01:00
+    statements: [ "statements_example" ]
+    description: description_example
+    version_date: version_date_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_policy:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
-    name: LaunchInstances
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
-    statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
-    description: Policy for users who need to launch instances, attach volumes, manage images
-    version_date: 2013-10-20T19:20:30+01:00
+    statements: [ "statements_example" ]
+    description: description_example
+    version_date: version_date_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -156,8 +156,8 @@ EXAMPLES = """
 - name: Delete policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_policy:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
-    name: LaunchInstances
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -206,7 +206,7 @@ policy:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The policy's current state. After creating a policy, make sure its `lifecycleState` changes from CREATING to
@@ -250,7 +250,7 @@ policy:
         "name": "name_example",
         "statements": [],
         "description": "description_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "version_date": "2013-10-20T19:20:30+01:00",

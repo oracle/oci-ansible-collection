@@ -64,8 +64,8 @@ EXAMPLES = """
 - name: Create suppression
   oci_email_suppression:
     # required
-    compartment_id: "ocid1.tenancy.oc1..."
-    email_address: test.user@example.com
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    email_address: email_address_example
 
 - name: Delete suppression
   oci_email_suppression:

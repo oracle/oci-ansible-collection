@@ -70,7 +70,7 @@ ip_sec_connection_device_status:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         tunnels:
             description:
                 - Two L(TunnelStatus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelStatus/) objects.
@@ -83,7 +83,7 @@ ip_sec_connection_device_status:
                         - "Example: `203.0.113.50`"
                     returned: on success
                     type: str
-                    sample: 203.0.113.50
+                    sample: ip_address_example
                 lifecycle_state:
                     description:
                         - The tunnel's current state.
@@ -96,23 +96,23 @@ ip_sec_connection_device_status:
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2016-08-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_state_modified:
                     description:
                         - When the state of the tunnel last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2016-08-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "tunnels": [{
-            "ip_address": "203.0.113.50",
+            "ip_address": "ip_address_example",
             "lifecycle_state": "UP",
-            "time_created": "2016-08-25T21:10:29.600Z",
-            "time_state_modified": "2016-08-25T21:10:29.600Z"
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_state_modified": "2013-10-20T19:20:30+01:00"
         }]
     }
 """

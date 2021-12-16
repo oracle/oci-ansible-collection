@@ -146,6 +146,12 @@ job:
                     returned: on success
                     type: bool
                     sample: true
+                workload_type:
+                    description:
+                        - The workload type of the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: OLTP
         database_sub_type:
             description:
                 - The subtype of the Oracle Database where the job has to be executed. Applicable only when managedDatabaseGroupId is provided.
@@ -292,7 +298,8 @@ job:
             "database_type": "EXTERNAL_SIDB",
             "database_sub_type": "CDB",
             "deployment_type": "ONPREMISE",
-            "is_cluster": true
+            "is_cluster": true,
+            "workload_type": "OLTP"
         }],
         "database_sub_type": "CDB",
         "schedule_type": "IMMEDIATE",

@@ -131,6 +131,141 @@ options:
                     - "Example: `12345` (2-byte) or `1587232876` (4-byte)"
                     - This parameter is updatable.
                 type: str
+    oracle_initiation:
+        description:
+            - Whether Oracle side is the initiator for negotiation.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "INITIATOR_OR_RESPONDER"
+            - "RESPONDER_ONLY"
+    nat_translation_enabled:
+        description:
+            - Whether NAT-T Enabled on the tunnel
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "ENABLED"
+            - "DISABLED"
+            - "AUTO"
+    phase_one_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_custom_phase_one_config:
+                description:
+                    - Indicates whether custom phase one configuration is enabled.
+                    - This parameter is updatable.
+                type: bool
+            authentication_algorithm:
+                description:
+                    - Phase one authentication algorithm supported during tunnel negotiation.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "SHA2_384"
+                    - "SHA2_256"
+                    - "SHA1_96"
+            encryption_algorithm:
+                description:
+                    - Phase one encryption algorithm supported during tunnel negotiation.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "AES_256_CBC"
+                    - "AES_192_CBC"
+                    - "AES_128_CBC"
+            diffie_helman_group:
+                description:
+                    - Phase One Diffie Hellman group supported during tunnel negotiation.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "GROUP2"
+                    - "GROUP5"
+                    - "GROUP14"
+                    - "GROUP19"
+                    - "GROUP20"
+                    - "GROUP24"
+            lifetime_in_seconds:
+                description:
+                    - IKE session key lifetime in seconds for IPSec phase one.
+                    - This parameter is updatable.
+                type: int
+    phase_two_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_custom_phase_two_config:
+                description:
+                    - Indicates whether custom phase two configuration is enabled.
+                    - This parameter is updatable.
+                type: bool
+            authentication_algorithm:
+                description:
+                    - Phase two authentication algorithm supported during tunnel negotiation.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "HMAC_SHA2_256_128"
+                    - "HMAC_SHA1_128"
+            encryption_algorithm:
+                description:
+                    - Phase two encryption algorithm supported during tunnel negotiation.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "AES_256_GCM"
+                    - "AES_192_GCM"
+                    - "AES_128_GCM"
+                    - "AES_256_CBC"
+                    - "AES_192_CBC"
+                    - "AES_128_CBC"
+            lifetime_in_seconds:
+                description:
+                    - Lifetime in seconds for IPSec phase two.
+                    - This parameter is updatable.
+                type: int
+            is_pfs_enabled:
+                description:
+                    - Indicates whether perfect forward secrecy (PFS) is enabled.
+                    - This parameter is updatable.
+                type: bool
+            pfs_dh_group:
+                description:
+                    - Diffie-Hellman group used for PFS.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "GROUP2"
+                    - "GROUP5"
+                    - "GROUP14"
+                    - "GROUP19"
+                    - "GROUP20"
+                    - "GROUP24"
+    dpd_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            dpd_mode:
+                description:
+                    - dpd mode
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "INITIATE_AND_RESPOND"
+                    - "RESPOND_ONLY"
+            dpd_timeout_in_sec:
+                description:
+                    - DPD Timeout in seconds.
+                    - This parameter is updatable.
+                type: int
     encryption_domain_config:
         description:
             - ""
@@ -173,15 +308,15 @@ EXAMPLES = """
     ike_version: V1
     bgp_session_config:
       # optional
-      oracle_interface_ip: 10.0.0.4/31
-      customer_interface_ip: 10.0.0.5/31
-      oracle_interface_ipv6: 2001:db8::1/64
-      customer_interface_ipv6: 2001:db8::1/64
-      customer_bgp_asn: 12345
+      oracle_interface_ip: oracle_interface_ip_example
+      customer_interface_ip: customer_interface_ip_example
+      oracle_interface_ipv6: oracle_interface_ipv6_example
+      customer_interface_ipv6: customer_interface_ipv6_example
+      customer_bgp_asn: customer_bgp_asn_example
     encryption_domain_config:
       # optional
-      oracle_traffic_selector: [ "null" ]
-      cpe_traffic_selector: [ "null" ]
+      oracle_traffic_selector: [ "oracle_traffic_selector_example" ]
+      cpe_traffic_selector: [ "cpe_traffic_selector_example" ]
 
 - name: Update ip_sec_connection_tunnel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection_tunnel:
@@ -194,15 +329,15 @@ EXAMPLES = """
     ike_version: V1
     bgp_session_config:
       # optional
-      oracle_interface_ip: 10.0.0.4/31
-      customer_interface_ip: 10.0.0.5/31
-      oracle_interface_ipv6: 2001:db8::1/64
-      customer_interface_ipv6: 2001:db8::1/64
-      customer_bgp_asn: 12345
+      oracle_interface_ip: oracle_interface_ip_example
+      customer_interface_ip: customer_interface_ip_example
+      oracle_interface_ipv6: oracle_interface_ipv6_example
+      customer_interface_ipv6: customer_interface_ipv6_example
+      customer_bgp_asn: customer_bgp_asn_example
     encryption_domain_config:
       # optional
-      oracle_traffic_selector: [ "null" ]
-      cpe_traffic_selector: [ "null" ]
+      oracle_traffic_selector: [ "oracle_traffic_selector_example" ]
+      cpe_traffic_selector: [ "cpe_traffic_selector_example" ]
 
 """
 
@@ -231,14 +366,14 @@ ip_sec_connection_tunnel:
                 - "Example: `203.0.113.21`"
             returned: on success
             type: str
-            sample: 203.0.113.21
+            sample: vpn_ip_example
         cpe_ip:
             description:
                 - The IP address of the CPE's VPN headend.
                 - "Example: `203.0.113.22`"
             returned: on success
             type: str
-            sample: 203.0.113.22
+            sample: cpe_ip_example
         status:
             description:
                 - The status of the tunnel based on IPSec protocol characteristics.
@@ -282,7 +417,7 @@ ip_sec_connection_tunnel:
                         - "Example: `10.0.0.4/31`"
                     returned: on success
                     type: str
-                    sample: 10.0.0.4/31
+                    sample: oracle_interface_ip_example
                 customer_interface_ip:
                     description:
                         - The IP address for the CPE end of the inside tunnel interface.
@@ -295,7 +430,7 @@ ip_sec_connection_tunnel:
                         - "Example: `10.0.0.5/31`"
                     returned: on success
                     type: str
-                    sample: 10.0.0.5/31
+                    sample: customer_interface_ip_example
                 oracle_interface_ipv6:
                     description:
                         - The IPv6 address for the Oracle end of the inside tunnel interface. This IP address is optional.
@@ -308,7 +443,7 @@ ip_sec_connection_tunnel:
                         - "Example: `2001:db8::1/64`"
                     returned: on success
                     type: str
-                    sample: 2001:db8::1/64
+                    sample: oracle_interface_ipv6_example
                 customer_interface_ipv6:
                     description:
                         - The IPv6 address for the CPE end of the inside tunnel interface. This IP address is optional.
@@ -321,7 +456,7 @@ ip_sec_connection_tunnel:
                         - "Example: `2001:db8::1/64`"
                     returned: on success
                     type: str
-                    sample: 2001:db8::1/64
+                    sample: customer_interface_ipv6_example
                 oracle_bgp_asn:
                     description:
                         - The Oracle BGP ASN.
@@ -338,7 +473,7 @@ ip_sec_connection_tunnel:
                         - "Example: `12345` (2-byte) or `1587232876` (4-byte)"
                     returned: on success
                     type: str
-                    sample: 12345
+                    sample: customer_bgp_asn_example
                 bgp_state:
                     description:
                         - The state of the BGP session.
@@ -381,30 +516,30 @@ ip_sec_connection_tunnel:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_status_updated:
             description:
                 - When the status of the tunnel last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "vpn_ip": "203.0.113.21",
-        "cpe_ip": "203.0.113.22",
+        "vpn_ip": "vpn_ip_example",
+        "cpe_ip": "cpe_ip_example",
         "status": "UP",
         "ike_version": "V1",
         "lifecycle_state": "PROVISIONING",
         "display_name": "display_name_example",
         "bgp_session_info": {
-            "oracle_interface_ip": "10.0.0.4/31",
-            "customer_interface_ip": "10.0.0.5/31",
-            "oracle_interface_ipv6": "2001:db8::1/64",
-            "customer_interface_ipv6": "2001:db8::1/64",
+            "oracle_interface_ip": "oracle_interface_ip_example",
+            "customer_interface_ip": "customer_interface_ip_example",
+            "oracle_interface_ipv6": "oracle_interface_ipv6_example",
+            "customer_interface_ipv6": "customer_interface_ipv6_example",
             "oracle_bgp_asn": "oracle_bgp_asn_example",
-            "customer_bgp_asn": "12345",
+            "customer_bgp_asn": "customer_bgp_asn_example",
             "bgp_state": "UP",
             "bgp_ipv6_state": "UP"
         },
@@ -413,8 +548,8 @@ ip_sec_connection_tunnel:
             "cpe_traffic_selector": []
         },
         "routing": "BGP",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "time_status_updated": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_status_updated": "2013-10-20T19:20:30+01:00"
     }
 """
 
@@ -528,6 +663,79 @@ def main():
                     oracle_interface_ipv6=dict(type="str"),
                     customer_interface_ipv6=dict(type="str"),
                     customer_bgp_asn=dict(type="str"),
+                ),
+            ),
+            oracle_initiation=dict(
+                type="str", choices=["INITIATOR_OR_RESPONDER", "RESPONDER_ONLY"]
+            ),
+            nat_translation_enabled=dict(
+                type="str", choices=["ENABLED", "DISABLED", "AUTO"]
+            ),
+            phase_one_config=dict(
+                type="dict",
+                options=dict(
+                    is_custom_phase_one_config=dict(type="bool"),
+                    authentication_algorithm=dict(
+                        type="str", choices=["SHA2_384", "SHA2_256", "SHA1_96"]
+                    ),
+                    encryption_algorithm=dict(
+                        type="str",
+                        choices=["AES_256_CBC", "AES_192_CBC", "AES_128_CBC"],
+                    ),
+                    diffie_helman_group=dict(
+                        type="str",
+                        choices=[
+                            "GROUP2",
+                            "GROUP5",
+                            "GROUP14",
+                            "GROUP19",
+                            "GROUP20",
+                            "GROUP24",
+                        ],
+                    ),
+                    lifetime_in_seconds=dict(type="int"),
+                ),
+            ),
+            phase_two_config=dict(
+                type="dict",
+                options=dict(
+                    is_custom_phase_two_config=dict(type="bool"),
+                    authentication_algorithm=dict(
+                        type="str", choices=["HMAC_SHA2_256_128", "HMAC_SHA1_128"]
+                    ),
+                    encryption_algorithm=dict(
+                        type="str",
+                        choices=[
+                            "AES_256_GCM",
+                            "AES_192_GCM",
+                            "AES_128_GCM",
+                            "AES_256_CBC",
+                            "AES_192_CBC",
+                            "AES_128_CBC",
+                        ],
+                    ),
+                    lifetime_in_seconds=dict(type="int"),
+                    is_pfs_enabled=dict(type="bool"),
+                    pfs_dh_group=dict(
+                        type="str",
+                        choices=[
+                            "GROUP2",
+                            "GROUP5",
+                            "GROUP14",
+                            "GROUP19",
+                            "GROUP20",
+                            "GROUP24",
+                        ],
+                    ),
+                ),
+            ),
+            dpd_config=dict(
+                type="dict",
+                options=dict(
+                    dpd_mode=dict(
+                        type="str", choices=["INITIATE_AND_RESPOND", "RESPOND_ONLY"]
+                    ),
+                    dpd_timeout_in_sec=dict(type="int"),
                 ),
             ),
             encryption_domain_config=dict(

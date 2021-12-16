@@ -69,7 +69,7 @@ EXAMPLES = """
     status: PENDING
 
     # optional
-    time_status_end: 2013-10-20T19:20:30+01:00
+    time_status_end: time_status_end_example
 
 """
 
@@ -172,13 +172,13 @@ recommendation:
                 - The date and time the recommendation details were created, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the recommendation details were last updated, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         supported_levels:
             description:
                 - ""
@@ -221,8 +221,8 @@ recommendation:
         "status": "PENDING",
         "time_status_begin": "2013-10-20T19:20:30+01:00",
         "time_status_end": "2013-10-20T19:20:30+01:00",
-        "time_created": "2020-08-25T21:10:29.600Z",
-        "time_updated": "2020-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "supported_levels": {
             "items": [{
                 "name": "name_example"

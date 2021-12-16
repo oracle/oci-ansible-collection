@@ -56,16 +56,16 @@ cluster_migrate_to_native_vcn_status:
                 - The date and time the non-native VCN is due to be decommissioned.
             returned: on success
             type: str
-            sample: "2017-07-21T16:11:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         state:
             description:
                 - The current migration status of the cluster.
             returned: on success
             type: str
-            sample: IN_PROGRESS
+            sample: NOT_STARTED
     sample: {
-        "time_decommission_scheduled": "2017-07-21T16:11:29Z",
-        "state": "IN_PROGRESS"
+        "time_decommission_scheduled": "2013-10-20T19:20:30+01:00",
+        "state": "NOT_STARTED"
     }
 """
 

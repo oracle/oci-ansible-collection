@@ -83,7 +83,7 @@ tablespaces:
             sample: name_example
         type:
             description:
-                - The type of the tablespace.
+                - The type of tablespace.
             returned: on success
             type: str
             sample: UNDO
@@ -95,7 +95,7 @@ tablespaces:
             sample: ONLINE
         block_size_bytes:
             description:
-                - The tablespace block size in bytes.
+                - The tablespace block size.
             returned: on success
             type: float
             sample: 10
@@ -173,26 +173,26 @@ tablespaces:
             sample: BASIC
         default_in_memory:
             description:
-                - Indicates whether the In-Memory Column Store (IM column store) is by default enabled or disabled for tables in this tablespace.
+                - Indicates whether the In-Memory Column Store (IM column store) is by default enabled or disabled for tables in the tablespace.
             returned: on success
             type: str
             sample: ENABLED
         default_in_memory_priority:
             description:
-                - Indicates the default priority for In-Memory Column Store (IM column store) population for this tablespace.
+                - Indicates the default priority for In-Memory Column Store (IM column store) population for the tablespace.
             returned: on success
             type: str
             sample: LOW
         default_in_memory_distribute:
             description:
-                - Indicates how the IM column store is distributed by default for this tablespace in an Oracle Real Application Clusters (Oracle RAC)
+                - Indicates how the IM column store is distributed by default for the tablespace in an Oracle Real Application Clusters (Oracle RAC)
                   environment.
             returned: on success
             type: str
             sample: AUTO
         default_in_memory_compression:
             description:
-                - Indicates the default compression level for the IM column store for this tablespace.
+                - Indicates the default compression level for the IM column store for the tablespace.
             returned: on success
             type: str
             sample: NO_MEMCOMPRESS
@@ -230,13 +230,13 @@ tablespaces:
             sample: default_cell_memory_example
         default_in_memory_service:
             description:
-                - Indicates how the IM column store is populated on various instances by default for this tablespace.
+                - Indicates how the IM column store is populated on various instances by default for the tablespace.
             returned: on success
             type: str
             sample: DEFAULT
         default_in_memory_service_name:
             description:
-                - Indicates the service name for the service on which the IM column store should be populated by default for this tablespace. This column has a
+                - Indicates the service name for the service on which the IM column store should be populated by default for the tablespace. This column has a
                   value only when the corresponding DEF_INMEMORY_SERVICE is USER_DEFINED. In all other cases, this column is null.
             returned: on success
             type: str
@@ -261,11 +261,11 @@ tablespaces:
             sample: temp_group_example
         max_size_kb:
             description:
-                - The maximum tablespace size in KB. If the tablespace contains any datafiles with Autoextend enabled, then this column displays the amount of
+                - The maximum tablespace size in KB. If the tablespace contains any data files with Autoextend enabled, then this column displays the amount of
                   underlying free storage space for the tablespace. For example, if the current tablespace size is 1 GB, the combined maximum size of all its
-                  datafiles is 32 GB, and its underlying storage (for example, ASM or file system storage) has 20 GB of free space, then this column will have a
-                  value of approximately 20 GB. If the tablespace contains only datafiles with autoextend disabled, then this column displays the allocated
-                  space for the entire tablespace, that is, the combined size of all datafiles in the tablespace.
+                  data files is 32 GB, and its underlying storage (for example, ASM or file system storage) has 20 GB of free space, then this column will have
+                  a value of approximately 20 GB. If the tablespace contains only data files with autoextend disabled, then this column displays the allocated
+                  space for the entire tablespace, that is, the combined size of all data files in the tablespace.
             returned: on success
             type: float
             sample: 10
@@ -284,7 +284,7 @@ tablespaces:
             sample: 10
         free_space_kb:
             description:
-                - The free space available in this tablespace in KB.
+                - The free space available in the tablespace in KB.
             returned: on success
             type: float
             sample: 10
@@ -308,20 +308,20 @@ tablespaces:
             sample: 1.2
         datafiles:
             description:
-                - A list of the datafiles associated with the tablespace.
+                - A list of the data files associated with the tablespace.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - The filename (including the path) of the datafile or tempfile.
+                        - The filename (including the path) of the data file or temp file.
                     returned: on success
                     type: str
                     sample: name_example
                 status:
                     description:
                         - The status of the file. INVALID status is used when the file number is not in use, for example, a file in a tablespace that was
-                          dropped.
+                          removed.
                     returned: on success
                     type: str
                     sample: AVAILABLE
@@ -333,7 +333,7 @@ tablespaces:
                     sample: SYSOFF
                 is_auto_extensible:
                     description:
-                        - Indicates whether the datafile is auto-extensible.
+                        - Indicates whether the data file is auto-extensible.
                     returned: on success
                     type: bool
                     sample: true
@@ -384,13 +384,13 @@ tablespaces:
                     sample: 10
                 free_space_kb:
                     description:
-                        - The free space available in the datafile in KB.
+                        - The free space available in the data file in KB.
                     returned: on success
                     type: float
                     sample: 10
                 used_space_kb:
                     description:
-                        - The total space used in the datafile in KB.
+                        - The total space used in the data file in KB.
                     returned: on success
                     type: float
                     sample: 10

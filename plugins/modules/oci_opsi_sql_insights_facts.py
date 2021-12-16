@@ -145,20 +145,20 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    database_type: [ "$p.getValue()" ]
-    database_id: [ "$p.getValue()" ]
-    id: [ "$p.getValue()" ]
-    exadata_insight_id: [ "$p.getValue()" ]
-    cdb_name: [ "$p.getValue()" ]
-    host_name: [ "$p.getValue()" ]
-    database_time_pct_greater_than: 1.2
+    database_type: [ "ADW-S" ]
+    database_id: [ "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx" ]
+    id: [ "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    cdb_name: [ "cdb_name_example" ]
+    host_name: [ "host_name_example" ]
+    database_time_pct_greater_than: 1.0
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """
@@ -175,13 +175,13 @@ sql_insights:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         inventory:
             description:
                 - ""
@@ -315,8 +315,8 @@ sql_insights:
                     type: int
                     sample: 56
     sample: {
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
         "inventory": {
             "total_sqls": 56,
             "total_databases": 56,

@@ -405,35 +405,35 @@ EXAMPLES = """
 - name: Create autonomous_database with source = DATABASE
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid.compartment.oc1..<unique_ID>"
-    db_name: adatabasedb1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    db_name: db_name_example
     source: DATABASE
     source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
     clone_type: FULL
 
     # optional
-    cpu_core_count: 8
+    cpu_core_count: 56
     ocpu_count: 3.4
     db_workload: OLTP
-    data_storage_size_in_tbs: 1
+    data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     admin_password: example-password
-    display_name: example_autonomous_database
+    display_name: display_name_example
     license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
     is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     is_access_control_enabled: true
-    whitelisted_ips: [ "null" ]
+    whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
-    standby_whitelisted_ips: [ "null" ]
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
     is_data_guard_enabled: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     private_endpoint_label: private_endpoint_label_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -447,34 +447,34 @@ EXAMPLES = """
 - name: Create autonomous_database with source = CLONE_TO_REFRESHABLE
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid.compartment.oc1..<unique_ID>"
-    db_name: adatabasedb1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    db_name: db_name_example
     source: CLONE_TO_REFRESHABLE
     source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    cpu_core_count: 8
+    cpu_core_count: 56
     ocpu_count: 3.4
     db_workload: OLTP
-    data_storage_size_in_tbs: 1
+    data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     admin_password: example-password
-    display_name: example_autonomous_database
+    display_name: display_name_example
     license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
     is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     is_access_control_enabled: true
-    whitelisted_ips: [ "null" ]
+    whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
-    standby_whitelisted_ips: [ "null" ]
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
     is_data_guard_enabled: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     private_endpoint_label: private_endpoint_label_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -489,35 +489,35 @@ EXAMPLES = """
 - name: Create autonomous_database with source = BACKUP_FROM_ID
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid.compartment.oc1..<unique_ID>"
-    db_name: adatabasedb1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    db_name: db_name_example
     source: BACKUP_FROM_ID
     clone_type: FULL
     autonomous_database_backup_id: "ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    cpu_core_count: 8
+    cpu_core_count: 56
     ocpu_count: 3.4
     db_workload: OLTP
-    data_storage_size_in_tbs: 1
+    data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     admin_password: example-password
-    display_name: example_autonomous_database
+    display_name: display_name_example
     license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
     is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     is_access_control_enabled: true
-    whitelisted_ips: [ "null" ]
+    whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
-    standby_whitelisted_ips: [ "null" ]
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
     is_data_guard_enabled: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     private_endpoint_label: private_endpoint_label_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -531,36 +531,36 @@ EXAMPLES = """
 - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid.compartment.oc1..<unique_ID>"
-    db_name: adatabasedb1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    db_name: db_name_example
     source: BACKUP_FROM_TIMESTAMP
     clone_type: FULL
-    autonomous_database_id: ocid1.autonomousdatabase.oc1.iad.Example
-    timestamp: 2018-04-11T01:59:07.032Z
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    timestamp: timestamp_example
 
     # optional
-    cpu_core_count: 8
+    cpu_core_count: 56
     ocpu_count: 3.4
     db_workload: OLTP
-    data_storage_size_in_tbs: 1
+    data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     admin_password: example-password
-    display_name: example_autonomous_database
+    display_name: display_name_example
     license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
     is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     is_access_control_enabled: true
-    whitelisted_ips: [ "null" ]
+    whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
-    standby_whitelisted_ips: [ "null" ]
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
     is_data_guard_enabled: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     private_endpoint_label: private_endpoint_label_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -574,34 +574,34 @@ EXAMPLES = """
 - name: Create autonomous_database with source = CROSS_REGION_DATAGUARD
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid.compartment.oc1..<unique_ID>"
-    db_name: adatabasedb1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    db_name: db_name_example
     source: CROSS_REGION_DATAGUARD
     source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    cpu_core_count: 8
+    cpu_core_count: 56
     ocpu_count: 3.4
     db_workload: OLTP
-    data_storage_size_in_tbs: 1
+    data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     admin_password: example-password
-    display_name: example_autonomous_database
+    display_name: display_name_example
     license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
     is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     is_access_control_enabled: true
-    whitelisted_ips: [ "null" ]
+    whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
-    standby_whitelisted_ips: [ "null" ]
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
     is_data_guard_enabled: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     private_endpoint_label: private_endpoint_label_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -615,32 +615,32 @@ EXAMPLES = """
 - name: Create autonomous_database with source = NONE
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid.compartment.oc1..<unique_ID>"
-    db_name: adatabasedb1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    db_name: db_name_example
 
     # optional
-    cpu_core_count: 8
+    cpu_core_count: 56
     ocpu_count: 3.4
     db_workload: OLTP
-    data_storage_size_in_tbs: 1
+    data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     admin_password: example-password
-    display_name: example_autonomous_database
+    display_name: display_name_example
     license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
     is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     is_access_control_enabled: true
-    whitelisted_ips: [ "null" ]
+    whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
-    standby_whitelisted_ips: [ "null" ]
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
     is_data_guard_enabled: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     private_endpoint_label: private_endpoint_label_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -655,27 +655,27 @@ EXAMPLES = """
 - name: Update autonomous_database
   oci_database_autonomous_database:
     # required
-    autonomous_database_id: ocid1.autonomousdatabase.oc1.iad.Example
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    db_name: adatabasedb1
-    cpu_core_count: 8
+    db_name: db_name_example
+    cpu_core_count: 56
     ocpu_count: 3.4
     db_workload: OLTP
-    data_storage_size_in_tbs: 1
+    data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     admin_password: example-password
-    display_name: example_autonomous_database
+    display_name: display_name_example
     license_model: LICENSE_INCLUDED
     is_auto_scaling_enabled: true
     is_access_control_enabled: true
-    whitelisted_ips: [ "null" ]
+    whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
-    standby_whitelisted_ips: [ "null" ]
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
     is_data_guard_enabled: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     private_endpoint_label: private_endpoint_label_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -693,27 +693,27 @@ EXAMPLES = """
 - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid.compartment.oc1..<unique_ID>"
-    display_name: example_autonomous_database
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    db_name: adatabasedb1
-    cpu_core_count: 8
+    db_name: db_name_example
+    cpu_core_count: 56
     ocpu_count: 3.4
     db_workload: OLTP
-    data_storage_size_in_tbs: 1
+    data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     admin_password: example-password
     license_model: LICENSE_INCLUDED
     is_auto_scaling_enabled: true
     is_access_control_enabled: true
-    whitelisted_ips: [ "null" ]
+    whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
-    standby_whitelisted_ips: [ "null" ]
+    standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
     is_data_guard_enabled: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     private_endpoint_label: private_endpoint_label_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -731,14 +731,14 @@ EXAMPLES = """
 - name: Delete autonomous_database
   oci_database_autonomous_database:
     # required
-    autonomous_database_id: ocid1.autonomousdatabase.oc1.iad.Example
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid.compartment.oc1..<unique_ID>"
-    display_name: example_autonomous_database
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

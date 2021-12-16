@@ -98,7 +98,7 @@ file_system:
                 - "Example: `My file system`"
             returned: on success
             type: str
-            sample: My file system
+            sample: display_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
@@ -118,7 +118,7 @@ file_system:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair
@@ -191,10 +191,10 @@ file_system:
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My file system",
+        "display_name": "display_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",

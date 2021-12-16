@@ -143,7 +143,7 @@ EXAMPLES = """
     connection_key: connection_key_example
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "key" ]
 
 - name: List connections
   oci_data_catalog_connection_facts:
@@ -152,7 +152,7 @@ EXAMPLES = """
     data_asset_key: data_asset_key_example
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "key" ]
     display_name: display_name_example
     display_name_contains: display_name_contains_example
     lifecycle_state: CREATING
@@ -200,28 +200,32 @@ connections:
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-03-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The last time that any change was made to the connection. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         created_by_id:
             description:
                 - OCID of the user who created the connection.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who modified the connection.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         custom_property_members:
             description:
                 - The list of customized properties along with the values for this object
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -316,6 +320,7 @@ connections:
                   values are maps of property name to property value. Every property is contained inside of a category. Most
                   connections have required properties within the \\"default\\" category.
                   Example: `{\\"properties\\": { \\"default\\": { \\"username\\": \\"user1\\"}}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -328,6 +333,7 @@ connections:
         time_status_updated:
             description:
                 - Time that the connections status was last updated. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -365,7 +371,7 @@ connections:
         "key": "key_example",
         "description": "description_example",
         "display_name": "display_name_example",
-        "time_created": "2019-03-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",

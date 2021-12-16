@@ -212,7 +212,7 @@ EXAMPLES = """
     display_name: display_name_example
     description: description_example
     variables: null
-    terraform_version: 0.12.x
+    terraform_version: terraform_version_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -232,7 +232,7 @@ EXAMPLES = """
       # optional
       working_directory: working_directory_example
     variables: null
-    terraform_version: 0.12.x
+    terraform_version: terraform_version_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -251,7 +251,7 @@ EXAMPLES = """
       # optional
       working_directory: working_directory_example
     variables: null
-    terraform_version: 0.12.x
+    terraform_version: terraform_version_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -308,7 +308,7 @@ stack:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the stack.
@@ -351,7 +351,7 @@ stack:
                           supported resource types in this region.
                     returned: on success
                     type: str
-                    sample: region_example
+                    sample: us-phoenix-1
                 services_to_discover:
                     description:
                         - "Filter for L(services to use with Resource
@@ -408,7 +408,7 @@ stack:
                 - "The version of Terraform specified for the stack. Example: `0.12.x`"
             returned: on success
             type: str
-            sample: 0.12.x
+            sample: terraform_version_example
         stack_drift_status:
             description:
                 - Drift status of the stack.
@@ -423,7 +423,7 @@ stack:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -445,13 +445,13 @@ stack:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
-        "time_created": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "config_source": {
             "config_source_type": "ZIP_UPLOAD",
             "working_directory": "working_directory_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "region_example",
+            "region": "us-phoenix-1",
             "services_to_discover": [],
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
@@ -460,9 +460,9 @@ stack:
             "bucket_name": "bucket_name_example"
         },
         "variables": {},
-        "terraform_version": "0.12.x",
+        "terraform_version": "terraform_version_example",
         "stack_drift_status": "NOT_CHECKED",
-        "time_drift_last_checked": "2020-01-25T21:10:29.600Z",
+        "time_drift_last_checked": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

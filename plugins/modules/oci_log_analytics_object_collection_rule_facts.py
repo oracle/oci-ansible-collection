@@ -151,6 +151,7 @@ log_analytics_object_collection_rules:
                   Accepted values are: BEGINNING or CURRENT_TIME or RFC3339 formatted datetime string.
                   Use this for HISTORIC or HISTORIC_LIVE collection types. When collectionType is LIVE, specifying pollSince value other than CURRENT_TIME will
                   result in error."
+                - Returned for get operation
             returned: on success
             type: str
             sample: poll_since_example
@@ -159,24 +160,28 @@ log_analytics_object_collection_rules:
                 - "The newest time of the file in the bucket to consider for collection.
                   Accepted values are: CURRENT_TIME or RFC3339 formatted datetime string.
                   Use this for HISTORIC collection type. When collectionType is LIVE or HISTORIC_LIVE, specifying pollTill will result in error."
+                - Returned for get operation
             returned: on success
             type: str
             sample: poll_till_example
         log_group_id:
             description:
                 - Logging Analytics Log group OCID to associate the processed logs with.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         log_source_name:
             description:
                 - Name of the Logging Analytics Source to use for the processing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: log_source_name_example
         entity_id:
             description:
                 - Logging Analytics entity OCID to associate the processed logs with.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
@@ -186,6 +191,7 @@ log_analytics_object_collection_rules:
                   It is recommended to set this value as ISO_8859_1 when configuring content of the objects having more numeric characters,
                   and very few alphabets.
                   For e.g. this applies when configuring VCN Flow Logs.
+                - Returned for get operation
             returned: on success
             type: str
             sample: char_encoding_example
@@ -194,6 +200,7 @@ log_analytics_object_collection_rules:
                 - "Use this to override some property values which are defined at bucket level to the scope of object.
                   Supported propeties for override are: logSourceName, charEncoding, entityId.
                   Supported matchType for override are \\"contains\\"."
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}

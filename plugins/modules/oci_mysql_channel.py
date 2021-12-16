@@ -189,29 +189,29 @@ EXAMPLES = """
     source:
       # required
       source_type: MYSQL
-      hostname: hostname.my.company.com
-      username: username
+      hostname: hostname_example
+      username: username_example
       password: example-password
-      ssl_mode: REQUIRED
+      ssl_mode: ssl_mode_example
 
       # optional
       port: 56
       ssl_ca_certificate:
         # required
         certificate_type: PEM
-        contents: CA certificate in PEM format
+        contents: contents_example
     target:
       # required
       target_type: DBSYSTEM
-      db_system_id: ocid1.dbsystem.oc1.TargetDbSystemOCID
+      db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
       channel_name: channel_name_example
-      applier_username: admin
+      applier_username: applier_username_example
 
     # optional
     display_name: display_name_example
-    is_enabled: false
+    is_enabled: true
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -223,29 +223,29 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
-    is_enabled: false
+    is_enabled: true
     source:
       # required
       source_type: MYSQL
-      hostname: hostname.my.company.com
-      username: username
+      hostname: hostname_example
+      username: username_example
       password: example-password
-      ssl_mode: REQUIRED
+      ssl_mode: ssl_mode_example
 
       # optional
       port: 56
       ssl_ca_certificate:
         # required
         certificate_type: PEM
-        contents: CA certificate in PEM format
+        contents: contents_example
     target:
       # required
       target_type: DBSYSTEM
-      db_system_id: ocid1.dbsystem.oc1.TargetDbSystemOCID
+      db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
       channel_name: channel_name_example
-      applier_username: admin
+      applier_username: applier_username_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -257,29 +257,29 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    is_enabled: false
+    is_enabled: true
     source:
       # required
       source_type: MYSQL
-      hostname: hostname.my.company.com
-      username: username
+      hostname: hostname_example
+      username: username_example
       password: example-password
-      ssl_mode: REQUIRED
+      ssl_mode: ssl_mode_example
 
       # optional
       port: 56
       ssl_ca_certificate:
         # required
         certificate_type: PEM
-        contents: CA certificate in PEM format
+        contents: contents_example
     target:
       # required
       target_type: DBSYSTEM
-      db_system_id: ocid1.dbsystem.oc1.TargetDbSystemOCID
+      db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
       channel_name: channel_name_example
-      applier_username: admin
+      applier_username: applier_username_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}

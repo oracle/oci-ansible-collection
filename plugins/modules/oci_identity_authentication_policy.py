@@ -108,7 +108,7 @@ EXAMPLES = """
       is_username_containment_allowed: true
     network_policy:
       # optional
-      network_source_ids: [ "null" ]
+      network_source_ids: [ "network_source_ids_example" ]
 
 """
 

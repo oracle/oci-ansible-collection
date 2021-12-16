@@ -269,27 +269,27 @@ EXAMPLES = """
   oci_waas_js_challenge:
     # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
-    is_enabled: false
+    is_enabled: true
 
     # optional
     action: DETECT
-    failure_threshold: 100
-    action_expiration_in_seconds: 600
+    failure_threshold: 56
+    action_expiration_in_seconds: 56
     set_http_header:
       # required
-      name: x-jsc-alerts
-      value: {failed_amount}
+      name: name_example
+      value: value_example
     challenge_settings:
       # optional
-      block_action: SHOW_ERROR_PAGE
-      block_response_code: 403
-      block_error_page_message: Access to the website is blocked.
-      block_error_page_description: Access blocked by website owner. Please contact support.
-      block_error_page_code: JSC-403
-      captcha_title: Are you human?
-      captcha_header: please let us know that you are not a robot by entering the text from the image below.
-      captcha_footer: Enter the letters and numbers as they are shown in image above.
-      captcha_submit_label: Yes, I am human.
+      block_action: SET_RESPONSE_CODE
+      block_response_code: 56
+      block_error_page_message: block_error_page_message_example
+      block_error_page_description: block_error_page_description_example
+      block_error_page_code: block_error_page_code_example
+      captcha_title: captcha_title_example
+      captcha_header: captcha_header_example
+      captcha_footer: captcha_footer_example
+      captcha_submit_label: captcha_submit_label_example
     are_redirects_challenged: true
     criteria:
     - # required

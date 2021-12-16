@@ -63,7 +63,7 @@ EXAMPLES = """
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    network_security_group_ids: [ "ocid1.networksecuritygroup.oc1.phx.unique_ID1" ]
+    network_security_group_ids: [ "network_security_group_ids_example" ]
 
 """
 

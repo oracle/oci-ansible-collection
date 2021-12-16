@@ -67,10 +67,10 @@ EXAMPLES = """
   oci_data_science_job_artifact:
     # required
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
-    job_artifact_file: job_artifact.zip
+    job_artifact_file: job_artifact_file_example
 
     # optional
-    content_length: 789
+    content_length: 56
     content_disposition: content_disposition_example
 
 """

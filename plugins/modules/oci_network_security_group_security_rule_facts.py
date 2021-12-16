@@ -147,7 +147,7 @@ network_security_group_security_rules:
                 - "Example: `04ABEC`"
             returned: on success
             type: str
-            sample: 04ABEC
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_stateless:
             description:
                 - A stateless rule allows traffic in one direction. Remember to add a corresponding
@@ -309,7 +309,7 @@ network_security_group_security_rules:
             "code": 56,
             "type": 56
         },
-        "id": "04ABEC",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "is_stateless": true,
         "is_valid": true,
         "protocol": "protocol_example",

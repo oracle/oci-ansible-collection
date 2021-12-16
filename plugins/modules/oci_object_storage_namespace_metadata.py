@@ -59,8 +59,8 @@ EXAMPLES = """
     namespace_name: namespace_name_example
 
     # optional
-    default_s3_compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentS3ID"
-    default_swift_compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentSwiftID"
+    default_s3_compartment_id: "ocid1.defaults3compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    default_swift_compartment_id: "ocid1.defaultswiftcompartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

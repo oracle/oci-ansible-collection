@@ -160,12 +160,12 @@ EXAMPLES = """
     rules:
     - # required
       action: FORWARD
-      destination_addresses: [ "null" ]
+      destination_addresses: [ "destination_addresses_example" ]
       source_endpoint_name: source_endpoint_name_example
 
       # optional
-      client_address_conditions: [ "null" ]
-      qname_cover_conditions: [ "null" ]
+      client_address_conditions: [ "client_address_conditions_example" ]
+      qname_cover_conditions: [ "qname_cover_conditions_example" ]
     if_unmodified_since: if_unmodified_since_example
     scope: GLOBAL
 
@@ -184,12 +184,12 @@ EXAMPLES = """
     rules:
     - # required
       action: FORWARD
-      destination_addresses: [ "null" ]
+      destination_addresses: [ "destination_addresses_example" ]
       source_endpoint_name: source_endpoint_name_example
 
       # optional
-      client_address_conditions: [ "null" ]
-      qname_cover_conditions: [ "null" ]
+      client_address_conditions: [ "client_address_conditions_example" ]
+      qname_cover_conditions: [ "qname_cover_conditions_example" ]
     if_unmodified_since: if_unmodified_since_example
     scope: GLOBAL
 

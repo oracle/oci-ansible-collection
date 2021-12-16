@@ -117,17 +117,17 @@ EXAMPLES = """
 - name: Create template
   oci_resource_manager_template:
     # required
-    compartment_id: compartment_OCID
-    display_name: Template Display Name
-    description: Brief description of the template
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
     template_config_source:
       # required
       template_config_source_type: ZIP_UPLOAD
-      zip_file_base64_encoded: binary string
+      zip_file_base64_encoded: zip_file_base64_encoded_example
 
     # optional
-    long_description: Detailed description of the template.
-    logo_file_base64_encoded: binary string
+    long_description: long_description_example
+    logo_file_base64_encoded: logo_file_base64_encoded_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -137,30 +137,30 @@ EXAMPLES = """
     template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: Template Display Name
-    description: Brief description of the template
-    long_description: Detailed description of the template.
-    logo_file_base64_encoded: binary string
+    display_name: display_name_example
+    description: description_example
+    long_description: long_description_example
+    logo_file_base64_encoded: logo_file_base64_encoded_example
     template_config_source:
       # required
       template_config_source_type: ZIP_UPLOAD
-      zip_file_base64_encoded: binary string
+      zip_file_base64_encoded: zip_file_base64_encoded_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update template using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_resource_manager_template:
     # required
-    display_name: Template Display Name
+    display_name: display_name_example
 
     # optional
-    description: Brief description of the template
-    long_description: Detailed description of the template.
-    logo_file_base64_encoded: binary string
+    description: description_example
+    long_description: long_description_example
+    logo_file_base64_encoded: logo_file_base64_encoded_example
     template_config_source:
       # required
       template_config_source_type: ZIP_UPLOAD
-      zip_file_base64_encoded: binary string
+      zip_file_base64_encoded: zip_file_base64_encoded_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -173,7 +173,7 @@ EXAMPLES = """
 - name: Delete template using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_resource_manager_template:
     # required
-    display_name: Template Display Name
+    display_name: display_name_example
     state: absent
 
 """
@@ -236,7 +236,7 @@ template:
                   Example: `2020-11-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-11-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         template_config_source:
             description:
                 - ""
@@ -279,7 +279,7 @@ template:
         "description": "description_example",
         "long_description": "long_description_example",
         "is_free_tier": true,
-        "time_created": "2020-11-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "template_config_source": {
             "template_config_source_type": "ZIP_UPLOAD"
         },

@@ -96,9 +96,9 @@ EXAMPLES = """
 - name: Create external_pluggable_database
   oci_database_external_pluggable_database:
     # required
-    external_container_database_id: ocid1.externalcontainerdatabase.oc1.<example_unique_ID>
-    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-    display_name: myTestExternalCdb
+    external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
@@ -108,7 +108,7 @@ EXAMPLES = """
 - name: Update external_pluggable_database
   oci_database_external_pluggable_database:
     # required
-    display_name: myTestExternalCdb
+    display_name: display_name_example
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -118,8 +118,8 @@ EXAMPLES = """
 - name: Update external_pluggable_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_pluggable_database:
     # required
-    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-    display_name: myTestExternalCdb
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -134,8 +134,8 @@ EXAMPLES = """
 - name: Delete external_pluggable_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_pluggable_database:
     # required
-    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-    display_name: myTestExternalCdb
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

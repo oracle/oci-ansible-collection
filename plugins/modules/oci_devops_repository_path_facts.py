@@ -23,23 +23,23 @@ module: oci_devops_repository_path_facts
 short_description: Fetches details about one or multiple RepositoryPath resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple RepositoryPath resources in Oracle Cloud Infrastructure
-    - Fetches a list of files and directories in a repository.
+    - Retrieves a list of files and directories in a repository.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     ref:
         description:
-            - "The name of branch/tag or commit hash it points to. If names conflict order of preference is commit > branch > tag.
-              You can disambiguate with \\"heads/foobar\\" and \\"tags/foobar\\". Repository's default branch will be used if left blank."
+            - "The name of branch/tag or commit hash it points to. If names conflict, order of preference is commit > branch > tag.
+              You can disambiguate with \\"heads/foobar\\" and \\"tags/foobar\\". If left blank repository's default branch will be used."
         type: str
     paths_in_subtree:
         description:
-            - Flag to determine if files should be retrived recursively. false by default
+            - Flag to determine if files must be retrived recursively. Flag is False by default.
         type: bool
     folder_path:
         description:
@@ -93,37 +93,37 @@ repository_paths:
     contains:
         type:
             description:
-                - File or Directory
+                - File or directory.
             returned: on success
             type: str
             sample: type_example
         size_in_bytes:
             description:
-                - Size of file or directory
+                - Size of file or directory.
             returned: on success
             type: int
             sample: 56
         name:
             description:
-                - Name of file or directory
+                - Name of file or directory.
             returned: on success
             type: str
             sample: name_example
         path:
             description:
-                - Path to file or directory in a repository
+                - Path to file or directory in a repository.
             returned: on success
             type: str
             sample: path_example
         sha:
             description:
-                - SHA-1 checksum of blob or tree
+                - SHA-1 checksum of blob or tree.
             returned: on success
             type: str
             sample: sha_example
         submodule_git_url:
             description:
-                - The giturl of the submodule
+                - The git URL of the submodule.
             returned: on success
             type: str
             sample: submodule_git_url_example

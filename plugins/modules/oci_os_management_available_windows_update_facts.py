@@ -74,7 +74,7 @@ EXAMPLES = """
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sort_order: ASC
     sort_by: TIMECREATED
@@ -102,7 +102,7 @@ available_windows_updates:
                   Example: `6981d463-cd91-4a26-b7c4-ea4ded9183ed`"
             returned: on success
             type: str
-            sample: 6981d463-cd91-4a26-b7c4-ea4ded9183ed
+            sample: name_example
         update_type:
             description:
                 - The purpose of this update.
@@ -123,7 +123,7 @@ available_windows_updates:
             sample: true
     sample: [{
         "display_name": "display_name_example",
-        "name": "6981d463-cd91-4a26-b7c4-ea4ded9183ed",
+        "name": "name_example",
         "update_type": "SECURITY",
         "is_eligible_for_installation": "INSTALLABLE",
         "is_reboot_required_for_installation": true

@@ -304,19 +304,19 @@ EXAMPLES = """
     type: PUBLIC
 
     # optional
-    bandwidth_shape_name: 10 Gbps
+    bandwidth_shape_name: bandwidth_shape_name_example
     cross_connect_mappings:
     - # optional
       bgp_md5_auth_key: bgp_md5_auth_key_example
       cross_connect_or_cross_connect_group_id: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
-      customer_bgp_peering_ip: 10.0.0.18/31
-      oracle_bgp_peering_ip: 10.0.0.19/31
-      customer_bgp_peering_ipv6: 2001:db8::1/64
-      oracle_bgp_peering_ipv6: 2001:db8::2/64
-      vlan: 200
-    routing_policy: [ "null" ]
+      customer_bgp_peering_ip: customer_bgp_peering_ip_example
+      oracle_bgp_peering_ip: oracle_bgp_peering_ip_example
+      customer_bgp_peering_ipv6: customer_bgp_peering_ipv6_example
+      oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
+      vlan: 56
+    routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
     customer_bgp_asn: 56
-    customer_asn: 12345
+    customer_asn: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -328,7 +328,7 @@ EXAMPLES = """
     public_prefixes:
     - # required
       cidr_block: cidr_block_example
-    region: phx
+    region: us-phoenix-1
     ip_mtu: MTU_1500
 
 - name: Update virtual_circuit
@@ -337,19 +337,19 @@ EXAMPLES = """
     virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    bandwidth_shape_name: 10 Gbps
+    bandwidth_shape_name: bandwidth_shape_name_example
     cross_connect_mappings:
     - # optional
       bgp_md5_auth_key: bgp_md5_auth_key_example
       cross_connect_or_cross_connect_group_id: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
-      customer_bgp_peering_ip: 10.0.0.18/31
-      oracle_bgp_peering_ip: 10.0.0.19/31
-      customer_bgp_peering_ipv6: 2001:db8::1/64
-      oracle_bgp_peering_ipv6: 2001:db8::2/64
-      vlan: 200
-    routing_policy: [ "null" ]
+      customer_bgp_peering_ip: customer_bgp_peering_ip_example
+      oracle_bgp_peering_ip: oracle_bgp_peering_ip_example
+      customer_bgp_peering_ipv6: customer_bgp_peering_ipv6_example
+      oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
+      vlan: 56
+    routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
     customer_bgp_asn: 56
-    customer_asn: 12345
+    customer_asn: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -366,19 +366,19 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    bandwidth_shape_name: 10 Gbps
+    bandwidth_shape_name: bandwidth_shape_name_example
     cross_connect_mappings:
     - # optional
       bgp_md5_auth_key: bgp_md5_auth_key_example
       cross_connect_or_cross_connect_group_id: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
-      customer_bgp_peering_ip: 10.0.0.18/31
-      oracle_bgp_peering_ip: 10.0.0.19/31
-      customer_bgp_peering_ipv6: 2001:db8::1/64
-      oracle_bgp_peering_ipv6: 2001:db8::2/64
-      vlan: 200
-    routing_policy: [ "null" ]
+      customer_bgp_peering_ip: customer_bgp_peering_ip_example
+      oracle_bgp_peering_ip: oracle_bgp_peering_ip_example
+      customer_bgp_peering_ipv6: customer_bgp_peering_ipv6_example
+      oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
+      vlan: 56
+    routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
     customer_bgp_asn: 56
-    customer_asn: 12345
+    customer_asn: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
@@ -418,7 +418,7 @@ virtual_circuit:
                 - "Example: `10 Gbps`"
             returned: on success
             type: str
-            sample: 10 Gbps
+            sample: bandwidth_shape_name_example
         bgp_management:
             description:
                 - Deprecated. Instead use the information in
@@ -481,7 +481,7 @@ virtual_circuit:
                         - "Example: `10.0.0.18/31`"
                     returned: on success
                     type: str
-                    sample: 10.0.0.18/31
+                    sample: customer_bgp_peering_ip_example
                 oracle_bgp_peering_ip:
                     description:
                         - The IPv4 address for Oracle's end of the BGP session. Must use a /30 or /31
@@ -492,7 +492,7 @@ virtual_circuit:
                         - "Example: `10.0.0.19/31`"
                     returned: on success
                     type: str
-                    sample: 10.0.0.19/31
+                    sample: oracle_bgp_peering_ip_example
                 customer_bgp_peering_ipv6:
                     description:
                         - The BGP IPv6 address for the router on the other end of the BGP session from
@@ -506,7 +506,7 @@ virtual_circuit:
                         - "Example: `2001:db8::1/64`"
                     returned: on success
                     type: str
-                    sample: 2001:db8::1/64
+                    sample: customer_bgp_peering_ipv6_example
                 oracle_bgp_peering_ipv6:
                     description:
                         - The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed.
@@ -519,7 +519,7 @@ virtual_circuit:
                         - "Example: `2001:db8::2/64`"
                     returned: on success
                     type: str
-                    sample: 2001:db8::2/64
+                    sample: oracle_bgp_peering_ipv6_example
                 vlan:
                     description:
                         - The number of the specific VLAN (on the cross-connect or cross-connect group)
@@ -529,7 +529,7 @@ virtual_circuit:
                         - "Example: `200`"
                     returned: on success
                     type: int
-                    sample: 200
+                    sample: 56
         routing_policy:
             description:
                 - "The routing policy sets how routing information about the Oracle cloud is shared over a public virtual circuit.
@@ -664,7 +664,7 @@ virtual_circuit:
                   circuit is located.
             returned: on success
             type: str
-            sample: region_example
+            sample: us-phoenix-1
         service_type:
             description:
                 - Provider service type.
@@ -678,7 +678,7 @@ virtual_circuit:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         type:
             description:
                 - Whether the virtual circuit supports private or public peering. For more information,
@@ -693,7 +693,7 @@ virtual_circuit:
             type: str
             sample: MTU_1500
     sample: {
-        "bandwidth_shape_name": "10 Gbps",
+        "bandwidth_shape_name": "bandwidth_shape_name_example",
         "bgp_management": "CUSTOMER_MANAGED",
         "bgp_session_state": "UP",
         "bgp_ipv6_session_state": "UP",
@@ -701,11 +701,11 @@ virtual_circuit:
         "cross_connect_mappings": [{
             "bgp_md5_auth_key": "bgp_md5_auth_key_example",
             "cross_connect_or_cross_connect_group_id": "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx",
-            "customer_bgp_peering_ip": "10.0.0.18/31",
-            "oracle_bgp_peering_ip": "10.0.0.19/31",
-            "customer_bgp_peering_ipv6": "2001:db8::1/64",
-            "oracle_bgp_peering_ipv6": "2001:db8::2/64",
-            "vlan": 200
+            "customer_bgp_peering_ip": "customer_bgp_peering_ip_example",
+            "oracle_bgp_peering_ip": "oracle_bgp_peering_ip_example",
+            "customer_bgp_peering_ipv6": "customer_bgp_peering_ipv6_example",
+            "oracle_bgp_peering_ipv6": "oracle_bgp_peering_ipv6_example",
+            "vlan": 56
         }],
         "routing_policy": [],
         "customer_bgp_asn": 56,
@@ -724,9 +724,9 @@ virtual_circuit:
         "provider_state": "ACTIVE",
         "public_prefixes": [],
         "reference_comment": "reference_comment_example",
-        "region": "region_example",
+        "region": "us-phoenix-1",
         "service_type": "COLOCATED",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "type": "PUBLIC",
         "ip_mtu": "MTU_1500"
     }

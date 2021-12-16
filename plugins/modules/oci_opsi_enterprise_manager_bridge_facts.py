@@ -91,7 +91,7 @@ EXAMPLES = """
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    lifecycle_state: [ "$p.getValue()" ]
+    lifecycle_state: [ "CREATING" ]
     sort_order: ASC
     sort_by: timeCreated
     compartment_id_in_subtree: true
@@ -126,6 +126,7 @@ enterprise_manager_bridges:
         description:
             description:
                 - Description of Enterprise Manager Bridge
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example

@@ -132,21 +132,21 @@ EXAMPLES = """
   oci_opsi_sql_statistics_time_series_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    sql_identifier: 6rgjh9bjmy2s7
+    sql_identifier: sql_identifier_example
 
     # optional
-    database_id: [ "$p.getValue()" ]
-    id: [ "$p.getValue()" ]
-    exadata_insight_id: [ "$p.getValue()" ]
-    cdb_name: [ "$p.getValue()" ]
-    host_name: [ "$p.getValue()" ]
+    database_id: [ "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx" ]
+    id: [ "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    cdb_name: [ "cdb_name_example" ]
+    host_name: [ "host_name_example" ]
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """
@@ -169,19 +169,19 @@ sql_statistics_time_series:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         item_duration_in_ms:
             description:
                 - Time duration in milliseconds between data points (one hour or one day).
             returned: on success
             type: int
-            sample: 86400000
+            sample: 56
         end_timestamps:
             description:
                 - Array comprising of all the sampling period end timestamps in RFC 3339 format.
@@ -286,9 +286,9 @@ sql_statistics_time_series:
                             sample: []
     sample: {
         "sql_identifier": "sql_identifier_example",
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
-        "item_duration_in_ms": 86400000,
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
+        "item_duration_in_ms": 56,
         "end_timestamps": [],
         "items": [{
             "database_details": {

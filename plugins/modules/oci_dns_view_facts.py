@@ -109,7 +109,7 @@ EXAMPLES = """
     display_name: display_name_example
     sort_order: ASC
     sort_by: displayName
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
 
 """
 

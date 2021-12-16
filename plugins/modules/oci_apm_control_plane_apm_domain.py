@@ -23,14 +23,14 @@ module: oci_apm_control_plane_apm_domain
 short_description: Manage an ApmDomain resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an ApmDomain resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new APM Domain.
+    - For I(state=present), creates a new APM domain.
     - "This resource has the following action operations in the M(oracle.oci.oci_apm_control_plane_apm_domain_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - Display name of the APM Domain
+            - Display name of the APM domain.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -38,12 +38,12 @@ options:
         aliases: ["name"]
     description:
         description:
-            - Description of the APM Domain
+            - Description of the APM domain.
             - This parameter is updatable.
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment corresponding to the APM Domain.
+            - The OCID of the compartment corresponding to the APM domain.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -66,7 +66,7 @@ options:
         type: bool
     apm_domain_id:
         description:
-            - OCID of the APM Domain
+            - The OCID of the APM domain
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -142,7 +142,7 @@ apm_domain:
     contains:
         data_upload_endpoint:
             description:
-                - Where APM Agents upload their observations and metrics.
+                - The endpoint where the APM agents upload their observations and metrics.
             returned: on success
             type: str
             sample: data_upload_endpoint_example
@@ -154,25 +154,25 @@ apm_domain:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - APM Domain display name, can be updated.
+                - Display name of the APM domain, which can be updated.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Description of the APM Domain.
+                - Description of the APM domain.
             returned: on success
             type: str
             sample: description_example
         compartment_id:
             description:
-                - The OCID of the compartment corresponding to the APM Domain.
+                - The OCID of the compartment corresponding to the APM domain.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
-                - The current lifecycle state of the APM Domain.
+                - The current lifecycle state of the APM domain.
             returned: on success
             type: str
             sample: CREATING
@@ -184,13 +184,13 @@ apm_domain:
             sample: true
         time_created:
             description:
-                - The time the the APM Domain was created. An RFC3339 formatted datetime string
+                - The time the APM domain was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the APM Domain was updated. An RFC3339 formatted datetime string
+                - The time the APM domain was updated, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

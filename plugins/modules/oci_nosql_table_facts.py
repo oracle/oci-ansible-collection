@@ -192,6 +192,7 @@ tables:
         schema:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -246,6 +247,7 @@ tables:
         ddl_statement:
             description:
                 - A DDL statement representing the schema.
+                - Returned for get operation
             returned: on success
             type: str
             sample: ddl_statement_example

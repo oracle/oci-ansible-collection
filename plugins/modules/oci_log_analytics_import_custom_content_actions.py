@@ -63,7 +63,7 @@ EXAMPLES = """
   oci_log_analytics_import_custom_content_actions:
     # required
     namespace_name: namespace_name_example
-    import_custom_content_file_body_input_file: import_custom_content.zip
+    import_custom_content_file_body_input_file: import_custom_content_file_body_input_file_example
     action: import_custom_content
 
     # optional

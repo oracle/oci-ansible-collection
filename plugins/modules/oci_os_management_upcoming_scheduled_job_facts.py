@@ -97,7 +97,7 @@ EXAMPLES = """
     time_end: 2013-10-20T19:20:30+01:00
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: TIMECREATED
     tag_name: tag_name_example

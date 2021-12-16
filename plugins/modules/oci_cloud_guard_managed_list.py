@@ -117,7 +117,7 @@ EXAMPLES = """
     source_managed_list_id: "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     list_type: CIDR_BLOCK
-    list_items: [ "null" ]
+    list_items: [ "list_items_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -129,7 +129,7 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
-    list_items: [ "null" ]
+    list_items: [ "list_items_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -141,7 +141,7 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    list_items: [ "null" ]
+    list_items: [ "list_items_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 

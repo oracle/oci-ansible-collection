@@ -74,7 +74,7 @@ EXAMPLES = """
     action: test_bds_object_storage_connection
 
     # optional
-    object_storage_region: object_storage_region_example
+    object_storage_region: us-phoenix-1
 
 """
 
@@ -109,7 +109,7 @@ bds_api_key:
                 - The name of the region to establish the Object Storage endpoint. Example us-phoenix-1 .
             returned: on success
             type: str
-            sample: default_region_example
+            sample: us-phoenix-1
         tenant_id:
             description:
                 - The OCID of your tenancy.
@@ -134,7 +134,7 @@ bds_api_key:
                 - The time the API key was created, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: str
-            sample: "2019-03-29T09:36:42.000+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The state of the key.
@@ -145,11 +145,11 @@ bds_api_key:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
         "key_alias": "key_alias_example",
-        "default_region": "default_region_example",
+        "default_region": "us-phoenix-1",
         "tenant_id": "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx",
         "fingerprint": "fingerprint_example",
         "pemfilepath": "pemfilepath_example",
-        "time_created": "2019-03-29T09:36:42.000+0000",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING"
     }
 """

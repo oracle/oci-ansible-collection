@@ -41,7 +41,7 @@ description:
       * If a `validator` is set, the user applying the tag to a resource must select from a list
       of values that you supply with L(EnumTagDefinitionValidator,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/latest/datatypes/EnumTagDefinitionValidator)."
-    - "This resource has the following action operations in the M(oracle.oci.oci_identity_tag_actions) module: bulk_delete, bulk_edit."
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_tag_actions) module: bulk_delete, bulk_edit, import_standard_tags."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -124,8 +124,8 @@ EXAMPLES = """
   oci_identity_tag:
     # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
-    name: CostCenter
-    description: This tag will show the cost center that will be used for billing of associated resources.
+    name: name_example
+    description: description_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -139,10 +139,10 @@ EXAMPLES = """
   oci_identity_tag:
     # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
-    name: CostCenter
+    name: name_example
 
     # optional
-    description: This tag will show the cost center that will be used for billing of associated resources.
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_cost_tracking: true
@@ -155,7 +155,7 @@ EXAMPLES = """
   oci_identity_tag:
     # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
-    name: CostCenter
+    name: name_example
     state: absent
 
 """
@@ -242,7 +242,7 @@ tag:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_cost_tracking:
             description:
                 - Indicates whether the tag is enabled for cost tracking.
@@ -278,7 +278,7 @@ tag:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "is_retired": true,
         "lifecycle_state": "ACTIVE",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_cost_tracking": true,
         "validator": {
             "validator_type": "ENUM",

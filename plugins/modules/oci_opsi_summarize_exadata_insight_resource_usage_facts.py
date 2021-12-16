@@ -161,17 +161,17 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    exadata_insight_id: [ "$p.getValue()" ]
-    exadata_type: [ "$p.getValue()" ]
-    cdb_name: [ "$p.getValue()" ]
-    host_name: [ "$p.getValue()" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_type: [ "exadata_type_example" ]
+    cdb_name: [ "cdb_name_example" ]
+    host_name: [ "host_name_example" ]
     sort_order: ASC
     sort_by: utilizationPercent
-    percentile: 56
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    percentile: 1
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
 
 """
 
@@ -193,31 +193,31 @@ summarize_exadata_insight_resource_usages:
                 - Total amount used of the resource metric type (CPU, STORAGE).
             returned: on success
             type: float
-            sample: 34.5
+            sample: 1.2
         capacity:
             description:
                 - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
             returned: on success
             type: float
-            sample: 222.3
+            sample: 1.2
         utilization_percent:
             description:
                 - Resource utilization in percentage
             returned: on success
             type: float
-            sample: 35.1
+            sample: 1.2
         usage_change_percent:
             description:
                 - Change in resource utilization in percentage
             returned: on success
             type: float
-            sample: 5.2
+            sample: 1.2
     sample: [{
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
-        "usage": 34.5,
-        "capacity": 222.3,
-        "utilization_percent": 35.1,
-        "usage_change_percent": 5.2
+        "usage": 1.2,
+        "capacity": 1.2,
+        "utilization_percent": 1.2,
+        "usage_change_percent": 1.2
     }]
 """
 

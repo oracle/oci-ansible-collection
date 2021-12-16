@@ -30,9 +30,13 @@ oracle.oci.oci_loadbalancer_hostname_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_hostname_facts`.
 
@@ -286,7 +290,7 @@ Examples
       oci_loadbalancer_hostname_facts:
         # required
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        name: example_hostname_001
+        name: name_example
 
     - name: List hostnames
       oci_loadbalancer_hostname_facts:
@@ -327,8 +331,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of Hostname resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;hostname&#x27;: &#x27;app.example.com&#x27;, &#x27;name&#x27;: &#x27;example_hostname_001&#x27;}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -346,8 +350,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A virtual hostname. For more information about virtual hostname string construction, see <a href='https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm#routing'>Managing Request Routing</a>.</div>
                                             <div>Example: `app.example.com`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">app.example.com</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hostname_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -365,8 +369,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A friendly name for the hostname resource. It must be unique and it cannot be changed. Avoid entering confidential information.</div>
                                             <div>Example: `example_hostname_001`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_hostname_001</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                     

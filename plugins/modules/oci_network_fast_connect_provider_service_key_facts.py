@@ -79,7 +79,7 @@ fast_connect_provider_service_key:
                 - "Example: `10 Gbps`"
             returned: on success
             type: str
-            sample: 10 Gbps
+            sample: bandwidth_shape_name_example
         peering_location:
             description:
                 - The provider's peering location.
@@ -88,7 +88,7 @@ fast_connect_provider_service_key:
             sample: peering_location_example
     sample: {
         "name": "name_example",
-        "bandwidth_shape_name": "10 Gbps",
+        "bandwidth_shape_name": "bandwidth_shape_name_example",
         "peering_location": "peering_location_example"
     }
 """

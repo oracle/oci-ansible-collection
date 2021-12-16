@@ -55,14 +55,14 @@ EXAMPLES = """
   oci_loadbalancer_backend_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: example_backend_set
-    backend_name: 10.0.0.3:8080
+    backend_set_name: backend_set_name_example
+    backend_name: backend_name_example
 
 - name: List backends
   oci_loadbalancer_backend_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: example_backend_set
+    backend_set_name: backend_set_name_example
 
 """
 
@@ -79,21 +79,21 @@ backends:
                 - "Example: `10.0.0.3:8080`"
             returned: on success
             type: str
-            sample: 10.0.0.3:8080
+            sample: name_example
         ip_address:
             description:
                 - The IP address of the backend server.
                 - "Example: `10.0.0.3`"
             returned: on success
             type: str
-            sample: 10.0.0.3
+            sample: ip_address_example
         port:
             description:
                 - The communication port for the backend server.
                 - "Example: `8080`"
             returned: on success
             type: int
-            sample: 8080
+            sample: 56
         weight:
             description:
                 - The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger
@@ -104,7 +104,7 @@ backends:
                 - "Example: `3`"
             returned: on success
             type: int
-            sample: 3
+            sample: 56
         drain:
             description:
                 - "Whether the load balancer should drain this server. Servers marked \\"drain\\" receive no new
@@ -112,7 +112,7 @@ backends:
                 - "Example: `false`"
             returned: on success
             type: bool
-            sample: false
+            sample: true
         backup:
             description:
                 - "Whether the load balancer should treat this server as a backup unit. If `true`, the load balancer forwards no ingress
@@ -121,7 +121,7 @@ backends:
                 - "Example: `false`"
             returned: on success
             type: bool
-            sample: false
+            sample: true
         offline:
             description:
                 - Whether the load balancer should treat this server as offline. Offline servers receive no incoming
@@ -129,15 +129,15 @@ backends:
                 - "Example: `false`"
             returned: on success
             type: bool
-            sample: false
+            sample: true
     sample: [{
-        "name": "10.0.0.3:8080",
-        "ip_address": "10.0.0.3",
-        "port": 8080,
-        "weight": 3,
-        "drain": false,
-        "backup": false,
-        "offline": false
+        "name": "name_example",
+        "ip_address": "ip_address_example",
+        "port": 56,
+        "weight": 56,
+        "drain": true,
+        "backup": true,
+        "offline": true
     }]
 """
 

@@ -30,9 +30,13 @@ oracle.oci.oci_healthchecks_health_checks_vantage_point_facts -- Fetches details
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_healthchecks_health_checks_vantage_point_facts`.
 
@@ -359,7 +363,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of HealthChecksVantagePoint resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;geo&#x27;: {&#x27;admin_div_code&#x27;: &#x27;admin_div_code_example&#x27;, &#x27;city_name&#x27;: &#x27;city_name_example&#x27;, &#x27;country_code&#x27;: &#x27;country_code_example&#x27;, &#x27;country_name&#x27;: &#x27;country_name_example&#x27;, &#x27;geo_key&#x27;: &#x27;geo_key_example&#x27;, &#x27;latitude&#x27;: 3.4, &#x27;longitude&#x27;: 3.4}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;routing&#x27;: [{&#x27;as_label&#x27;: &#x27;as_label_example&#x27;, &#x27;asn&#x27;: 56, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;, &#x27;weight&#x27;: 56}]}]</div>
                                     </td>
             </tr>
@@ -377,7 +381,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The display name for the vantage point. Display names are determined by the best information available and may change over time.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -395,7 +399,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -412,7 +416,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ISO 3166-2 code for this location&#x27;s first-level administrative division, either a US state or Canadian province. Only included for locations in the US or Canada. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search'>Country Codes</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">admin_div_code_example</div>
                                     </td>
             </tr>
@@ -431,7 +435,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Common English-language name for the city.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">city_name_example</div>
                                     </td>
             </tr>
@@ -450,7 +454,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ISO 3166-1 alpha-2 country code. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search'>Country Codes</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">country_code_example</div>
                                     </td>
             </tr>
@@ -469,7 +473,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The common English-language name for the country.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">country_name_example</div>
                                     </td>
             </tr>
@@ -488,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An opaque identifier for the geographic location of the vantage point.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">geo_key_example</div>
                                     </td>
             </tr>
@@ -507,7 +511,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Degrees north of the Equator.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
                                     </td>
             </tr>
@@ -526,7 +530,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Degrees east of the prime meridian.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
                                     </td>
             </tr>
@@ -545,7 +549,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique, permanent name for the vantage point.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -563,7 +567,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The organization on whose infrastructure this vantage point resides. Provider names are not unique, as Oracle Cloud Infrastructure maintains many vantage points in each major provider.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_name_example</div>
                                     </td>
             </tr>
@@ -582,7 +586,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An array of objects that describe how traffic to this vantage point is routed, including which prefixes and ASNs connect it to the internet.</div>
                                             <div>The addresses are sorted from the most-specific to least-specific prefix (the smallest network to largest network). When a prefix has multiple origin ASNs (MOAS routing), they are sorted by weight (highest to lowest). Weight is determined by the total percentage of peers observing the prefix originating from an ASN. Only present if `fields` includes `routing`. The field will be null if the address&#x27;s routing information is unknown.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -599,7 +603,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The registry label for `asn`, usually the name of the organization that owns the ASN. May be omitted or null.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">as_label_example</div>
                                     </td>
             </tr>
@@ -618,7 +622,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Autonomous System Number (ASN) identifying the organization responsible for routing packets to `prefix`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -637,7 +641,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An IP prefix (CIDR syntax) that is less specific than `address`, through which `address` is routed.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">prefix_example</div>
                                     </td>
             </tr>
@@ -656,7 +660,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An integer between 0 and 100 used to select between multiple origin ASNs when routing to `prefix`. Most prefixes have exactly one origin ASN, in which case `weight` will be 100.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

@@ -112,7 +112,7 @@ snapshots:
                 - "Example: `Sunday`"
             returned: on success
             type: str
-            sample: Sunday
+            sample: name_example
         time_created:
             description:
                 - The date and time the snapshot was created, expressed
@@ -120,7 +120,7 @@ snapshots:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         provenance_id:
             description:
                 - An L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) identifying the parent from which this snapshot was cloned.
@@ -164,8 +164,8 @@ snapshots:
         "file_system_id": "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "name": "Sunday",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "name": "name_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "provenance_id": "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx",
         "is_clone_source": true,
         "lifecycle_details": "lifecycle_details_example",

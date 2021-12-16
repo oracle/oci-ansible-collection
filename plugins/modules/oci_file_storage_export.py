@@ -141,9 +141,9 @@ EXAMPLES = """
 - name: Create export
   oci_file_storage_export:
     # required
-    export_set_id: "ocid1.exportset.oc1..unique_ID"
+    export_set_id: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
     file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
-    path: /mediafiles
+    path: path_example
 
     # optional
     export_options:
@@ -298,7 +298,7 @@ export:
                 - "Example: `/accounting`"
             returned: on success
             type: str
-            sample: /accounting
+            sample: path_example
         time_created:
             description:
                 - The date and time the export was created, expressed
@@ -306,7 +306,7 @@ export:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "export_options": [{
             "source": "source_example",
@@ -320,8 +320,8 @@ export:
         "file_system_id": "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "path": "/accounting",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "path": "path_example",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

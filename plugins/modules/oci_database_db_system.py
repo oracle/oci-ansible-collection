@@ -651,13 +651,13 @@ EXAMPLES = """
 - name: Create db_system with source = NONE
   oci_database_db_system:
     # required
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
-    subnet_id: ocid1.subnet.oc1.phx.unique_ID
-    shape: BM.DenseIO1.36
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    shape: shape_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-    hostname: athena
-    cpu_core_count: 8
+    hostname: hostname_example
+    cpu_core_count: 56
     db_home:
       # required
       database:
@@ -665,7 +665,7 @@ EXAMPLES = """
         admin_password: example-password
 
         # optional
-        db_name: myTestDb
+        db_name: db_name_example
         db_unique_name: db_unique_name_example
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name: pdb_name_example
@@ -676,15 +676,15 @@ EXAMPLES = """
         db_backup_config:
           # optional
           auto_backup_enabled: true
-          recovery_window_in_days: 30
-          auto_backup_window: SLOT_TWO
+          recovery_window_in_days: 56
+          auto_backup_window: SLOT_ONE
           backup_destination_details:
           - # required
-            type: RECOVERY_APPLIANCE
+            type: NFS
 
             # optional
-            id: ocid1.bkupdest.oc1.phx.unique_ID
-            vpc_user: vpcUser1
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            vpc_user: vpc_user_example
             vpc_password: example-password
             internet_proxy: internet_proxy_example
         freeform_tags: {'Department': 'Finance'}
@@ -693,29 +693,29 @@ EXAMPLES = """
         db_domain: db_domain_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         backup_tde_password: example-password
-        time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+        time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
 
             # optional
-      display_name: null
-      db_version: 12.1.0.2
+      display_name: display_name_example
+      db_version: db_version_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    database_edition: ENTERPRISE_EDITION
+    database_edition: STANDARD_EDITION
 
     # optional
-    fault_domains: [ "null" ]
-    display_name: tst3dbsys
+    fault_domains: [ "fault_domains_example" ]
+    display_name: display_name_example
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     time_zone: time_zone_example
     db_system_options:
       # optional
-      storage_management: LVM
+      storage_management: ASM
     sparse_diskgroup: true
-    domain: example.com
+    domain: domain_example
     cluster_name: cluster_name_example
     data_storage_percentage: 56
     data_storage_size_in_gbs: 56
@@ -726,7 +726,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     source: NONE
     private_ip: private_ip_example
-    disk_redundancy: null
+    disk_redundancy: HIGH
     license_model: LICENSE_INCLUDED
     maintenance_window_details:
       # required
@@ -736,23 +736,23 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
 
 - name: Create db_system with source = DB_SYSTEM
   oci_database_db_system:
     # required
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
-    subnet_id: ocid1.subnet.oc1.phx.unique_ID
-    shape: BM.DenseIO1.36
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    shape: shape_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-    hostname: athena
-    cpu_core_count: 8
+    hostname: hostname_example
+    cpu_core_count: 56
     source: DB_SYSTEM
     db_home:
       # required
@@ -761,7 +761,7 @@ EXAMPLES = """
         admin_password: example-password
 
         # optional
-        db_name: myTestDb
+        db_name: db_name_example
         db_unique_name: db_unique_name_example
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name: pdb_name_example
@@ -772,15 +772,15 @@ EXAMPLES = """
         db_backup_config:
           # optional
           auto_backup_enabled: true
-          recovery_window_in_days: 30
-          auto_backup_window: SLOT_TWO
+          recovery_window_in_days: 56
+          auto_backup_window: SLOT_ONE
           backup_destination_details:
           - # required
-            type: RECOVERY_APPLIANCE
+            type: NFS
 
             # optional
-            id: ocid1.bkupdest.oc1.phx.unique_ID
-            vpc_user: vpcUser1
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            vpc_user: vpc_user_example
             vpc_password: example-password
             internet_proxy: internet_proxy_example
         freeform_tags: {'Department': 'Finance'}
@@ -789,29 +789,29 @@ EXAMPLES = """
         db_domain: db_domain_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         backup_tde_password: example-password
-        time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+        time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
 
             # optional
-      display_name: null
-      db_version: 12.1.0.2
+      display_name: display_name_example
+      db_version: db_version_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
     source_db_system_id: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fault_domains: [ "null" ]
-    display_name: tst3dbsys
+    fault_domains: [ "fault_domains_example" ]
+    display_name: display_name_example
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     time_zone: time_zone_example
     db_system_options:
       # optional
-      storage_management: LVM
+      storage_management: ASM
     sparse_diskgroup: true
-    domain: example.com
+    domain: domain_example
     cluster_name: cluster_name_example
     data_storage_percentage: 56
     data_storage_size_in_gbs: 56
@@ -826,13 +826,13 @@ EXAMPLES = """
 - name: Create db_system with source = DATABASE
   oci_database_db_system:
     # required
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
-    subnet_id: ocid1.subnet.oc1.phx.unique_ID
-    shape: BM.DenseIO1.36
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    shape: shape_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-    hostname: athena
-    cpu_core_count: 8
+    hostname: hostname_example
+    cpu_core_count: 56
     source: DATABASE
     db_home:
       # required
@@ -841,7 +841,7 @@ EXAMPLES = """
         admin_password: example-password
 
         # optional
-        db_name: myTestDb
+        db_name: db_name_example
         db_unique_name: db_unique_name_example
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name: pdb_name_example
@@ -852,15 +852,15 @@ EXAMPLES = """
         db_backup_config:
           # optional
           auto_backup_enabled: true
-          recovery_window_in_days: 30
-          auto_backup_window: SLOT_TWO
+          recovery_window_in_days: 56
+          auto_backup_window: SLOT_ONE
           backup_destination_details:
           - # required
-            type: RECOVERY_APPLIANCE
+            type: NFS
 
             # optional
-            id: ocid1.bkupdest.oc1.phx.unique_ID
-            vpc_user: vpcUser1
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            vpc_user: vpc_user_example
             vpc_password: example-password
             internet_proxy: internet_proxy_example
         freeform_tags: {'Department': 'Finance'}
@@ -869,29 +869,29 @@ EXAMPLES = """
         db_domain: db_domain_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         backup_tde_password: example-password
-        time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+        time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
 
             # optional
-      display_name: null
-      db_version: 12.1.0.2
+      display_name: display_name_example
+      db_version: db_version_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    database_edition: ENTERPRISE_EDITION
+    database_edition: STANDARD_EDITION
 
     # optional
-    fault_domains: [ "null" ]
-    display_name: tst3dbsys
+    fault_domains: [ "fault_domains_example" ]
+    display_name: display_name_example
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     time_zone: time_zone_example
     db_system_options:
       # optional
-      storage_management: LVM
+      storage_management: ASM
     sparse_diskgroup: true
-    domain: example.com
+    domain: domain_example
     cluster_name: cluster_name_example
     data_storage_percentage: 56
     data_storage_size_in_gbs: 56
@@ -901,19 +901,19 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     private_ip: private_ip_example
-    disk_redundancy: null
+    disk_redundancy: HIGH
     license_model: LICENSE_INCLUDED
 
 - name: Create db_system with source = DB_BACKUP
   oci_database_db_system:
     # required
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
-    subnet_id: ocid1.subnet.oc1.phx.unique_ID
-    shape: BM.DenseIO1.36
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    shape: shape_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-    hostname: athena
-    cpu_core_count: 8
+    hostname: hostname_example
+    cpu_core_count: 56
     source: DB_BACKUP
     db_home:
       # required
@@ -922,7 +922,7 @@ EXAMPLES = """
         admin_password: example-password
 
         # optional
-        db_name: myTestDb
+        db_name: db_name_example
         db_unique_name: db_unique_name_example
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name: pdb_name_example
@@ -933,15 +933,15 @@ EXAMPLES = """
         db_backup_config:
           # optional
           auto_backup_enabled: true
-          recovery_window_in_days: 30
-          auto_backup_window: SLOT_TWO
+          recovery_window_in_days: 56
+          auto_backup_window: SLOT_ONE
           backup_destination_details:
           - # required
-            type: RECOVERY_APPLIANCE
+            type: NFS
 
             # optional
-            id: ocid1.bkupdest.oc1.phx.unique_ID
-            vpc_user: vpcUser1
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            vpc_user: vpc_user_example
             vpc_password: example-password
             internet_proxy: internet_proxy_example
         freeform_tags: {'Department': 'Finance'}
@@ -950,29 +950,29 @@ EXAMPLES = """
         db_domain: db_domain_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         backup_tde_password: example-password
-        time_stamp_for_point_in_time_recovery: 2013-10-20T19:20:30+01:00
+        time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
 
             # optional
-      display_name: null
-      db_version: 12.1.0.2
+      display_name: display_name_example
+      db_version: db_version_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    database_edition: ENTERPRISE_EDITION
+    database_edition: STANDARD_EDITION
 
     # optional
-    fault_domains: [ "null" ]
-    display_name: tst3dbsys
+    fault_domains: [ "fault_domains_example" ]
+    display_name: display_name_example
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     time_zone: time_zone_example
     db_system_options:
       # optional
-      storage_management: LVM
+      storage_management: ASM
     sparse_diskgroup: true
-    domain: example.com
+    domain: domain_example
     cluster_name: cluster_name_example
     data_storage_percentage: 56
     data_storage_size_in_gbs: 56
@@ -982,7 +982,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     private_ip: private_ip_example
-    disk_redundancy: null
+    disk_redundancy: HIGH
     license_model: LICENSE_INCLUDED
 
 - name: Update db_system
@@ -991,11 +991,11 @@ EXAMPLES = """
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
-    shape: BM.DenseIO1.36
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
+    shape: shape_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-    cpu_core_count: 8
+    cpu_core_count: 56
     data_storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1008,30 +1008,30 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     version:
       # optional
-      patch_id: ocid1.patch.oc1.phx.unique_ID
+      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       action: APPLY
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
     # required
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
-    display_name: tst3dbsys
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    nsg_ids: [ "null" ]
-    backup_network_nsg_ids: [ "null" ]
-    shape: BM.DenseIO1.36
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
+    shape: shape_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-    cpu_core_count: 8
+    cpu_core_count: 56
     data_storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1044,15 +1044,15 @@ EXAMPLES = """
       months:
       - # required
         name: JANUARY
-      weeks_of_month: [ "null" ]
+      weeks_of_month: [ "weeks_of_month_example" ]
       days_of_week:
       - # required
         name: MONDAY
-      hours_of_day: [ "null" ]
+      hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     version:
       # optional
-      patch_id: ocid1.patch.oc1.phx.unique_ID
+      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       action: APPLY
 
@@ -1065,8 +1065,8 @@ EXAMPLES = """
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
     # required
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
-    display_name: tst3dbsys
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

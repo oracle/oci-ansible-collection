@@ -58,9 +58,9 @@ EXAMPLES = """
 - name: Perform action deploy_plugins on management_agent
   oci_management_agent_actions:
     # required
-    plugin_ids: [ "null" ]
+    plugin_ids: [ "plugin_ids_example" ]
     agent_compartment_id: "ocid1.agentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
-    agent_ids: [ "null" ]
+    agent_ids: [ "agent_ids_example" ]
     action: deploy_plugins
 
 """

@@ -109,7 +109,7 @@ EXAMPLES = """
     db_version: db_version_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     display_name: display_name_example
 
 """

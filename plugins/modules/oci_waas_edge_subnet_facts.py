@@ -68,23 +68,23 @@ waas_edge_subnets:
                 - An edge node subnet. This can include /24 or /8 addresses.
             returned: on success
             type: str
-            sample: 192.0.2.0/24
+            sample: cidr_example
         time_modified:
             description:
                 - The date and time the last change was made to the indicated edge node subnet, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         region:
             description:
                 - The name of the region containing the indicated subnet.
             returned: on success
             type: str
-            sample: US-Central
+            sample: us-phoenix-1
     sample: [{
-        "cidr": "192.0.2.0/24",
-        "time_modified": "2018-11-16T21:10:29Z",
-        "region": "US-Central"
+        "cidr": "cidr_example",
+        "time_modified": "2013-10-20T19:20:30+01:00",
+        "region": "us-phoenix-1"
     }]
 """
 

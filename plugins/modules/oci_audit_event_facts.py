@@ -83,7 +83,7 @@ audit_events:
                 - "Example: `com.oraclecloud.ComputeApi.GetInstance`"
             returned: on success
             type: str
-            sample: com.oraclecloud.ComputeApi.GetInstance
+            sample: event_type_example
         cloud_events_version:
             description:
                 - The version of the CloudEvents specification. The structure of the envelope follows the
@@ -93,7 +93,7 @@ audit_events:
                 - "Example: `0.1`"
             returned: on success
             type: str
-            sample: 0.1
+            sample: cloud_events_version_example
         event_type_version:
             description:
                 - The version of the event type. This version applies to the payload of the event, not the envelope.
@@ -101,14 +101,14 @@ audit_events:
                 - "Example: `2.0`"
             returned: on success
             type: str
-            sample: 2.0
+            sample: event_type_version_example
         source:
             description:
                 - The source of the event.
                 - "Example: `ComputeApi`"
             returned: on success
             type: str
-            sample: ComputeApi
+            sample: source_example
         event_id:
             description:
                 - The GUID of the event.
@@ -121,14 +121,14 @@ audit_events:
                 - "Example: `2019-09-18T00:10:59.252Z`"
             returned: on success
             type: str
-            sample: "2019-09-18T00:10:59.252Z"
+            sample: "2013-10-20T19:20:30+01:00"
         content_type:
             description:
                 - The content type of the data contained in `data`.
                 - "Example: `application/json`"
             returned: on success
             type: str
-            sample: application/json
+            sample: content_type_example
         data:
             description:
                 - ""
@@ -149,7 +149,7 @@ audit_events:
                         - "Example: `GetInstance`"
                     returned: on success
                     type: str
-                    sample: GetInstance
+                    sample: event_name_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the resource
@@ -165,7 +165,7 @@ audit_events:
                         - "Example: `CompartmentA`"
                     returned: on success
                     type: str
-                    sample: CompartmentA
+                    sample: compartment_name_example
                 resource_name:
                     description:
                         - The name of the resource emitting the event.
@@ -214,7 +214,7 @@ audit_events:
                                 - "Example: `ExampleName`"
                             returned: on success
                             type: str
-                            sample: ExampleName
+                            sample: principal_name_example
                         principal_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the principal.
@@ -227,7 +227,7 @@ audit_events:
                                 - "Example: `natv`"
                             returned: on success
                             type: str
-                            sample: natv
+                            sample: auth_type_example
                         caller_name:
                             description:
                                 - The name of the user or service. This value is the friendly name associated with `callerId`.
@@ -253,7 +253,7 @@ audit_events:
                                 - "Example: `172.24.80.88`"
                             returned: on success
                             type: str
-                            sample: 172.24.80.88
+                            sample: ip_address_example
                         credentials:
                             description:
                                 - The credential ID of the user. This value is extracted from the HTTP 'Authorization' request
@@ -267,7 +267,7 @@ audit_events:
                                 - "Example: `Jersey/2.23 (HttpUrlConnection 1.8.0_212)`"
                             returned: on success
                             type: str
-                            sample: Jersey/2.23 (HttpUrlConnection 1.8.0_212)
+                            sample: user_agent_example
                         console_session_id:
                             description:
                                 - This value identifies any Console session associated with this request.
@@ -292,14 +292,14 @@ audit_events:
                                 - "Example: `/20160918/instances/ocid1.instance.oc1.phx.<unique_ID>`"
                             returned: on success
                             type: str
-                            sample: /20160918/instances/ocid1.instance.oc1.phx.<unique_ID>
+                            sample: path_example
                         action:
                             description:
                                 - The HTTP method of the request.
                                 - "Example: `GET`"
                             returned: on success
                             type: str
-                            sample: GET
+                            sample: action_example
                         parameters:
                             description:
                                 - The parameters supplied by the caller during this operation.
@@ -377,7 +377,7 @@ audit_events:
                                 - "Example: `200`"
                             returned: on success
                             type: str
-                            sample: 200
+                            sample: status_example
                         response_time:
                             description:
                                 - The time of the response to the audited request, expressed in
@@ -385,7 +385,7 @@ audit_events:
                                 - "Example: `2019-09-18T00:10:59.278Z`"
                             returned: on success
                             type: str
-                            sample: "2019-09-18T00:10:59.278Z"
+                            sample: "2013-10-20T19:20:30+01:00"
                         headers:
                             description:
                                 - The headers of the response.
@@ -475,45 +475,45 @@ audit_events:
                     type: dict
                     sample: {}
     sample: [{
-        "event_type": "com.oraclecloud.ComputeApi.GetInstance",
-        "cloud_events_version": "0.1",
-        "event_type_version": "2.0",
-        "source": "ComputeApi",
+        "event_type": "event_type_example",
+        "cloud_events_version": "cloud_events_version_example",
+        "event_type_version": "event_type_version_example",
+        "source": "source_example",
         "event_id": "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx",
-        "event_time": "2019-09-18T00:10:59.252Z",
-        "content_type": "application/json",
+        "event_time": "2013-10-20T19:20:30+01:00",
+        "content_type": "content_type_example",
         "data": {
             "event_grouping_id": "ocid1.eventgrouping.oc1..xxxxxxEXAMPLExxxxxx",
-            "event_name": "GetInstance",
+            "event_name": "event_name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "compartment_name": "CompartmentA",
+            "compartment_name": "compartment_name_example",
             "resource_name": "resource_name_example",
             "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "availability_domain": "Uocm:PHX-AD-1",
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}},
             "identity": {
-                "principal_name": "ExampleName",
+                "principal_name": "principal_name_example",
                 "principal_id": "ocid1.principal.oc1..xxxxxxEXAMPLExxxxxx",
-                "auth_type": "natv",
+                "auth_type": "auth_type_example",
                 "caller_name": "caller_name_example",
                 "caller_id": "ocid1.caller.oc1..xxxxxxEXAMPLExxxxxx",
                 "tenant_id": "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx",
-                "ip_address": "172.24.80.88",
+                "ip_address": "ip_address_example",
                 "credentials": "credentials_example",
-                "user_agent": "Jersey/2.23 (HttpUrlConnection 1.8.0_212)",
+                "user_agent": "user_agent_example",
                 "console_session_id": "ocid1.consolesession.oc1..xxxxxxEXAMPLExxxxxx"
             },
             "request": {
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-                "path": "/20160918/instances/ocid1.instance.oc1.phx.<unique_ID>",
-                "action": "GET",
+                "path": "path_example",
+                "action": "action_example",
                 "parameters": {},
                 "headers": {}
             },
             "response": {
-                "status": "200",
-                "response_time": "2019-09-18T00:10:59.278Z",
+                "status": "status_example",
+                "response_time": "2013-10-20T19:20:30+01:00",
                 "headers": {},
                 "payload": {},
                 "message": "message_example"

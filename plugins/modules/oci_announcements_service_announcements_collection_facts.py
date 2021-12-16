@@ -138,7 +138,7 @@ announcements_collection:
                           Example: `Time Started`"
                     returned: on success
                     type: str
-                    sample: Time Started
+                    sample: time_one_title_example
                 time_one_type:
                     description:
                         - "The type of a time associated with an initial time value. If the `timeOneTitle` attribute is present, then the `timeOneTitle`
@@ -146,7 +146,7 @@ announcements_collection:
                           Example: `START_TIME`"
                     returned: on success
                     type: str
-                    sample: START_TIME
+                    sample: ACTION_REQUIRED_BY
                 time_one_value:
                     description:
                         - The actual value of the first time value for the event. Typically, this denotes the time an event started, but the meaning
@@ -160,7 +160,7 @@ announcements_collection:
                           Example: `Time Ended`"
                     returned: on success
                     type: str
-                    sample: Time Ended
+                    sample: time_two_title_example
                 time_two_type:
                     description:
                         - "The type of a time associated with second time value. If the `timeTwoTitle` attribute is present, then the `timeTwoTitle` attribute
@@ -212,14 +212,14 @@ announcements_collection:
                           Example: `2019-01-01T17:43:01.389+0000`"
                     returned: on success
                     type: str
-                    sample: "2019-01-01T17:43:01.389+0000"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - "The date and time the announcement was last updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                           Example: `2019-01-01T17:43:01.389+0000`"
                     returned: on success
                     type: str
-                    sample: "2019-01-01T17:43:01.389+0000"
+                    sample: "2013-10-20T19:20:30+01:00"
         user_statuses:
             description:
                 - The user-specific status for found announcements.
@@ -244,17 +244,17 @@ announcements_collection:
                           Example: `2019-01-01T17:43:01.389+0000`"
                     returned: on success
                     type: str
-                    sample: "2019-01-01T17:43:01.389+0000"
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "items": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "type": "type_example",
             "reference_ticket_number": "reference_ticket_number_example",
             "summary": "summary_example",
-            "time_one_title": "Time Started",
-            "time_one_type": "START_TIME",
+            "time_one_title": "time_one_title_example",
+            "time_one_type": "ACTION_REQUIRED_BY",
             "time_one_value": "2013-10-20T19:20:30+01:00",
-            "time_two_title": "Time Ended",
+            "time_two_title": "time_two_title_example",
             "time_two_type": "END_TIME",
             "time_two_value": "2013-10-20T19:20:30+01:00",
             "services": [],
@@ -262,13 +262,13 @@ announcements_collection:
             "announcement_type": "ACTION_RECOMMENDED",
             "lifecycle_state": "ACTIVE",
             "is_banner": true,
-            "time_created": "2019-01-01T17:43:01.389+0000",
-            "time_updated": "2019-01-01T17:43:01.389+0000"
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00"
         }],
         "user_statuses": [{
             "user_status_announcement_id": "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx",
             "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
-            "time_acknowledged": "2019-01-01T17:43:01.389+0000"
+            "time_acknowledged": "2013-10-20T19:20:30+01:00"
         }]
     }]
 """

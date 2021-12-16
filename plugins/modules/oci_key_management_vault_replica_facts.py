@@ -91,7 +91,7 @@ vault_replicas:
                 - Region to which vault is replicated to
             returned: on success
             type: str
-            sample: region_example
+            sample: us-phoenix-1
         status:
             description:
                 - "The value to assign to the status property of this VaultReplicaSummary. Allowed values for this property are: 'CREATING', 'CREATED',
@@ -102,7 +102,7 @@ vault_replicas:
     sample: [{
         "crypto_endpoint": "crypto_endpoint_example",
         "management_endpoint": "management_endpoint_example",
-        "region": "region_example",
+        "region": "us-phoenix-1",
         "status": "CREATING"
     }]
 """

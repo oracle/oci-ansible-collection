@@ -46,7 +46,7 @@ EXAMPLES = """
   oci_object_storage_object_lifecycle_policy_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
 """
 

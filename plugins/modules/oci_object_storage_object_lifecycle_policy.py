@@ -172,7 +172,7 @@ EXAMPLES = """
   oci_object_storage_object_lifecycle_policy:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
     # optional
     items:
@@ -187,15 +187,15 @@ EXAMPLES = """
       target: target_example
       object_name_filter:
         # optional
-        inclusion_prefixes: [ "null" ]
-        inclusion_patterns: [ "null" ]
-        exclusion_patterns: [ "null" ]
+        inclusion_prefixes: [ "inclusion_prefixes_example" ]
+        inclusion_patterns: [ "inclusion_patterns_example" ]
+        exclusion_patterns: [ "exclusion_patterns_example" ]
 
 - name: Delete object_lifecycle_policy
   oci_object_storage_object_lifecycle_policy:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
     state: absent
 
 """

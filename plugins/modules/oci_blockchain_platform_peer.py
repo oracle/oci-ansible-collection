@@ -85,7 +85,7 @@ EXAMPLES = """
     ocpu_allocation_param:
       # required
       ocpu_allocation_number: 3.4
-    ad: ad_example
+    ad: Uocm:PHX-AD-1
 
     # optional
     alias: alias_example
@@ -156,7 +156,7 @@ blockchain_platform_peer:
                 - Availability Domain of peer
             returned: on success
             type: str
-            sample: ad_example
+            sample: Uocm:PHX-AD-1
         lifecycle_state:
             description:
                 - The current state of the peer.
@@ -171,7 +171,7 @@ blockchain_platform_peer:
             "ocpu_allocation_number": 3.4
         },
         "host": "host_example",
-        "ad": "ad_example",
+        "ad": "Uocm:PHX-AD-1",
         "lifecycle_state": "ACTIVE"
     }
 """

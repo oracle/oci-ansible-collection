@@ -91,10 +91,10 @@ EXAMPLES = """
 - name: Create quota
   oci_limits_quota:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
-    description: Quotas for Compute VM.DenseIO1.16 resources
-    name: ComputeQuotas
-    statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    description: description_example
+    name: name_example
+    statements: [ "statements_example" ]
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -106,20 +106,20 @@ EXAMPLES = """
     quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    description: Quotas for Compute VM.DenseIO1.16 resources
-    statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
+    description: description_example
+    statements: [ "statements_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_limits_quota:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
-    name: ComputeQuotas
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
-    description: Quotas for Compute VM.DenseIO1.16 resources
-    statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
+    description: description_example
+    statements: [ "statements_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -132,8 +132,8 @@ EXAMPLES = """
 - name: Delete quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_limits_quota:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
-    name: ComputeQuotas
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -182,7 +182,7 @@ quota:
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The quota's current state. After creating a quota, make sure its `lifecycleState` is set to
@@ -212,7 +212,7 @@ quota:
         "name": "name_example",
         "statements": [],
         "description": "description_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

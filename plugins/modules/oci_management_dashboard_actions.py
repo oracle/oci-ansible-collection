@@ -394,7 +394,7 @@ EXAMPLES = """
         width: 56
         nls: null
         ui_config: null
-        data_config: [ "null" ]
+        data_config: [ "data_config_example" ]
         state: DELETED
         drilldown_config: null
 
@@ -410,7 +410,7 @@ EXAMPLES = """
       screen_image: screen_image_example
       nls: null
       ui_config: null
-      data_config: [ "null" ]
+      data_config: [ "data_config_example" ]
       type: type_example
       is_favorite: true
       saved_searches:
@@ -426,7 +426,7 @@ EXAMPLES = """
         nls: null
         type: SEARCH_SHOW_IN_DASHBOARD
         ui_config: null
-        data_config: [ "null" ]
+        data_config: [ "data_config_example" ]
         screen_image: screen_image_example
         metadata_version: metadata_version_example
         widget_template: widget_template_example
@@ -435,12 +435,12 @@ EXAMPLES = """
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        parameters_config: [ "null" ]
-        drilldown_config: [ "null" ]
+        parameters_config: [ "parameters_config_example" ]
+        drilldown_config: [ "drilldown_config_example" ]
 
       # optional
-      parameters_config: [ "null" ]
-      drilldown_config: [ "null" ]
+      parameters_config: [ "parameters_config_example" ]
+      drilldown_config: [ "drilldown_config_example" ]
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
     action: import_dashboard

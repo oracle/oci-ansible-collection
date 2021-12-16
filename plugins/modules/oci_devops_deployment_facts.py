@@ -105,7 +105,7 @@ EXAMPLES = """
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACCEPTED
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -124,6 +124,7 @@ deployments:
         deploy_pipeline_artifacts:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -172,6 +173,7 @@ deployments:
         deploy_pipeline_environments:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -335,6 +337,7 @@ deployments:
         deployment_execution_progress:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -532,12 +535,14 @@ deployments:
         previous_deployment_id:
             description:
                 - Specifies the OCID of the previous deployment to be redeployed.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_stage_id:
             description:
                 - Specifies the OCID of the stage to be deployed.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"

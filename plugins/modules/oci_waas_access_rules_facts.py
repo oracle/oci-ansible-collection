@@ -253,14 +253,14 @@ access_rules:
                         - "Example: `example_header_name`"
                     returned: on success
                     type: str
-                    sample: example_header_name
+                    sample: header_example
                 value:
                     description:
                         - A header field value that conforms to RFC 7230.
                         - "Example: `example_value`"
                     returned: on success
                     type: str
-                    sample: example_value
+                    sample: value_example
     sample: [{
         "name": "name_example",
         "criteria": [{
@@ -283,8 +283,8 @@ access_rules:
         "captcha_submit_label": "captcha_submit_label_example",
         "response_header_manipulation": [{
             "action": "EXTEND_HTTP_RESPONSE_HEADER",
-            "header": "example_header_name",
-            "value": "example_value"
+            "header": "header_example",
+            "value": "value_example"
         }]
     }]
 """

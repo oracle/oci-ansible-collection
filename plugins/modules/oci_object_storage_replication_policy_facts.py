@@ -53,14 +53,14 @@ EXAMPLES = """
   oci_object_storage_replication_policy_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
     replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List replication_policies
   oci_object_storage_replication_policy_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
 """
 
@@ -88,7 +88,7 @@ replication_policies:
                 - "The destination region to replicate to, for example \\"us-ashburn-1\\"."
             returned: on success
             type: str
-            sample: destination_region_name_example
+            sample: us-phoenix-1
         destination_bucket_name:
             description:
                 - The bucket to replicate to in the destination region. Replication policy creation does not automatically
@@ -124,7 +124,7 @@ replication_policies:
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
-        "destination_region_name": "destination_region_name_example",
+        "destination_region_name": "us-phoenix-1",
         "destination_bucket_name": "destination_bucket_name_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_last_sync": "2013-10-20T19:20:30+01:00",

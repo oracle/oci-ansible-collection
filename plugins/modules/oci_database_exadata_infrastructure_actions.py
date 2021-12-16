@@ -77,7 +77,7 @@ EXAMPLES = """
   oci_database_exadata_infrastructure_actions:
     # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-    activation_file: null
+    activation_file: activation_file_example
     action: activate
 
 - name: Perform action add_storage_capacity on exadata_infrastructure

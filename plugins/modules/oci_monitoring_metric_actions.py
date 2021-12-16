@@ -112,15 +112,15 @@ EXAMPLES = """
 - name: Perform action list on metric
   oci_monitoring_metric_actions:
     # required
-    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: list
 
     # optional
-    name: CpuUtilization
-    namespace: oci_computeagent
-    resource_group: frontend-fleet
+    name: name_example
+    namespace: namespace_example
+    resource_group: resource_group_example
     dimension_filters: null
-    group_by: [ "null" ]
+    group_by: [ "group_by_example" ]
     sort_by: NAMESPACE
     sort_order: ASC
     compartment_id_in_subtree: true
@@ -140,14 +140,14 @@ metric:
                 - "Example: `CpuUtilization`"
             returned: on success
             type: str
-            sample: CpuUtilization
+            sample: name_example
         namespace:
             description:
                 - The source service or application emitting the metric.
                 - "Example: `oci_computeagent`"
             returned: on success
             type: str
-            sample: oci_computeagent
+            sample: namespace_example
         resource_group:
             description:
                 - Resource group provided with the posted metric. A resource group is a custom string that you can match when retrieving custom metrics. Only
@@ -157,14 +157,14 @@ metric:
                 - "Example: `frontend-fleet`"
             returned: on success
             type: str
-            sample: frontend-fleet
+            sample: resource_group_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing
                   the resources monitored by the metric.
             returned: on success
             type: str
-            sample: "ocid1.compartment.oc1..exampleuniqueID"
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dimensions:
             description:
                 - Qualifiers provided in a metric definition. Available dimensions vary by metric namespace.
@@ -174,10 +174,10 @@ metric:
             type: dict
             sample: {}
     sample: {
-        "name": "CpuUtilization",
-        "namespace": "oci_computeagent",
-        "resource_group": "frontend-fleet",
-        "compartment_id": "ocid1.compartment.oc1..exampleuniqueID",
+        "name": "name_example",
+        "namespace": "namespace_example",
+        "resource_group": "resource_group_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dimensions": {}
     }
 """

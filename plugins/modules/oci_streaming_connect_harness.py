@@ -83,8 +83,8 @@ EXAMPLES = """
 - name: Create connect_harness
   oci_streaming_connect_harness:
     # required
-    name: mynewconnectharness
-    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -102,8 +102,8 @@ EXAMPLES = """
 - name: Update connect_harness using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_connect_harness:
     # required
-    name: mynewconnectharness
-    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -118,8 +118,8 @@ EXAMPLES = """
 - name: Delete connect_harness using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_connect_harness:
     # required
-    name: mynewconnectharness
-    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -137,19 +137,19 @@ connect_harness:
                 - "Example: `JDBCConnector`"
             returned: on success
             type: str
-            sample: TelemetryEvents
+            sample: name_example
         id:
             description:
                 - The OCID of the connect harness.
             returned: on success
             type: str
-            sample: ocid1.connectharness.realm.region.mnopqr789
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the connect harness.
             returned: on success
             type: str
-            sample: ocid1.compartment.realm.region.zxcvbn432765
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the connect harness.
@@ -168,7 +168,7 @@ connect_harness:
                 - "Example: `2018-04-20T00:00:07.405Z`"
             returned: on success
             type: str
-            sample: "2018-04-20T00:00:07.405Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. Exists for cross-
@@ -187,12 +187,12 @@ connect_harness:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: {
-        "name": "TelemetryEvents",
-        "id": "ocid1.connectharness.realm.region.mnopqr789",
-        "compartment_id": "ocid1.compartment.realm.region.zxcvbn432765",
+        "name": "name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "lifecycle_state_details": "lifecycle_state_details_example",
-        "time_created": "2018-04-20T00:00:07.405Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

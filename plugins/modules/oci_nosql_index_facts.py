@@ -121,18 +121,21 @@ indexes:
         compartment_id:
             description:
                 - Compartment Identifier.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         table_name:
             description:
                 - The name of the table to which this index belongs.
+                - Returned for get operation
             returned: on success
             type: str
             sample: table_name_example
         table_id:
             description:
                 - the OCID of the table to which this index belongs.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.table.oc1..xxxxxxEXAMPLExxxxxx"
