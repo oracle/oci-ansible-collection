@@ -88,7 +88,7 @@ EXAMPLES = """
     # optional
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     sort_order: ASC
     sort_by: timeCreated
 
@@ -152,6 +152,7 @@ data_assets:
         data_source_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -335,6 +336,7 @@ data_assets:
         data_source_type:
             description:
                 - Data source type where actually data asset is being stored
+                - Returned for list operation
             returned: on success
             type: str
             sample: ORACLE_OBJECT_STORAGE

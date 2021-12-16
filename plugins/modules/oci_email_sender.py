@@ -75,8 +75,8 @@ EXAMPLES = """
 - name: Create sender
   oci_email_sender:
     # required
-    compartment_id: "ocid1.compartment.oc1..."
-    email_address: test.user@example.com
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    email_address: email_address_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}

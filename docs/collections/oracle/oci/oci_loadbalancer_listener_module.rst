@@ -30,9 +30,13 @@ oracle.oci.oci_loadbalancer_listener -- Manage a Listener resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_listener`.
 
@@ -713,69 +717,69 @@ Examples
     - name: Create listener
       oci_loadbalancer_listener:
         # required
-        default_backend_set_name: example_backend_set
-        port: 80
-        protocol: HTTP
-        name: example_listener
+        default_backend_set_name: default_backend_set_name_example
+        port: 56
+        protocol: protocol_example
+        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        hostname_names: [ "null" ]
-        path_route_set_name: example_path_route_set
+        hostname_names: [ "hostname_names_example" ]
+        path_route_set_name: path_route_set_name_example
         ssl_configuration:
           # optional
-          verify_depth: 3
+          verify_depth: 56
           verify_peer_certificate: true
-          trusted_certificate_authority_ids: [ "null" ]
-          certificate_ids: [ "null" ]
-          certificate_name: example_certificate_bundle
-          protocols: [ "null" ]
+          trusted_certificate_authority_ids: [ "trusted_certificate_authority_ids_example" ]
+          certificate_ids: [ "certificate_ids_example" ]
+          certificate_name: certificate_name_example
+          protocols: [ "protocols_example" ]
           cipher_suite_name: cipher_suite_name_example
           server_order_preference: ENABLED
         connection_configuration:
           # required
-          idle_timeout: 1200
+          idle_timeout: 56
 
           # optional
-          backend_tcp_proxy_protocol_version: 1
-        routing_policy_name: example_routing_policy
-        rule_set_names: [ "null" ]
+          backend_tcp_proxy_protocol_version: 56
+        routing_policy_name: routing_policy_name_example
+        rule_set_names: [ "rule_set_names_example" ]
 
     - name: Update listener
       oci_loadbalancer_listener:
         # required
-        default_backend_set_name: example_backend_set
-        port: 80
-        protocol: HTTP
-        name: example_listener
+        default_backend_set_name: default_backend_set_name_example
+        port: 56
+        protocol: protocol_example
+        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        hostname_names: [ "null" ]
-        path_route_set_name: example_path_route_set
+        hostname_names: [ "hostname_names_example" ]
+        path_route_set_name: path_route_set_name_example
         ssl_configuration:
           # optional
-          verify_depth: 3
+          verify_depth: 56
           verify_peer_certificate: true
-          trusted_certificate_authority_ids: [ "null" ]
-          certificate_ids: [ "null" ]
-          certificate_name: example_certificate_bundle
-          protocols: [ "null" ]
+          trusted_certificate_authority_ids: [ "trusted_certificate_authority_ids_example" ]
+          certificate_ids: [ "certificate_ids_example" ]
+          certificate_name: certificate_name_example
+          protocols: [ "protocols_example" ]
           cipher_suite_name: cipher_suite_name_example
           server_order_preference: ENABLED
         connection_configuration:
           # required
-          idle_timeout: 1200
+          idle_timeout: 56
 
           # optional
-          backend_tcp_proxy_protocol_version: 1
-        routing_policy_name: example_routing_policy
-        rule_set_names: [ "null" ]
+          backend_tcp_proxy_protocol_version: 56
+        routing_policy_name: routing_policy_name_example
+        rule_set_names: [ "rule_set_names_example" ]
 
     - name: Delete listener
       oci_loadbalancer_listener:
         # required
-        name: example_listener
+        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
@@ -813,8 +817,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Listener resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;connection_configuration&#x27;: {&#x27;backend_tcp_proxy_protocol_version&#x27;: 1, &#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;routing_policy_name&#x27;: &#x27;example_routing_policy_name&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_ids&#x27;: [], &#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;trusted_certificate_authority_ids&#x27;: [], &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;connection_configuration&#x27;: {&#x27;backend_tcp_proxy_protocol_version&#x27;: 56, &#x27;idle_timeout&#x27;: 56}, &#x27;default_backend_set_name&#x27;: &#x27;default_backend_set_name_example&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;path_route_set_name&#x27;: &#x27;path_route_set_name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;protocol_example&#x27;, &#x27;routing_policy_name&#x27;: &#x27;routing_policy_name_example&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_ids&#x27;: [], &#x27;certificate_name&#x27;: &#x27;certificate_name_example&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;trusted_certificate_authority_ids&#x27;: [], &#x27;verify_depth&#x27;: 56, &#x27;verify_peer_certificate&#x27;: True}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -831,7 +835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -849,8 +853,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The backend TCP Proxy Protocol version.</div>
                                             <div>Example: `1`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -870,8 +874,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/Content/Balance/Reference/connectionreuse.htm#ConnectionConfiguration'>Connection Configuration</a>.</div>
                                             <div>Example: `1200`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1200</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     
@@ -890,8 +894,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the associated backend set.</div>
                                             <div>Example: `example_backend_set`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_backend_set</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_backend_set_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -908,7 +912,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An array of hostname resource names.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -925,8 +929,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A friendly name for the listener. It must be unique and it cannot be changed.</div>
                                             <div>Example: `example_listener`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_listener</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -945,8 +949,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the set of path-based routing rules, <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/'>PathRouteSet</a>, applied to this listener&#x27;s traffic.</div>
                                             <div>Example: `example_path_route_set`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_path_route_set</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">path_route_set_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -964,6 +968,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The communication port for the listener.</div>
                                             <div>Example: `80`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -981,8 +987,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The protocol on which the listener accepts connection requests. To get a list of valid protocols, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerProtocol/ListProtocols'>ListProtocols</a> operation.</div>
                                             <div>Example: `HTTP`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTP</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">protocol_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1000,8 +1006,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the routing policy applied to this listener&#x27;s traffic.</div>
                                             <div>Example: `example_routing_policy_name`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_routing_policy_name</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">routing_policy_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1019,7 +1025,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The names of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/'>rule sets</a> to apply to the listener.</div>
                                             <div>Example: [&quot;example_rule_set&quot;]</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1035,7 +1041,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1053,7 +1059,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Ids for OCI certificates service certificates. Currently only a single Id may be passed.</div>
                                             <div>Example: `[ocid1.certificate.oc1.us-ashburn-1.amaaaaaaav3bgsaa5o2q7rh5nfmkkukfkogasqhk6af2opufhjlqg7m6jqzq]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1071,8 +1077,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A friendly name for the certificate bundle. It must be unique and it cannot be changed. Valid certificate bundle names include only alphanumeric characters, dashes, and underscores. Certificate bundle names cannot contain spaces. Avoid entering confidential information.</div>
                                             <div>Example: `example_certificate_bundle`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_certificate_bundle</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">certificate_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1094,7 +1100,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. Clients cannot perform an SSL handshake if there is an incompatible configuration. *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA certificates. *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET` operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing backend sets that predate this feature. *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field, you must specify an appropriate predefined or custom cipher suite name when updating the resource. *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for this field.</div>
                                             <div>example: `example_cipher_suite`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cipher_suite_name_example</div>
                                     </td>
             </tr>
@@ -1121,7 +1127,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols. *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation displays a list of SSL protocols currently used by those resources.</div>
                                             <div>example: `[&quot;TLSv1.1&quot;, &quot;TLSv1.2&quot;]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1139,7 +1145,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client ciphers.</div>
                                             <div>**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This field is ignored when the `SSLConfiguration` object is associated with a backend set.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
                                     </td>
             </tr>
@@ -1159,7 +1165,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Ids for OCI certificates service CA or CA bundles for the load balancer to trust.</div>
                                             <div>Example: `[ocid1.cabundle.oc1.us-ashburn-1.amaaaaaaav3bgsaagl4zzyqdop5i2vuwoqewdvauuw34llqa74otq2jdsfyq]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1177,8 +1183,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The maximum depth for peer certificate chain verification.</div>
                                             <div>Example: `3`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1197,7 +1203,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the load balancer listener should verify peer certificates.</div>
                                             <div>Example: `true`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>

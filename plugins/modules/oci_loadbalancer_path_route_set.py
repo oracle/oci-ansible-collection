@@ -104,33 +104,33 @@ EXAMPLES = """
 - name: Create path_route_set
   oci_loadbalancer_path_route_set:
     # required
-    name: example_path_route_set
+    name: name_example
     path_routes:
     - # required
-      path: /example/video/123
+      path: path_example
       path_match_type:
         # required
         match_type: EXACT_MATCH
-      backend_set_name: example_backend_set
+      backend_set_name: backend_set_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update path_route_set
   oci_loadbalancer_path_route_set:
     # required
-    name: example_path_route_set
+    name: name_example
     path_routes:
     - # required
-      path: /example/video/123
+      path: path_example
       path_match_type:
         # required
         match_type: EXACT_MATCH
-      backend_set_name: example_backend_set
+      backend_set_name: backend_set_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete path_route_set
   oci_loadbalancer_path_route_set:
     # required
-    name: example_path_route_set
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -149,7 +149,7 @@ path_route_set:
                 - "Example: `example_path_route_set`"
             returned: on success
             type: str
-            sample: example_path_route_set
+            sample: name_example
         path_routes:
             description:
                 - The set of path route rules.
@@ -165,7 +165,7 @@ path_route_set:
                         - "Example: `/example/video/123`"
                     returned: on success
                     type: str
-                    sample: /example/video/123
+                    sample: path_example
                 path_match_type:
                     description:
                         - The type of matching to apply to incoming URIs.
@@ -193,15 +193,15 @@ path_route_set:
                         - "Example: `example_backend_set`"
                     returned: on success
                     type: str
-                    sample: example_backend_set
+                    sample: backend_set_name_example
     sample: {
-        "name": "example_path_route_set",
+        "name": "name_example",
         "path_routes": [{
-            "path": "/example/video/123",
+            "path": "path_example",
             "path_match_type": {
                 "match_type": "EXACT_MATCH"
             },
-            "backend_set_name": "example_backend_set"
+            "backend_set_name": "backend_set_name_example"
         }]
     }
 """

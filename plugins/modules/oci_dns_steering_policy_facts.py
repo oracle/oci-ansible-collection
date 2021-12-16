@@ -133,7 +133,7 @@ EXAMPLES = """
     time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_created_less_than: 2013-10-20T19:20:30+01:00
     template: template_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     sort_by: displayName
     sort_order: ASC
 
@@ -228,6 +228,7 @@ steering_policies:
         answers:
             description:
                 - The set of all answers that can potentially issue from the steering policy.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -318,6 +319,7 @@ steering_policies:
                 - The first rule receives a shuffled list of all answers, and every other rule receives
                   the list of answers emitted by the one preceding it. The last rule populates the
                   response.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -369,7 +371,7 @@ steering_policies:
                                   matches queries from that office."
                             returned: on success
                             type: str
-                            sample: query.client.address in (subnet '198.51.100.0/24')
+                            sample: case_condition_example
                         answer_data:
                             description:
                                 - An array of `SteeringPolicyFilterAnswerData` objects.
@@ -382,7 +384,7 @@ steering_policies:
                                           properties.
                                     returned: on success
                                     type: str
-                                    sample: answer.pool == 'A'
+                                    sample: answer_condition_example
                                 should_keep:
                                     description:
                                         - Keeps the answer only if the value is `true`.
@@ -421,7 +423,7 @@ steering_policies:
                                   properties.
                             returned: on success
                             type: str
-                            sample: answer.pool == 'A'
+                            sample: answer_condition_example
                         should_keep:
                             description:
                                 - Keeps the answer only if the value is `true`.
@@ -489,16 +491,16 @@ steering_policies:
             "description": "description_example",
             "rule_type": "FILTER",
             "cases": [{
-                "case_condition": "query.client.address in (subnet '198.51.100.0/24')",
+                "case_condition": "case_condition_example",
                 "answer_data": [{
-                    "answer_condition": "answer.pool == 'A'",
+                    "answer_condition": "answer_condition_example",
                     "should_keep": true,
                     "value": 56
                 }],
                 "count": 56
             }],
             "default_answer_data": [{
-                "answer_condition": "answer.pool == 'A'",
+                "answer_condition": "answer_condition_example",
                 "should_keep": true,
                 "value": 56
             }],

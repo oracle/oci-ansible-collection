@@ -50,9 +50,9 @@ peer_region_for_remote_peerings:
                 - "Example: `us-phoenix-1`"
             returned: on success
             type: str
-            sample: us-phoenix-1
+            sample: name_example
     sample: [{
-        "name": "us-phoenix-1"
+        "name": "name_example"
     }]
 """
 

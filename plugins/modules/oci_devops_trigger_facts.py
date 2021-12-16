@@ -23,14 +23,14 @@ module: oci_devops_trigger_facts
 short_description: Fetches details about one or multiple Trigger resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Trigger resources in Oracle Cloud Infrastructure
-    - Returns a list of Triggers.
+    - Returns a list of triggers.
     - If I(trigger_id) is specified, the details of a single Trigger will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     trigger_id:
         description:
-            - unique Trigger identifier
+            - Unique trigger identifier.
             - Required to get a specific trigger.
         type: str
         aliases: ["id"]
@@ -44,7 +44,7 @@ options:
         type: str
     lifecycle_state:
         description:
-            - A filter to return only Triggers that matches the given lifecycleState
+            - A filter to return only triggers that matches the given lifecycle state.
         type: str
         choices:
             - "ACTIVE"
@@ -83,7 +83,7 @@ EXAMPLES = """
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -99,55 +99,55 @@ triggers:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Name for Trigger.
+                - Trigger display name. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Description about the Trigger
+                - Description about the trigger.
             returned: on success
             type: str
             sample: description_example
         project_id:
             description:
-                - Project to which the Trigger belongs
+                - The OCID of the DevOps project to which the trigger belongs to.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - Compartment to which the Trigger belongs
+                - The OCID of the compartment that contains the trigger.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         trigger_source:
             description:
-                - "Source of the Trigger (allowed values are - GITHUB, GITLAB)"
+                - Source of the trigger. Allowed values are, GITHUB, GITLAB and DEVOPS_CODE_REPOSITORY.
             returned: on success
             type: str
             sample: GITHUB
         time_created:
             description:
-                - The time the the Trigger was created. An RFC3339 formatted datetime string
+                - The time the trigger was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Trigger was updated. An RFC3339 formatted datetime string
+                - The time the trigger was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the Trigger.
+                - The current state of the trigger.
             returned: on success
             type: str
             sample: ACTIVE
@@ -160,13 +160,14 @@ triggers:
             sample: lifecycle_details_example
         actions:
             description:
-                - The list of actions that are to be performed for this Trigger
+                - The list of actions that are to be performed for this trigger.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
                 type:
                     description:
-                        - "The type of action that will be taken (allowed value - TRIGGER_BUILD_PIPELINE)"
+                        - The type of action that will be taken. Allowed value is TRIGGER_BUILD_PIPELINE.
                     returned: on success
                     type: str
                     sample: TRIGGER_BUILD_PIPELINE
@@ -178,13 +179,13 @@ triggers:
                     contains:
                         trigger_source:
                             description:
-                                - "Source of the Trigger (allowed values are - GITHUB, GITLAB)"
+                                - Source of the trigger. Allowed values are, GITHUB and GITLAB.
                             returned: on success
                             type: str
                             sample: DEVOPS_CODE_REPOSITORY
                         events:
                             description:
-                                - The events, only support PUSH at this time
+                                - The events only support PUSH.
                             returned: on success
                             type: list
                             sample: []
@@ -196,19 +197,19 @@ triggers:
                             contains:
                                 head_ref:
                                     description:
-                                        - Branch for push event
+                                        - Branch for push event.
                                     returned: on success
                                     type: str
                                     sample: head_ref_example
                                 base_ref:
                                     description:
-                                        - The target branch for pull requests; not applicable for push
+                                        - The target branch for pull requests; not applicable for push requests.
                                     returned: on success
                                     type: str
                                     sample: base_ref_example
                 build_pipeline_id:
                     description:
-                        - The id of the build pipeline to be triggered
+                        - The OCID of the build pipeline to be triggered.
                     returned: on success
                     type: str
                     sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
@@ -236,13 +237,15 @@ triggers:
             sample: {}
         repository_id:
             description:
-                - The OCID of OCI Devops Repository
+                - The OCID of the DevOps code repository.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         trigger_url:
             description:
-                - The endpoint which listens to Trigger events
+                - The endpoint that listens to trigger events.
+                - Returned for get operation
             returned: on success
             type: str
             sample: trigger_url_example

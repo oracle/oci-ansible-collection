@@ -121,14 +121,14 @@ EXAMPLES = """
   oci_key_management_vault_actions:
     # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    replica_region: replica_region_example
+    replica_region: us-phoenix-1
     action: create_vault_replica
 
 - name: Perform action delete_vault_replica on vault
   oci_key_management_vault_actions:
     # required
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    replica_region: replica_region_example
+    replica_region: us-phoenix-1
     action: delete_vault_replica
 
 - name: Perform action schedule_vault_deletion on vault
@@ -138,7 +138,7 @@ EXAMPLES = """
     action: schedule_vault_deletion
 
     # optional
-    time_of_deletion: 2013-10-20T19:20:30+01:00
+    time_of_deletion: time_of_deletion_example
 
 """
 
@@ -199,7 +199,7 @@ vault:
                 - "Example: `DELETED`"
             returned: on success
             type: str
-            sample: DELETED
+            sample: CREATING
         management_endpoint:
             description:
                 - "The service endpoint to perform management operations against. Management operations include \\"Create,\\" \\"Update,\\" \\"List,\\"
@@ -213,14 +213,14 @@ vault:
                 - "Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property to indicate when to delete the vault, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_type:
             description:
                 - The type of vault. Each type of vault stores the key with different
@@ -259,10 +259,10 @@ vault:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "DELETED",
+        "lifecycle_state": "CREATING",
         "management_endpoint": "management_endpoint_example",
-        "time_created": "2018-04-03T21:10:29.600Z",
-        "time_of_deletion": "2018-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "vault_type": "VIRTUAL_PRIVATE",
         "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx",
         "replica_details": {

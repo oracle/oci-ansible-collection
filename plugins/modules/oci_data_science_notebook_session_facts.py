@@ -133,7 +133,7 @@ notebook_sessions:
                   Example: `My NotebookSession`"
             returned: on success
             type: str
-            sample: My NotebookSession
+            sample: display_name_example
         project_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the notebook session.
@@ -164,13 +164,13 @@ notebook_sessions:
                           using the `ListNotebookSessionShapes` endpoint.
                     returned: on success
                     type: str
-                    sample: VM.Standard.E3.Flex
+                    sample: shape_example
                 block_storage_size_in_gbs:
                     description:
                         - A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.
                     returned: on success
                     type: int
-                    sample: 1024
+                    sample: 56
                 subnet_id:
                     description:
                         - A notebook session instance is provided with a VNIC for network access.  This specifies the
@@ -190,14 +190,14 @@ notebook_sessions:
                                 - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
                             returned: on success
                             type: float
-                            sample: 64.0
+                            sample: 3.4
                         memory_in_gbs:
                             description:
                                 - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory
                                   in GBs.
                             returned: on success
                             type: float
-                            sample: 1024.0
+                            sample: 3.4
         notebook_session_url:
             description:
                 - The URL to interact with the notebook session.
@@ -213,9 +213,10 @@ notebook_sessions:
         lifecycle_details:
             description:
                 - Details about the state of the notebook session.
+                - Returned for get operation
             returned: on success
             type: str
-            sample: waiting for SSH
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -235,22 +236,22 @@ notebook_sessions:
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "display_name": "My NotebookSession",
+        "display_name": "display_name_example",
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "notebook_session_configuration_details": {
-            "shape": "VM.Standard.E3.Flex",
-            "block_storage_size_in_gbs": 1024,
+            "shape": "shape_example",
+            "block_storage_size_in_gbs": 56,
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
             "notebook_session_shape_config_details": {
-                "ocpus": 64.0,
-                "memory_in_gbs": 1024.0
+                "ocpus": 3.4,
+                "memory_in_gbs": 3.4
             }
         },
         "notebook_session_url": "notebook_session_url_example",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "waiting for SSH",
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

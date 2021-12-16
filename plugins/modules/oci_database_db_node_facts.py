@@ -98,7 +98,7 @@ EXAMPLES = """
     vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -179,7 +179,7 @@ db_nodes:
                 - The name of the Fault Domain the instance is contained in.
             returned: on success
             type: str
-            sample: fault_domain_example
+            sample: FAULT-DOMAIN-1
         time_created:
             description:
                 - The date and time that the database node was created.
@@ -263,7 +263,7 @@ db_nodes:
         "backup_vnic2_id": "ocid1.backupvnic2.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "hostname": "hostname_example",
-        "fault_domain": "fault_domain_example",
+        "fault_domain": "FAULT-DOMAIN-1",
         "time_created": "2013-10-20T19:20:30+01:00",
         "software_storage_size_in_gb": 56,
         "maintenance_type": "VMDB_REBOOT_MIGRATION",

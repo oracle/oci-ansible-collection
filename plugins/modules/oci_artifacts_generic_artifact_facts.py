@@ -94,7 +94,7 @@ EXAMPLES = """
 - name: Get a specific generic_artifact
   oci_artifacts_generic_artifact_facts:
     # required
-    artifact_id: "ocid1.genericartifact.oc1..exampleuniqueID"
+    artifact_id: "ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List generic_artifacts
   oci_artifacts_generic_artifact_facts:
@@ -126,14 +126,14 @@ generic_artifacts:
                 - "Example: `ocid1.genericartifact.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.genericartifact.oc1..exampleuniqueID"
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The artifact name with the format of `<artifact-path>:<artifact-version>`. The artifact name is truncated to a maximum length of 255.
                 - "Example: `project01/my-web-app/artifact-abc:1.0.0`"
             returned: on success
             type: str
-            sample: project01/my-web-app/artifact-abc:1.0.0
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the repository's compartment.
@@ -153,14 +153,14 @@ generic_artifacts:
                 - "Example: `project01/my-web-app/artifact-abc`"
             returned: on success
             type: str
-            sample: project01/my-web-app/artifact-abc
+            sample: artifact_path_example
         version:
             description:
                 - A user-defined string to describe the artifact version.
                 - "Example: `1.1.0` or `1.2-beta-2`"
             returned: on success
             type: str
-            sample: 1.1.0
+            sample: version_example
         sha256:
             description:
                 - The SHA256 digest for the artifact. When you upload an artifact to the repository, a SHA256 digest is calculated and added to the artifact
@@ -204,12 +204,12 @@ generic_artifacts:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "id": "ocid1.genericartifact.oc1..exampleuniqueID",
-        "display_name": "project01/my-web-app/artifact-abc:1.0.0",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-        "artifact_path": "project01/my-web-app/artifact-abc",
-        "version": "1.1.0",
+        "artifact_path": "artifact_path_example",
+        "version": "version_example",
         "sha256": "sha256_example",
         "size_in_bytes": 56,
         "lifecycle_state": "AVAILABLE",

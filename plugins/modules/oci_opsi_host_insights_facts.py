@@ -117,15 +117,15 @@ EXAMPLES = """
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
-    id: [ "$p.getValue()" ]
-    exadata_insight_id: [ "$p.getValue()" ]
-    platform_type: [ "$p.getValue()" ]
+    id: [ "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    platform_type: [ "LINUX" ]
     sort_order: ASC
     sort_by: hostName
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """
@@ -172,73 +172,73 @@ host_insights:
                 - Platform version.
             returned: on success
             type: str
-            sample: Oracle Linux Server release 7.9
+            sample: platform_version_example
         platform_vendor:
             description:
                 - Platform vendor.
             returned: on success
             type: str
-            sample: Oracle
+            sample: platform_vendor_example
         total_cpus:
             description:
                 - Total CPU on this host.
             returned: on success
             type: int
-            sample: 384
+            sample: 56
         total_memory_in_gbs:
             description:
                 - Total amount of usable physical memory in gibabytes
             returned: on success
             type: float
-            sample: 3.0
+            sample: 1.2
         cpu_architecture:
             description:
                 - CPU architechure
             returned: on success
             type: str
-            sample: GenuineIntel x86
+            sample: cpu_architecture_example
         cpu_cache_in_mbs:
             description:
                 - Size of cache memory in megabytes.
             returned: on success
             type: float
-            sample: 35.75
+            sample: 1.2
         cpu_vendor:
             description:
                 - Name of the CPU vendor.
             returned: on success
             type: str
-            sample: GenuineIntel
+            sample: cpu_vendor_example
         cpu_frequency_in_mhz:
             description:
                 - Clock frequency of the processor in megahertz.
             returned: on success
             type: float
-            sample: 2900.0
+            sample: 1.2
         cpu_implementation:
             description:
                 - Model name of processor.
             returned: on success
             type: str
-            sample: Intel(R) Xeon(R) Platinum 8268 CPU @ 2.90GHz
+            sample: cpu_implementation_example
         cores_per_socket:
             description:
                 - Number of cores per socket.
             returned: on success
             type: int
-            sample: 24
+            sample: 56
         total_sockets:
             description:
                 - Number of total sockets.
             returned: on success
             type: int
-            sample: 8
+            sample: 56
         threads_per_socket:
             description:
                 - Number of threads per socket.
             returned: on success
             type: int
-            sample: 48
+            sample: 56
         is_hyper_threading_enabled:
             description:
                 - Indicates if hyper-threading is enabled or not
@@ -265,18 +265,18 @@ host_insights:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "host_name": "host_name_example",
         "platform_type": "LINUX",
-        "platform_version": "Oracle Linux Server release 7.9",
-        "platform_vendor": "Oracle",
-        "total_cpus": 384,
-        "total_memory_in_gbs": 3.0,
-        "cpu_architecture": "GenuineIntel x86",
-        "cpu_cache_in_mbs": 35.75,
-        "cpu_vendor": "GenuineIntel",
-        "cpu_frequency_in_mhz": 2900.0,
-        "cpu_implementation": "Intel(R) Xeon(R) Platinum 8268 CPU @ 2.90GHz",
-        "cores_per_socket": 24,
-        "total_sockets": 8,
-        "threads_per_socket": 48,
+        "platform_version": "platform_version_example",
+        "platform_vendor": "platform_vendor_example",
+        "total_cpus": 56,
+        "total_memory_in_gbs": 1.2,
+        "cpu_architecture": "cpu_architecture_example",
+        "cpu_cache_in_mbs": 1.2,
+        "cpu_vendor": "cpu_vendor_example",
+        "cpu_frequency_in_mhz": 1.2,
+        "cpu_implementation": "cpu_implementation_example",
+        "cores_per_socket": 56,
+        "total_sockets": 56,
+        "threads_per_socket": 56,
         "is_hyper_threading_enabled": true,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'}

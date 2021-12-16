@@ -322,7 +322,7 @@ class TagActionsHelperCustom:
         if self.check_mode:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.get_response_field_name(),
+                resource_type=self.get_response_field_name(action),
                 resource=None,
             )
 
@@ -333,7 +333,7 @@ class TagActionsHelperCustom:
             if not tag_ids:
                 return self.prepare_result(
                     changed=False,
-                    resource_type=self.get_response_field_name(),
+                    resource_type=self.get_response_field_name(action),
                     resource=None,
                 )
 
@@ -348,7 +348,7 @@ class TagActionsHelperCustom:
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.get_response_field_name(),
+                resource_type=self.get_response_field_name(action),
                 resource=None,
             )
 

@@ -166,22 +166,22 @@ EXAMPLES = """
     time_observed_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_observed_less_than: 2013-10-20T19:20:30+01:00
     text_contains: text_contains_example
-    access_rule_key: [ "$p.getValue()" ]
-    action: [ "$p.getValue()" ]
-    client_address: [ "$p.getValue()" ]
-    country_code: [ "$p.getValue()" ]
-    country_name: [ "$p.getValue()" ]
-    fingerprint: [ "$p.getValue()" ]
-    http_method: [ "$p.getValue()" ]
-    incident_key: [ "$p.getValue()" ]
-    log_type: [ "$p.getValue()" ]
-    origin_address: [ "$p.getValue()" ]
-    referrer: [ "$p.getValue()" ]
-    request_url: [ "$p.getValue()" ]
-    response_code: [ "$p.getValue()" ]
-    threat_feed_key: [ "$p.getValue()" ]
-    user_agent: [ "$p.getValue()" ]
-    protection_rule_key: [ "$p.getValue()" ]
+    access_rule_key: [ "access_rule_key_example" ]
+    action: [ "BLOCK" ]
+    client_address: [ "client_address_example" ]
+    country_code: [ "country_code_example" ]
+    country_name: [ "country_name_example" ]
+    fingerprint: [ "fingerprint_example" ]
+    http_method: [ "OPTIONS" ]
+    incident_key: [ "incident_key_example" ]
+    log_type: [ "ACCESS" ]
+    origin_address: [ "origin_address_example" ]
+    referrer: [ "referrer_example" ]
+    request_url: [ "request_url_example" ]
+    response_code: [ "56" ]
+    threat_feed_key: [ "threat_feed_key_example" ]
+    user_agent: [ "user_agent_example" ]
+    protection_rule_key: [ "protection_rule_key_example" ]
 
 """
 
@@ -352,7 +352,7 @@ waf_logs:
                 - The date and time the Web Application Firewall processed the request and logged it.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         log_type:
             description:
                 - The type of log of the request. For more about log types, see L(Logs,https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/logs.htm).
@@ -396,7 +396,7 @@ waf_logs:
         "threat_feed_key": "threat_feed_key_example",
         "access_rule_key": "access_rule_key_example",
         "address_rate_limiting_key": "address_rate_limiting_key_example",
-        "timestamp": "2018-11-16T21:10:29Z",
+        "timestamp": "2013-10-20T19:20:30+01:00",
         "log_type": "log_type_example",
         "origin_address": "origin_address_example",
         "origin_response_time": "origin_response_time_example"

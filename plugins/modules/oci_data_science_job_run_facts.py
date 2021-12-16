@@ -126,19 +126,19 @@ job_runs:
                 - The date and time the job run was accepted in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
-            sample: "2017-07-21T16:11:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_started:
             description:
                 - The date and time the job run request was started in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
-            sample: "2017-07-21T16:11:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_finished:
             description:
                 - The date and time the job run request was finished in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
-            sample: "2017-07-21T16:11:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         created_by:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the job run.
@@ -172,6 +172,7 @@ job_runs:
         job_configuration_override_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -202,6 +203,7 @@ job_runs:
         job_infrastructure_configuration_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -228,10 +230,11 @@ job_runs:
                         - The size of the block storage volume to attach to the instance running the job
                     returned: on success
                     type: int
-                    sample: 1024
+                    sample: 56
         job_log_configuration_override_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -262,6 +265,7 @@ job_runs:
         log_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -282,7 +286,7 @@ job_runs:
                 - The state of the job run.
             returned: on success
             type: str
-            sample: SUCCEEDED
+            sample: ACCEPTED
         lifecycle_details:
             description:
                 - Details of the state of the job run.
@@ -307,9 +311,9 @@ job_runs:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_accepted": "2017-07-21T16:11:29Z",
-        "time_started": "2017-07-21T16:11:29Z",
-        "time_finished": "2017-07-21T16:11:29Z",
+        "time_accepted": "2013-10-20T19:20:30+01:00",
+        "time_started": "2013-10-20T19:20:30+01:00",
+        "time_finished": "2013-10-20T19:20:30+01:00",
         "created_by": "created_by_example",
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -325,7 +329,7 @@ job_runs:
             "job_infrastructure_type": "STANDALONE",
             "shape_name": "shape_name_example",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "block_storage_size_in_gbs": 1024
+            "block_storage_size_in_gbs": 56
         },
         "job_log_configuration_override_details": {
             "enable_logging": true,
@@ -337,7 +341,7 @@ job_runs:
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         },
-        "lifecycle_state": "SUCCEEDED",
+        "lifecycle_state": "ACCEPTED",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

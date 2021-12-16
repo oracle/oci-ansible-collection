@@ -236,7 +236,7 @@ domain:
                           for the full list of supported region names.
                     returned: on success
                     type: str
-                    sample: region_example
+                    sample: us-phoenix-1
                 url:
                     description:
                         - Region agnostic domain URL.
@@ -273,7 +273,7 @@ domain:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state.
@@ -311,14 +311,14 @@ domain:
         "home_region_url": "home_region_url_example",
         "home_region": "us-phoenix-1",
         "replica_regions": [{
-            "region": "region_example",
+            "region": "us-phoenix-1",
             "url": "url_example",
             "state": "ENABLING_REPLICATION"
         }],
         "type": "DEFAULT",
         "license_type": "license_type_example",
         "is_hidden_on_login": true,
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "DEACTIVATING",
         "freeform_tags": {'Department': 'Finance'},

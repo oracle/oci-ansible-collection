@@ -199,7 +199,7 @@ EXAMPLES = """
         output_uri: output_uri_example
 
     # optional
-    display_name: Database Backup Script
+    display_name: display_name_example
 
 - name: Delete instance_agent_command
   oci_compute_instance_agent_instance_agent_command:
@@ -211,7 +211,7 @@ EXAMPLES = """
   oci_compute_instance_agent_instance_agent_command:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: Database Backup Script
+    display_name: display_name_example
     state: absent
 
 """

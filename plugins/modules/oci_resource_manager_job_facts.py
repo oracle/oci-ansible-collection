@@ -104,7 +104,7 @@ EXAMPLES = """
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACCEPTED
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
@@ -252,7 +252,7 @@ jobs:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_finished:
             description:
                 - "The date and time when the job stopped running, irrespective of whether the job ran successfully.
@@ -260,7 +260,7 @@ jobs:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - Current state of the specified job.
@@ -272,6 +272,7 @@ jobs:
         failure_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -290,6 +291,7 @@ jobs:
         cancellation_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -306,6 +308,7 @@ jobs:
                 - File path to the directory from which Terraform runs.
                   If not specified, the root directory is used.
                   This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                - Returned for get operation
             returned: on success
             type: str
             sample: working_directory_example
@@ -315,12 +318,14 @@ jobs:
                   Maximum number of variables supported is 250.
                   The maximum size of each variable, including both name and value, is 8192 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
         config_source:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -361,7 +366,7 @@ jobs:
                           Example: `PHX`"
                     returned: on success
                     type: str
-                    sample: PHX
+                    sample: us-phoenix-1
                 namespace:
                     description:
                         - The Object Storage namespace that contains the bucket.
@@ -412,8 +417,8 @@ jobs:
             "is_auto_approved": true
         },
         "resolved_plan_job_id": "ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2020-01-25T21:10:29.600Z",
-        "time_finished": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_finished": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACCEPTED",
         "failure_details": {
             "code": "INTERNAL_SERVICE_ERROR",
@@ -430,7 +435,7 @@ jobs:
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
             "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "PHX",
+            "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example"
         },

@@ -294,7 +294,7 @@ EXAMPLES = """
 
       # optional
       misfire_policy: RETRY_ONCE
-      time_of_first_execution: 2013-10-20T19:20:30+01:00
+      time_of_first_execution: time_of_first_execution_example
     action:
       # required
       type: PURGE
@@ -335,7 +335,7 @@ EXAMPLES = """
 
       # optional
       misfire_policy: RETRY_ONCE
-      time_of_first_execution: 2013-10-20T19:20:30+01:00
+      time_of_first_execution: time_of_first_execution_example
     action:
       # required
       type: PURGE
@@ -376,7 +376,7 @@ EXAMPLES = """
 
       # optional
       misfire_policy: RETRY_ONCE
-      time_of_first_execution: 2013-10-20T19:20:30+01:00
+      time_of_first_execution: time_of_first_execution_example
     action:
       # required
       type: PURGE

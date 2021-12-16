@@ -181,33 +181,33 @@ EXAMPLES = """
 - name: Create instance_pool
   oci_compute_management_instance_pool:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     placement_configurations:
     - # required
       availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+      primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
-      fault_domains: [ "null" ]
+      fault_domains: [ "fault_domains_example" ]
       secondary_vnic_subnets:
       - # required
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
-    size: 15
+    size: 56
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: autoscaling-instance-pool
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     load_balancers:
     - # required
-      load_balancer_id: "ocid1.loadbalancer.oc1.phx..unique_ID"
-      backend_set_name: lb-20190410-1147-backend-set
-      port: 80
-      vnic_selection: PrimaryVnic
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      backend_set_name: backend_set_name_example
+      port: 56
+      vnic_selection: vnic_selection_example
 
 - name: Update instance_pool
   oci_compute_management_instance_pool:
@@ -216,48 +216,48 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: autoscaling-instance-pool
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     placement_configurations:
     - # required
       availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+      primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
-      fault_domains: [ "null" ]
+      fault_domains: [ "fault_domains_example" ]
       secondary_vnic_subnets:
       - # required
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
-    size: 15
+    size: 56
 
 - name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_pool:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: autoscaling-instance-pool
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     placement_configurations:
     - # required
       availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+      primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
-      fault_domains: [ "null" ]
+      fault_domains: [ "fault_domains_example" ]
       secondary_vnic_subnets:
       - # required
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
-    size: 15
+    size: 56
 
 - name: Delete instance_pool
   oci_compute_management_instance_pool:
@@ -268,8 +268,8 @@ EXAMPLES = """
 - name: Delete instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_pool:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: autoscaling-instance-pool
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -396,7 +396,7 @@ instance_pool:
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         load_balancers:
             description:
                 - The load balancers attached to the instance pool.
@@ -467,7 +467,7 @@ instance_pool:
             }]
         }],
         "size": 56,
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "load_balancers": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "instance_pool_id": "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx",

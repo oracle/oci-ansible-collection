@@ -176,6 +176,12 @@ job_executions:
             returned: on success
             type: bool
             sample: true
+        workload_type:
+            description:
+                - The workload type of the Autonomous Database.
+            returned: on success
+            type: str
+            sample: OLTP
         job_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the parent job.
@@ -191,6 +197,7 @@ job_executions:
         job_run_id:
             description:
                 - The identifier of the associated job run.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx"
@@ -204,12 +211,14 @@ job_executions:
             description:
                 - The error message that is returned if the job execution fails. Null is returned if the job is
                   still running or if the job execution is successful.
+                - Returned for get operation
             returned: on success
             type: str
             sample: error_message_example
         result_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -258,18 +267,21 @@ job_executions:
         user_name:
             description:
                 - The database user name used to execute the SQL job.
+                - Returned for get operation
             returned: on success
             type: str
             sample: user_name_example
         sql_text:
             description:
                 - The SQL text executed as part of the job.
+                - Returned for get operation
             returned: on success
             type: str
             sample: sql_text_example
         schedule_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -308,6 +320,7 @@ job_executions:
         "database_sub_type": "CDB",
         "deployment_type": "ONPREMISE",
         "is_cluster": true,
+        "workload_type": "OLTP",
         "job_id": "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx",
         "job_name": "job_name_example",
         "job_run_id": "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx",

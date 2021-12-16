@@ -177,7 +177,7 @@ web_app_firewall_policy:
                         - "Example: `200`"
                     returned: on success
                     type: int
-                    sample: 200
+                    sample: 56
                 headers:
                     description:
                         - Adds headers defined in this array for HTTP response.
@@ -748,7 +748,7 @@ web_app_firewall_policy:
         "actions": [{
             "type": "CHECK",
             "name": "name_example",
-            "code": 200,
+            "code": 56,
             "headers": [{
                 "name": "name_example",
                 "value": "value_example"

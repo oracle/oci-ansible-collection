@@ -71,10 +71,10 @@ EXAMPLES = """
   oci_object_storage_bucket_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "approximateCount" ]
 
 - name: List buckets
   oci_object_storage_bucket_facts:
@@ -83,7 +83,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "approximateCount" ]
 
 """
 
@@ -116,6 +116,7 @@ buckets:
         metadata:
             description:
                 - Arbitrary string keys and values for user-defined metadata.
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -144,6 +145,7 @@ buckets:
                   bucket and its contents. When `ObjectRead` is enabled on the bucket, public access is allowed for the
                   `GetObject`, `HeadObject`, and `ListObjects` operations. When `ObjectReadWithoutList` is enabled on the
                   bucket, public access is allowed for the `GetObject` and `HeadObject` operations.
+                - Returned for get operation
             returned: on success
             type: str
             sample: NoPublicAccess
@@ -153,6 +155,7 @@ buckets:
                   objects uploaded or copied to the bucket will be in the standard storage tier. When the `Archive` tier type
                   is set explicitly for a bucket, objects uploaded or copied to the bucket will be stored in archive storage.
                   The `storageTier` property is immutable after bucket is created.
+                - Returned for get operation
             returned: on success
             type: str
             sample: Standard
@@ -161,6 +164,7 @@ buckets:
                 - Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
                   set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
                   about events, see L(Overview of Events,https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -184,12 +188,14 @@ buckets:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key Management
                   service to generate a data encryption key or to encrypt or decrypt a data encryption key.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         object_lifecycle_policy_etag:
             description:
                 - The entity tag (ETag) for the live object lifecycle policy on the bucket.
+                - Returned for get operation
             returned: on success
             type: str
             sample: object_lifecycle_policy_etag_example
@@ -197,6 +203,7 @@ buckets:
             description:
                 - The approximate number of objects in the bucket. Count statistics are reported periodically. You will see a
                   lag between what is displayed and the actual object count.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -204,6 +211,7 @@ buckets:
             description:
                 - The approximate total size in bytes of all objects in the bucket. Size statistics are reported periodically. You will
                   see a lag between what is displayed and the actual size of the bucket.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -211,6 +219,7 @@ buckets:
             description:
                 - Whether or not this bucket is a replication source. By default, `replicationEnabled` is set to `false`. This will
                   be set to 'true' when you create a replication policy for the bucket.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -218,12 +227,14 @@ buckets:
             description:
                 - Whether or not this bucket is read only. By default, `isReadOnly` is set to `false`. This will
                   be set to 'true' when this bucket is configured as a destination in a replication policy.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the bucket.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -232,6 +243,7 @@ buckets:
                 - The versioning status on the bucket. A bucket is created with versioning `Disabled` by default.
                   For versioning `Enabled`, objects are protected from overwrites and deletes, by maintaining their version history. When versioning is
                   `Suspended`, the previous versions will still remain but new versions will no longer be created when overwitten or deleted.
+                - Returned for get operation
             returned: on success
             type: str
             sample: Enabled
@@ -240,6 +252,7 @@ buckets:
                 - The auto tiering status on the bucket. A bucket is created with auto tiering `Disabled` by default.
                   For auto tiering `InfrequentAccess`, objects are transitioned automatically between the 'Standard'
                   and 'InfrequentAccess' tiers based on the access pattern of the objects.
+                - Returned for get operation
             returned: on success
             type: str
             sample: Disabled

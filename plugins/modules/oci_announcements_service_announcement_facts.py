@@ -82,7 +82,7 @@ announcement:
                   Example: `Time Started`"
             returned: on success
             type: str
-            sample: Time Started
+            sample: time_one_title_example
         time_one_type:
             description:
                 - "The type of a time associated with an initial time value. If the `timeOneTitle` attribute is present, then the `timeOneTitle` attribute
@@ -90,7 +90,7 @@ announcement:
                   Example: `START_TIME`"
             returned: on success
             type: str
-            sample: START_TIME
+            sample: ACTION_REQUIRED_BY
         time_one_value:
             description:
                 - The actual value of the first time value for the event. Typically, this denotes the time an event started, but the meaning
@@ -104,7 +104,7 @@ announcement:
                   Example: `Time Ended`"
             returned: on success
             type: str
-            sample: Time Ended
+            sample: time_two_title_example
         time_two_type:
             description:
                 - "The type of a time associated with second time value. If the `timeTwoTitle` attribute is present, then the `timeTwoTitle` attribute contains
@@ -156,14 +156,14 @@ announcement:
                   Example: `2019-01-01T17:43:01.389+0000`"
             returned: on success
             type: str
-            sample: "2019-01-01T17:43:01.389+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The date and time the announcement was last updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-01-01T17:43:01.389+0000`"
             returned: on success
             type: str
-            sample: "2019-01-01T17:43:01.389+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         description:
             description:
                 - A detailed explanation of the event, expressed by using Markdown language. Avoid entering
@@ -202,7 +202,7 @@ announcement:
                         - The region where the affected resource exists.
                     returned: on success
                     type: str
-                    sample: region_example
+                    sample: us-phoenix-1
                 additional_properties:
                     description:
                         - Additional properties associated with the resource.
@@ -226,10 +226,10 @@ announcement:
         "type": "type_example",
         "reference_ticket_number": "reference_ticket_number_example",
         "summary": "summary_example",
-        "time_one_title": "Time Started",
-        "time_one_type": "START_TIME",
+        "time_one_title": "time_one_title_example",
+        "time_one_type": "ACTION_REQUIRED_BY",
         "time_one_value": "2013-10-20T19:20:30+01:00",
-        "time_two_title": "Time Ended",
+        "time_two_title": "time_two_title_example",
         "time_two_type": "END_TIME",
         "time_two_value": "2013-10-20T19:20:30+01:00",
         "services": [],
@@ -237,14 +237,14 @@ announcement:
         "announcement_type": "ACTION_RECOMMENDED",
         "lifecycle_state": "ACTIVE",
         "is_banner": true,
-        "time_created": "2019-01-01T17:43:01.389+0000",
-        "time_updated": "2019-01-01T17:43:01.389+0000",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "description": "description_example",
         "additional_information": "additional_information_example",
         "affected_resources": [{
             "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "resource_name": "resource_name_example",
-            "region": "region_example",
+            "region": "us-phoenix-1",
             "additional_properties": [{
                 "name": "name_example",
                 "value": "value_example"

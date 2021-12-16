@@ -1513,12 +1513,12 @@ EXAMPLES = """
 - name: Create waas_policy
   oci_waas_policy:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    domain: example.com
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    domain: domain_example
 
     # optional
-    display_name: Policy
-    additional_domains: [ "null" ]
+    display_name: display_name_example
+    additional_domains: [ "additional_domains_example" ]
     origins:
       # required
       uri: uri_example
@@ -1541,17 +1541,17 @@ EXAMPLES = """
       certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
       is_https_enabled: true
       is_https_forced: true
-      tls_protocols: [ "null" ]
+      tls_protocols: [ "TLS_V1" ]
       is_origin_compression_enabled: true
       is_behind_cdn: true
-      client_address_header: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+      client_address_header: X_FORWARDED_FOR
       is_cache_control_respected: true
       is_response_buffering_enabled: true
       cipher_group: DEFAULT
       load_balancing_method:
         # required
         method: ROUND_ROBIN
-      websocket_path_prefixes: [ "null" ]
+      websocket_path_prefixes: [ "websocket_path_prefixes_example" ]
       is_sni_enabled: true
       health_checks:
         # optional
@@ -1559,7 +1559,7 @@ EXAMPLES = """
         method: GET
         path: path_example
         headers: null
-        expected_response_code_group: [ "null" ]
+        expected_response_code_group: [ "2XX" ]
         is_response_text_check_enabled: true
         expected_response_text: expected_response_text_example
         interval_in_seconds: 56
@@ -1586,7 +1586,7 @@ EXAMPLES = """
         block_error_page_message: block_error_page_message_example
         block_error_page_code: block_error_page_code_example
         block_error_page_description: block_error_page_description_example
-        bypass_challenges: [ "null" ]
+        bypass_challenges: [ "JS_CHALLENGE" ]
         redirect_url: redirect_url_example
         redirect_response_code: MOVED_PERMANENTLY
         captcha_title: captcha_title_example
@@ -1596,8 +1596,8 @@ EXAMPLES = """
         response_header_manipulation:
         - # required
           action: EXTEND_HTTP_RESPONSE_HEADER
-          header: example_header_name
-          value: example_value
+          header: header_example
+          value: value_example
       address_rate_limiting:
         # required
         is_enabled: true
@@ -1710,9 +1710,9 @@ EXAMPLES = """
 
         # optional
         key: key_example
-        caching_duration: PT1H
+        caching_duration: caching_duration_example
         is_client_caching_enabled: true
-        client_caching_duration: PT1H
+        client_caching_duration: client_caching_duration_example
       custom_protection_rules:
       - # optional
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1720,8 +1720,8 @@ EXAMPLES = """
         exclusions:
         - # optional
           target: REQUEST_COOKIES
-          exclusions: [ "null" ]
-      origin_groups: [ "null" ]
+          exclusions: [ "exclusions_example" ]
+      origin_groups: [ "origin_groups_example" ]
       protection_settings:
         # optional
         block_action: SHOW_ERROR_PAGE
@@ -1735,15 +1735,15 @@ EXAMPLES = """
         recommendations_period_in_days: 56
         is_response_inspected: true
         max_response_size_in_ki_b: 56
-        allowed_http_methods: [ "null" ]
-        media_types: [ "null" ]
+        allowed_http_methods: [ "OPTIONS" ]
+        media_types: [ "media_types_example" ]
       whitelists:
       - # required
         name: name_example
 
         # optional
-        addresses: [ "null" ]
-        address_lists: [ "null" ]
+        addresses: [ "addresses_example" ]
+        address_lists: [ "address_lists_example" ]
       good_bots:
       - # required
         key: key_example
@@ -1755,15 +1755,15 @@ EXAMPLES = """
       protection_rules:
       - # optional
         key: key_example
-        mod_security_rule_ids: [ "null" ]
+        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
         name: name_example
         description: description_example
         action: OFF
-        labels: [ "null" ]
+        labels: [ "labels_example" ]
         exclusions:
         - # optional
           target: REQUEST_COOKIES
-          exclusions: [ "null" ]
+          exclusions: [ "exclusions_example" ]
       threat_feeds:
       - # optional
         key: key_example
@@ -1779,8 +1779,8 @@ EXAMPLES = """
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: Policy
-    additional_domains: [ "null" ]
+    display_name: display_name_example
+    additional_domains: [ "additional_domains_example" ]
     origins:
       # required
       uri: uri_example
@@ -1803,17 +1803,17 @@ EXAMPLES = """
       certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
       is_https_enabled: true
       is_https_forced: true
-      tls_protocols: [ "null" ]
+      tls_protocols: [ "TLS_V1" ]
       is_origin_compression_enabled: true
       is_behind_cdn: true
-      client_address_header: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+      client_address_header: X_FORWARDED_FOR
       is_cache_control_respected: true
       is_response_buffering_enabled: true
       cipher_group: DEFAULT
       load_balancing_method:
         # required
         method: ROUND_ROBIN
-      websocket_path_prefixes: [ "null" ]
+      websocket_path_prefixes: [ "websocket_path_prefixes_example" ]
       is_sni_enabled: true
       health_checks:
         # optional
@@ -1821,7 +1821,7 @@ EXAMPLES = """
         method: GET
         path: path_example
         headers: null
-        expected_response_code_group: [ "null" ]
+        expected_response_code_group: [ "2XX" ]
         is_response_text_check_enabled: true
         expected_response_text: expected_response_text_example
         interval_in_seconds: 56
@@ -1848,7 +1848,7 @@ EXAMPLES = """
         block_error_page_message: block_error_page_message_example
         block_error_page_code: block_error_page_code_example
         block_error_page_description: block_error_page_description_example
-        bypass_challenges: [ "null" ]
+        bypass_challenges: [ "JS_CHALLENGE" ]
         redirect_url: redirect_url_example
         redirect_response_code: MOVED_PERMANENTLY
         captcha_title: captcha_title_example
@@ -1858,8 +1858,8 @@ EXAMPLES = """
         response_header_manipulation:
         - # required
           action: EXTEND_HTTP_RESPONSE_HEADER
-          header: example_header_name
-          value: example_value
+          header: header_example
+          value: value_example
       address_rate_limiting:
         # required
         is_enabled: true
@@ -1972,9 +1972,9 @@ EXAMPLES = """
 
         # optional
         key: key_example
-        caching_duration: PT1H
+        caching_duration: caching_duration_example
         is_client_caching_enabled: true
-        client_caching_duration: PT1H
+        client_caching_duration: client_caching_duration_example
       custom_protection_rules:
       - # optional
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1982,8 +1982,8 @@ EXAMPLES = """
         exclusions:
         - # optional
           target: REQUEST_COOKIES
-          exclusions: [ "null" ]
-      origin_groups: [ "null" ]
+          exclusions: [ "exclusions_example" ]
+      origin_groups: [ "origin_groups_example" ]
       protection_settings:
         # optional
         block_action: SHOW_ERROR_PAGE
@@ -1997,15 +1997,15 @@ EXAMPLES = """
         recommendations_period_in_days: 56
         is_response_inspected: true
         max_response_size_in_ki_b: 56
-        allowed_http_methods: [ "null" ]
-        media_types: [ "null" ]
+        allowed_http_methods: [ "OPTIONS" ]
+        media_types: [ "media_types_example" ]
       whitelists:
       - # required
         name: name_example
 
         # optional
-        addresses: [ "null" ]
-        address_lists: [ "null" ]
+        addresses: [ "addresses_example" ]
+        address_lists: [ "address_lists_example" ]
       good_bots:
       - # required
         key: key_example
@@ -2017,15 +2017,15 @@ EXAMPLES = """
       protection_rules:
       - # optional
         key: key_example
-        mod_security_rule_ids: [ "null" ]
+        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
         name: name_example
         description: description_example
         action: OFF
-        labels: [ "null" ]
+        labels: [ "labels_example" ]
         exclusions:
         - # optional
           target: REQUEST_COOKIES
-          exclusions: [ "null" ]
+          exclusions: [ "exclusions_example" ]
       threat_feeds:
       - # optional
         key: key_example
@@ -2038,11 +2038,11 @@ EXAMPLES = """
 - name: Update waas_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_policy:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: Policy
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    additional_domains: [ "null" ]
+    additional_domains: [ "additional_domains_example" ]
     origins:
       # required
       uri: uri_example
@@ -2065,17 +2065,17 @@ EXAMPLES = """
       certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
       is_https_enabled: true
       is_https_forced: true
-      tls_protocols: [ "null" ]
+      tls_protocols: [ "TLS_V1" ]
       is_origin_compression_enabled: true
       is_behind_cdn: true
-      client_address_header: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+      client_address_header: X_FORWARDED_FOR
       is_cache_control_respected: true
       is_response_buffering_enabled: true
       cipher_group: DEFAULT
       load_balancing_method:
         # required
         method: ROUND_ROBIN
-      websocket_path_prefixes: [ "null" ]
+      websocket_path_prefixes: [ "websocket_path_prefixes_example" ]
       is_sni_enabled: true
       health_checks:
         # optional
@@ -2083,7 +2083,7 @@ EXAMPLES = """
         method: GET
         path: path_example
         headers: null
-        expected_response_code_group: [ "null" ]
+        expected_response_code_group: [ "2XX" ]
         is_response_text_check_enabled: true
         expected_response_text: expected_response_text_example
         interval_in_seconds: 56
@@ -2110,7 +2110,7 @@ EXAMPLES = """
         block_error_page_message: block_error_page_message_example
         block_error_page_code: block_error_page_code_example
         block_error_page_description: block_error_page_description_example
-        bypass_challenges: [ "null" ]
+        bypass_challenges: [ "JS_CHALLENGE" ]
         redirect_url: redirect_url_example
         redirect_response_code: MOVED_PERMANENTLY
         captcha_title: captcha_title_example
@@ -2120,8 +2120,8 @@ EXAMPLES = """
         response_header_manipulation:
         - # required
           action: EXTEND_HTTP_RESPONSE_HEADER
-          header: example_header_name
-          value: example_value
+          header: header_example
+          value: value_example
       address_rate_limiting:
         # required
         is_enabled: true
@@ -2234,9 +2234,9 @@ EXAMPLES = """
 
         # optional
         key: key_example
-        caching_duration: PT1H
+        caching_duration: caching_duration_example
         is_client_caching_enabled: true
-        client_caching_duration: PT1H
+        client_caching_duration: client_caching_duration_example
       custom_protection_rules:
       - # optional
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -2244,8 +2244,8 @@ EXAMPLES = """
         exclusions:
         - # optional
           target: REQUEST_COOKIES
-          exclusions: [ "null" ]
-      origin_groups: [ "null" ]
+          exclusions: [ "exclusions_example" ]
+      origin_groups: [ "origin_groups_example" ]
       protection_settings:
         # optional
         block_action: SHOW_ERROR_PAGE
@@ -2259,15 +2259,15 @@ EXAMPLES = """
         recommendations_period_in_days: 56
         is_response_inspected: true
         max_response_size_in_ki_b: 56
-        allowed_http_methods: [ "null" ]
-        media_types: [ "null" ]
+        allowed_http_methods: [ "OPTIONS" ]
+        media_types: [ "media_types_example" ]
       whitelists:
       - # required
         name: name_example
 
         # optional
-        addresses: [ "null" ]
-        address_lists: [ "null" ]
+        addresses: [ "addresses_example" ]
+        address_lists: [ "address_lists_example" ]
       good_bots:
       - # required
         key: key_example
@@ -2279,15 +2279,15 @@ EXAMPLES = """
       protection_rules:
       - # optional
         key: key_example
-        mod_security_rule_ids: [ "null" ]
+        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
         name: name_example
         description: description_example
         action: OFF
-        labels: [ "null" ]
+        labels: [ "labels_example" ]
         exclusions:
         - # optional
           target: REQUEST_COOKIES
-          exclusions: [ "null" ]
+          exclusions: [ "exclusions_example" ]
       threat_feeds:
       - # optional
         key: key_example
@@ -2306,8 +2306,8 @@ EXAMPLES = """
 - name: Delete waas_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_policy:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: Policy
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -2366,7 +2366,7 @@ waas_policy:
                 - The date and time the policy was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         origins:
             description:
                 - "A map of host servers (origins) and their keys for the web application. Origin keys are used to associate origins to specific protection
@@ -2504,7 +2504,7 @@ waas_policy:
                         - "- **TRUE_CLIENT_IP:** Corresponds to `True-Client-Ip` header name."
                     returned: on success
                     type: str
-                    sample: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+                    sample: X_FORWARDED_FOR
                 is_cache_control_respected:
                     description:
                         - "Enable or disable automatic content caching based on the response `cache-control` header. This feature enables the origin to act as a
@@ -2901,14 +2901,14 @@ waas_policy:
                                         - "Example: `example_header_name`"
                                     returned: on success
                                     type: str
-                                    sample: example_header_name
+                                    sample: header_example
                                 value:
                                     description:
                                         - A header field value that conforms to RFC 7230.
                                         - "Example: `example_value`"
                                     returned: on success
                                     type: str
-                                    sample: example_value
+                                    sample: value_example
                 address_rate_limiting:
                     description:
                         - The IP address rate limiting settings used to limit the number of requests from an address.
@@ -3564,7 +3564,7 @@ waas_policy:
                                   Example: `PT1H`"
                             returned: on success
                             type: str
-                            sample: PT1H
+                            sample: caching_duration_example
                         is_client_caching_enabled:
                             description:
                                 - Enables or disables client caching.
@@ -3581,7 +3581,7 @@ waas_policy:
                                   Example: `PT1H`"
                             returned: on success
                             type: str
-                            sample: PT1H
+                            sample: client_caching_duration_example
                         criteria:
                             description:
                                 - The array of the rule criteria with condition and value. The caching rule would be applied for the requests that matched any
@@ -3926,7 +3926,7 @@ waas_policy:
         "additional_domains": [],
         "cname": "cname_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "origins": {
             "uri": "uri_example",
             "http_port": 56,
@@ -3949,7 +3949,7 @@ waas_policy:
             "tls_protocols": [],
             "is_origin_compression_enabled": true,
             "is_behind_cdn": true,
-            "client_address_header": "X-Client-Ip: 11.1.1.1, 13.3.3.3",
+            "client_address_header": "X_FORWARDED_FOR",
             "is_cache_control_respected": true,
             "is_response_buffering_enabled": true,
             "cipher_group": "DEFAULT",
@@ -3998,8 +3998,8 @@ waas_policy:
                 "captcha_submit_label": "captcha_submit_label_example",
                 "response_header_manipulation": [{
                     "action": "EXTEND_HTTP_RESPONSE_HEADER",
-                    "header": "example_header_name",
-                    "value": "example_value"
+                    "header": "header_example",
+                    "value": "value_example"
                 }]
             }],
             "address_rate_limiting": {
@@ -4101,9 +4101,9 @@ waas_policy:
                 "key": "key_example",
                 "name": "name_example",
                 "action": "CACHE",
-                "caching_duration": "PT1H",
+                "caching_duration": "caching_duration_example",
                 "is_client_caching_enabled": true,
-                "client_caching_duration": "PT1H",
+                "client_caching_duration": "client_caching_duration_example",
                 "criteria": [{
                     "condition": "URL_IS",
                     "value": "value_example"

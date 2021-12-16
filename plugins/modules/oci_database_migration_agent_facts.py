@@ -127,6 +127,7 @@ agents:
         public_key:
             description:
                 - ODMS Agent public key.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."

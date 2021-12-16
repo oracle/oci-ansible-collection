@@ -70,7 +70,7 @@ EXAMPLES = """
     secret_name: SecretForIntegrationTests
     vault_id: ocid1.vault.oc1.iad.xxxxxxEXAMPLExxxxxx
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    version_number: 789
+    version_number: 56
     secret_version_name: secret_version_name_example
     stage: CURRENT
 
@@ -132,7 +132,7 @@ secret_bundle:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_expiry:
             description:
                 - "An optional property indicating when the secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
@@ -140,7 +140,7 @@ secret_bundle:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         stages:
             description:
                 - A list of possible rotation states for the secret version.
@@ -162,8 +162,8 @@ secret_bundle:
             "content_type": "BASE64",
             "content": "content_example"
         },
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
-        "time_of_expiry": "2019-04-03T21:10:29.600Z",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
+        "time_of_expiry": "2013-10-20T19:20:30+01:00",
         "stages": [],
         "metadata": {}
     }

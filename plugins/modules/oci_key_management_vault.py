@@ -94,8 +94,8 @@ EXAMPLES = """
 - name: Create vault
   oci_key_management_vault:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5ltpneskcfy7lr4a6wfauxuwrwed5bsdea"
-    display_name: Vault 1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     vault_type: VIRTUAL_PRIVATE
 
     # optional
@@ -109,14 +109,14 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: Vault 1
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update vault using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_key_management_vault:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5ltpneskcfy7lr4a6wfauxuwrwed5bsdea"
-    display_name: Vault 1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -181,7 +181,7 @@ vault:
                 - "Example: `DELETED`"
             returned: on success
             type: str
-            sample: DELETED
+            sample: CREATING
         management_endpoint:
             description:
                 - "The service endpoint to perform management operations against. Management operations include \\"Create,\\" \\"Update,\\" \\"List,\\"
@@ -195,14 +195,14 @@ vault:
                 - "Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property to indicate when to delete the vault, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_type:
             description:
                 - The type of vault. Each type of vault stores the key with different
@@ -241,10 +241,10 @@ vault:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "DELETED",
+        "lifecycle_state": "CREATING",
         "management_endpoint": "management_endpoint_example",
-        "time_created": "2018-04-03T21:10:29.600Z",
-        "time_of_deletion": "2018-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "vault_type": "VIRTUAL_PRIVATE",
         "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx",
         "replica_details": {

@@ -110,7 +110,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     model_training_details:
       # required
-      data_asset_ids: [ "null" ]
+      data_asset_ids: [ "data_asset_ids_example" ]
 
       # optional
       target_fap: 3.4

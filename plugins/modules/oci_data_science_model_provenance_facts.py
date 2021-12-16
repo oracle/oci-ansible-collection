@@ -56,19 +56,19 @@ model_provenance:
                 - For model reproducibility purposes. URL of the git repository associated with model training.
             returned: on success
             type: str
-            sample: http://git-remote.com/my-repo
+            sample: repository_url_example
         git_branch:
             description:
                 - For model reproducibility purposes. Branch of the git repository associated with model training.
             returned: on success
             type: str
-            sample: master
+            sample: git_branch_example
         git_commit:
             description:
                 - For model reproducibility purposes. Commit ID of the git repository associated with model training.
             returned: on success
             type: str
-            sample: 0978b63
+            sample: git_commit_example
         script_dir:
             description:
                 - For model reproducibility purposes. Path to model artifacts.
@@ -80,21 +80,21 @@ model_provenance:
                 - "For model reproducibility purposes. Path to the python script or notebook in which the model was trained.\\""
             returned: on success
             type: str
-            sample: model-dev/model1/model-training.ipynb
+            sample: training_script_example
         training_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a training session(Job or NotebookSession) in which
                   the model was trained. It is used for model reproducibility purposes.
             returned: on success
             type: str
-            sample: "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
+            sample: "ocid1.training.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
-        "repository_url": "http://git-remote.com/my-repo",
-        "git_branch": "master",
-        "git_commit": "0978b63",
+        "repository_url": "repository_url_example",
+        "git_branch": "git_branch_example",
+        "git_commit": "git_commit_example",
         "script_dir": "script_dir_example",
-        "training_script": "model-dev/model1/model-training.ipynb",
-        "training_id": "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
+        "training_script": "training_script_example",
+        "training_id": "ocid1.training.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

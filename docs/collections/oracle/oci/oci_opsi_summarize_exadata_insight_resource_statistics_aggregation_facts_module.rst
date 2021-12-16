@@ -30,9 +30,13 @@ oracle.oci.oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_fa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts`.
 
@@ -448,10 +452,10 @@ Examples
         analysis_time_interval: analysis_time_interval_example
         time_interval_start: 2013-10-20T19:20:30+01:00
         time_interval_end: 2013-10-20T19:20:30+01:00
-        exadata_type: [ "$p.getValue()" ]
-        cdb_name: [ "$p.getValue()" ]
-        host_name: [ "$p.getValue()" ]
-        percentile: 56
+        exadata_type: [ "exadata_type_example" ]
+        cdb_name: [ "cdb_name_example" ]
+        host_name: [ "host_name_example" ]
+        percentile: 1
         sort_order: ASC
         sort_by: utilizationPercent
 
@@ -489,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of SummarizeExadataInsightResourceStatisticsAggregation resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;exadata_resource_type&#x27;: &#x27;DATABASE&#x27;}]</div>
                                     </td>
             </tr>
@@ -507,7 +511,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defines the resource type for an exadata  (example: DATABASE, STORAGE_SERVER, HOST, DISKGROUP)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DATABASE</div>
                                     </td>
             </tr>

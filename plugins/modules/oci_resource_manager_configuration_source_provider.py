@@ -115,12 +115,12 @@ EXAMPLES = """
     config_source_provider_type: GITLAB_ACCESS_TOKEN
 
     # optional
-    compartment_id: compartment_OCID
-    display_name: My Renamed Configuration Source Provider
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    api_endpoint: https://gitlab.com
+    api_endpoint: api_endpoint_example
     access_token: access_token_example
 
 - name: Create configuration_source_provider with config_source_provider_type = GITHUB_ACCESS_TOKEN
@@ -129,12 +129,12 @@ EXAMPLES = """
     config_source_provider_type: GITHUB_ACCESS_TOKEN
 
     # optional
-    compartment_id: compartment_OCID
-    display_name: My Renamed Configuration Source Provider
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    api_endpoint: https://gitlab.com
+    api_endpoint: api_endpoint_example
     access_token: access_token_example
 
 - name: Update configuration_source_provider with config_source_provider_type = GITLAB_ACCESS_TOKEN
@@ -143,11 +143,11 @@ EXAMPLES = """
     config_source_provider_type: GITLAB_ACCESS_TOKEN
 
     # optional
-    display_name: My Renamed Configuration Source Provider
+    display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    api_endpoint: https://gitlab.com
+    api_endpoint: api_endpoint_example
     access_token: access_token_example
 
 - name: Update configuration_source_provider with config_source_provider_type = GITHUB_ACCESS_TOKEN
@@ -156,11 +156,11 @@ EXAMPLES = """
     config_source_provider_type: GITHUB_ACCESS_TOKEN
 
     # optional
-    display_name: My Renamed Configuration Source Provider
+    display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    api_endpoint: https://gitlab.com
+    api_endpoint: api_endpoint_example
     access_token: access_token_example
 
 - name: >
@@ -171,11 +171,11 @@ EXAMPLES = """
     config_source_provider_type: GITLAB_ACCESS_TOKEN
 
     # optional
-    display_name: My Renamed Configuration Source Provider
+    display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    api_endpoint: https://gitlab.com
+    api_endpoint: api_endpoint_example
     access_token: access_token_example
 
 - name: >
@@ -186,11 +186,11 @@ EXAMPLES = """
     config_source_provider_type: GITHUB_ACCESS_TOKEN
 
     # optional
-    display_name: My Renamed Configuration Source Provider
+    display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    api_endpoint: https://gitlab.com
+    api_endpoint: api_endpoint_example
     access_token: access_token_example
 
 - name: Delete configuration_source_provider
@@ -202,7 +202,7 @@ EXAMPLES = """
 - name: Delete configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_resource_manager_configuration_source_provider:
     # required
-    display_name: My Renamed Configuration Source Provider
+    display_name: display_name_example
     state: absent
 
 """
@@ -246,7 +246,7 @@ configuration_source_provider:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the configuration source provider.
@@ -285,18 +285,18 @@ configuration_source_provider:
                   Example: `https://github.com/`"
             returned: on success
             type: str
-            sample: https://github.com/
+            sample: api_endpoint_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
-        "time_created": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "api_endpoint": "https://github.com/"
+        "api_endpoint": "api_endpoint_example"
     }
 """
 

@@ -143,8 +143,8 @@ EXAMPLES = """
   oci_object_storage_bucket:
     # required
     namespace_name: namespace_name_example
-    name: my-test-1
-    compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentID"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     metadata: null
@@ -161,10 +161,10 @@ EXAMPLES = """
   oci_object_storage_bucket:
     # required
     namespace_name: namespace_name_example
-    name: my-test-1
+    name: name_example
 
     # optional
-    compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     metadata: null
     public_access_type: NoPublicAccess
     object_events_enabled: true
@@ -178,11 +178,11 @@ EXAMPLES = """
   oci_object_storage_bucket:
     # required
     namespace_name: namespace_name_example
-    name: my-test-1
+    name: name_example
     state: absent
 
     # optional
-    force: $utils.AnsibleRenderingUtils.escapeStringExampleValue($p.getValue())
+    force: false
 
 """
 

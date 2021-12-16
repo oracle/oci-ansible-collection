@@ -30,9 +30,13 @@ oracle.oci.oci_loadbalancer_health_checker -- Manage a HealthChecker resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_health_checker`.
 
@@ -464,18 +468,18 @@ Examples
     - name: Update health_checker
       oci_loadbalancer_health_checker:
         # required
-        protocol: HTTP
-        port: 8080
-        return_code: 200
-        retries: 3
-        timeout_in_millis: 3000
-        interval_in_millis: 10000
+        protocol: protocol_example
+        port: 56
+        return_code: 56
+        retries: 56
+        timeout_in_millis: 56
+        interval_in_millis: 56
         response_body_regex: response_body_regex_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        backend_set_name: example_backend_set
+        backend_set_name: backend_set_name_example
 
         # optional
-        url_path: /healthcheck
+        url_path: url_path_example
 
 
 
@@ -511,8 +515,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the HealthChecker resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;interval_in_millis&#x27;: 10000, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;retries&#x27;: 3, &#x27;return_code&#x27;: 0, &#x27;timeout_in_millis&#x27;: 3000, &#x27;url_path&#x27;: &#x27;/healthcheck&#x27;}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;interval_in_millis&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;protocol_example&#x27;, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;retries&#x27;: 56, &#x27;return_code&#x27;: 56, &#x27;timeout_in_millis&#x27;: 56, &#x27;url_path&#x27;: &#x27;url_path_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -530,8 +534,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The interval between health checks, in milliseconds. The default is 10000 (10 seconds).</div>
                                             <div>Example: `10000`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10000</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -549,6 +553,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The backend server port against which to run the health check. If the port is not specified, the load balancer uses the port information from the `Backend` object.</div>
                                             <div>Example: `8080`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -566,8 +572,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The protocol the health check must use; either HTTP or TCP.</div>
                                             <div>Example: `HTTP`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTP</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">protocol_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -585,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A regular expression for parsing the response body from the backend server.</div>
                                             <div>Example: `^((?!false).|\s)*$`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">response_body_regex_example</div>
                                     </td>
             </tr>
@@ -604,8 +610,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The number of retries to attempt before a backend server is considered &quot;unhealthy&quot;. This number also applies when recovering a server to the &quot;healthy&quot; state. Defaults to 3.</div>
                                             <div>Example: `3`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -623,6 +629,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol, you can use common HTTP status codes such as &quot;200&quot;.</div>
                                             <div>Example: `200`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -640,8 +648,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply returns within this timeout period. Defaults to 3000 (3 seconds).</div>
                                             <div>Example: `3000`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3000</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -659,8 +667,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The path against which to run the health check.</div>
                                             <div>Example: `/healthcheck`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">/healthcheck</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_path_example</div>
                                     </td>
             </tr>
                     

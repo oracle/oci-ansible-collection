@@ -701,29 +701,29 @@ EXAMPLES = """
   oci_compute_instance:
     # required
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-    shape: VM.Standard2.1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    shape: shape_example
 
     # optional
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     create_vnic_details:
       # optional
-      assign_public_ip: false
+      assign_public_ip: true
       assign_private_dns_record: true
       defined_tags: {'Operations': {'CostCenter': 'US'}}
       display_name: display_name_example
       freeform_tags: {'Department': 'Finance'}
-      hostname_label: myinstance1
-      nsg_ids: [ "null" ]
-      private_ip: 10.0.0.5
+      hostname_label: hostname_label_example
+      nsg_ids: [ "nsg_ids_example" ]
+      private_ip: private_ip_example
       skip_source_dest_check: true
-      subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
     dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: myinstance1
+    display_name: display_name_example
     extended_metadata: null
-    fault_domain: FAULT-DOMAIN-2
+    fault_domain: FAULT-DOMAIN-1
     freeform_tags: {'Department': 'Finance'}
     hostname_label: hostname_label_example
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
@@ -769,10 +769,10 @@ EXAMPLES = """
     source_details:
       # required
       source_type: image
-      image_id: ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
-      boot_volume_size_in_gbs: 100
+      boot_volume_size_in_gbs: 56
       kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_pv_encryption_in_transit_enabled: true
@@ -793,9 +793,9 @@ EXAMPLES = """
     # optional
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: myinstance1
+    display_name: display_name_example
     extended_metadata: null
-    fault_domain: FAULT-DOMAIN-2
+    fault_domain: FAULT-DOMAIN-1
     freeform_tags: {'Department': 'Finance'}
     launch_options:
       # optional
@@ -822,7 +822,7 @@ EXAMPLES = """
       - # required
         name: name_example
         desired_state: ENABLED
-    shape: VM.Standard2.1
+    shape: shape_example
     shape_config:
       # optional
       ocpus: 3.4
@@ -832,14 +832,14 @@ EXAMPLES = """
 - name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-    display_name: myinstance1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     extended_metadata: null
-    fault_domain: FAULT-DOMAIN-2
+    fault_domain: FAULT-DOMAIN-1
     freeform_tags: {'Department': 'Finance'}
     launch_options:
       # optional
@@ -866,7 +866,7 @@ EXAMPLES = """
       - # required
         name: name_example
         desired_state: ENABLED
-    shape: VM.Standard2.1
+    shape: shape_example
     shape_config:
       # optional
       ocpus: 3.4
@@ -885,8 +885,8 @@ EXAMPLES = """
 - name: Delete instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-    display_name: myinstance1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -1168,7 +1168,7 @@ instance:
                 - "Examples: `phx`, `eu-frankfurt-1`"
             returned: on success
             type: str
-            sample: region_example
+            sample: us-phoenix-1
         shape:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
@@ -1308,7 +1308,7 @@ instance:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         agent_config:
             description:
                 - ""
@@ -1387,7 +1387,7 @@ instance:
                   Example: `2018-05-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-05-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         platform_config:
             description:
                 - ""
@@ -1473,7 +1473,7 @@ instance:
         },
         "lifecycle_state": "MOVING",
         "metadata": {},
-        "region": "region_example",
+        "region": "us-phoenix-1",
         "shape": "shape_example",
         "shape_config": {
             "ocpus": 3.4,
@@ -1496,7 +1496,7 @@ instance:
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "system_tags": {},
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "agent_config": {
             "is_monitoring_disabled": true,
             "is_management_disabled": true,
@@ -1506,7 +1506,7 @@ instance:
                 "desired_state": "ENABLED"
             }]
         },
-        "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
+        "time_maintenance_reboot_due": "2013-10-20T19:20:30+01:00",
         "platform_config": {
             "type": "AMD_MILAN_BM",
             "is_secure_boot_enabled": true,

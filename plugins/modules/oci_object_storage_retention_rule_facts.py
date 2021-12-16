@@ -54,14 +54,14 @@ EXAMPLES = """
   oci_object_storage_retention_rule_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
     retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List retention_rules
   oci_object_storage_retention_rule_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
 """
 

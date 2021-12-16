@@ -31,21 +31,25 @@ author: Oracle (@oracle)
 options:
     name:
         description:
-            - The display name for the private endpoint. It is changeable.
+            - The display name of the Database Management private endpoint.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    is_cluster:
+        description:
+            - Specifies whether the Database Management private endpoint will be used for Oracle Databases in a cluster.
+        type: bool
     subnet_id:
         description:
-            - The OCID of the subnet.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
             - Required for create using I(state=present).
         type: str
     description:
@@ -55,7 +59,7 @@ options:
         type: str
     nsg_ids:
         description:
-            - The OCIDs of the network security groups that the private endpoint belongs to.
+            - The OCIDs of the Network Security Groups to which the Database Management private endpoint belongs.
             - This parameter is updatable.
         type: list
         elements: str
@@ -87,8 +91,9 @@ EXAMPLES = """
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    is_cluster: true
     description: description_example
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update db_management_private_endpoint
   oci_database_management_db_management_private_endpoint:
@@ -98,7 +103,7 @@ EXAMPLES = """
     # optional
     name: name_example
     description: description_example
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_management_db_management_private_endpoint:
@@ -108,7 +113,7 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Delete db_management_private_endpoint
   oci_database_management_db_management_private_endpoint:
@@ -134,61 +139,68 @@ db_management_private_endpoint:
     contains:
         id:
             description:
-                - The OCID of the Database Management private endpoint.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Management private endpoint.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
-                - The display name of the private endpoint.
+                - The display name of the Database Management private endpoint.
             returned: on success
             type: str
             sample: name_example
         compartment_id:
             description:
-                - The OCID of the compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        is_cluster:
+            description:
+                - Specifies whether the Database Management private endpoint can be used for Oracle Databases in a cluster.
+            returned: on success
+            type: bool
+            sample: true
         vcn_id:
             description:
-                - The OCID of the VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
-                - The OCID of the subnet.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_ip:
             description:
-                - The private IP addresses assigned to the private endpoint.
+                - The IP addresses assigned to the Database Management private endpoint.
             returned: on success
             type: str
             sample: private_ip_example
         description:
             description:
-                - The description of the private endpoint.
+                - The description of the Database Management private endpoint.
             returned: on success
             type: str
             sample: description_example
         time_created:
             description:
-                - The date and time the private endpoint was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the Database Managament private endpoint was created, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the private endpoint.
+                - The current lifecycle state of the Database Management private endpoint.
             returned: on success
             type: str
             sample: CREATING
         nsg_ids:
             description:
-                - The OCIDs of the network security groups that the private endpoint belongs to.
+                - The OCIDs of the Network Security Groups to which the Database Management private endpoint belongs.
             returned: on success
             type: list
             sample: []
@@ -196,6 +208,7 @@ db_management_private_endpoint:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_cluster": true,
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "private_ip": "private_ip_example",
@@ -256,7 +269,7 @@ class DbManagementPrivateEndpointHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["name"]
+        optional_list_method_params = ["name", "is_cluster"]
 
         return dict(
             (param, self.module.params[param])
@@ -357,6 +370,7 @@ def main():
         dict(
             name=dict(type="str"),
             compartment_id=dict(type="str"),
+            is_cluster=dict(type="bool"),
             subnet_id=dict(type="str"),
             description=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),

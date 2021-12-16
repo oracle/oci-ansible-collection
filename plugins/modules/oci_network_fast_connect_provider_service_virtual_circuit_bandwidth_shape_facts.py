@@ -59,17 +59,17 @@ fast_connect_provider_service_virtual_circuit_bandwidth_shapes:
                 - "Example: `10000`"
             returned: on success
             type: int
-            sample: 10000
+            sample: 56
         name:
             description:
                 - The name of the bandwidth shape.
                 - "Example: `10 Gbps`"
             returned: on success
             type: str
-            sample: 10 Gbps
+            sample: name_example
     sample: [{
-        "bandwidth_in_mbps": 10000,
-        "name": "10 Gbps"
+        "bandwidth_in_mbps": 56,
+        "name": "name_example"
     }]
 """
 

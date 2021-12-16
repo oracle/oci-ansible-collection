@@ -178,7 +178,7 @@ EXAMPLES = """
     description: description_example
     initial_record_generation_configuration:
       # optional
-      limit: 10
+      limit: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 

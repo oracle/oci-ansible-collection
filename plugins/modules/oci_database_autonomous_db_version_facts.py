@@ -58,7 +58,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    db_workload: db_workload_example
+    db_workload: OLTP
     sort_order: ASC
 
 """

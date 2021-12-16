@@ -211,14 +211,14 @@ EXAMPLES = """
     # required
     create_vnic_details:
       # optional
-      assign_public_ip: false
+      assign_public_ip: true
       assign_private_dns_record: true
       defined_tags: {'Operations': {'CostCenter': 'US'}}
       display_name: display_name_example
       freeform_tags: {'Department': 'Finance'}
-      hostname_label: bminstance-1
-      nsg_ids: [ "null" ]
-      private_ip: 10.0.3.3
+      hostname_label: hostname_label_example
+      nsg_ids: [ "nsg_ids_example" ]
+      private_ip: private_ip_example
       skip_source_dest_check: true
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -320,7 +320,7 @@ vnic_attachment:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vlan_tag:
             description:
                 - The Oracle-assigned VLAN tag of the attached VNIC. Available after the
@@ -331,7 +331,7 @@ vnic_attachment:
                 - "Example: `0`"
             returned: on success
             type: int
-            sample: 0
+            sample: 56
         vnic_id:
             description:
                 - The OCID of the VNIC. Available after the attachment process is complete.
@@ -348,8 +348,8 @@ vnic_attachment:
         "nic_index": 56,
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "vlan_id": "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "vlan_tag": 0,
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "vlan_tag": 56,
         "vnic_id": "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

@@ -100,34 +100,34 @@ EXAMPLES = """
 - name: Create routing_policy
   oci_loadbalancer_routing_policy:
     # required
-    name: example_routing_rules
+    name: name_example
     condition_language_version: V1
     rules:
     - # required
-      name: HR_mobile_user_rule
-      condition: all(http.request.headers[(i 'user-agent')] eq (i 'mobile'), http.request.url.query[(i 'department')] eq (i 'HR'))
+      name: name_example
+      condition: condition_example
       actions:
       - # required
         name: FORWARD_TO_BACKENDSET
 
         # optional
-        backend_set_name: backendSetForHRMobileUsers
+        backend_set_name: backend_set_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update routing_policy
   oci_loadbalancer_routing_policy:
     # required
-    name: example_routing_rules
+    name: name_example
     rules:
     - # required
-      name: HR_mobile_user_rule
-      condition: all(http.request.headers[(i 'user-agent')] eq (i 'mobile'), http.request.url.query[(i 'department')] eq (i 'HR'))
+      name: name_example
+      condition: condition_example
       actions:
       - # required
         name: FORWARD_TO_BACKENDSET
 
         # optional
-        backend_set_name: backendSetForHRMobileUsers
+        backend_set_name: backend_set_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -136,7 +136,7 @@ EXAMPLES = """
 - name: Delete routing_policy
   oci_loadbalancer_routing_policy:
     # required
-    name: example_routing_rules
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -155,7 +155,7 @@ routing_policy:
                 - "Example: `example_routing_policy`"
             returned: on success
             type: str
-            sample: example_routing_policy
+            sample: name_example
         condition_language_version:
             description:
                 - The version of the language in which `condition` of `rules` are composed.
@@ -198,16 +198,16 @@ routing_policy:
                                 - "Example: `backendSetForImages`"
                             returned: on success
                             type: str
-                            sample: backendSetForImages
+                            sample: backend_set_name_example
     sample: {
-        "name": "example_routing_policy",
+        "name": "name_example",
         "condition_language_version": "V1",
         "rules": [{
             "name": "name_example",
             "condition": "condition_example",
             "actions": [{
                 "name": "FORWARD_TO_BACKENDSET",
-                "backend_set_name": "backendSetForImages"
+                "backend_set_name": "backend_set_name_example"
             }]
         }]
     }

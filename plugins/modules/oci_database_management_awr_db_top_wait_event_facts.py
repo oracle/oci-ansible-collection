@@ -110,7 +110,7 @@ EXAMPLES = """
     time_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
     session_type: FOREGROUND
     container_id: 56
-    top_n: 56
+    top_n: 1
     sort_by: WAITS_PERSEC
     sort_order: ASC
 

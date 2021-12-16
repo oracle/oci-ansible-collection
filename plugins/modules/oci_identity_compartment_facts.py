@@ -119,7 +119,7 @@ EXAMPLES = """
 - name: List compartments
   oci_identity_compartment_facts:
     # required
-    parent_compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    parent_compartment_id: "ocid1.parentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     access_level: ANY
@@ -127,7 +127,7 @@ EXAMPLES = """
     name: name_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
 
 """
 
@@ -169,7 +169,7 @@ compartments:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The compartment's current state. After creating a compartment, make sure its `lifecycleState` changes from
@@ -212,7 +212,7 @@ compartments:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "is_accessible": true,

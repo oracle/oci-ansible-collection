@@ -129,7 +129,7 @@ app_catalog_subscriptions:
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
             type: str
-            sample: "2018-03-20T12:32:53.532Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "publisher_name": "publisher_name_example",
         "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
@@ -138,7 +138,7 @@ app_catalog_subscriptions:
         "display_name": "display_name_example",
         "summary": "summary_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2018-03-20T12:32:53.532Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

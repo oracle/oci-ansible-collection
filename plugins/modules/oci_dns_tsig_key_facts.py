@@ -103,7 +103,7 @@ EXAMPLES = """
     # optional
     scope: GLOBAL
     name: name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     sort_by: name
     sort_order: ASC
 
@@ -140,6 +140,7 @@ tsig_keys:
         secret:
             description:
                 - A base64 string encoding the binary shared secret.
+                - Returned for get operation
             returned: on success
             type: str
             sample: secret_example
@@ -188,6 +189,7 @@ tsig_keys:
             description:
                 - The date and time the resource was last updated, expressed in RFC 3339 timestamp format.
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

@@ -78,7 +78,7 @@ EXAMPLES = """
   oci_opsi_sql_statistics_time_series_by_plan_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    sql_identifier: 6rgjh9bjmy2s7
+    sql_identifier: sql_identifier_example
 
     # optional
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
@@ -119,19 +119,19 @@ sql_statistics_time_series_by_plan:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         item_duration_in_ms:
             description:
                 - Time duration in milliseconds between data points (one hour or one day).
             returned: on success
             type: int
-            sample: 86400000
+            sample: 56
         end_timestamps:
             description:
                 - Array comprising of all the sampling period end timestamps in RFC 3339 format.
@@ -172,9 +172,9 @@ sql_statistics_time_series_by_plan:
         "sql_identifier": "sql_identifier_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
-        "item_duration_in_ms": 86400000,
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
+        "item_duration_in_ms": 56,
         "end_timestamps": [],
         "items": [{
             "plan_hash": 56,

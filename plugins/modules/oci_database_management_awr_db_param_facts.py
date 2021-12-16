@@ -139,7 +139,7 @@ EXAMPLES = """
     time_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
     container_id: 56
-    name: [ "$p.getValue()" ]
+    name: [ "name_example" ]
     name_contains: name_contains_example
     value_changed: Y
     value_default: TRUE

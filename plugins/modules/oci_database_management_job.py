@@ -66,6 +66,8 @@ options:
             - "CDB"
             - "PDB"
             - "NON_CDB"
+            - "ACD"
+            - "ADB"
     schedule_type:
         description:
             - The schedule type of the job.
@@ -193,37 +195,37 @@ EXAMPLES = """
 - name: Create job with job_type = SQL
   oci_database_management_job:
     # required
-    name: TestJob
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
-    schedule_type: IMMEDIATE
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    schedule_type: schedule_type_example
     job_type: SQL
-    operation_type: EXECUTE_SQL
+    operation_type: operation_type_example
 
     # optional
-    description: Job to fetch the Performance data from database.
+    description: description_example
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
-    managed_database_id: "ocid1.externalcontainerdatabase.oc1..unique_ID"
+    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     database_sub_type: CDB
-    timeout: 5m
+    timeout: timeout_example
     result_location:
       # required
       type: OBJECT_STORAGE
 
       # optional
-      namespace_name: TestNamespace
-      bucket_name: resultBucket
+      namespace_name: namespace_name_example
+      bucket_name: bucket_name_example
     schedule_details:
       # optional
       start_time: start_time_example
       end_time: end_time_example
       interval_type: DAILY
       interval_value: interval_value_example
-    sql_text: SELECT SYSTIMESTAMP FROM DUAL
-    sql_type: QUERY
-    user_name: TestJobUser
+    sql_text: sql_text_example
+    sql_type: sql_type_example
+    user_name: user_name_example
     password: example-password
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    role: NORMAL
+    role: role_example
 
 - name: Update job with job_type = SQL
   oci_database_management_job:
@@ -231,57 +233,57 @@ EXAMPLES = """
     job_type: SQL
 
     # optional
-    description: Job to fetch the Performance data from database.
-    timeout: 5m
+    description: description_example
+    timeout: timeout_example
     result_location:
       # required
       type: OBJECT_STORAGE
 
       # optional
-      namespace_name: TestNamespace
-      bucket_name: resultBucket
+      namespace_name: namespace_name_example
+      bucket_name: bucket_name_example
     schedule_details:
       # optional
       start_time: start_time_example
       end_time: end_time_example
       interval_type: DAILY
       interval_value: interval_value_example
-    sql_text: SELECT SYSTIMESTAMP FROM DUAL
-    sql_type: QUERY
-    user_name: TestJobUser
+    sql_text: sql_text_example
+    sql_type: sql_type_example
+    user_name: user_name_example
     password: example-password
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    role: NORMAL
+    role: role_example
 
 - name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with job_type = SQL
   oci_database_management_job:
     # required
-    name: TestJob
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     job_type: SQL
 
     # optional
-    description: Job to fetch the Performance data from database.
-    timeout: 5m
+    description: description_example
+    timeout: timeout_example
     result_location:
       # required
       type: OBJECT_STORAGE
 
       # optional
-      namespace_name: TestNamespace
-      bucket_name: resultBucket
+      namespace_name: namespace_name_example
+      bucket_name: bucket_name_example
     schedule_details:
       # optional
       start_time: start_time_example
       end_time: end_time_example
       interval_type: DAILY
       interval_value: interval_value_example
-    sql_text: SELECT SYSTIMESTAMP FROM DUAL
-    sql_type: QUERY
-    user_name: TestJobUser
+    sql_text: sql_text_example
+    sql_type: sql_type_example
+    user_name: user_name_example
     password: example-password
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    role: NORMAL
+    role: role_example
 
 - name: Delete job
   oci_database_management_job:
@@ -292,8 +294,8 @@ EXAMPLES = """
 - name: Delete job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_management_job:
     # required
-    name: TestJob
-    compartment_id: "ocid1.tenancy.oc1..unique_ID"
+    name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -385,6 +387,12 @@ job:
                     returned: on success
                     type: bool
                     sample: true
+                workload_type:
+                    description:
+                        - The workload type of the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: OLTP
         database_sub_type:
             description:
                 - The subtype of the Oracle Database where the job has to be executed. Applicable only when managedDatabaseGroupId is provided.
@@ -531,7 +539,8 @@ job:
             "database_type": "EXTERNAL_SIDB",
             "database_sub_type": "CDB",
             "deployment_type": "ONPREMISE",
-            "is_cluster": true
+            "is_cluster": true,
+            "workload_type": "OLTP"
         }],
         "database_sub_type": "CDB",
         "schedule_type": "IMMEDIATE",
@@ -708,7 +717,9 @@ def main():
             compartment_id=dict(type="str"),
             managed_database_group_id=dict(type="str"),
             managed_database_id=dict(type="str"),
-            database_sub_type=dict(type="str", choices=["CDB", "PDB", "NON_CDB"]),
+            database_sub_type=dict(
+                type="str", choices=["CDB", "PDB", "NON_CDB", "ACD", "ADB"]
+            ),
             schedule_type=dict(type="str"),
             job_type=dict(type="str", choices=["SQL"]),
             timeout=dict(type="str"),

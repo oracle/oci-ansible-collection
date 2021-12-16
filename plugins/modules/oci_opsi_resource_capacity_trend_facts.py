@@ -190,21 +190,21 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    database_type: [ "$p.getValue()" ]
-    database_id: [ "$p.getValue()" ]
-    id: [ "$p.getValue()" ]
-    exadata_insight_id: [ "$p.getValue()" ]
-    cdb_name: [ "$p.getValue()" ]
+    database_type: [ "ADW-S" ]
+    database_id: [ "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx" ]
+    id: [ "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    cdb_name: [ "cdb_name_example" ]
     utilization_level: HIGH_UTILIZATION
     sort_order: ASC
     sort_by: endTimestamp
     tablespace_name: tablespace_name_example
-    host_name: [ "$p.getValue()" ]
+    host_name: [ "host_name_example" ]
     is_database_instance_level_metrics: true
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """
@@ -221,19 +221,19 @@ resource_capacity_trend:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         resource_metric:
             description:
                 - "Defines the type of resource metric (example: CPU, STORAGE)"
             returned: on success
             type: str
-            sample: STORAGE
+            sample: CPU
         usage_unit:
             description:
                 - Identifies the units of the current resource metric (CORES, GB).
@@ -245,7 +245,7 @@ resource_capacity_trend:
                 - Time duration in milliseconds between data points (one hour or one day).
             returned: on success
             type: int
-            sample: 86400000
+            sample: 56
         capacity_data:
             description:
                 - Capacity Data with time interval
@@ -257,29 +257,29 @@ resource_capacity_trend:
                         - The timestamp in which the current sampling period ends in RFC 3339 format.
                     returned: on success
                     type: str
-                    sample: "2020-05-01T00:00:00.000Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 capacity:
                     description:
                         - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
                     returned: on success
                     type: float
-                    sample: 222.3
+                    sample: 1.2
                 base_capacity:
                     description:
                         - The base allocated amount of the resource metric type  (CPU, STORAGE).
                     returned: on success
                     type: float
-                    sample: 222.3
+                    sample: 1.2
     sample: {
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
-        "resource_metric": "STORAGE",
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
+        "resource_metric": "CPU",
         "usage_unit": "CORES",
-        "item_duration_in_ms": 86400000,
+        "item_duration_in_ms": 56,
         "capacity_data": [{
-            "end_timestamp": "2020-05-01T00:00:00.000Z",
-            "capacity": 222.3,
-            "base_capacity": 222.3
+            "end_timestamp": "2013-10-20T19:20:30+01:00",
+            "capacity": 1.2,
+            "base_capacity": 1.2
         }]
     }
 """

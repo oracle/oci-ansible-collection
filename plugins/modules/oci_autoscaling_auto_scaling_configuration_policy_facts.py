@@ -93,6 +93,7 @@ auto_scaling_configuration_policies:
         capacity:
             description:
                 - The capacity requirements of the autoscaling policy.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -145,9 +146,10 @@ auto_scaling_configuration_policies:
             description:
                 - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_enabled:
             description:
                 - Whether the autoscaling policy is enabled.
@@ -157,6 +159,7 @@ auto_scaling_configuration_policies:
         execution_schedule:
             description:
                 - The schedule for executing the autoscaling policy.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -181,10 +184,11 @@ auto_scaling_configuration_policies:
                         - "Example: `0 15 10 ? * *`"
                     returned: on success
                     type: str
-                    sample: "0 15 10 ? * *"
+                    sample: expression_example
         resource_action:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -203,6 +207,7 @@ auto_scaling_configuration_policies:
         rules:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -277,12 +282,12 @@ auto_scaling_configuration_policies:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "policy_type": "scheduled",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_enabled": true,
         "execution_schedule": {
             "type": "cron",
             "timezone": "UTC",
-            "expression": "0 15 10 ? * *"
+            "expression": "expression_example"
         },
         "resource_action": {
             "action_type": "power",

@@ -88,7 +88,7 @@ EXAMPLES = """
   oci_blockstorage_boot_volume_backup_actions:
     # required
     boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
-    destination_region: us-ashburn-1
+    destination_region: us-phoenix-1
     action: copy
 
     # optional

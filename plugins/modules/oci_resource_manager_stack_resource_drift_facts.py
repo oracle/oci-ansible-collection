@@ -61,7 +61,7 @@ EXAMPLES = """
 
     # optional
     work_request_id: "ocid1.workrequest.oc1..xxxxxxEXAMPLExxxxxx"
-    resource_drift_status: [ "$p.getValue()" ]
+    resource_drift_status: [ "resource_drift_status_example" ]
 
 """
 
@@ -103,7 +103,7 @@ stack_resource_drifts:
                   Example: `oci_core_instance`"
             returned: on success
             type: str
-            sample: oci_core_instance
+            sample: resource_type_example
         resource_drift_status:
             description:
                 - The drift status of the resource.
@@ -136,17 +136,17 @@ stack_resource_drifts:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "stack_id": "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_name": "resource_name_example",
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "resource_type": "oci_core_instance",
+        "resource_type": "resource_type_example",
         "resource_drift_status": "NOT_CHECKED",
         "actual_properties": {},
         "expected_properties": {},
-        "time_drift_checked": "2020-01-25T21:10:29.600Z"
+        "time_drift_checked": "2013-10-20T19:20:30+01:00"
     }]
 """
 

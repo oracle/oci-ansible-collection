@@ -105,17 +105,17 @@ EXAMPLES = """
 - name: Create database_tools_private_endpoint
   oci_database_tools_private_endpoint:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
-    display_name: MyPE
-    endpoint_service_id: ocid1.dbtoolsendpointservice.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q
-    subnet_id: ocid1.subnet.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    endpoint_service_id: "ocid1.endpointservice.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    description: Private Endpoint for mySubnet
-    private_endpoint_ip: 10.0.0.4
-    nsg_ids: [ "ocid1.networksecuritygroup.oc1.phx.exampleamuwsqopnr4rxtz3ejobj4suzabgosma3rspaaoufy4d35droem5q" ]
+    description: description_example
+    private_endpoint_ip: private_endpoint_ip_example
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update database_tools_private_endpoint
   oci_database_tools_private_endpoint:
@@ -125,21 +125,21 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    display_name: MyPE
-    description: Private Endpoint for mySubnet
-    nsg_ids: [ "ocid1.networksecuritygroup.oc1.phx.exampleamuwsqopnr4rxtz3ejobj4suzabgosma3rspaaoufy4d35droem5q" ]
+    display_name: display_name_example
+    description: description_example
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update database_tools_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_tools_private_endpoint:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
-    display_name: MyPE
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    description: Private Endpoint for mySubnet
-    nsg_ids: [ "ocid1.networksecuritygroup.oc1.phx.exampleamuwsqopnr4rxtz3ejobj4suzabgosma3rspaaoufy4d35droem5q" ]
+    description: description_example
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Delete database_tools_private_endpoint
   oci_database_tools_private_endpoint:
@@ -150,8 +150,8 @@ EXAMPLES = """
 - name: Delete database_tools_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_tools_private_endpoint:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
-    display_name: MyPE
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

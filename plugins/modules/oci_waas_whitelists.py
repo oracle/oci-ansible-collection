@@ -78,8 +78,8 @@ EXAMPLES = """
       name: name_example
 
       # optional
-      addresses: [ "null" ]
-      address_lists: [ "null" ]
+      addresses: [ "addresses_example" ]
+      address_lists: [ "address_lists_example" ]
 
 """
 

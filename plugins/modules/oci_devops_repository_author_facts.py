@@ -23,18 +23,18 @@ module: oci_devops_repository_author_facts
 short_description: Fetches details about one or multiple RepositoryAuthor resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple RepositoryAuthor resources in Oracle Cloud Infrastructure
-    - Get a list of all the authors
+    - Retrieve a list of all the authors.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     ref_name:
         description:
-            - A filter to return only resources that match the given Ref name.
+            - A filter to return only resources that match the given reference name.
         type: str
     sort_order:
         description:
@@ -67,7 +67,7 @@ repository_authors:
     contains:
         author_name:
             description:
-                - Author name
+                - Author name.
             returned: on success
             type: str
             sample: author_name_example

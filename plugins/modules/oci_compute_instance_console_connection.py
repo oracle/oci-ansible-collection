@@ -84,7 +84,7 @@ EXAMPLES = """
 - name: Create instance_console_connection
   oci_compute_instance_console_connection:
     # required
-    instance_id: ocid1.instance.oc1.phx.unique_ID
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
     # optional

@@ -424,7 +424,7 @@ EXAMPLES = """
     wait_criteria:
       # required
       wait_type: ABSOLUTE_WAIT
-      wait_duration: PT10M5S
+      wait_duration: wait_duration_example
 
 - name: Create deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
   oci_devops_deploy_stage:
@@ -443,7 +443,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    kubernetes_manifest_deploy_artifact_ids: [ "null" ]
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
     namespace: namespace_example
     rollback_policy:
       # required
@@ -470,10 +470,10 @@ EXAMPLES = """
       policy_type: NO_STAGE_ROLLBACK_POLICY
     blue_backend_ips:
       # optional
-      items: [ "null" ]
+      items: [ "items_example" ]
     green_backend_ips:
       # optional
-      items: [ "null" ]
+      items: [ "items_example" ]
     traffic_shift_target: traffic_shift_target_example
     rollout_policy:
       # required
@@ -525,7 +525,7 @@ EXAMPLES = """
       backend_port: 56
     compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_artifact_ids: [ "null" ]
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     failure_policy:
       # required
       policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
@@ -612,7 +612,7 @@ EXAMPLES = """
     wait_criteria:
       # required
       wait_type: ABSOLUTE_WAIT
-      wait_duration: PT10M5S
+      wait_duration: wait_duration_example
 
 - name: Update deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
   oci_devops_deploy_stage:
@@ -630,7 +630,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    kubernetes_manifest_deploy_artifact_ids: [ "null" ]
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
     namespace: namespace_example
     rollback_policy:
       # required
@@ -656,10 +656,10 @@ EXAMPLES = """
       policy_type: NO_STAGE_ROLLBACK_POLICY
     blue_backend_ips:
       # optional
-      items: [ "null" ]
+      items: [ "items_example" ]
     green_backend_ips:
       # optional
-      items: [ "null" ]
+      items: [ "items_example" ]
     traffic_shift_target: traffic_shift_target_example
     rollout_policy:
       # required
@@ -710,7 +710,7 @@ EXAMPLES = """
       backend_port: 56
     compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_artifact_ids: [ "null" ]
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     failure_policy:
       # required
       policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
@@ -795,7 +795,7 @@ EXAMPLES = """
     wait_criteria:
       # required
       wait_type: ABSOLUTE_WAIT
-      wait_duration: PT10M5S
+      wait_duration: wait_duration_example
 
 - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_DEPLOYMENT
   oci_devops_deploy_stage:
@@ -813,7 +813,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    kubernetes_manifest_deploy_artifact_ids: [ "null" ]
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
     namespace: namespace_example
     rollback_policy:
       # required
@@ -839,10 +839,10 @@ EXAMPLES = """
       policy_type: NO_STAGE_ROLLBACK_POLICY
     blue_backend_ips:
       # optional
-      items: [ "null" ]
+      items: [ "items_example" ]
     green_backend_ips:
       # optional
-      items: [ "null" ]
+      items: [ "items_example" ]
     traffic_shift_target: traffic_shift_target_example
     rollout_policy:
       # required
@@ -895,7 +895,7 @@ EXAMPLES = """
       backend_port: 56
     compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_artifact_ids: [ "null" ]
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     failure_policy:
       # required
       policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
@@ -1317,7 +1317,7 @@ deploy_stage:
                           be up to 2 days.
                     returned: on success
                     type: str
-                    sample: PT10M5S
+                    sample: wait_duration_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
@@ -1385,7 +1385,7 @@ deploy_stage:
         "namespace": "namespace_example",
         "wait_criteria": {
             "wait_type": "ABSOLUTE_WAIT",
-            "wait_duration": "PT10M5S"
+            "wait_duration": "wait_duration_example"
         }
     }
 """

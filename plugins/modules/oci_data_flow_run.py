@@ -174,22 +174,22 @@ EXAMPLES = """
 - name: Create run
   oci_data_flow_run:
     # required
-    compartment_id: compartmentId
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    application_id: applicationId
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
     archive_uri: archive_uri_example
-    arguments: [ "oci://.../WordCount.txt" ]
+    arguments: [ "arguments_example" ]
     configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: test_wordcount_run
-    driver_shape: VM.Standard2.1
-    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
-    executor_shape: VM.Standard2.1
+    display_name: display_name_example
+    driver_shape: driver_shape_example
+    execute: execute_example
+    executor_shape: executor_shape_example
     freeform_tags: {'Department': 'Finance'}
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
-    num_executors: 1
+    num_executors: 56
     parameters:
     - # required
       name: name_example
@@ -209,8 +209,8 @@ EXAMPLES = """
 - name: Update run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_run:
     # required
-    compartment_id: compartmentId
-    display_name: test_wordcount_run
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -481,14 +481,14 @@ run:
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         total_o_cpu:
             description:
                 - The total number of oCPU requested by the run.
@@ -540,8 +540,8 @@ run:
         "private_endpoint_subnet_id": "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx",
         "run_duration_in_milliseconds": 56,
         "spark_version": "spark_version_example",
-        "time_created": "2018-04-03T21:10:29.600Z",
-        "time_updated": "2018-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "total_o_cpu": 56,
         "warehouse_bucket_uri": "warehouse_bucket_uri_example"
     }

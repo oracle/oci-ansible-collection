@@ -73,9 +73,9 @@ EXAMPLES = """
     is_enabled: true
 
     # optional
-    allowed_rate_per_address: 1
-    max_delayed_count_per_address: 10
-    block_response_code: 503
+    allowed_rate_per_address: 56
+    max_delayed_count_per_address: 56
+    block_response_code: 56
 
 """
 

@@ -62,7 +62,8 @@ taxes:
                 - Unique code for the tax.
             returned: on success
             type: str
-            sample: "example_code"
+            sample: "null"
+
         name:
             description:
                 - Name of the tax code.
@@ -82,7 +83,7 @@ taxes:
             type: str
             sample: url_example
     sample: [{
-        "code": UNKNOWN TYPE - str,
+        "code": null,
         "name": "name_example",
         "country": "country_example",
         "url": "url_example"

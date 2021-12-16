@@ -76,7 +76,7 @@ EXAMPLES = """
     blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
 
@@ -100,7 +100,7 @@ blockchain_platform_osns:
                 - Availability Domain of OSN
             returned: on success
             type: str
-            sample: ad_example
+            sample: Uocm:PHX-AD-1
         ocpu_allocation_param:
             description:
                 - ""
@@ -121,7 +121,7 @@ blockchain_platform_osns:
             sample: ACTIVE
     sample: [{
         "osn_key": "osn_key_example",
-        "ad": "ad_example",
+        "ad": "Uocm:PHX-AD-1",
         "ocpu_allocation_param": {
             "ocpu_allocation_number": 3.4
         },

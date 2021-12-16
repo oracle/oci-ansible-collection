@@ -131,7 +131,7 @@ EXAMPLES = """
     data_asset_key: data_asset_key_example
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "key" ]
 
 - name: List data_assets
   oci_data_catalog_data_asset_facts:
@@ -139,7 +139,7 @@ EXAMPLES = """
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "$p.getValue()" ]
+    fields: [ "key" ]
     display_name: display_name_example
     display_name_contains: display_name_contains_example
     lifecycle_state: CREATING
@@ -210,28 +210,32 @@ data_assets:
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-03-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The last time that any change was made to the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_harvested:
             description:
                 - The last time that a harvest was performed on the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         created_by_id:
             description:
                 - OCID of the user who created the data asset.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the data asset.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
@@ -244,6 +248,7 @@ data_assets:
         custom_property_members:
             description:
                 - The list of customized properties along with the values for this object
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -334,6 +339,7 @@ data_assets:
         data_selector_patterns:
             description:
                 - The list of data selector patterns used in the harvest for this data asset to derive logical entities.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -368,7 +374,7 @@ data_assets:
                           Example: `2019-03-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-03-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 expression:
                     description:
                         - The expression used in the pattern that may include qualifiers.
@@ -388,6 +394,7 @@ data_assets:
                   values are maps of property name to property value. Every property is contained inside of a category. Most
                   data assets have required properties within the \\"default\\" category.
                   Example: `{\\"properties\\": { \\"default\\": { \\"host\\": \\"host1\\", \\"port\\": \\"1521\\", \\"database\\": \\"orcl\\"}}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -399,7 +406,7 @@ data_assets:
         "external_key": "external_key_example",
         "type_key": "type_key_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2019-03-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "time_harvested": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
@@ -426,7 +433,7 @@ data_assets:
             "display_name": "display_name_example",
             "description": "description_example",
             "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
-            "time_created": "2019-03-25T21:10:29.600Z",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "expression": "expression_example",
             "lifecycle_state": "CREATING"
         }],

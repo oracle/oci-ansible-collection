@@ -115,6 +115,7 @@ quotas:
         statements:
             description:
                 - An array of one or more quota statements written in the declarative quota statement language.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -130,7 +131,7 @@ quotas:
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The quota's current state. After creating a quota, make sure its `lifecycleState` is set to
@@ -160,7 +161,7 @@ quotas:
         "name": "name_example",
         "statements": [],
         "description": "description_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

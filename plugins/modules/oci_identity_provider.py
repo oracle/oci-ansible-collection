@@ -247,14 +247,14 @@ identity_provider:
                 - "Example: `IDCS`"
             returned: on success
             type: str
-            sample: IDCS
+            sample: product_type_example
         time_created:
             description:
                 - Date and time the `IdentityProvider` was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state. After creating an `IdentityProvider`, make sure its
@@ -310,7 +310,7 @@ identity_provider:
                   to validate the SAML2 token.
             returned: on success
             type: str
-            sample: signing_certificate_example
+            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         redirect_url:
             description:
                 - The URL to redirect federated users to for authentication with the
@@ -330,8 +330,8 @@ identity_provider:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "product_type": "IDCS",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "product_type": "product_type_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "protocol": "SAML2",
@@ -339,7 +339,7 @@ identity_provider:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "metadata_url": "metadata_url_example",
         "metadata": "metadata_example",
-        "signing_certificate": "signing_certificate_example",
+        "signing_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----",
         "redirect_url": "redirect_url_example",
         "freeform_attributes": {}
     }

@@ -68,7 +68,7 @@ wrapping_key:
                 - "Example: `ENABLED`"
             returned: on success
             type: str
-            sample: ENABLED
+            sample: CREATING
         public_key:
             description:
                 - The public key, in PEM format, to use to wrap the key material before importing it.
@@ -81,7 +81,7 @@ wrapping_key:
                 - "Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
                 - The OCID of the vault that contains this key.
@@ -91,9 +91,9 @@ wrapping_key:
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "ENABLED",
+        "lifecycle_state": "CREATING",
         "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
-        "time_created": "2018-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

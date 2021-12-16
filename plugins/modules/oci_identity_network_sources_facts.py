@@ -94,7 +94,7 @@ EXAMPLES = """
     name: name_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
 
 """
 
@@ -169,17 +169,19 @@ network_sources:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The network source object's current state. After creating a network source, make sure its `lifecycleState` changes from CREATING to
                   ACTIVE before using it.
+                - Returned for get operation
             returned: on success
             type: str
             sample: CREATING
         inactive_status:
             description:
                 - The detailed status of INACTIVE lifecycleState.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -210,7 +212,7 @@ network_sources:
             "ip_ranges": []
         }],
         "services": [],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "freeform_tags": {'Department': 'Finance'},

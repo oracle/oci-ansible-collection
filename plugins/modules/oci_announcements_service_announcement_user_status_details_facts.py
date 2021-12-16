@@ -69,11 +69,11 @@ announcement_user_status_details:
                   Example: `2019-01-01T17:43:01.389+0000`"
             returned: on success
             type: str
-            sample: "2019-01-01T17:43:01.389+0000"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "user_status_announcement_id": "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_acknowledged": "2019-01-01T17:43:01.389+0000"
+        "time_acknowledged": "2013-10-20T19:20:30+01:00"
     }
 """
 

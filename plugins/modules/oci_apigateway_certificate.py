@@ -103,7 +103,7 @@ EXAMPLES = """
     certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     intermediate_certificates: intermediate_certificates_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -114,14 +114,14 @@ EXAMPLES = """
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_certificate:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -137,7 +137,7 @@ EXAMPLES = """
 - name: Delete certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_certificate:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -163,7 +163,7 @@ certificate:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -241,7 +241,7 @@ certificate:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subject_names": [],
         "time_not_valid_after": "2013-10-20T19:20:30+01:00",

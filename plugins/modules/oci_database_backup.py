@@ -68,8 +68,8 @@ EXAMPLES = """
 - name: Create backup
   oci_database_backup:
     # required
-    database_id: ocid1.database.oc1.phx.unique_ID
-    display_name: Monthly Backup
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
 - name: Delete backup
   oci_database_backup:
@@ -80,7 +80,7 @@ EXAMPLES = """
 - name: Delete backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup:
     # required
-    display_name: Monthly Backup
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

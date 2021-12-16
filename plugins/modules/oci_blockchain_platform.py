@@ -24,7 +24,7 @@ short_description: Manage a BlockchainPlatform resource in Oracle Cloud Infrastr
 description:
     - This module allows the user to create, update and delete a BlockchainPlatform resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Blockchain Platform.
-    - "This resource has the following action operations in the M(oracle.oci.oci_blockchain_platform_actions) module: change_compartment, start, stop."
+    - "This resource has the following action operations in the M(oracle.oci.oci_blockchain_platform_actions) module: change_compartment, start, stop, upgrade."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -61,6 +61,10 @@ options:
         description:
             - Bring your own license
         type: bool
+    platform_version:
+        description:
+            - Platform version
+        type: str
     idcs_access_token:
         description:
             - IDCS access token with Identity Domain Administrator role
@@ -160,6 +164,7 @@ EXAMPLES = """
     # optional
     description: description_example
     is_byol: true
+    platform_version: platform_version_example
     federated_user_id: "ocid1.federateduser.oc1..xxxxxxEXAMPLExxxxxx"
     ca_cert_archive_text: ca_cert_archive_text_example
     freeform_tags: {'Department': 'Finance'}
@@ -174,7 +179,7 @@ EXAMPLES = """
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    storage_size_in_tbs: 1.2
+    storage_size_in_tbs: 3.4
     replicas:
       # optional
       proxy_count: 56
@@ -193,7 +198,7 @@ EXAMPLES = """
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    storage_size_in_tbs: 1.2
+    storage_size_in_tbs: 3.4
     replicas:
       # optional
       proxy_count: 56
@@ -266,6 +271,12 @@ blockchain_platform:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        platform_version:
+            description:
+                - Platform Version
+            returned: on success
+            type: str
+            sample: platform_version_example
         service_version:
             description:
                 - The version of the Platform Instance.
@@ -362,7 +373,7 @@ blockchain_platform:
                                 - Availability Domain of OSN
                             returned: on success
                             type: str
-                            sample: ad_example
+                            sample: Uocm:PHX-AD-1
                         ocpu_allocation_param:
                             description:
                                 - ""
@@ -428,7 +439,7 @@ blockchain_platform:
                                 - Availability Domain of peer
                             returned: on success
                             type: str
-                            sample: ad_example
+                            sample: Uocm:PHX-AD-1
                         lifecycle_state:
                             description:
                                 - The current state of the peer.
@@ -505,6 +516,7 @@ blockchain_platform:
         "is_byol": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "platform_version": "platform_version_example",
         "service_version": "service_version_example",
         "platform_role": "FOUNDER",
         "compute_shape": "STANDARD",
@@ -520,7 +532,7 @@ blockchain_platform:
         "component_details": {
             "osns": [{
                 "osn_key": "osn_key_example",
-                "ad": "ad_example",
+                "ad": "Uocm:PHX-AD-1",
                 "ocpu_allocation_param": {
                     "ocpu_allocation_number": 3.4
                 },
@@ -534,7 +546,7 @@ blockchain_platform:
                     "ocpu_allocation_number": 3.4
                 },
                 "host": "host_example",
-                "ad": "ad_example",
+                "ad": "Uocm:PHX-AD-1",
                 "lifecycle_state": "ACTIVE"
             }]
         },
@@ -697,6 +709,7 @@ def main():
             platform_role=dict(type="str"),
             compute_shape=dict(type="str"),
             is_byol=dict(type="bool"),
+            platform_version=dict(type="str"),
             idcs_access_token=dict(type="str", no_log=True),
             federated_user_id=dict(type="str"),
             ca_cert_archive_text=dict(type="str"),

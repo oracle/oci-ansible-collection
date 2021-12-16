@@ -83,7 +83,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: TIMECREATED
     os_family: LINUX
@@ -136,18 +136,21 @@ managed_instances:
         os_name:
             description:
                 - Operating System Name
+                - Returned for get operation
             returned: on success
             type: str
             sample: os_name_example
         os_version:
             description:
                 - Operating System Version
+                - Returned for get operation
             returned: on success
             type: str
             sample: os_version_example
         os_kernel_version:
             description:
                 - Operating System Kernel Version
+                - Returned for get operation
             returned: on success
             type: str
             sample: os_kernel_version_example
@@ -166,6 +169,7 @@ managed_instances:
         parent_software_source:
             description:
                 - the parent (base) Software Source attached to the Managed Instance
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -184,6 +188,7 @@ managed_instances:
         child_software_sources:
             description:
                 - list of child Software Sources attached to the Managed Instance
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -203,6 +208,7 @@ managed_instances:
             description:
                 - The ids of the managed instance groups of which this instance is a
                   member.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -233,24 +239,28 @@ managed_instances:
         notification_topic_id:
             description:
                 - OCID of the ONS topic used to send notification to users
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx"
         ksplice_effective_kernel_version:
             description:
                 - The ksplice effective kernel version
+                - Returned for get operation
             returned: on success
             type: str
             sample: ksplice_effective_kernel_version_example
         is_data_collection_authorized:
             description:
                 - True if user allow data collection for this instance
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         autonomous:
             description:
                 - if present, indicates the Managed Instance is an autonomous instance. Holds all the Autonomous specific information
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -263,36 +273,42 @@ managed_instances:
         security_updates_available:
             description:
                 - Number of security type updates available to be installed
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         bug_updates_available:
             description:
                 - Number of bug fix type updates available to be installed
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         enhancement_updates_available:
             description:
                 - Number of enhancement type updates available to be installed
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         other_updates_available:
             description:
                 - Number of non-classified updates available to be installed
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         scheduled_job_count:
             description:
                 - Number of scheduled jobs associated with this instance
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         work_request_count:
             description:
                 - Number of work requests associated with this instance
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56

@@ -65,23 +65,23 @@ EXAMPLES = """
 - name: Create hostname
   oci_loadbalancer_hostname:
     # required
-    name: example_hostname_001
-    hostname: app.example.com
+    name: name_example
+    hostname: hostname_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update hostname
   oci_loadbalancer_hostname:
     # required
-    name: example_hostname_001
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    hostname: app.example.com
+    hostname: hostname_example
 
 - name: Delete hostname
   oci_loadbalancer_hostname:
     # required
-    name: example_hostname_001
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -101,7 +101,7 @@ hostname:
                 - "Example: `example_hostname_001`"
             returned: on success
             type: str
-            sample: example_hostname_001
+            sample: name_example
         hostname:
             description:
                 - A virtual hostname. For more information about virtual hostname string construction, see
@@ -109,10 +109,10 @@ hostname:
                 - "Example: `app.example.com`"
             returned: on success
             type: str
-            sample: app.example.com
+            sample: hostname_example
     sample: {
-        "name": "example_hostname_001",
-        "hostname": "app.example.com"
+        "name": "name_example",
+        "hostname": "hostname_example"
     }
 """
 

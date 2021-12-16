@@ -190,6 +190,7 @@ unified_agent_configurations:
         service_configuration:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -430,6 +431,7 @@ unified_agent_configurations:
         group_association:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -442,6 +444,7 @@ unified_agent_configurations:
         configuration_type:
             description:
                 - Type of Unified Agent service configuration.
+                - Returned for list operation
             returned: on success
             type: str
             sample: LOGGING

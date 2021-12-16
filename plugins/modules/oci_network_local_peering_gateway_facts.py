@@ -112,7 +112,7 @@ local_peering_gateways:
                 - "Example: `false`"
             returned: on success
             type: bool
-            sample: false
+            sample: true
         lifecycle_state:
             description:
                 - The LPG's current lifecycle state.
@@ -127,7 +127,7 @@ local_peering_gateways:
                 - "Example: `192.168.0.0/16`, or if aggregated with `172.16.0.0/24` then `128.0.0.0/1`"
             returned: on success
             type: str
-            sample: 192.168.0.0/16
+            sample: peer_advertised_cidr_example
         peer_advertised_cidr_details:
             description:
                 - The specific ranges of IP addresses available on or via the VCN at the other
@@ -172,7 +172,7 @@ local_peering_gateways:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN that uses the LPG.
@@ -185,15 +185,15 @@ local_peering_gateways:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_cross_tenancy_peering": false,
+        "is_cross_tenancy_peering": true,
         "lifecycle_state": "PROVISIONING",
-        "peer_advertised_cidr": "192.168.0.0/16",
+        "peer_advertised_cidr": "peer_advertised_cidr_example",
         "peer_advertised_cidr_details": [],
         "peering_status": "INVALID",
         "peering_status_details": "peering_status_details_example",
         "peer_id": "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx",
         "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """

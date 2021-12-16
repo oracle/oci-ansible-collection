@@ -66,9 +66,9 @@ EXAMPLES = """
 - name: Update generic_artifact_content
   oci_generic_artifacts_content_generic_artifact_content:
     # required
-    repository_id: "ocid1.repository.oc1..exampleuniqueID"
-    artifact_path: project01/my-web-app/artifact-abc
-    version: 1.1.2
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+    artifact_path: artifact_path_example
+    version: version_example
 
     # optional
     generic_artifact_content_file: model.zip

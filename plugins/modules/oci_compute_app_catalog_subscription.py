@@ -82,7 +82,7 @@ EXAMPLES = """
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     listing_resource_version: listing_resource_version_example
     oracle_terms_of_use_link: oracle_terms_of_use_link_example
-    time_retrieved: 2018-03-20T12:32:53.532Z
+    time_retrieved: time_retrieved_example
     signature: signature_example
 
     # optional
@@ -154,7 +154,7 @@ app_catalog_subscription:
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
             type: str
-            sample: "2018-03-20T12:32:53.532Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "publisher_name": "publisher_name_example",
         "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
@@ -163,7 +163,7 @@ app_catalog_subscription:
         "display_name": "display_name_example",
         "summary": "summary_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2018-03-20T12:32:53.532Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

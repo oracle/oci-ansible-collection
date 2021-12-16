@@ -23,14 +23,14 @@ module: oci_devops_connection_facts
 short_description: Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
-    - Returns a list of Connections.
+    - Returns a list of connections.
     - If I(connection_id) is specified, the details of a single Connection will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     connection_id:
         description:
-            - unique Connection identifier
+            - Unique connection identifier.
             - Required to get a specific connection.
         type: str
         aliases: ["id"]
@@ -44,7 +44,7 @@ options:
         type: str
     lifecycle_state:
         description:
-            - A filter to return only Connections that matches the given lifecycleState
+            - A filter to return only connections that matches the given lifecycle state.
         type: str
         choices:
             - "ACTIVE"
@@ -55,7 +55,7 @@ options:
         aliases: ["name"]
     connection_type:
         description:
-            - A filter to return only resources that match the connection type given.
+            - A filter to return only resources that match the given connection type.
         type: str
         choices:
             - "GITHUB_ACCESS_TOKEN"
@@ -90,9 +90,9 @@ EXAMPLES = """
     # optional
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     display_name: display_name_example
-    connection_type: connection_type_example
+    connection_type: GITHUB_ACCESS_TOKEN
     sort_order: ASC
     sort_by: timeCreated
 
@@ -107,31 +107,31 @@ connections:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
-                - Optional description about the connection
+                - Optional description about the connection.
             returned: on success
             type: str
             sample: description_example
         display_name:
             description:
-                - Connection identifier which can be renamed and is not necessarily unique
+                - Connection display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment Identifier
+                - The OCID of the compartment containing the connection.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id:
             description:
-                - Project Identifier
+                - The OCID of the DevOps project.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
@@ -143,19 +143,19 @@ connections:
             sample: GITHUB_ACCESS_TOKEN
         time_created:
             description:
-                - The time the Connection was created. An RFC3339 formatted datetime string
+                - The time the connection was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time at which the Connection was updated. An RFC3339 formatted datetime string
+                - The time the connection was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the Connection.
+                - The current state of the connection.
             returned: on success
             type: str
             sample: ACTIVE
@@ -183,7 +183,8 @@ connections:
             sample: {}
         access_token:
             description:
-                - OCID of personal access token saved in secret store
+                - The OCID of personal access token saved in secret store.
+                - Returned for get operation
             returned: on success
             type: str
             sample: access_token_example

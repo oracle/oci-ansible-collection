@@ -68,7 +68,7 @@ EXAMPLES = """
     # optional
     time_observed_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_observed_less_than: 2013-10-20T19:20:30+01:00
-    waf_feature: [ "$p.getValue()" ]
+    waf_feature: [ "PROTECTION_RULES" ]
 
 """
 
@@ -84,13 +84,13 @@ waf_blocked_requests:
                 - The date and time the blocked requests were observed, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_range_in_seconds:
             description:
                 - The number of seconds the data covers.
             returned: on success
             type: int
-            sample: 300
+            sample: 56
         waf_feature:
             description:
                 - The specific Web Application Firewall feature that blocked the requests, such as JavaScript Challenge or Access Control.
@@ -104,8 +104,8 @@ waf_blocked_requests:
             type: int
             sample: 56
     sample: [{
-        "time_observed": "2018-11-16T21:10:29Z",
-        "time_range_in_seconds": 300,
+        "time_observed": "2013-10-20T19:20:30+01:00",
+        "time_range_in_seconds": 56,
         "waf_feature": "PROTECTION_RULES",
         "count": 56
     }]

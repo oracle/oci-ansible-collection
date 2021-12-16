@@ -114,6 +114,7 @@ templates:
             description:
                 - Unique identifier for the category where the template is located.
                   Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
@@ -133,6 +134,7 @@ templates:
             description:
                 - Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded. Avoid
                   entering confidential information.
+                - Returned for get operation
             returned: on success
             type: str
             sample: long_description_example
@@ -149,10 +151,11 @@ templates:
                   Example: `2020-11-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-11-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         template_config_source:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -173,6 +176,7 @@ templates:
                 - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                   Example: `{\\"Department\\": \\"Finance\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -181,6 +185,7 @@ templates:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                   Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -192,7 +197,7 @@ templates:
         "description": "description_example",
         "long_description": "long_description_example",
         "is_free_tier": true,
-        "time_created": "2020-11-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "template_config_source": {
             "template_config_source_type": "ZIP_UPLOAD"
         },

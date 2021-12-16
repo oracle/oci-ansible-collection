@@ -84,13 +84,13 @@ public_vantage_points:
                 - Unique name that can be edited. The name should not contain any confidential information.
             returned: on success
             type: str
-            sample: exampleName
+            sample: display_name_example
         name:
             description:
                 - Unique permanent name of the vantage point.
             returned: on success
             type: str
-            sample: ap-seol
+            sample: name_example
         geo:
             description:
                 - ""
@@ -103,47 +103,47 @@ public_vantage_points:
                           Only included for locations in the US or Canada. For a list of codes, see Country Codes.
                     returned: on success
                     type: str
-                    sample: kr
+                    sample: admin_div_code_example
                 city_name:
                     description:
                         - Common English-language name for the city.
                     returned: on success
                     type: str
-                    sample: seoul
+                    sample: city_name_example
                 country_code:
                     description:
                         - The ISO 3166-1 alpha-2 country code. For a list of codes, see Country Codes.
                     returned: on success
                     type: str
-                    sample: kr
+                    sample: country_code_example
                 country_name:
                     description:
                         - The common English-language name for the country.
                     returned: on success
                     type: str
-                    sample: South Korea
+                    sample: country_name_example
                 latitude:
                     description:
                         - Degrees north of the Equator.
                     returned: on success
                     type: float
-                    sample: 37.5665
+                    sample: 1.2
                 longitude:
                     description:
                         - Degrees east of the prime meridian.
                     returned: on success
                     type: float
-                    sample: 126.978
+                    sample: 1.2
     sample: [{
-        "display_name": "exampleName",
-        "name": "ap-seol",
+        "display_name": "display_name_example",
+        "name": "name_example",
         "geo": {
-            "admin_div_code": "kr",
-            "city_name": "seoul",
-            "country_code": "kr",
-            "country_name": "South Korea",
-            "latitude": 37.5665,
-            "longitude": 126.978
+            "admin_div_code": "admin_div_code_example",
+            "city_name": "city_name_example",
+            "country_code": "country_code_example",
+            "country_name": "country_name_example",
+            "latitude": 1.2,
+            "longitude": 1.2
         }
     }]
 """

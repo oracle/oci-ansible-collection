@@ -140,7 +140,7 @@ dedicated_vm_host:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         total_ocpus:
             description:
                 - The total OCPUs of the dedicated VM host.
@@ -175,7 +175,7 @@ dedicated_vm_host:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "total_ocpus": 3.4,
         "remaining_ocpus": 3.4,
         "total_memory_in_gbs": 3.4,

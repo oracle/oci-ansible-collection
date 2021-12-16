@@ -122,10 +122,10 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    exadata_type: [ "$p.getValue()" ]
-    cdb_name: [ "$p.getValue()" ]
-    host_name: [ "$p.getValue()" ]
-    percentile: 56
+    exadata_type: [ "exadata_type_example" ]
+    cdb_name: [ "cdb_name_example" ]
+    host_name: [ "host_name_example" ]
+    percentile: 1
     sort_order: ASC
     sort_by: utilizationPercent
 

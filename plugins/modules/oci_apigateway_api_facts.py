@@ -89,8 +89,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
-    lifecycle_state: ACTIVE
+    display_name: display_name_example
+    lifecycle_state: CREATING
     sort_order: ASC
     sort_by: timeCreated
 
@@ -116,7 +116,7 @@ apis:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -201,7 +201,7 @@ apis:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

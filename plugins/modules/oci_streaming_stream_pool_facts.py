@@ -87,7 +87,7 @@ EXAMPLES = """
     name: name_example
     sort_by: NAME
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
 
 """
 
@@ -103,19 +103,19 @@ stream_pools:
                 - The OCID of the stream pool.
             returned: on success
             type: str
-            sample: ocid1.streampool.realm.region.mnopqr789
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment OCID that the pool belongs to.
             returned: on success
             type: str
-            sample: "ocid1.compartment.oc1..aaaaaaaa2byuam5ewxzrcs2iqzh7okx84jae6j4uhkih5wdbrkkwuxv3qgpa"
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the stream pool.
             returned: on success
             type: str
-            sample: MyStreamPool
+            sample: name_example
         lifecycle_state:
             description:
                 - The current state of the stream pool.
@@ -125,6 +125,7 @@ stream_pools:
         lifecycle_state_details:
             description:
                 - Any additional details about the current state of the stream.
+                - Returned for get operation
             returned: on success
             type: str
             sample: lifecycle_state_details_example
@@ -134,10 +135,11 @@ stream_pools:
                 - "Example: `2018-04-20T00:00:07.405Z`"
             returned: on success
             type: str
-            sample: "2018-04-20T00:00:07.405Z"
+            sample: "2013-10-20T19:20:30+01:00"
         kafka_settings:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -168,6 +170,7 @@ stream_pools:
         custom_encryption_key:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -197,12 +200,14 @@ stream_pools:
                   If the stream pool is private, the FQDN is customized and can only be accessed from inside the associated subnetId, otherwise the FQDN is
                   publicly resolvable.
                   Depending on which protocol you attempt to use, you need to either prepend https or append the Kafka port.
+                - Returned for get operation
             returned: on success
             type: str
             sample: endpoint_fqdn_example
         private_endpoint_settings:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -212,14 +217,14 @@ stream_pools:
                           Trying to access the streams from another network location will result in an error.
                     returned: on success
                     type: str
-                    sample: ocid1.subnet.realm.region.zxcvbn432765
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 private_endpoint_ip:
                     description:
                         - "The private IP associated with the stream pool in the associated subnetId.
                           The stream pool's FQDN resolves to that IP and should be used - instead of the private IP - in order to not trigger any TLS issues."
                     returned: on success
                     type: str
-                    sample: 10.0.0.5
+                    sample: private_endpoint_ip_example
                 nsg_ids:
                     description:
                         - The optional list of network security groups that are associated with the private endpoint of the stream pool.
@@ -244,12 +249,12 @@ stream_pools:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.streampool.realm.region.mnopqr789",
-        "compartment_id": "ocid1.compartment.oc1..aaaaaaaa2byuam5ewxzrcs2iqzh7okx84jae6j4uhkih5wdbrkkwuxv3qgpa",
-        "name": "MyStreamPool",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
         "lifecycle_state": "CREATING",
         "lifecycle_state_details": "lifecycle_state_details_example",
-        "time_created": "2018-04-20T00:00:07.405Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "kafka_settings": {
             "bootstrap_servers": "bootstrap_servers_example",
             "auto_create_topics_enable": true,
@@ -263,8 +268,8 @@ stream_pools:
         "is_private": true,
         "endpoint_fqdn": "endpoint_fqdn_example",
         "private_endpoint_settings": {
-            "subnet_id": "ocid1.subnet.realm.region.zxcvbn432765",
-            "private_endpoint_ip": "10.0.0.5",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "private_endpoint_ip": "private_endpoint_ip_example",
             "nsg_ids": []
         },
         "freeform_tags": {'Department': 'Finance'},

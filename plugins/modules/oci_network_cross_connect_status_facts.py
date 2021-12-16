@@ -69,7 +69,7 @@ cross_connect_status:
                 - "Example: `14.0`"
             returned: on success
             type: float
-            sample: 14.0
+            sample: 3.4
         light_level_indicator:
             description:
                 - Status indicator corresponding to the light level.
@@ -103,7 +103,7 @@ cross_connect_status:
     sample: {
         "cross_connect_id": "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx",
         "interface_state": "UP",
-        "light_level_ind_bm": 14.0,
+        "light_level_ind_bm": 3.4,
         "light_level_indicator": "NO_LIGHT",
         "encryption_status": "UP",
         "light_levels_in_d_bm": []

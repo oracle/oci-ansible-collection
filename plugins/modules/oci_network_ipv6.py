@@ -94,7 +94,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    ip_address: "2001:DB8::"
+    ip_address: ip_address_example
 
 - name: Update ipv6
   oci_network_ipv6:
@@ -182,7 +182,7 @@ ipv6:
                 - "Example: `2001:0db8:0123:1111:abcd:ef01:2345:6789`"
             returned: on success
             type: str
-            sample: 2001:0db8:0123:1111:abcd:ef01:2345:6789
+            sample: ip_address_example
         lifecycle_state:
             description:
                 - The IPv6's current state.
@@ -201,7 +201,7 @@ ipv6:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC the IPv6 is assigned to.
@@ -215,10 +215,10 @@ ipv6:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "ip_address": "2001:0db8:0123:1111:abcd:ef01:2345:6789",
+        "ip_address": "ip_address_example",
         "lifecycle_state": "PROVISIONING",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vnic_id": "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

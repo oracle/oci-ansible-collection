@@ -101,7 +101,7 @@ EXAMPLES = """
     availability_domain: Uocm:PHX-AD-1
 
     # optional
-    display_name: My resource
+    display_name: display_name_example
     export_set_id: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: CREATING
     sort_by: TIMECREATED
@@ -137,7 +137,7 @@ mount_targets:
                 - "Example: `My mount target`"
             returned: on success
             type: str
-            sample: My mount target
+            sample: display_name_example
         export_set_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated export set. Controls what file
@@ -155,6 +155,7 @@ mount_targets:
         lifecycle_details:
             description:
                 - Additional information about the current 'lifecycleState'.
+                - Returned for get operation
             returned: on success
             type: str
             sample: lifecycle_details_example
@@ -193,7 +194,7 @@ mount_targets:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair
@@ -214,7 +215,7 @@ mount_targets:
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My mount target",
+        "display_name": "display_name_example",
         "export_set_id": "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_details": "lifecycle_details_example",
@@ -222,7 +223,7 @@ mount_targets:
         "private_ip_ids": [],
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "nsg_ids": [],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

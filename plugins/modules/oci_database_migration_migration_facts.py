@@ -147,6 +147,7 @@ migrations:
             description:
                 - Name of a migration phase. The Job will wait after executing this
                   phase until the Resume Job endpoint is called.
+                - Returned for get operation
             returned: on success
             type: str
             sample: ODMS_VALIDATE_TGT
@@ -159,6 +160,7 @@ migrations:
         credentials_secret_id:
             description:
                 - OCID of the Secret in the OCI vault containing the Migration credentials. Used to store GoldenGate administrator user credentials.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
@@ -189,6 +191,7 @@ migrations:
         data_transfer_medium_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -243,6 +246,7 @@ migrations:
         dump_transfer_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -285,6 +289,7 @@ migrations:
         datapump_settings:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -405,6 +410,7 @@ migrations:
         advisor_settings:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -424,6 +430,7 @@ migrations:
             description:
                 - "Database objects to exclude from migration.
                   If 'includeObjects' are specified, only exclude object types can be specified with general wildcards (.*) for owner and objectName."
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -449,6 +456,7 @@ migrations:
         include_objects:
             description:
                 - Database objects to include from migration.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -474,6 +482,7 @@ migrations:
         golden_gate_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

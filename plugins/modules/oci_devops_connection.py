@@ -23,25 +23,25 @@ module: oci_devops_connection
 short_description: Manage a Connection resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Connection.
+    - For I(state=present), creates a new connection.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     description:
         description:
-            - Optional description about the Connection
+            - Optional description about the connection.
             - This parameter is updatable.
         type: str
     display_name:
         description:
-            - Optional Connection display name
+            - Optional connection display name. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     project_id:
         description:
-            - Project Identifier
+            - The OCID of the DevOps project.
             - Required for create using I(state=present).
         type: str
     connection_type:
@@ -66,14 +66,14 @@ options:
         type: dict
     access_token:
         description:
-            - OCID of personal access token saved in secret store
+            - The OCID of personal access token saved in secret store.
             - Required for create using I(state=present).
             - This parameter is updatable.
             - Applicable when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
         type: str
     connection_id:
         description:
-            - unique Connection identifier
+            - Unique connection identifier.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -188,31 +188,31 @@ connection:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
-                - Optional description about the connection
+                - Optional description about the connection.
             returned: on success
             type: str
             sample: description_example
         display_name:
             description:
-                - Connection identifier which can be renamed and is not necessarily unique
+                - Connection display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment Identifier
+                - The OCID of the compartment containing the connection.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id:
             description:
-                - Project Identifier
+                - The OCID of the DevOps project.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
@@ -224,19 +224,19 @@ connection:
             sample: GITHUB_ACCESS_TOKEN
         time_created:
             description:
-                - The time the Connection was created. An RFC3339 formatted datetime string
+                - The time the connection was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time at which the Connection was updated. An RFC3339 formatted datetime string
+                - The time the connection was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the Connection.
+                - The current state of the connection.
             returned: on success
             type: str
             sample: ACTIVE
@@ -264,7 +264,7 @@ connection:
             sample: {}
         access_token:
             description:
-                - OCID of personal access token saved in secret store
+                - The OCID of personal access token saved in secret store.
             returned: on success
             type: str
             sample: access_token_example

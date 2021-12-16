@@ -136,11 +136,11 @@ EXAMPLES = """
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
-    status: [ "$p.getValue()" ]
-    lifecycle_state: [ "$p.getValue()" ]
-    database_type: [ "$p.getValue()" ]
-    database_id: [ "$p.getValue()" ]
-    fields: [ "$p.getValue()" ]
+    status: [ "DISABLED" ]
+    lifecycle_state: [ "CREATING" ]
+    database_type: [ "ADW-S" ]
+    database_id: [ "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx" ]
+    fields: [ "compartmentId" ]
     sort_order: ASC
     sort_by: databaseName
     exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
@@ -178,7 +178,7 @@ database_insights:
                 - Indicates the status of a database insight in Operations Insights
             returned: on success
             type: str
-            sample: ENABLED
+            sample: DISABLED
         database_type:
             description:
                 - Operations Insights internal representation of the database type.
@@ -264,74 +264,86 @@ database_insights:
         database_resource_type:
             description:
                 - OCI database resource type
+                - Returned for get operation
             returned: on success
             type: str
-            sample: autonomousdatabase
+            sample: database_resource_type_example
         db_additional_details:
             description:
                 - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
                   as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
                   string. Note that this string needs to be escaped when specified in the curl command.
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_identifier_example
         enterprise_manager_entity_name:
             description:
                 - Enterprise Manager Entity Name
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_name_example
         enterprise_manager_entity_type:
             description:
                 - Enterprise Manager Entity Type
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_type_example
         enterprise_manager_entity_identifier:
             description:
                 - Enterprise Manager Entity Unique Identifier
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_identifier_example
         enterprise_manager_entity_display_name:
             description:
                 - Enterprise Manager Entity Display Name
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_display_name_example
         enterprise_manager_bridge_id:
             description:
                 - OPSI Enterprise Manager Bridge OCID
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
         exadata_insight_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         connector_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of External Database Connector
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
         connection_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -362,6 +374,7 @@ database_insights:
         connection_credential_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -380,6 +393,7 @@ database_insights:
         database_host_names:
             description:
                 - The hostnames for the database.
+                - Returned for list operation
             returned: on success
             type: list
             sample: []
@@ -387,7 +401,7 @@ database_insights:
         "entity_source": "AUTONOMOUS_DATABASE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "status": "ENABLED",
+        "status": "DISABLED",
         "database_type": "database_type_example",
         "database_version": "database_version_example",
         "processor_count": 56,
@@ -401,7 +415,7 @@ database_insights:
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "database_name": "database_name_example",
         "database_display_name": "database_display_name_example",
-        "database_resource_type": "autonomousdatabase",
+        "database_resource_type": "database_resource_type_example",
         "db_additional_details": {},
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",

@@ -53,8 +53,8 @@ EXAMPLES = """
 - name: Create autonomous_database_backup
   oci_database_autonomous_database_backup:
     # required
-    display_name: Monthly Backup
-    autonomous_database_id: ocid1.autonomousdatabase.oc1.phx.unique_ID
+    display_name: display_name_example
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -23,28 +23,28 @@ module: oci_devops_diff_response_facts
 short_description: Fetches details about a DiffResponse resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a DiffResponse resource in Oracle Cloud Infrastructure
-    - Compares two revisions for their differences. Supports comparison between two refs or commits.
+    - Compares two revisions for their differences. Supports comparison between two references or commits.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         aliases: ["id"]
         required: true
     target_version:
         description:
-            - The commit or ref name where changes are coming from
+            - The commit or reference name where changes are coming from.
         type: str
         required: true
     base_version:
         description:
-            - The commit or ref name to compare changes against. If baseVersion is not provided, the diff will be gone against an empty tree.
+            - The commit or reference name to compare changes against. If base version is not provided, the difference goes against an empty tree.
         type: str
     is_comparison_from_merge_base:
         description:
-            - boolean for whether to use merge base or most recent revision
+            - Boolean value to indicate whether to use merge base or most recent revision.
         type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -71,13 +71,13 @@ diff_response:
     contains:
         are_all_changes_included:
             description:
-                - Boolean for whether all changes are included in the response.
+                - Boolean value to indicate if all changes are included in the response.
             returned: on success
             type: bool
             sample: true
         change_type_count:
             description:
-                - Count of each type of change in diff.
+                - Count of each type of change in difference.
             returned: on success
             type: dict
             sample: {}
@@ -101,19 +101,19 @@ diff_response:
             sample: 56
         added_lines_count:
             description:
-                - The number of lines added in whole diff.
+                - The number of lines added in whole difference.
             returned: on success
             type: int
             sample: 56
         deleted_lines_count:
             description:
-                - The number of lines deleted in whole diff.
+                - The number of lines deleted in whole difference.
             returned: on success
             type: int
             sample: 56
         changes:
             description:
-                - List of changes in the diff.
+                - List of changes in the difference.
             returned: on success
             type: complex
             contains:
@@ -167,13 +167,13 @@ diff_response:
                     sample: url_example
                 added_lines_count:
                     description:
-                        - The number of lines added in whole diff.
+                        - The number of lines added in whole difference.
                     returned: on success
                     type: int
                     sample: 56
                 deleted_lines_count:
                     description:
-                        - The number of lines deleted in whole diff.
+                        - The number of lines deleted in whole difference.
                     returned: on success
                     type: int
                     sample: 56

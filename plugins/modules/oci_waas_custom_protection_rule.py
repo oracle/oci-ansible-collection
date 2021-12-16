@@ -257,7 +257,7 @@ custom_protection_rule:
                 - The date and time the protection rule was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -282,7 +282,7 @@ custom_protection_rule:
         "mod_security_rule_ids": [],
         "template": "template_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

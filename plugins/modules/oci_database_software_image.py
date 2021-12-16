@@ -116,15 +116,15 @@ EXAMPLES = """
 - name: Create database_software_image
   oci_database_software_image:
     # required
-    compartment_id: "ocid.compartment.oc1..unique_ID"
-    display_name: image2
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     database_version: database_version_example
     image_shape_family: VM_BM_SHAPE
     image_type: GRID_IMAGE
     patch_set: patch_set_example
-    database_software_image_one_off_patches: [ "null" ]
+    database_software_image_one_off_patches: [ "database_software_image_one_off_patches_example" ]
     ls_inventory: ls_inventory_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -136,15 +136,15 @@ EXAMPLES = """
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: image2
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:
     # required
-    compartment_id: "ocid.compartment.oc1..unique_ID"
-    display_name: image2
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -159,8 +159,8 @@ EXAMPLES = """
 - name: Delete database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:
     # required
-    compartment_id: "ocid.compartment.oc1..unique_ID"
-    display_name: image2
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

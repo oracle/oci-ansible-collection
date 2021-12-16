@@ -70,7 +70,7 @@ EXAMPLES = """
     # optional
     db_system_shape: db_system_shape_example
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
-    storage_management: storage_management_example
+    storage_management: ASM
     is_upgrade_supported: true
     is_database_software_image_supported: true
 

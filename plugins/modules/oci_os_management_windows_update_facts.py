@@ -71,7 +71,7 @@ EXAMPLES = """
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: TIMECREATED
 
@@ -97,10 +97,11 @@ windows_updates:
                   Example: `6981d463-cd91-4a26-b7c4-ea4ded9183ed`"
             returned: on success
             type: str
-            sample: 6981d463-cd91-4a26-b7c4-ea4ded9183ed
+            sample: name_example
         description:
             description:
                 - Information about the Windows Update.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -113,18 +114,21 @@ windows_updates:
         size_in_bytes:
             description:
                 - size of the package in bytes
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         is_eligible_for_installation:
             description:
                 - Indicates whether the update can be installed using OSMS.
+                - Returned for get operation
             returned: on success
             type: str
             sample: INSTALLABLE
         installation_requirements:
             description:
                 - List of requirements forinstalling on a managed instances
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -137,18 +141,20 @@ windows_updates:
         kb_article_ids:
             description:
                 - List of the Microsoft Knowledge Base Article Ids related to this Windows Update.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         installable:
             description:
                 - Indicates whether the update can be installed using OSMS.
+                - Returned for list operation
             returned: on success
             type: str
             sample: INSTALLABLE
     sample: [{
         "display_name": "display_name_example",
-        "name": "6981d463-cd91-4a26-b7c4-ea4ded9183ed",
+        "name": "name_example",
         "description": "description_example",
         "update_type": "SECURITY",
         "size_in_bytes": 56,

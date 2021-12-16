@@ -194,15 +194,15 @@ EXAMPLES = """
     # optional
     update_items:
     - # required
-      domain: example.com
-      rdata: ns1.p68.dns.oraclecloud.net.
-      rtype: NS
-      ttl: 86400
+      domain: domain_example
+      rdata: rdata_example
+      rtype: rtype_example
+      ttl: 56
 
       # optional
-      record_hash: 261c84e3c11c3f2808fc4f18528f236e
+      record_hash: record_hash_example
       is_protected: true
-      rrset_version: 1
+      rrset_version: rrset_version_example
     if_unmodified_since: if_unmodified_since_example
     scope: GLOBAL
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"

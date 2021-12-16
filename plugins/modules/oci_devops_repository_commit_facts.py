@@ -23,29 +23,29 @@ module: oci_devops_repository_commit_facts
 short_description: Fetches details about one or multiple RepositoryCommit resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple RepositoryCommit resources in Oracle Cloud Infrastructure
-    - Returns a list of Commits.
+    - Returns a list of commits.
     - If I(commit_id) is specified, the details of a single RepositoryCommit will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     commit_id:
         description:
-            - A filter to return only resources that match the given commit Id.
+            - A filter to return only resources that match the given commit ID.
             - Required to get a specific repository_commit.
         type: str
         aliases: ["id"]
     ref_name:
         description:
-            - A filter to return only resources that match the given Ref name.
+            - A filter to return only resources that match the given reference name.
         type: str
     exclude_ref_name:
         description:
-            - A filter to exclude commits that match the given Ref name.
+            - A filter to exclude commits that match the given reference name.
         type: str
     file_path:
         description:
@@ -102,7 +102,7 @@ repository_commits:
     contains:
         commit_id:
             description:
-                - Commit hash pointed to by Ref name
+                - Commit hash pointed to by reference name.
             returned: on success
             type: str
             sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
@@ -114,31 +114,31 @@ repository_commits:
             sample: commit_message_example
         author_name:
             description:
-                - The name of the author of the repository.
+                - Name of the author of the repository.
             returned: on success
             type: str
             sample: author_name_example
         author_email:
             description:
-                - The email of the author of the repository.
+                - Email of the author of the repository.
             returned: on success
             type: str
             sample: author_email_example
         committer_name:
             description:
-                - The name of who create the commit.
+                - Name of who creates the commit.
             returned: on success
             type: str
             sample: committer_name_example
         committer_email:
             description:
-                - The email of who create the commit.
+                - Email of who creates the commit.
             returned: on success
             type: str
             sample: committer_email_example
         parent_commit_ids:
             description:
-                - An array of parent commit ids of created commit.
+                - An array of parent commit IDs of created commit.
             returned: on success
             type: list
             sample: []
@@ -150,7 +150,7 @@ repository_commits:
             sample: "2013-10-20T19:20:30+01:00"
         tree_id:
             description:
-                - Tree information for the specified commit
+                - Tree information for the specified commit.
             returned: on success
             type: str
             sample: "ocid1.tree.oc1..xxxxxxEXAMPLExxxxxx"
@@ -158,6 +158,7 @@ repository_commits:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for list operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -165,6 +166,7 @@ repository_commits:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Returned for list operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}

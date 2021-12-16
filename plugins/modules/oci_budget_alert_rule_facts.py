@@ -87,7 +87,7 @@ EXAMPLES = """
     sort_order: ASC
     sort_by: timeCreated
     lifecycle_state: ACTIVE
-    display_name: My new resource
+    display_name: display_name_example
 
 """
 

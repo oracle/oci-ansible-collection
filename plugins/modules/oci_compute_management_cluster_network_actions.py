@@ -229,7 +229,7 @@ cluster_network:
                           Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2016-08-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 load_balancers:
                     description:
                         - The load balancers attached to the instance pool.
@@ -333,14 +333,14 @@ cluster_network:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the resource was updated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -365,7 +365,7 @@ cluster_network:
                 }]
             }],
             "size": 56,
-            "time_created": "2016-08-25T21:10:29.600Z",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "load_balancers": [{
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "instance_pool_id": "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx",
@@ -385,8 +385,8 @@ cluster_network:
             }]
         },
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "time_updated": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }
 """
 

@@ -110,7 +110,7 @@ load_balancer_healths:
                 - "Example: `4`"
             returned: on success
             type: int
-            sample: 4
+            sample: 56
         load_balancer_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer the health status is associated with.
@@ -122,7 +122,7 @@ load_balancer_healths:
         "warning_state_backend_set_names": [],
         "critical_state_backend_set_names": [],
         "unknown_state_backend_set_names": [],
-        "total_backend_set_count": 4,
+        "total_backend_set_count": 56,
         "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """

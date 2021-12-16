@@ -295,7 +295,7 @@ volume_attachment:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         volume_id:
             description:
                 - The OCID of the volume.
@@ -336,14 +336,14 @@ volume_attachment:
                 - "Example: `ocid1.volume.oc1.phx.<unique_ID>`"
             returned: on success
             type: str
-            sample: ocid1.volume.oc1.phx.<unique_ID>
+            sample: chap_username_example
         ipv4:
             description:
                 - The volume's iSCSI IP address.
                 - "Example: `169.254.0.2`"
             returned: on success
             type: str
-            sample: 169.254.0.2
+            sample: ipv4_example
         iqn:
             description:
                 - The target volume's iSCSI Qualified Name in the format defined
@@ -351,14 +351,14 @@ volume_attachment:
                 - "Example: `iqn.2015-12.us.oracle.com:<CHAP_username>`"
             returned: on success
             type: str
-            sample: iqn.2015-12.us.oracle.com:<CHAP_username>
+            sample: iqn_example
         port:
             description:
                 - The volume's iSCSI port, usually port 860 or 3260.
                 - "Example: `3260`"
             returned: on success
             type: int
-            sample: 3260
+            sample: 56
         multipath_devices:
             description:
                 - A list of secondary multipath devices
@@ -371,7 +371,7 @@ volume_attachment:
                         - "Example: `169.254.2.2`"
                     returned: on success
                     type: str
-                    sample: 169.254.2.2
+                    sample: ipv4_example
                 iqn:
                     description:
                         - The target volume's iSCSI Qualified Name in the format defined
@@ -379,14 +379,14 @@ volume_attachment:
                         - "Example: `iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195`"
                     returned: on success
                     type: str
-                    sample: iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195
+                    sample: iqn_example
                 port:
                     description:
                         - The volume's iSCSI port, usually port 860 or 3260.
                         - "Example: `3260`"
                     returned: on success
                     type: int
-                    sample: 3260
+                    sample: 56
         encryption_in_transit_type:
             description:
                 - Refer the top-level definition of encryptionInTransitType.
@@ -417,20 +417,20 @@ volume_attachment:
         "is_read_only": true,
         "is_shareable": true,
         "lifecycle_state": "ATTACHING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "volume_id": "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx",
         "is_pv_encryption_in_transit_enabled": true,
         "is_multipath": true,
         "iscsi_login_state": "UNKNOWN",
         "chap_secret": "chap_secret_example",
-        "chap_username": "ocid1.volume.oc1.phx.<unique_ID>",
-        "ipv4": "169.254.0.2",
-        "iqn": "iqn.2015-12.us.oracle.com:<CHAP_username>",
-        "port": 3260,
+        "chap_username": "chap_username_example",
+        "ipv4": "ipv4_example",
+        "iqn": "iqn_example",
+        "port": 56,
         "multipath_devices": [{
-            "ipv4": "169.254.2.2",
-            "iqn": "iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195",
-            "port": 3260
+            "ipv4": "ipv4_example",
+            "iqn": "iqn_example",
+            "port": 56
         }],
         "encryption_in_transit_type": "NONE",
         "iscsi_attach_commands": [  "sudo iscsiadm -m node -o new -T IQN -p IP:PORT", "sudo iscsiadm -m node -o update ..."  ],

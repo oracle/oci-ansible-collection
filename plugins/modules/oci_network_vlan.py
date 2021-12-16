@@ -128,7 +128,7 @@ EXAMPLES = """
 - name: Create vlan
   oci_network_vlan:
     # required
-    cidr_block: 192.0.2.0/24
+    cidr_block: cidr_block_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -137,7 +137,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     vlan_tag: 56
 
@@ -147,11 +147,11 @@ EXAMPLES = """
     vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    cidr_block: 192.0.2.0/24
+    cidr_block: cidr_block_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -161,10 +161,10 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    cidr_block: 192.0.2.0/24
+    cidr_block: cidr_block_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete vlan
@@ -204,7 +204,7 @@ vlan:
                 - "Example: `192.168.1.0/24`"
             returned: on success
             type: str
-            sample: 192.168.1.0/24
+            sample: cidr_block_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the VLAN.
@@ -262,7 +262,7 @@ vlan:
                 - "Example: `100`"
             returned: on success
             type: int
-            sample: 100
+            sample: 56
         route_table_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table that the VLAN uses.
@@ -275,7 +275,7 @@ vlan:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the VLAN is in.
@@ -284,7 +284,7 @@ vlan:
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
-        "cidr_block": "192.168.1.0/24",
+        "cidr_block": "cidr_block_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
@@ -292,9 +292,9 @@ vlan:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "nsg_ids": [],
-        "vlan_tag": 100,
+        "vlan_tag": 56,
         "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

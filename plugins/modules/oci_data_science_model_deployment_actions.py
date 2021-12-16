@@ -101,7 +101,7 @@ model_deployment:
                   Example: `My ModelDeployment`"
             returned: on success
             type: str
-            sample: My ModelDeployment
+            sample: display_name_example
         description:
             description:
                 - A short description of the model deployment.
@@ -245,7 +245,7 @@ model_deployment:
                 - Details about the state of the model deployment.
             returned: on success
             type: str
-            sample: waiting for SSH
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -265,7 +265,7 @@ model_deployment:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "display_name": "My ModelDeployment",
+        "display_name": "display_name_example",
         "description": "description_example",
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
@@ -296,7 +296,7 @@ model_deployment:
         },
         "model_deployment_url": "model_deployment_url_example",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "waiting for SSH",
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

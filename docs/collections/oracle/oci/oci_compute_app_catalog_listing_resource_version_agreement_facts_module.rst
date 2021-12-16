@@ -30,9 +30,13 @@ oracle.oci.oci_compute_app_catalog_listing_resource_version_agreement_facts -- F
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_app_catalog_listing_resource_version_agreement_facts`.
 
@@ -320,8 +324,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>AppCatalogListingResourceVersionAgreement resource</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;eula_link&#x27;: &#x27;eula_link_example&#x27;, &#x27;listing_id&#x27;: &#x27;ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_resource_version&#x27;: &#x27;listing_resource_version_example&#x27;, &#x27;oracle_terms_of_use_link&#x27;: &#x27;oracle_terms_of_use_link_example&#x27;, &#x27;signature&#x27;: &#x27;signature_example&#x27;, &#x27;time_retrieved&#x27;: &#x27;2018-03-20T12:32:53.532Z&#x27;}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;eula_link&#x27;: &#x27;eula_link_example&#x27;, &#x27;listing_id&#x27;: &#x27;ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_resource_version&#x27;: &#x27;listing_resource_version_example&#x27;, &#x27;oracle_terms_of_use_link&#x27;: &#x27;oracle_terms_of_use_link_example&#x27;, &#x27;signature&#x27;: &#x27;signature_example&#x27;, &#x27;time_retrieved&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -338,7 +342,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>EULA link</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">eula_link_example</div>
                                     </td>
             </tr>
@@ -356,7 +360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the listing associated with these agreements.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -374,7 +378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Listing resource version associated with these agreements.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listing_resource_version_example</div>
                                     </td>
             </tr>
@@ -392,7 +396,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Oracle TOU link</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oracle_terms_of_use_link_example</div>
                                     </td>
             </tr>
@@ -410,7 +414,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A generated signature for this agreement retrieval operation which should be used in the create subscription call.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">signature_example</div>
                                     </td>
             </tr>
@@ -428,8 +432,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Date and time the agreements were retrieved, in <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> format. Example: `2018-03-20T12:32:53.532Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-03-20T12:32:53.532Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

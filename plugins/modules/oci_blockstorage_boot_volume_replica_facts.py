@@ -101,7 +101,7 @@ EXAMPLES = """
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
 
 """
 

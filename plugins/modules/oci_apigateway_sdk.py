@@ -95,7 +95,7 @@ EXAMPLES = """
     api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     parameters: null
@@ -106,14 +106,14 @@ EXAMPLES = """
     sdk_id: "ocid1.sdk.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update sdk using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_sdk:
     # required
-    display_name: My new resource
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -128,7 +128,7 @@ EXAMPLES = """
 - name: Delete sdk using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_sdk:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     state: absent
 
 """
@@ -178,7 +178,7 @@ sdk:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         target_language:
             description:
                 - The string representing the target programming language for generating the SDK.
@@ -248,7 +248,7 @@ sdk:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "target_language": "target_language_example",
         "artifact_url": "artifact_url_example",
         "time_artifact_url_expires_at": "2013-10-20T19:20:30+01:00",

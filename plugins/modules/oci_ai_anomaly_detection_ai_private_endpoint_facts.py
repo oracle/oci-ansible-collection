@@ -86,7 +86,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -180,6 +180,7 @@ ai_private_endpoints:
         attached_data_assets:
             description:
                 - The list of dataAssets using the private reverse connection endpoint.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []

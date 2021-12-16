@@ -23,14 +23,14 @@ module: oci_apm_control_plane_apm_domain_facts
 short_description: Fetches details about one or multiple ApmDomain resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ApmDomain resources in Oracle Cloud Infrastructure
-    - Lists all APM Domains for the specified tenant compartment.
+    - Lists all APM domains for the specified tenant compartment.
     - If I(apm_domain_id) is specified, the details of a single ApmDomain will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
         description:
-            - OCID of the APM Domain
+            - The OCID of the APM domain
             - Required to get a specific apm_domain.
         type: str
         aliases: ["id"]
@@ -53,6 +53,7 @@ options:
             - "UPDATING"
             - "ACTIVE"
             - "DELETING"
+            - "DELETED"
             - "FAILED"
     sort_order:
         description:
@@ -100,7 +101,7 @@ apm_domains:
     contains:
         data_upload_endpoint:
             description:
-                - Where APM Agents upload their observations and metrics.
+                - The endpoint where the APM agents upload their observations and metrics.
             returned: on success
             type: str
             sample: data_upload_endpoint_example
@@ -112,25 +113,25 @@ apm_domains:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - APM Domain display name, can be updated.
+                - Display name of the APM domain, which can be updated.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Description of the APM Domain.
+                - Description of the APM domain.
             returned: on success
             type: str
             sample: description_example
         compartment_id:
             description:
-                - The OCID of the compartment corresponding to the APM Domain.
+                - The OCID of the compartment corresponding to the APM domain.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
-                - The current lifecycle state of the APM Domain.
+                - The current lifecycle state of the APM domain.
             returned: on success
             type: str
             sample: CREATING
@@ -142,13 +143,13 @@ apm_domains:
             sample: true
         time_created:
             description:
-                - The time the the APM Domain was created. An RFC3339 formatted datetime string
+                - The time the APM domain was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the APM Domain was updated. An RFC3339 formatted datetime string
+                - The time the APM domain was updated, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -250,7 +251,14 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",
-                choices=["CREATING", "UPDATING", "ACTIVE", "DELETING", "FAILED"],
+                choices=[
+                    "CREATING",
+                    "UPDATING",
+                    "ACTIVE",
+                    "DELETING",
+                    "DELETED",
+                    "FAILED",
+                ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),

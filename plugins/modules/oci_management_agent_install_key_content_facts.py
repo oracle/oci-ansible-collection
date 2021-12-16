@@ -55,7 +55,7 @@ EXAMPLES = """
     management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    plugin_name: [ "$p.getValue()" ]
+    plugin_name: [ "plugin_name_example" ]
 
 """
 

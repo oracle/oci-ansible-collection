@@ -244,6 +244,7 @@ jobs:
         unsupported_objects:
             description:
                 - Database objects not supported.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

@@ -58,17 +58,17 @@ cross_connect_port_speed_shapes:
                 - "Example: `10 Gbps`"
             returned: on success
             type: str
-            sample: 10 Gbps
+            sample: name_example
         port_speed_in_gbps:
             description:
                 - The port speed in Gbps.
                 - "Example: `10`"
             returned: on success
             type: int
-            sample: 10
+            sample: 56
     sample: [{
-        "name": "10 Gbps",
-        "port_speed_in_gbps": 10
+        "name": "name_example",
+        "port_speed_in_gbps": 56
     }]
 """
 

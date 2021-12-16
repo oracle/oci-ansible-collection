@@ -134,12 +134,14 @@ catalogs:
         service_api_url:
             description:
                 - The REST front endpoint URL to the data catalog instance.
+                - Returned for get operation
             returned: on success
             type: str
             sample: service_api_url_example
         service_console_url:
             description:
                 - The console front endpoint URL to the data catalog instance.
+                - Returned for get operation
             returned: on success
             type: str
             sample: service_console_url_example

@@ -95,7 +95,7 @@ EXAMPLES = """
     name: name_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
 
 """
 
@@ -143,7 +143,7 @@ policies:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The policy's current state. After creating a policy, make sure its `lifecycleState` changes from CREATING to
@@ -187,7 +187,7 @@ policies:
         "name": "name_example",
         "statements": [],
         "description": "description_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "version_date": "2013-10-20T19:20:30+01:00",

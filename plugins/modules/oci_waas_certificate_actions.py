@@ -216,13 +216,13 @@ waas_certificate:
                 - The date and time the certificate will become valid, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_not_valid_after:
             description:
                 - The date and time the certificate will expire, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         public_key_info:
             description:
                 - ""
@@ -298,7 +298,7 @@ waas_certificate:
                 - The date and time the certificate was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_trust_verification_disabled:
             description:
                 - This indicates whether trust verification was disabled during the creation of SSL certificate.
@@ -338,8 +338,8 @@ waas_certificate:
         "serial_number": "serial_number_example",
         "version": 56,
         "signature_algorithm": "signature_algorithm_example",
-        "time_not_valid_before": "2018-11-16T21:10:29Z",
-        "time_not_valid_after": "2018-11-16T21:10:29Z",
+        "time_not_valid_before": "2013-10-20T19:20:30+01:00",
+        "time_not_valid_after": "2013-10-20T19:20:30+01:00",
         "public_key_info": {
             "algorithm": "algorithm_example",
             "exponent": 56,
@@ -353,7 +353,7 @@ waas_certificate:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_trust_verification_disabled": true,
         "certificate_data": "this-is-not-the-secret"
     }

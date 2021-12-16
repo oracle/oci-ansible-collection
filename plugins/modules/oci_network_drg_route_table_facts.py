@@ -99,7 +99,7 @@ EXAMPLES = """
     sort_by: TIMECREATED
     sort_order: ASC
     import_drg_route_distribution_id: "ocid1.importdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
 
 """
 
@@ -160,7 +160,7 @@ drg_route_tables:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The DRG route table's current state.
@@ -190,7 +190,7 @@ drg_route_tables:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "PROVISIONING",
         "import_drg_route_distribution_id": "ocid1.importdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx",
         "is_ecmp_enabled": true

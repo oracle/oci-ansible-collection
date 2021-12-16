@@ -30,9 +30,13 @@ oracle.oci.oci_devops_repository_file_lines_facts -- Fetches details about a Rep
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_devops_repository_file_lines_facts`.
 
@@ -53,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a RepositoryFileLines resource in Oracle Cloud Infrastructure
-- Get lines of a specified file. Supports starting line number and limit.
+- Retrieve lines of a specified file. Supports starting line number and limit.
 
 
 .. Aliases
@@ -235,7 +239,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>unique Repository identifier.</div>
+                                            <div>Unique repository identifier.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -250,7 +254,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Retrive file lines from specific revision.</div>
+                                            <div>Retrieve file lines from specific revision.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -265,7 +269,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Line number from where to start returning file lines. 1 indexed.</div>
+                                            <div>Line number from where to start returning file lines.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -316,7 +320,7 @@ Examples
         revision: revision_example
 
         # optional
-        start_line_number: 56
+        start_line_number: 1
 
 
 
@@ -352,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>RepositoryFileLines resource</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;lines&#x27;: [{&#x27;line_content&#x27;: &#x27;line_content_example&#x27;, &#x27;line_number&#x27;: 56}]}</div>
                                     </td>
             </tr>
@@ -368,9 +372,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of lines in the file</div>
+                                            <div>The list of lines in the file.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -385,9 +389,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The content of the line</div>
+                                            <div>The content of the line.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">line_content_example</div>
                                     </td>
             </tr>
@@ -404,9 +408,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The line number</div>
+                                            <div>The line number.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

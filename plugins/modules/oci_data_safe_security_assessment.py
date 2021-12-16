@@ -26,6 +26,8 @@ description:
     - For I(state=present), creates a new saved security assessment for one or multiple targets in a compartment. When this operation is performed,
       it will save the latest assessments in the specified compartment. If a schedule is passed, it will persist the latest assessments,
       at the defined date and time, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_safe_security_assessment_actions) module: change_compartment,
+      set_security_assessment_baseline, unset_security_assessment_baseline."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -55,11 +57,14 @@ options:
         type: str
     schedule:
         description:
-            - "Schedule of the assessment that runs periodically in this specified format: <version-string>;<version-specific-schedule>
-              Allowed version strings - v1
+            - To schedule the assessment for running periodically, specify the schedule in this attribute.
+              Create or schedule one assessment per compartment. If not defined, the assessment runs immediately.
+              Format -
+              <version-string>;<version-specific-schedule>
+            - "Allowed version strings - \\"v1\\"
               v1's version specific schedule -<ss> <mm> <hh> <day-of-week> <day-of-month>
               Each of the above fields potentially introduce constraints. A workrequest is created only
-              when clock time satisfies all the constraints. Constraints introduced
+              when clock time satisfies all the constraints. Constraints introduced:
               1. seconds = <ss> (So, the allowed range for <ss> is [0, 59])
               2. minutes = <mm> (So, the allowed range for <mm> is [0, 59])
               3. hours = <hh> (So, the allowed range for <hh> is [0, 23])
@@ -112,7 +117,7 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
-    schedule: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+    schedule: schedule_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -124,7 +129,7 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
-    schedule: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+    schedule: schedule_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -136,7 +141,7 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    schedule: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+    schedule: schedule_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -269,11 +274,12 @@ security_assessment:
             sample: description_example
         schedule:
             description:
-                - "Schedule of the assessment that runs periodically in this specified format: <version-string>;<version-specific-schedule>
-                  Allowed version strings - v1
+                - "Schedule to save the assessment periodically in the specified format:
+                  <version-string>;<version-specific-schedule>"
+                - "Allowed version strings - \\"v1\\"
                   v1's version specific schedule -<ss> <mm> <hh> <day-of-week> <day-of-month>
                   Each of the above fields potentially introduce constraints. A workrequest is created only
-                  when clock time satisfies all the constraints. Constraints introduced
+                  when clock time satisfies all the constraints. Constraints introduced:
                   1. seconds = <ss> (So, the allowed range for <ss> is [0, 59])
                   2. minutes = <mm> (So, the allowed range for <mm> is [0, 59])
                   3. hours = <hh> (So, the allowed range for <hh> is [0, 23])
@@ -283,7 +289,7 @@ security_assessment:
                   5. No constraint introduced when it is '*'. When not, day of month must equal the given value"
             returned: on success
             type: str
-            sample: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+            sample: schedule_example
         link:
             description:
                 - The summary of findings for the security assessment
@@ -681,7 +687,7 @@ security_assessment:
         "schedule_security_assessment_id": "ocid1.schedulesecurityassessment.oc1..xxxxxxEXAMPLExxxxxx",
         "triggered_by": "USER",
         "description": "description_example",
-        "schedule": "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day",
+        "schedule": "schedule_example",
         "link": "link_example",
         "type": "LATEST",
         "statistics": {

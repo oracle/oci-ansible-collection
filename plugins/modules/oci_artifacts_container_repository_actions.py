@@ -55,7 +55,7 @@ EXAMPLES = """
 - name: Perform action change_compartment on container_repository
   oci_artifacts_container_repository_actions:
     # required
-    repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
@@ -92,7 +92,7 @@ container_repository:
                 - "Example: `ocid1.containerrepo.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.containerrepo.oc1..exampleuniqueID"
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_count:
             description:
                 - Total number of images.
@@ -169,7 +169,7 @@ container_repository:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
         "display_name": "display_name_example",
-        "id": "ocid1.containerrepo.oc1..exampleuniqueID",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "image_count": 56,
         "is_immutable": true,
         "is_public": true,

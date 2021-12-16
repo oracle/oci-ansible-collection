@@ -186,13 +186,13 @@ categories:
                 - The date and time the category details were created, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the category details were last updated, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         extended_metadata:
             description:
                 - Additional metadata key/value pairs for the category.
@@ -216,8 +216,8 @@ categories:
         }],
         "lifecycle_state": "ACTIVE",
         "estimated_cost_saving": 1.2,
-        "time_created": "2020-08-25T21:10:29.600Z",
-        "time_updated": "2020-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "extended_metadata": {}
     }]
 """

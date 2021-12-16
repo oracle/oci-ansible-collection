@@ -299,7 +299,7 @@ steering_policy:
                                   matches queries from that office."
                             returned: on success
                             type: str
-                            sample: query.client.address in (subnet '198.51.100.0/24')
+                            sample: case_condition_example
                         answer_data:
                             description:
                                 - An array of `SteeringPolicyFilterAnswerData` objects.
@@ -312,7 +312,7 @@ steering_policy:
                                           properties.
                                     returned: on success
                                     type: str
-                                    sample: answer.pool == 'A'
+                                    sample: answer_condition_example
                                 should_keep:
                                     description:
                                         - Keeps the answer only if the value is `true`.
@@ -351,7 +351,7 @@ steering_policy:
                                   properties.
                             returned: on success
                             type: str
-                            sample: answer.pool == 'A'
+                            sample: answer_condition_example
                         should_keep:
                             description:
                                 - Keeps the answer only if the value is `true`.
@@ -419,16 +419,16 @@ steering_policy:
             "description": "description_example",
             "rule_type": "FILTER",
             "cases": [{
-                "case_condition": "query.client.address in (subnet '198.51.100.0/24')",
+                "case_condition": "case_condition_example",
                 "answer_data": [{
-                    "answer_condition": "answer.pool == 'A'",
+                    "answer_condition": "answer_condition_example",
                     "should_keep": true,
                     "value": 56
                 }],
                 "count": 56
             }],
             "default_answer_data": [{
-                "answer_condition": "answer.pool == 'A'",
+                "answer_condition": "answer_condition_example",
                 "should_keep": true,
                 "value": 56
             }],

@@ -55,7 +55,7 @@ configuration:
                 - The reporting region value
             returned: on success
             type: str
-            sample: reporting_region_example
+            sample: us-phoenix-1
         status:
             description:
                 - Status of Cloud Guard Tenant
@@ -69,7 +69,7 @@ configuration:
             type: bool
             sample: true
     sample: {
-        "reporting_region": "reporting_region_example",
+        "reporting_region": "us-phoenix-1",
         "status": "ENABLED",
         "self_manage_resources": true
     }

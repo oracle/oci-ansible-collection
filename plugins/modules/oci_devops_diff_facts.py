@@ -23,28 +23,28 @@ module: oci_devops_diff_facts
 short_description: Fetches details about one or multiple Diff resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Diff resources in Oracle Cloud Infrastructure
-    - Compares two revisions and lists the differences. Supports comparison between two refs or commits.
+    - Compares two revisions and lists the differences. Supports comparison between two references or commits.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     base_version:
         description:
-            - The commit or ref name to compare changes against
+            - The commit or reference name to compare changes against.
         type: str
         required: true
     target_version:
         description:
-            - The commit or ref name where changes are coming from
+            - The commit or reference name where changes are coming from.
         type: str
         required: true
     is_comparison_from_merge_base:
         description:
-            - boolean for whether to use merge base or most recent revision
+            - Boolean value to indicate whether to use merge base or most recent revision.
         type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -71,25 +71,25 @@ diffs:
     contains:
         old_path:
             description:
-                - The path on the baseVersion to the changed object.
+                - The path on the base version to the changed object.
             returned: on success
             type: str
             sample: old_path_example
         new_path:
             description:
-                - The path on the targetVersion to the changed object.
+                - The path on the target version to the changed object.
             returned: on success
             type: str
             sample: new_path_example
         old_id:
             description:
-                - The ID of the changed object on the baseVersion.
+                - The ID of the changed object on the base version.
             returned: on success
             type: str
             sample: "ocid1.old.oc1..xxxxxxEXAMPLExxxxxx"
         new_id:
             description:
-                - The ID of the changed object on the targetVersion.
+                - The ID of the changed object on the target version.
             returned: on success
             type: str
             sample: "ocid1.new.oc1..xxxxxxEXAMPLExxxxxx"
@@ -143,7 +143,7 @@ diffs:
                     sample: 56
                 diff_sections:
                     description:
-                        - List of DiffSection.
+                        - List of difference section.
                     returned: on success
                     type: complex
                     contains:
@@ -179,8 +179,8 @@ diffs:
                                     sample: line_content_example
                                 conflict_marker:
                                     description:
-                                        - Indicates whether a line in a conflicted section of the diff is from the base version, the target version, or if its
-                                          just a marker indicating the beginning, middle, or end of a conflicted section.
+                                        - Indicates whether a line in a conflicted section of the difference is from the base version, the target version, or if
+                                          its just a marker indicating the beginning, middle, or end of a conflicted section.
                                     returned: on success
                                     type: str
                                     sample: BASE

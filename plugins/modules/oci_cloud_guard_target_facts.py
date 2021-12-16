@@ -152,6 +152,7 @@ targets:
         description:
             description:
                 - The target description.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -176,6 +177,7 @@ targets:
         target_detector_recipes:
             description:
                 - List of detector recipes associated with target
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -724,6 +726,7 @@ targets:
         target_responder_recipes:
             description:
                 - List of responder recipes associated with target
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -1140,6 +1143,7 @@ targets:
         inherited_by_compartments:
             description:
                 - List of inherited compartments
+                - Returned for get operation
             returned: on success
             type: list
             sample: []

@@ -76,7 +76,7 @@ tenancy:
                 - "Example: `PHX`"
             returned: on success
             type: str
-            sample: PHX
+            sample: home_region_key_example
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -97,7 +97,7 @@ tenancy:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "home_region_key": "PHX",
+        "home_region_key": "home_region_key_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

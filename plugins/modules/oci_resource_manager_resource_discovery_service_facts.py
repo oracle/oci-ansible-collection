@@ -59,7 +59,7 @@ resource_discovery_services:
                   documentation,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services)."
             returned: on success
             type: str
-            sample: core
+            sample: name_example
         discovery_scope:
             description:
                 - "The scope of the service as used with Resource Discovery.
@@ -69,7 +69,7 @@ resource_discovery_services:
             type: str
             sample: TENANCY
     sample: [{
-        "name": "core",
+        "name": "name_example",
         "discovery_scope": "TENANCY"
     }]
 """

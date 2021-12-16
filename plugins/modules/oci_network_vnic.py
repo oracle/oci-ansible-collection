@@ -116,7 +116,7 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     hostname_label: hostname_label_example
-    nsg_ids: [ "null" ]
+    nsg_ids: [ "nsg_ids_example" ]
     skip_source_dest_check: true
 
 """
@@ -178,7 +178,7 @@ vnic:
                 - "Example: `bminstance-1`"
             returned: on success
             type: str
-            sample: bminstance-1
+            sample: hostname_label_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC.
@@ -207,7 +207,7 @@ vnic:
                 - "Example: `00:00:00:00:00:01`"
             returned: on success
             type: str
-            sample: 00:00:00:00:00:01
+            sample: mac_address_example
         nsg_ids:
             description:
                 - A list of the OCIDs of the network security groups that the VNIC belongs to.
@@ -236,7 +236,7 @@ vnic:
                 - "Example: `10.0.3.3`"
             returned: on success
             type: str
-            sample: 10.0.3.3
+            sample: private_ip_example
         public_ip:
             description:
                 - The public IP address of the VNIC, if one is assigned.
@@ -268,25 +268,25 @@ vnic:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
-        "hostname_label": "bminstance-1",
+        "hostname_label": "hostname_label_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "is_primary": true,
         "lifecycle_state": "PROVISIONING",
-        "mac_address": "00:00:00:00:00:01",
+        "mac_address": "mac_address_example",
         "nsg_ids": [],
         "vlan_id": "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx",
-        "private_ip": "10.0.3.3",
+        "private_ip": "private_ip_example",
         "public_ip": "public_ip_example",
         "skip_source_dest_check": true,
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

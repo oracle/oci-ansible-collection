@@ -152,7 +152,7 @@ vnic_attachments:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vlan_tag:
             description:
                 - The Oracle-assigned VLAN tag of the attached VNIC. Available after the
@@ -163,7 +163,7 @@ vnic_attachments:
                 - "Example: `0`"
             returned: on success
             type: int
-            sample: 0
+            sample: 56
         vnic_id:
             description:
                 - The OCID of the VNIC. Available after the attachment process is complete.
@@ -180,8 +180,8 @@ vnic_attachments:
         "nic_index": 56,
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "vlan_id": "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "vlan_tag": 0,
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "vlan_tag": 56,
         "vnic_id": "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """

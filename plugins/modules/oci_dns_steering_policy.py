@@ -360,23 +360,23 @@ EXAMPLES = """
 - name: Create steering_policy
   oci_dns_steering_policy:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: failover between endpoints
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     template: FAILOVER
 
     # optional
-    ttl: 30
-    health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+    ttl: 56
+    health_check_monitor_id: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     answers:
     - # required
-      name: server-primary
-      rtype: A
-      rdata: 192.0.2.0
+      name: name_example
+      rtype: rtype_example
+      rdata: rdata_example
 
       # optional
-      pool: primary
+      pool: pool_example
       is_disabled: true
     rules:
     - # required
@@ -386,18 +386,18 @@ EXAMPLES = """
       description: description_example
       cases:
       - # optional
-        case_condition: query.client.address in (subnet '198.51.100.0/24')
+        case_condition: case_condition_example
         answer_data:
         - # optional
-          answer_condition: answer.pool == 'A'
+          answer_condition: answer_condition_example
           should_keep: true
           value: 56
         count: 56
       default_answer_data:
       - # optional
-        answer_condition: answer.isDisabled != true
+        answer_condition: answer_condition_example
         should_keep: true
-        value: 1
+        value: 56
     scope: GLOBAL
 
 - name: Update steering_policy
@@ -406,20 +406,20 @@ EXAMPLES = """
     steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: failover between endpoints
-    ttl: 30
-    health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+    display_name: display_name_example
+    ttl: 56
+    health_check_monitor_id: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
     template: FAILOVER
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     answers:
     - # required
-      name: server-primary
-      rtype: A
-      rdata: 192.0.2.0
+      name: name_example
+      rtype: rtype_example
+      rdata: rdata_example
 
       # optional
-      pool: primary
+      pool: pool_example
       is_disabled: true
     rules:
     - # required
@@ -429,41 +429,41 @@ EXAMPLES = """
       description: description_example
       cases:
       - # optional
-        case_condition: query.client.address in (subnet '198.51.100.0/24')
+        case_condition: case_condition_example
         answer_data:
         - # optional
-          answer_condition: answer.pool == 'A'
+          answer_condition: answer_condition_example
           should_keep: true
           value: 56
         count: 56
       default_answer_data:
       - # optional
-        answer_condition: answer.isDisabled != true
+        answer_condition: answer_condition_example
         should_keep: true
-        value: 1
+        value: 56
     scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
 
 - name: Update steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: failover between endpoints
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    ttl: 30
-    health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+    ttl: 56
+    health_check_monitor_id: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
     template: FAILOVER
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     answers:
     - # required
-      name: server-primary
-      rtype: A
-      rdata: 192.0.2.0
+      name: name_example
+      rtype: rtype_example
+      rdata: rdata_example
 
       # optional
-      pool: primary
+      pool: pool_example
       is_disabled: true
     rules:
     - # required
@@ -473,18 +473,18 @@ EXAMPLES = """
       description: description_example
       cases:
       - # optional
-        case_condition: query.client.address in (subnet '198.51.100.0/24')
+        case_condition: case_condition_example
         answer_data:
         - # optional
-          answer_condition: answer.pool == 'A'
+          answer_condition: answer_condition_example
           should_keep: true
           value: 56
         count: 56
       default_answer_data:
       - # optional
-        answer_condition: answer.isDisabled != true
+        answer_condition: answer_condition_example
         should_keep: true
-        value: 1
+        value: 56
     scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
 
@@ -501,8 +501,8 @@ EXAMPLES = """
 - name: Delete steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy:
     # required
-    compartment_id: "ocid1.compartment.oc1.."
-    display_name: failover between endpoints
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -737,7 +737,7 @@ steering_policy:
                                   matches queries from that office."
                             returned: on success
                             type: str
-                            sample: query.client.address in (subnet '198.51.100.0/24')
+                            sample: case_condition_example
                         answer_data:
                             description:
                                 - An array of `SteeringPolicyFilterAnswerData` objects.
@@ -750,7 +750,7 @@ steering_policy:
                                           properties.
                                     returned: on success
                                     type: str
-                                    sample: answer.pool == 'A'
+                                    sample: answer_condition_example
                                 should_keep:
                                     description:
                                         - Keeps the answer only if the value is `true`.
@@ -789,7 +789,7 @@ steering_policy:
                                   properties.
                             returned: on success
                             type: str
-                            sample: answer.pool == 'A'
+                            sample: answer_condition_example
                         should_keep:
                             description:
                                 - Keeps the answer only if the value is `true`.
@@ -857,16 +857,16 @@ steering_policy:
             "description": "description_example",
             "rule_type": "FILTER",
             "cases": [{
-                "case_condition": "query.client.address in (subnet '198.51.100.0/24')",
+                "case_condition": "case_condition_example",
                 "answer_data": [{
-                    "answer_condition": "answer.pool == 'A'",
+                    "answer_condition": "answer_condition_example",
                     "should_keep": true,
                     "value": 56
                 }],
                 "count": 56
             }],
             "default_answer_data": [{
-                "answer_condition": "answer.pool == 'A'",
+                "answer_condition": "answer_condition_example",
                 "should_keep": true,
                 "value": 56
             }],

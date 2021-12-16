@@ -235,13 +235,13 @@ profiles:
                 - The date and time the profile was created, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the profile was last updated, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -268,8 +268,8 @@ profiles:
             }]
         },
         "lifecycle_state": "ACTIVE",
-        "time_created": "2020-08-25T21:10:29.600Z",
-        "time_updated": "2020-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }]
 """
 

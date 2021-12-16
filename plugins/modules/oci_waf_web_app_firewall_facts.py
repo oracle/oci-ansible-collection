@@ -87,7 +87,7 @@ EXAMPLES = """
 
     # optional
     web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: [ "$p.getValue()" ]
+    lifecycle_state: [ "lifecycle_state_example" ]
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -180,6 +180,7 @@ web_app_firewalls:
         load_balancer_id:
             description:
                 - LoadBalancer L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) to which the WebAppFirewallPolicy is attached to.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"

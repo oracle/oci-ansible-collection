@@ -88,7 +88,7 @@ app_catalog_listing_resource_version_agreement:
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
             type: str
-            sample: "2018-03-20T12:32:53.532Z"
+            sample: "2013-10-20T19:20:30+01:00"
         signature:
             description:
                 - A generated signature for this agreement retrieval operation which should be used in the create subscription call.
@@ -100,7 +100,7 @@ app_catalog_listing_resource_version_agreement:
         "listing_resource_version": "listing_resource_version_example",
         "oracle_terms_of_use_link": "oracle_terms_of_use_link_example",
         "eula_link": "eula_link_example",
-        "time_retrieved": "2018-03-20T12:32:53.532Z",
+        "time_retrieved": "2013-10-20T19:20:30+01:00",
         "signature": "signature_example"
     }
 """

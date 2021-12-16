@@ -100,11 +100,11 @@ EXAMPLES = """
   oci_key_management_generated_key:
     # required
     include_plaintext_key: true
-    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     key_shape:
       # required
       algorithm: AES
-      length: 16
+      length: 56
 
       # optional
       curve_id: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"

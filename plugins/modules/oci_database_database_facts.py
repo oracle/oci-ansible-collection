@@ -101,7 +101,7 @@ EXAMPLES = """
     system_id: "ocid1.system.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: DBNAME
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     db_name: db_name_example
 
 """
@@ -237,7 +237,7 @@ databases:
                         - "Example: `SLOT_TWO`"
                     returned: on success
                     type: str
-                    sample: SLOT_TWO
+                    sample: SLOT_ONE
                 backup_destination_details:
                     description:
                         - Backup destination details.
@@ -382,7 +382,7 @@ databases:
         "db_backup_config": {
             "auto_backup_enabled": true,
             "recovery_window_in_days": 56,
-            "auto_backup_window": "SLOT_TWO",
+            "auto_backup_window": "SLOT_ONE",
             "backup_destination_details": [{
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

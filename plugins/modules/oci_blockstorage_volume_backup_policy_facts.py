@@ -168,7 +168,7 @@ volume_backup_policies:
                   regions.
             returned: on success
             type: str
-            sample: destination_region_example
+            sample: us-phoenix-1
         time_created:
             description:
                 - The date and time the volume backup policy was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -213,7 +213,7 @@ volume_backup_policies:
             "retention_seconds": 56,
             "time_zone": "UTC"
         }],
-        "destination_region": "destination_region_example",
+        "destination_region": "us-phoenix-1",
         "time_created": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

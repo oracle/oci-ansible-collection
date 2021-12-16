@@ -53,8 +53,8 @@ EXAMPLES = """
   oci_network_load_balancer_backend_health_facts:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: example_backend_set
-    backend_name: 10.0.0.3:8080
+    backend_set_name: backend_set_name_example
+    backend_name: backend_name_example
 
 """
 
@@ -89,7 +89,7 @@ backend_health:
                         - "Example: `2020-05-01T18:28:11+00:00`"
                     returned: on success
                     type: str
-                    sample: "2020-05-01T18:28:11+00:00"
+                    sample: "2013-10-20T19:20:30+01:00"
                 health_check_status:
                     description:
                         - The result of the most recent health check.
@@ -99,7 +99,7 @@ backend_health:
     sample: {
         "status": "OK",
         "health_check_results": [{
-            "timestamp": "2020-05-01T18:28:11+00:00",
+            "timestamp": "2013-10-20T19:20:30+01:00",
             "health_check_status": "OK"
         }]
     }

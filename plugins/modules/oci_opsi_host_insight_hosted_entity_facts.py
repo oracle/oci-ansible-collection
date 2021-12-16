@@ -100,7 +100,7 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    platform_type: [ "$p.getValue()" ]
+    platform_type: [ "LINUX" ]
     exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
     sort_order: ASC
     sort_by: entityName

@@ -63,8 +63,8 @@ EXAMPLES = """
   oci_opsi_sql_plan_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    sql_identifier: 6rgjh9bjmy2s7
-    plan_hash: [ "9820154385" ]
+    sql_identifier: sql_identifier_example
+    plan_hash: [ "56" ]
 
     # optional
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"

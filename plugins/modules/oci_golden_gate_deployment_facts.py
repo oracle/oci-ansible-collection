@@ -150,6 +150,7 @@ deployments:
         deployment_backup_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup being referenced.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
@@ -203,6 +204,7 @@ deployments:
         is_healthy:
             description:
                 - True if all of the aggregate resources are working correctly.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -240,6 +242,7 @@ deployments:
             description:
                 - An array of L(Network Security Group,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm) OCIDs used to define
                   network access for a deployment.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -292,13 +295,16 @@ deployments:
             sample: "2013-10-20T19:20:30+01:00"
         deployment_type:
             description:
-                - The deployment type.
+                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
+                  for backward compatibility purposes.  Its use is discouraged
+                        in favor of the equivalent DATABASE_ORACLE value."
             returned: on success
             type: str
             sample: OGG
         ogg_data:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -314,7 +320,7 @@ deployments:
                         - The GoldenGate deployment console username.
                     returned: on success
                     type: str
-                    sample: oggadmin
+                    sample: admin_username_example
                 ogg_version:
                     description:
                         - Version of OGG
@@ -357,7 +363,7 @@ deployments:
         "deployment_type": "OGG",
         "ogg_data": {
             "deployment_name": "deployment_name_example",
-            "admin_username": "oggadmin",
+            "admin_username": "admin_username_example",
             "ogg_version": "ogg_version_example",
             "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         }

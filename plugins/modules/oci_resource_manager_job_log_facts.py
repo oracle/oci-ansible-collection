@@ -77,11 +77,11 @@ EXAMPLES = """
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    type: [ "$p.getValue()" ]
-    level_greater_than_or_equal_to: level_greater_than_or_equal_to_example
+    type: [ "type_example" ]
+    level_greater_than_or_equal_to: TRACE
     sort_order: ASC
-    timestamp_greater_than_or_equal_to: 2020-01-01T12:00:00.000Z
-    timestamp_less_than_or_equal_to: 2020-02-01T12:00:00.000Z
+    timestamp_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    timestamp_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
 
 """
 
@@ -111,7 +111,7 @@ job_logs:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         message:
             description:
                 - The log entry value.
@@ -121,7 +121,7 @@ job_logs:
     sample: [{
         "type": "TERRAFORM_CONSOLE",
         "level": "TRACE",
-        "timestamp": "2020-01-25T21:10:29.600Z",
+        "timestamp": "2013-10-20T19:20:30+01:00",
         "message": "message_example"
     }]
 """

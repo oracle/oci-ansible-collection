@@ -99,7 +99,7 @@ EXAMPLES = """
     channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     is_enabled: true
     sort_by: displayName
     sort_order: ASC
@@ -228,6 +228,7 @@ channels:
         description:
             description:
                 - User provided description of the Channel.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example

@@ -96,7 +96,7 @@ EXAMPLES = """
     # required
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     awr_db_id: "ocid1.awrdb.oc1..xxxxxxEXAMPLExxxxxx"
-    name: [ "$p.getValue()" ]
+    name: [ "name_example" ]
 
     # optional
     inst_num: inst_num_example

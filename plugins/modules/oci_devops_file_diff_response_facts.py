@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     file_path:
@@ -39,17 +39,17 @@ options:
         required: true
     base_version:
         description:
-            - The branch to compare changes against
+            - The branch to compare changes against.
         type: str
         required: true
     target_version:
         description:
-            - The branch where changes are coming from
+            - The branch where changes are coming from.
         type: str
         required: true
     is_comparison_from_merge_base:
         description:
-            - boolean for whether to use merge base or most recent revision
+            - Boolean to indicate whether to use merge base or most recent revision.
         type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -77,25 +77,25 @@ file_diff_response:
     contains:
         old_path:
             description:
-                - The path on the baseVersion to the changed object.
+                - The path on the base version to the changed object.
             returned: on success
             type: str
             sample: old_path_example
         new_path:
             description:
-                - The path on the targetVersion to the changed object.
+                - The path on the target version to the changed object.
             returned: on success
             type: str
             sample: new_path_example
         old_id:
             description:
-                - The ID of the changed object on the baseVersion.
+                - The ID of the changed object on the base version.
             returned: on success
             type: str
             sample: "ocid1.old.oc1..xxxxxxEXAMPLExxxxxx"
         new_id:
             description:
-                - The ID of the changed object on the targetVersion.
+                - The ID of the changed object on the target version.
             returned: on success
             type: str
             sample: "ocid1.new.oc1..xxxxxxEXAMPLExxxxxx"
@@ -149,7 +149,7 @@ file_diff_response:
                     sample: 56
                 diff_sections:
                     description:
-                        - List of DiffSection.
+                        - List of difference section.
                     returned: on success
                     type: complex
                     contains:
@@ -185,8 +185,8 @@ file_diff_response:
                                     sample: line_content_example
                                 conflict_marker:
                                     description:
-                                        - Indicates whether a line in a conflicted section of the diff is from the base version, the target version, or if its
-                                          just a marker indicating the beginning, middle, or end of a conflicted section.
+                                        - Indicates whether a line in a conflicted section of the difference is from the base version, the target version, or if
+                                          its just a marker indicating the beginning, middle, or end of a conflicted section.
                                     returned: on success
                                     type: str
                                     sample: BASE

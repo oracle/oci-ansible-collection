@@ -90,37 +90,37 @@ EXAMPLES = """
   oci_compute_instance_actions:
     # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    action: stop
+    action: STOP
 
 - name: Perform action start on instance
   oci_compute_instance_actions:
     # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    action: start
+    action: STOP
 
 - name: Perform action softreset on instance
   oci_compute_instance_actions:
     # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    action: softreset
+    action: STOP
 
 - name: Perform action reset on instance
   oci_compute_instance_actions:
     # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    action: reset
+    action: STOP
 
 - name: Perform action softstop on instance
   oci_compute_instance_actions:
     # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    action: softstop
+    action: STOP
 
 - name: Perform action senddiagnosticinterrupt on instance
   oci_compute_instance_actions:
     # required
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
-    action: senddiagnosticinterrupt
+    action: STOP
 
 """
 
@@ -401,7 +401,7 @@ instance:
                 - "Examples: `phx`, `eu-frankfurt-1`"
             returned: on success
             type: str
-            sample: region_example
+            sample: us-phoenix-1
         shape:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
@@ -541,7 +541,7 @@ instance:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         agent_config:
             description:
                 - ""
@@ -620,7 +620,7 @@ instance:
                   Example: `2018-05-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2018-05-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         platform_config:
             description:
                 - ""
@@ -694,7 +694,7 @@ instance:
         },
         "lifecycle_state": "MOVING",
         "metadata": {},
-        "region": "region_example",
+        "region": "us-phoenix-1",
         "shape": "shape_example",
         "shape_config": {
             "ocpus": 3.4,
@@ -717,7 +717,7 @@ instance:
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "system_tags": {},
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "agent_config": {
             "is_monitoring_disabled": true,
             "is_management_disabled": true,
@@ -727,7 +727,7 @@ instance:
                 "desired_state": "ENABLED"
             }]
         },
-        "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
+        "time_maintenance_reboot_due": "2013-10-20T19:20:30+01:00",
         "platform_config": {
             "type": "AMD_MILAN_BM",
             "is_secure_boot_enabled": true,

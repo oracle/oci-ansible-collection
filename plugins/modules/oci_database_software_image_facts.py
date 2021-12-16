@@ -108,10 +108,10 @@ EXAMPLES = """
     # optional
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     display_name: display_name_example
-    image_type: image_type_example
-    image_shape_family: image_shape_family_example
+    image_type: GRID_IMAGE
+    image_shape_family: VM_BM_SHAPE
     is_upgrade_supported: true
 
 """

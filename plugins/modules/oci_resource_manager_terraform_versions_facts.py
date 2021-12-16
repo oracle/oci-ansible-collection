@@ -56,7 +56,7 @@ terraform_versions:
                 - "A supported Terraform version. Example: `0.12.x`"
             returned: on success
             type: str
-            sample: 0.12.x
+            sample: name_example
         is_default:
             description:
                 - Indicates whether this Terraform version is used by default in L(CreateStack,https://docs.cloud.oracle.com/en-
@@ -65,7 +65,7 @@ terraform_versions:
             type: bool
             sample: true
     sample: [{
-        "name": "0.12.x",
+        "name": "name_example",
         "is_default": true
     }]
 """

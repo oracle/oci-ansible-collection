@@ -100,9 +100,9 @@ EXAMPLES = """
 - name: Create group
   oci_identity_group:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
-    name: NetworkAdmins
-    description: Group for network administrators
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    description: description_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -114,18 +114,18 @@ EXAMPLES = """
     group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    description: Group for network administrators
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_group:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
-    name: NetworkAdmins
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
-    description: Group for network administrators
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -138,8 +138,8 @@ EXAMPLES = """
 - name: Delete group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_group:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
-    name: NetworkAdmins
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -182,7 +182,7 @@ group:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The group's current state. After creating a group, make sure its `lifecycleState` changes from CREATING to
@@ -217,7 +217,7 @@ group:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "freeform_tags": {'Department': 'Finance'},

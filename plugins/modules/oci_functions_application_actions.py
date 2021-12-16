@@ -126,7 +126,7 @@ application:
                 - "Example: `tcp://logserver.myserver:1234`"
             returned: on success
             type: str
-            sample: tcp://logserver.myserver:1234
+            sample: syslog_url_example
         trace_config:
             description:
                 - ""
@@ -168,7 +168,7 @@ application:
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -176,7 +176,7 @@ application:
                   Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         image_policy_config:
             description:
                 - ""
@@ -210,15 +210,15 @@ application:
         "config": {},
         "subnet_ids": [],
         "network_security_group_ids": [],
-        "syslog_url": "tcp://logserver.myserver:1234",
+        "syslog_url": "syslog_url_example",
         "trace_config": {
             "is_enabled": true,
             "domain_id": "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "time_created": "2018-09-12T22:47:12.613Z",
-        "time_updated": "2018-09-12T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "image_policy_config": {
             "is_policy_enabled": true,
             "key_details": [{

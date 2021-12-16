@@ -48,7 +48,7 @@ EXAMPLES = """
   oci_loadbalancer_hostname_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: example_hostname_001
+    name: name_example
 
 - name: List hostnames
   oci_loadbalancer_hostname_facts:
@@ -71,7 +71,7 @@ hostnames:
                 - "Example: `example_hostname_001`"
             returned: on success
             type: str
-            sample: example_hostname_001
+            sample: name_example
         hostname:
             description:
                 - A virtual hostname. For more information about virtual hostname string construction, see
@@ -79,10 +79,10 @@ hostnames:
                 - "Example: `app.example.com`"
             returned: on success
             type: str
-            sample: app.example.com
+            sample: hostname_example
     sample: [{
-        "name": "example_hostname_001",
-        "hostname": "app.example.com"
+        "name": "name_example",
+        "hostname": "hostname_example"
     }]
 """
 

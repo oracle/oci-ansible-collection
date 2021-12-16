@@ -84,7 +84,7 @@ ip_sec_connection_device_config:
                         - "Example: `203.0.113.50 `"
                     returned: on success
                     type: str
-                    sample: 203.0.113.50
+                    sample: ip_address_example
                 shared_secret:
                     description:
                         - The shared secret of the IPSec tunnel.
@@ -97,15 +97,15 @@ ip_sec_connection_device_config:
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2016-08-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "tunnels": [{
-            "ip_address": "203.0.113.50",
+            "ip_address": "ip_address_example",
             "shared_secret": "shared_secret_example",
-            "time_created": "2016-08-25T21:10:29.600Z"
+            "time_created": "2013-10-20T19:20:30+01:00"
         }]
     }
 """

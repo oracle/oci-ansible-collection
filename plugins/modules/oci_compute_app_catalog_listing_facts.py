@@ -113,7 +113,7 @@ app_catalog_listings:
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
             type: str
-            sample: "2018-03-20T12:32:53.532Z"
+            sample: "2013-10-20T19:20:30+01:00"
         publisher_logo_url:
             description:
                 - Publisher's logo URL.
@@ -137,7 +137,7 @@ app_catalog_listings:
         "description": "description_example",
         "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "time_published": "2018-03-20T12:32:53.532Z",
+        "time_published": "2013-10-20T19:20:30+01:00",
         "publisher_logo_url": "publisher_logo_url_example",
         "publisher_name": "publisher_name_example",
         "summary": "summary_example"

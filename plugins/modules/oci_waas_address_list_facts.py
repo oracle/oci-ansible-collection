@@ -98,8 +98,8 @@ EXAMPLES = """
     # optional
     sort_by: id
     sort_order: ASC
-    name: [ "$p.getValue()" ]
-    lifecycle_state: [ "$p.getValue()" ]
+    name: [ "name_example" ]
+    lifecycle_state: [ "CREATING" ]
     time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_created_less_than: 2013-10-20T19:20:30+01:00
 
@@ -139,6 +139,7 @@ address_lists:
         addresses:
             description:
                 - The list of IP addresses or CIDR notations.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -169,7 +170,7 @@ address_lists:
                 - The date and time the address list was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -179,7 +180,7 @@ address_lists:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

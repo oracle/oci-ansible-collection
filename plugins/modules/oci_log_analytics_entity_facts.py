@@ -144,7 +144,7 @@ EXAMPLES = """
     # optional
     name: name_example
     name_contains: name_contains_example
-    entity_type_name: [ "$p.getValue()" ]
+    entity_type_name: [ "entity_type_name_example" ]
     cloud_resource_id: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: ACTIVE
     lifecycle_details_contains: lifecycle_details_contains_example
@@ -152,7 +152,7 @@ EXAMPLES = """
     hostname: hostname_example
     hostname_contains: hostname_contains_example
     source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
-    creation_source_type: [ "$p.getValue()" ]
+    creation_source_type: [ "EM_BRIDGE" ]
     creation_source_details: creation_source_details_example
     sort_order: ASC
     sort_by: timeCreated
@@ -218,12 +218,14 @@ log_analytics_entities:
         management_agent_display_name:
             description:
                 - Management agent (management-agents resource kind) display name
+                - Returned for get operation
             returned: on success
             type: str
             sample: management_agent_display_name_example
         management_agent_compartment_id:
             description:
                 - Management agent (management-agents resource kind) compartment OCID
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -232,10 +234,11 @@ log_analytics_entities:
                 - The timezone region of the log analytics entity.
             returned: on success
             type: str
-            sample: timezone_region_example
+            sample: Asia/Kolkata
         properties:
             description:
                 - The name/value pairs for parameter values to be used in file patterns specified in log sources.
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -289,6 +292,7 @@ log_analytics_entities:
                 - The hostname where the entity represented here is actually present. This would be the output one would get if
                   they run `echo $HOSTNAME` on Linux or an equivalent OS command. This may be different from
                   management agents host since logs may be collected remotely.
+                - Returned for get operation
             returned: on success
             type: str
             sample: hostname_example
@@ -323,7 +327,7 @@ log_analytics_entities:
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_display_name": "management_agent_display_name_example",
         "management_agent_compartment_id": "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "timezone_region": "timezone_region_example",
+        "timezone_region": "Asia/Kolkata",
         "properties": {},
         "creation_source": {
             "type": "EM_BRIDGE",

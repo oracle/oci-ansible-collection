@@ -94,7 +94,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: TIMECREATED
     lifecycle_state: CREATING
@@ -136,6 +136,7 @@ managed_instance_groups:
         managed_instances:
             description:
                 - list of Managed Instances in the group
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -180,6 +181,7 @@ managed_instance_groups:
         managed_instance_count:
             description:
                 - Number of managed instances in this managed instance group
+                - Returned for list operation
             returned: on success
             type: int
             sample: 56

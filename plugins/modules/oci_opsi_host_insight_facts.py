@@ -116,10 +116,10 @@ EXAMPLES = """
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    status: [ "$p.getValue()" ]
-    lifecycle_state: [ "$p.getValue()" ]
-    host_type: [ "$p.getValue()" ]
-    platform_type: [ "$p.getValue()" ]
+    status: [ "DISABLED" ]
+    lifecycle_state: [ "CREATING" ]
+    host_type: [ "host_type_example" ]
+    platform_type: [ "LINUX" ]
     sort_order: ASC
     sort_by: hostName
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
@@ -203,7 +203,7 @@ host_insights:
                 - Indicates the status of a host insight in Operations Insights
             returned: on success
             type: str
-            sample: ENABLED
+            sample: DISABLED
         time_created:
             description:
                 - The time the the host insight was first enabled. An RFC3339 formatted datetime string
@@ -232,66 +232,77 @@ host_insights:
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_identifier_example
         enterprise_manager_entity_name:
             description:
                 - Enterprise Manager Entity Name
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_name_example
         enterprise_manager_entity_type:
             description:
                 - Enterprise Manager Entity Type
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_type_example
         enterprise_manager_entity_identifier:
             description:
                 - Enterprise Manager Entity Unique Identifier
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_identifier_example
         enterprise_manager_entity_display_name:
             description:
                 - Enterprise Manager Entity Display Name
+                - Returned for get operation
             returned: on success
             type: str
             sample: enterprise_manager_entity_display_name_example
         enterprise_manager_bridge_id:
             description:
                 - OPSI Enterprise Manager Bridge OCID
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
         platform_type:
             description:
                 - Platform type.
+                - Returned for get operation
             returned: on success
             type: str
             sample: LINUX
         platform_name:
             description:
                 - Platform name.
+                - Returned for get operation
             returned: on success
             type: str
             sample: platform_name_example
         platform_version:
             description:
                 - Platform version.
+                - Returned for get operation
             returned: on success
             type: str
-            sample: Oracle Linux Server release 7.9
+            sample: platform_version_example
         exadata_insight_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
@@ -306,7 +317,7 @@ host_insights:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "status": "ENABLED",
+        "status": "DISABLED",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -319,7 +330,7 @@ host_insights:
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "platform_type": "LINUX",
         "platform_name": "platform_name_example",
-        "platform_version": "Oracle Linux Server release 7.9",
+        "platform_version": "platform_version_example",
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     }]

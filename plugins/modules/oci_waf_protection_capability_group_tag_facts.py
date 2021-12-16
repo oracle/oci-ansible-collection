@@ -68,7 +68,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    type: type_example
+    type: REQUEST_PROTECTION_CAPABILITY
     sort_order: ASC
     sort_by: name
     name: name_example

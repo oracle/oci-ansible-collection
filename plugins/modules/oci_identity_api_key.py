@@ -119,7 +119,7 @@ api_key:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The API key's current state. After creating an `ApiKey` object, make sure its `lifecycleState` changes from
@@ -138,7 +138,7 @@ api_key:
         "key_value": "key_value_example",
         "fingerprint": "fingerprint_example",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56
     }

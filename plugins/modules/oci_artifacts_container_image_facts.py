@@ -103,7 +103,7 @@ EXAMPLES = """
 - name: Get a specific container_image
   oci_artifacts_container_image_facts:
     # required
-    image_id: "ocid1.containerimage.oc1..exampleuniqueID"
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List container_images
   oci_artifacts_container_image_facts:
@@ -111,13 +111,13 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    image_id: "ocid1.containerimage.oc1..exampleuniqueID"
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
     display_name: display_name_example
     is_versioned: true
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-    repository_name: foo
-    version: foo
+    repository_name: repository_name_example
+    version: version_example
     lifecycle_state: lifecycle_state_example
     sort_by: TIMECREATED
     sort_order: ASC
@@ -140,6 +140,7 @@ container_images:
         created_by:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the user or principal that created the resource.
+                - Returned for get operation
             returned: on success
             type: str
             sample: created_by_example
@@ -157,17 +158,18 @@ container_images:
                 - "Example: `ubuntu:latest` or `ubuntu:latest@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`"
             returned: on success
             type: str
-            sample: ubuntu:latest
+            sample: display_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image.
                 - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.containerimage.oc1..exampleuniqueID"
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         layers:
             description:
                 - Layers of which the image is composed, ordered by the layer digest.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -192,6 +194,7 @@ container_images:
         layers_size_in_bytes:
             description:
                 - The total size of the container image layers in bytes.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -204,12 +207,14 @@ container_images:
         manifest_size_in_bytes:
             description:
                 - The size of the container image manifest in bytes.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         pull_count:
             description:
                 - Total number of pulls.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -234,6 +239,7 @@ container_images:
         time_last_pulled:
             description:
                 - An RFC 3339 timestamp indicating when the image was last pulled.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -246,6 +252,7 @@ container_images:
         versions:
             description:
                 - The versions associated with this image.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -271,8 +278,8 @@ container_images:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
         "digest": "digest_example",
-        "display_name": "ubuntu:latest",
-        "id": "ocid1.containerimage.oc1..exampleuniqueID",
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "layers": [{
             "digest": "digest_example",
             "size_in_bytes": 56,

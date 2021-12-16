@@ -105,10 +105,10 @@ EXAMPLES = """
 - name: Create dynamic_group
   oci_identity_dynamic_group:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
-    name: DevCompartmentDynamicGroup
-    matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
-    description: Instance group for dev compartment
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    matching_rule: matching_rule_example
+    description: description_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -120,20 +120,20 @@ EXAMPLES = """
     dynamic_group_id: "ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
-    description: Instance group for dev compartment
+    matching_rule: matching_rule_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update dynamic_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_dynamic_group:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
-    name: DevCompartmentDynamicGroup
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
-    matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
-    description: Instance group for dev compartment
+    matching_rule: matching_rule_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -146,8 +146,8 @@ EXAMPLES = """
 - name: Delete dynamic_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_dynamic_group:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
-    name: DevCompartmentDynamicGroup
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -197,7 +197,7 @@ dynamic_group:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The group's current state. After creating a group, make sure its `lifecycleState` changes from CREATING to
@@ -233,7 +233,7 @@ dynamic_group:
         "name": "name_example",
         "description": "description_example",
         "matching_rule": "matching_rule_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "freeform_tags": {'Department': 'Finance'},

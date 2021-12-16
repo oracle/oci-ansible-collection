@@ -285,14 +285,14 @@ session:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the session was updated. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the session.
@@ -331,8 +331,8 @@ session:
             "public_key_content": "public_key_content_example"
         },
         "bastion_public_host_key_info": "bastion_public_host_key_info_example",
-        "time_created": "2020-01-25T21:10:29.600Z",
-        "time_updated": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "session_ttl_in_seconds": 56

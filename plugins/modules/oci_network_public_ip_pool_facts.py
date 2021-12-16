@@ -153,7 +153,7 @@ public_ip_pools:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "cidr_blocks": [],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -162,7 +162,7 @@ public_ip_pools:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "INACTIVE",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

@@ -84,7 +84,7 @@ EXAMPLES = """
 
     # optional
     private_application_package_id: "ocid1.privateapplicationpackage.oc1..xxxxxxEXAMPLExxxxxx"
-    package_type: [ "$p.getValue()" ]
+    package_type: [ "STACK" ]
     sort_by: TIMECREATED
     sort_order: ASC
     display_name: display_name_example
@@ -135,16 +135,18 @@ private_application_packages:
                 - "Example: `2021-05-27T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2021-05-27T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         content_url:
             description:
                 - The content URL of the terraform configuration.
+                - Returned for get operation
             returned: on success
             type: str
             sample: content_url_example
         mime_type:
             description:
                 - The MIME type of the terraform configuration.
+                - Returned for get operation
             returned: on success
             type: str
             sample: mime_type_example
@@ -154,7 +156,7 @@ private_application_packages:
         "display_name": "display_name_example",
         "version": "version_example",
         "package_type": "STACK",
-        "time_created": "2021-05-27T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "content_url": "content_url_example",
         "mime_type": "mime_type_example"
     }]

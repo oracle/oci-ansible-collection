@@ -383,13 +383,13 @@ EXAMPLES = """
 - name: Create database with source = NONE
   oci_database_database:
     # required
-    db_home_id: ocid1.dbhome.oc1.phx.unique_ID
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     database:
       # required
       admin_password: example-password
 
       # optional
-      db_name: myTestDb
+      db_name: db_name_example
       db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
@@ -400,8 +400,8 @@ EXAMPLES = """
       db_backup_config:
         # optional
         auto_backup_enabled: true
-        recovery_window_in_days: 30
-        auto_backup_window: SLOT_TWO
+        recovery_window_in_days: 56
+        auto_backup_window: SLOT_ONE
         backup_destination_details:
         - # required
           type: NFS
@@ -420,20 +420,20 @@ EXAMPLES = """
     # optional
     db_version: db_version_example
     source: NONE
-    kms_key_id: "ocid1.key.oc1..unique_ID"
-    kms_key_version_id: "ocid1.keyversion.oc1..unique_ID"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Create database with source = DB_BACKUP
   oci_database_database:
     # required
-    db_home_id: ocid1.dbhome.oc1.phx.unique_ID
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     source: DB_BACKUP
     database:
       # required
       admin_password: example-password
 
       # optional
-      db_name: myTestDb
+      db_name: db_name_example
       db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
@@ -444,8 +444,8 @@ EXAMPLES = """
       db_backup_config:
         # optional
         auto_backup_enabled: true
-        recovery_window_in_days: 30
-        auto_backup_window: SLOT_TWO
+        recovery_window_in_days: 56
+        auto_backup_window: SLOT_ONE
         backup_destination_details:
         - # required
           type: NFS
@@ -463,8 +463,8 @@ EXAMPLES = """
 
     # optional
     db_version: db_version_example
-    kms_key_id: "ocid1.key.oc1..unique_ID"
-    kms_key_version_id: "ocid1.keyversion.oc1..unique_ID"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update database
   oci_database_database:
@@ -472,12 +472,12 @@ EXAMPLES = """
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    db_home_id: ocid1.dbhome.oc1.phx.unique_ID
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     db_backup_config:
       # optional
       auto_backup_enabled: true
-      recovery_window_in_days: 30
-      auto_backup_window: SLOT_TWO
+      recovery_window_in_days: 56
+      auto_backup_window: SLOT_ONE
       backup_destination_details:
       - # required
         type: NFS
@@ -635,7 +635,7 @@ database:
                         - "Example: `SLOT_TWO`"
                     returned: on success
                     type: str
-                    sample: SLOT_TWO
+                    sample: SLOT_ONE
                 backup_destination_details:
                     description:
                         - Backup destination details.
@@ -780,7 +780,7 @@ database:
         "db_backup_config": {
             "auto_backup_enabled": true,
             "recovery_window_in_days": 56,
-            "auto_backup_window": "SLOT_TWO",
+            "auto_backup_window": "SLOT_ONE",
             "backup_destination_details": [{
                 "type": "NFS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

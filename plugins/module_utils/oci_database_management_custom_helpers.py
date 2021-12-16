@@ -49,6 +49,44 @@ def compare_change_db_params(existing_params, new_param):
     return False
 
 
+class ManagedDatabaseActionsHelperCustom:
+    def perform_action(self, action):
+        """
+        Overrides the base to invoke the actions for this
+        resource as they dont need an explicit get_resource call.
+        """
+
+        action_fn = self.get_action_fn(action)
+        if not action_fn:
+            self.module.fail_json(msg="{0} not supported by the module.".format(action))
+
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.get_response_field_name(action),
+                resource=None,
+            )
+
+        try:
+            action_return = action_fn()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            resource = None
+            if action == "clone_sql_tuning_task":
+                resource = to_dict(action_return)
+
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.get_response_field_name(action),
+                resource=resource,
+            )
+
+
 class DatabaseParameterActionsHelperCustom:
     def get_resource(self):
         return oci_common_utils.get_default_response_from_resource(

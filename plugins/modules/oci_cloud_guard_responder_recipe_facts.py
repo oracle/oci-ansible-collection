@@ -346,6 +346,7 @@ responder_recipes:
         effective_responder_rules:
             description:
                 - List of responder rules associated with the recipe
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

@@ -92,7 +92,7 @@ EXAMPLES = """
     # optional
     sort_order: ASC
     sort_by: TIMECREATED
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
 
 """

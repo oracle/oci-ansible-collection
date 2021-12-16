@@ -127,7 +127,7 @@ auth_token:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_expires:
             description:
                 - Date and time when this auth token will expire, in the format defined by RFC3339.
@@ -135,7 +135,7 @@ auth_token:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The token's current state. After creating an auth token, make sure its `lifecycleState` changes from
@@ -154,8 +154,8 @@ auth_token:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "time_expires": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_expires": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56
     }

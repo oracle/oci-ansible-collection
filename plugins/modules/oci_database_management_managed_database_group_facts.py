@@ -129,6 +129,7 @@ managed_database_groups:
         managed_databases:
             description:
                 - A list of Managed Databases in the Managed Database Group.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -157,6 +158,12 @@ managed_database_groups:
                     returned: on success
                     type: str
                     sample: ONPREMISE
+                workload_type:
+                    description:
+                        - The workload type of the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: OLTP
                 database_type:
                     description:
                         - The type of Oracle Database installation.
@@ -165,8 +172,8 @@ managed_database_groups:
                     sample: EXTERNAL_SIDB
                 database_sub_type:
                     description:
-                        - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container
-                          Database.
+                        - The subtype of the Oracle Database. Indicates whether the database is a Container Database,
+                          Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.
                     returned: on success
                     type: str
                     sample: CDB
@@ -191,12 +198,14 @@ managed_database_groups:
         time_updated:
             description:
                 - The date and time the Managed Database Group was last updated.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         managed_database_count:
             description:
                 - The number of Managed Databases in the Managed Database Group.
+                - Returned for list operation
             returned: on success
             type: int
             sample: 56
@@ -210,6 +219,7 @@ managed_database_groups:
             "name": "name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "deployment_type": "ONPREMISE",
+            "workload_type": "OLTP",
             "database_type": "EXTERNAL_SIDB",
             "database_sub_type": "CDB",
             "time_added": "2013-10-20T19:20:30+01:00"

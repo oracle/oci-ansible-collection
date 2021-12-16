@@ -93,7 +93,7 @@ letter_of_authority:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "authorized_entity_name": "authorized_entity_name_example",
         "circuit_type": "Single_mode_LC",
@@ -101,7 +101,7 @@ letter_of_authority:
         "facility_location": "facility_location_example",
         "port_name": "port_name_example",
         "time_expires": "2013-10-20T19:20:30+01:00",
-        "time_issued": "2016-08-25T21:10:29.600Z"
+        "time_issued": "2013-10-20T19:20:30+01:00"
     }
 """
 

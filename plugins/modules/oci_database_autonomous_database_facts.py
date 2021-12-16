@@ -142,9 +142,9 @@ EXAMPLES = """
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: TIMECREATED
     sort_order: ASC
-    infrastructure_type: infrastructure_type_example
-    lifecycle_state: lifecycle_state_example
-    db_workload: db_workload_example
+    infrastructure_type: CLOUD
+    lifecycle_state: PROVISIONING
+    db_workload: OLTP
     db_version: db_version_example
     is_free_tier: true
     display_name: display_name_example

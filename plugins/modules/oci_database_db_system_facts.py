@@ -107,7 +107,7 @@ EXAMPLES = """
     backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     availability_domain: Uocm:PHX-AD-1
     display_name: display_name_example
 

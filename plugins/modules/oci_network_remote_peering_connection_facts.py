@@ -118,7 +118,7 @@ remote_peering_connections:
                 - "Example: `false`"
             returned: on success
             type: bool
-            sample: false
+            sample: true
         lifecycle_state:
             description:
                 - The RPC's current lifecycle state.
@@ -137,7 +137,7 @@ remote_peering_connections:
                 - "Example: `us-ashburn-1`"
             returned: on success
             type: str
-            sample: us-ashburn-1
+            sample: us-phoenix-1
         peer_tenancy_id:
             description:
                 - If this RPC is peered, this value is the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the other
@@ -159,7 +159,7 @@ remote_peering_connections:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -167,13 +167,13 @@ remote_peering_connections:
         "drg_id": "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_cross_tenancy_peering": false,
+        "is_cross_tenancy_peering": true,
         "lifecycle_state": "AVAILABLE",
         "peer_id": "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx",
-        "peer_region_name": "us-ashburn-1",
+        "peer_region_name": "us-phoenix-1",
         "peer_tenancy_id": "ocid1.peertenancy.oc1..xxxxxxEXAMPLExxxxxx",
         "peering_status": "INVALID",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

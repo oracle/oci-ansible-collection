@@ -193,7 +193,7 @@ publication:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         defined_tags:
             description:
                 - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
@@ -235,7 +235,7 @@ publication:
         "supported_operating_systems": [{
             "name": "name_example"
         }],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'}
     }

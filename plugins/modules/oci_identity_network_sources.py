@@ -137,12 +137,12 @@ EXAMPLES = """
     description: description_example
 
     # optional
-    public_source_list: [ "null" ]
+    public_source_list: [ "public_source_list_example" ]
     virtual_source_list:
     - # optional
       vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-      ip_ranges: [ "null" ]
-    services: [ "null" ]
+      ip_ranges: [ "ip_ranges_example" ]
+    services: [ "services_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -152,12 +152,12 @@ EXAMPLES = """
     network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    public_source_list: [ "null" ]
+    public_source_list: [ "public_source_list_example" ]
     virtual_source_list:
     - # optional
       vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-      ip_ranges: [ "null" ]
-    services: [ "null" ]
+      ip_ranges: [ "ip_ranges_example" ]
+    services: [ "services_example" ]
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -169,12 +169,12 @@ EXAMPLES = """
     name: name_example
 
     # optional
-    public_source_list: [ "null" ]
+    public_source_list: [ "public_source_list_example" ]
     virtual_source_list:
     - # optional
       vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-      ip_ranges: [ "null" ]
-    services: [ "null" ]
+      ip_ranges: [ "ip_ranges_example" ]
+    services: [ "services_example" ]
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -265,7 +265,7 @@ network_sources:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The network source object's current state. After creating a network source, make sure its `lifecycleState` changes from CREATING to
@@ -306,7 +306,7 @@ network_sources:
             "ip_ranges": []
         }],
         "services": [],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "freeform_tags": {'Department': 'Finance'},

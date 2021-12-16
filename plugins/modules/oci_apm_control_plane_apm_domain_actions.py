@@ -23,19 +23,20 @@ module: oci_apm_control_plane_apm_domain_actions
 short_description: Perform actions on an ApmDomain resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an ApmDomain resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves a APM Domain into a different compartment. When provided, If-Match is checked against ETag values of the resource.
+    - For I(action=change_compartment), moves an APM domain into a different compartment. When provided, If-Match is checked against ETag values of the APM
+      domain.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
         description:
-            - OCID of the APM Domain
+            - The OCID of the APM domain
         type: str
         aliases: ["id"]
         required: true
     compartment_id:
         description:
-            - The OCID of the destination compartment for the APM Domain.
+            - The OCID of the destination compartment for the APM domain.
         type: str
         required: true
     action:
@@ -67,7 +68,7 @@ apm_domain:
     contains:
         data_upload_endpoint:
             description:
-                - Where APM Agents upload their observations and metrics.
+                - The endpoint where the APM agents upload their observations and metrics.
             returned: on success
             type: str
             sample: data_upload_endpoint_example
@@ -79,25 +80,25 @@ apm_domain:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - APM Domain display name, can be updated.
+                - Display name of the APM domain, which can be updated.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Description of the APM Domain.
+                - Description of the APM domain.
             returned: on success
             type: str
             sample: description_example
         compartment_id:
             description:
-                - The OCID of the compartment corresponding to the APM Domain.
+                - The OCID of the compartment corresponding to the APM domain.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
-                - The current lifecycle state of the APM Domain.
+                - The current lifecycle state of the APM domain.
             returned: on success
             type: str
             sample: CREATING
@@ -109,13 +110,13 @@ apm_domain:
             sample: true
         time_created:
             description:
-                - The time the the APM Domain was created. An RFC3339 formatted datetime string
+                - The time the APM domain was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the APM Domain was updated. An RFC3339 formatted datetime string
+                - The time the APM domain was updated, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

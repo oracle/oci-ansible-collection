@@ -90,7 +90,7 @@ EXAMPLES = """
 - name: Create catalog_private_endpoint
   oci_data_catalog_catalog_private_endpoint:
     # required
-    dns_zones: [ "null" ]
+    dns_zones: [ "dns_zones_example" ]
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -105,7 +105,7 @@ EXAMPLES = """
     catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    dns_zones: [ "null" ]
+    dns_zones: [ "dns_zones_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
@@ -117,7 +117,7 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    dns_zones: [ "null" ]
+    dns_zones: [ "dns_zones_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 

@@ -441,7 +441,7 @@ service_connector:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The date and time when the service connector was updated.
@@ -449,7 +449,7 @@ service_connector:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the service connector.
@@ -591,14 +591,14 @@ service_connector:
                         - "Example: `oci_computeagent`"
                     returned: on success
                     type: str
-                    sample: oci_computeagent
+                    sample: metric_namespace_example
                 metric:
                     description:
                         - The name of the metric.
                         - "Example: `CpuUtilization`"
                     returned: on success
                     type: str
-                    sample: CpuUtilization
+                    sample: metric_example
                 topic_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
@@ -677,8 +677,8 @@ service_connector:
         "display_name": "display_name_example",
         "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2020-01-25T21:10:29.600Z",
-        "time_updated": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecyle_details": "lifecyle_details_example",
         "source": {
@@ -705,8 +705,8 @@ service_connector:
             "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "metric_namespace": "oci_computeagent",
-            "metric": "CpuUtilization",
+            "metric_namespace": "metric_namespace_example",
+            "metric": "metric_example",
             "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
             "enable_formatted_messaging": true,
             "namespace": "namespace_example",

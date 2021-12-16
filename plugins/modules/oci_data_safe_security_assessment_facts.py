@@ -223,6 +223,7 @@ security_assessments:
             description:
                 - "List containing maps as values.
                   Example: `{\\"Operations\\": [ {\\"CostCenter\\": \\"42\\"} ] }`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -236,6 +237,7 @@ security_assessments:
         target_version:
             description:
                 - The version of the target database.
+                - Returned for get operation
             returned: on success
             type: str
             sample: target_version_example
@@ -289,11 +291,12 @@ security_assessments:
             sample: description_example
         schedule:
             description:
-                - "Schedule of the assessment that runs periodically in this specified format: <version-string>;<version-specific-schedule>
-                  Allowed version strings - v1
+                - "Schedule to save the assessment periodically in the specified format:
+                  <version-string>;<version-specific-schedule>"
+                - "Allowed version strings - \\"v1\\"
                   v1's version specific schedule -<ss> <mm> <hh> <day-of-week> <day-of-month>
                   Each of the above fields potentially introduce constraints. A workrequest is created only
-                  when clock time satisfies all the constraints. Constraints introduced
+                  when clock time satisfies all the constraints. Constraints introduced:
                   1. seconds = <ss> (So, the allowed range for <ss> is [0, 59])
                   2. minutes = <mm> (So, the allowed range for <mm> is [0, 59])
                   3. hours = <hh> (So, the allowed range for <hh> is [0, 23])
@@ -303,7 +306,7 @@ security_assessments:
                   5. No constraint introduced when it is '*'. When not, day of month must equal the given value"
             returned: on success
             type: str
-            sample: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+            sample: schedule_example
         link:
             description:
                 - The summary of findings for the security assessment
@@ -680,6 +683,7 @@ security_assessments:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
                   Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -687,6 +691,7 @@ security_assessments:
             description:
                 - "List containing maps as values.
                   Example: `{\\"Operations\\": [ {\\"CostCenter\\": \\"42\\"} ] }`"
+                - Returned for list operation
             returned: on success
             type: list
             sample: []
@@ -708,7 +713,7 @@ security_assessments:
         "schedule_security_assessment_id": "ocid1.schedulesecurityassessment.oc1..xxxxxxEXAMPLExxxxxx",
         "triggered_by": "USER",
         "description": "description_example",
-        "schedule": "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day",
+        "schedule": "schedule_example",
         "link": "link_example",
         "type": "LATEST",
         "statistics": {

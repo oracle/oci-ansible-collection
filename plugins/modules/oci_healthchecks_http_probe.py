@@ -94,12 +94,12 @@ EXAMPLES = """
 - name: Create http_probe
   oci_healthchecks_http_probe:
     # required
-    compartment_id: "ocid1.tenancy.oc1..."
-    targets: [ "192.0.2.0" ]
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    targets: [ "targets_example" ]
     protocol: HTTP
 
     # optional
-    vantage_point_names: [ "null" ]
+    vantage_point_names: [ "vantage_point_names_example" ]
     port: 56
     timeout_in_seconds: 56
     method: GET
@@ -132,7 +132,7 @@ http_probe:
                 - The region where updates must be made and where results must be fetched from.
             returned: on success
             type: str
-            sample: home_region_example
+            sample: us-phoenix-1
         time_created:
             description:
                 - The RFC 3339-formatted creation date and time of the probe.
@@ -199,7 +199,7 @@ http_probe:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "results_url": "results_url_example",
-        "home_region": "home_region_example",
+        "home_region": "us-phoenix-1",
         "time_created": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "targets": [],

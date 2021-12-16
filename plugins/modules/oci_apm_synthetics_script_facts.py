@@ -103,13 +103,13 @@ scripts:
                   scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
             returned: on success
             type: str
-            sample: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Unique name that can be edited. The name should not contain any confidential information.
             returned: on success
             type: str
-            sample: exampleName
+            sample: display_name_example
         content_type:
             description:
                 - Content type of the script.
@@ -126,24 +126,28 @@ scripts:
                   With parameter name and value : `<ORAP><ON>param name</ON><OV>param value</OV></ORAP>`
                   Note that the content is valid if it matches the given content type. For example, if the content type is SIDE, then the content should be in
                   Side script format. If the content type is JS, then the content should be in JavaScript format."
+                - Returned for get operation
             returned: on success
             type: str
             sample: sample_content
         time_uploaded:
             description:
                 - The time when the script was uploaded.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         content_size_in_bytes:
             description:
                 - Size of the script content.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         content_file_name:
             description:
                 - File name of the uploaded script content.
+                - Returned for get operation
             returned: on success
             type: str
             sample: content_file_name_example
@@ -151,6 +155,7 @@ scripts:
             description:
                 - "List of script parameters. Example: `[{\\"scriptParameter\\": {\\"paramName\\": \\"userid\\", \\"paramValue\\":\\"testuser\\",
                   \\"isSecret\\": false}, \\"isOverwritten\\": false}]`"
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -165,13 +170,13 @@ scripts:
                                 - Name of the parameter.
                             returned: on success
                             type: str
-                            sample: testName
+                            sample: param_name_example
                         param_value:
                             description:
                                 - Value of the parameter.
                             returned: on success
                             type: str
-                            sample: openPage
+                            sample: param_value_example
                         is_secret:
                             description:
                                 - If the parameter value is secret and should be kept confidential, then set isSecret to true.
@@ -183,7 +188,7 @@ scripts:
                         - If parameter value is default or overwritten.
                     returned: on success
                     type: bool
-                    sample: false
+                    sample: true
         monitor_status_count_map:
             description:
                 - ""
@@ -195,25 +200,25 @@ scripts:
                         - Total number of monitors using the script.
                     returned: on success
                     type: int
-                    sample: 5
+                    sample: 56
                 enabled:
                     description:
                         - Number of enabled monitors using the script.
                     returned: on success
                     type: int
-                    sample: 3
+                    sample: 56
                 disabled:
                     description:
                         - Number of disabled monitors using the script.
                     returned: on success
                     type: int
-                    sample: 3
+                    sample: 56
                 invalid:
                     description:
                         - Number of invalid monitors using the script.
                     returned: on success
                     type: int
-                    sample: 0
+                    sample: 56
         time_created:
             description:
                 - "The time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -221,7 +226,7 @@ scripts:
                   Example: `2020-02-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2020-02-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -229,7 +234,7 @@ scripts:
                   Example: `2020-02-13T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2020-02-13T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -245,8 +250,8 @@ scripts:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq",
-        "display_name": "exampleName",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
         "content_type": "SIDE",
         "content": "sample_content",
         "time_uploaded": "2013-10-20T19:20:30+01:00",
@@ -254,20 +259,20 @@ scripts:
         "content_file_name": "content_file_name_example",
         "parameters": [{
             "script_parameter": {
-                "param_name": "testName",
-                "param_value": "openPage",
+                "param_name": "param_name_example",
+                "param_value": "param_value_example",
                 "is_secret": true
             },
-            "is_overwritten": false
+            "is_overwritten": true
         }],
         "monitor_status_count_map": {
-            "total": 5,
-            "enabled": 3,
-            "disabled": 3,
-            "invalid": 0
+            "total": 56,
+            "enabled": 56,
+            "disabled": 56,
+            "invalid": 56
         },
-        "time_created": "2020-02-12T22:47:12.613Z",
-        "time_updated": "2020-02-13T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

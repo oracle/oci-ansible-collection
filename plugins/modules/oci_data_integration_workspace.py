@@ -155,7 +155,7 @@ EXAMPLES = """
     state: absent
 
     # optional
-    quiesce_timeout: 789
+    quiesce_timeout: 0
     is_force_operation: true
 
 - name: Delete workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -243,13 +243,13 @@ workspace:
                 - The date and time the workspace was created, in the timestamp format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2019-08-25T21:10:29.410+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the workspace was updated, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: str
-            sample: "2019-08-25T21:10:29.410+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - "Lifecycle states for workspaces in Data Integration Service
@@ -291,8 +291,8 @@ workspace:
         "description": "description_example",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2019-08-25T21:10:29.410+0000",
-        "time_updated": "2019-08-25T21:10:29.410+0000",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "state_message": "state_message_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

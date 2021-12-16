@@ -436,6 +436,7 @@ detector_recipes:
         effective_detector_rules:
             description:
                 - List of effective detector rules for the detector type for recipe after applying defaults
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

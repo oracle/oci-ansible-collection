@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.37.0] - 2021-12-16
+
+## Added
+- Support for standard tags in the Identity service
+- Support for enabling and disabling Database Management features for Autonomous Database
+- Support SQL Tuning Advisor in Database Management
+- Support for List of Users and the  User Details features as a part of Database Management Service
+- Support for Autonomous databases in Database Management service
+- Support to fetch AllowedIkeIpSecParameters,IpSecConnectionTunnelError,TunnelRoute,
+  TunnelSecurityAssociation resources in Network service
+- Support for Solaris platform for Management Agent service.
+- Support for the user and security assessment action modules in the Data Safe service.
+- Support for choosing platformVersion while creating a platform instance in blockchain service
+- Capability for upgrading a platform instance in blockchain service
+- Support for listing deployment backups in the GoldenGate service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.53.0
+
+
 ## [2.36.0] - 2021-12-02
 
 ## Added

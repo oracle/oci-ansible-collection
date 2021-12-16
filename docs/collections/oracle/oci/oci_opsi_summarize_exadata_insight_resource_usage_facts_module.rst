@@ -30,9 +30,13 @@ oracle.oci.oci_opsi_summarize_exadata_insight_resource_usage_facts -- Fetches de
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_summarize_exadata_insight_resource_usage_facts`.
 
@@ -524,17 +528,17 @@ Examples
         analysis_time_interval: analysis_time_interval_example
         time_interval_start: 2013-10-20T19:20:30+01:00
         time_interval_end: 2013-10-20T19:20:30+01:00
-        exadata_insight_id: [ "$p.getValue()" ]
-        exadata_type: [ "$p.getValue()" ]
-        cdb_name: [ "$p.getValue()" ]
-        host_name: [ "$p.getValue()" ]
+        exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+        exadata_type: [ "exadata_type_example" ]
+        cdb_name: [ "cdb_name_example" ]
+        host_name: [ "host_name_example" ]
         sort_order: ASC
         sort_by: utilizationPercent
-        percentile: 56
-        defined_tag_equals: [ "$p.getValue()" ]
-        freeform_tag_equals: [ "$p.getValue()" ]
-        defined_tag_exists: [ "$p.getValue()" ]
-        freeform_tag_exists: [ "$p.getValue()" ]
+        percentile: 1
+        defined_tag_equals: [ "defined_tag_equals_example" ]
+        freeform_tag_equals: [ "freeform_tag_equals_example" ]
+        defined_tag_exists: [ "defined_tag_exists_example" ]
+        freeform_tag_exists: [ "freeform_tag_exists_example" ]
 
 
 
@@ -570,8 +574,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of SummarizeExadataInsightResourceUsage resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capacity&#x27;: 222.3, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 5.2, &#x27;utilization_percent&#x27;: 35.1}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capacity&#x27;: 1.2, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -588,8 +592,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The maximum allocated amount of the resource metric type  (CPU, STORAGE).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">222.3</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
                                 <tr>
@@ -606,7 +610,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the Exadata insight.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -624,8 +628,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total amount used of the resource metric type (CPU, STORAGE).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">34.5</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
                                 <tr>
@@ -642,8 +646,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Change in resource utilization in percentage</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">5.2</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
                                 <tr>
@@ -660,8 +664,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Resource utilization in percentage</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">35.1</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
                     

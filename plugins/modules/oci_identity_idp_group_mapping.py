@@ -137,7 +137,7 @@ idp_group_mapping:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The mapping's current state.  After creating a mapping object, make sure its `lifecycleState` changes
@@ -157,7 +157,7 @@ idp_group_mapping:
         "idp_group_name": "idp_group_name_example",
         "group_id": "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56
     }

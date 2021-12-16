@@ -89,7 +89,7 @@ EXAMPLES = """
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: PDBNAME
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
     pdb_name: pdb_name_example
 
 """

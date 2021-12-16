@@ -56,9 +56,9 @@ configuration:
                 - "Example: `90`"
             returned: on success
             type: int
-            sample: 90
+            sample: 56
     sample: {
-        "retention_period_days": 90
+        "retention_period_days": 56
     }
 """
 

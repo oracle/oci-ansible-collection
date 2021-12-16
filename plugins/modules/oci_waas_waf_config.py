@@ -1304,7 +1304,7 @@ EXAMPLES = """
       block_error_page_message: block_error_page_message_example
       block_error_page_code: block_error_page_code_example
       block_error_page_description: block_error_page_description_example
-      bypass_challenges: [ "null" ]
+      bypass_challenges: [ "JS_CHALLENGE" ]
       redirect_url: redirect_url_example
       redirect_response_code: MOVED_PERMANENTLY
       captcha_title: captcha_title_example
@@ -1314,8 +1314,8 @@ EXAMPLES = """
       response_header_manipulation:
       - # required
         action: EXTEND_HTTP_RESPONSE_HEADER
-        header: example_header_name
-        value: example_value
+        header: header_example
+        value: value_example
     address_rate_limiting:
       # required
       is_enabled: true
@@ -1436,9 +1436,9 @@ EXAMPLES = """
 
       # optional
       key: key_example
-      caching_duration: PT1H
+      caching_duration: caching_duration_example
       is_client_caching_enabled: true
-      client_caching_duration: PT1H
+      client_caching_duration: client_caching_duration_example
     custom_protection_rules:
     - # optional
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1446,20 +1446,20 @@ EXAMPLES = """
       exclusions:
       - # optional
         target: REQUEST_COOKIES
-        exclusions: [ "null" ]
-    origin_groups: [ "null" ]
+        exclusions: [ "exclusions_example" ]
+    origin_groups: [ "origin_groups_example" ]
     protection_rules:
     - # optional
       key: key_example
-      mod_security_rule_ids: [ "null" ]
+      mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
       name: name_example
       description: description_example
       action: OFF
-      labels: [ "null" ]
+      labels: [ "labels_example" ]
       exclusions:
       - # optional
         target: REQUEST_COOKIES
-        exclusions: [ "null" ]
+        exclusions: [ "exclusions_example" ]
     protection_settings:
       # optional
       block_action: SHOW_ERROR_PAGE
@@ -1473,8 +1473,8 @@ EXAMPLES = """
       recommendations_period_in_days: 56
       is_response_inspected: true
       max_response_size_in_ki_b: 56
-      allowed_http_methods: [ "null" ]
-      media_types: [ "null" ]
+      allowed_http_methods: [ "OPTIONS" ]
+      media_types: [ "media_types_example" ]
     threat_feeds:
     - # optional
       key: key_example
@@ -1486,8 +1486,8 @@ EXAMPLES = """
       name: name_example
 
       # optional
-      addresses: [ "null" ]
-      address_lists: [ "null" ]
+      addresses: [ "addresses_example" ]
+      address_lists: [ "address_lists_example" ]
 
 """
 
@@ -1712,14 +1712,14 @@ waf_config:
                                 - "Example: `example_header_name`"
                             returned: on success
                             type: str
-                            sample: example_header_name
+                            sample: header_example
                         value:
                             description:
                                 - A header field value that conforms to RFC 7230.
                                 - "Example: `example_value`"
                             returned: on success
                             type: str
-                            sample: example_value
+                            sample: value_example
         address_rate_limiting:
             description:
                 - The IP address rate limiting settings used to limit the number of requests from an address.
@@ -2366,7 +2366,7 @@ waf_config:
                           Example: `PT1H`"
                     returned: on success
                     type: str
-                    sample: PT1H
+                    sample: caching_duration_example
                 is_client_caching_enabled:
                     description:
                         - Enables or disables client caching.
@@ -2383,7 +2383,7 @@ waf_config:
                           Example: `PT1H`"
                     returned: on success
                     type: str
-                    sample: PT1H
+                    sample: client_caching_duration_example
                 criteria:
                     description:
                         - The array of the rule criteria with condition and value. The caching rule would be applied for the requests that matched any of the
@@ -2724,8 +2724,8 @@ waf_config:
             "captcha_submit_label": "captcha_submit_label_example",
             "response_header_manipulation": [{
                 "action": "EXTEND_HTTP_RESPONSE_HEADER",
-                "header": "example_header_name",
-                "value": "example_value"
+                "header": "header_example",
+                "value": "value_example"
             }]
         }],
         "address_rate_limiting": {
@@ -2827,9 +2827,9 @@ waf_config:
             "key": "key_example",
             "name": "name_example",
             "action": "CACHE",
-            "caching_duration": "PT1H",
+            "caching_duration": "caching_duration_example",
             "is_client_caching_enabled": true,
-            "client_caching_duration": "PT1H",
+            "client_caching_duration": "client_caching_duration_example",
             "criteria": [{
                 "condition": "URL_IS",
                 "value": "value_example"

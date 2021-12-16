@@ -140,17 +140,17 @@ EXAMPLES = """
 - name: Create compute_image_capability_schema
   oci_compute_image_capability_schema:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
-    compute_global_image_capability_schema_version_name: 2c0xx226-xxx-xxxx-xxxx-193cc17xx90b
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compute_global_image_capability_schema_version_name: compute_global_image_capability_schema_version_name_example
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     schema_data:
       # required
       descriptor_type: enumstring
       source: GLOBAL
-      enum_string_values: [ "null" ]
+      enum_string_values: [ "enum_string_values_example" ]
 
       # optional
-      enum_string_default_value: default_value_example
+      enum_string_default_value: enum_string_default_value_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -170,10 +170,10 @@ EXAMPLES = """
       # required
       descriptor_type: enumstring
       source: GLOBAL
-      enum_string_values: [ "null" ]
+      enum_string_values: [ "enum_string_values_example" ]
 
       # optional
-      enum_string_default_value: default_value_example
+      enum_string_default_value: enum_string_default_value_example
 
 - name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image_capability_schema:
@@ -187,10 +187,10 @@ EXAMPLES = """
       # required
       descriptor_type: enumstring
       source: GLOBAL
-      enum_string_values: [ "null" ]
+      enum_string_values: [ "enum_string_values_example" ]
 
       # optional
-      enum_string_default_value: default_value_example
+      enum_string_default_value: enum_string_default_value_example
 
 - name: Delete compute_image_capability_schema
   oci_compute_image_capability_schema:
@@ -322,7 +322,7 @@ compute_image_capability_schema:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -341,7 +341,7 @@ compute_image_capability_schema:
             "enum_string_values": [],
             "enum_string_default_value": "default_value_example"
         },
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

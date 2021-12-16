@@ -23,31 +23,31 @@ module: oci_devops_repository_ref_facts
 short_description: Fetches details about one or multiple RepositoryRef resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple RepositoryRef resources in Oracle Cloud Infrastructure
-    - Returns a list of Refs.
+    - Returns a list of references.
     - If I(ref_name) is specified, the details of a single RepositoryRef will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     ref_name:
         description:
-            - A filter to return only resources that match the given Ref name.
+            - A filter to return only resources that match the given reference name.
             - Required to get a specific repository_ref.
         type: str
     ref_type:
         description:
-            - Ref type to distinguish between branch and tag. If it is not specified, return all refs.
+            - Reference type to distinguish between branch and tag. If it is not specified, all references are returned.
         type: str
         choices:
             - "BRANCH"
             - "TAG"
     commit_id:
         description:
-            - Commit id in a repository
+            - Commit ID in a repository.
         type: str
     sort_order:
         description:
@@ -58,8 +58,8 @@ options:
             - "DESC"
     sort_by:
         description:
-            - The field to sort by. Only one sort order may be provided. Default order for refName is ascending. Default order for refType is ascending. If no
-              value is specified refName is default.
+            - The field to sort by. Only one sort order may be provided. Default order for reference name is ascending. Default order for reference type is
+              ascending. If no value is specified reference name is default.
         type: str
         choices:
             - "refType"
@@ -97,37 +97,39 @@ repository_reves:
     contains:
         ref_name:
             description:
-                - Unique Ref name inside a repository
+                - Unique reference name inside a repository.
             returned: on success
             type: str
             sample: ref_name_example
         ref_type:
             description:
-                - The type of Ref (Branch or Tag)
+                - The type of reference (Branch or Tag).
             returned: on success
             type: str
             sample: BRANCH
         full_ref_name:
             description:
-                - Unique full ref name inside a repository
+                - Unique full reference name inside a repository.
             returned: on success
             type: str
             sample: full_ref_name_example
         repository_id:
             description:
-                - The OCID of the repository containing the ref.
+                - The OCID of the repository containing the reference.
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         commit_id:
             description:
                 - Commit ID pointed to by the new branch.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
         object_id:
             description:
                 - SHA-1 hash value of the object pointed to by the tag.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
@@ -135,6 +137,7 @@ repository_reves:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for list operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -142,6 +145,7 @@ repository_reves:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Returned for list operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}

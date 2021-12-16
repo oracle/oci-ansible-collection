@@ -130,6 +130,7 @@ exports:
                   To completely deny client access to a file system, be sure that the client
                   source IP address is not included in any export for any mount target
                   associated with the file system.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -216,7 +217,7 @@ exports:
                 - "Example: `/accounting`"
             returned: on success
             type: str
-            sample: /accounting
+            sample: path_example
         time_created:
             description:
                 - The date and time the export was created, expressed
@@ -224,7 +225,7 @@ exports:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "export_options": [{
             "source": "source_example",
@@ -238,8 +239,8 @@ exports:
         "file_system_id": "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "path": "/accounting",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "path": "path_example",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

@@ -79,14 +79,14 @@ EXAMPLES = """
   oci_object_storage_object_version_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
     # optional
     prefix: prefix_example
     start: start_example
     end: end_example
     delimiter: delimiter_example
-    fields: name
+    fields: fields_example
 
 """
 

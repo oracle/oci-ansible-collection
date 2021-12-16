@@ -88,7 +88,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     domain: domain_example
     email_address: email_address_example
     sort_by: TIMECREATED
@@ -125,6 +125,7 @@ senders:
             description:
                 - Value of the SPF field. For more information about SPF, please see
                   L(SPF Authentication,https://docs.us-phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm#components).
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -144,6 +145,7 @@ senders:
         email_domain_id:
             description:
                 - The email domain used to assert responsibility for emails sent from this sender.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"

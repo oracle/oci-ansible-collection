@@ -23,7 +23,7 @@ module: oci_devops_object_content_facts
 short_description: Fetches details about a ObjectContent resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a ObjectContent resource in Oracle Cloud Infrastructure
-    - Get contents of a specified Object
+    - Retrieve contents of a specified object.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -35,12 +35,12 @@ options:
         required: true
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     sha:
         description:
-            - The SHA of a blob or tree
+            - The SHA of a blob or tree.
         type: str
         required: true
     file_path:

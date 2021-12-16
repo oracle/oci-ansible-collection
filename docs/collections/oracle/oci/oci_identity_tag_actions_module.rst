@@ -30,9 +30,13 @@ oracle.oci.oci_identity_tag_actions -- Perform actions on a Tag resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_identity_tag_actions`.
 
@@ -55,6 +59,7 @@ Synopsis
 - Perform actions on a Tag resource in Oracle Cloud Infrastructure
 - For *action=bulk_delete*, deletes the specified tag key definitions. This operation triggers a process that removes the tags from all resources in your tenancy. The tag key definitions must be within the same tag namespace. The following actions happen immediately: * If the tag is a cost-tracking tag, the tag no longer counts against your 10 cost-tracking tags limit, even if you do not disable the tag before running this operation. * If the tag is used with dynamic groups, the rules that contain the tag are no longer evaluated against the tag. After you start this operation, the state of the tag changes to DELETING, and tag removal from resources begins. This process can take up to 48 hours depending on the number of resources that are tagged and the regions in which those resources reside. When all tags have been removed, the state changes to DELETED. You cannot restore a deleted tag. After the tag state changes to DELETED, you can use the same tag name again. After you start this operation, you cannot start either the `DeleteTag <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Tag/DeleteTag>`_ or the `CascadeDeleteTagNamespace <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/TagNamespace/CascadeDeleteTagNamespace>`_ operation until this process completes. In order to delete tags, you must first retire the tags. Use `UpdateTag <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/Tag/UpdateTag>`_ to retire a tag.
 - For *action=bulk_edit*, edits the specified list of tag key definitions for the selected resources. This operation triggers a process that edits the tags on all selected resources. The possible actions are: * Add a defined tag when the tag does not already exist on the resource. * Update the value for a defined tag when the tag is present on the resource. * Add a defined tag when it does not already exist on the resource or update the value for a defined tag when the tag is present on the resource. * Remove a defined tag from a resource. The tag is removed from the resource regardless of the tag value. See `BulkEditOperationDetails <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/datatypes/BulkEditOperationDetails>`_ for more information. The edits can include a combination of operations and tag sets. However, multiple operations cannot apply to one key definition in the same request. For example, if one request adds `tag set-1` to a resource and sets a tag value to `tag set-2`, `tag set-1` and `tag set-2` cannot have any common tag definitions.
+- For *action=import_standard_tags*, oCI will release Tag Namespaces that our customers can import. These Tag Namespaces will provide Tags for our customers and Partners to provide consistency and enable data reporting.
 
 
 .. Aliases
@@ -96,6 +101,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>bulk_delete</li>
                                                                                                                                                                                                 <li>bulk_edit</li>
+                                                                                                                                                                                                <li>import_standard_tags</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -252,7 +258,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the compartment where the bulk tag edit request is submitted.</div>
-                                            <div>Required for <em>action=bulk_edit</em>.</div>
+                                            <div>Required for <em>action=bulk_edit</em>, <em>action=import_standard_tags</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -361,10 +367,26 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The type of resource. See <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/latest/Tags/BulkEditResourceTypes'>BulkEditResourceTypes</a>.</div>
+                                            <div>The type of resource. See <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/latest/BulkEditTagsResourceTypeCollection/ListBulkEditTagsResourceTypes'>BulkEditResourceTypes</a>.</div>
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-standard_tag_namespace_name"></div>
+                    <b>standard_tag_namespace_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-standard_tag_namespace_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of standard tag namespace that will be imported in bulk</div>
+                                            <div>Required for <em>action=import_standard_tags</em>.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tag_definition_ids"></div>
@@ -458,7 +480,7 @@ Examples
     - name: Perform action bulk_delete on tag
       oci_identity_tag_actions:
         # required
-        tag_definition_ids: [ "null" ]
+        tag_definition_ids: [ "tag_definition_ids_example" ]
         action: bulk_delete
 
     - name: Perform action bulk_edit on tag
@@ -477,6 +499,13 @@ Examples
           operation_type: ADD_WHERE_ABSENT
           defined_tags: {'Operations': {'CostCenter': 'US'}}
         action: bulk_edit
+
+    - name: Perform action import_standard_tags on tag
+      oci_identity_tag_actions:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        standard_tag_namespace_name: standard_tag_namespace_name_example
+        action: import_standard_tags
 
 
 

@@ -108,7 +108,7 @@ EXAMPLES = """
     action: remove
 
     # optional
-    route_rule_ids: [ "null" ]
+    route_rule_ids: [ "route_rule_ids_example" ]
 
 - name: Perform action update on drg_route_rules
   oci_network_drg_route_rules_actions:

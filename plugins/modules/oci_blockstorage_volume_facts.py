@@ -106,7 +106,7 @@ EXAMPLES = """
     sort_by: TIMECREATED
     sort_order: ASC
     volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: PROVISIONING
 
 """
 

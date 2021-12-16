@@ -88,6 +88,7 @@ queries:
         compartment_id:
             description:
                 - The compartment OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

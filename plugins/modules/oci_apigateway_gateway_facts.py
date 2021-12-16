@@ -94,8 +94,8 @@ EXAMPLES = """
 
     # optional
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: My new resource
-    lifecycle_state: SUCCEEDED
+    display_name: display_name_example
+    lifecycle_state: CREATING
     sort_order: ASC
     sort_by: timeCreated
 
@@ -121,7 +121,7 @@ gateways:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -191,6 +191,7 @@ gateways:
         ip_addresses:
             description:
                 - An array of IP addresses associated with the gateway.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -203,6 +204,7 @@ gateways:
         response_cache_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -292,7 +294,7 @@ gateways:
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "endpoint_type": "PUBLIC",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",

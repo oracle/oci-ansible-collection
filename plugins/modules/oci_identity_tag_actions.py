@@ -52,6 +52,8 @@ description:
       However, multiple operations cannot apply to one key definition in the same request.
       For example, if one request adds `tag set-1` to a resource and sets a tag value to `tag set-2`,
       `tag set-1` and `tag set-2` cannot have any common tag definitions."
+    - For I(action=import_standard_tags), oCI will release Tag Namespaces that our customers can import.
+      These Tag Namespaces will provide Tags for our customers and Partners to provide consistency and enable data reporting.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -64,7 +66,7 @@ options:
     compartment_id:
         description:
             - The OCID of the compartment where the bulk tag edit request is submitted.
-            - Required for I(action=bulk_edit).
+            - Required for I(action=bulk_edit), I(action=import_standard_tags).
         type: str
     resources:
         description:
@@ -81,7 +83,7 @@ options:
             resource_type:
                 description:
                     - The type of resource. See L(BulkEditResourceTypes,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/identity/latest/Tags/BulkEditResourceTypes).
+                      us/iaas/api/#/en/identity/latest/BulkEditTagsResourceTypeCollection/ListBulkEditTagsResourceTypes).
                 type: str
                 required: true
             metadata:
@@ -118,6 +120,11 @@ options:
                       Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                 type: dict
                 required: true
+    standard_tag_namespace_name:
+        description:
+            - The name of standard tag namespace that will be imported in bulk
+            - Required for I(action=import_standard_tags).
+        type: str
     action:
         description:
             - The action to perform on the Tag.
@@ -126,6 +133,7 @@ options:
         choices:
             - "bulk_delete"
             - "bulk_edit"
+            - "import_standard_tags"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -133,7 +141,7 @@ EXAMPLES = """
 - name: Perform action bulk_delete on tag
   oci_identity_tag_actions:
     # required
-    tag_definition_ids: [ "null" ]
+    tag_definition_ids: [ "tag_definition_ids_example" ]
     action: bulk_delete
 
 - name: Perform action bulk_edit on tag
@@ -153,6 +161,13 @@ EXAMPLES = """
       defined_tags: {'Operations': {'CostCenter': 'US'}}
     action: bulk_edit
 
+- name: Perform action import_standard_tags on tag
+  oci_identity_tag_actions:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    standard_tag_namespace_name: standard_tag_namespace_name_example
+    action: import_standard_tags
+
 """
 
 
@@ -170,6 +185,7 @@ try:
     from oci.identity import IdentityClient
     from oci.identity.models import BulkDeleteTagsDetails
     from oci.identity.models import BulkEditTagsDetails
+    from oci.identity.models import ImportStandardTagsDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -181,6 +197,7 @@ class TagActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         bulk_delete
         bulk_edit
+        import_standard_tags
     """
 
     def get_get_fn(self):
@@ -219,6 +236,24 @@ class TagActionsHelperGen(OCIActionsHelperBase):
             call_fn=self.client.bulk_edit_tags,
             call_fn_args=(),
             call_fn_kwargs=dict(bulk_edit_tags_details=action_details,),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def import_standard_tags(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ImportStandardTagsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.import_standard_tags,
+            call_fn_args=(),
+            call_fn_kwargs=dict(import_standard_tags_details=action_details,),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
@@ -271,8 +306,11 @@ def main():
                     defined_tags=dict(type="dict", required=True),
                 ),
             ),
+            standard_tag_namespace_name=dict(type="str"),
             action=dict(
-                type="str", required=True, choices=["bulk_delete", "bulk_edit"]
+                type="str",
+                required=True,
+                choices=["bulk_delete", "bulk_edit", "import_standard_tags"],
             ),
         )
     )

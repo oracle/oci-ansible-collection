@@ -69,7 +69,7 @@ EXAMPLES = """
     # required
     namespace_name: namespace_name_example
     log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
-    association_entities: [ "null" ]
+    association_entities: [ "association_entities_example" ]
     action: add_entity_association
 
 - name: Perform action change_compartment on log_analytics_entity
@@ -85,7 +85,7 @@ EXAMPLES = """
     # required
     namespace_name: namespace_name_example
     log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
-    association_entities: [ "null" ]
+    association_entities: [ "association_entities_example" ]
     action: remove_entity_associations
 
 """
@@ -163,7 +163,7 @@ log_analytics_entity:
                 - The timezone region of the log analytics entity.
             returned: on success
             type: str
-            sample: timezone_region_example
+            sample: Asia/Kolkata
         properties:
             description:
                 - The name/value pairs for parameter values to be used in file patterns specified in log sources.
@@ -254,7 +254,7 @@ log_analytics_entity:
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_display_name": "management_agent_display_name_example",
         "management_agent_compartment_id": "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "timezone_region": "timezone_region_example",
+        "timezone_region": "Asia/Kolkata",
         "properties": {},
         "creation_source": {
             "type": "EM_BRIDGE",

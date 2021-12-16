@@ -289,7 +289,7 @@ EXAMPLES = """
           operator: IN
           value: value_example
           value_type: MANAGED
-        labels: [ "null" ]
+        labels: [ "labels_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -332,7 +332,7 @@ EXAMPLES = """
           operator: IN
           value: value_example
           value_type: MANAGED
-        labels: [ "null" ]
+        labels: [ "labels_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -375,7 +375,7 @@ EXAMPLES = """
           operator: IN
           value: value_example
           value_type: MANAGED
-        labels: [ "null" ]
+        labels: [ "labels_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 

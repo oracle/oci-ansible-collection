@@ -146,6 +146,7 @@ accepted_agreements:
                 - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                   Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -155,6 +156,7 @@ accepted_agreements:
                   predefined name, type, or namespace. For more information, see L(Resource
                   Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                   Example: `{\\"Department\\": \\"Finance\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

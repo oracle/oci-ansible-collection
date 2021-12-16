@@ -81,7 +81,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    lifecycle_state: [ "$p.getValue()" ]
+    lifecycle_state: [ "lifecycle_state_example" ]
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -169,6 +169,7 @@ network_address_lists:
             description:
                 - "A list of IP address prefixes in CIDR notation.
                   To specify all addresses, use \\"0.0.0.0/0\\" for IPv4 and \\"::/0\\" for IPv6."
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -176,6 +177,7 @@ network_address_lists:
             description:
                 - "A list of private address prefixes, each associated with a particular VCN.
                   To specify all addresses in a VCN, use \\"0.0.0.0/0\\" for IPv4 and \\"::/0\\" for IPv6."
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

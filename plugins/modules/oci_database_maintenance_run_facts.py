@@ -112,11 +112,11 @@ EXAMPLES = """
 
     # optional
     target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
-    target_resource_type: target_resource_type_example
-    maintenance_type: maintenance_type_example
+    target_resource_type: AUTONOMOUS_EXADATA_INFRASTRUCTURE
+    maintenance_type: PLANNED
     sort_by: TIME_SCHEDULED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: SCHEDULED
     availability_domain: Uocm:PHX-AD-1
 
 """

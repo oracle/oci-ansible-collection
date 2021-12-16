@@ -138,7 +138,7 @@ EXAMPLES = """
     domain_contains: domain_contains_example
     time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_created_less_than: 2013-10-20T19:20:30+01:00
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     sort_by: displayName
     sort_order: ASC
 

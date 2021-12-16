@@ -58,14 +58,14 @@ EXAMPLES = """
   oci_object_storage_preauthenticated_request_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
     par_id: "ocid1.par.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List preauthenticated_requests
   oci_object_storage_preauthenticated_request_facts:
     # required
     namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    bucket_name: bucket_name_example
 
     # optional
     object_name_prefix: object_name_prefix_example

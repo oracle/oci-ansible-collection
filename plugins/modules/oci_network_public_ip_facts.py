@@ -112,8 +112,8 @@ EXAMPLES = """
     availability_domain: Uocm:PHX-AD-1
     lifetime: EPHEMERAL
     public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
-    private_ip_id: $utils.AnsibleRenderingUtils.escapeStringExampleValue($p.getValue())
-    ip_address: $utils.AnsibleRenderingUtils.escapeStringExampleValue($p.getValue())
+    private_ip_id: private_ip_id_example
+    ip_address: ip_address_example
 
 """
 
@@ -194,7 +194,7 @@ public_ips:
                 - "Example: `203.0.113.2`"
             returned: on success
             type: str
-            sample: 203.0.113.2
+            sample: ip_address_example
         lifecycle_state:
             description:
                 - The public IP's current state.
@@ -247,7 +247,7 @@ public_ips:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         public_ip_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the pool object created in the current tenancy.
@@ -263,12 +263,12 @@ public_ips:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "ip_address": "203.0.113.2",
+        "ip_address": "ip_address_example",
         "lifecycle_state": "PROVISIONING",
         "lifetime": "EPHEMERAL",
         "private_ip_id": "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx",
         "scope": "REGION",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "public_ip_pool_id": "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """

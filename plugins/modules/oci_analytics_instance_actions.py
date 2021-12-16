@@ -393,7 +393,7 @@ analytics_instance:
                         - PEM certificate for HTTPS connections.
                     returned: on success
                     type: str
-                    sample: public_certificate_example
+                    sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         service_url:
             description:
                 - URL of the Analytics service.
@@ -423,7 +423,7 @@ analytics_instance:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the instance was last updated (in the format defined by RFC3339).
@@ -472,12 +472,12 @@ analytics_instance:
             "description": "description_example",
             "urls": [],
             "hosts": [],
-            "public_certificate": "public_certificate_example"
+            "public_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         },
         "service_url": "service_url_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"
     }
 """

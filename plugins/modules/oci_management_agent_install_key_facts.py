@@ -126,6 +126,7 @@ management_agent_install_keys:
         key:
             description:
                 - Management Agent Install Key
+                - Returned for get operation
             returned: on success
             type: str
             sample: key_example
@@ -181,6 +182,7 @@ management_agent_install_keys:
         time_updated:
             description:
                 - The time when Management Agent install Key was updated. An RFC3339 formatted date time string
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

@@ -281,13 +281,13 @@ bds_auto_scale_config:
                 - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: str
-            sample: "2020-03-29T09:36:42.000+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the autoscale configuration was updated, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: str
-            sample: "2020-04-29T09:36:42.000+0000"
+            sample: "2013-10-20T19:20:30+01:00"
         policy:
             description:
                 - ""
@@ -354,8 +354,8 @@ bds_auto_scale_config:
         "display_name": "display_name_example",
         "node_type": "node_type_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2020-03-29T09:36:42.000+0000",
-        "time_updated": "2020-04-29T09:36:42.000+0000",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "policy": {
             "policy_type": "THRESHOLD_BASED",
             "rules": [{

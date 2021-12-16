@@ -30,9 +30,13 @@ oracle.oci.oci_monitoring_alarm_facts -- Fetches details about one or multiple A
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_monitoring_alarm_facts`.
 
@@ -387,12 +391,12 @@ Examples
     - name: List alarms
       oci_monitoring_alarm_facts:
         # required
-        compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
-        lifecycle_state: lifecycle_state_example
-        sort_by: severity
+        lifecycle_state: ACTIVE
+        sort_by: displayName
         sort_order: ASC
         compartment_id_in_subtree: true
 
@@ -430,8 +434,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of Alarm resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;body&#x27;: &#x27;High CPU usage alert. Follow runbook instructions for resolution.&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destinations&#x27;: [], &#x27;display_name&#x27;: &#x27;High CPU Utilization&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;message_format&#x27;: &#x27;RAW&#x27;, &#x27;metric_compartment_id&#x27;: &#x27;ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric_compartment_id_in_subtree&#x27;: True, &#x27;namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;pending_duration&#x27;: &#x27;PT5M&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;repeat_notification_duration&#x27;: &#x27;PT2H&#x27;, &#x27;resolution&#x27;: &#x27;resolution_example&#x27;, &#x27;resource_group&#x27;: &#x27;frontend-fleet&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;Planned outage due to change IT-1234.&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2019-02-01T02:02:29.600Z&#x27;}, &#x27;time_created&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2019-02-03T01:02:29.600Z&#x27;}]</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;body&#x27;: &#x27;body_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destinations&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;message_format&#x27;: &#x27;RAW&#x27;, &#x27;metric_compartment_id&#x27;: &#x27;ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric_compartment_id_in_subtree&#x27;: True, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;pending_duration&#x27;: &#x27;pending_duration_example&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;repeat_notification_duration&#x27;: &#x27;repeat_notification_duration_example&#x27;, &#x27;resolution&#x27;: &#x27;resolution_example&#x27;, &#x27;resource_group&#x27;: &#x27;resource_group_example&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -448,9 +452,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The human-readable content of the notification delivered. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices.</div>
                                             <div>Example: `High CPU usage alert. Follow runbook instructions for resolution.`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">High CPU usage alert. Follow runbook instructions for resolution.</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">body_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -467,7 +472,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the alarm.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -485,7 +490,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -503,7 +508,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -521,8 +526,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>This name is sent as the title for notifications related to this alarm.</div>
                                             <div>Example: `High CPU Utilization`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">High CPU Utilization</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -539,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -557,7 +562,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the alarm.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -576,7 +581,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the alarm is enabled.</div>
                                             <div>Example: `true`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -595,8 +600,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The current lifecycle state of the alarm.</div>
                                             <div>Example: `DELETED`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DELETED</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -612,8 +617,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The format to use for notification messages sent from this alarm. The formats are: * `RAW` - Raw JSON blob. Default value. * `PRETTY_JSON`: JSON with new lines and indents. * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Applies only to messages sent through the Notifications service to the following subscription types: Email.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RAW</div>
                                     </td>
             </tr>
@@ -631,7 +637,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the metric being evaluated by the alarm.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -649,8 +655,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can only be set to true when metricCompartmentId is the tenancy OCID (the tenancy is the root compartment). A true value requires the user to have tenancy-level permissions. If this requirement is not met, then the call is rejected. When false, the alarm evaluates metrics from only the compartment specified in metricCompartmentId. Default is false.</div>
                                             <div>Example: `true`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -669,8 +676,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The source service or application emitting the metric that is evaluated by the alarm.</div>
                                             <div>Example: `oci_computeagent`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_computeagent</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -690,9 +697,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Under the default value of PT1M, the first evaluation that breaches the alarm updates the state to &quot;FIRING&quot;.</div>
                                             <div>The alarm updates its status to &quot;OK&quot; when the breaching condition has been clear for the most recent minute.</div>
                                             <div>Example: `PT5M`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PT5M</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pending_duration_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -717,7 +725,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent()</div>
                                             <div>-----</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_example</div>
                                     </td>
             </tr>
@@ -736,9 +744,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The frequency at which notifications are re-submitted, if the alarm keeps firing without interruption. Format defined by ISO 8601. For example, `PT4H` indicates four hours. Minimum: PT1M. Maximum: P30D.</div>
                                             <div>Default value: null (notifications are not re-submitted).</div>
                                             <div>Example: `PT2H`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PT2H</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">repeat_notification_duration_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -754,8 +763,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The time between calculated aggregation windows for the alarm. Supported value: `1m`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resolution_example</div>
                                     </td>
             </tr>
@@ -773,9 +783,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Resource group to match for metric data retrieved by the alarm. A resource group is a custom string that you can match when retrieving custom metrics. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($).</div>
                                             <div>Example: `frontend-fleet`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">frontend-fleet</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_group_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -793,7 +804,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The perceived type of response required when the alarm is in the &quot;FIRING&quot; state.</div>
                                             <div>Example: `CRITICAL`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CRITICAL</div>
                                     </td>
             </tr>
@@ -811,7 +822,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The configuration details for suppressing an alarm.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -830,8 +841,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Oracle recommends including tracking information for the event or associated work, such as a ticket number.</div>
                                             <div>Example: `Planned outage due to change IT-1234.`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Planned outage due to change IT-1234.</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -850,8 +861,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.</div>
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -870,8 +881,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.</div>
                                             <div>Example: `2019-02-01T02:02:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T02:02:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     
@@ -889,9 +900,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the alarm was created. Format defined by RFC3339.</div>
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -908,9 +920,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the alarm was last updated. Format defined by RFC3339.</div>
                                             <div>Example: `2019-02-03T01:02:29.600Z`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-03T01:02:29.600Z</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

@@ -167,19 +167,19 @@ EXAMPLES = """
 - name: Create dhcp_options
   oci_network_dhcp_options:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     options:
     - # required
       type: DomainNameServer
-      server_type: CustomDnsServer
+      server_type: VcnLocal
 
       # optional
-      custom_dns_servers: [ "203.0.113.6" ]
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+      custom_dns_servers: [ "custom_dns_servers_example" ]
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyDhcpOptions
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     domain_name_type: SUBNET_DOMAIN
 
@@ -190,22 +190,22 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyDhcpOptions
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     options:
     - # required
       type: DomainNameServer
-      server_type: CustomDnsServer
+      server_type: VcnLocal
 
       # optional
-      custom_dns_servers: [ "203.0.113.6" ]
+      custom_dns_servers: [ "custom_dns_servers_example" ]
     domain_name_type: SUBNET_DOMAIN
 
 - name: Update dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_dhcp_options:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyDhcpOptions
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -213,10 +213,10 @@ EXAMPLES = """
     options:
     - # required
       type: DomainNameServer
-      server_type: CustomDnsServer
+      server_type: VcnLocal
 
       # optional
-      custom_dns_servers: [ "203.0.113.6" ]
+      custom_dns_servers: [ "custom_dns_servers_example" ]
     domain_name_type: SUBNET_DOMAIN
 
 - name: Delete dhcp_options
@@ -228,8 +228,8 @@ EXAMPLES = """
 - name: Delete dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_dhcp_options:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyDhcpOptions
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -344,7 +344,7 @@ dhcp_options:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the set of DHCP options belongs to.
@@ -370,7 +370,7 @@ dhcp_options:
             "server_type": "VcnLocal",
             "search_domain_names": []
         }],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "domain_name_type": "SUBNET_DOMAIN"
     }

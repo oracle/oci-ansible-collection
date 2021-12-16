@@ -229,6 +229,123 @@ options:
                             - If the tunnel's `routing` attribute is set to `STATIC`, the `customerBgpAsn` must be null.
                             - "Example: `12345` (2-byte) or `1587232876` (4-byte)"
                         type: str
+            oracle_initiation:
+                description:
+                    - Whether Oracle side is the initiator for negotiation.
+                type: str
+                choices:
+                    - "INITIATOR_OR_RESPONDER"
+                    - "RESPONDER_ONLY"
+            nat_translation_enabled:
+                description:
+                    - Whether NAT-T Enabled on the tunnel
+                type: str
+                choices:
+                    - "ENABLED"
+                    - "DISABLED"
+                    - "AUTO"
+            phase_one_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    is_custom_phase_one_config:
+                        description:
+                            - Indicates whether custom phase one configuration is enabled.
+                        type: bool
+                    authentication_algorithm:
+                        description:
+                            - Phase one authentication algorithm supported during tunnel negotiation.
+                        type: str
+                        choices:
+                            - "SHA2_384"
+                            - "SHA2_256"
+                            - "SHA1_96"
+                    encryption_algorithm:
+                        description:
+                            - Phase one encryption algorithm supported during tunnel negotiation.
+                        type: str
+                        choices:
+                            - "AES_256_CBC"
+                            - "AES_192_CBC"
+                            - "AES_128_CBC"
+                    diffie_helman_group:
+                        description:
+                            - Phase One Diffie Hellman group supported during tunnel negotiation.
+                        type: str
+                        choices:
+                            - "GROUP2"
+                            - "GROUP5"
+                            - "GROUP14"
+                            - "GROUP19"
+                            - "GROUP20"
+                            - "GROUP24"
+                    lifetime_in_seconds:
+                        description:
+                            - IKE session key lifetime in seconds for IPSec phase one.
+                        type: int
+            phase_two_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    is_custom_phase_two_config:
+                        description:
+                            - Indicates whether custom phase two configuration is enabled.
+                        type: bool
+                    authentication_algorithm:
+                        description:
+                            - Phase two authentication algorithm supported during tunnel negotiation.
+                        type: str
+                        choices:
+                            - "HMAC_SHA2_256_128"
+                            - "HMAC_SHA1_128"
+                    encryption_algorithm:
+                        description:
+                            - Phase two encryption algorithm supported during tunnel negotiation.
+                        type: str
+                        choices:
+                            - "AES_256_GCM"
+                            - "AES_192_GCM"
+                            - "AES_128_GCM"
+                            - "AES_256_CBC"
+                            - "AES_192_CBC"
+                            - "AES_128_CBC"
+                    lifetime_in_seconds:
+                        description:
+                            - Lifetime in seconds for IPSec phase two.
+                        type: int
+                    is_pfs_enabled:
+                        description:
+                            - Indicates whether perfect forward secrecy (PFS) is enabled.
+                        type: bool
+                    pfs_dh_group:
+                        description:
+                            - Diffie-Hellman group used for PFS.
+                        type: str
+                        choices:
+                            - "GROUP2"
+                            - "GROUP5"
+                            - "GROUP14"
+                            - "GROUP19"
+                            - "GROUP20"
+                            - "GROUP24"
+            dpd_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    dpd_mode:
+                        description:
+                            - dpd mode
+                        type: str
+                        choices:
+                            - "INITIATE_AND_RESPOND"
+                            - "RESPOND_ONLY"
+                    dpd_timeout_in_sec:
+                        description:
+                            - DPD Timeout in seconds.
+                        type: int
             encryption_domain_config:
                 description:
                     - ""
@@ -267,14 +384,14 @@ EXAMPLES = """
 - name: Create ip_sec_connection
   oci_network_ip_sec_connection:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    cpe_id: ocid1.cpe.oc1.phx.unique_ID
-    drg_id: ocid1.drg.oc1.phx.unique_ID
-    static_routes: [ "192.0.2.0/24" ]
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    static_routes: [ "static_routes_example" ]
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyIPSecConnection
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     cpe_local_identifier: cpe_local_identifier_example
     cpe_local_identifier_type: IP_ADDRESS
@@ -286,15 +403,15 @@ EXAMPLES = """
       shared_secret: shared_secret_example
       bgp_session_config:
         # optional
-        oracle_interface_ip: 10.0.0.4/31
-        customer_interface_ip: 10.0.0.5/31
-        oracle_interface_ipv6: 2001:db8::1/64
-        customer_interface_ipv6: 2001:db8::1/64
-        customer_bgp_asn: 12345
+        oracle_interface_ip: oracle_interface_ip_example
+        customer_interface_ip: customer_interface_ip_example
+        oracle_interface_ipv6: oracle_interface_ipv6_example
+        customer_interface_ipv6: customer_interface_ipv6_example
+        customer_bgp_asn: customer_bgp_asn_example
       encryption_domain_config:
         # optional
-        oracle_traffic_selector: [ "null" ]
-        cpe_traffic_selector: [ "null" ]
+        oracle_traffic_selector: [ "oracle_traffic_selector_example" ]
+        cpe_traffic_selector: [ "cpe_traffic_selector_example" ]
 
 - name: Update ip_sec_connection
   oci_network_ip_sec_connection:
@@ -303,24 +420,24 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyIPSecConnection
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     cpe_local_identifier: cpe_local_identifier_example
     cpe_local_identifier_type: IP_ADDRESS
-    static_routes: [ "192.0.2.0/24" ]
+    static_routes: [ "static_routes_example" ]
 
 - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyIPSecConnection
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     cpe_local_identifier: cpe_local_identifier_example
     cpe_local_identifier_type: IP_ADDRESS
-    static_routes: [ "192.0.2.0/24" ]
+    static_routes: [ "static_routes_example" ]
 
 - name: Delete ip_sec_connection
   oci_network_ip_sec_connection:
@@ -331,8 +448,8 @@ EXAMPLES = """
 - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyIPSecConnection
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -442,7 +559,7 @@ ip_sec_connection:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cpe_id": "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx",
@@ -455,7 +572,7 @@ ip_sec_connection:
         "cpe_local_identifier": "cpe_local_identifier_example",
         "cpe_local_identifier_type": "IP_ADDRESS",
         "static_routes": [],
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 
@@ -628,6 +745,81 @@ def main():
                             oracle_interface_ipv6=dict(type="str"),
                             customer_interface_ipv6=dict(type="str"),
                             customer_bgp_asn=dict(type="str"),
+                        ),
+                    ),
+                    oracle_initiation=dict(
+                        type="str", choices=["INITIATOR_OR_RESPONDER", "RESPONDER_ONLY"]
+                    ),
+                    nat_translation_enabled=dict(
+                        type="str", choices=["ENABLED", "DISABLED", "AUTO"]
+                    ),
+                    phase_one_config=dict(
+                        type="dict",
+                        options=dict(
+                            is_custom_phase_one_config=dict(type="bool"),
+                            authentication_algorithm=dict(
+                                type="str", choices=["SHA2_384", "SHA2_256", "SHA1_96"]
+                            ),
+                            encryption_algorithm=dict(
+                                type="str",
+                                choices=["AES_256_CBC", "AES_192_CBC", "AES_128_CBC"],
+                            ),
+                            diffie_helman_group=dict(
+                                type="str",
+                                choices=[
+                                    "GROUP2",
+                                    "GROUP5",
+                                    "GROUP14",
+                                    "GROUP19",
+                                    "GROUP20",
+                                    "GROUP24",
+                                ],
+                            ),
+                            lifetime_in_seconds=dict(type="int"),
+                        ),
+                    ),
+                    phase_two_config=dict(
+                        type="dict",
+                        options=dict(
+                            is_custom_phase_two_config=dict(type="bool"),
+                            authentication_algorithm=dict(
+                                type="str",
+                                choices=["HMAC_SHA2_256_128", "HMAC_SHA1_128"],
+                            ),
+                            encryption_algorithm=dict(
+                                type="str",
+                                choices=[
+                                    "AES_256_GCM",
+                                    "AES_192_GCM",
+                                    "AES_128_GCM",
+                                    "AES_256_CBC",
+                                    "AES_192_CBC",
+                                    "AES_128_CBC",
+                                ],
+                            ),
+                            lifetime_in_seconds=dict(type="int"),
+                            is_pfs_enabled=dict(type="bool"),
+                            pfs_dh_group=dict(
+                                type="str",
+                                choices=[
+                                    "GROUP2",
+                                    "GROUP5",
+                                    "GROUP14",
+                                    "GROUP19",
+                                    "GROUP20",
+                                    "GROUP24",
+                                ],
+                            ),
+                        ),
+                    ),
+                    dpd_config=dict(
+                        type="dict",
+                        options=dict(
+                            dpd_mode=dict(
+                                type="str",
+                                choices=["INITIATE_AND_RESPOND", "RESPOND_ONLY"],
+                            ),
+                            dpd_timeout_in_sec=dict(type="int"),
                         ),
                     ),
                     encryption_domain_config=dict(

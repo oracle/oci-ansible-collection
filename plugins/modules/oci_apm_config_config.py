@@ -225,9 +225,9 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
-    filter_text: page-url like page
-    description: This filter is used to match all login pages.
+    display_name: display_name_example
+    filter_text: filter_text_example
+    description: description_example
 
 - name: Create config with config_type = METRIC_GROUP
   oci_apm_config_config:
@@ -237,9 +237,9 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
-    filter_id: ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg
-    namespace: oracle_apm_monitoring
+    display_name: display_name_example
+    filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
     dimensions:
     - # required
       name: name_example
@@ -251,9 +251,9 @@ EXAMPLES = """
       name: name_example
 
       # optional
-      value_source: dummy_value_source
-      unit: kb, ms
-      description: This metric shows the number page load errors.
+      value_source: value_source_example
+      unit: unit_example
+      description: description_example
 
 - name: Create config with config_type = APDEX
   oci_apm_config_config:
@@ -261,20 +261,20 @@ EXAMPLES = """
     config_type: APDEX
     rules:
     - # required
-      filter_text: page-url like page
-      priority: 2
+      filter_text: filter_text_example
+      priority: 56
 
       # optional
       is_enabled: true
-      satisfied_response_time: 2500
-      tolerating_response_time: 12000
-      is_apply_to_error_spans: false
-      display_name: Apdex computation for Database connections
+      satisfied_response_time: 56
+      tolerating_response_time: 56
+      is_apply_to_error_spans: true
+      display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
+    display_name: display_name_example
 
 - name: Update config with config_type = SPAN_FILTER
   oci_apm_config_config:
@@ -284,9 +284,9 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
-    filter_text: page-url like page
-    description: This filter is used to match all login pages.
+    display_name: display_name_example
+    filter_text: filter_text_example
+    description: description_example
 
 - name: Update config with config_type = METRIC_GROUP
   oci_apm_config_config:
@@ -296,9 +296,9 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
-    filter_id: ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg
-    namespace: oracle_apm_monitoring
+    display_name: display_name_example
+    filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
     dimensions:
     - # required
       name: name_example
@@ -310,9 +310,9 @@ EXAMPLES = """
       name: name_example
 
       # optional
-      value_source: dummy_value_source
-      unit: kb, ms
-      description: This metric shows the number page load errors.
+      value_source: value_source_example
+      unit: unit_example
+      description: description_example
 
 - name: Update config with config_type = APDEX
   oci_apm_config_config:
@@ -320,20 +320,20 @@ EXAMPLES = """
     config_type: APDEX
     rules:
     - # required
-      filter_text: page-url like page
-      priority: 2
+      filter_text: filter_text_example
+      priority: 56
 
       # optional
       is_enabled: true
-      satisfied_response_time: 2500
-      tolerating_response_time: 12000
-      is_apply_to_error_spans: false
-      display_name: Apdex computation for Database connections
+      satisfied_response_time: 56
+      tolerating_response_time: 56
+      is_apply_to_error_spans: true
+      display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
+    display_name: display_name_example
 
 - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = SPAN_FILTER
   oci_apm_config_config:
@@ -343,9 +343,9 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
-    filter_text: page-url like page
-    description: This filter is used to match all login pages.
+    display_name: display_name_example
+    filter_text: filter_text_example
+    description: description_example
 
 - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = METRIC_GROUP
   oci_apm_config_config:
@@ -355,9 +355,9 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
-    filter_id: ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg
-    namespace: oracle_apm_monitoring
+    display_name: display_name_example
+    filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
     dimensions:
     - # required
       name: name_example
@@ -369,9 +369,9 @@ EXAMPLES = """
       name: name_example
 
       # optional
-      value_source: dummy_value_source
-      unit: kb, ms
-      description: This metric shows the number page load errors.
+      value_source: value_source_example
+      unit: unit_example
+      description: description_example
 
 - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = APDEX
   oci_apm_config_config:
@@ -379,20 +379,20 @@ EXAMPLES = """
     config_type: APDEX
     rules:
     - # required
-      filter_text: page-url like page
-      priority: 2
+      filter_text: filter_text_example
+      priority: 56
 
       # optional
       is_enabled: true
-      satisfied_response_time: 2500
-      tolerating_response_time: 12000
-      is_apply_to_error_spans: false
-      display_name: Apdex computation for Database connections
+      satisfied_response_time: 56
+      tolerating_response_time: 56
+      is_apply_to_error_spans: true
+      display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_displayname
+    display_name: display_name_example
 
 - name: Delete config
   oci_apm_config_config:
@@ -405,7 +405,7 @@ EXAMPLES = """
   oci_apm_config_config:
     # required
     apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: example_displayname
+    display_name: display_name_example
     state: absent
 
 """
@@ -423,7 +423,7 @@ config:
                   when the item is created.
             returned: on success
             type: str
-            sample: ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         config_type:
             description:
                 - The type of configuration item
@@ -437,7 +437,7 @@ config:
                   Example: `2020-02-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2020-02-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -445,7 +445,7 @@ config:
                   Example: `2020-02-13T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2020-02-13T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -465,7 +465,7 @@ config:
                 - The name by which this rule set can be displayed to the user.
             returned: on success
             type: str
-            sample: Main rule set
+            sample: display_name_example
         rules:
             description:
                 - ""
@@ -477,7 +477,7 @@ config:
                         - The string that defines the Span Filter expression.
                     returned: on success
                     type: str
-                    sample: page-url like '%login%'
+                    sample: filter_text_example
                 priority:
                     description:
                         - The priority controls the order in which multiple rules in a rule set are applied. Lower values indicate higher
@@ -485,7 +485,7 @@ config:
                           ignored. Rules within the same rule set cannot have the same priority.
                     returned: on success
                     type: int
-                    sample: 2
+                    sample: 56
                 is_enabled:
                     description:
                         - "Specifies if the Apdex rule will be computed for spans matching the rule. Can be used to make sure certain
@@ -498,7 +498,7 @@ config:
                         - The maximum response time in milliseconds that will be considered satisfactory for the end user.
                     returned: on success
                     type: int
-                    sample: 2500
+                    sample: 56
                 tolerating_response_time:
                     description:
                         - "The maximum response time in milliseconds that will be considered tolerable for the end user. Response
@@ -506,7 +506,7 @@ config:
                           This value cannot be lower than \\"satisfiedResponseTime\\"."
                     returned: on success
                     type: int
-                    sample: 12000
+                    sample: 56
                 is_apply_to_error_spans:
                     description:
                         - If true, the rule will compute the actual Apdex score for spans that have been marked as errors. If false,
@@ -514,13 +514,13 @@ config:
                           Default is false.
                     returned: on success
                     type: bool
-                    sample: false
+                    sample: true
                 display_name:
                     description:
                         - A user-friendly name that provides a short description this rule.
                     returned: on success
                     type: str
-                    sample: Apdex computation for Database connections
+                    sample: display_name_example
         filter_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Span Filter. The filterId is mandatory for the
@@ -528,13 +528,13 @@ config:
                   of MetricGroups. A filterId will be generated when a Span Filter is created.
             returned: on success
             type: str
-            sample: ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg
+            sample: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
         namespace:
             description:
                 - The namespace to write the metrics to
             returned: on success
             type: str
-            sample: oracle_apm_monitoring
+            sample: namespace_example
         dimensions:
             description:
                 - A list of dimensions for this metric
@@ -570,62 +570,62 @@ config:
                         - "Must be NULL at the moment, and \\"name\\" must be a known metric."
                     returned: on success
                     type: str
-                    sample: attr.'dollar-amount', distinct(attr.'user-name'), 42
+                    sample: value_source_example
                 unit:
                     description:
                         - The unit of the metric
                     returned: on success
                     type: str
-                    sample: kb, ms
+                    sample: unit_example
                 description:
                     description:
                         - A description of the metric
                     returned: on success
                     type: str
-                    sample: This metric shows the number page load errors.
+                    sample: description_example
         filter_text:
             description:
                 - The string that defines the Span Filter expression.
             returned: on success
             type: str
-            sample: page-url like '%login%'
+            sample: filter_text_example
         description:
             description:
                 - An optional string that describes what the filter is intended or used for.
             returned: on success
             type: str
-            sample: This filter is used to match all login pages.
+            sample: description_example
     sample: {
-        "id": "ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "config_type": "SPAN_FILTER",
-        "time_created": "2020-02-12T22:47:12.613Z",
-        "time_updated": "2020-02-13T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "Main rule set",
+        "display_name": "display_name_example",
         "rules": [{
-            "filter_text": "page-url like '%login%'",
-            "priority": 2,
+            "filter_text": "filter_text_example",
+            "priority": 56,
             "is_enabled": true,
-            "satisfied_response_time": 2500,
-            "tolerating_response_time": 12000,
-            "is_apply_to_error_spans": false,
-            "display_name": "Apdex computation for Database connections"
+            "satisfied_response_time": 56,
+            "tolerating_response_time": 56,
+            "is_apply_to_error_spans": true,
+            "display_name": "display_name_example"
         }],
-        "filter_id": "ocid1.config.oc1.phx.aaaaaaaaztadasdfaoiiulhykjsd45kjhlkjhlkhsdpksdkakjdsfasdfg",
-        "namespace": "oracle_apm_monitoring",
+        "filter_id": "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx",
+        "namespace": "namespace_example",
         "dimensions": [{
             "name": "name_example",
             "value_source": "value_source_example"
         }],
         "metrics": [{
             "name": "name_example",
-            "value_source": "attr.'dollar-amount', distinct(attr.'user-name'), 42",
-            "unit": "kb, ms",
-            "description": "This metric shows the number page load errors."
+            "value_source": "value_source_example",
+            "unit": "unit_example",
+            "description": "description_example"
         }],
-        "filter_text": "page-url like '%login%'",
-        "description": "This filter is used to match all login pages."
+        "filter_text": "filter_text_example",
+        "description": "description_example"
     }
 """
 

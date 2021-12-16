@@ -135,6 +135,7 @@ metastores:
             description:
                 - "Location under which managed tables will be created by default. This references Object Storage
                   using an HDFS URI format. Example: oci://bucket@namespace/sub-dir/"
+                - Returned for get operation
             returned: on success
             type: str
             sample: default_managed_table_location_example
@@ -142,6 +143,7 @@ metastores:
             description:
                 - "Location under which external tables will be created by default. This references Object Storage
                   using an HDFS URI format. Example: oci://bucket@namespace/sub-dir/"
+                - Returned for get operation
             returned: on success
             type: str
             sample: default_external_table_location_example

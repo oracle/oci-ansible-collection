@@ -297,24 +297,24 @@ EXAMPLES = """
         granularity: HOURLY
 
         # optional
-        time_usage_started: 2013-10-20T19:20:30+01:00
-        time_usage_ended: 2013-10-20T19:20:30+01:00
+        time_usage_started: time_usage_started_example
+        time_usage_ended: time_usage_ended_example
         is_aggregate_by_time: true
         forecast:
           # required
-          time_forecast_ended: 2013-10-20T19:20:30+01:00
+          time_forecast_ended: time_forecast_ended_example
 
           # optional
           forecast_type: BASIC
-          time_forecast_started: 2013-10-20T19:20:30+01:00
+          time_forecast_started: time_forecast_started_example
         query_type: USAGE
-        group_by: [ "null" ]
+        group_by: [ "group_by_example" ]
         group_by_tag:
         - # optional
           namespace: namespace_example
           key: key_example
           value: value_example
-        compartment_depth: 10
+        compartment_depth: 3.4
         filter:
           # optional
           operator: AND
@@ -330,15 +330,15 @@ EXAMPLES = """
           filters:
           - # optional
             operator: AND
-            dimensions: [ "null" ]
-            tags: [ "null" ]
-            filters: [ "null" ]
+            dimensions: [ "dimensions_example" ]
+            tags: [ "tags_example" ]
+            filters: [ "filters_example" ]
         date_range_name: LAST_SEVEN_DAYS
       cost_analysis_ui:
         # optional
         graph: BARS
         is_cumulative_graph: true
-      version: 10
+      version: 3.4
 
 - name: Update query
   oci_usage_query:
@@ -352,24 +352,24 @@ EXAMPLES = """
         granularity: HOURLY
 
         # optional
-        time_usage_started: 2013-10-20T19:20:30+01:00
-        time_usage_ended: 2013-10-20T19:20:30+01:00
+        time_usage_started: time_usage_started_example
+        time_usage_ended: time_usage_ended_example
         is_aggregate_by_time: true
         forecast:
           # required
-          time_forecast_ended: 2013-10-20T19:20:30+01:00
+          time_forecast_ended: time_forecast_ended_example
 
           # optional
           forecast_type: BASIC
-          time_forecast_started: 2013-10-20T19:20:30+01:00
+          time_forecast_started: time_forecast_started_example
         query_type: USAGE
-        group_by: [ "null" ]
+        group_by: [ "group_by_example" ]
         group_by_tag:
         - # optional
           namespace: namespace_example
           key: key_example
           value: value_example
-        compartment_depth: 10
+        compartment_depth: 3.4
         filter:
           # optional
           operator: AND
@@ -385,15 +385,15 @@ EXAMPLES = """
           filters:
           - # optional
             operator: AND
-            dimensions: [ "null" ]
-            tags: [ "null" ]
-            filters: [ "null" ]
+            dimensions: [ "dimensions_example" ]
+            tags: [ "tags_example" ]
+            filters: [ "filters_example" ]
         date_range_name: LAST_SEVEN_DAYS
       cost_analysis_ui:
         # optional
         graph: BARS
         is_cumulative_graph: true
-      version: 10
+      version: 3.4
     query_id: "ocid1.query.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete query

@@ -81,7 +81,7 @@ EXAMPLES = """
 - name: Get a specific repository
   oci_artifacts_repository_facts:
     # required
-    repository_id: "ocid1.artifactrepository.oc1..exampleuniqueID"
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List repositories
   oci_artifacts_repository_facts:
@@ -110,7 +110,7 @@ repositories:
                 - "Example: `ocid1.artifactrepository.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.artifactrepository.oc1..exampleuniqueID"
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The repository name.
@@ -171,7 +171,7 @@ repositories:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "id": "ocid1.artifactrepository.oc1..exampleuniqueID",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "repository_type": "GENERIC",

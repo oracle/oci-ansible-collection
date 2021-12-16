@@ -165,14 +165,14 @@ data_guard_association:
                 - "Example: `9 seconds`"
             returned: on success
             type: str
-            sample: 9 seconds
+            sample: apply_lag_example
         apply_rate:
             description:
                 - The rate at which redo logs are synced between the associated databases.
                 - "Example: `180 Mb per second`"
             returned: on success
             type: str
-            sample: 180 Mb per second
+            sample: apply_rate_example
         protection_mode:
             description:
                 - The protection mode of this Data Guard association. For more information, see
@@ -206,8 +206,8 @@ data_guard_association:
         "peer_database_id": "ocid1.peerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
         "peer_data_guard_association_id": "ocid1.peerdataguardassociation.oc1..xxxxxxEXAMPLExxxxxx",
         "peer_role": "PRIMARY",
-        "apply_lag": "9 seconds",
-        "apply_rate": "180 Mb per second",
+        "apply_lag": "apply_lag_example",
+        "apply_rate": "apply_rate_example",
         "protection_mode": "MAXIMUM_AVAILABILITY",
         "transport_type": "SYNC",
         "time_created": "2013-10-20T19:20:30+01:00"

@@ -88,7 +88,7 @@ EXAMPLES = """
     # optional
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -188,6 +188,7 @@ deploy_environments:
         compute_instance_group_selectors:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -215,7 +216,7 @@ deploy_environments:
                                   us/iaas/Content/General/Concepts/regions.htm
                             returned: on success
                             type: str
-                            sample: region_example
+                            sample: us-phoenix-1
                         query:
                             description:
                                 - Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is
@@ -226,12 +227,14 @@ deploy_environments:
         function_id:
             description:
                 - The OCID of the Function.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_id:
             description:
                 - The OCID of the Kubernetes cluster.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
@@ -253,7 +256,7 @@ deploy_environments:
             "items": [{
                 "selector_type": "INSTANCE_IDS",
                 "compute_instance_ids": [],
-                "region": "region_example",
+                "region": "us-phoenix-1",
                 "query": "query_example"
             }]
         },

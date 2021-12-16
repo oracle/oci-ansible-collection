@@ -57,7 +57,7 @@ region_subscriptions:
                 - "Example: `PHX`"
             returned: on success
             type: str
-            sample: PHX
+            sample: region_key_example
         region_name:
             description:
                 - The region's name. See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
@@ -79,7 +79,7 @@ region_subscriptions:
             type: bool
             sample: true
     sample: [{
-        "region_key": "PHX",
+        "region_key": "region_key_example",
         "region_name": "us-phoenix-1",
         "status": "READY",
         "is_home_region": true

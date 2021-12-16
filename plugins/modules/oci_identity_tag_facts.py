@@ -63,7 +63,7 @@ EXAMPLES = """
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
 
 """
 
@@ -83,12 +83,14 @@ tags:
         tag_namespace_id:
             description:
                 - The OCID of the namespace that contains the tag definition.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_name:
             description:
                 - The name of the tag namespace that contains the tag definition.
+                - Returned for get operation
             returned: on success
             type: str
             sample: tag_namespace_name_example
@@ -149,7 +151,7 @@ tags:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_cost_tracking:
             description:
                 - Indicates whether the tag is enabled for cost tracking.
@@ -159,6 +161,7 @@ tags:
         validator:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -185,7 +188,7 @@ tags:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "is_retired": true,
         "lifecycle_state": "ACTIVE",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_cost_tracking": true,
         "validator": {
             "validator_type": "ENUM",

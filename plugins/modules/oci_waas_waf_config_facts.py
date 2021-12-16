@@ -265,14 +265,14 @@ waf_config:
                                 - "Example: `example_header_name`"
                             returned: on success
                             type: str
-                            sample: example_header_name
+                            sample: header_example
                         value:
                             description:
                                 - A header field value that conforms to RFC 7230.
                                 - "Example: `example_value`"
                             returned: on success
                             type: str
-                            sample: example_value
+                            sample: value_example
         address_rate_limiting:
             description:
                 - The IP address rate limiting settings used to limit the number of requests from an address.
@@ -919,7 +919,7 @@ waf_config:
                           Example: `PT1H`"
                     returned: on success
                     type: str
-                    sample: PT1H
+                    sample: caching_duration_example
                 is_client_caching_enabled:
                     description:
                         - Enables or disables client caching.
@@ -936,7 +936,7 @@ waf_config:
                           Example: `PT1H`"
                     returned: on success
                     type: str
-                    sample: PT1H
+                    sample: client_caching_duration_example
                 criteria:
                     description:
                         - The array of the rule criteria with condition and value. The caching rule would be applied for the requests that matched any of the
@@ -1277,8 +1277,8 @@ waf_config:
             "captcha_submit_label": "captcha_submit_label_example",
             "response_header_manipulation": [{
                 "action": "EXTEND_HTTP_RESPONSE_HEADER",
-                "header": "example_header_name",
-                "value": "example_value"
+                "header": "header_example",
+                "value": "value_example"
             }]
         }],
         "address_rate_limiting": {
@@ -1380,9 +1380,9 @@ waf_config:
             "key": "key_example",
             "name": "name_example",
             "action": "CACHE",
-            "caching_duration": "PT1H",
+            "caching_duration": "caching_duration_example",
             "is_client_caching_enabled": true,
-            "client_caching_duration": "PT1H",
+            "client_caching_duration": "client_caching_duration_example",
             "criteria": [{
                 "condition": "URL_IS",
                 "value": "value_example"

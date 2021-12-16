@@ -162,18 +162,18 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    platform_type: [ "$p.getValue()" ]
-    id: [ "$p.getValue()" ]
-    exadata_insight_id: [ "$p.getValue()" ]
-    percentile: 56
+    platform_type: [ "LINUX" ]
+    id: [ "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
+    percentile: 1
     insight_by: insight_by_example
-    forecast_days: 56
+    forecast_days: 30
     sort_order: ASC
     sort_by: utilizationPercent
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """
@@ -190,13 +190,13 @@ host_insight_resource_statistics:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         resource_metric:
             description:
                 - Defines the type of resource metric (CPU, Physical Memory, Logical Memory)
@@ -268,25 +268,25 @@ host_insight_resource_statistics:
                                 - Total amount used of the resource metric type (CPU, STORAGE).
                             returned: on success
                             type: float
-                            sample: 34.5
+                            sample: 1.2
                         capacity:
                             description:
                                 - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
                             returned: on success
                             type: float
-                            sample: 222.3
+                            sample: 1.2
                         utilization_percent:
                             description:
                                 - Resource utilization in percentage.
                             returned: on success
                             type: float
-                            sample: 35.1
+                            sample: 1.2
                         usage_change_percent:
                             description:
                                 - Change in resource utilization in percentage
                             returned: on success
                             type: float
-                            sample: 5.2
+                            sample: 1.2
                         resource_name:
                             description:
                                 - Name of resource for host
@@ -372,8 +372,8 @@ host_insight_resource_statistics:
                             type: int
                             sample: 56
     sample: {
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
         "resource_metric": "CPU",
         "usage_unit": "CORES",
         "items": [{
@@ -386,10 +386,10 @@ host_insight_resource_statistics:
                 "agent_identifier": "agent_identifier_example"
             },
             "current_statistics": {
-                "usage": 34.5,
-                "capacity": 222.3,
-                "utilization_percent": 35.1,
-                "usage_change_percent": 5.2,
+                "usage": 1.2,
+                "capacity": 1.2,
+                "utilization_percent": 1.2,
+                "usage_change_percent": 1.2,
                 "resource_name": "HOST_CPU_STATISTICS",
                 "load": {
                     "minimum": 1.2,

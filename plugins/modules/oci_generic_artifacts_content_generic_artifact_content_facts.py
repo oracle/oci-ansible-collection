@@ -60,9 +60,9 @@ EXAMPLES = """
   oci_generic_artifacts_content_generic_artifact_content_facts:
     # required
     dest: /tmp/myfile
-    repository_id: "ocid1.repository.oc1..exampleuniqueID"
-    artifact_path: project01/my-web-app/artifact-abc
-    version: 1.1.2
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+    artifact_path: artifact_path_example
+    version: version_example
 
 """
 

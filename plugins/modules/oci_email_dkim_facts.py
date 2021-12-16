@@ -92,7 +92,7 @@ EXAMPLES = """
     # optional
     name: name_example
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
     sort_by: TIMECREATED
 
 """
@@ -140,6 +140,7 @@ dkims:
             description:
                 - A message describing the current state in more detail.
                   For example, can be used to provide actionable information for a resource.
+                - Returned for get operation
             returned: on success
             type: str
             sample: lifecycle_details_example
@@ -157,7 +158,7 @@ dkims:
                 - "Example: `2021-02-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2021-02-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time of the last change to the DKIM configuration, due to a state change or
@@ -171,12 +172,14 @@ dkims:
             description:
                 - The name of the DNS subdomain that must be provisioned to enable email recipients to verify DKIM signatures.
                   It is usually created with a CNAME record set to the cnameRecordValue
+                - Returned for get operation
             returned: on success
             type: str
             sample: dns_subdomain_name_example
         cname_record_value:
             description:
                 - The DNS CNAME record value to provision to the DKIM DNS subdomain, when using the CNAME method for DKIM setup (preferred).
+                - Returned for get operation
             returned: on success
             type: str
             sample: cname_record_value_example
@@ -186,6 +189,7 @@ dkims:
                   This is used in cases where a CNAME can not be used, such as when the cnameRecordValue would exceed the maximum length for a DNS entry.
                   This can also be used by customers who have an existing procedure to directly provision TXT records for DKIM.
                   Be aware that many DNS APIs will require you to break this string into segments of less than 255 characters.
+                - Returned for get operation
             returned: on success
             type: str
             sample: txt_record_value_example
@@ -220,7 +224,7 @@ dkims:
         "lifecycle_state": "ACTIVE",
         "lifecycle_details": "lifecycle_details_example",
         "description": "description_example",
-        "time_created": "2021-02-12T22:47:12.613Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "dns_subdomain_name": "dns_subdomain_name_example",
         "cname_record_value": "cname_record_value_example",

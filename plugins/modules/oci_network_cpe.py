@@ -114,12 +114,12 @@ EXAMPLES = """
 - name: Create cpe
   oci_network_cpe:
     # required
-    compartment_id: "ocid1.compartment.oc1..compartment_OCID"
-    ip_address: 203.0.113.6
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    ip_address: ip_address_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyCpe
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -130,15 +130,15 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyCpe
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cpe:
     # required
-    compartment_id: "ocid1.compartment.oc1..compartment_OCID"
-    display_name: MyCpe
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -154,8 +154,8 @@ EXAMPLES = """
 - name: Delete cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cpe:
     # required
-    compartment_id: "ocid1.compartment.oc1..compartment_OCID"
-    display_name: MyCpe
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -235,7 +235,7 @@ cpe:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -244,7 +244,7 @@ cpe:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "ip_address": "ip_address_example",
         "cpe_device_shape_id": "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

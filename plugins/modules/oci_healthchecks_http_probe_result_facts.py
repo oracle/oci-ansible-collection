@@ -63,8 +63,8 @@ EXAMPLES = """
     probe_configuration_id: "ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    start_time_greater_than_or_equal_to: 1.2
-    start_time_less_than_or_equal_to: 1.2
+    start_time_greater_than_or_equal_to: 3.4
+    start_time_less_than_or_equal_to: 3.4
     sort_order: ASC
     target: target_example
 

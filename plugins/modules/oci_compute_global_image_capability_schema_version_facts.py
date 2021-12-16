@@ -167,7 +167,7 @@ compute_global_image_capability_schema_versions:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "name": "name_example",
         "compute_global_image_capability_schema_id": "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx",
@@ -181,7 +181,7 @@ compute_global_image_capability_schema_versions:
             "enum_string_values": [],
             "enum_string_default_value": "default_value_example"
         },
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

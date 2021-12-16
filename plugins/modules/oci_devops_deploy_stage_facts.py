@@ -88,7 +88,7 @@ EXAMPLES = """
     # optional
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -212,24 +212,28 @@ deploy_stages:
         compute_instance_group_deploy_environment_id:
             description:
                 - A compute instance group environment OCID for rolling deployment.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_spec_deploy_artifact_id:
             description:
                 - The OCID of the artifact that contains the deployment specification.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_ids:
             description:
                 - Additional file artifact OCIDs.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         rollout_policy:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -266,6 +270,7 @@ deploy_stages:
         rollback_policy:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -278,6 +283,7 @@ deploy_stages:
         failure_policy:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -303,6 +309,7 @@ deploy_stages:
         load_balancer_config:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -327,54 +334,63 @@ deploy_stages:
         function_deploy_environment_id:
             description:
                 - Function environment OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         docker_image_deploy_artifact_id:
             description:
                 - A Docker image artifact OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         config:
             description:
                 - User provided key and value pair configuration, which is assigned through constants or parameter.
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
         max_memory_in_mbs:
             description:
                 - Maximum usable memory for the Function (in MB).
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         function_timeout_in_seconds:
             description:
                 - Timeout for execution of the Function. Value in seconds.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         deploy_artifact_id:
             description:
                 - Optional binary artifact OCID user may provide to this stage.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         is_async:
             description:
                 - A boolean flag specifies whether this stage executes asynchronously.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         is_validation_enabled:
             description:
                 - A boolean flag specifies whether the invoked function must be validated.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         blue_backend_ips:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -387,6 +403,7 @@ deploy_stages:
         green_backend_ips:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -399,12 +416,14 @@ deploy_stages:
         traffic_shift_target:
             description:
                 - Specifies the target or destination backend set.
+                - Returned for get operation
             returned: on success
             type: str
             sample: AUTO_SELECT
         approval_policy:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -423,24 +442,28 @@ deploy_stages:
         oke_cluster_deploy_environment_id:
             description:
                 - Kubernetes cluster environment OCID for deployment.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         kubernetes_manifest_deploy_artifact_ids:
             description:
                 - List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         namespace:
             description:
                 - Default Namespace to be used for Kubernetes deployment when not specified in the manifest.
+                - Returned for get operation
             returned: on success
             type: str
             sample: namespace_example
         wait_criteria:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -456,7 +479,7 @@ deploy_stages:
                           be up to 2 days.
                     returned: on success
                     type: str
-                    sample: PT10M5S
+                    sample: wait_duration_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
@@ -524,7 +547,7 @@ deploy_stages:
         "namespace": "namespace_example",
         "wait_criteria": {
             "wait_type": "ABSOLUTE_WAIT",
-            "wait_duration": "PT10M5S"
+            "wait_duration": "wait_duration_example"
         }
     }]
 """

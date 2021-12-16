@@ -179,7 +179,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     target_compartments:
       # required
-      items: [ "null" ]
+      items: [ "items_example" ]
     target_tags:
       # required
       items:
@@ -189,7 +189,7 @@ EXAMPLES = """
         tag_value_type: VALUE
 
         # optional
-        tag_values: [ "null" ]
+        tag_values: [ "tag_values_example" ]
 
 - name: Update profile
   oci_optimizer_profile:
@@ -210,7 +210,7 @@ EXAMPLES = """
         level: level_example
     target_compartments:
       # required
-      items: [ "null" ]
+      items: [ "items_example" ]
     target_tags:
       # required
       items:
@@ -220,7 +220,7 @@ EXAMPLES = """
         tag_value_type: VALUE
 
         # optional
-        tag_values: [ "null" ]
+        tag_values: [ "tag_values_example" ]
 
 - name: Update profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_optimizer_profile:
@@ -241,7 +241,7 @@ EXAMPLES = """
         level: level_example
     target_compartments:
       # required
-      items: [ "null" ]
+      items: [ "items_example" ]
     target_tags:
       # required
       items:
@@ -251,7 +251,7 @@ EXAMPLES = """
         tag_value_type: VALUE
 
         # optional
-        tag_values: [ "null" ]
+        tag_values: [ "tag_values_example" ]
 
 - name: Delete profile
   oci_optimizer_profile:
@@ -409,13 +409,13 @@ profile:
                 - The date and time the profile was created, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the profile was last updated, in the format defined by RFC3339.
             returned: on success
             type: str
-            sample: "2020-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -442,8 +442,8 @@ profile:
             }]
         },
         "lifecycle_state": "ACTIVE",
-        "time_created": "2020-08-25T21:10:29.600Z",
-        "time_updated": "2020-08-25T21:10:29.600Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }
 """
 

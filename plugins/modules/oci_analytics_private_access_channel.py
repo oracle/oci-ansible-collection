@@ -95,15 +95,15 @@ EXAMPLES = """
   oci_analytics_private_access_channel:
     # required
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: example_private_access_channel
-    vcn_id: ocid1.vcn.unique_part_vcn_id
-    subnet_id: ocid1.subnet.unique_part_subnet_id
+    display_name: display_name_example
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_source_dns_zones:
     - # required
-      dns_zone: example-vcn.oraclevcn.com
+      dns_zone: dns_zone_example
 
       # optional
-      description: Example OCI VCN DNS label
+      description: description_example
 
 - name: Update private_access_channel
   oci_analytics_private_access_channel:
@@ -112,15 +112,15 @@ EXAMPLES = """
     private_access_channel_key: private_access_channel_key_example
 
     # optional
-    display_name: example_private_access_channel
-    vcn_id: ocid1.vcn.unique_part_vcn_id
-    subnet_id: ocid1.subnet.unique_part_subnet_id
+    display_name: display_name_example
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     private_source_dns_zones:
     - # required
-      dns_zone: example-vcn.oraclevcn.com
+      dns_zone: dns_zone_example
 
       # optional
-      description: Example OCI VCN DNS label
+      description: description_example
 
 - name: Delete private_access_channel
   oci_analytics_private_access_channel:

@@ -139,36 +139,42 @@ bastions:
         phone_book_entry:
             description:
                 - The phonebook entry of the customer's team, which can't be changed after creation. Not applicable to `standard` bastions.
+                - Returned for get operation
             returned: on success
             type: str
             sample: phone_book_entry_example
         client_cidr_block_allow_list:
             description:
                 - A list of address ranges in CIDR notation that you want to allow to connect to sessions hosted by this bastion.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         static_jump_host_ip_addresses:
             description:
                 - A list of IP addresses of the hosts that the bastion has access to. Not applicable to `standard` bastions.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         private_endpoint_ip_address:
             description:
                 - The private IP address of the created private endpoint.
+                - Returned for get operation
             returned: on success
             type: str
             sample: private_endpoint_ip_address_example
         max_session_ttl_in_seconds:
             description:
                 - The maximum amount of time that any session on the bastion can remain active.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         max_sessions_allowed:
             description:
                 - The maximum number of active sessions allowed on the bastion.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -178,14 +184,14 @@ bastions:
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The time the bastion was updated. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2020-01-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the bastion.
@@ -232,8 +238,8 @@ bastions:
         "private_endpoint_ip_address": "private_endpoint_ip_address_example",
         "max_session_ttl_in_seconds": 56,
         "max_sessions_allowed": 56,
-        "time_created": "2020-01-25T21:10:29.600Z",
-        "time_updated": "2020-01-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},

@@ -81,7 +81,7 @@ EXAMPLES = """
   oci_waas_policy_actions:
     # required
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
-    protection_rule_keys: [ "$p.getValue()" ]
+    protection_rule_keys: [ "protection_rule_keys_example" ]
     action: accept_recommendations
 
 - name: Perform action change_compartment on waas_policy
@@ -98,7 +98,7 @@ EXAMPLES = """
     action: purge_cache
 
     # optional
-    resources: [ "null" ]
+    resources: [ "resources_example" ]
 
 """
 
@@ -156,7 +156,7 @@ waas_policy:
                 - The date and time the policy was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         origins:
             description:
                 - "A map of host servers (origins) and their keys for the web application. Origin keys are used to associate origins to specific protection
@@ -294,7 +294,7 @@ waas_policy:
                         - "- **TRUE_CLIENT_IP:** Corresponds to `True-Client-Ip` header name."
                     returned: on success
                     type: str
-                    sample: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+                    sample: X_FORWARDED_FOR
                 is_cache_control_respected:
                     description:
                         - "Enable or disable automatic content caching based on the response `cache-control` header. This feature enables the origin to act as a
@@ -691,14 +691,14 @@ waas_policy:
                                         - "Example: `example_header_name`"
                                     returned: on success
                                     type: str
-                                    sample: example_header_name
+                                    sample: header_example
                                 value:
                                     description:
                                         - A header field value that conforms to RFC 7230.
                                         - "Example: `example_value`"
                                     returned: on success
                                     type: str
-                                    sample: example_value
+                                    sample: value_example
                 address_rate_limiting:
                     description:
                         - The IP address rate limiting settings used to limit the number of requests from an address.
@@ -1354,7 +1354,7 @@ waas_policy:
                                   Example: `PT1H`"
                             returned: on success
                             type: str
-                            sample: PT1H
+                            sample: caching_duration_example
                         is_client_caching_enabled:
                             description:
                                 - Enables or disables client caching.
@@ -1371,7 +1371,7 @@ waas_policy:
                                   Example: `PT1H`"
                             returned: on success
                             type: str
-                            sample: PT1H
+                            sample: client_caching_duration_example
                         criteria:
                             description:
                                 - The array of the rule criteria with condition and value. The caching rule would be applied for the requests that matched any
@@ -1716,7 +1716,7 @@ waas_policy:
         "additional_domains": [],
         "cname": "cname_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "origins": {
             "uri": "uri_example",
             "http_port": 56,
@@ -1739,7 +1739,7 @@ waas_policy:
             "tls_protocols": [],
             "is_origin_compression_enabled": true,
             "is_behind_cdn": true,
-            "client_address_header": "X-Client-Ip: 11.1.1.1, 13.3.3.3",
+            "client_address_header": "X_FORWARDED_FOR",
             "is_cache_control_respected": true,
             "is_response_buffering_enabled": true,
             "cipher_group": "DEFAULT",
@@ -1788,8 +1788,8 @@ waas_policy:
                 "captcha_submit_label": "captcha_submit_label_example",
                 "response_header_manipulation": [{
                     "action": "EXTEND_HTTP_RESPONSE_HEADER",
-                    "header": "example_header_name",
-                    "value": "example_value"
+                    "header": "header_example",
+                    "value": "value_example"
                 }]
             }],
             "address_rate_limiting": {
@@ -1891,9 +1891,9 @@ waas_policy:
                 "key": "key_example",
                 "name": "name_example",
                 "action": "CACHE",
-                "caching_duration": "PT1H",
+                "caching_duration": "caching_duration_example",
                 "is_client_caching_enabled": true,
-                "client_caching_duration": "PT1H",
+                "client_caching_duration": "client_caching_duration_example",
                 "criteria": [{
                     "condition": "URL_IS",
                     "value": "value_example"

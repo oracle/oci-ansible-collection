@@ -98,8 +98,8 @@ EXAMPLES = """
     # optional
     sort_by: id
     sort_order: ASC
-    display_name: [ "$p.getValue()" ]
-    lifecycle_state: [ "$p.getValue()" ]
+    display_name: [ "display_name_example" ]
+    lifecycle_state: [ "CREATING" ]
     time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_created_less_than: 2013-10-20T19:20:30+01:00
 
@@ -139,12 +139,14 @@ waas_policies:
         additional_domains:
             description:
                 - An array of additional domains for this web application.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         cname:
             description:
                 - The CNAME record to add to your DNS configuration to route traffic for the domain, and all additional domains, through the WAF.
+                - Returned for get operation
             returned: on success
             type: str
             sample: cname_example
@@ -159,11 +161,12 @@ waas_policies:
                 - The date and time the policy was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         origins:
             description:
                 - "A map of host servers (origins) and their keys for the web application. Origin keys are used to associate origins to specific protection
                   rules. The key should be a user-friendly name for the host. **Examples:** `primary` or `secondary`."
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -209,6 +212,7 @@ waas_policies:
             description:
                 - The map of origin groups and their keys used to associate origins to the `wafConfig`. Origin groups allow you to apply weights to groups of
                   origins for load balancing purposes. Origins with higher weights will receive larger proportions of client requests.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -234,6 +238,7 @@ waas_policies:
         policy_config:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -297,7 +302,7 @@ waas_policies:
                         - "- **TRUE_CLIENT_IP:** Corresponds to `True-Client-Ip` header name."
                     returned: on success
                     type: str
-                    sample: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+                    sample: X_FORWARDED_FOR
                 is_cache_control_respected:
                     description:
                         - "Enable or disable automatic content caching based on the response `cache-control` header. This feature enables the origin to act as a
@@ -472,6 +477,7 @@ waas_policies:
         waf_config:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -694,14 +700,14 @@ waas_policies:
                                         - "Example: `example_header_name`"
                                     returned: on success
                                     type: str
-                                    sample: example_header_name
+                                    sample: header_example
                                 value:
                                     description:
                                         - A header field value that conforms to RFC 7230.
                                         - "Example: `example_value`"
                                     returned: on success
                                     type: str
-                                    sample: example_value
+                                    sample: value_example
                 address_rate_limiting:
                     description:
                         - The IP address rate limiting settings used to limit the number of requests from an address.
@@ -1357,7 +1363,7 @@ waas_policies:
                                   Example: `PT1H`"
                             returned: on success
                             type: str
-                            sample: PT1H
+                            sample: caching_duration_example
                         is_client_caching_enabled:
                             description:
                                 - Enables or disables client caching.
@@ -1374,7 +1380,7 @@ waas_policies:
                                   Example: `PT1H`"
                             returned: on success
                             type: str
-                            sample: PT1H
+                            sample: client_caching_duration_example
                         criteria:
                             description:
                                 - The array of the rule criteria with condition and value. The caching rule would be applied for the requests that matched any
@@ -1719,7 +1725,7 @@ waas_policies:
         "additional_domains": [],
         "cname": "cname_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "origins": {
             "uri": "uri_example",
             "http_port": 56,
@@ -1742,7 +1748,7 @@ waas_policies:
             "tls_protocols": [],
             "is_origin_compression_enabled": true,
             "is_behind_cdn": true,
-            "client_address_header": "X-Client-Ip: 11.1.1.1, 13.3.3.3",
+            "client_address_header": "X_FORWARDED_FOR",
             "is_cache_control_respected": true,
             "is_response_buffering_enabled": true,
             "cipher_group": "DEFAULT",
@@ -1791,8 +1797,8 @@ waas_policies:
                 "captcha_submit_label": "captcha_submit_label_example",
                 "response_header_manipulation": [{
                     "action": "EXTEND_HTTP_RESPONSE_HEADER",
-                    "header": "example_header_name",
-                    "value": "example_value"
+                    "header": "header_example",
+                    "value": "value_example"
                 }]
             }],
             "address_rate_limiting": {
@@ -1894,9 +1900,9 @@ waas_policies:
                 "key": "key_example",
                 "name": "name_example",
                 "action": "CACHE",
-                "caching_duration": "PT1H",
+                "caching_duration": "caching_duration_example",
                 "is_client_caching_enabled": true,
-                "client_caching_duration": "PT1H",
+                "client_caching_duration": "client_caching_duration_example",
                 "criteria": [{
                     "condition": "URL_IS",
                     "value": "value_example"

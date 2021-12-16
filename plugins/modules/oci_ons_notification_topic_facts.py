@@ -85,7 +85,7 @@ EXAMPLES = """
     name: name_example
     sort_by: TIMECREATED
     sort_order: ASC
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
 
 """
 

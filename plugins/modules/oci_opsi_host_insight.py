@@ -225,7 +225,7 @@ host_insight:
                 - Indicates the status of a host insight in Operations Insights
             returned: on success
             type: str
-            sample: ENABLED
+            sample: DISABLED
         time_created:
             description:
                 - The time the the host insight was first enabled. An RFC3339 formatted datetime string
@@ -304,7 +304,7 @@ host_insight:
                 - Platform version.
             returned: on success
             type: str
-            sample: Oracle Linux Server release 7.9
+            sample: platform_version_example
         exadata_insight_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
@@ -328,7 +328,7 @@ host_insight:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "status": "ENABLED",
+        "status": "DISABLED",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -341,7 +341,7 @@ host_insight:
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "platform_type": "LINUX",
         "platform_name": "platform_name_example",
-        "platform_version": "Oracle Linux Server release 7.9",
+        "platform_version": "platform_version_example",
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     }

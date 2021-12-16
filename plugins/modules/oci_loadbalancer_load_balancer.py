@@ -172,15 +172,15 @@ EXAMPLES = """
   oci_loadbalancer_load_balancer:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: example_load_balancer
-    shape_name: 100Mbps
-    subnet_ids: [ "ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx" ]
+    display_name: display_name_example
+    shape_name: shape_name_example
+    subnet_ids: [ "subnet_ids_example" ]
 
     # optional
     shape_details:
       # required
-      minimum_bandwidth_in_mbps: 150
-      maximum_bandwidth_in_mbps: 1500
+      minimum_bandwidth_in_mbps: 56
+      maximum_bandwidth_in_mbps: 56
     is_private: true
     ip_mode: IPV4
     reserved_ips:
@@ -195,8 +195,8 @@ EXAMPLES = """
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: example_load_balancer
-    shape_name: 100Mbps
+    display_name: display_name_example
+    shape_name: shape_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -204,10 +204,10 @@ EXAMPLES = """
   oci_loadbalancer_load_balancer:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: example_load_balancer
+    display_name: display_name_example
 
     # optional
-    shape_name: 100Mbps
+    shape_name: shape_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -221,7 +221,7 @@ EXAMPLES = """
   oci_loadbalancer_load_balancer:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: example_load_balancer
+    display_name: display_name_example
     state: absent
 
 """
@@ -251,7 +251,7 @@ load_balancer:
                 - "Example: `example_load_balancer`"
             returned: on success
             type: str
-            sample: example_load_balancer
+            sample: display_name_example
         lifecycle_state:
             description:
                 - The current state of the load balancer.
@@ -264,7 +264,7 @@ load_balancer:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         ip_addresses:
             description:
                 - An array of IP addresses.
@@ -277,7 +277,7 @@ load_balancer:
                         - "Example: `192.168.0.3`"
                     returned: on success
                     type: str
-                    sample: 192.168.0.3
+                    sample: ip_address_example
                 is_public:
                     description:
                         - Whether the IP address is public or private.
@@ -307,7 +307,7 @@ load_balancer:
                 - "Example: `100Mbps`"
             returned: on success
             type: str
-            sample: 100Mbps
+            sample: shape_name_example
         shape_details:
             description:
                 - ""
@@ -321,7 +321,7 @@ load_balancer:
                         - "Example: `150`"
                     returned: on success
                     type: int
-                    sample: 150
+                    sample: 56
                 maximum_bandwidth_in_mbps:
                     description:
                         - Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can
@@ -331,7 +331,7 @@ load_balancer:
                         - "Example: `1500`"
                     returned: on success
                     type: int
-                    sample: 1500
+                    sample: 56
         is_private:
             description:
                 - Whether the load balancer has a VCN-local (private) IP address.
@@ -376,21 +376,21 @@ load_balancer:
                         - "Example: `example_listener`"
                     returned: on success
                     type: str
-                    sample: example_listener
+                    sample: name_example
                 default_backend_set_name:
                     description:
                         - The name of the associated backend set.
                         - "Example: `example_backend_set`"
                     returned: on success
                     type: str
-                    sample: example_backend_set
+                    sample: default_backend_set_name_example
                 port:
                     description:
                         - The communication port for the listener.
                         - "Example: `80`"
                     returned: on success
                     type: int
-                    sample: 0
+                    sample: 56
                 protocol:
                     description:
                         - The protocol on which the listener accepts connection requests.
@@ -400,7 +400,7 @@ load_balancer:
                         - "Example: `HTTP`"
                     returned: on success
                     type: str
-                    sample: HTTP
+                    sample: protocol_example
                 hostname_names:
                     description:
                         - An array of hostname resource names.
@@ -416,7 +416,7 @@ load_balancer:
                         - "Example: `example_path_route_set`"
                     returned: on success
                     type: str
-                    sample: example_path_route_set
+                    sample: path_route_set_name_example
                 ssl_configuration:
                     description:
                         - ""
@@ -429,7 +429,7 @@ load_balancer:
                                 - "Example: `3`"
                             returned: on success
                             type: int
-                            sample: 3
+                            sample: 56
                         verify_peer_certificate:
                             description:
                                 - Whether the load balancer listener should verify peer certificates.
@@ -459,7 +459,7 @@ load_balancer:
                                 - "Example: `example_certificate_bundle`"
                             returned: on success
                             type: str
-                            sample: example_certificate_bundle
+                            sample: certificate_name_example
                         server_order_preference:
                             description:
                                 - When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client
@@ -532,14 +532,14 @@ load_balancer:
                                 - "Example: `1200`"
                             returned: on success
                             type: int
-                            sample: 1200
+                            sample: 56
                         backend_tcp_proxy_protocol_version:
                             description:
                                 - The backend TCP Proxy Protocol version.
                                 - "Example: `1`"
                             returned: on success
                             type: int
-                            sample: 1
+                            sample: 56
                 rule_set_names:
                     description:
                         - The names of the L(rule sets,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/) to apply to the
@@ -554,7 +554,7 @@ load_balancer:
                         - "Example: `example_routing_policy_name`"
                     returned: on success
                     type: str
-                    sample: example_routing_policy_name
+                    sample: routing_policy_name_example
         hostnames:
             description:
                 - ""
@@ -568,7 +568,7 @@ load_balancer:
                         - "Example: `example_hostname_001`"
                     returned: on success
                     type: str
-                    sample: example_hostname_001
+                    sample: name_example
                 hostname:
                     description:
                         - A virtual hostname. For more information about virtual hostname string construction, see
@@ -576,7 +576,7 @@ load_balancer:
                         - "Example: `app.example.com`"
                     returned: on success
                     type: str
-                    sample: app.example.com
+                    sample: hostname_example
         ssl_cipher_suites:
             description:
                 - ""
@@ -716,7 +716,7 @@ load_balancer:
                         - "Example: `example_certificate_bundle`"
                     returned: on success
                     type: str
-                    sample: example_certificate_bundle
+                    sample: certificate_name_example
                 public_certificate:
                     description:
                         - The public certificate, in PEM format, that you received from your SSL certificate provider.
@@ -730,7 +730,7 @@ load_balancer:
                               -----END CERTIFICATE-----"
                     returned: on success
                     type: str
-                    sample: public_certificate_example
+                    sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
                 ca_certificate:
                     description:
                         - The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider.
@@ -744,7 +744,7 @@ load_balancer:
                               -----END CERTIFICATE-----"
                     returned: on success
                     type: str
-                    sample: ca_certificate_example
+                    sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         backend_sets:
             description:
                 - ""
@@ -759,7 +759,7 @@ load_balancer:
                         - "Example: `example_backend_set`"
                     returned: on success
                     type: str
-                    sample: example_backend_set
+                    sample: name_example
                 policy:
                     description:
                         - The load balancer policy for the backend set. To get a list of available policies, use the
@@ -767,7 +767,7 @@ load_balancer:
                         - "Example: `LEAST_CONNECTIONS`"
                     returned: on success
                     type: str
-                    sample: LEAST_CONNECTIONS
+                    sample: policy_example
                 backends:
                     description:
                         - ""
@@ -780,21 +780,21 @@ load_balancer:
                                 - "Example: `10.0.0.3:8080`"
                             returned: on success
                             type: str
-                            sample: 10.0.0.3:8080
+                            sample: name_example
                         ip_address:
                             description:
                                 - The IP address of the backend server.
                                 - "Example: `10.0.0.3`"
                             returned: on success
                             type: str
-                            sample: 10.0.0.3
+                            sample: ip_address_example
                         port:
                             description:
                                 - The communication port for the backend server.
                                 - "Example: `8080`"
                             returned: on success
                             type: int
-                            sample: 8080
+                            sample: 56
                         weight:
                             description:
                                 - The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger
@@ -805,7 +805,7 @@ load_balancer:
                                 - "Example: `3`"
                             returned: on success
                             type: int
-                            sample: 3
+                            sample: 56
                         drain:
                             description:
                                 - "Whether the load balancer should drain this server. Servers marked \\"drain\\" receive no new
@@ -813,7 +813,7 @@ load_balancer:
                                 - "Example: `false`"
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
                         backup:
                             description:
                                 - "Whether the load balancer should treat this server as a backup unit. If `true`, the load balancer forwards no ingress
@@ -822,7 +822,7 @@ load_balancer:
                                 - "Example: `false`"
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
                         offline:
                             description:
                                 - Whether the load balancer should treat this server as offline. Offline servers receive no incoming
@@ -830,7 +830,7 @@ load_balancer:
                                 - "Example: `false`"
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
                 health_checker:
                     description:
                         - ""
@@ -843,14 +843,14 @@ load_balancer:
                                 - "Example: `HTTP`"
                             returned: on success
                             type: str
-                            sample: HTTP
+                            sample: protocol_example
                         url_path:
                             description:
                                 - The path against which to run the health check.
                                 - "Example: `/healthcheck`"
                             returned: on success
                             type: str
-                            sample: /healthcheck
+                            sample: url_path_example
                         port:
                             description:
                                 - The backend server port against which to run the health check. If the port is not specified, the load balancer uses the
@@ -858,7 +858,7 @@ load_balancer:
                                 - "Example: `8080`"
                             returned: on success
                             type: int
-                            sample: 0
+                            sample: 56
                         return_code:
                             description:
                                 - "The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol,
@@ -866,7 +866,7 @@ load_balancer:
                                 - "Example: `200`"
                             returned: on success
                             type: int
-                            sample: 0
+                            sample: 56
                         retries:
                             description:
                                 - "The number of retries to attempt before a backend server is considered \\"unhealthy\\". This number also applies
@@ -874,7 +874,7 @@ load_balancer:
                                 - "Example: `3`"
                             returned: on success
                             type: int
-                            sample: 3
+                            sample: 56
                         timeout_in_millis:
                             description:
                                 - The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply
@@ -882,14 +882,14 @@ load_balancer:
                                 - "Example: `3000`"
                             returned: on success
                             type: int
-                            sample: 3000
+                            sample: 56
                         interval_in_millis:
                             description:
                                 - The interval between health checks, in milliseconds. The default is 10000 (10 seconds).
                                 - "Example: `10000`"
                             returned: on success
                             type: int
-                            sample: 10000
+                            sample: 56
                         response_body_regex:
                             description:
                                 - A regular expression for parsing the response body from the backend server.
@@ -909,7 +909,7 @@ load_balancer:
                                 - "Example: `3`"
                             returned: on success
                             type: int
-                            sample: 3
+                            sample: 56
                         verify_peer_certificate:
                             description:
                                 - Whether the load balancer listener should verify peer certificates.
@@ -939,7 +939,7 @@ load_balancer:
                                 - "Example: `example_certificate_bundle`"
                             returned: on success
                             type: str
-                            sample: example_certificate_bundle
+                            sample: certificate_name_example
                         server_order_preference:
                             description:
                                 - When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client
@@ -1009,7 +1009,7 @@ load_balancer:
                                 - "Example: `example_cookie`"
                             returned: on success
                             type: str
-                            sample: example_cookie
+                            sample: cookie_name_example
                         disable_fallback:
                             description:
                                 - Whether the load balancer is prevented from directing traffic from a persistent session client to
@@ -1017,7 +1017,7 @@ load_balancer:
                                 - "Example: `false`"
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
                 lb_cookie_session_persistence_configuration:
                     description:
                         - ""
@@ -1041,7 +1041,7 @@ load_balancer:
                                      names are different, the client or browser treats them as two different cookies."
                             returned: on success
                             type: str
-                            sample: example_cookie
+                            sample: cookie_name_example
                         disable_fallback:
                             description:
                                 - Whether the load balancer is prevented from directing traffic from a persistent session client to
@@ -1049,7 +1049,7 @@ load_balancer:
                                 - "Example: `false`"
                             returned: on success
                             type: bool
-                            sample: false
+                            sample: true
                         domain:
                             description:
                                 - The domain in which the cookie is valid. The `Set-cookie` header inserted by the load balancer contains a
@@ -1071,7 +1071,7 @@ load_balancer:
                                 - "Example: `example.com`"
                             returned: on success
                             type: str
-                            sample: example.com
+                            sample: domain_example
                         path:
                             description:
                                 - The path in which the cookie is valid. The `Set-cookie header` inserted by the load balancer contains a `Path`
@@ -1082,7 +1082,7 @@ load_balancer:
                                 - "Example: `/example`"
                             returned: on success
                             type: str
-                            sample: /example
+                            sample: path_example
                         max_age_in_seconds:
                             description:
                                 - The amount of time the cookie remains valid. The `Set-cookie` header inserted by the load balancer contains
@@ -1093,7 +1093,7 @@ load_balancer:
                                 - "Example: `3600`"
                             returned: on success
                             type: int
-                            sample: 3600
+                            sample: 56
                         is_secure:
                             description:
                                 - Whether the `Set-cookie` header should contain the `Secure` attribute. If `true`, the `Set-cookie` header
@@ -1127,7 +1127,7 @@ load_balancer:
                         - "Example: `example_path_route_set`"
                     returned: on success
                     type: str
-                    sample: example_path_route_set
+                    sample: name_example
                 path_routes:
                     description:
                         - The set of path route rules.
@@ -1143,7 +1143,7 @@ load_balancer:
                                 - "Example: `/example/video/123`"
                             returned: on success
                             type: str
-                            sample: /example/video/123
+                            sample: path_example
                         path_match_type:
                             description:
                                 - The type of matching to apply to incoming URIs.
@@ -1171,7 +1171,7 @@ load_balancer:
                                 - "Example: `example_backend_set`"
                             returned: on success
                             type: str
-                            sample: example_backend_set
+                            sample: backend_set_name_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -1210,7 +1210,7 @@ load_balancer:
                         - "Example: `example_rule_set`"
                     returned: on success
                     type: str
-                    sample: example_rule_set
+                    sample: name_example
                 items:
                     description:
                         - An array of rules that compose the rule set.
@@ -1229,7 +1229,7 @@ load_balancer:
                                 - "Example: `example_header_name`"
                             returned: on success
                             type: str
-                            sample: example_header_name
+                            sample: header_example
                         value:
                             description:
                                 - "A header value that conforms to RFC 7230. With the following exceptions:
@@ -1239,7 +1239,7 @@ load_balancer:
                                 - "Example: `example_value`"
                             returned: on success
                             type: str
-                            sample: example_value
+                            sample: value_example
                         conditions:
                             description:
                                 - ""
@@ -1258,7 +1258,7 @@ load_balancer:
                                         - "Example: `/example`"
                                     returned: on success
                                     type: str
-                                    sample: /example
+                                    sample: attribute_value_example
                                 operator:
                                     description:
                                         - A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
@@ -1313,7 +1313,7 @@ load_balancer:
                                 - "Example: `example_prefix_value`"
                             returned: on success
                             type: str
-                            sample: example_prefix_value
+                            sample: prefix_example
                         suffix:
                             description:
                                 - "A string to append to the header value. The resulting header value must conform to RFC 7230.
@@ -1324,7 +1324,7 @@ load_balancer:
                                 - "Example: `example_suffix_value`"
                             returned: on success
                             type: str
-                            sample: example_suffix_value
+                            sample: suffix_example
                         are_invalid_characters_allowed:
                             description:
                                 - "Indicates whether or not invalid characters in client header fields will be allowed.
@@ -1356,7 +1356,7 @@ load_balancer:
                                 - "Example: `301`"
                             returned: on success
                             type: int
-                            sample: 301
+                            sample: 56
                         redirect_uri:
                             description:
                                 - ""
@@ -1375,7 +1375,7 @@ load_balancer:
                                         - "Example: `HTTPS`"
                                     returned: on success
                                     type: str
-                                    sample: HTTPS
+                                    sample: protocol_example
                                 host:
                                     description:
                                         - The valid domain name (hostname) or IP address to use in the redirect URI.
@@ -1400,7 +1400,7 @@ load_balancer:
                                         - "Example: `8081`"
                                     returned: on success
                                     type: int
-                                    sample: 8081
+                                    sample: 56
                                 path:
                                     description:
                                         - The HTTP URI path to use in the redirect URI.
@@ -1466,7 +1466,7 @@ load_balancer:
                         - "Example: `example_routing_policy`"
                     returned: on success
                     type: str
-                    sample: example_routing_policy
+                    sample: name_example
                 condition_language_version:
                     description:
                         - The version of the language in which `condition` of `rules` are composed.
@@ -1509,161 +1509,161 @@ load_balancer:
                                         - "Example: `backendSetForImages`"
                                     returned: on success
                                     type: str
-                                    sample: backendSetForImages
+                                    sample: backend_set_name_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "example_load_balancer",
+        "display_name": "display_name_example",
         "lifecycle_state": "CREATING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "ip_addresses": [{
-            "ip_address": "192.168.0.3",
+            "ip_address": "ip_address_example",
             "is_public": true,
             "reserved_ip": {
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
             }
         }],
-        "shape_name": "100Mbps",
+        "shape_name": "shape_name_example",
         "shape_details": {
-            "minimum_bandwidth_in_mbps": 150,
-            "maximum_bandwidth_in_mbps": 1500
+            "minimum_bandwidth_in_mbps": 56,
+            "maximum_bandwidth_in_mbps": 56
         },
         "is_private": true,
         "subnet_ids": [],
         "network_security_group_ids": [],
         "listeners": {
-            "name": "example_listener",
-            "default_backend_set_name": "example_backend_set",
-            "port": 0,
-            "protocol": "HTTP",
+            "name": "name_example",
+            "default_backend_set_name": "default_backend_set_name_example",
+            "port": 56,
+            "protocol": "protocol_example",
             "hostname_names": [],
-            "path_route_set_name": "example_path_route_set",
+            "path_route_set_name": "path_route_set_name_example",
             "ssl_configuration": {
-                "verify_depth": 3,
+                "verify_depth": 56,
                 "verify_peer_certificate": true,
                 "trusted_certificate_authority_ids": [],
                 "certificate_ids": [],
-                "certificate_name": "example_certificate_bundle",
+                "certificate_name": "certificate_name_example",
                 "server_order_preference": "ENABLED",
                 "cipher_suite_name": "cipher_suite_name_example",
                 "protocols": []
             },
             "connection_configuration": {
-                "idle_timeout": 1200,
-                "backend_tcp_proxy_protocol_version": 1
+                "idle_timeout": 56,
+                "backend_tcp_proxy_protocol_version": 56
             },
             "rule_set_names": [],
-            "routing_policy_name": "example_routing_policy_name"
+            "routing_policy_name": "routing_policy_name_example"
         },
         "hostnames": {
-            "name": "example_hostname_001",
-            "hostname": "app.example.com"
+            "name": "name_example",
+            "hostname": "hostname_example"
         },
         "ssl_cipher_suites": {
             "name": "name_example",
             "ciphers": []
         },
         "certificates": {
-            "certificate_name": "example_certificate_bundle",
-            "public_certificate": "public_certificate_example",
-            "ca_certificate": "ca_certificate_example"
+            "certificate_name": "certificate_name_example",
+            "public_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----",
+            "ca_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         },
         "backend_sets": {
-            "name": "example_backend_set",
-            "policy": "LEAST_CONNECTIONS",
+            "name": "name_example",
+            "policy": "policy_example",
             "backends": [{
-                "name": "10.0.0.3:8080",
-                "ip_address": "10.0.0.3",
-                "port": 8080,
-                "weight": 3,
-                "drain": false,
-                "backup": false,
-                "offline": false
+                "name": "name_example",
+                "ip_address": "ip_address_example",
+                "port": 56,
+                "weight": 56,
+                "drain": true,
+                "backup": true,
+                "offline": true
             }],
             "health_checker": {
-                "protocol": "HTTP",
-                "url_path": "/healthcheck",
-                "port": 0,
-                "return_code": 0,
-                "retries": 3,
-                "timeout_in_millis": 3000,
-                "interval_in_millis": 10000,
+                "protocol": "protocol_example",
+                "url_path": "url_path_example",
+                "port": 56,
+                "return_code": 56,
+                "retries": 56,
+                "timeout_in_millis": 56,
+                "interval_in_millis": 56,
                 "response_body_regex": "response_body_regex_example"
             },
             "ssl_configuration": {
-                "verify_depth": 3,
+                "verify_depth": 56,
                 "verify_peer_certificate": true,
                 "trusted_certificate_authority_ids": [],
                 "certificate_ids": [],
-                "certificate_name": "example_certificate_bundle",
+                "certificate_name": "certificate_name_example",
                 "server_order_preference": "ENABLED",
                 "cipher_suite_name": "cipher_suite_name_example",
                 "protocols": []
             },
             "session_persistence_configuration": {
-                "cookie_name": "example_cookie",
-                "disable_fallback": false
+                "cookie_name": "cookie_name_example",
+                "disable_fallback": true
             },
             "lb_cookie_session_persistence_configuration": {
-                "cookie_name": "example_cookie",
-                "disable_fallback": false,
-                "domain": "example.com",
-                "path": "/example",
-                "max_age_in_seconds": 3600,
+                "cookie_name": "cookie_name_example",
+                "disable_fallback": true,
+                "domain": "domain_example",
+                "path": "path_example",
+                "max_age_in_seconds": 56,
                 "is_secure": true,
                 "is_http_only": true
             }
         },
         "path_route_sets": {
-            "name": "example_path_route_set",
+            "name": "name_example",
             "path_routes": [{
-                "path": "/example/video/123",
+                "path": "path_example",
                 "path_match_type": {
                     "match_type": "EXACT_MATCH"
                 },
-                "backend_set_name": "example_backend_set"
+                "backend_set_name": "backend_set_name_example"
             }]
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
         "rule_sets": {
-            "name": "example_rule_set",
+            "name": "name_example",
             "items": [{
                 "action": "ADD_HTTP_REQUEST_HEADER",
-                "header": "example_header_name",
-                "value": "example_value",
+                "header": "header_example",
+                "value": "value_example",
                 "conditions": [{
                     "attribute_name": "SOURCE_IP_ADDRESS",
-                    "attribute_value": "/example",
+                    "attribute_value": "attribute_value_example",
                     "operator": "EXACT_MATCH"
                 }],
                 "description": "description_example",
                 "allowed_methods": [],
                 "status_code": 56,
-                "prefix": "example_prefix_value",
-                "suffix": "example_suffix_value",
+                "prefix": "prefix_example",
+                "suffix": "suffix_example",
                 "are_invalid_characters_allowed": true,
                 "http_large_header_size_in_kb": 56,
-                "response_code": 301,
+                "response_code": 56,
                 "redirect_uri": {
-                    "protocol": "HTTPS",
+                    "protocol": "protocol_example",
                     "host": "host_example",
-                    "port": 8081,
+                    "port": 56,
                     "path": "path_example",
                     "query": "query_example"
                 }
             }]
         },
         "routing_policies": {
-            "name": "example_routing_policy",
+            "name": "name_example",
             "condition_language_version": "V1",
             "rules": [{
                 "name": "name_example",
                 "condition": "condition_example",
                 "actions": [{
                     "name": "FORWARD_TO_BACKENDSET",
-                    "backend_set_name": "backendSetForImages"
+                    "backend_set_name": "backend_set_name_example"
                 }]
             }]
         }

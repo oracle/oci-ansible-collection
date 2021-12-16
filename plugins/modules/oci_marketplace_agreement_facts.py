@@ -96,12 +96,14 @@ agreements:
             description:
                 - A time-based signature that can be used to accept an agreement or remove a
                   previously accepted agreement from the list that Marketplace checks before a deployment.
+                - Returned for get operation
             returned: on success
             type: str
             sample: signature_example
         compartment_id:
             description:
                 - The unique identifier for the compartment.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

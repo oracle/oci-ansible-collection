@@ -250,29 +250,29 @@ EXAMPLES = """
     policy_type: threshold
 
     # optional
-    display_name: example_threshold_autoscaling_policy
+    display_name: display_name_example
     capacity:
       # optional
-      max: 50
-      min: 10
-      initial: 15
+      max: 56
+      min: 56
+      initial: 56
     is_enabled: true
     rules:
     - # required
       action:
         # required
         type: CHANGE_COUNT_BY
-        value: 5
+        value: 56
       metric:
         # required
         metric_type: CPU_UTILIZATION
         threshold:
           # required
-          operator: GTE
-          value: 90
+          operator: GT
+          value: 56
 
       # optional
-      display_name: example_scale_out_condition
+      display_name: display_name_example
 
 - name: Update auto_scaling_configuration_policy with policy_type = scheduled
   oci_autoscaling_auto_scaling_configuration_policy:
@@ -280,18 +280,18 @@ EXAMPLES = """
     policy_type: scheduled
 
     # optional
-    display_name: example_threshold_autoscaling_policy
+    display_name: display_name_example
     capacity:
       # optional
-      max: 50
-      min: 10
-      initial: 15
+      max: 56
+      min: 56
+      initial: 56
     is_enabled: true
     execution_schedule:
       # required
       type: cron
       timezone: UTC
-      expression: "0 15 10 ? * *"
+      expression: expression_example
     resource_action:
       # required
       action_type: power
@@ -303,29 +303,29 @@ EXAMPLES = """
     policy_type: threshold
 
     # optional
-    display_name: example_threshold_autoscaling_policy
+    display_name: display_name_example
     capacity:
       # optional
-      max: 50
-      min: 10
-      initial: 15
+      max: 56
+      min: 56
+      initial: 56
     is_enabled: true
     rules:
     - # required
       action:
         # required
         type: CHANGE_COUNT_BY
-        value: 5
+        value: 56
       metric:
         # required
         metric_type: CPU_UTILIZATION
         threshold:
           # required
-          operator: GTE
-          value: 90
+          operator: GT
+          value: 56
 
       # optional
-      display_name: example_scale_out_condition
+      display_name: display_name_example
 
 - name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with policy_type = scheduled
   oci_autoscaling_auto_scaling_configuration_policy:
@@ -333,18 +333,18 @@ EXAMPLES = """
     policy_type: scheduled
 
     # optional
-    display_name: example_threshold_autoscaling_policy
+    display_name: display_name_example
     capacity:
       # optional
-      max: 50
-      min: 10
-      initial: 15
+      max: 56
+      min: 56
+      initial: 56
     is_enabled: true
     execution_schedule:
       # required
       type: cron
       timezone: UTC
-      expression: "0 15 10 ? * *"
+      expression: expression_example
     resource_action:
       # required
       action_type: power
@@ -416,7 +416,7 @@ auto_scaling_configuration_policy:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_enabled:
             description:
                 - Whether the autoscaling policy is enabled.
@@ -450,7 +450,7 @@ auto_scaling_configuration_policy:
                         - "Example: `0 15 10 ? * *`"
                     returned: on success
                     type: str
-                    sample: "0 15 10 ? * *"
+                    sample: expression_example
         resource_action:
             description:
                 - ""
@@ -546,12 +546,12 @@ auto_scaling_configuration_policy:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "policy_type": "scheduled",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_enabled": true,
         "execution_schedule": {
             "type": "cron",
             "timezone": "UTC",
-            "expression": "0 15 10 ? * *"
+            "expression": "expression_example"
         },
         "resource_action": {
             "action_type": "power",

@@ -69,14 +69,14 @@ services:
                 - "Example: `oci-phx-objectstorage`"
             returned: on success
             type: str
-            sample: oci-phx-objectstorage
+            sample: cidr_block_example
         description:
             description:
                 - Description of the Oracle service or services covered by this `Service` object.
                 - "Example: `OCI PHX Object Storage`"
             returned: on success
             type: str
-            sample: OCI PHX Object Storage
+            sample: description_example
         id:
             description:
                 - The `Service` object's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -89,12 +89,12 @@ services:
                 - "Example: `OCI PHX Object Storage`"
             returned: on success
             type: str
-            sample: OCI PHX Object Storage
+            sample: name_example
     sample: [{
-        "cidr_block": "oci-phx-objectstorage",
-        "description": "OCI PHX Object Storage",
+        "cidr_block": "cidr_block_example",
+        "description": "description_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "OCI PHX Object Storage"
+        "name": "name_example"
     }]
 """
 

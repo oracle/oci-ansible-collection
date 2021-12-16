@@ -124,7 +124,7 @@ associations:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the association.
@@ -158,7 +158,7 @@ associations:
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
-        "time_created": "2019-04-03T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "certificates_resource_id": "ocid1.certificatesresource.oc1..xxxxxxEXAMPLExxxxxx",
         "associated_resource_id": "ocid1.associatedresource.oc1..xxxxxxEXAMPLExxxxxx",

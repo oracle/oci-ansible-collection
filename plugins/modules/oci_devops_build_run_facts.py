@@ -23,7 +23,7 @@ module: oci_devops_build_run_facts
 short_description: Fetches details about one or multiple BuildRun resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple BuildRun resources in Oracle Cloud Infrastructure
-    - Returns a list of build runs summary.
+    - Returns a list of build run summary.
     - If I(build_run_id) is specified, the details of a single BuildRun will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -53,7 +53,7 @@ options:
         aliases: ["name"]
     lifecycle_state:
         description:
-            - A filter to return only Build Runs that matches the given lifecycleState.
+            - A filter to return only build runs that matches the given lifecycle state.
         type: str
         choices:
             - "ACCEPTED"
@@ -94,7 +94,7 @@ EXAMPLES = """
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACCEPTED
     sort_order: ASC
     sort_by: timeCreated
 
@@ -109,31 +109,31 @@ build_runs:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - BuildRun identifier which can be renamed and is not necessarily unique
+                - Build run display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment Identifier
+                - The OCID of the compartment where the build is running.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id:
             description:
-                - Project Identifier
+                - The OCID of the DevOps project.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         build_pipeline_id:
             description:
-                - Pipeline Identifier
+                - The OCID of the build pipeline.
             returned: on success
             type: str
             sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
@@ -145,13 +145,13 @@ build_runs:
             contains:
                 source_type:
                     description:
-                        - Source from which this build run was triggered
+                        - The source from which the build run is triggered.
                     returned: on success
                     type: str
                     sample: MANUAL
                 trigger_id:
                     description:
-                        - The Trigger that invoked this build run
+                        - The trigger that invoked the build run.
                     returned: on success
                     type: str
                     sample: "ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx"
@@ -175,7 +175,7 @@ build_runs:
                             contains:
                                 type:
                                     description:
-                                        - "The type of action that will be taken (allowed value - TRIGGER_BUILD_PIPELINE)"
+                                        - The type of action that will be taken. Allowed value is TRIGGER_BUILD_PIPELINE.
                                     returned: on success
                                     type: str
                                     sample: TRIGGER_BUILD_PIPELINE
@@ -187,13 +187,13 @@ build_runs:
                                     contains:
                                         trigger_source:
                                             description:
-                                                - "Source of the Trigger (allowed values are - GITHUB, GITLAB)"
+                                                - Source of the trigger. Allowed values are, GITHUB and GITLAB.
                                             returned: on success
                                             type: str
                                             sample: DEVOPS_CODE_REPOSITORY
                                         events:
                                             description:
-                                                - The events, only support PUSH at this time
+                                                - The events only support PUSH.
                                             returned: on success
                                             type: list
                                             sample: []
@@ -205,25 +205,25 @@ build_runs:
                                             contains:
                                                 head_ref:
                                                     description:
-                                                        - Branch for push event
+                                                        - Branch for push event.
                                                     returned: on success
                                                     type: str
                                                     sample: head_ref_example
                                                 base_ref:
                                                     description:
-                                                        - The target branch for pull requests; not applicable for push
+                                                        - The target branch for pull requests; not applicable for push requests.
                                                     returned: on success
                                                     type: str
                                                     sample: base_ref_example
                                 build_pipeline_id:
                                     description:
-                                        - The id of the build pipeline to be triggered
+                                        - The OCID of the build pipeline to be triggered.
                                     returned: on success
                                     type: str
                                     sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_id:
                     description:
-                        - The Devops Code Repository RepoId that invoked this build run
+                        - The DevOps code repository identifier that invoked the build run.
                     returned: on success
                     type: str
                     sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
@@ -235,37 +235,38 @@ build_runs:
             contains:
                 items:
                     description:
-                        - List of arguments provided at the time of BuildRun.
+                        - List of arguments provided at the time of running the build.
                     returned: on success
                     type: complex
                     contains:
                         name:
                             description:
-                                - Name of the parameter (Case-sensitive).
+                                - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$.
+                                  Example: 'Build_Pipeline_param' is not same as 'build_pipeline_Param'"
                             returned: on success
                             type: str
                             sample: name_example
                         value:
                             description:
-                                - value of the argument
+                                - Value of the argument.
                             returned: on success
                             type: str
                             sample: value_example
         time_created:
             description:
-                - The time the the BuildRun was created. An RFC3339 formatted datetime string
+                - The time the build run was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the BuildRun was updated. An RFC3339 formatted datetime string
+                - The time the build run was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the BuildRun.
+                - The current state of the build run.
             returned: on success
             type: str
             sample: ACCEPTED
@@ -279,60 +280,61 @@ build_runs:
         build_run_progress:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
                 time_started:
                     description:
-                        - The time the the BuildRun is started. An RFC3339 formatted datetime string
+                        - The time the build run started. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 time_finished:
                     description:
-                        - The time the BuildRun is finished. An RFC3339 formatted datetime string
+                        - The time the build run finished. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 build_pipeline_stage_run_progress:
                     description:
-                        - Map of stage OCIDs to BuildPipelineStageRunProgress model.
+                        - Map of stage OCIDs to build pipeline stage run progress model.
                     returned: on success
                     type: complex
                     contains:
                         stage_display_name:
                             description:
-                                - BuildRun identifier which can be renamed and is not necessarily unique
+                                - Build Run display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
                             returned: on success
                             type: str
                             sample: stage_display_name_example
                         build_pipeline_stage_type:
                             description:
-                                - Stage sub types.
+                                - Stage types.
                             returned: on success
                             type: str
                             sample: BUILD
                         build_pipeline_stage_id:
                             description:
-                                - Stage id
+                                - The stage OCID.
                             returned: on success
                             type: str
                             sample: "ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx"
                         time_started:
                             description:
-                                - The time the Stage was started executing. An RFC3339 formatted datetime string
+                                - The time the stage started executing. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                             returned: on success
                             type: str
                             sample: "2013-10-20T19:20:30+01:00"
                         time_finished:
                             description:
-                                - The time the Stage was finished executing. An RFC3339 formatted datetime string
+                                - The time the stage finished executing. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                             returned: on success
                             type: str
                             sample: "2013-10-20T19:20:30+01:00"
                         status:
                             description:
-                                - The current status of the Stage.
+                                - The current status of the stage.
                             returned: on success
                             type: str
                             sample: ACCEPTED
@@ -344,14 +346,14 @@ build_runs:
                             contains:
                                 items:
                                     description:
-                                        - A list of BuildPipelineStagePredecessors for a stage.
+                                        - A list of build pipeline stage predecessors for a stage.
                                     returned: on success
                                     type: complex
                                     contains:
                                         id:
                                             description:
-                                                - The id of the predecessor stage. If a stages is the first stage in the pipeline, then the id is the pipeline's
-                                                  id.
+                                                - The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's
+                                                  ID.
                                             returned: on success
                                             type: str
                                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -405,45 +407,45 @@ build_runs:
                             contains:
                                 items:
                                     description:
-                                        - Collection of Build sources. In case of UPDATE operation, replaces existing Build sources list. Merging with existing
-                                          Build Sources is not supported.
+                                        - Collection of build sources. In case of UPDATE operation, replaces existing build sources list. Merging with existing
+                                          build sources is not supported.
                                     returned: on success
                                     type: complex
                                     contains:
                                         name:
                                             description:
-                                                - Name of the Build source. This must be unique within a BuildSourceCollection. The name can be used by
+                                                - Name of the build source. This must be unique within a build source collection. The name can be used by
                                                   customers to locate the working directory pertinent to this repository.
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         connection_type:
                                             description:
-                                                - The type of Source Provider.
+                                                - The type of source provider.
                                             returned: on success
                                             type: str
                                             sample: GITHUB
                                         repository_url:
                                             description:
-                                                - Url for repository
+                                                - URL for the repository.
                                             returned: on success
                                             type: str
                                             sample: repository_url_example
                                         branch:
                                             description:
-                                                - branch name
+                                                - Branch name.
                                             returned: on success
                                             type: str
                                             sample: branch_example
                                         repository_id:
                                             description:
-                                                - The Devops Code Repository Id
+                                                - The DevOps code repository ID.
                                             returned: on success
                                             type: str
                                             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                                         connection_id:
                                             description:
-                                                - Connection identifier pertinent to GITHUB source provider
+                                                - Connection identifier pertinent to GitHub source provider.
                                             returned: on success
                                             type: str
                                             sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
@@ -456,7 +458,7 @@ build_runs:
                             sample: primary_build_source_example
                         steps:
                             description:
-                                - The details about all the steps in a Build Stage
+                                - The details about all the steps in a Build stage
                             returned: on success
                             type: complex
                             contains:
@@ -492,19 +494,19 @@ build_runs:
                             contains:
                                 items:
                                     description:
-                                        - List of exported variables
+                                        - List of exported variables.
                                     returned: on success
                                     type: complex
                                     contains:
                                         name:
                                             description:
-                                                - Name of the parameter (Case-sensitive).
+                                                - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$."
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         value:
                                             description:
-                                                - value of the argument
+                                                - Value of the argument.
                                             returned: on success
                                             type: str
                                             sample: value_example
@@ -516,25 +518,25 @@ build_runs:
                             contains:
                                 items:
                                     description:
-                                        - List of Artifacts delivered via DeliverArtifactStage
+                                        - List of artifacts delivered through the Deliver Artifacts stage.
                                     returned: on success
                                     type: complex
                                     contains:
                                         deploy_artifact_id:
                                             description:
-                                                - The OCID of the deploy artifact definition
+                                                - The OCID of the deployment artifact definition.
                                             returned: on success
                                             type: str
                                             sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
                                         output_artifact_name:
                                             description:
-                                                - Name of the output artifact defined in the build spec
+                                                - Name of the output artifact defined in the build specification file.
                                             returned: on success
                                             type: str
                                             sample: output_artifact_name_example
                                         artifact_type:
                                             description:
-                                                - Type of Artifact Delivered
+                                                - Type of artifact delivered.
                                             returned: on success
                                             type: str
                                             sample: GENERIC_ARTIFACT
@@ -546,7 +548,7 @@ build_runs:
                                             sample: "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx"
                                         delivered_artifact_id:
                                             description:
-                                                - The OCID of the artifact pushed by the DeliverArtifactStage
+                                                - The OCID of the artifact pushed by the Deliver Artifacts stage.
                                             returned: on success
                                             type: str
                                             sample: "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx"
@@ -564,7 +566,7 @@ build_runs:
                                             sample: version_example
                                         delivered_artifact_hash:
                                             description:
-                                                - The Hash of the OCIR artifact pushed by the DeliverArtifactStage
+                                                - The hash of the container registry artifact pushed by the Deliver Artifacts stage.
                                             returned: on success
                                             type: str
                                             sample: delivered_artifact_hash_example
@@ -606,7 +608,7 @@ build_runs:
                                             sample: value_example
                         deployment_id:
                             description:
-                                - Identifier of the Deployment Trigerred.
+                                - Identifier of the deployment triggered.
                             returned: on success
                             type: str
                             sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -618,7 +620,7 @@ build_runs:
             contains:
                 repository_url:
                     description:
-                        - Repository URL
+                        - Repository URL.
                     returned: on success
                     type: str
                     sample: repository_url_example
@@ -630,13 +632,14 @@ build_runs:
                     sample: repository_branch_example
                 commit_hash:
                     description:
-                        - Commit Hash pertinent to the repository URL and Branch specified.
+                        - Commit hash pertinent to the repository URL and the specified branch.
                     returned: on success
                     type: str
                     sample: commit_hash_example
         build_outputs:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -648,19 +651,19 @@ build_runs:
                     contains:
                         items:
                             description:
-                                - List of exported variables
+                                - List of exported variables.
                             returned: on success
                             type: complex
                             contains:
                                 name:
                                     description:
-                                        - Name of the parameter (Case-sensitive).
+                                        - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$."
                                     returned: on success
                                     type: str
                                     sample: name_example
                                 value:
                                     description:
-                                        - value of the argument
+                                        - Value of the argument.
                                     returned: on success
                                     type: str
                                     sample: value_example
@@ -672,25 +675,25 @@ build_runs:
                     contains:
                         items:
                             description:
-                                - List of Artifacts delivered via DeliverArtifactStage
+                                - List of artifacts delivered through the Deliver Artifacts stage.
                             returned: on success
                             type: complex
                             contains:
                                 deploy_artifact_id:
                                     description:
-                                        - The OCID of the deploy artifact definition
+                                        - The OCID of the deployment artifact definition.
                                     returned: on success
                                     type: str
                                     sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
                                 output_artifact_name:
                                     description:
-                                        - Name of the output artifact defined in the build spec
+                                        - Name of the output artifact defined in the build specification file.
                                     returned: on success
                                     type: str
                                     sample: output_artifact_name_example
                                 artifact_type:
                                     description:
-                                        - Type of Artifact Delivered
+                                        - Type of artifact delivered.
                                     returned: on success
                                     type: str
                                     sample: GENERIC_ARTIFACT
@@ -702,7 +705,7 @@ build_runs:
                                     sample: "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx"
                                 delivered_artifact_id:
                                     description:
-                                        - The OCID of the artifact pushed by the DeliverArtifactStage
+                                        - The OCID of the artifact pushed by the Deliver Artifacts stage.
                                     returned: on success
                                     type: str
                                     sample: "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx"
@@ -720,7 +723,7 @@ build_runs:
                                     sample: version_example
                                 delivered_artifact_hash:
                                     description:
-                                        - The Hash of the OCIR artifact pushed by the DeliverArtifactStage
+                                        - The hash of the container registry artifact pushed by the Deliver Artifacts stage.
                                     returned: on success
                                     type: str
                                     sample: delivered_artifact_hash_example
@@ -785,18 +788,19 @@ build_runs:
         build_run_progress_summary:
             description:
                 - ""
+                - Returned for list operation
             returned: on success
             type: complex
             contains:
                 time_started:
                     description:
-                        - The time the the BuildRun is started. An RFC3339 formatted datetime string
+                        - The time the build run started. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 time_finished:
                     description:
-                        - The time the BuildRun is finished. An RFC3339 formatted datetime string
+                        - The time the build run finished. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"

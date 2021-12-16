@@ -140,7 +140,7 @@ private_application:
                 - "Example: `2021-05-26T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2021-05-26T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the private application was last modified, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -148,7 +148,7 @@ private_application:
                 - "Example: `2021-12-10T05:10:29.721Z`"
             returned: on success
             type: str
-            sample: "2021-12-10T05:10:29.721Z"
+            sample: "2013-10-20T19:20:30+01:00"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -176,8 +176,8 @@ private_application:
             "mime_type": "mime_type_example"
         },
         "package_type": "STACK",
-        "time_created": "2021-05-26T21:10:29.600Z",
-        "time_updated": "2021-12-10T05:10:29.721Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'}
     }

@@ -125,15 +125,15 @@ EXAMPLES = """
       display_name: display_name_example
 
       # optional
-      row_group_by: [ "null" ]
-      column_group_by: [ "null" ]
+      row_group_by: [ "row_group_by_example" ]
+      column_group_by: [ "column_group_by_example" ]
       group_by_tag:
       - # optional
         namespace: namespace_example
         key: key_example
         value: value_example
-      compartment_depth: 10
-      version: 10
+      compartment_depth: 3.4
+      version: 3.4
 
 - name: Update custom_table
   oci_usage_custom_table:
@@ -143,15 +143,15 @@ EXAMPLES = """
       display_name: display_name_example
 
       # optional
-      row_group_by: [ "null" ]
-      column_group_by: [ "null" ]
+      row_group_by: [ "row_group_by_example" ]
+      column_group_by: [ "column_group_by_example" ]
       group_by_tag:
       - # optional
         namespace: namespace_example
         key: key_example
         value: value_example
-      compartment_depth: 10
-      version: 10
+      compartment_depth: 3.4
+      version: 3.4
     custom_table_id: "ocid1.customtable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete custom_table

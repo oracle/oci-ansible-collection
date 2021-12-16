@@ -74,8 +74,8 @@ EXAMPLES = """
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    content_length: 789
-    model_artifact: B
+    content_length: 56
+    model_artifact: model_artifact_example
     content_disposition: content_disposition_example
 
 """

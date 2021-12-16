@@ -182,15 +182,15 @@ EXAMPLES = """
 - name: Update object
   oci_object_storage_object:
     # required
-    namespace_name: namespace_example
-    bucket_name: bucket_example
-    object_name: object_example
+    namespace_name: namespace_name_example
+    bucket_name: bucket_name_example
+    object_name: object_name_example
 
     # optional
-    src: /usr/local/myobject.txt
+    src: /usr/local/myfile.txt
     force: true
-    dest: /usr/local/myobject.txt
-    content_length: 789
+    dest: /usr/local/myfile.txt
+    content_length: 56
     expect: expect_example
     content_md5: content_md5_example
     content_type: content_type_example
@@ -208,9 +208,9 @@ EXAMPLES = """
 - name: Delete object
   oci_object_storage_object:
     # required
-    namespace_name: namespace_example
-    bucket_name: bucket_example
-    object_name: object_example
+    namespace_name: namespace_name_example
+    bucket_name: bucket_name_example
+    object_name: object_name_example
     state: absent
 
     # optional

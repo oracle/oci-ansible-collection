@@ -1038,7 +1038,7 @@ EXAMPLES = """
     path_prefix: path_prefix_example
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     specification:
       # optional
       request_policies:
@@ -1046,8 +1046,8 @@ EXAMPLES = """
         authentication:
           # required
           type: JWT_AUTHENTICATION
-          issuers: [ "null" ]
-          audiences: [ "null" ]
+          issuers: [ "issuers_example" ]
+          audiences: [ "audiences_example" ]
           public_keys:
             # required
             type: STATIC_KEYS
@@ -1064,19 +1064,19 @@ EXAMPLES = """
 
               # optional
               use: sig
-              key_ops: [ "null" ]
+              key_ops: [ "verify" ]
 
               # optional
           is_anonymous_access_allowed: true
-          token_header: Authorization
-          token_query_param: tk
-          token_auth_scheme: Bearer
+          token_header: token_header_example
+          token_query_param: token_query_param_example
+          token_auth_scheme: token_auth_scheme_example
           verify_claims:
           - # required
             key: key_example
 
             # optional
-            values: [ "null" ]
+            values: [ "values_example" ]
             is_required: true
           max_clock_skew_in_seconds: 3.4
         rate_limiting:
@@ -1085,14 +1085,14 @@ EXAMPLES = """
           rate_key: CLIENT_IP
         cors:
           # required
-          allowed_origins: [ "null" ]
+          allowed_origins: [ "allowed_origins_example" ]
 
           # optional
-          allowed_methods: [ "null" ]
-          allowed_headers: [ "null" ]
-          exposed_headers: [ "null" ]
-          is_allow_credentials_enabled: false
-          max_age_in_seconds: 600
+          allowed_methods: [ "allowed_methods_example" ]
+          allowed_headers: [ "allowed_headers_example" ]
+          exposed_headers: [ "exposed_headers_example" ]
+          is_allow_credentials_enabled: true
+          max_age_in_seconds: 56
       logging_policies:
         # optional
         access_log:
@@ -1104,11 +1104,11 @@ EXAMPLES = """
           log_level: INFO
       routes:
       - # required
-        path: /todos
+        path: path_example
         backend:
           # required
           type: HTTP_BACKEND
-          url: https://1.2.3.4:9999
+          url: url_example
 
           # optional
           connect_timeout_in_seconds: 3.4
@@ -1117,23 +1117,23 @@ EXAMPLES = """
           is_ssl_verify_disabled: true
 
         # optional
-        methods: [ "null" ]
+        methods: [ "ANY" ]
         request_policies:
           # optional
           authorization:
             # required
             type: ANY_OF
-            allowed_scope: [ "null" ]
+            allowed_scope: [ "allowed_scope_example" ]
           cors:
             # required
-            allowed_origins: [ "null" ]
+            allowed_origins: [ "allowed_origins_example" ]
 
             # optional
-            allowed_methods: [ "null" ]
-            allowed_headers: [ "null" ]
-            exposed_headers: [ "null" ]
-            is_allow_credentials_enabled: false
-            max_age_in_seconds: 600
+            allowed_methods: [ "allowed_methods_example" ]
+            allowed_headers: [ "allowed_headers_example" ]
+            exposed_headers: [ "exposed_headers_example" ]
+            is_allow_credentials_enabled: true
+            max_age_in_seconds: 56
           query_parameter_validations:
             # optional
             parameters:
@@ -1166,8 +1166,8 @@ EXAMPLES = """
               # required
               items:
               - # required
-                name: X-CorrelationID
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1175,22 +1175,22 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: X-Username
-                to: X-User-ID
+                _from: _from_example
+                to: to_example
             filter_headers:
               # required
               type: ALLOW
               items:
               - # required
-                name: User-Agent
+                name: name_example
           query_parameter_transformations:
             # optional
             set_query_parameters:
               # required
               items:
               - # required
-                name: bookIsbn
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1198,14 +1198,14 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: bookId
-                to: bookIsbn
+                _from: _from_example
+                to: to_example
             filter_query_parameters:
               # required
               type: ALLOW
               items:
               - # required
-                name: bookIsbn
+                name: name_example
           response_cache_lookup:
             # required
             type: SIMPLE_LOOKUP_POLICY
@@ -1213,7 +1213,7 @@ EXAMPLES = """
             # optional
             is_enabled: true
             is_private_caching_enabled: true
-            cache_key_additions: [ "null" ]
+            cache_key_additions: [ "cache_key_additions_example" ]
         response_policies:
           # optional
           header_transformations:
@@ -1222,8 +1222,8 @@ EXAMPLES = """
               # required
               items:
               - # required
-                name: X-CorrelationID
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1231,18 +1231,18 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: X-Username
-                to: X-User-ID
+                _from: _from_example
+                to: to_example
             filter_headers:
               # required
               type: ALLOW
               items:
               - # required
-                name: User-Agent
+                name: name_example
           response_cache_store:
             # required
             type: FIXED_TTL_STORE_POLICY
-            time_to_live_in_seconds: 300
+            time_to_live_in_seconds: 56
         logging_policies:
           # optional
           access_log:
@@ -1261,7 +1261,7 @@ EXAMPLES = """
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     specification:
       # optional
       request_policies:
@@ -1269,8 +1269,8 @@ EXAMPLES = """
         authentication:
           # required
           type: JWT_AUTHENTICATION
-          issuers: [ "null" ]
-          audiences: [ "null" ]
+          issuers: [ "issuers_example" ]
+          audiences: [ "audiences_example" ]
           public_keys:
             # required
             type: STATIC_KEYS
@@ -1287,19 +1287,19 @@ EXAMPLES = """
 
               # optional
               use: sig
-              key_ops: [ "null" ]
+              key_ops: [ "verify" ]
 
               # optional
           is_anonymous_access_allowed: true
-          token_header: Authorization
-          token_query_param: tk
-          token_auth_scheme: Bearer
+          token_header: token_header_example
+          token_query_param: token_query_param_example
+          token_auth_scheme: token_auth_scheme_example
           verify_claims:
           - # required
             key: key_example
 
             # optional
-            values: [ "null" ]
+            values: [ "values_example" ]
             is_required: true
           max_clock_skew_in_seconds: 3.4
         rate_limiting:
@@ -1308,14 +1308,14 @@ EXAMPLES = """
           rate_key: CLIENT_IP
         cors:
           # required
-          allowed_origins: [ "null" ]
+          allowed_origins: [ "allowed_origins_example" ]
 
           # optional
-          allowed_methods: [ "null" ]
-          allowed_headers: [ "null" ]
-          exposed_headers: [ "null" ]
-          is_allow_credentials_enabled: false
-          max_age_in_seconds: 600
+          allowed_methods: [ "allowed_methods_example" ]
+          allowed_headers: [ "allowed_headers_example" ]
+          exposed_headers: [ "exposed_headers_example" ]
+          is_allow_credentials_enabled: true
+          max_age_in_seconds: 56
       logging_policies:
         # optional
         access_log:
@@ -1327,11 +1327,11 @@ EXAMPLES = """
           log_level: INFO
       routes:
       - # required
-        path: /todos
+        path: path_example
         backend:
           # required
           type: HTTP_BACKEND
-          url: https://1.2.3.4:9999
+          url: url_example
 
           # optional
           connect_timeout_in_seconds: 3.4
@@ -1340,23 +1340,23 @@ EXAMPLES = """
           is_ssl_verify_disabled: true
 
         # optional
-        methods: [ "null" ]
+        methods: [ "ANY" ]
         request_policies:
           # optional
           authorization:
             # required
             type: ANY_OF
-            allowed_scope: [ "null" ]
+            allowed_scope: [ "allowed_scope_example" ]
           cors:
             # required
-            allowed_origins: [ "null" ]
+            allowed_origins: [ "allowed_origins_example" ]
 
             # optional
-            allowed_methods: [ "null" ]
-            allowed_headers: [ "null" ]
-            exposed_headers: [ "null" ]
-            is_allow_credentials_enabled: false
-            max_age_in_seconds: 600
+            allowed_methods: [ "allowed_methods_example" ]
+            allowed_headers: [ "allowed_headers_example" ]
+            exposed_headers: [ "exposed_headers_example" ]
+            is_allow_credentials_enabled: true
+            max_age_in_seconds: 56
           query_parameter_validations:
             # optional
             parameters:
@@ -1389,8 +1389,8 @@ EXAMPLES = """
               # required
               items:
               - # required
-                name: X-CorrelationID
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1398,22 +1398,22 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: X-Username
-                to: X-User-ID
+                _from: _from_example
+                to: to_example
             filter_headers:
               # required
               type: ALLOW
               items:
               - # required
-                name: User-Agent
+                name: name_example
           query_parameter_transformations:
             # optional
             set_query_parameters:
               # required
               items:
               - # required
-                name: bookIsbn
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1421,14 +1421,14 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: bookId
-                to: bookIsbn
+                _from: _from_example
+                to: to_example
             filter_query_parameters:
               # required
               type: ALLOW
               items:
               - # required
-                name: bookIsbn
+                name: name_example
           response_cache_lookup:
             # required
             type: SIMPLE_LOOKUP_POLICY
@@ -1436,7 +1436,7 @@ EXAMPLES = """
             # optional
             is_enabled: true
             is_private_caching_enabled: true
-            cache_key_additions: [ "null" ]
+            cache_key_additions: [ "cache_key_additions_example" ]
         response_policies:
           # optional
           header_transformations:
@@ -1445,8 +1445,8 @@ EXAMPLES = """
               # required
               items:
               - # required
-                name: X-CorrelationID
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1454,18 +1454,18 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: X-Username
-                to: X-User-ID
+                _from: _from_example
+                to: to_example
             filter_headers:
               # required
               type: ALLOW
               items:
               - # required
-                name: User-Agent
+                name: name_example
           response_cache_store:
             # required
             type: FIXED_TTL_STORE_POLICY
-            time_to_live_in_seconds: 300
+            time_to_live_in_seconds: 56
         logging_policies:
           # optional
           access_log:
@@ -1481,7 +1481,7 @@ EXAMPLES = """
 - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -1492,8 +1492,8 @@ EXAMPLES = """
         authentication:
           # required
           type: JWT_AUTHENTICATION
-          issuers: [ "null" ]
-          audiences: [ "null" ]
+          issuers: [ "issuers_example" ]
+          audiences: [ "audiences_example" ]
           public_keys:
             # required
             type: STATIC_KEYS
@@ -1510,19 +1510,19 @@ EXAMPLES = """
 
               # optional
               use: sig
-              key_ops: [ "null" ]
+              key_ops: [ "verify" ]
 
               # optional
           is_anonymous_access_allowed: true
-          token_header: Authorization
-          token_query_param: tk
-          token_auth_scheme: Bearer
+          token_header: token_header_example
+          token_query_param: token_query_param_example
+          token_auth_scheme: token_auth_scheme_example
           verify_claims:
           - # required
             key: key_example
 
             # optional
-            values: [ "null" ]
+            values: [ "values_example" ]
             is_required: true
           max_clock_skew_in_seconds: 3.4
         rate_limiting:
@@ -1531,14 +1531,14 @@ EXAMPLES = """
           rate_key: CLIENT_IP
         cors:
           # required
-          allowed_origins: [ "null" ]
+          allowed_origins: [ "allowed_origins_example" ]
 
           # optional
-          allowed_methods: [ "null" ]
-          allowed_headers: [ "null" ]
-          exposed_headers: [ "null" ]
-          is_allow_credentials_enabled: false
-          max_age_in_seconds: 600
+          allowed_methods: [ "allowed_methods_example" ]
+          allowed_headers: [ "allowed_headers_example" ]
+          exposed_headers: [ "exposed_headers_example" ]
+          is_allow_credentials_enabled: true
+          max_age_in_seconds: 56
       logging_policies:
         # optional
         access_log:
@@ -1550,11 +1550,11 @@ EXAMPLES = """
           log_level: INFO
       routes:
       - # required
-        path: /todos
+        path: path_example
         backend:
           # required
           type: HTTP_BACKEND
-          url: https://1.2.3.4:9999
+          url: url_example
 
           # optional
           connect_timeout_in_seconds: 3.4
@@ -1563,23 +1563,23 @@ EXAMPLES = """
           is_ssl_verify_disabled: true
 
         # optional
-        methods: [ "null" ]
+        methods: [ "ANY" ]
         request_policies:
           # optional
           authorization:
             # required
             type: ANY_OF
-            allowed_scope: [ "null" ]
+            allowed_scope: [ "allowed_scope_example" ]
           cors:
             # required
-            allowed_origins: [ "null" ]
+            allowed_origins: [ "allowed_origins_example" ]
 
             # optional
-            allowed_methods: [ "null" ]
-            allowed_headers: [ "null" ]
-            exposed_headers: [ "null" ]
-            is_allow_credentials_enabled: false
-            max_age_in_seconds: 600
+            allowed_methods: [ "allowed_methods_example" ]
+            allowed_headers: [ "allowed_headers_example" ]
+            exposed_headers: [ "exposed_headers_example" ]
+            is_allow_credentials_enabled: true
+            max_age_in_seconds: 56
           query_parameter_validations:
             # optional
             parameters:
@@ -1612,8 +1612,8 @@ EXAMPLES = """
               # required
               items:
               - # required
-                name: X-CorrelationID
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1621,22 +1621,22 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: X-Username
-                to: X-User-ID
+                _from: _from_example
+                to: to_example
             filter_headers:
               # required
               type: ALLOW
               items:
               - # required
-                name: User-Agent
+                name: name_example
           query_parameter_transformations:
             # optional
             set_query_parameters:
               # required
               items:
               - # required
-                name: bookIsbn
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1644,14 +1644,14 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: bookId
-                to: bookIsbn
+                _from: _from_example
+                to: to_example
             filter_query_parameters:
               # required
               type: ALLOW
               items:
               - # required
-                name: bookIsbn
+                name: name_example
           response_cache_lookup:
             # required
             type: SIMPLE_LOOKUP_POLICY
@@ -1659,7 +1659,7 @@ EXAMPLES = """
             # optional
             is_enabled: true
             is_private_caching_enabled: true
-            cache_key_additions: [ "null" ]
+            cache_key_additions: [ "cache_key_additions_example" ]
         response_policies:
           # optional
           header_transformations:
@@ -1668,8 +1668,8 @@ EXAMPLES = """
               # required
               items:
               - # required
-                name: X-CorrelationID
-                values: [ "null" ]
+                name: name_example
+                values: [ "values_example" ]
 
                 # optional
                 if_exists: OVERWRITE
@@ -1677,18 +1677,18 @@ EXAMPLES = """
               # required
               items:
               - # required
-                _from: X-Username
-                to: X-User-ID
+                _from: _from_example
+                to: to_example
             filter_headers:
               # required
               type: ALLOW
               items:
               - # required
-                name: User-Agent
+                name: name_example
           response_cache_store:
             # required
             type: FIXED_TTL_STORE_POLICY
-            time_to_live_in_seconds: 300
+            time_to_live_in_seconds: 56
         logging_policies:
           # optional
           access_log:
@@ -1710,7 +1710,7 @@ EXAMPLES = """
 - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
     # required
-    display_name: My new resource
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -1742,7 +1742,7 @@ deployment:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -1808,20 +1808,20 @@ deployment:
                                         - The name of the header containing the authentication token.
                                     returned: on success
                                     type: str
-                                    sample: Authorization
+                                    sample: token_header_example
                                 token_query_param:
                                     description:
                                         - The name of the query parameter containing the authentication token.
                                     returned: on success
                                     type: str
-                                    sample: key
+                                    sample: token_query_param_example
                                 token_auth_scheme:
                                     description:
                                         - "The authentication scheme that is to be used when authenticating
                                           the token. This must to be provided if \\"tokenHeader\\" is specified."
                                     returned: on success
                                     type: str
-                                    sample: Bearer
+                                    sample: token_auth_scheme_example
                                 issuers:
                                     description:
                                         - A list of parties that could have issued the token.
@@ -2023,14 +2023,14 @@ deployment:
                                         - Whether to send the Access-Control-Allow-Credentials header to allow CORS requests with cookies.
                                     returned: on success
                                     type: bool
-                                    sample: false
+                                    sample: true
                                 max_age_in_seconds:
                                     description:
                                         - The time in seconds for the client to cache preflight responses. This is sent as the Access-Control-Max-Age
                                           if greater than 0.
                                     returned: on success
                                     type: int
-                                    sample: 600
+                                    sample: 56
                 logging_policies:
                     description:
                         - ""
@@ -2092,7 +2092,7 @@ deployment:
                                   to allow wildcard and parameterized matching.
                             returned: on success
                             type: str
-                            sample: /todos
+                            sample: path_example
                         methods:
                             description:
                                 - A list of allowed methods on this route.
@@ -2169,14 +2169,14 @@ deployment:
                                                 - Whether to send the Access-Control-Allow-Credentials header to allow CORS requests with cookies.
                                             returned: on success
                                             type: bool
-                                            sample: false
+                                            sample: true
                                         max_age_in_seconds:
                                             description:
                                                 - The time in seconds for the client to cache preflight responses. This is sent as the Access-Control-Max-Age
                                                   if greater than 0.
                                             returned: on success
                                             type: int
-                                            sample: 600
+                                            sample: 56
                                 query_parameter_validations:
                                     description:
                                         - ""
@@ -2316,7 +2316,7 @@ deployment:
                                                                   policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: X-CorrelationID
+                                                            sample: name_example
                                                         values:
                                                             description:
                                                                 - A list of new values.  Each value can be a constant or may include one or more expressions
@@ -2351,13 +2351,13 @@ deployment:
                                                                   transformation policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: X-Username
+                                                            sample: _from_example
                                                         to:
                                                             description:
                                                                 - The new name of the header.  This name must be unique across transformation policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: X-User-ID
+                                                            sample: to_example
                                         filter_headers:
                                             description:
                                                 - ""
@@ -2383,7 +2383,7 @@ deployment:
                                                                   policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: User-Agent
+                                                            sample: name_example
                                 query_parameter_transformations:
                                     description:
                                         - ""
@@ -2408,7 +2408,7 @@ deployment:
                                                                   transformation policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: bookIsbn
+                                                            sample: name_example
                                                         values:
                                                             description:
                                                                 - A list of new values.  Each value can be a constant or may include one or more expressions
@@ -2444,13 +2444,13 @@ deployment:
                                                                   policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: bookId
+                                                            sample: _from_example
                                                         to:
                                                             description:
                                                                 - The new name of the query parameter.  This name must be unique across transformation policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: bookIsbn
+                                                            sample: to_example
                                         filter_query_parameters:
                                             description:
                                                 - ""
@@ -2476,7 +2476,7 @@ deployment:
                                                                 - The case-sensitive name of the query parameter.
                                                             returned: on success
                                                             type: str
-                                                            sample: bookIsbn
+                                                            sample: name_example
                                 response_cache_lookup:
                                     description:
                                         - ""
@@ -2543,7 +2543,7 @@ deployment:
                                                                   policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: X-CorrelationID
+                                                            sample: name_example
                                                         values:
                                                             description:
                                                                 - A list of new values.  Each value can be a constant or may include one or more expressions
@@ -2578,13 +2578,13 @@ deployment:
                                                                   transformation policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: X-Username
+                                                            sample: _from_example
                                                         to:
                                                             description:
                                                                 - The new name of the header.  This name must be unique across transformation policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: X-User-ID
+                                                            sample: to_example
                                         filter_headers:
                                             description:
                                                 - ""
@@ -2610,7 +2610,7 @@ deployment:
                                                                   policies.
                                                             returned: on success
                                                             type: str
-                                                            sample: User-Agent
+                                                            sample: name_example
                                 response_cache_store:
                                     description:
                                         - ""
@@ -2628,7 +2628,7 @@ deployment:
                                                 - Sets the number of seconds for a response from a backend being stored in the Response Cache before it expires.
                                             returned: on success
                                             type: int
-                                            sample: 300
+                                            sample: 56
                         logging_policies:
                             description:
                                 - ""
@@ -2695,7 +2695,7 @@ deployment:
                                         - ""
                                     returned: on success
                                     type: str
-                                    sample: https://1.2.3.4:9999
+                                    sample: url_example
                                 connect_timeout_in_seconds:
                                     description:
                                         - Defines a timeout for establishing a connection with a proxied server.
@@ -2732,13 +2732,13 @@ deployment:
                                         - The body of the stock response from the mock backend.
                                     returned: on success
                                     type: str
-                                    sample: Hello World!
+                                    sample: body_example
                                 status:
                                     description:
                                         - The status code of the stock response from the mock backend.
                                     returned: on success
                                     type: int
-                                    sample: 200
+                                    sample: 56
                                 headers:
                                     description:
                                         - The headers of the stock response from the mock backend.
@@ -2750,13 +2750,13 @@ deployment:
                                                 - Name of the header.
                                             returned: on success
                                             type: str
-                                            sample: Content-Type
+                                            sample: name_example
                                         value:
                                             description:
                                                 - Value of the header.
                                             returned: on success
                                             type: str
-                                            sample: application/json
+                                            sample: value_example
         time_created:
             description:
                 - The time this resource was created. An RFC3339 formatted datetime string.
@@ -2804,7 +2804,7 @@ deployment:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "gateway_id": "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "path_prefix": "path_prefix_example",
         "endpoint": "endpoint_example",
@@ -2814,9 +2814,9 @@ deployment:
                     "is_anonymous_access_allowed": true,
                     "type": "CUSTOM_AUTHENTICATION",
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
-                    "token_header": "Authorization",
-                    "token_query_param": "key",
-                    "token_auth_scheme": "Bearer",
+                    "token_header": "token_header_example",
+                    "token_query_param": "token_query_param_example",
+                    "token_auth_scheme": "token_auth_scheme_example",
                     "issuers": [],
                     "audiences": [],
                     "verify_claims": [{
@@ -2852,8 +2852,8 @@ deployment:
                     "allowed_methods": [],
                     "allowed_headers": [],
                     "exposed_headers": [],
-                    "is_allow_credentials_enabled": false,
-                    "max_age_in_seconds": 600
+                    "is_allow_credentials_enabled": true,
+                    "max_age_in_seconds": 56
                 }
             },
             "logging_policies": {
@@ -2866,7 +2866,7 @@ deployment:
                 }
             },
             "routes": [{
-                "path": "/todos",
+                "path": "path_example",
                 "methods": [],
                 "request_policies": {
                     "authorization": {
@@ -2878,8 +2878,8 @@ deployment:
                         "allowed_methods": [],
                         "allowed_headers": [],
                         "exposed_headers": [],
-                        "is_allow_credentials_enabled": false,
-                        "max_age_in_seconds": 600
+                        "is_allow_credentials_enabled": true,
+                        "max_age_in_seconds": 56
                     },
                     "query_parameter_validations": {
                         "parameters": [{
@@ -2905,42 +2905,42 @@ deployment:
                     "header_transformations": {
                         "set_headers": {
                             "items": [{
-                                "name": "X-CorrelationID",
+                                "name": "name_example",
                                 "values": [],
                                 "if_exists": "OVERWRITE"
                             }]
                         },
                         "rename_headers": {
                             "items": [{
-                                "_from": "X-Username",
-                                "to": "X-User-ID"
+                                "_from": "_from_example",
+                                "to": "to_example"
                             }]
                         },
                         "filter_headers": {
                             "type": "ALLOW",
                             "items": [{
-                                "name": "User-Agent"
+                                "name": "name_example"
                             }]
                         }
                     },
                     "query_parameter_transformations": {
                         "set_query_parameters": {
                             "items": [{
-                                "name": "bookIsbn",
+                                "name": "name_example",
                                 "values": [],
                                 "if_exists": "OVERWRITE"
                             }]
                         },
                         "rename_query_parameters": {
                             "items": [{
-                                "_from": "bookId",
-                                "to": "bookIsbn"
+                                "_from": "_from_example",
+                                "to": "to_example"
                             }]
                         },
                         "filter_query_parameters": {
                             "type": "ALLOW",
                             "items": [{
-                                "name": "bookIsbn"
+                                "name": "name_example"
                             }]
                         }
                     },
@@ -2955,27 +2955,27 @@ deployment:
                     "header_transformations": {
                         "set_headers": {
                             "items": [{
-                                "name": "X-CorrelationID",
+                                "name": "name_example",
                                 "values": [],
                                 "if_exists": "OVERWRITE"
                             }]
                         },
                         "rename_headers": {
                             "items": [{
-                                "_from": "X-Username",
-                                "to": "X-User-ID"
+                                "_from": "_from_example",
+                                "to": "to_example"
                             }]
                         },
                         "filter_headers": {
                             "type": "ALLOW",
                             "items": [{
-                                "name": "User-Agent"
+                                "name": "name_example"
                             }]
                         }
                     },
                     "response_cache_store": {
                         "type": "FIXED_TTL_STORE_POLICY",
-                        "time_to_live_in_seconds": 300
+                        "time_to_live_in_seconds": 56
                     }
                 },
                 "logging_policies": {
@@ -2989,17 +2989,17 @@ deployment:
                 },
                 "backend": {
                     "type": "ORACLE_FUNCTIONS_BACKEND",
-                    "url": "https://1.2.3.4:9999",
+                    "url": "url_example",
                     "connect_timeout_in_seconds": 3.4,
                     "read_timeout_in_seconds": 3.4,
                     "send_timeout_in_seconds": 3.4,
                     "is_ssl_verify_disabled": true,
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
-                    "body": "Hello World!",
-                    "status": 200,
+                    "body": "body_example",
+                    "status": 56,
                     "headers": [{
-                        "name": "Content-Type",
-                        "value": "application/json"
+                        "name": "name_example",
+                        "value": "value_example"
                     }]
                 }
             }]

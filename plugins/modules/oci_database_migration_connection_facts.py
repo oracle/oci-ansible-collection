@@ -133,6 +133,7 @@ connections:
         connect_descriptor:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -163,18 +164,21 @@ connections:
         credentials_secret_id:
             description:
                 - OCID of the Secret in the OCI vault containing the Database Connection credentials.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
         certificate_tdn:
             description:
                 - This name is the distinguished name used while creating the certificate on target database.
+                - Returned for get operation
             returned: on success
             type: str
             sample: certificate_tdn_example
         ssh_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -199,6 +203,7 @@ connections:
         admin_credentials:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -211,6 +216,7 @@ connections:
         private_endpoint:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -244,6 +250,7 @@ connections:
         vault_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

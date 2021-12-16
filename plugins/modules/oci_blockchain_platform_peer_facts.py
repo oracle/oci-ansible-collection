@@ -76,7 +76,7 @@ EXAMPLES = """
     blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
 
@@ -130,7 +130,7 @@ blockchain_platform_peers:
                 - Availability Domain of peer
             returned: on success
             type: str
-            sample: ad_example
+            sample: Uocm:PHX-AD-1
         lifecycle_state:
             description:
                 - The current state of the peer.
@@ -145,7 +145,7 @@ blockchain_platform_peers:
             "ocpu_allocation_number": 3.4
         },
         "host": "host_example",
-        "ad": "ad_example",
+        "ad": "Uocm:PHX-AD-1",
         "lifecycle_state": "ACTIVE"
     }]
 """

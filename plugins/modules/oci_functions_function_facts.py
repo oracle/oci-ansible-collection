@@ -93,7 +93,7 @@ EXAMPLES = """
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    lifecycle_state: Creating
+    lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -144,7 +144,7 @@ functions:
                   Example: `phx.ocir.io/ten/functions/function:0.0.1`"
             returned: on success
             type: str
-            sample: phx.ocir.io/ten/functions/function:0.0.1
+            sample: image_example
         image_digest:
             description:
                 - "The image digest for the version of the image that will be pulled when invoking this function.
@@ -152,7 +152,7 @@ functions:
                   Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`"
             returned: on success
             type: str
-            sample: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+            sample: image_digest_example
         memory_in_mbs:
             description:
                 - Maximum usable memory for the function (MiB).
@@ -167,6 +167,7 @@ functions:
                 - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
                 - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each
                   key and value in UTF-8.
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -218,7 +219,7 @@ functions:
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the function was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -226,15 +227,15 @@ functions:
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
             type: str
-            sample: "2018-09-12T22:47:12.613Z"
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "lifecycle_state": "CREATING",
         "application_id": "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "image": "phx.ocir.io/ten/functions/function:0.0.1",
-        "image_digest": "sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7",
+        "image": "image_example",
+        "image_digest": "image_digest_example",
         "memory_in_mbs": 56,
         "config": {},
         "timeout_in_seconds": 56,
@@ -244,8 +245,8 @@ functions:
         "freeform_tags": {'Department': 'Finance'},
         "invoke_endpoint": "invoke_endpoint_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "time_created": "2018-09-12T22:47:12.613Z",
-        "time_updated": "2018-09-12T22:47:12.613Z"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }]
 """
 

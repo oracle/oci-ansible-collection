@@ -26,6 +26,8 @@ description:
     - For I(state=present), creates a new saved user assessment for one or multiple targets in a compartment. It saves the latest assessments in the
       specified compartment. If a scheduled is passed in, this operation persists the latest assessments that exist at the defined
       date and time, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_safe_user_assessment_actions) module: change_compartment,
+      set_user_assessment_baseline, unset_user_assessment_baseline."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -50,18 +52,21 @@ options:
         aliases: ["name"]
     schedule:
         description:
-            - "Schedule of the assessment that runs periodically in this specified format: <version-string>;<version-specific-schedule>
-              Allowed version strings - v1
-              v1's version specific schedule -<ss> <mm> <hh> <day-of-week> <day-of-month>
-              Each of the above fields potentially introduce constraints. A workrequest is created only
-              when clock time satisfies all the constraints. Constraints introduced
-              1. seconds = <ss> (So, the allowed range for <ss> is [0, 59])
-              2. minutes = <mm> (So, the allowed range for <mm> is [0, 59])
-              3. hours = <hh> (So, the allowed range for <hh> is [0, 23])
-              <day-of-week> can be either '*' (without quotes or a number between 1(Monday) and 7(Sunday))
-              4. No constraint introduced when it is '*'. When not, day of week must equal the given value
-              <day-of-month> can be either '*' (without quotes or a number between 1 and 28)
-              5. No constraint introduced when it is '*'. When not, day of month must equal the given value"
+            - To schedule the assessment for saving periodically, specify the schedule in this attribute.
+              Create or schedule one assessment per compartment. If not defined, the assessment runs immediately.
+               Format -
+                <version-string>;<version-specific-schedule>
+            - " Allowed version strings - \\"v1\\"
+                v1's version specific schedule -<ss> <mm> <hh> <day-of-week> <day-of-month>
+                Each of the above fields potentially introduce constraints. A workrequest is created only
+                when clock time satisfies all the constraints. Constraints introduced:
+                1. seconds = <ss> (So, the allowed range for <ss> is [0, 59])
+                2. minutes = <mm> (So, the allowed range for <mm> is [0, 59])
+                3. hours = <hh> (So, the allowed range for <hh> is [0, 23])
+                <day-of-week> can be either '*' (without quotes or a number between 1(Monday) and 7(Sunday))
+                4. No constraint introduced when it is '*'. When not, day of week must equal the given value
+                <day-of-month> can be either '*' (without quotes or a number between 1 and 28)
+                5. No constraint introduced when it is '*'. When not, day of month must equal the given value"
             - This parameter is updatable.
         type: str
     target_id:
@@ -111,8 +116,8 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    display_name: FusionApps_Q1
-    schedule: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+    display_name: display_name_example
+    schedule: schedule_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -123,8 +128,8 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    display_name: FusionApps_Q1
-    schedule: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+    display_name: display_name_example
+    schedule: schedule_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -132,11 +137,11 @@ EXAMPLES = """
   oci_data_safe_user_assessment:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: FusionApps_Q1
+    display_name: display_name_example
 
     # optional
     description: description_example
-    schedule: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+    schedule: schedule_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -150,7 +155,7 @@ EXAMPLES = """
   oci_data_safe_user_assessment:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: FusionApps_Q1
+    display_name: display_name_example
     state: absent
 
 """
@@ -238,21 +243,22 @@ user_assessment:
             sample: "ocid1.scheduleassessment.oc1..xxxxxxEXAMPLExxxxxx"
         schedule:
             description:
-                - "Schedule of the assessment that runs periodically in this specified format: <version-string>;<version-specific-schedule>
-                  Allowed version strings - v1
-                  v1's version specific schedule -<ss> <mm> <hh> <day-of-week> <day-of-month>
-                  Each of the above fields potentially introduce constraints. A workrequest is created only
-                  when clock time satisfies all the constraints. Constraints introduced
-                  1. seconds = <ss> (So, the allowed range for <ss> is [0, 59])
-                  2. minutes = <mm> (So, the allowed range for <mm> is [0, 59])
-                  3. hours = <hh> (So, the allowed range for <hh> is [0, 23])
-                  <day-of-week> can be either '*' (without quotes or a number between 1(Monday) and 7(Sunday))
-                  4. No constraint introduced when it is '*'. When not, day of week must equal the given value
-                  <day-of-month> can be either '*' (without quotes or a number between 1 and 28)
-                  5. No constraint introduced when it is '*'. When not, day of month must equal the given value"
+                - "Schedule of the assessment that runs periodically in this specified format:
+                    <version-string>;<version-specific-schedule>"
+                - " Allowed version strings - \\"v1\\"
+                    v1's version specific schedule -<ss> <mm> <hh> <day-of-week> <day-of-month>
+                    Each of the above fields potentially introduce constraints. A workrequest is created only
+                    when clock time satisfies all the constraints. Constraints introduced:
+                    1. seconds = <ss> (So, the allowed range for <ss> is [0, 59])
+                    2. minutes = <mm> (So, the allowed range for <mm> is [0, 59])
+                    3. hours = <hh> (So, the allowed range for <hh> is [0, 23])
+                    <day-of-week> can be either '*' (without quotes or a number between 1(Monday) and 7(Sunday))
+                    4. No constraint introduced when it is '*'. When not, day of week must equal the given value
+                    <day-of-month> can be either '*' (without quotes or a number between 1 and 28)
+                    5. No constraint introduced when it is '*'. When not, day of month must equal the given value"
             returned: on success
             type: str
-            sample: "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day"
+            sample: schedule_example
         statistics:
             description:
                 - "Map that contains maps of values.
@@ -334,7 +340,7 @@ user_assessment:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "schedule_assessment_id": "ocid1.scheduleassessment.oc1..xxxxxxEXAMPLExxxxxx",
-        "schedule": "1. '0 30 13 * *' - This indicates to run a user assessment at 13:30:00 every day",
+        "schedule": "schedule_example",
         "statistics": {},
         "target_ids": [],
         "time_created": "2013-10-20T19:20:30+01:00",

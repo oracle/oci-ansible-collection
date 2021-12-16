@@ -92,7 +92,7 @@ subscription_confirmation:
                   For example, an email address for a subscription that uses the `EMAIL` protocol, or a URL for a subscription that uses an HTTP-based protocol.
             returned: on success
             type: str
-            sample: abc@oracle.com
+            sample: endpoint_example
         unsubscribe_url:
             description:
                 - The URL for unsubscribing from the topic.
@@ -104,7 +104,7 @@ subscription_confirmation:
                 - A human-readable string indicating the status of the subscription confirmation.
             returned: on success
             type: str
-            sample: The subscription has been confirmed
+            sample: message_example
         subscription_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription specified in the request.
@@ -114,9 +114,9 @@ subscription_confirmation:
     sample: {
         "topic_name": "topic_name_example",
         "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
-        "endpoint": "abc@oracle.com",
+        "endpoint": "endpoint_example",
         "unsubscribe_url": "unsubscribe_url_example",
-        "message": "The subscription has been confirmed",
+        "message": "message_example",
         "subscription_id": "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

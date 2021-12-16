@@ -63,7 +63,7 @@ EXAMPLES = """
   oci_management_agent_aggregation_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    group_by: [ "$p.getValue()" ]
+    group_by: [ "availabilityStatus" ]
 
     # optional
     has_plugins: true

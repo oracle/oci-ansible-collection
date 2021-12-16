@@ -132,7 +132,7 @@ EXAMPLES = """
     action: remove
 
     # optional
-    statement_ids: [ "null" ]
+    statement_ids: [ "statement_ids_example" ]
 
 - name: Perform action update on drg_route_distribution_statements
   oci_network_drg_route_distribution_statements_actions:

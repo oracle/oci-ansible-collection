@@ -30,9 +30,13 @@ oracle.oci.oci_loadbalancer_backend_set -- Manage a BackendSet resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_backend_set`.
 
@@ -1061,119 +1065,119 @@ Examples
     - name: Create backend_set
       oci_loadbalancer_backend_set:
         # required
-        name: example_backend_set
-        policy: LEAST_CONNECTIONS
+        name: name_example
+        policy: policy_example
         health_checker:
           # required
-          protocol: HTTP
+          protocol: protocol_example
 
           # optional
-          url_path: /healthcheck
-          port: 8080
-          return_code: 200
-          retries: 3
-          timeout_in_millis: 3000
-          interval_in_millis: 10000
+          url_path: url_path_example
+          port: 56
+          return_code: 56
+          retries: 56
+          timeout_in_millis: 56
+          interval_in_millis: 56
           response_body_regex: response_body_regex_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         backends:
         - # required
-          ip_address: 10.0.0.3
-          port: 8080
+          ip_address: ip_address_example
+          port: 56
 
           # optional
-          weight: 3
-          backup: false
-          drain: false
-          offline: false
+          weight: 56
+          backup: true
+          drain: true
+          offline: true
         ssl_configuration:
           # optional
-          verify_depth: 3
+          verify_depth: 56
           verify_peer_certificate: true
-          trusted_certificate_authority_ids: [ "null" ]
-          certificate_ids: [ "null" ]
-          certificate_name: example_certificate_bundle
-          protocols: [ "null" ]
+          trusted_certificate_authority_ids: [ "trusted_certificate_authority_ids_example" ]
+          certificate_ids: [ "certificate_ids_example" ]
+          certificate_name: certificate_name_example
+          protocols: [ "protocols_example" ]
           cipher_suite_name: cipher_suite_name_example
           server_order_preference: ENABLED
         session_persistence_configuration:
           # required
-          cookie_name: example_cookie
+          cookie_name: cookie_name_example
 
           # optional
-          disable_fallback: false
+          disable_fallback: true
         lb_cookie_session_persistence_configuration:
           # optional
-          cookie_name: example_cookie
-          disable_fallback: false
-          domain: example.com
-          path: /example
-          max_age_in_seconds: 3600
+          cookie_name: cookie_name_example
+          disable_fallback: true
+          domain: domain_example
+          path: path_example
+          max_age_in_seconds: 56
           is_secure: true
           is_http_only: true
 
     - name: Update backend_set
       oci_loadbalancer_backend_set:
         # required
-        name: example_backend_set
-        policy: LEAST_CONNECTIONS
+        name: name_example
+        policy: policy_example
         backends:
         - # required
-          ip_address: 10.0.0.3
-          port: 8080
+          ip_address: ip_address_example
+          port: 56
 
           # optional
-          weight: 3
-          backup: false
-          drain: false
-          offline: false
+          weight: 56
+          backup: true
+          drain: true
+          offline: true
         health_checker:
           # required
-          protocol: HTTP
+          protocol: protocol_example
 
           # optional
-          url_path: /healthcheck
-          port: 8080
-          return_code: 200
-          retries: 3
-          timeout_in_millis: 3000
-          interval_in_millis: 10000
+          url_path: url_path_example
+          port: 56
+          return_code: 56
+          retries: 56
+          timeout_in_millis: 56
+          interval_in_millis: 56
           response_body_regex: response_body_regex_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         ssl_configuration:
           # optional
-          verify_depth: 3
+          verify_depth: 56
           verify_peer_certificate: true
-          trusted_certificate_authority_ids: [ "null" ]
-          certificate_ids: [ "null" ]
-          certificate_name: example_certificate_bundle
-          protocols: [ "null" ]
+          trusted_certificate_authority_ids: [ "trusted_certificate_authority_ids_example" ]
+          certificate_ids: [ "certificate_ids_example" ]
+          certificate_name: certificate_name_example
+          protocols: [ "protocols_example" ]
           cipher_suite_name: cipher_suite_name_example
           server_order_preference: ENABLED
         session_persistence_configuration:
           # required
-          cookie_name: example_cookie
+          cookie_name: cookie_name_example
 
           # optional
-          disable_fallback: false
+          disable_fallback: true
         lb_cookie_session_persistence_configuration:
           # optional
-          cookie_name: example_cookie
-          disable_fallback: false
-          domain: example.com
-          path: /example
-          max_age_in_seconds: 3600
+          cookie_name: cookie_name_example
+          disable_fallback: true
+          domain: domain_example
+          path: path_example
+          max_age_in_seconds: 56
           is_secure: true
           is_http_only: true
 
     - name: Delete backend_set
       oci_loadbalancer_backend_set:
         # required
-        name: example_backend_set
+        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
@@ -1211,8 +1215,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the BackendSet resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backends&#x27;: [{&#x27;backup&#x27;: False, &#x27;drain&#x27;: False, &#x27;ip_address&#x27;: &#x27;10.0.0.3&#x27;, &#x27;name&#x27;: &#x27;10.0.0.3:8080&#x27;, &#x27;offline&#x27;: False, &#x27;port&#x27;: 8080, &#x27;weight&#x27;: 3}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 10000, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;retries&#x27;: 3, &#x27;return_code&#x27;: 0, &#x27;timeout_in_millis&#x27;: 3000, &#x27;url_path&#x27;: &#x27;/healthcheck&#x27;}, &#x27;lb_cookie_session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False, &#x27;domain&#x27;: &#x27;example.com&#x27;, &#x27;is_http_only&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;max_age_in_seconds&#x27;: 3600, &#x27;path&#x27;: &#x27;/example&#x27;}, &#x27;name&#x27;: &#x27;example_backend_set&#x27;, &#x27;policy&#x27;: &#x27;LEAST_CONNECTIONS&#x27;, &#x27;session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False}, &#x27;ssl_configuration&#x27;: {&#x27;certificate_ids&#x27;: [], &#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;trusted_certificate_authority_ids&#x27;: [], &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backends&#x27;: [{&#x27;backup&#x27;: True, &#x27;drain&#x27;: True, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;offline&#x27;: True, &#x27;port&#x27;: 56, &#x27;weight&#x27;: 56}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;protocol_example&#x27;, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;retries&#x27;: 56, &#x27;return_code&#x27;: 56, &#x27;timeout_in_millis&#x27;: 56, &#x27;url_path&#x27;: &#x27;url_path_example&#x27;}, &#x27;lb_cookie_session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;cookie_name_example&#x27;, &#x27;disable_fallback&#x27;: True, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;is_http_only&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;max_age_in_seconds&#x27;: 56, &#x27;path&#x27;: &#x27;path_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;policy&#x27;: &#x27;policy_example&#x27;, &#x27;session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;cookie_name_example&#x27;, &#x27;disable_fallback&#x27;: True}, &#x27;ssl_configuration&#x27;: {&#x27;certificate_ids&#x27;: [], &#x27;certificate_name&#x27;: &#x27;certificate_name_example&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;trusted_certificate_authority_ids&#x27;: [], &#x27;verify_depth&#x27;: 56, &#x27;verify_peer_certificate&#x27;: True}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1229,7 +1233,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1248,6 +1252,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>**Note:** You cannot add a backend server marked as `backup` to a backend set that uses the IP Hash policy.</div>
                                             <div>Example: `false`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1266,6 +1272,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the load balancer should drain this server. Servers marked &quot;drain&quot; receive no new incoming traffic.</div>
                                             <div>Example: `false`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1284,8 +1292,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The IP address of the backend server.</div>
                                             <div>Example: `10.0.0.3`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.3</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ip_address_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1304,8 +1312,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A read-only field showing the IP address and port that uniquely identify this backend server in the backend set.</div>
                                             <div>Example: `10.0.0.3:8080`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.3:8080</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1324,6 +1332,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the load balancer should treat this server as offline. Offline servers receive no incoming traffic.</div>
                                             <div>Example: `false`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1342,8 +1352,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The communication port for the backend server.</div>
                                             <div>Example: `8080`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">8080</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1362,8 +1372,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger proportion of incoming traffic. For example, a server weighted &#x27;3&#x27; receives 3 times the number of new connections as a server weighted &#x27;1&#x27;. For more information on load balancing policies, see <a href='https://docs.cloud.oracle.com/Content/Balance/Reference/lbpolicies.htm'>How Load Balancing Policies Work</a>.</div>
                                             <div>Example: `3`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     
@@ -1381,7 +1391,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1399,8 +1409,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The interval between health checks, in milliseconds. The default is 10000 (10 seconds).</div>
                                             <div>Example: `10000`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10000</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1419,6 +1429,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The backend server port against which to run the health check. If the port is not specified, the load balancer uses the port information from the `Backend` object.</div>
                                             <div>Example: `8080`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1437,8 +1449,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The protocol the health check must use; either HTTP or TCP.</div>
                                             <div>Example: `HTTP`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTP</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">protocol_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1457,7 +1469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A regular expression for parsing the response body from the backend server.</div>
                                             <div>Example: `^((?!false).|\s)*$`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">response_body_regex_example</div>
                                     </td>
             </tr>
@@ -1477,8 +1489,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The number of retries to attempt before a backend server is considered &quot;unhealthy&quot;. This number also applies when recovering a server to the &quot;healthy&quot; state. Defaults to 3.</div>
                                             <div>Example: `3`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1497,6 +1509,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The status code a healthy backend server should return. If you configure the health check policy to use the HTTP protocol, you can use common HTTP status codes such as &quot;200&quot;.</div>
                                             <div>Example: `200`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1515,8 +1529,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply returns within this timeout period. Defaults to 3000 (3 seconds).</div>
                                             <div>Example: `3000`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3000</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1535,8 +1549,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The path against which to run the health check.</div>
                                             <div>Example: `/healthcheck`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">/healthcheck</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_path_example</div>
                                     </td>
             </tr>
                     
@@ -1554,7 +1568,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1575,8 +1589,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  Ensure that the cookie name used at the backend application servers is different from the cookie name used at the load balancer. To minimize the chance of name collision, Oracle recommends that you use a prefix such as &quot;X-Oracle-OCI-&quot; for this field.</div>
                                             <div>*  If a backend server and the load balancer both insert cookies with the same name, the client or browser behavior can vary depending on the domain and path values associated with the cookie. If the name, domain, and path values of the `Set-cookie` generated by a backend server and the `Set-cookie` generated by the load balancer are all the same, the client or browser treats them as one cookie and returns only one of the cookie values in subsequent requests. If both `Set-cookie` names are the same, but the domain and path names are different, the client or browser treats them as two different cookies.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_cookie</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cookie_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1595,6 +1609,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the load balancer is prevented from directing traffic from a persistent session client to a different backend server if the original server is unavailable. Defaults to false.</div>
                                             <div>Example: `false`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1618,8 +1634,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  Ensure that this attribute specifies the correct domain value. If the `Domain` attribute in the `Set-cookie` header does not include the domain to which the original request was made, the client or browser might reject the cookie. As specified in RFC 6265, the client accepts a cookie with the `Domain` attribute value `example.com` or `www.example.com` sent from `www.example.com`. It does not accept a cookie with the `Domain` attribute `abc.example.com` or `www.abc.example.com` sent from `www.example.com`.</div>
                                             <div>Example: `example.com`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example.com</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">domain_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1638,7 +1654,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the `Set-cookie` header should contain the `HttpOnly` attribute. If `true`, the `Set-cookie` header inserted by the load balancer contains the `HttpOnly` attribute, which limits the scope of the cookie to HTTP requests. This attribute directs the client or browser to omit the cookie when providing access to cookies through non-HTTP APIs. For example, it restricts the cookie from JavaScript channels.</div>
                                             <div>Example: `true`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1659,7 +1675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>**Note:** If you set this field to `true`, you cannot associate the corresponding backend set with an HTTP listener.</div>
                                             <div>Example: `true`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1680,8 +1696,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The specified value must be at least one second. There is no default value for this attribute. If you do not specify a value, the load balancer does not include the `Max-Age` attribute in the `Set-cookie` header. In most cases, the client or browser retains the cookie until the current session ends, as defined by the client.</div>
                                             <div>Example: `3600`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3600</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1702,8 +1718,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The default value is `/`.</div>
                                             <div>Example: `/example`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">/example</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">path_example</div>
                                     </td>
             </tr>
                     
@@ -1723,8 +1739,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Valid backend set names include only alphanumeric characters, dashes, and underscores. Backend set names cannot contain spaces. Avoid entering confidential information.</div>
                                             <div>Example: `example_backend_set`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_backend_set</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1742,8 +1758,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The load balancer policy for the backend set. To get a list of available policies, use the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerPolicy/ListPolicies'>ListPolicies</a> operation.</div>
                                             <div>Example: `LEAST_CONNECTIONS`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LEAST_CONNECTIONS</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">policy_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1760,7 +1776,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1778,8 +1794,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the cookie used to detect a session initiated by the backend server. Use &#x27;*&#x27; to specify that any cookie set by the backend causes the session to persist.</div>
                                             <div>Example: `example_cookie`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_cookie</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cookie_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1798,6 +1814,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the load balancer is prevented from directing traffic from a persistent session client to a different backend server if the original server is unavailable. Defaults to false.</div>
                                             <div>Example: `false`</div>
                                         <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                     
@@ -1815,7 +1833,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1833,7 +1851,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Ids for OCI certificates service certificates. Currently only a single Id may be passed.</div>
                                             <div>Example: `[ocid1.certificate.oc1.us-ashburn-1.amaaaaaaav3bgsaa5o2q7rh5nfmkkukfkogasqhk6af2opufhjlqg7m6jqzq]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1851,8 +1869,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A friendly name for the certificate bundle. It must be unique and it cannot be changed. Valid certificate bundle names include only alphanumeric characters, dashes, and underscores. Certificate bundle names cannot contain spaces. Avoid entering confidential information.</div>
                                             <div>Example: `example_certificate_bundle`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_certificate_bundle</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">certificate_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1874,7 +1892,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. Clients cannot perform an SSL handshake if there is an incompatible configuration. *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA certificates. *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET` operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing backend sets that predate this feature. *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field, you must specify an appropriate predefined or custom cipher suite name when updating the resource. *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for this field.</div>
                                             <div>example: `example_cipher_suite`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cipher_suite_name_example</div>
                                     </td>
             </tr>
@@ -1901,7 +1919,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols. *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation displays a list of SSL protocols currently used by those resources.</div>
                                             <div>example: `[&quot;TLSv1.1&quot;, &quot;TLSv1.2&quot;]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1919,7 +1937,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client ciphers.</div>
                                             <div>**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This field is ignored when the `SSLConfiguration` object is associated with a backend set.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
                                     </td>
             </tr>
@@ -1939,7 +1957,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Ids for OCI certificates service CA or CA bundles for the load balancer to trust.</div>
                                             <div>Example: `[ocid1.cabundle.oc1.us-ashburn-1.amaaaaaaav3bgsaagl4zzyqdop5i2vuwoqewdvauuw34llqa74otq2jdsfyq]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1957,8 +1975,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The maximum depth for peer certificate chain verification.</div>
                                             <div>Example: `3`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1977,7 +1995,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Whether the load balancer listener should verify peer certificates.</div>
                                             <div>Example: `true`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>

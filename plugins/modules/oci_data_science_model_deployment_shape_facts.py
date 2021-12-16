@@ -55,23 +55,23 @@ model_deployment_shapes:
                 - The name of the model deployment shape.
             returned: on success
             type: str
-            sample: VM.STANDARD2.1
+            sample: name_example
         core_count:
             description:
                 - The number of cores associated with this model deployment shape.
             returned: on success
             type: int
-            sample: 1
+            sample: 56
         memory_in_gbs:
             description:
                 - The amount of memory in GBs associated with this model deployment shape.
             returned: on success
             type: int
-            sample: 15
+            sample: 56
     sample: [{
-        "name": "VM.STANDARD2.1",
-        "core_count": 1,
-        "memory_in_gbs": 15
+        "name": "name_example",
+        "core_count": 56,
+        "memory_in_gbs": 56
     }]
 """
 

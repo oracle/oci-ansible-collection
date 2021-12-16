@@ -347,7 +347,7 @@ EXAMPLES = """
         source_type: WINDOWS_EVENT_LOG
 
         # optional
-        channels: [ "null" ]
+        channels: [ "channels_example" ]
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
@@ -360,7 +360,7 @@ EXAMPLES = """
     description: description_example
     group_association:
       # optional
-      group_list: [ "null" ]
+      group_list: [ "group_list_example" ]
 
 - name: Update unified_agent_configuration
   oci_logging_unified_agent_configuration:
@@ -378,7 +378,7 @@ EXAMPLES = """
         source_type: WINDOWS_EVENT_LOG
 
         # optional
-        channels: [ "null" ]
+        channels: [ "channels_example" ]
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
@@ -390,7 +390,7 @@ EXAMPLES = """
     description: description_example
     group_association:
       # optional
-      group_list: [ "null" ]
+      group_list: [ "group_list_example" ]
 
 - name: Update unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_unified_agent_configuration:
@@ -411,7 +411,7 @@ EXAMPLES = """
         source_type: WINDOWS_EVENT_LOG
 
         # optional
-        channels: [ "null" ]
+        channels: [ "channels_example" ]
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
@@ -420,7 +420,7 @@ EXAMPLES = """
     description: description_example
     group_association:
       # optional
-      group_list: [ "null" ]
+      group_list: [ "group_list_example" ]
 
 - name: Delete unified_agent_configuration
   oci_logging_unified_agent_configuration:

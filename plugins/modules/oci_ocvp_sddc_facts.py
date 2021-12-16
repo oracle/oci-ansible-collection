@@ -186,14 +186,14 @@ sddcs:
                 - "Example: `vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
             type: str
-            sample: vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com
+            sample: vcenter_fqdn_example
         nsx_manager_fqdn:
             description:
                 - The FQDN for NSX Manager.
                 - "Example: `nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
             type: str
-            sample: nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com
+            sample: nsx_manager_fqdn_example
         vcenter_private_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `PrivateIp` object that is
@@ -424,7 +424,7 @@ sddcs:
                 - "Example: `hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
             type: str
-            sample: hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com
+            sample: hcx_fqdn_example
         hcx_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for HCX Manager. Make sure
@@ -504,7 +504,7 @@ sddcs:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_hcx_license_status_updated:
             description:
                 - The date and time the SDDC's HCX on-premise license status was updated, in the format defined by
@@ -512,7 +512,7 @@ sddcs:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
@@ -520,7 +520,7 @@ sddcs:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the SDDC was updated, in the format defined by
@@ -560,8 +560,8 @@ sddcs:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "esxi_hosts_count": 56,
         "initial_sku": "HOUR",
-        "vcenter_fqdn": "vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
-        "nsx_manager_fqdn": "nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
+        "vcenter_fqdn": "vcenter_fqdn_example",
+        "nsx_manager_fqdn": "nsx_manager_fqdn_example",
         "vcenter_private_ip_id": "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_manager_private_ip_id": "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "vcenter_initial_password": "example-password",
@@ -583,7 +583,7 @@ sddcs:
         "replication_vlan_id": "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "provisioning_vlan_id": "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_private_ip_id": "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx",
-        "hcx_fqdn": "hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
+        "hcx_fqdn": "hcx_fqdn_example",
         "hcx_initial_password": "example-password",
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hcx_enabled": true,
@@ -595,9 +595,9 @@ sddcs:
             "status": "AVAILABLE",
             "system_name": "system_name_example"
         }],
-        "time_hcx_billing_cycle_end": "2016-08-25T21:10:29.600Z",
-        "time_hcx_license_status_updated": "2016-08-25T21:10:29.600Z",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_hcx_billing_cycle_end": "2013-10-20T19:20:30+01:00",
+        "time_hcx_license_status_updated": "2013-10-20T19:20:30+01:00",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "freeform_tags": {'Department': 'Finance'},

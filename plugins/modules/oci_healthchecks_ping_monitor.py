@@ -128,14 +128,14 @@ EXAMPLES = """
 - name: Create ping_monitor
   oci_healthchecks_ping_monitor:
     # required
-    compartment_id: "ocid1.tenancy.oc1..."
-    targets: [ "192.0.2.0" ]
-    protocol: TCP
-    display_name: testPing
-    interval_in_seconds: 300
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    targets: [ "targets_example" ]
+    protocol: ICMP
+    display_name: display_name_example
+    interval_in_seconds: 56
 
     # optional
-    vantage_point_names: [ "null" ]
+    vantage_point_names: [ "vantage_point_names_example" ]
     port: 56
     timeout_in_seconds: 56
     is_enabled: true
@@ -148,13 +148,13 @@ EXAMPLES = """
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    targets: [ "192.0.2.0" ]
-    vantage_point_names: [ "null" ]
+    targets: [ "targets_example" ]
+    vantage_point_names: [ "vantage_point_names_example" ]
     port: 56
     timeout_in_seconds: 56
-    protocol: TCP
-    display_name: testPing
-    interval_in_seconds: 300
+    protocol: ICMP
+    display_name: display_name_example
+    interval_in_seconds: 56
     is_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -162,16 +162,16 @@ EXAMPLES = """
 - name: Update ping_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_healthchecks_ping_monitor:
     # required
-    compartment_id: "ocid1.tenancy.oc1..."
-    display_name: testPing
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    targets: [ "192.0.2.0" ]
-    vantage_point_names: [ "null" ]
+    targets: [ "targets_example" ]
+    vantage_point_names: [ "vantage_point_names_example" ]
     port: 56
     timeout_in_seconds: 56
-    protocol: TCP
-    interval_in_seconds: 300
+    protocol: ICMP
+    interval_in_seconds: 56
     is_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -185,8 +185,8 @@ EXAMPLES = """
 - name: Delete ping_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_healthchecks_ping_monitor:
     # required
-    compartment_id: "ocid1.tenancy.oc1..."
-    display_name: testPing
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -215,7 +215,7 @@ ping_monitor:
                 - The region where updates must be made and where results must be fetched from.
             returned: on success
             type: str
-            sample: home_region_example
+            sample: us-phoenix-1
         time_created:
             description:
                 - The RFC 3339-formatted creation date and time of the probe.
@@ -298,7 +298,7 @@ ping_monitor:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "results_url": "results_url_example",
-        "home_region": "home_region_example",
+        "home_region": "us-phoenix-1",
         "time_created": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "targets": [],

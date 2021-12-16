@@ -108,13 +108,13 @@ EXAMPLES = """
 - name: Create internet_gateway
   oci_network_internet_gateway:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     is_enabled: true
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyInternetGateway
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update internet_gateway
@@ -124,15 +124,15 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: MyInternetGateway
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     is_enabled: true
 
 - name: Update internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyInternetGateway
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -148,8 +148,8 @@ EXAMPLES = """
 - name: Delete internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: MyInternetGateway
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -216,7 +216,7 @@ internet_gateway:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the internet gateway belongs to.
@@ -231,7 +231,7 @@ internet_gateway:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "is_enabled": true,
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

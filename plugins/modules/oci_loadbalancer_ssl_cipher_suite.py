@@ -166,21 +166,21 @@ EXAMPLES = """
 - name: Create ssl_cipher_suite
   oci_loadbalancer_ssl_cipher_suite:
     # required
-    name: example_cipher_suite
-    ciphers: [ "ECDHE-RSA-AES256-GCM-SHA384" ]
+    name: name_example
+    ciphers: [ "ciphers_example" ]
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update ssl_cipher_suite
   oci_loadbalancer_ssl_cipher_suite:
     # required
-    name: example_cipher_suite
-    ciphers: [ "ECDHE-RSA-AES256-GCM-SHA384" ]
+    name: name_example
+    ciphers: [ "ciphers_example" ]
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete ssl_cipher_suite
   oci_loadbalancer_ssl_cipher_suite:
     # required
-    name: example_cipher_suite
+    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 

@@ -65,6 +65,7 @@ options:
             - "VM"
             - "EXADATA"
             - "EXADATA_CC"
+            - "AUTONOMOUS"
     sort_by:
         description:
             - The field to sort information by. Only one sortOrder can be used. The default sort order
@@ -137,7 +138,8 @@ managed_databases:
             sample: EXTERNAL_SIDB
         database_sub_type:
             description:
-                - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container Database.
+                - The subtype of the Oracle Database. Indicates whether the database is a Container Database,
+                  Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.
             returned: on success
             type: str
             sample: CDB
@@ -153,6 +155,12 @@ managed_databases:
             returned: on success
             type: str
             sample: BASIC
+        workload_type:
+            description:
+                - The workload type of the Autonomous Database.
+            returned: on success
+            type: str
+            sample: OLTP
         is_cluster:
             description:
                 - Indicates whether the Oracle Database is part of a cluster.
@@ -169,6 +177,7 @@ managed_databases:
         managed_database_groups:
             description:
                 - A list of Managed Database Groups that the Managed Database belongs to.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -201,12 +210,14 @@ managed_databases:
             description:
                 - The status of the Oracle Database. Indicates whether the status of the database
                   is UP, DOWN, or UNKNOWN at the current time.
+                - Returned for get operation
             returned: on success
             type: str
             sample: UP
         parent_container_name:
             description:
                 - The name of the parent Container Database.
+                - Returned for get operation
             returned: on success
             type: str
             sample: parent_container_name_example
@@ -215,18 +226,21 @@ managed_databases:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
                   in which the parent Container Database resides, if the Managed Database
                   is a Pluggable Database (PDB).
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.parentcontainercompartment.oc1..xxxxxxEXAMPLExxxxxx"
         instance_count:
             description:
                 - The number of Oracle Real Application Clusters (Oracle RAC) database instances.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         instance_details:
             description:
                 - The details of the Oracle Real Application Clusters (Oracle RAC) database instances.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -257,12 +271,14 @@ managed_databases:
         pdb_count:
             description:
                 - The number of PDBs in the Container Database.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         pdb_status:
             description:
                 - The status of the PDB in the Container Database.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -282,6 +298,7 @@ managed_databases:
             description:
                 - "The additional details specific to a type of database defined in `{\\"key\\": \\"value\\"}` format.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -293,6 +310,7 @@ managed_databases:
         "database_sub_type": "CDB",
         "deployment_type": "ONPREMISE",
         "management_option": "BASIC",
+        "workload_type": "OLTP",
         "is_cluster": true,
         "parent_container_id": "ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx",
         "managed_database_groups": [{
@@ -328,7 +346,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
-    from oci.database_management import DbManagementClient
+    from oci.database_management import SqlTuningClient
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -392,7 +410,15 @@ def main():
             name=dict(type="str"),
             management_option=dict(type="str", choices=["BASIC", "ADVANCED"]),
             deployment_type=dict(
-                type="str", choices=["ONPREMISE", "BM", "VM", "EXADATA", "EXADATA_CC"]
+                type="str",
+                choices=[
+                    "ONPREMISE",
+                    "BM",
+                    "VM",
+                    "EXADATA",
+                    "EXADATA_CC",
+                    "AUTONOMOUS",
+                ],
             ),
             sort_by=dict(type="str", choices=["TIMECREATED", "NAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
@@ -407,7 +433,7 @@ def main():
     resource_facts_helper = ResourceFactsHelper(
         module=module,
         resource_type="managed_database",
-        service_client_class=DbManagementClient,
+        service_client_class=SqlTuningClient,
         namespace="database_management",
     )
 

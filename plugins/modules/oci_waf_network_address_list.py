@@ -144,7 +144,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
-    addresses: [ "null" ]
+    addresses: [ "addresses_example" ]
 
 - name: Update network_address_list with type = VCN_ADDRESSES
   oci_waf_network_address_list:
@@ -171,7 +171,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
-    addresses: [ "null" ]
+    addresses: [ "addresses_example" ]
 
 - name: Update network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = VCN_ADDRESSES
   oci_waf_network_address_list:
@@ -200,7 +200,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
-    addresses: [ "null" ]
+    addresses: [ "addresses_example" ]
 
 - name: Delete network_address_list
   oci_waf_network_address_list:

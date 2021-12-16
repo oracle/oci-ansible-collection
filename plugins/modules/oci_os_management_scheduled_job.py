@@ -209,7 +209,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     schedule_type: ONETIME
-    time_next_execution: 2013-10-20T19:20:30+01:00
+    time_next_execution: time_next_execution_example
     operation_type: INSTALL
 
     # optional
@@ -230,7 +230,7 @@ EXAMPLES = """
       name: name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    update_names: [ "null" ]
+    update_names: [ "update_names_example" ]
     os_family: LINUX
 
 - name: Update scheduled_job
@@ -242,7 +242,7 @@ EXAMPLES = """
     display_name: display_name_example
     description: description_example
     schedule_type: ONETIME
-    time_next_execution: 2013-10-20T19:20:30+01:00
+    time_next_execution: time_next_execution_example
     interval_type: HOUR
     interval_value: interval_value_example
     operation_type: INSTALL
@@ -252,7 +252,7 @@ EXAMPLES = """
       name: name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    update_names: [ "null" ]
+    update_names: [ "update_names_example" ]
 
 - name: Update scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_scheduled_job:
@@ -263,7 +263,7 @@ EXAMPLES = """
     # optional
     description: description_example
     schedule_type: ONETIME
-    time_next_execution: 2013-10-20T19:20:30+01:00
+    time_next_execution: time_next_execution_example
     interval_type: HOUR
     interval_value: interval_value_example
     operation_type: INSTALL
@@ -273,7 +273,7 @@ EXAMPLES = """
       name: name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    update_names: [ "null" ]
+    update_names: [ "update_names_example" ]
 
 - name: Delete scheduled_job
   oci_os_management_scheduled_job:

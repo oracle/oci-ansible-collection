@@ -285,20 +285,20 @@ EXAMPLES = """
     waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    certificate_id: "ocid1.waascertificate.oc1.."
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     is_https_enabled: true
     is_https_forced: true
-    tls_protocols: [ "null" ]
+    tls_protocols: [ "TLS_V1" ]
     is_origin_compression_enabled: true
     is_behind_cdn: true
-    client_address_header: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+    client_address_header: X_FORWARDED_FOR
     is_cache_control_respected: true
     is_response_buffering_enabled: true
     cipher_group: DEFAULT
     load_balancing_method:
       # required
       method: ROUND_ROBIN
-    websocket_path_prefixes: [ "null" ]
+    websocket_path_prefixes: [ "websocket_path_prefixes_example" ]
     is_sni_enabled: true
     health_checks:
       # optional
@@ -306,7 +306,7 @@ EXAMPLES = """
       method: GET
       path: path_example
       headers: null
-      expected_response_code_group: [ "null" ]
+      expected_response_code_group: [ "2XX" ]
       is_response_text_check_enabled: true
       expected_response_text: expected_response_text_example
       interval_in_seconds: 56
@@ -383,7 +383,7 @@ policy_config:
                 - "- **TRUE_CLIENT_IP:** Corresponds to `True-Client-Ip` header name."
             returned: on success
             type: str
-            sample: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
+            sample: X_FORWARDED_FOR
         is_cache_control_respected:
             description:
                 - "Enable or disable automatic content caching based on the response `cache-control` header. This feature enables the origin to act as a proxy
@@ -561,7 +561,7 @@ policy_config:
         "tls_protocols": [],
         "is_origin_compression_enabled": true,
         "is_behind_cdn": true,
-        "client_address_header": "X-Client-Ip: 11.1.1.1, 13.3.3.3",
+        "client_address_header": "X_FORWARDED_FOR",
         "is_cache_control_respected": true,
         "is_response_buffering_enabled": true,
         "cipher_group": "DEFAULT",

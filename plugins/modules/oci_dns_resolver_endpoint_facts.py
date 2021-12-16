@@ -108,7 +108,7 @@ EXAMPLES = """
     name: name_example
     sort_order: ASC
     sort_by: name
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: ACTIVE
 
 """
 
@@ -202,6 +202,7 @@ resolver_endpoints:
             description:
                 - An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the
                   resolver endpoint is a part of.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []

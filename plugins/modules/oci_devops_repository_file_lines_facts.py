@@ -23,13 +23,13 @@ module: oci_devops_repository_file_lines_facts
 short_description: Fetches details about a RepositoryFileLines resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a RepositoryFileLines resource in Oracle Cloud Infrastructure
-    - Get lines of a specified file. Supports starting line number and limit.
+    - Retrieve lines of a specified file. Supports starting line number and limit.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
         description:
-            - unique Repository identifier.
+            - Unique repository identifier.
         type: str
         required: true
     file_path:
@@ -39,12 +39,12 @@ options:
         required: true
     revision:
         description:
-            - Retrive file lines from specific revision.
+            - Retrieve file lines from specific revision.
         type: str
         required: true
     start_line_number:
         description:
-            - Line number from where to start returning file lines. 1 indexed.
+            - Line number from where to start returning file lines.
         type: int
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -58,7 +58,7 @@ EXAMPLES = """
     revision: revision_example
 
     # optional
-    start_line_number: 56
+    start_line_number: 1
 
 """
 
@@ -71,19 +71,19 @@ repository_file_lines:
     contains:
         lines:
             description:
-                - The list of lines in the file
+                - The list of lines in the file.
             returned: on success
             type: complex
             contains:
                 line_number:
                     description:
-                        - The line number
+                        - The line number.
                     returned: on success
                     type: int
                     sample: 56
                 line_content:
                     description:
-                        - The content of the line
+                        - The content of the line.
                     returned: on success
                     type: str
                     sample: line_content_example

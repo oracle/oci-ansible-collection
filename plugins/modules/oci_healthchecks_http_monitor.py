@@ -147,15 +147,15 @@ EXAMPLES = """
 - name: Create http_monitor
   oci_healthchecks_http_monitor:
     # required
-    compartment_id: "ocid1.tenancy.oc1...."
-    targets: [ "192.0.2.0" ]
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    targets: [ "targets_example" ]
     protocol: HTTP
-    display_name: test
-    interval_in_seconds: 300
+    display_name: display_name_example
+    interval_in_seconds: 56
 
     # optional
-    vantage_point_names: [ "null" ]
-    port: 443
+    vantage_point_names: [ "vantage_point_names_example" ]
+    port: 56
     timeout_in_seconds: 56
     method: GET
     path: path_example
@@ -170,16 +170,16 @@ EXAMPLES = """
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    targets: [ "192.0.2.0" ]
-    vantage_point_names: [ "null" ]
-    port: 443
+    targets: [ "targets_example" ]
+    vantage_point_names: [ "vantage_point_names_example" ]
+    port: 56
     timeout_in_seconds: 56
     protocol: HTTP
     method: GET
     path: path_example
     headers: null
-    display_name: test
-    interval_in_seconds: 300
+    display_name: display_name_example
+    interval_in_seconds: 56
     is_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -187,19 +187,19 @@ EXAMPLES = """
 - name: Update http_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_healthchecks_http_monitor:
     # required
-    compartment_id: "ocid1.tenancy.oc1...."
-    display_name: test
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    targets: [ "192.0.2.0" ]
-    vantage_point_names: [ "null" ]
-    port: 443
+    targets: [ "targets_example" ]
+    vantage_point_names: [ "vantage_point_names_example" ]
+    port: 56
     timeout_in_seconds: 56
     protocol: HTTP
     method: GET
     path: path_example
     headers: null
-    interval_in_seconds: 300
+    interval_in_seconds: 56
     is_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -213,8 +213,8 @@ EXAMPLES = """
 - name: Delete http_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_healthchecks_http_monitor:
     # required
-    compartment_id: "ocid1.tenancy.oc1...."
-    display_name: test
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -243,7 +243,7 @@ http_monitor:
                 - The region where updates must be made and where results must be fetched from.
             returned: on success
             type: str
-            sample: home_region_example
+            sample: us-phoenix-1
         time_created:
             description:
                 - The RFC 3339-formatted creation date and time of the probe.
@@ -345,7 +345,7 @@ http_monitor:
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "results_url": "results_url_example",
-        "home_region": "home_region_example",
+        "home_region": "us-phoenix-1",
         "time_created": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "targets": [],

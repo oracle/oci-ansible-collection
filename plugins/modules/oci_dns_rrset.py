@@ -207,15 +207,15 @@ EXAMPLES = """
     # optional
     update_items:
     - # required
-      domain: www.example.com
-      rdata: v=spf1 include:example.net -all
-      rtype: TXT
-      ttl: 60
+      domain: domain_example
+      rdata: rdata_example
+      rtype: rtype_example
+      ttl: 56
 
       # optional
-      record_hash: e86155f805706f45b4820db76f0dd71f
-      is_protected: false
-      rrset_version: 10
+      record_hash: record_hash_example
+      is_protected: true
+      rrset_version: rrset_version_example
     if_unmodified_since: if_unmodified_since_example
     scope: GLOBAL
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"

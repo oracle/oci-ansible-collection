@@ -30,9 +30,13 @@ oracle.oci.oci_devops_repository_archive_content_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_devops_repository_archive_content_facts`.
 
@@ -53,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a RepositoryArchiveContent resource in Oracle Cloud Infrastructure
-- Return the archived repository information
+- Returns the archived repository information.
 
 
 .. Aliases
@@ -220,7 +224,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The archive format query parm for download repo endpoint.</div>
+                                            <div>The archive format query parameter for downloading repository endpoint.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -235,7 +239,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources that match the given Ref name.</div>
+                                            <div>A filter to return only resources that match the given reference name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -265,7 +269,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>unique Repository identifier.</div>
+                                            <div>Unique repository identifier.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>

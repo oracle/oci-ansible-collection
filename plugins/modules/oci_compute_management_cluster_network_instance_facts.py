@@ -117,7 +117,7 @@ cluster_network_instances:
                 - The fault domain the instance is running in.
             returned: on success
             type: str
-            sample: fault_domain_example
+            sample: FAULT-DOMAIN-1
         instance_configuration_id:
             description:
                 - The OCID of the instance confgiuration used to create the instance.
@@ -129,7 +129,7 @@ cluster_network_instances:
                 - The region that contains the availability domain the instance is running in.
             returned: on success
             type: str
-            sample: region_example
+            sample: us-phoenix-1
         shape:
             description:
                 - The shape of an instance. The shape determines the number of CPUs, amount of memory,
@@ -151,7 +151,7 @@ cluster_network_instances:
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         load_balancer_backends:
             description:
                 - The load balancer backends that are configured for the instance pool instance.
@@ -187,12 +187,12 @@ cluster_network_instances:
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "fault_domain": "fault_domain_example",
+        "fault_domain": "FAULT-DOMAIN-1",
         "instance_configuration_id": "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx",
-        "region": "region_example",
+        "region": "us-phoenix-1",
         "shape": "shape_example",
         "state": "state_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "load_balancer_backends": [{
             "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
             "backend_set_name": "backend_set_name_example",

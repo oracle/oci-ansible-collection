@@ -131,6 +131,7 @@ plugins:
         message:
             description:
                 - The optional message from the agent plugin
+                - Returned for get operation
             returned: on success
             type: str
             sample: message_example

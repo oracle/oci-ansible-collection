@@ -101,8 +101,8 @@ EXAMPLES = """
     # optional
     sort_by: id
     sort_order: ASC
-    display_name: [ "$p.getValue()" ]
-    lifecycle_state: [ "$p.getValue()" ]
+    display_name: [ "display_name_example" ]
+    lifecycle_state: [ "CREATING" ]
     time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_created_less_than: 2013-10-20T19:20:30+01:00
 
@@ -136,12 +136,14 @@ waas_certificates:
         issued_by:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: str
             sample: issued_by_example
         subject_name:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -191,6 +193,7 @@ waas_certificates:
         issuer_name:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -240,36 +243,41 @@ waas_certificates:
         serial_number:
             description:
                 - A unique, positive integer assigned by the Certificate Authority (CA). The issuer name and serial number identify a unique certificate.
+                - Returned for get operation
             returned: on success
             type: str
             sample: serial_number_example
         version:
             description:
                 - The version of the encoded certificate.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         signature_algorithm:
             description:
                 - The identifier for the cryptographic algorithm used by the Certificate Authority (CA) to sign this certificate.
+                - Returned for get operation
             returned: on success
             type: str
             sample: signature_algorithm_example
         time_not_valid_before:
             description:
                 - The date and time the certificate will become valid, expressed in RFC 3339 timestamp format.
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_not_valid_after:
             description:
                 - The date and time the certificate will expire, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         public_key_info:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -294,6 +302,7 @@ waas_certificates:
         extensions:
             description:
                 - Additional attributes associated with users or public keys for managing relationships between Certificate Authorities.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -342,17 +351,19 @@ waas_certificates:
                 - The date and time the certificate was created, expressed in RFC 3339 timestamp format.
             returned: on success
             type: str
-            sample: "2018-11-16T21:10:29Z"
+            sample: "2013-10-20T19:20:30+01:00"
         is_trust_verification_disabled:
             description:
                 - This indicates whether trust verification was disabled during the creation of SSL certificate.
                   If `true` SSL certificate trust verification was disabled and this SSL certificate is most likely self-signed.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         certificate_data:
             description:
                 - The data of the SSL certificate.
+                - Returned for get operation
             returned: on success
             type: str
             sample: this-is-not-the-secret
@@ -382,8 +393,8 @@ waas_certificates:
         "serial_number": "serial_number_example",
         "version": 56,
         "signature_algorithm": "signature_algorithm_example",
-        "time_not_valid_before": "2018-11-16T21:10:29Z",
-        "time_not_valid_after": "2018-11-16T21:10:29Z",
+        "time_not_valid_before": "2013-10-20T19:20:30+01:00",
+        "time_not_valid_after": "2013-10-20T19:20:30+01:00",
         "public_key_info": {
             "algorithm": "algorithm_example",
             "exponent": 56,
@@ -397,7 +408,7 @@ waas_certificates:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "is_trust_verification_disabled": true,
         "certificate_data": "this-is-not-the-secret"
     }]

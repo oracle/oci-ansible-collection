@@ -63,7 +63,7 @@ EXAMPLES = """
     exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    exadata_type: [ "$p.getValue()" ]
+    exadata_type: [ "exadata_type_example" ]
     sort_order: ASC
     sort_by: name
 

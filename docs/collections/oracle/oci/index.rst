@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.36.0
+Collection version 2.37.0
 
 .. toctree::
     :maxdepth: 1
@@ -122,6 +122,7 @@ Modules
 * :ref:`oci_blockchain_platform_facts <ansible_collections.oracle.oci.oci_blockchain_platform_facts_module>` -- Fetches details about one or multiple BlockchainPlatform resources in Oracle Cloud Infrastructure
 * :ref:`oci_blockchain_platform_osn <ansible_collections.oracle.oci.oci_blockchain_platform_osn_module>` -- Manage a BlockchainPlatformOsn resource in Oracle Cloud Infrastructure
 * :ref:`oci_blockchain_platform_osn_facts <ansible_collections.oracle.oci.oci_blockchain_platform_osn_facts_module>` -- Fetches details about one or multiple BlockchainPlatformOsn resources in Oracle Cloud Infrastructure
+* :ref:`oci_blockchain_platform_patch_facts <ansible_collections.oracle.oci.oci_blockchain_platform_patch_facts_module>` -- Fetches details about one or multiple BlockchainPlatformPatch resources in Oracle Cloud Infrastructure
 * :ref:`oci_blockchain_platform_peer <ansible_collections.oracle.oci.oci_blockchain_platform_peer_module>` -- Manage a BlockchainPlatformPeer resource in Oracle Cloud Infrastructure
 * :ref:`oci_blockchain_platform_peer_facts <ansible_collections.oracle.oci.oci_blockchain_platform_peer_facts_module>` -- Fetches details about one or multiple BlockchainPlatformPeer resources in Oracle Cloud Infrastructure
 * :ref:`oci_blockstorage_block_volume_replica_facts <ansible_collections.oracle.oci.oci_blockstorage_block_volume_replica_facts_module>` -- Fetches details about one or multiple BlockVolumeReplica resources in Oracle Cloud Infrastructure
@@ -314,6 +315,7 @@ Modules
 * :ref:`oci_data_safe_private_endpoint_actions <ansible_collections.oracle.oci.oci_data_safe_private_endpoint_actions_module>` -- Perform actions on a DataSafePrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_private_endpoint_facts <ansible_collections.oracle.oci.oci_data_safe_private_endpoint_facts_module>` -- Fetches details about one or multiple DataSafePrivateEndpoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_security_assessment <ansible_collections.oracle.oci.oci_data_safe_security_assessment_module>` -- Manage a SecurityAssessment resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_safe_security_assessment_actions <ansible_collections.oracle.oci.oci_data_safe_security_assessment_actions_module>` -- Perform actions on a SecurityAssessment resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_security_assessment_comparison_facts <ansible_collections.oracle.oci.oci_data_safe_security_assessment_comparison_facts_module>` -- Fetches details about a SecurityAssessmentComparison resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_security_assessment_facts <ansible_collections.oracle.oci.oci_data_safe_security_assessment_facts_module>` -- Fetches details about one or multiple SecurityAssessment resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_target_database <ansible_collections.oracle.oci.oci_data_safe_target_database_module>` -- Manage a TargetDatabase resource in Oracle Cloud Infrastructure
@@ -321,6 +323,7 @@ Modules
 * :ref:`oci_data_safe_target_database_facts <ansible_collections.oracle.oci.oci_data_safe_target_database_facts_module>` -- Fetches details about one or multiple TargetDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_user_aggregation_facts <ansible_collections.oracle.oci.oci_data_safe_user_aggregation_facts_module>` -- Fetches details about one or multiple UserAggregation resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_user_assessment <ansible_collections.oracle.oci.oci_data_safe_user_assessment_module>` -- Manage an UserAssessment resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_safe_user_assessment_actions <ansible_collections.oracle.oci.oci_data_safe_user_assessment_actions_module>` -- Perform actions on an UserAssessment resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_user_assessment_comparison_facts <ansible_collections.oracle.oci.oci_data_safe_user_assessment_comparison_facts_module>` -- Fetches details about a UserAssessmentComparison resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_user_assessment_facts <ansible_collections.oracle.oci.oci_data_safe_user_assessment_facts_module>` -- Fetches details about one or multiple UserAssessment resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_user_facts <ansible_collections.oracle.oci.oci_data_safe_user_facts_module>` -- Fetches details about one or multiple User resources in Oracle Cloud Infrastructure
@@ -333,12 +336,15 @@ Modules
 * :ref:`oci_data_science_job_run_actions <ansible_collections.oracle.oci.oci_data_science_job_run_actions_module>` -- Perform actions on a JobRun resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_job_run_facts <ansible_collections.oracle.oci.oci_data_science_job_run_facts_module>` -- Fetches details about one or multiple JobRun resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_job_shape_facts <ansible_collections.oracle.oci.oci_data_science_job_shape_facts_module>` -- Fetches details about one or multiple JobShape resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_model <ansible_collections.oracle.oci.oci_data_science_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_model_actions <ansible_collections.oracle.oci.oci_data_science_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_artifact <ansible_collections.oracle.oci.oci_data_science_model_artifact_module>` -- Manage a ModelArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_artifact_facts <ansible_collections.oracle.oci.oci_data_science_model_artifact_facts_module>` -- Fetches details about a ModelArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_deployment <ansible_collections.oracle.oci.oci_data_science_model_deployment_module>` -- Manage a ModelDeployment resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_deployment_actions <ansible_collections.oracle.oci.oci_data_science_model_deployment_actions_module>` -- Perform actions on a ModelDeployment resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_deployment_facts <ansible_collections.oracle.oci.oci_data_science_model_deployment_facts_module>` -- Fetches details about one or multiple ModelDeployment resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_deployment_shape_facts <ansible_collections.oracle.oci.oci_data_science_model_deployment_shape_facts_module>` -- Fetches details about one or multiple ModelDeploymentShape resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_model_facts <ansible_collections.oracle.oci.oci_data_science_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_provenance <ansible_collections.oracle.oci.oci_data_science_model_provenance_module>` -- Manage a ModelProvenance resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_provenance_facts <ansible_collections.oracle.oci.oci_data_science_model_provenance_facts_module>` -- Fetches details about a ModelProvenance resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_notebook_session <ansible_collections.oracle.oci.oci_data_science_notebook_session_module>` -- Manage a NotebookSession resource in Oracle Cloud Infrastructure
@@ -448,6 +454,8 @@ Modules
 * :ref:`oci_database_management_awr_db_wait_event_bucket_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_wait_event_bucket_facts_module>` -- Fetches details about a AwrDbWaitEventBucket resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_wait_event_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_wait_event_facts_module>` -- Fetches details about a AwrDbWaitEvent resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_cluster_cache_metric_facts <ansible_collections.oracle.oci.oci_database_management_cluster_cache_metric_facts_module>` -- Fetches details about a ClusterCacheMetric resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_consumer_group_privilege_facts <ansible_collections.oracle.oci.oci_database_management_consumer_group_privilege_facts_module>` -- Fetches details about one or multiple ConsumerGroupPrivilege resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_data_access_container_facts <ansible_collections.oracle.oci.oci_database_management_data_access_container_facts_module>` -- Fetches details about one or multiple DataAccessContainer resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_database_fleet_health_metrics_facts <ansible_collections.oracle.oci.oci_database_management_database_fleet_health_metrics_facts_module>` -- Fetches details about a DatabaseFleetHealthMetrics resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_database_home_metrics_facts <ansible_collections.oracle.oci.oci_database_management_database_home_metrics_facts_module>` -- Fetches details about a DatabaseHomeMetrics resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_database_parameter_actions <ansible_collections.oracle.oci.oci_database_management_database_parameter_actions_module>` -- Perform actions on a DatabaseParameter resource in Oracle Cloud Infrastructure
@@ -455,18 +463,31 @@ Modules
 * :ref:`oci_database_management_db_management_private_endpoint <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_module>` -- Manage a DbManagementPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_db_management_private_endpoint_actions <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_actions_module>` -- Perform actions on a DbManagementPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_db_management_private_endpoint_facts <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_facts_module>` -- Fetches details about one or multiple DbManagementPrivateEndpoint resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_execution_plan_stats_comparision_facts <ansible_collections.oracle.oci.oci_database_management_execution_plan_stats_comparision_facts_module>` -- Fetches details about a ExecutionPlanStatsComparision resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job <ansible_collections.oracle.oci.oci_database_management_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_actions <ansible_collections.oracle.oci.oci_database_management_job_actions_module>` -- Perform actions on a Job resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_execution_facts <ansible_collections.oracle.oci.oci_database_management_job_execution_facts_module>` -- Fetches details about one or multiple JobExecution resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_executions_status_summary_facts <ansible_collections.oracle.oci.oci_database_management_job_executions_status_summary_facts_module>` -- Fetches details about one or multiple JobExecutionsStatusSummary resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_facts <ansible_collections.oracle.oci.oci_database_management_job_facts_module>` -- Fetches details about one or multiple Job resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_run_facts <ansible_collections.oracle.oci.oci_database_management_job_run_facts_module>` -- Fetches details about one or multiple JobRun resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_managed_database_actions <ansible_collections.oracle.oci.oci_database_management_managed_database_actions_module>` -- Perform actions on a ManagedDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_facts <ansible_collections.oracle.oci.oci_database_management_managed_database_facts_module>` -- Fetches details about one or multiple ManagedDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group <ansible_collections.oracle.oci.oci_database_management_managed_database_group_module>` -- Manage a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group_actions <ansible_collections.oracle.oci.oci_database_management_managed_database_group_actions_module>` -- Perform actions on a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group_facts <ansible_collections.oracle.oci.oci_database_management_managed_database_group_facts_module>` -- Fetches details about one or multiple ManagedDatabaseGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_object_privilege_facts <ansible_collections.oracle.oci.oci_database_management_object_privilege_facts_module>` -- Fetches details about one or multiple ObjectPrivilege resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_pdb_metrics_facts <ansible_collections.oracle.oci.oci_database_management_pdb_metrics_facts_module>` -- Fetches details about a PdbMetrics resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_proxied_for_user_facts <ansible_collections.oracle.oci.oci_database_management_proxied_for_user_facts_module>` -- Fetches details about one or multiple ProxiedForUser resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_proxy_user_facts <ansible_collections.oracle.oci.oci_database_management_proxy_user_facts_module>` -- Fetches details about one or multiple ProxyUser resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_role_facts <ansible_collections.oracle.oci.oci_database_management_role_facts_module>` -- Fetches details about one or multiple Role resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_sql_tuning_advisor_task_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_advisor_task_facts_module>` -- Fetches details about one or multiple SqlTuningAdvisorTask resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_sql_tuning_advisor_task_finding_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_advisor_task_finding_facts_module>` -- Fetches details about one or multiple SqlTuningAdvisorTaskFinding resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_sql_tuning_advisor_task_recommendation_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_advisor_task_recommendation_facts_module>` -- Fetches details about one or multiple SqlTuningAdvisorTaskRecommendation resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_sql_tuning_advisor_task_sql_execution_plan_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_advisor_task_sql_execution_plan_facts_module>` -- Fetches details about a SqlTuningAdvisorTaskSqlExecutionPlan resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_sql_tuning_advisor_task_summary_report_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_advisor_task_summary_report_facts_module>` -- Fetches details about a SqlTuningAdvisorTaskSummaryReport resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_system_privilege_facts <ansible_collections.oracle.oci.oci_database_management_system_privilege_facts_module>` -- Fetches details about one or multiple SystemPrivilege resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_tablespace_facts <ansible_collections.oracle.oci.oci_database_management_tablespace_facts_module>` -- Fetches details about one or multiple Tablespace resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_user_facts <ansible_collections.oracle.oci.oci_database_management_user_facts_module>` -- Fetches details about one or multiple User resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_agent <ansible_collections.oracle.oci.oci_database_migration_agent_module>` -- Manage an Agent resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_agent_actions <ansible_collections.oracle.oci.oci_database_migration_agent_actions_module>` -- Perform actions on an Agent resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_agent_facts <ansible_collections.oracle.oci.oci_database_migration_agent_facts_module>` -- Fetches details about one or multiple Agent resources in Oracle Cloud Infrastructure
@@ -671,6 +692,7 @@ Modules
 * :ref:`oci_identity_region_subscription_facts <ansible_collections.oracle.oci.oci_identity_region_subscription_facts_module>` -- Fetches details about one or multiple RegionSubscription resources in Oracle Cloud Infrastructure
 * :ref:`oci_identity_smtp_credential <ansible_collections.oracle.oci.oci_identity_smtp_credential_module>` -- Manage a SmtpCredential resource in Oracle Cloud Infrastructure
 * :ref:`oci_identity_smtp_credential_facts <ansible_collections.oracle.oci.oci_identity_smtp_credential_facts_module>` -- Fetches details about one or multiple SmtpCredential resources in Oracle Cloud Infrastructure
+* :ref:`oci_identity_standard_tag_namespace_template_facts <ansible_collections.oracle.oci.oci_identity_standard_tag_namespace_template_facts_module>` -- Fetches details about one or multiple StandardTagNamespaceTemplate resources in Oracle Cloud Infrastructure
 * :ref:`oci_identity_tag <ansible_collections.oracle.oci.oci_identity_tag_module>` -- Manage a Tag resource in Oracle Cloud Infrastructure
 * :ref:`oci_identity_tag_actions <ansible_collections.oracle.oci.oci_identity_tag_actions_module>` -- Perform actions on a Tag resource in Oracle Cloud Infrastructure
 * :ref:`oci_identity_tag_default <ansible_collections.oracle.oci.oci_identity_tag_default_module>` -- Manage a TagDefault resource in Oracle Cloud Infrastructure
@@ -852,6 +874,7 @@ Modules
 * :ref:`oci_mysql_heat_wave_cluster_memory_estimate_facts <ansible_collections.oracle.oci.oci_mysql_heat_wave_cluster_memory_estimate_facts_module>` -- Fetches details about a HeatWaveClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_shape_facts <ansible_collections.oracle.oci.oci_mysql_shape_facts_module>` -- Fetches details about one or multiple Shape resources in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_version_facts <ansible_collections.oracle.oci.oci_mysql_version_facts_module>` -- Fetches details about one or multiple Version resources in Oracle Cloud Infrastructure
+* :ref:`oci_network_allowed_ike_ip_sec_parameters_facts <ansible_collections.oracle.oci.oci_network_allowed_ike_ip_sec_parameters_facts_module>` -- Fetches details about a AllowedIkeIpSecParameters resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_byoip_allocated_range_facts <ansible_collections.oracle.oci.oci_network_byoip_allocated_range_facts_module>` -- Fetches details about one or multiple ByoipAllocatedRange resources in Oracle Cloud Infrastructure
 * :ref:`oci_network_byoip_range <ansible_collections.oracle.oci.oci_network_byoip_range_module>` -- Manage a ByoipRange resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_byoip_range_actions <ansible_collections.oracle.oci.oci_network_byoip_range_actions_module>` -- Perform actions on a ByoipRange resource in Oracle Cloud Infrastructure
@@ -907,6 +930,7 @@ Modules
 * :ref:`oci_network_ip_sec_connection_tunnel_cpe_device_config <ansible_collections.oracle.oci.oci_network_ip_sec_connection_tunnel_cpe_device_config_module>` -- Manage an IpSecConnectionTunnelCpeDeviceConfig resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_ip_sec_connection_tunnel_cpe_device_config_content_facts <ansible_collections.oracle.oci.oci_network_ip_sec_connection_tunnel_cpe_device_config_content_facts_module>` -- Fetches details about a IpSecConnectionTunnelCpeDeviceConfigContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_ip_sec_connection_tunnel_cpe_device_config_facts <ansible_collections.oracle.oci.oci_network_ip_sec_connection_tunnel_cpe_device_config_facts_module>` -- Fetches details about a IpSecConnectionTunnelCpeDeviceConfig resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_ip_sec_connection_tunnel_error_facts <ansible_collections.oracle.oci.oci_network_ip_sec_connection_tunnel_error_facts_module>` -- Fetches details about a IpSecConnectionTunnelError resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_ip_sec_connection_tunnel_facts <ansible_collections.oracle.oci.oci_network_ip_sec_connection_tunnel_facts_module>` -- Fetches details about one or multiple IpSecConnectionTunnel resources in Oracle Cloud Infrastructure
 * :ref:`oci_network_ip_sec_connection_tunnel_shared_secret <ansible_collections.oracle.oci.oci_network_ip_sec_connection_tunnel_shared_secret_module>` -- Manage an IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_ip_sec_connection_tunnel_shared_secret_facts <ansible_collections.oracle.oci.oci_network_ip_sec_connection_tunnel_shared_secret_facts_module>` -- Fetches details about a IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
@@ -969,6 +993,8 @@ Modules
 * :ref:`oci_network_subnet_actions <ansible_collections.oracle.oci.oci_network_subnet_actions_module>` -- Perform actions on a Subnet resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_subnet_facts <ansible_collections.oracle.oci.oci_network_subnet_facts_module>` -- Fetches details about one or multiple Subnet resources in Oracle Cloud Infrastructure
 * :ref:`oci_network_subnet_topology_facts <ansible_collections.oracle.oci.oci_network_subnet_topology_facts_module>` -- Fetches details about a SubnetTopology resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_tunnel_route_facts <ansible_collections.oracle.oci.oci_network_tunnel_route_facts_module>` -- Fetches details about one or multiple TunnelRoute resources in Oracle Cloud Infrastructure
+* :ref:`oci_network_tunnel_security_association_facts <ansible_collections.oracle.oci.oci_network_tunnel_security_association_facts_module>` -- Fetches details about one or multiple TunnelSecurityAssociation resources in Oracle Cloud Infrastructure
 * :ref:`oci_network_vcn <ansible_collections.oracle.oci.oci_network_vcn_module>` -- Manage a Vcn resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_vcn_actions <ansible_collections.oracle.oci.oci_network_vcn_actions_module>` -- Perform actions on a Vcn resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_vcn_dns_resolver_association_facts <ansible_collections.oracle.oci.oci_network_vcn_dns_resolver_association_facts_module>` -- Fetches details about a VcnDnsResolverAssociation resource in Oracle Cloud Infrastructure
@@ -1371,6 +1397,7 @@ Modules
     oci_blockchain_platform_facts_module
     oci_blockchain_platform_osn_module
     oci_blockchain_platform_osn_facts_module
+    oci_blockchain_platform_patch_facts_module
     oci_blockchain_platform_peer_module
     oci_blockchain_platform_peer_facts_module
     oci_blockstorage_block_volume_replica_facts_module
@@ -1563,6 +1590,7 @@ Modules
     oci_data_safe_private_endpoint_actions_module
     oci_data_safe_private_endpoint_facts_module
     oci_data_safe_security_assessment_module
+    oci_data_safe_security_assessment_actions_module
     oci_data_safe_security_assessment_comparison_facts_module
     oci_data_safe_security_assessment_facts_module
     oci_data_safe_target_database_module
@@ -1570,6 +1598,7 @@ Modules
     oci_data_safe_target_database_facts_module
     oci_data_safe_user_aggregation_facts_module
     oci_data_safe_user_assessment_module
+    oci_data_safe_user_assessment_actions_module
     oci_data_safe_user_assessment_comparison_facts_module
     oci_data_safe_user_assessment_facts_module
     oci_data_safe_user_facts_module
@@ -1582,12 +1611,15 @@ Modules
     oci_data_science_job_run_actions_module
     oci_data_science_job_run_facts_module
     oci_data_science_job_shape_facts_module
+    oci_data_science_model_module
+    oci_data_science_model_actions_module
     oci_data_science_model_artifact_module
     oci_data_science_model_artifact_facts_module
     oci_data_science_model_deployment_module
     oci_data_science_model_deployment_actions_module
     oci_data_science_model_deployment_facts_module
     oci_data_science_model_deployment_shape_facts_module
+    oci_data_science_model_facts_module
     oci_data_science_model_provenance_module
     oci_data_science_model_provenance_facts_module
     oci_data_science_notebook_session_module
@@ -1697,6 +1729,8 @@ Modules
     oci_database_management_awr_db_wait_event_bucket_facts_module
     oci_database_management_awr_db_wait_event_facts_module
     oci_database_management_cluster_cache_metric_facts_module
+    oci_database_management_consumer_group_privilege_facts_module
+    oci_database_management_data_access_container_facts_module
     oci_database_management_database_fleet_health_metrics_facts_module
     oci_database_management_database_home_metrics_facts_module
     oci_database_management_database_parameter_actions_module
@@ -1704,18 +1738,31 @@ Modules
     oci_database_management_db_management_private_endpoint_module
     oci_database_management_db_management_private_endpoint_actions_module
     oci_database_management_db_management_private_endpoint_facts_module
+    oci_database_management_execution_plan_stats_comparision_facts_module
     oci_database_management_job_module
     oci_database_management_job_actions_module
     oci_database_management_job_execution_facts_module
     oci_database_management_job_executions_status_summary_facts_module
     oci_database_management_job_facts_module
     oci_database_management_job_run_facts_module
+    oci_database_management_managed_database_actions_module
     oci_database_management_managed_database_facts_module
     oci_database_management_managed_database_group_module
     oci_database_management_managed_database_group_actions_module
     oci_database_management_managed_database_group_facts_module
+    oci_database_management_object_privilege_facts_module
     oci_database_management_pdb_metrics_facts_module
+    oci_database_management_proxied_for_user_facts_module
+    oci_database_management_proxy_user_facts_module
+    oci_database_management_role_facts_module
+    oci_database_management_sql_tuning_advisor_task_facts_module
+    oci_database_management_sql_tuning_advisor_task_finding_facts_module
+    oci_database_management_sql_tuning_advisor_task_recommendation_facts_module
+    oci_database_management_sql_tuning_advisor_task_sql_execution_plan_facts_module
+    oci_database_management_sql_tuning_advisor_task_summary_report_facts_module
+    oci_database_management_system_privilege_facts_module
     oci_database_management_tablespace_facts_module
+    oci_database_management_user_facts_module
     oci_database_migration_agent_module
     oci_database_migration_agent_actions_module
     oci_database_migration_agent_facts_module
@@ -1920,6 +1967,7 @@ Modules
     oci_identity_region_subscription_facts_module
     oci_identity_smtp_credential_module
     oci_identity_smtp_credential_facts_module
+    oci_identity_standard_tag_namespace_template_facts_module
     oci_identity_tag_module
     oci_identity_tag_actions_module
     oci_identity_tag_default_module
@@ -2101,6 +2149,7 @@ Modules
     oci_mysql_heat_wave_cluster_memory_estimate_facts_module
     oci_mysql_shape_facts_module
     oci_mysql_version_facts_module
+    oci_network_allowed_ike_ip_sec_parameters_facts_module
     oci_network_byoip_allocated_range_facts_module
     oci_network_byoip_range_module
     oci_network_byoip_range_actions_module
@@ -2156,6 +2205,7 @@ Modules
     oci_network_ip_sec_connection_tunnel_cpe_device_config_module
     oci_network_ip_sec_connection_tunnel_cpe_device_config_content_facts_module
     oci_network_ip_sec_connection_tunnel_cpe_device_config_facts_module
+    oci_network_ip_sec_connection_tunnel_error_facts_module
     oci_network_ip_sec_connection_tunnel_facts_module
     oci_network_ip_sec_connection_tunnel_shared_secret_module
     oci_network_ip_sec_connection_tunnel_shared_secret_facts_module
@@ -2218,6 +2268,8 @@ Modules
     oci_network_subnet_actions_module
     oci_network_subnet_facts_module
     oci_network_subnet_topology_facts_module
+    oci_network_tunnel_route_facts_module
+    oci_network_tunnel_security_association_facts_module
     oci_network_vcn_module
     oci_network_vcn_actions_module
     oci_network_vcn_dns_resolver_association_facts_module

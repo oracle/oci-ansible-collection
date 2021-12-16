@@ -80,8 +80,8 @@ EXAMPLES = """
 - name: Create external_container_database
   oci_database_external_container_database:
     # required
-    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-    display_name: myTestExternalCdb
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -90,7 +90,7 @@ EXAMPLES = """
 - name: Update external_container_database
   oci_database_external_container_database:
     # required
-    display_name: myTestExternalCdb
+    display_name: display_name_example
     external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -100,8 +100,8 @@ EXAMPLES = """
 - name: Update external_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_container_database:
     # required
-    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-    display_name: myTestExternalCdb
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -116,8 +116,8 @@ EXAMPLES = """
 - name: Delete external_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_container_database:
     # required
-    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-    display_name: myTestExternalCdb
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """

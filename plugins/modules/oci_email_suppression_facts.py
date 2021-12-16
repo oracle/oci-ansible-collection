@@ -151,6 +151,7 @@ suppressions:
                 - "The last date and time the suppression prevented submission
                   in \\"YYYY-MM-ddThh:mmZ\\"
                   format with a Z offset, as defined by RFC 3339."
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -159,6 +160,7 @@ suppressions:
                 - The value of the Message-ID header from the email that triggered a suppression.
                   This value is as defined in RFC 5322 section 3.6.4, excluding angle-brackets.
                   Not provided for all types of suppressions.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.message.oc1..xxxxxxEXAMPLExxxxxx"
@@ -167,6 +169,7 @@ suppressions:
                 - The specific error message returned by a system that resulted in the suppression.
                   This message is usually an SMTP error code with additional descriptive text.
                   Not provided for all types of suppressions.
+                - Returned for get operation
             returned: on success
             type: str
             sample: error_detail_example
@@ -176,6 +179,7 @@ suppressions:
                   Will be set to either the remote-mta or reporting-mta field from a delivery status notification (RFC 3464) when available.
                   Not provided for all types of suppressions, and not always known.
                 - "Note: Most SMTP errors that cause suppressions come from software run by email receiving systems rather than from OCI email delivery itself."
+                - Returned for get operation
             returned: on success
             type: str
             sample: error_source_example

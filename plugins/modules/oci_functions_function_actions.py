@@ -79,7 +79,7 @@ EXAMPLES = """
     action: invoke
 
     # optional
-    invoke_function_body: B
+    invoke_function_body: invoke_function_body_example
     fn_intent: httprequest
     fn_invoke_type: detached
 

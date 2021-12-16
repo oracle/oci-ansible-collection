@@ -197,7 +197,7 @@ database_insights:
                 - Indicates the status of a database insight in Operations Insights
             returned: on success
             type: str
-            sample: ENABLED
+            sample: DISABLED
         database_type:
             description:
                 - Operations Insights internal representation of the database type.
@@ -285,7 +285,7 @@ database_insights:
                 - OCI database resource type
             returned: on success
             type: str
-            sample: autonomousdatabase
+            sample: database_resource_type_example
         db_additional_details:
             description:
                 - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
@@ -400,7 +400,7 @@ database_insights:
         "entity_source": "AUTONOMOUS_DATABASE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "status": "ENABLED",
+        "status": "DISABLED",
         "database_type": "database_type_example",
         "database_version": "database_version_example",
         "processor_count": 56,
@@ -414,7 +414,7 @@ database_insights:
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "database_name": "database_name_example",
         "database_display_name": "database_display_name_example",
-        "database_resource_type": "autonomousdatabase",
+        "database_resource_type": "database_resource_type_example",
         "db_additional_details": {},
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",

@@ -23,25 +23,25 @@ module: oci_devops_build_pipeline
 short_description: Manage a BuildPipeline resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a BuildPipeline resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new BuildPipeline.
+    - For I(state=present), creates a new build pipeline.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     description:
         description:
-            - Optional description about the BuildPipeline
+            - Optional description about the build pipeline.
             - This parameter is updatable.
         type: str
     display_name:
         description:
-            - BuildPipeline display name
+            - Build pipeline display name. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     project_id:
         description:
-            - Project Identifier
+            - The OCID of the DevOps project.
             - Required for create using I(state=present).
         type: str
     build_pipeline_parameters:
@@ -52,24 +52,24 @@ options:
         suboptions:
             items:
                 description:
-                    - List of Parameters defined for a BuildPipeline.
+                    - List of parameters defined for a build pipeline.
                 type: list
                 elements: dict
                 required: true
                 suboptions:
                     name:
                         description:
-                            - "Name of the parameter (Case-sensitive).
-                              Example: 'Pipeline_param' is not same as 'pipeline_Param'"
+                            - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$.
+                              Example: 'Build_Pipeline_param' is not same as 'build_pipeline_Param'"
                         type: str
                         required: true
                     default_value:
                         description:
-                            - Default value of the parameter
+                            - Default value of the parameter.
                         type: str
                     description:
                         description:
-                            - Description of the parameter
+                            - Description of the parameter.
                         type: str
     freeform_tags:
         description:
@@ -85,7 +85,7 @@ options:
         type: dict
     build_pipeline_id:
         description:
-            - unique BuildPipeline identifier
+            - Unique build pipeline identifier.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -185,49 +185,49 @@ build_pipeline:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
-                - Optional description about the BuildPipeline
+                - Optional description about the build pipeline.
             returned: on success
             type: str
             sample: description_example
         display_name:
             description:
-                - BuildPipeline identifier which can be renamed and is not necessarily unique
+                - Build pipeline display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment Identifier
+                - The OCID of the compartment where the build pipeline is created.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id:
             description:
-                - Project Identifier
+                - The OCID of the DevOps project.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the BuildPipeline was created. An RFC3339 formatted datetime string
+                - The time the build pipeline was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time at which the BuildPipeline was updated. An RFC3339 formatted datetime string
+                - The time the build pipeline was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the BuildPipeline.
+                - The current state of the build pipeline.
             returned: on success
             type: str
             sample: CREATING
@@ -246,26 +246,26 @@ build_pipeline:
             contains:
                 items:
                     description:
-                        - List of Parameters defined for a BuildPipeline.
+                        - List of parameters defined for a build pipeline.
                     returned: on success
                     type: complex
                     contains:
                         name:
                             description:
-                                - "Name of the parameter (Case-sensitive).
-                                  Example: 'Pipeline_param' is not same as 'pipeline_Param'"
+                                - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$.
+                                  Example: 'Build_Pipeline_param' is not same as 'build_pipeline_Param'"
                             returned: on success
                             type: str
                             sample: name_example
                         default_value:
                             description:
-                                - Default value of the parameter
+                                - Default value of the parameter.
                             returned: on success
                             type: str
                             sample: default_value_example
                         description:
                             description:
-                                - Description of the parameter
+                                - Description of the parameter.
                             returned: on success
                             type: str
                             sample: description_example

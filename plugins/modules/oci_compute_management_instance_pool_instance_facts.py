@@ -143,7 +143,7 @@ instance_pool_instances:
                 - The fault domain the instance is running in.
             returned: on success
             type: str
-            sample: fault_domain_example
+            sample: FAULT-DOMAIN-1
         instance_configuration_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration
@@ -156,7 +156,7 @@ instance_pool_instances:
                 - The region that contains the availability domain the instance is running in.
             returned: on success
             type: str
-            sample: region_example
+            sample: us-phoenix-1
         shape:
             description:
                 - The shape of the instance. The shape determines the number of CPUs, amount of memory,
@@ -177,7 +177,7 @@ instance_pool_instances:
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         load_balancer_backends:
             description:
                 - The load balancer backends that are configured for the instance.
@@ -215,12 +215,12 @@ instance_pool_instances:
         "lifecycle_state": "ATTACHING",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "fault_domain": "fault_domain_example",
+        "fault_domain": "FAULT-DOMAIN-1",
         "instance_configuration_id": "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx",
-        "region": "region_example",
+        "region": "us-phoenix-1",
         "shape": "shape_example",
         "state": "state_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "load_balancer_backends": [{
             "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
             "backend_set_name": "backend_set_name_example",

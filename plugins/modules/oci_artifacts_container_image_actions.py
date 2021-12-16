@@ -55,14 +55,14 @@ EXAMPLES = """
 - name: Perform action remove_container_version on container_image
   oci_artifacts_container_image_actions:
     # required
-    image_id: "ocid1.containerimage.oc1..exampleuniqueID"
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     version: version_example
     action: remove_container_version
 
 - name: Perform action restore on container_image
   oci_artifacts_container_image_actions:
     # required
-    image_id: "ocid1.containerimage.oc1..exampleuniqueID"
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     action: restore
 
     # optional
@@ -103,14 +103,14 @@ container_image:
                 - "Example: `ubuntu:latest` or `ubuntu:latest@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`"
             returned: on success
             type: str
-            sample: ubuntu:latest
+            sample: display_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image.
                 - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
             returned: on success
             type: str
-            sample: "ocid1.containerimage.oc1..exampleuniqueID"
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         layers:
             description:
                 - Layers of which the image is composed, ordered by the layer digest.
@@ -217,8 +217,8 @@ container_image:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
         "digest": "digest_example",
-        "display_name": "ubuntu:latest",
-        "id": "ocid1.containerimage.oc1..exampleuniqueID",
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "layers": [{
             "digest": "digest_example",
             "size_in_bytes": 56,

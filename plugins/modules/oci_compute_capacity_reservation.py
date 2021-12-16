@@ -296,7 +296,7 @@ compute_capacity_reservation:
                           For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm).
                     returned: on success
                     type: str
-                    sample: fault_domain_example
+                    sample: FAULT-DOMAIN-1
                 instance_shape:
                     description:
                         - The shape to use when launching instances using compute capacity reservations. The shape determines the number of CPUs, the amount of
@@ -358,14 +358,14 @@ compute_capacity_reservation:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - The date and time the compute capacity reservation was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         used_instance_count:
             description:
                 - The total number of instances currently consuming space in
@@ -384,7 +384,7 @@ compute_capacity_reservation:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "is_default_reservation": true,
         "instance_reservation_configs": [{
-            "fault_domain": "fault_domain_example",
+            "fault_domain": "FAULT-DOMAIN-1",
             "instance_shape": "instance_shape_example",
             "instance_shape_config": {
                 "ocpus": 3.4,
@@ -395,8 +395,8 @@ compute_capacity_reservation:
         }],
         "lifecycle_state": "ACTIVE",
         "reserved_instance_count": 56,
-        "time_updated": "2016-08-25T21:10:29.600Z",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "used_instance_count": 56
     }
 """

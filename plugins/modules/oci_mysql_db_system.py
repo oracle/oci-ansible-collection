@@ -261,21 +261,21 @@ EXAMPLES = """
 - name: Create db_system
   oci_mysql_db_system:
     # required
-    compartment_id: "ocid1.compartment.oc1..UniqueID"
-    shape_name: VM.Standard.E2.1
-    subnet_id: ocid1.subnet.oc1.iad.UniqueID
-    admin_username: adminUser
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    shape_name: shape_name_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    admin_username: admin_username_example
     admin_password: example-password
 
     # optional
-    display_name: DBSystem001
-    description: MySQL Database Service
+    display_name: display_name_example
+    description: description_example
     is_highly_available: true
     availability_domain: Uocm:PHX-AD-1
-    fault_domain: fault_domain_example
-    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
-    mysql_version: 8.0.20
-    data_storage_size_in_gbs: 63
+    fault_domain: FAULT-DOMAIN-1
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+    mysql_version: mysql_version_example
+    data_storage_size_in_gbs: 56
     hostname_label: hostname_label_example
     ip_address: ip_address_example
     port: 56
@@ -283,7 +283,7 @@ EXAMPLES = """
     backup_policy:
       # optional
       is_enabled: true
-      window_start_time: 01:00-00:00
+      window_start_time: window_start_time_example
       retention_in_days: 56
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -303,18 +303,18 @@ EXAMPLES = """
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: DBSystem001
-    description: MySQL Database Service
+    display_name: display_name_example
+    description: description_example
     is_highly_available: true
     availability_domain: Uocm:PHX-AD-1
-    fault_domain: fault_domain_example
-    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
-    shape_name: VM.Standard.E2.1
-    mysql_version: 8.0.20
-    subnet_id: ocid1.subnet.oc1.iad.UniqueID
-    admin_username: adminUser
+    fault_domain: FAULT-DOMAIN-1
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+    shape_name: shape_name_example
+    mysql_version: mysql_version_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    admin_username: admin_username_example
     admin_password: example-password
-    data_storage_size_in_gbs: 63
+    data_storage_size_in_gbs: 56
     hostname_label: hostname_label_example
     ip_address: ip_address_example
     port: 56
@@ -322,7 +322,7 @@ EXAMPLES = """
     backup_policy:
       # optional
       is_enabled: true
-      window_start_time: 01:00-00:00
+      window_start_time: window_start_time_example
       retention_in_days: 56
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -335,21 +335,21 @@ EXAMPLES = """
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
     # required
-    display_name: DBSystem001
-    compartment_id: "ocid1.compartment.oc1..UniqueID"
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    description: MySQL Database Service
+    description: description_example
     is_highly_available: true
     availability_domain: Uocm:PHX-AD-1
-    fault_domain: fault_domain_example
-    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
-    shape_name: VM.Standard.E2.1
-    mysql_version: 8.0.20
-    subnet_id: ocid1.subnet.oc1.iad.UniqueID
-    admin_username: adminUser
+    fault_domain: FAULT-DOMAIN-1
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+    shape_name: shape_name_example
+    mysql_version: mysql_version_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    admin_username: admin_username_example
     admin_password: example-password
-    data_storage_size_in_gbs: 63
+    data_storage_size_in_gbs: 56
     hostname_label: hostname_label_example
     ip_address: ip_address_example
     port: 56
@@ -357,7 +357,7 @@ EXAMPLES = """
     backup_policy:
       # optional
       is_enabled: true
-      window_start_time: 01:00-00:00
+      window_start_time: window_start_time_example
       retention_in_days: 56
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -376,8 +376,8 @@ EXAMPLES = """
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
     # required
-    display_name: DBSystem001
-    compartment_id: "ocid1.compartment.oc1..UniqueID"
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -443,7 +443,7 @@ db_system:
                         - The fault domain in which the DB System is placed.
                     returned: on success
                     type: str
-                    sample: fault_domain_example
+                    sample: FAULT-DOMAIN-1
         is_analytics_cluster_attached:
             description:
                 - "DEPRECATED -- please use `isHeatWaveClusterAttached` instead.
@@ -554,7 +554,7 @@ db_system:
                 - For a standalone DB System, this defines the fault domain in which the DB System is placed.
             returned: on success
             type: str
-            sample: fault_domain_example
+            sample: FAULT-DOMAIN-1
         shape_name:
             description:
                 - "The shape of the primary instances of the DB System. The shape
@@ -948,7 +948,7 @@ db_system:
         "is_highly_available": true,
         "current_placement": {
             "availability_domain": "Uocm:PHX-AD-1",
-            "fault_domain": "fault_domain_example"
+            "fault_domain": "FAULT-DOMAIN-1"
         },
         "is_analytics_cluster_attached": true,
         "analytics_cluster": {
@@ -967,7 +967,7 @@ db_system:
             "time_updated": "2013-10-20T19:20:30+01:00"
         },
         "availability_domain": "Uocm:PHX-AD-1",
-        "fault_domain": "fault_domain_example",
+        "fault_domain": "FAULT-DOMAIN-1",
         "shape_name": "shape_name_example",
         "mysql_version": "mysql_version_example",
         "backup_policy": {

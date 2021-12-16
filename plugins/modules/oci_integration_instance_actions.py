@@ -115,13 +115,13 @@ EXAMPLES = """
       network_endpoint_type: PUBLIC
 
       # optional
-      allowlisted_http_ips: [ "null" ]
+      allowlisted_http_ips: [ "allowlisted_http_ips_example" ]
       allowlisted_http_vcns:
       - # required
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        allowlisted_ips: [ "null" ]
+        allowlisted_ips: [ "allowlisted_ips_example" ]
       is_integration_vcn_allowlisted: true
 
 - name: Perform action start on integration_instance

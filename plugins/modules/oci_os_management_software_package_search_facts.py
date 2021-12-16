@@ -66,8 +66,8 @@ EXAMPLES = """
 
     # optional
     software_package_name: software_package_name_example
-    display_name: My new resource
-    cve_name: CVE-2006-4535
+    display_name: display_name_example
+    cve_name: cve_name_example
     sort_order: ASC
     sort_by: TIMECREATED
 

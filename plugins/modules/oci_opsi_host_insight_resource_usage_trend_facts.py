@@ -147,15 +147,15 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
-    platform_type: [ "$p.getValue()" ]
-    id: [ "$p.getValue()" ]
-    exadata_insight_id: [ "$p.getValue()" ]
+    platform_type: [ "LINUX" ]
+    id: [ "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx" ]
+    exadata_insight_id: [ "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx" ]
     sort_order: ASC
     sort_by: endTimestamp
-    defined_tag_equals: [ "$p.getValue()" ]
-    freeform_tag_equals: [ "$p.getValue()" ]
-    defined_tag_exists: [ "$p.getValue()" ]
-    freeform_tag_exists: [ "$p.getValue()" ]
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
 
 """
@@ -172,13 +172,13 @@ host_insight_resource_usage_trend:
                 - The start timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
             type: str
-            sample: "2020-12-06T00:00:00.000Z"
+            sample: "2013-10-20T19:20:30+01:00"
         resource_metric:
             description:
                 - Defines the type of resource metric (CPU, Physical Memory, Logical Memory)
@@ -196,7 +196,7 @@ host_insight_resource_usage_trend:
                 - Time duration in milliseconds between data points (one hour or one day).
             returned: on success
             type: int
-            sample: 86400000
+            sample: 56
         usage_data:
             description:
                 - Usage Data with timestamp.
@@ -208,29 +208,29 @@ host_insight_resource_usage_trend:
                         - The timestamp in which the current sampling period ends in RFC 3339 format.
                     returned: on success
                     type: str
-                    sample: "2020-05-01T00:00:00.000Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 usage:
                     description:
                         - Total amount used of the resource metric type (CPU, STORAGE).
                     returned: on success
                     type: float
-                    sample: 34.5
+                    sample: 1.2
                 capacity:
                     description:
                         - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
                     returned: on success
                     type: float
-                    sample: 222.3
+                    sample: 1.2
     sample: {
-        "time_interval_start": "2020-12-06T00:00:00.000Z",
-        "time_interval_end": "2020-12-06T00:00:00.000Z",
+        "time_interval_start": "2013-10-20T19:20:30+01:00",
+        "time_interval_end": "2013-10-20T19:20:30+01:00",
         "resource_metric": "CPU",
         "usage_unit": "CORES",
-        "item_duration_in_ms": 86400000,
+        "item_duration_in_ms": 56,
         "usage_data": [{
-            "end_timestamp": "2020-05-01T00:00:00.000Z",
-            "usage": 34.5,
-            "capacity": 222.3
+            "end_timestamp": "2013-10-20T19:20:30+01:00",
+            "usage": 1.2,
+            "capacity": 1.2
         }]
     }
 """

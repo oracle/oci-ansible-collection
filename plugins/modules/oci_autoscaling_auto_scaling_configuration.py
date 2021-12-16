@@ -293,23 +293,23 @@ EXAMPLES = """
 - name: Create auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     policies:
     - # required
-      policy_type: threshold
+      policy_type: scheduled
       execution_schedule:
         # required
         type: cron
         timezone: UTC
-        expression: "0 15 10 ? * *"
+        expression: expression_example
 
       # optional
       capacity:
         # optional
-        max: 50
-        min: 10
-        initial: 15
-      display_name: example_autoscaling_policy
+        max: 56
+        min: 56
+        initial: 56
+      display_name: display_name_example
       is_enabled: true
       resource_action:
         # required
@@ -318,13 +318,13 @@ EXAMPLES = """
     resource:
       # required
       type: instancePool
-      id: "ocid1.instancepool.oc1..unique_ID"
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_autoscaling_configuration
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    cool_down_in_seconds: 300
+    cool_down_in_seconds: 56
     is_enabled: true
 
 - name: Update auto_scaling_configuration
@@ -334,21 +334,21 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: example_autoscaling_configuration
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    cool_down_in_seconds: 300
+    cool_down_in_seconds: 56
     is_enabled: true
 
 - name: Update auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_autoscaling_auto_scaling_configuration:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: example_autoscaling_configuration
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    cool_down_in_seconds: 300
+    cool_down_in_seconds: 56
     is_enabled: true
 
 - name: Delete auto_scaling_configuration
@@ -360,8 +360,8 @@ EXAMPLES = """
 - name: Delete auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_autoscaling_auto_scaling_configuration:
     # required
-    compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: example_autoscaling_configuration
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -507,7 +507,7 @@ auto_scaling_configuration:
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2016-08-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 is_enabled:
                     description:
                         - Whether the autoscaling policy is enabled.
@@ -541,7 +541,7 @@ auto_scaling_configuration:
                                 - "Example: `0 15 10 ? * *`"
                             returned: on success
                             type: str
-                            sample: "0 15 10 ? * *"
+                            sample: expression_example
                 resource_action:
                     description:
                         - ""
@@ -634,7 +634,7 @@ auto_scaling_configuration:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         max_resource_count:
             description:
                 - The maximum number of resources to scale out to.
@@ -668,12 +668,12 @@ auto_scaling_configuration:
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example",
             "policy_type": "scheduled",
-            "time_created": "2016-08-25T21:10:29.600Z",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "is_enabled": true,
             "execution_schedule": {
                 "type": "cron",
                 "timezone": "UTC",
-                "expression": "0 15 10 ? * *"
+                "expression": "expression_example"
             },
             "resource_action": {
                 "action_type": "power",
@@ -695,7 +695,7 @@ auto_scaling_configuration:
                 }
             }]
         }],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "max_resource_count": 56,
         "min_resource_count": 56
     }

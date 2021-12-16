@@ -154,24 +154,24 @@ EXAMPLES = """
     # required
     metric_data:
     - # required
-      namespace: my_namespace
-      compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
-      name: my_app.success_rate
+      namespace: namespace_example
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+      name: name_example
       dimensions: null
       datapoints:
       - # required
-        timestamp: 2019-02-01T01:02:29.600Z
-        value: 10.23
+        timestamp: timestamp_example
+        value: 3.4
 
         # optional
         count: 56
 
       # optional
-      resource_group: frontend-fleet
+      resource_group: resource_group_example
       metadata: null
 
     # optional
-    batch_atomicity: NON_ATOMIC
+    batch_atomicity: ATOMIC
 
 """
 
@@ -216,7 +216,7 @@ metric_data:
                                 - "Example: `my_namespace`"
                             returned: on success
                             type: str
-                            sample: my_namespace
+                            sample: namespace_example
                         resource_group:
                             description:
                                 - Resource group to assign to the metric. A resource group is a custom string that you can match when retrieving custom metrics.
@@ -227,13 +227,13 @@ metric_data:
                                 - "Example: `frontend-fleet`"
                             returned: on success
                             type: str
-                            sample: frontend-fleet
+                            sample: resource_group_example
                         compartment_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use for metrics.
                             returned: on success
                             type: str
-                            sample: "ocid1.compartment.oc1..exampleuniqueID"
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         name:
                             description:
                                 - The name of the metric.
@@ -243,7 +243,7 @@ metric_data:
                                 - "Example: `my_app.success_rate`"
                             returned: on success
                             type: str
-                            sample: my_app.success_rate
+                            sample: name_example
                         dimensions:
                             description:
                                 - Qualifiers provided in a metric definition. Available dimensions vary by metric namespace.
@@ -277,14 +277,14 @@ metric_data:
                                         - "Example: `2019-02-01T01:02:29.600Z`"
                                     returned: on success
                                     type: str
-                                    sample: "2019-02-01T01:02:29.600Z"
+                                    sample: "2013-10-20T19:20:30+01:00"
                                 value:
                                     description:
                                         - Numeric value of the metric.
                                         - "Example: `10.23`"
                                     returned: on success
                                     type: float
-                                    sample: 10.23
+                                    sample: 1.2
                                 count:
                                     description:
                                         - The number of occurrences of the associated value in the set of data.
@@ -297,15 +297,15 @@ metric_data:
         "failed_metrics": [{
             "message": "message_example",
             "metric_data": {
-                "namespace": "my_namespace",
-                "resource_group": "frontend-fleet",
-                "compartment_id": "ocid1.compartment.oc1..exampleuniqueID",
-                "name": "my_app.success_rate",
+                "namespace": "namespace_example",
+                "resource_group": "resource_group_example",
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+                "name": "name_example",
                 "dimensions": {},
                 "metadata": {},
                 "datapoints": [{
-                    "timestamp": "2019-02-01T01:02:29.600Z",
-                    "value": 10.23,
+                    "timestamp": "2013-10-20T19:20:30+01:00",
+                    "value": 1.2,
                     "count": 56
                 }]
             }

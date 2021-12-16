@@ -96,34 +96,35 @@ node_pools:
                 - The OCID of the node pool.
             returned: on success
             type: str
-            sample: ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment in which the node pool exists.
             returned: on success
             type: str
-            sample: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_id:
             description:
                 - The OCID of the cluster to which this node pool is attached.
             returned: on success
             type: str
-            sample: ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw
+            sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the node pool.
             returned: on success
             type: str
-            sample: My Node Pool
+            sample: name_example
         kubernetes_version:
             description:
                 - The version of Kubernetes running on the nodes in the node pool.
             returned: on success
             type: str
-            sample: v1.9.4
+            sample: kubernetes_version_example
         node_metadata:
             description:
                 - A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -132,13 +133,13 @@ node_pools:
                 - Deprecated. see `nodeSource`. The OCID of the image running on the nodes in the node pool.
             returned: on success
             type: str
-            sample: ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa
+            sample: "ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx"
         node_image_name:
             description:
                 - Deprecated. see `nodeSource`. The name of the image running on the nodes in the node pool.
             returned: on success
             type: str
-            sample: Oracle-Linux-7.4
+            sample: node_image_name_example
         node_shape_config:
             description:
                 - The shape configuration of the nodes.
@@ -214,7 +215,7 @@ node_pools:
                 - The name of the node shape of the nodes in the node pool.
             returned: on success
             type: str
-            sample: VM.Standard2.4
+            sample: node_shape_example
         initial_node_labels:
             description:
                 - A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
@@ -232,19 +233,19 @@ node_pools:
                         - The value of the pair.
                     returned: on success
                     type: str
-                    sample: myvalue
+                    sample: value_example
         ssh_public_key:
             description:
                 - The SSH public key on each node in the node pool on launch.
             returned: on success
             type: str
-            sample: "ssh-rsa AAAAB3NzaC1yc2abc123..."
+            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         quantity_per_subnet:
             description:
                 - The number of nodes in each subnet.
             returned: on success
             type: int
-            sample: 1
+            sample: 56
         subnet_ids:
             description:
                 - The OCIDs of the subnets in which to place nodes for this node pool.
@@ -254,6 +255,7 @@ node_pools:
         nodes:
             description:
                 - The nodes in the node pool.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -262,19 +264,19 @@ node_pools:
                         - The OCID of the compute instance backing this node.
                     returned: on success
                     type: str
-                    sample: ocid1.instance.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgyswgycdoy3tcmtctmyw
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 name:
                     description:
                         - The name of the node.
                     returned: on success
                     type: str
-                    sample: My Kubernetes Node
+                    sample: name_example
                 kubernetes_version:
                     description:
                         - The version of Kubernetes this node is running.
                     returned: on success
                     type: str
-                    sample: v1.9.4
+                    sample: kubernetes_version_example
                 availability_domain:
                     description:
                         - The name of the availability domain in which this node is placed.
@@ -286,13 +288,13 @@ node_pools:
                         - The OCID of the subnet in which this node is placed.
                     returned: on success
                     type: str
-                    sample: ocid1.subnet.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3ofzxtlyit
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 node_pool_id:
                     description:
                         - The OCID of the node pool to which this node belongs.
                     returned: on success
                     type: str
-                    sample: ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                    sample: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
                 fault_domain:
                     description:
                         - The fault domain of this node.
@@ -304,13 +306,13 @@ node_pools:
                         - The private IP address of this node.
                     returned: on success
                     type: str
-                    sample: 10.0.1.1
+                    sample: private_ip_example
                 public_ip:
                     description:
                         - The public IP address of this node.
                     returned: on success
                     type: str
-                    sample: 129.1.2.3
+                    sample: public_ip_example
                 node_error:
                     description:
                         - An error that may be associated with the node.
@@ -323,38 +325,38 @@ node_pools:
                                   phoenix-1.oraclecloud.com/Content/API/References/apierrors.htm).
                             returned: on success
                             type: str
-                            sample: LimitExceeded
+                            sample: code_example
                         message:
                             description:
                                 - A human-readable error string of the upstream error.
                             returned: on success
                             type: str
-                            sample: error validating payload
+                            sample: message_example
                         status:
                             description:
                                 - The status of the HTTP response encountered in the upstream error.
                             returned: on success
                             type: str
-                            sample: 429
+                            sample: status_example
                         opc_request_id:
                             description:
                                 - Unique Oracle-assigned identifier for the upstream request. If you need to contact Oracle about a particular upstream request,
                                   please provide the request ID.
                             returned: on success
                             type: str
-                            sample: BDA258F920471CFA70CF3655A836EAC3/AC26D111CE04292D5398192DCACCD85F/D74FF67547281CFA70CF3655A60B6DF5
+                            sample: "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
                 lifecycle_state:
                     description:
                         - The state of the node.
                     returned: on success
                     type: str
-                    sample: UPDATING
+                    sample: CREATING
                 lifecycle_details:
                     description:
                         - Details about the state of the node.
                     returned: on success
                     type: str
-                    sample: waiting for SSH
+                    sample: lifecycle_details_example
         node_config_details:
             description:
                 - The configuration of nodes in the node pool.
@@ -398,14 +400,14 @@ node_pools:
                             type: str
                             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
-        "id": "ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
-        "compartment_id": "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq",
-        "cluster_id": "ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw",
-        "name": "My Node Pool",
-        "kubernetes_version": "v1.9.4",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "kubernetes_version": "kubernetes_version_example",
         "node_metadata": {},
-        "node_image_id": "ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa",
-        "node_image_name": "Oracle-Linux-7.4",
+        "node_image_id": "ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx",
+        "node_image_name": "node_image_name_example",
         "node_shape_config": {
             "ocpus": 3.4,
             "memory_in_gbs": 3.4
@@ -420,32 +422,32 @@ node_pools:
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
             "boot_volume_size_in_gbs": 56
         },
-        "node_shape": "VM.Standard2.4",
+        "node_shape": "node_shape_example",
         "initial_node_labels": [{
             "key": "key_example",
-            "value": "myvalue"
+            "value": "value_example"
         }],
-        "ssh_public_key": "ssh-rsa AAAAB3NzaC1yc2abc123...",
-        "quantity_per_subnet": 1,
+        "ssh_public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
+        "quantity_per_subnet": 56,
         "subnet_ids": [],
         "nodes": [{
-            "id": "ocid1.instance.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgyswgycdoy3tcmtctmyw",
-            "name": "My Kubernetes Node",
-            "kubernetes_version": "v1.9.4",
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "name": "name_example",
+            "kubernetes_version": "kubernetes_version_example",
             "availability_domain": "Uocm:PHX-AD-1",
-            "subnet_id": "ocid1.subnet.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3ofzxtlyit",
-            "node_pool_id": "ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "node_pool_id": "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx",
             "fault_domain": "FAULT-DOMAIN-1",
-            "private_ip": "10.0.1.1",
-            "public_ip": "129.1.2.3",
+            "private_ip": "private_ip_example",
+            "public_ip": "public_ip_example",
             "node_error": {
-                "code": "LimitExceeded",
-                "message": "error validating payload",
-                "status": "429",
-                "opc_request_id": "BDA258F920471CFA70CF3655A836EAC3/AC26D111CE04292D5398192DCACCD85F/D74FF67547281CFA70CF3655A60B6DF5"
+                "code": "code_example",
+                "message": "message_example",
+                "status": "status_example",
+                "opc_request_id": "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
             },
-            "lifecycle_state": "UPDATING",
-            "lifecycle_details": "waiting for SSH"
+            "lifecycle_state": "CREATING",
+            "lifecycle_details": "lifecycle_details_example"
         }],
         "node_config_details": {
             "size": 56,

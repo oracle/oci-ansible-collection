@@ -156,7 +156,7 @@ EXAMPLES = """
     is_shown_in_list: true
     is_hidden_in_search: true
     is_event_enabled: true
-    allowed_values: [ "null" ]
+    allowed_values: [ "allowed_values_example" ]
     properties: null
 
 - name: Update custom_property
@@ -177,7 +177,7 @@ EXAMPLES = """
     is_shown_in_list: true
     is_hidden_in_search: true
     is_event_enabled: true
-    allowed_values: [ "null" ]
+    allowed_values: [ "allowed_values_example" ]
     properties: null
 
 - name: Update custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -197,7 +197,7 @@ EXAMPLES = """
     is_shown_in_list: true
     is_hidden_in_search: true
     is_event_enabled: true
-    allowed_values: [ "null" ]
+    allowed_values: [ "allowed_values_example" ]
     properties: null
 
 - name: Delete custom_property
@@ -321,7 +321,7 @@ custom_property:
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-03-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The last time that any change was made to the custom property. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
@@ -430,7 +430,7 @@ custom_property:
                           Example: `2019-03-25T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-03-25T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The last time that any change was made to the configuration. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime
@@ -476,7 +476,7 @@ custom_property:
         "is_service_defined": true,
         "is_hidden_in_search": true,
         "lifecycle_state": "CREATING",
-        "time_created": "2019-03-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
@@ -495,7 +495,7 @@ custom_property:
             "property_id": "ocid1.property.oc1..xxxxxxEXAMPLExxxxxx",
             "property_name": "property_name_example",
             "event_config_status": "ENABLED",
-            "time_created": "2019-03-25T21:10:29.600Z",
+            "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
             "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"

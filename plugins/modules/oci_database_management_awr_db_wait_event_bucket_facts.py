@@ -114,9 +114,9 @@ EXAMPLES = """
     end_sn_id_less_than_or_equal_to: 56
     time_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
     time_less_than_or_equal_to: 2013-10-20T19:20:30+01:00
-    num_bucket: 56
-    min_value: 1.2
-    max_value: 1.2
+    num_bucket: 5
+    min_value: 3.4
+    max_value: 3.4
     container_id: 56
     sort_by: CATEGORY
     sort_order: ASC

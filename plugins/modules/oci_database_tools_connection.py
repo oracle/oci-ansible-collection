@@ -196,25 +196,25 @@ EXAMPLES = """
 - name: Create database_tools_connection with type = ORACLE_DATABASE
   oci_database_tools_connection:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: ORACLE_DATABASE
 
     # optional
-    display_name: ADMIN@DB202005191141_low
+    display_name: display_name_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     related_resource:
       # optional
-      entity_type: DATABASE
-      identifier: ocid1.database.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q
-    connection_string: mydbsystem.mysubnet.myvcn.oraclevcn.com:1521/mydb_phx1ds.mysubnet.myvcn.oraclevcn.com
-    user_name: SYSTEM
+      entity_type: AUTONOMOUSDATABASE
+      identifier: identifier_example
+    connection_string: connection_string_example
+    user_name: user_name_example
     user_password:
       # required
       value_type: SECRETID
 
       # optional
-      secret_id: ocid1.vaultsecret.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     advanced_properties: null
     key_stores:
     - # optional
@@ -231,7 +231,7 @@ EXAMPLES = """
 
         # optional
         secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    private_endpoint_id: ocid1.dbtoolsprivateendpoint.oc1.phx.exampleaaxjx47ignvzufg74jlixkqygujmdctskf47m7d6mndd6vlzafuta
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update database_tools_connection with type = ORACLE_DATABASE
   oci_database_tools_connection:
@@ -239,21 +239,21 @@ EXAMPLES = """
     type: ORACLE_DATABASE
 
     # optional
-    display_name: ADMIN@DB202005191141_low
+    display_name: display_name_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     related_resource:
       # optional
-      entity_type: DATABASE
-      identifier: ocid1.database.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q
-    connection_string: mydbsystem.mysubnet.myvcn.oraclevcn.com:1521/mydb_phx1ds.mysubnet.myvcn.oraclevcn.com
-    user_name: SYSTEM
+      entity_type: AUTONOMOUSDATABASE
+      identifier: identifier_example
+    connection_string: connection_string_example
+    user_name: user_name_example
     user_password:
       # required
       value_type: SECRETID
 
       # optional
-      secret_id: ocid1.vaultsecret.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     advanced_properties: null
     key_stores:
     - # optional
@@ -270,30 +270,30 @@ EXAMPLES = """
 
         # optional
         secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    private_endpoint_id: ocid1.dbtoolsprivateendpoint.oc1.phx.exampleaaxjx47ignvzufg74jlixkqygujmdctskf47m7d6mndd6vlzafuta
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update database_tools_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = ORACLE_DATABASE
   oci_database_tools_connection:
     # required
-    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: ORACLE_DATABASE
 
     # optional
-    display_name: ADMIN@DB202005191141_low
+    display_name: display_name_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     related_resource:
       # optional
-      entity_type: DATABASE
-      identifier: ocid1.database.oc1.phx.exampletksujfufl4bhe5sqkfgn7t7lcrkkpy7km5iwzvg6ycls7r5dlbx6q
-    connection_string: mydbsystem.mysubnet.myvcn.oraclevcn.com:1521/mydb_phx1ds.mysubnet.myvcn.oraclevcn.com
-    user_name: SYSTEM
+      entity_type: AUTONOMOUSDATABASE
+      identifier: identifier_example
+    connection_string: connection_string_example
+    user_name: user_name_example
     user_password:
       # required
       value_type: SECRETID
 
       # optional
-      secret_id: ocid1.vaultsecret.oc1.phx.exampleaihuofciaiazy2u5ko3uyz3sspwd6hf7oqhqmlk5xu3xdetkpui7a
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     advanced_properties: null
     key_stores:
     - # optional
@@ -310,7 +310,7 @@ EXAMPLES = """
 
         # optional
         secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
-    private_endpoint_id: ocid1.dbtoolsprivateendpoint.oc1.phx.exampleaaxjx47ignvzufg74jlixkqygujmdctskf47m7d6mndd6vlzafuta
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete database_tools_connection
   oci_database_tools_connection:
@@ -321,8 +321,8 @@ EXAMPLES = """
 - name: Delete database_tools_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_tools_connection:
     # required
-    display_name: ADMIN@DB202005191141_low
-    compartment_id: "ocid1.tenancy.oc1..exampleazhwqlcqjxznbtjietofx4ll5ez4mr3wkgbrvgiex5rt5nuikvktq"
+    display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """

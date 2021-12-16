@@ -117,9 +117,9 @@ EXAMPLES = """
 - name: Create user
   oci_identity_user:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
-    name: JohnSmith@example.com
-    description: John Smith
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    description: description_example
 
     # optional
     email: email_example
@@ -132,7 +132,7 @@ EXAMPLES = """
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    description: John Smith
+    description: description_example
     email: email_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -140,11 +140,11 @@ EXAMPLES = """
 - name: Update user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_user:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
-    name: JohnSmith@example.com
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
-    description: John Smith
+    description: description_example
     email: email_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -158,8 +158,8 @@ EXAMPLES = """
 - name: Delete user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_user:
     # required
-    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
-    name: JohnSmith@example.com
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -227,7 +227,7 @@ user:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The user's current state. After creating a user, make sure its `lifecycleState` changes from CREATING to
@@ -338,7 +338,7 @@ user:
         "email_verified": true,
         "identity_provider_id": "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx",
         "external_identifier": "external_identifier_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "inactive_status": 56,
         "freeform_tags": {'Department': 'Finance'},

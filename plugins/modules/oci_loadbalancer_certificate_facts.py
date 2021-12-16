@@ -64,7 +64,7 @@ certificates:
                 - "Example: `example_certificate_bundle`"
             returned: on success
             type: str
-            sample: example_certificate_bundle
+            sample: certificate_name_example
         public_certificate:
             description:
                 - The public certificate, in PEM format, that you received from your SSL certificate provider.
@@ -78,7 +78,7 @@ certificates:
                       -----END CERTIFICATE-----"
             returned: on success
             type: str
-            sample: public_certificate_example
+            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         ca_certificate:
             description:
                 - The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider.
@@ -92,11 +92,11 @@ certificates:
                       -----END CERTIFICATE-----"
             returned: on success
             type: str
-            sample: ca_certificate_example
+            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     sample: [{
-        "certificate_name": "example_certificate_bundle",
-        "public_certificate": "public_certificate_example",
-        "ca_certificate": "ca_certificate_example"
+        "certificate_name": "certificate_name_example",
+        "public_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----",
+        "ca_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     }]
 """
 

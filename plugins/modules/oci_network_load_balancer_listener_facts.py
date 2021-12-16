@@ -54,7 +54,7 @@ EXAMPLES = """
   oci_network_load_balancer_listener_facts:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    listener_name: example_listener
+    listener_name: listener_name_example
 
 - name: List listeners
   oci_network_load_balancer_listener_facts:
@@ -79,21 +79,21 @@ listeners:
                 - "Example: `example_listener`"
             returned: on success
             type: str
-            sample: example_listener
+            sample: name_example
         default_backend_set_name:
             description:
                 - The name of the associated backend set.
                 - "Example: `example_backend_set`"
             returned: on success
             type: str
-            sample: example_backend_set
+            sample: default_backend_set_name_example
         port:
             description:
                 - The communication port for the listener.
                 - "Example: `80`"
             returned: on success
             type: int
-            sample: 0
+            sample: 56
         protocol:
             description:
                 - The protocol on which the listener accepts connection requests.
@@ -106,12 +106,12 @@ listeners:
                 - "Example: `TCP`"
             returned: on success
             type: str
-            sample: TCP
+            sample: ANY
     sample: [{
-        "name": "example_listener",
-        "default_backend_set_name": "example_backend_set",
-        "port": 0,
-        "protocol": "TCP"
+        "name": "name_example",
+        "default_backend_set_name": "default_backend_set_name_example",
+        "port": 56,
+        "protocol": "ANY"
     }]
 """
 

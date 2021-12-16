@@ -87,8 +87,8 @@ EXAMPLES = """
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    pdb_conversion_action: pdb_conversion_action_example
-    lifecycle_state: lifecycle_state_example
+    pdb_conversion_action: PRECHECK
+    lifecycle_state: SUCCEEDED
     sort_by: TIMESTARTED
     sort_order: ASC
 

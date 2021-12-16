@@ -79,7 +79,7 @@ EXAMPLES = """
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: My new resource
+    display_name: display_name_example
     sort_order: ASC
     sort_by: TIMECREATED
 
@@ -125,6 +125,7 @@ software_packages:
         last_modified_date:
             description:
                 - date of the last update to the package
+                - Returned for get operation
             returned: on success
             type: str
             sample: last_modified_date_example
@@ -143,18 +144,21 @@ software_packages:
         description:
             description:
                 - description of the package
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
         size_in_bytes:
             description:
                 - size of the package in bytes
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         dependencies:
             description:
                 - list of dependencies for the software package
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -179,6 +183,7 @@ software_packages:
         files:
             description:
                 - list of files for the software package
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -222,6 +227,7 @@ software_packages:
         software_sources:
             description:
                 - list of software sources that provide the software package
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

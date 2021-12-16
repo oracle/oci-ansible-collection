@@ -30,9 +30,13 @@ oracle.oci.oci_devops_trigger -- Manage a Trigger resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.36.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_devops_trigger`.
 
@@ -53,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Trigger resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new Trigger.
+- For *state=present*, creates a new trigger.
 
 
 .. Aliases
@@ -94,7 +98,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of actions that are to be performed for this Trigger</div>
+                                            <div>The list of actions that are to be performed for this trigger.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB&#x27;]</div>
@@ -113,7 +117,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the build pipeline to be triggered</div>
+                                            <div>The OCID of the build pipeline to be triggered.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -153,7 +157,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The events, only support PUSH at this time</div>
+                                            <div>The events only support PUSH.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -188,7 +192,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The target branch for pull requests; not applicable for push</div>
+                                            <div>The target branch for pull requests; not applicable for push requests.</div>
                                             <div>Applicable when trigger_source is one of [&#x27;GITHUB&#x27;, &#x27;GITLAB&#x27;]</div>
                                                         </td>
             </tr>
@@ -207,7 +211,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Branch for push event</div>
+                                            <div>Branch for push event.</div>
                                                         </td>
             </tr>
                     
@@ -230,7 +234,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Source of the Trigger (allowed values are - GITHUB, GITLAB)</div>
+                                            <div>Source of the trigger. Allowed values are, GITHUB and GITLAB.</div>
                                                         </td>
             </tr>
                     
@@ -250,7 +254,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of action that will be taken (allowed value - TRIGGER_BUILD_PIPELINE)</div>
+                                            <div>The type of action that will be taken. Allowed value is TRIGGER_BUILD_PIPELINE.</div>
                                                         </td>
             </tr>
                     
@@ -393,7 +397,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional description about the Trigger</div>
+                                            <div>Optional description about the trigger.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -409,7 +413,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Name of the Trigger</div>
+                                            <div>Trigger display name. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
@@ -477,7 +481,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Project to which the Trigger will belong</div>
+                                            <div>The OCID of the DevOps project to which the trigger belongs to.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -508,7 +512,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Devops Code Repository Id</div>
+                                            <div>The OCID of the DevOps code repository.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when trigger_source is &#x27;DEVOPS_CODE_REPOSITORY&#x27;</div>
                                                         </td>
@@ -561,7 +565,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>unique Trigger identifier</div>
+                                            <div>Unique trigger identifier.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -584,7 +588,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Source of the Trigger (allowed values are - GITHUB, GITLAB)</div>
+                                            <div>Source of the trigger. Allowed values are, GITHUB and GITLAB.</div>
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with trigger_id present.</div>
                                                         </td>
             </tr>
@@ -667,7 +671,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -695,7 +699,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -724,7 +728,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -751,7 +755,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -778,7 +782,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -806,7 +810,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -833,7 +837,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -860,7 +864,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -888,7 +892,7 @@ Examples
             trigger_source: DEVOPS_CODE_REPOSITORY
 
             # optional
-            events: [ "null" ]
+            events: [ "PUSH" ]
             include:
               # optional
               head_ref: head_ref_example
@@ -942,7 +946,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Trigger resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;DEVOPS_CODE_REPOSITORY&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;trigger_source&#x27;: &#x27;GITHUB&#x27;, &#x27;trigger_url&#x27;: &#x27;trigger_url_example&#x27;}</div>
                                     </td>
             </tr>
@@ -958,9 +962,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of actions that are to be performed for this Trigger</div>
+                                            <div>The list of actions that are to be performed for this trigger.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -975,9 +979,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id of the build pipeline to be triggered</div>
+                                            <div>The OCID of the build pipeline to be triggered.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -996,7 +1000,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1012,9 +1016,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The events, only support PUSH at this time</div>
+                                            <div>The events only support PUSH.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1032,7 +1036,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1049,9 +1053,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The target branch for pull requests; not applicable for push</div>
+                                            <div>The target branch for pull requests; not applicable for push requests.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">base_ref_example</div>
                                     </td>
             </tr>
@@ -1070,9 +1074,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Branch for push event</div>
+                                            <div>Branch for push event.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">head_ref_example</div>
                                     </td>
             </tr>
@@ -1091,9 +1095,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Source of the Trigger (allowed values are - GITHUB, GITLAB)</div>
+                                            <div>Source of the trigger. Allowed values are, GITHUB and GITLAB.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DEVOPS_CODE_REPOSITORY</div>
                                     </td>
             </tr>
@@ -1111,9 +1115,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of action that will be taken (allowed value - TRIGGER_BUILD_PIPELINE)</div>
+                                            <div>The type of action that will be taken. Allowed value is TRIGGER_BUILD_PIPELINE.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TRIGGER_BUILD_PIPELINE</div>
                                     </td>
             </tr>
@@ -1130,9 +1134,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Compartment to which the Trigger belongs</div>
+                                            <div>The OCID of the compartment that contains the trigger.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1150,7 +1154,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -1166,9 +1170,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Description about the Trigger</div>
+                                            <div>Description about the trigger.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -1184,9 +1188,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name for Trigger.</div>
+                                            <div>Trigger display name. Avoid entering confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -1204,7 +1208,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -1220,9 +1224,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>Unique identifier that is immutable on creation.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1240,7 +1244,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -1256,9 +1260,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the Trigger.</div>
+                                            <div>The current state of the trigger.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
                                     </td>
             </tr>
@@ -1274,9 +1278,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Project to which the Trigger belongs</div>
+                                            <div>The OCID of the DevOps project to which the trigger belongs to.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.project.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1292,9 +1296,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of OCI Devops Repository</div>
+                                            <div>The OCID of the DevOps code repository.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1312,7 +1316,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Usage of system tag keys. These predefined keys are scoped to namespaces. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1326,9 +1330,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the the Trigger was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the trigger was created. Format defined by <a href='https://datatracker.ietf.org/doc/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -1344,9 +1348,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the Trigger was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the trigger was updated. Format defined by <a href='https://datatracker.ietf.org/doc/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -1362,9 +1366,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Source of the Trigger (allowed values are - GITHUB, GITLAB)</div>
+                                            <div>Source of the trigger. Allowed values are, GITHUB, GITLAB and DEVOPS_CODE_REPOSITORY.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GITHUB</div>
                                     </td>
             </tr>
@@ -1380,9 +1384,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The endpoint which listens to Trigger events</div>
+                                            <div>The endpoint that listens to trigger events.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">trigger_url_example</div>
                                     </td>
             </tr>

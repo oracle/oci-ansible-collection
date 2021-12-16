@@ -126,7 +126,7 @@ route_table:
                         - "Example: `0.0.0.0/0`"
                     returned: on success
                     type: str
-                    sample: 0.0.0.0/0
+                    sample: cidr_block_example
                 destination:
                     description:
                         - Conceptually, this is the range of IP addresses used for matching when routing
@@ -174,7 +174,7 @@ route_table:
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2016-08-25T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the route table list belongs to.
@@ -189,13 +189,13 @@ route_table:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "route_rules": [{
-            "cidr_block": "0.0.0.0/0",
+            "cidr_block": "cidr_block_example",
             "destination": "destination_example",
             "destination_type": "CIDR_BLOCK",
             "network_entity_id": "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx",
             "description": "description_example"
         }],
-        "time_created": "2016-08-25T21:10:29.600Z",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

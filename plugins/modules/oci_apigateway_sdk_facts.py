@@ -86,8 +86,8 @@ EXAMPLES = """
 
     # optional
     sdk_id: "ocid1.sdk.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: My new resource
-    lifecycle_state: ACTIVE
+    display_name: display_name_example
+    lifecycle_state: CREATING
     sort_order: ASC
     sort_by: timeCreated
     api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
@@ -110,6 +110,7 @@ sdks:
         api_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of API resource
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
@@ -139,7 +140,7 @@ sdks:
                 - "Example: `My new resource`"
             returned: on success
             type: str
-            sample: My new resource
+            sample: display_name_example
         target_language:
             description:
                 - The string representing the target programming language for generating the SDK.
@@ -149,12 +150,14 @@ sdks:
         artifact_url:
             description:
                 - File location for generated SDK.
+                - Returned for get operation
             returned: on success
             type: str
             sample: artifact_url_example
         time_artifact_url_expires_at:
             description:
                 - Expiry of artifact url.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -174,6 +177,7 @@ sdks:
                 - A message describing the current state in more detail.
                   For example, can be used to provide actionable information for a
                   resource in a Failed state.
+                - Returned for get operation
             returned: on success
             type: str
             sample: lifecycle_details_example
@@ -200,6 +204,7 @@ sdks:
                 - "Additional optional configurations passed.
                   The applicable config keys are listed under \\"parameters\\" when \\"/sdkLanguageTypes\\" is called."
                 - "Example: `{\\"configName\\": \\"configValue\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -209,7 +214,7 @@ sdks:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "display_name": "My new resource",
+        "display_name": "display_name_example",
         "target_language": "target_language_example",
         "artifact_url": "artifact_url_example",
         "time_artifact_url_expires_at": "2013-10-20T19:20:30+01:00",

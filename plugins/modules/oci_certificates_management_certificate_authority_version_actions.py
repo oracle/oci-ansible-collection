@@ -65,18 +65,18 @@ EXAMPLES = """
   oci_certificates_management_certificate_authority_version_actions:
     # required
     certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
-    certificate_authority_version_number: 789
+    certificate_authority_version_number: 56
     action: cancel_certificate_authority_version_deletion
 
 - name: Perform action schedule_certificate_authority_version_deletion on certificate_authority_version
   oci_certificates_management_certificate_authority_version_actions:
     # required
     certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
-    certificate_authority_version_number: 789
+    certificate_authority_version_number: 56
     action: schedule_certificate_authority_version_deletion
 
     # optional
-    time_of_deletion: 2019-04-03T21:10:29.600Z
+    time_of_deletion: time_of_deletion_example
 
 """
 
@@ -99,7 +99,7 @@ certificate_authority_version:
                   Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`"
             returned: on success
             type: str
-            sample: 03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF
+            sample: serial_number_example
         time_created:
             description:
                 - "A optional property indicating when the CA version was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
@@ -107,7 +107,7 @@ certificate_authority_version:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         version_number:
             description:
                 - The version number of this CA.
@@ -151,7 +151,7 @@ certificate_authority_version:
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
             type: str
-            sample: "2019-04-03T21:10:29.600Z"
+            sample: "2013-10-20T19:20:30+01:00"
         validity:
             description:
                 - ""
@@ -165,7 +165,7 @@ certificate_authority_version:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_of_validity_not_after:
                     description:
                         - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
@@ -173,7 +173,7 @@ certificate_authority_version:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
         stages:
             description:
                 - A list of rotation states for this CA version.
@@ -192,7 +192,7 @@ certificate_authority_version:
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
                     type: str
-                    sample: "2019-04-03T21:10:29.600Z"
+                    sample: "2013-10-20T19:20:30+01:00"
                 revocation_reason:
                     description:
                         - The reason the certificate or certificate authority (CA) was revoked.
@@ -201,8 +201,8 @@ certificate_authority_version:
                     sample: UNSPECIFIED
     sample: {
         "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
-        "serial_number": "03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF",
-        "time_created": "2019-04-03T21:10:29.600Z",
+        "serial_number": "serial_number_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "version_number": 56,
         "issuer_ca_version_number": 56,
         "version_name": "version_name_example",
@@ -210,14 +210,14 @@ certificate_authority_version:
             "type": "DNS",
             "value": "value_example"
         }],
-        "time_of_deletion": "2019-04-03T21:10:29.600Z",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "validity": {
-            "time_of_validity_not_before": "2019-04-03T21:10:29.600Z",
-            "time_of_validity_not_after": "2019-04-03T21:10:29.600Z"
+            "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",
+            "time_of_validity_not_after": "2013-10-20T19:20:30+01:00"
         },
         "stages": [],
         "revocation_status": {
-            "time_of_revocation": "2019-04-03T21:10:29.600Z",
+            "time_of_revocation": "2013-10-20T19:20:30+01:00",
             "revocation_reason": "UNSPECIFIED"
         }
     }
