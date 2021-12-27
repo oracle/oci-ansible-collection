@@ -172,6 +172,19 @@ DOCUMENTATION = """
                                  compartment_name is used. OCID of the parent compartment. If None, root compartment
                                  is assumed to be parent.
                     type: str
+
+        group_name_max_length:
+            description: Limit group name length
+            type: int
+
+        tags_to_group_by:
+            description: Group by specific tags only. Use group#tag notation for defined tags
+            type: list
+
+        tags_to_not_group_by:
+            description: Exclude certain tags from grouping. Use group#tag notation for defined tags
+            type: list
+
 """
 
 EXAMPLES = """
@@ -246,6 +259,19 @@ exclude_compartments:
 
   - compartment_name: "test_skip_compartment"
     parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
+
+# Limit group name length to 128
+group_name_max_length: 128
+
+# Group by specific tags only. Use group#tag notation for defined tags
+tags_to_group_by:
+  - department
+  - environment#name
+
+# Exclude certain tags from grouping. Use group#tag notation for defined tags
+tags_to_not_group_by:
+  - department
+  - environment#name
 
 """
 import os
@@ -329,6 +355,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "defined_tags": None,
             "regions": None,
             "filters": None,
+            "group_name_max_length": 256,
+            "tags_to_group_by": [],
+            "tags_to_not_group_by": [],
             "primary_vnic_only": False,
             "auth_type": "api_key",
             "delegation_token_file": None,
@@ -1056,6 +1085,60 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             raise
         return compartments
 
+    def build_instance_tag_groups(self, instance):
+        """Create groups for instance based on tags and tag filters"""      
+        self.debug(f"Groups from tags for {instance.id}")
+
+        exclude_tags = self.get_option("tags_to_not_group_by") 
+        include_tags = self.get_option("tags_to_group_by")
+        exclude_tags = set(exclude_tags) if exclude_tags else exclude_tags
+        include_tags = set(include_tags) if include_tags else include_tags
+
+        def canUseTag(tag):
+            result = True
+            if exclude_tags and (tag in exclude_tags):
+                result = False
+
+            if include_tags and (tag not in include_tags):
+                result = False
+
+            return result
+
+        def trimGroupName(group_name):
+            max_len = self.get_option("group_name_max_length")
+            if not max_len:
+                max_len = self.params["group_name_max_length"]
+
+            if len(group_name) > max_len:
+                group_name = group_name[0:max_len -1]
+            
+            return group_name
+        
+        # Group by freeform tags tag_key=value
+        if hasattr(instance, "freeform_tags") and instance.freeform_tags:
+            for key in instance.freeform_tags:
+                tag_group_name = self.sanitize(
+                    "tag_" + key + "=" + instance.freeform_tags[key]
+                )
+                
+                if canUseTag(key):
+                    yield trimGroupName(tag_group_name)
+
+        # Group by defined tags
+        if hasattr(instance, "defined_tags") and instance.defined_tags:
+            for namespace in instance.defined_tags:
+                for key in instance.defined_tags[namespace]:
+                    defined_tag_group_name = self.sanitize(
+                        namespace
+                        + "#"
+                        + key
+                        + "="
+                        + instance.defined_tags[namespace][key]
+                    )
+
+                    if canUseTag(f"{namespace}#{key}"):
+                        yield trimGroupName(defined_tag_group_name)
+
     def build_inventory_for_instance(self, instance, region):
         """Build and return inventory for an instance"""
         try:
@@ -1079,26 +1162,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             region_grp = self.sanitize("region_" + region)
             common_groups.add(region_grp)
 
-            # Group by freeform tags tag_key=value
-            if hasattr(instance, "freeform_tags") and instance.freeform_tags:
-                for key in instance.freeform_tags:
-                    tag_group_name = self.sanitize(
-                        "tag_" + key + "=" + instance.freeform_tags[key]
-                    )
-                    common_groups.add(tag_group_name)
-
-            # Group by defined tags
-            if hasattr(instance, "defined_tags") and instance.defined_tags:
-                for namespace in instance.defined_tags:
-                    for key in instance.defined_tags[namespace]:
-                        defined_tag_group_name = self.sanitize(
-                            namespace
-                            + "#"
-                            + key
-                            + "="
-                            + instance.defined_tags[namespace][key]
-                        )
-                        common_groups.add(defined_tag_group_name)
+            # Group by tags
+            common_groups.update([g for g in self.build_instance_tag_groups(instance)])            
 
             vnic_attachments = [
                 vnic_attachment
@@ -1216,27 +1281,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             # Group by region
             region_grp = self.sanitize("region_" + region)
             common_groups.add(region_grp)
-
-            # Group by freeform tags tag_key=value
-            if hasattr(db_host, "freeform_tags"):
-                for key in db_host.freeform_tags:
-                    tag_group_name = self.sanitize(
-                        "tag_" + key + "=" + db_host.freeform_tags[key]
-                    )
-                    common_groups.add(tag_group_name)
-
-            # Group by defined tags
-            if hasattr(db_host, "defined_tags"):
-                for namespace in db_host.defined_tags:
-                    for key in db_host.defined_tags[namespace]:
-                        defined_tag_group_name = self.sanitize(
-                            namespace
-                            + "#"
-                            + key
-                            + "="
-                            + db_host.defined_tags[namespace][key]
-                        )
-                        common_groups.add(defined_tag_group_name)
+            
+            # Group by tags
+            common_groups.update([g for g in self.build_instance_tag_groups(db_host)])    
 
             if not db_host.vnic_id:
                 return None
