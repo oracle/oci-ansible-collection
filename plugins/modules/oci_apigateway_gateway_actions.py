@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -248,6 +248,30 @@ gateway:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        ca_bundles:
+            description:
+                - An array of CA bundles that should be used on the Gateway for TLS validation.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the CA bundle
+                    returned: on success
+                    type: str
+                    sample: CA_BUNDLE
+                ca_bundle_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+                certificate_authority_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -279,7 +303,12 @@ gateway:
             "send_timeout_in_ms": 56
         },
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "ca_bundles": [{
+            "type": "CA_BUNDLE",
+            "ca_bundle_id": "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+        }]
     }
 """
 

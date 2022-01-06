@@ -1,4 +1,4 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -92,6 +92,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_devops_custom_helpers,
     oci_certificates_management_custom_helpers,
     oci_budget_custom_helpers,
+    oci_identity_data_plane_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -158,5 +159,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_devops_custom_helpers,
         oci_certificates_management_custom_helpers,
         oci_budget_custom_helpers,
+        oci_identity_data_plane_custom_helpers,
     ]
 )

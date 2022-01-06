@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -79,6 +79,13 @@ options:
               If keep empty, for AD-specific SDDC, new ESXi host will be created in the same availability domain;
               for multi-AD SDDC, new ESXi host will be auto assigned to the next availability domain following evenly distribution strategy.
         type: str
+    failed_esxi_host_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the esxi host that
+              is failed. It is an optional param, when user supplies this param, new Esxi
+              Host will be created to replace the failed one, and failedEsxiHostId field
+              will be udpated in the newly created EsxiHost.
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -124,6 +131,7 @@ EXAMPLES = """
     current_sku: HOUR
     next_sku: HOUR
     compute_availability_domain: Uocm:PHX-AD-1
+    failed_esxi_host_id: "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -248,6 +256,28 @@ esxi_host:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        failed_esxi_host_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the esxi host that
+                  is failed.
+            returned: on success
+            type: str
+            sample: "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
+        replacement_esxi_host_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the esxi host that
+                  is newly created to replace the failed node.
+            returned: on success
+            type: str
+            sample: "ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx"
+        grace_period_end_date:
+            description:
+                - "The date and time when the new esxi host should start billing cycle.
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                  Example: `2021-07-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         compute_availability_domain:
             description:
                 - The availability domain of the ESXi host.
@@ -283,6 +313,9 @@ esxi_host:
         "current_sku": "HOUR",
         "next_sku": "HOUR",
         "billing_contract_end_date": "2013-10-20T19:20:30+01:00",
+        "failed_esxi_host_id": "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx",
+        "replacement_esxi_host_id": "ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx",
+        "grace_period_end_date": "2013-10-20T19:20:30+01:00",
         "compute_availability_domain": "Uocm:PHX-AD-1",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
@@ -432,6 +465,7 @@ def main():
                 type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
             ),
             compute_availability_domain=dict(type="str"),
+            failed_esxi_host_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             esxi_host_id=dict(aliases=["id"], type="str"),

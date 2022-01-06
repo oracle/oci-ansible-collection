@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -153,6 +153,12 @@ users:
             returned: on success
             type: bool
             sample: true
+        db_user_name:
+            description:
+                - DB username of the DB credential. Has to be unique across the tenancy.
+            returned: on success
+            type: str
+            sample: db_user_name_example
         identity_provider_id:
             description:
                 - The OCID of the `IdentityProvider` this user belongs to.
@@ -235,6 +241,12 @@ users:
                     returned: on success
                     type: bool
                     sample: true
+                can_use_db_credentials:
+                    description:
+                        - Indicates if the user can use DB passwords.
+                    returned: on success
+                    type: bool
+                    sample: true
                 can_use_customer_secret_keys:
                     description:
                         - Indicates if the user can use SigV4 symmetric keys.
@@ -280,6 +292,7 @@ users:
         "description": "description_example",
         "email": "email_example",
         "email_verified": true,
+        "db_user_name": "db_user_name_example",
         "identity_provider_id": "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx",
         "external_identifier": "external_identifier_example",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -292,6 +305,7 @@ users:
             "can_use_api_keys": true,
             "can_use_auth_tokens": true,
             "can_use_smtp_credentials": true,
+            "can_use_db_credentials": true,
             "can_use_customer_secret_keys": true
         },
         "is_mfa_activated": true,

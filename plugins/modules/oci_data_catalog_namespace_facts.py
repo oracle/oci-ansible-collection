@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -63,7 +63,7 @@ options:
         description:
             - "A filter to return only resources that match display name pattern given. The match is not case sensitive.
               For Example : /folders?displayNameContains=Cu.*
-              The above would match all folders with display name that starts with \\"Cu\\"."
+              The above would match all folders with display name that starts with \\"Cu\\" or has the pattern \\"Cu\\" anywhere in between."
         type: str
     lifecycle_state:
         description:

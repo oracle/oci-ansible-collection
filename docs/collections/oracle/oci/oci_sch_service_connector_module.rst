@@ -30,7 +30,7 @@ oracle.oci.oci_sch_service_connector -- Manage a ServiceConnector resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a ServiceConnector resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new service connector in the specified compartment. A service connector is a logically defined flow for moving data from a source service to a destination service in Oracle Cloud Infrastructure. For general information about service connectors, see `Service Connector Hub Overview <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm>`_.
+- For *state=present*, creates a new service connector in the specified compartment. A service connector is a logically defined flow for moving data from a source service to a destination service in Oracle Cloud Infrastructure. For instructions, see `To create a service connector <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/managingconnectors.htm#create>`_. For general information about service connectors, see `Service Connector Hub Overview <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm>`_.
 - For purposes of access control, you must provide the `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_ of the compartment where you want the service connector to reside. Notice that the service connector doesn't have to be in the same compartment as the source or target services. For information about access control and compartments, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_.
 - After you send your request, the new service connector's state is temporarily CREATING. When the state changes to ACTIVE, data begins transferring from the source service to the target service. For instructions on deactivating and activating service connectors, see `To activate or deactivate a service connector <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm>`_.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_sch_service_connector_actions <ansible_collections.oracle.oci.oci_sch_service_connector_actions_module>` module: activate, change_compartment, deactivate.
@@ -85,12 +85,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Parameter</th>
+            <th colspan="4">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -105,7 +105,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -120,7 +120,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -135,7 +135,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -150,7 +150,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -171,7 +171,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -189,7 +189,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -204,7 +204,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -219,7 +219,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
@@ -235,7 +235,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a>
@@ -251,7 +251,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -270,7 +270,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -289,7 +289,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
@@ -305,7 +305,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -320,7 +320,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -335,7 +335,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-service_connector_id"></div>
                     <b>service_connector_id</b>
                     <a class="ansibleOptionLink" href="#parameter-service_connector_id" title="Permalink to this option"></a>
@@ -353,7 +353,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-source"></div>
                     <b>source</b>
                     <a class="ansibleOptionLink" href="#parameter-source" title="Permalink to this option"></a>
@@ -371,7 +371,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-source/cursor"></div>
                     <b>cursor</b>
                     <a class="ansibleOptionLink" href="#parameter-source/cursor" title="Permalink to this option"></a>
@@ -389,7 +389,7 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source/cursor/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#parameter-source/cursor/kind" title="Permalink to this option"></a>
@@ -410,7 +410,7 @@ Parameters
                     
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-source/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#parameter-source/kind" title="Permalink to this option"></a>
@@ -430,7 +430,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-source/log_sources"></div>
                     <b>log_sources</b>
                     <a class="ansibleOptionLink" href="#parameter-source/log_sources" title="Permalink to this option"></a>
@@ -441,14 +441,14 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The resources affected by this work request.</div>
+                                            <div>The logs for this Logging source.</div>
                                             <div>Required when kind is &#x27;logging&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source/log_sources/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-source/log_sources/compartment_id" title="Permalink to this option"></a>
@@ -466,7 +466,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source/log_sources/log_group_id"></div>
                     <b>log_group_id</b>
                     <a class="ansibleOptionLink" href="#parameter-source/log_sources/log_group_id" title="Permalink to this option"></a>
@@ -484,7 +484,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source/log_sources/log_id"></div>
                     <b>log_id</b>
                     <a class="ansibleOptionLink" href="#parameter-source/log_sources/log_id" title="Permalink to this option"></a>
@@ -502,7 +502,7 @@ Parameters
                     
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-source/stream_id"></div>
                     <b>stream_id</b>
                     <a class="ansibleOptionLink" href="#parameter-source/stream_id" title="Permalink to this option"></a>
@@ -519,7 +519,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -540,7 +540,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-target"></div>
                     <b>target</b>
                     <a class="ansibleOptionLink" href="#parameter-target" title="Permalink to this option"></a>
@@ -558,7 +558,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/batch_rollover_size_in_mbs"></div>
                     <b>batch_rollover_size_in_mbs</b>
                     <a class="ansibleOptionLink" href="#parameter-target/batch_rollover_size_in_mbs" title="Permalink to this option"></a>
@@ -575,7 +575,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/batch_rollover_time_in_ms"></div>
                     <b>batch_rollover_time_in_ms</b>
                     <a class="ansibleOptionLink" href="#parameter-target/batch_rollover_time_in_ms" title="Permalink to this option"></a>
@@ -592,7 +592,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#parameter-target/bucket_name" title="Permalink to this option"></a>
@@ -609,7 +609,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-target/compartment_id" title="Permalink to this option"></a>
@@ -626,7 +626,122 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-target/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/dimensions" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of dimension names and values.</div>
+                                            <div>Applicable when kind is &#x27;monitoring&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-target/dimensions/dimension_value"></div>
+                    <b>dimension_value</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/dimensions/dimension_value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when kind is &#x27;monitoring&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target/dimensions/dimension_value/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/dimensions/dimension_value/kind" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>static</li>
+                                                                                                                                                                                                <li>jmesPath</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of dimension value: static or evaluated.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target/dimensions/dimension_value/path"></div>
+                    <b>path</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/dimensions/dimension_value/path" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The location to use for deriving the dimension value (evaluated). The path must start with `logContent` in an acceptable notation style with supported <a href='https://jmespath.org/specification.html'>JMESPath selectors</a>: expression with dot and index operator (`.`, and `L(]`). Example with dot notation: `logContent.data` Example with index notation: `logContent.data[0].content` For information on valid dimension keys and values, see [MetricDataDetails Reference,https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails). The returned value depends on the results of evaluation. If the evaluated value is valid, then the evaluated value is returned without double quotes. (Any front or trailing double quotes are trimmed before returning the value. For example, the evaluated value `&quot;compartmentId&quot;` is returned as `compartmentId`.) If the evaluated value is invalid, then the returned value is `SCH_EVAL_INVALID_VALUE`. If the evaluated value is empty, then the returned value is `SCH_EVAL_VALUE_EMPTY`.</div>
+                                            <div>Required when kind is &#x27;jmesPath&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target/dimensions/dimension_value/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/dimensions/dimension_value/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The data extracted from the specified dimension value (passed as-is). Unicode characters only. For information on valid dimension keys and values, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails'>MetricDataDetails Reference</a>.</div>
+                                            <div>Required when kind is &#x27;static&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-target/dimensions/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/dimensions/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Dimension key. A valid dimension key includes only printable ASCII, excluding periods (.) and spaces. Custom dimension keys are acceptable. Avoid entering confidential information. Due to use by Service Connector Hub, the following dimension names are reserved: `connectorId`, `connectorName`, `connectorSourceType`. For information on valid dimension keys and values, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails'>MetricDataDetails Reference</a>. Example: `type`</div>
+                                            <div>Required when kind is &#x27;monitoring&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/enable_formatted_messaging"></div>
                     <b>enable_formatted_messaging</b>
                     <a class="ansibleOptionLink" href="#parameter-target/enable_formatted_messaging" title="Permalink to this option"></a>
@@ -648,7 +763,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#parameter-target/function_id" title="Permalink to this option"></a>
@@ -665,7 +780,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#parameter-target/kind" title="Permalink to this option"></a>
@@ -689,7 +804,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/log_group_id"></div>
                     <b>log_group_id</b>
                     <a class="ansibleOptionLink" href="#parameter-target/log_group_id" title="Permalink to this option"></a>
@@ -706,7 +821,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/metric"></div>
                     <b>metric</b>
                     <a class="ansibleOptionLink" href="#parameter-target/metric" title="Permalink to this option"></a>
@@ -724,7 +839,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/metric_namespace"></div>
                     <b>metric_namespace</b>
                     <a class="ansibleOptionLink" href="#parameter-target/metric_namespace" title="Permalink to this option"></a>
@@ -742,7 +857,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/namespace"></div>
                     <b>namespace</b>
                     <a class="ansibleOptionLink" href="#parameter-target/namespace" title="Permalink to this option"></a>
@@ -759,7 +874,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/object_name_prefix"></div>
                     <b>object_name_prefix</b>
                     <a class="ansibleOptionLink" href="#parameter-target/object_name_prefix" title="Permalink to this option"></a>
@@ -776,7 +891,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/stream_id"></div>
                     <b>stream_id</b>
                     <a class="ansibleOptionLink" href="#parameter-target/stream_id" title="Permalink to this option"></a>
@@ -793,7 +908,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-target/topic_id"></div>
                     <b>topic_id</b>
                     <a class="ansibleOptionLink" href="#parameter-target/topic_id" title="Permalink to this option"></a>
@@ -810,7 +925,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-tasks"></div>
                     <b>tasks</b>
                     <a class="ansibleOptionLink" href="#parameter-tasks" title="Permalink to this option"></a>
@@ -827,7 +942,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tasks/batch_size_in_kbs"></div>
                     <b>batch_size_in_kbs</b>
                     <a class="ansibleOptionLink" href="#parameter-tasks/batch_size_in_kbs" title="Permalink to this option"></a>
@@ -844,7 +959,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tasks/batch_time_in_sec"></div>
                     <b>batch_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#parameter-tasks/batch_time_in_sec" title="Permalink to this option"></a>
@@ -861,7 +976,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tasks/condition"></div>
                     <b>condition</b>
                     <a class="ansibleOptionLink" href="#parameter-tasks/condition" title="Permalink to this option"></a>
@@ -878,7 +993,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tasks/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#parameter-tasks/function_id" title="Permalink to this option"></a>
@@ -895,7 +1010,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tasks/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#parameter-tasks/kind" title="Permalink to this option"></a>
@@ -915,7 +1030,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -930,7 +1045,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -949,7 +1064,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="3">
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -1126,12 +1241,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Key</th>
+            <th colspan="5">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-service_connector"></div>
                     <b>service_connector</b>
                     <a class="ansibleOptionLink" href="#return-service_connector" title="Permalink to this return value"></a>
@@ -1144,12 +1259,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ServiceConnector resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;source&#x27;: {&#x27;cursor&#x27;: {&#x27;kind&#x27;: &#x27;LATEST&#x27;}, &#x27;kind&#x27;: &#x27;logging&#x27;, &#x27;log_sources&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;target&#x27;: {&#x27;batch_rollover_size_in_mbs&#x27;: 56, &#x27;batch_rollover_time_in_ms&#x27;: 56, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;enable_formatted_messaging&#x27;: True, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;functions&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: &#x27;metric_example&#x27;, &#x27;metric_namespace&#x27;: &#x27;metric_namespace_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name_prefix&#x27;: &#x27;object_name_prefix_example&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;tasks&#x27;: [{&#x27;batch_size_in_kbs&#x27;: 56, &#x27;batch_time_in_sec&#x27;: 56, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;function&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;source&#x27;: {&#x27;cursor&#x27;: {&#x27;kind&#x27;: &#x27;LATEST&#x27;}, &#x27;kind&#x27;: &#x27;logging&#x27;, &#x27;log_sources&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;target&#x27;: {&#x27;batch_rollover_size_in_mbs&#x27;: 56, &#x27;batch_rollover_time_in_ms&#x27;: 56, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dimensions&#x27;: [{&#x27;dimension_value&#x27;: {&#x27;kind&#x27;: &#x27;jmesPath&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;enable_formatted_messaging&#x27;: True, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;functions&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: &#x27;metric_example&#x27;, &#x27;metric_namespace&#x27;: &#x27;metric_namespace_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name_prefix&#x27;: &#x27;object_name_prefix_example&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;tasks&#x27;: [{&#x27;batch_size_in_kbs&#x27;: 56, &#x27;batch_time_in_sec&#x27;: 56, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;function&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/compartment_id" title="Permalink to this return value"></a>
@@ -1167,7 +1282,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/defined_tags" title="Permalink to this return value"></a>
@@ -1185,7 +1300,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/description" title="Permalink to this return value"></a>
@@ -1203,7 +1318,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/display_name" title="Permalink to this return value"></a>
@@ -1221,7 +1336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/freeform_tags" title="Permalink to this return value"></a>
@@ -1239,7 +1354,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/id" title="Permalink to this return value"></a>
@@ -1257,7 +1372,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/lifecycle_state" title="Permalink to this return value"></a>
@@ -1275,7 +1390,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/lifecyle_details"></div>
                     <b>lifecyle_details</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/lifecyle_details" title="Permalink to this return value"></a>
@@ -1293,7 +1408,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source"></div>
                     <b>source</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source" title="Permalink to this return value"></a>
@@ -1310,7 +1425,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/cursor"></div>
                     <b>cursor</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/cursor" title="Permalink to this return value"></a>
@@ -1328,7 +1443,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/cursor/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/cursor/kind" title="Permalink to this return value"></a>
@@ -1348,7 +1463,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/kind" title="Permalink to this return value"></a>
@@ -1367,7 +1482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/log_sources"></div>
                     <b>log_sources</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/log_sources" title="Permalink to this return value"></a>
@@ -1377,7 +1492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The resources affected by this work request.</div>
+                                            <div>The logs for this Logging source.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1385,7 +1500,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/log_sources/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/log_sources/compartment_id" title="Permalink to this return value"></a>
@@ -1405,7 +1520,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/log_sources/log_group_id"></div>
                     <b>log_group_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/log_sources/log_group_id" title="Permalink to this return value"></a>
@@ -1425,7 +1540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/log_sources/log_id"></div>
                     <b>log_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/log_sources/log_id" title="Permalink to this return value"></a>
@@ -1445,7 +1560,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/stream_id"></div>
                     <b>stream_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/stream_id" title="Permalink to this return value"></a>
@@ -1464,7 +1579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/system_tags" title="Permalink to this return value"></a>
@@ -1480,7 +1595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target"></div>
                     <b>target</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target" title="Permalink to this return value"></a>
@@ -1497,7 +1612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/batch_rollover_size_in_mbs"></div>
                     <b>batch_rollover_size_in_mbs</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/batch_rollover_size_in_mbs" title="Permalink to this return value"></a>
@@ -1516,7 +1631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/batch_rollover_time_in_ms"></div>
                     <b>batch_rollover_time_in_ms</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/batch_rollover_time_in_ms" title="Permalink to this return value"></a>
@@ -1535,7 +1650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/bucket_name" title="Permalink to this return value"></a>
@@ -1554,7 +1669,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/compartment_id" title="Permalink to this return value"></a>
@@ -1573,7 +1688,127 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/dimensions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of dimension names and values.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/dimensions/dimension_value"></div>
+                    <b>dimension_value</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/dimensions/dimension_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/dimensions/dimension_value/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/dimensions/dimension_value/kind" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of dimension value: static or evaluated.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">jmesPath</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/dimensions/dimension_value/path"></div>
+                    <b>path</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/dimensions/dimension_value/path" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The location to use for deriving the dimension value (evaluated). The path must start with `logContent` in an acceptable notation style with supported <a href='https://jmespath.org/specification.html'>JMESPath selectors</a>: expression with dot and index operator (`.`, and `L(]`). Example with dot notation: `logContent.data` Example with index notation: `logContent.data[0].content` For information on valid dimension keys and values, see [MetricDataDetails Reference,https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails). The returned value depends on the results of evaluation. If the evaluated value is valid, then the evaluated value is returned without double quotes. (Any front or trailing double quotes are trimmed before returning the value. For example, the evaluated value `&quot;compartmentId&quot;` is returned as `compartmentId`.) If the evaluated value is invalid, then the returned value is `SCH_EVAL_INVALID_VALUE`. If the evaluated value is empty, then the returned value is `SCH_EVAL_VALUE_EMPTY`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">path_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/dimensions/dimension_value/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/dimensions/dimension_value/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The data extracted from the specified dimension value (passed as-is). Unicode characters only. For information on valid dimension keys and values, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails'>MetricDataDetails Reference</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/dimensions/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/dimensions/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Dimension key. A valid dimension key includes only printable ASCII, excluding periods (.) and spaces. Custom dimension keys are acceptable. Avoid entering confidential information. Due to use by Service Connector Hub, the following dimension names are reserved: `connectorId`, `connectorName`, `connectorSourceType`. For information on valid dimension keys and values, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails'>MetricDataDetails Reference</a>. Example: `type`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/enable_formatted_messaging"></div>
                     <b>enable_formatted_messaging</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/enable_formatted_messaging" title="Permalink to this return value"></a>
@@ -1593,7 +1828,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/function_id" title="Permalink to this return value"></a>
@@ -1612,7 +1847,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/kind" title="Permalink to this return value"></a>
@@ -1631,7 +1866,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/log_group_id"></div>
                     <b>log_group_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/log_group_id" title="Permalink to this return value"></a>
@@ -1650,7 +1885,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/metric"></div>
                     <b>metric</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/metric" title="Permalink to this return value"></a>
@@ -1670,7 +1905,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/metric_namespace"></div>
                     <b>metric_namespace</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/metric_namespace" title="Permalink to this return value"></a>
@@ -1690,7 +1925,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/namespace"></div>
                     <b>namespace</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/namespace" title="Permalink to this return value"></a>
@@ -1709,7 +1944,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/object_name_prefix"></div>
                     <b>object_name_prefix</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/object_name_prefix" title="Permalink to this return value"></a>
@@ -1728,7 +1963,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/stream_id"></div>
                     <b>stream_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/stream_id" title="Permalink to this return value"></a>
@@ -1747,7 +1982,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/topic_id"></div>
                     <b>topic_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/topic_id" title="Permalink to this return value"></a>
@@ -1766,7 +2001,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/tasks"></div>
                     <b>tasks</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/tasks" title="Permalink to this return value"></a>
@@ -1783,7 +2018,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/tasks/batch_size_in_kbs"></div>
                     <b>batch_size_in_kbs</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/tasks/batch_size_in_kbs" title="Permalink to this return value"></a>
@@ -1802,7 +2037,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/tasks/batch_time_in_sec"></div>
                     <b>batch_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/tasks/batch_time_in_sec" title="Permalink to this return value"></a>
@@ -1821,7 +2056,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/tasks/condition"></div>
                     <b>condition</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/tasks/condition" title="Permalink to this return value"></a>
@@ -1840,7 +2075,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/tasks/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/tasks/function_id" title="Permalink to this return value"></a>
@@ -1859,7 +2094,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-service_connector/tasks/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/tasks/kind" title="Permalink to this return value"></a>
@@ -1878,7 +2113,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/time_created" title="Permalink to this return value"></a>
@@ -1896,7 +2131,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-service_connector/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/time_updated" title="Permalink to this return value"></a>

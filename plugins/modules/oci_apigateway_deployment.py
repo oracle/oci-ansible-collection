@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -308,6 +308,20 @@ options:
                                     - The time in seconds for the client to cache preflight responses. This is sent as the Access-Control-Max-Age
                                       if greater than 0.
                                 type: int
+                    mutual_tls:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            is_verified_certificate_required:
+                                description:
+                                    - Determines whether to enable client verification when API Consumer makes connection to the gateway.
+                                type: bool
+                            allowed_sans:
+                                description:
+                                    - Allowed list of CN or SAN which will be used for verification of certificate.
+                                type: list
+                                elements: str
             logging_policies:
                 description:
                     - ""
@@ -1093,6 +1107,10 @@ EXAMPLES = """
           exposed_headers: [ "exposed_headers_example" ]
           is_allow_credentials_enabled: true
           max_age_in_seconds: 56
+        mutual_tls:
+          # optional
+          is_verified_certificate_required: true
+          allowed_sans: [ "allowed_sans_example" ]
       logging_policies:
         # optional
         access_log:
@@ -1316,6 +1334,10 @@ EXAMPLES = """
           exposed_headers: [ "exposed_headers_example" ]
           is_allow_credentials_enabled: true
           max_age_in_seconds: 56
+        mutual_tls:
+          # optional
+          is_verified_certificate_required: true
+          allowed_sans: [ "allowed_sans_example" ]
       logging_policies:
         # optional
         access_log:
@@ -1539,6 +1561,10 @@ EXAMPLES = """
           exposed_headers: [ "exposed_headers_example" ]
           is_allow_credentials_enabled: true
           max_age_in_seconds: 56
+        mutual_tls:
+          # optional
+          is_verified_certificate_required: true
+          allowed_sans: [ "allowed_sans_example" ]
       logging_policies:
         # optional
         access_log:
@@ -2031,6 +2057,24 @@ deployment:
                                     returned: on success
                                     type: int
                                     sample: 56
+                        mutual_tls:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                is_verified_certificate_required:
+                                    description:
+                                        - Determines whether to enable client verification when API Consumer makes connection to the gateway.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                allowed_sans:
+                                    description:
+                                        - Allowed list of CN or SAN which will be used for verification of certificate.
+                                    returned: on success
+                                    type: list
+                                    sample: []
                 logging_policies:
                     description:
                         - ""
@@ -2854,6 +2898,10 @@ deployment:
                     "exposed_headers": [],
                     "is_allow_credentials_enabled": true,
                     "max_age_in_seconds": 56
+                },
+                "mutual_tls": {
+                    "is_verified_certificate_required": true,
+                    "allowed_sans": []
                 }
             },
             "logging_policies": {
@@ -3263,6 +3311,13 @@ def main():
                                     exposed_headers=dict(type="list", elements="str"),
                                     is_allow_credentials_enabled=dict(type="bool"),
                                     max_age_in_seconds=dict(type="int"),
+                                ),
+                            ),
+                            mutual_tls=dict(
+                                type="dict",
+                                options=dict(
+                                    is_verified_certificate_required=dict(type="bool"),
+                                    allowed_sans=dict(type="list", elements="str"),
                                 ),
                             ),
                         ),

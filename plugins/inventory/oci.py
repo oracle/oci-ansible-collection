@@ -1,4 +1,4 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
@@ -172,6 +172,20 @@ DOCUMENTATION = """
                                  compartment_name is used. OCID of the parent compartment. If None, root compartment
                                  is assumed to be parent.
                     type: str
+        default_groups:
+            description:  OCI Inventory plugin creates some groups by default based on these properties
+                          ["availability_domain", "compartment_name", "region", "freeform_tags", "defined_tags"].
+                          If you don't want OCI inventory plugin to create these default groups,
+                          you can use this option to configure which of these default groups should be created.
+                          This option takes a list of properties of inventory hosts based on which the groups will be created.
+                          The supported properties are
+                          - "availability_domain"
+                          - "compartment_name"
+                          - "region"
+                          - "freeform_tags"
+                          - "defined_tags"
+                          if empty list is passed to this option, none of the default groups are created.
+            type: list
 """
 
 EXAMPLES = """
@@ -332,10 +346,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "primary_vnic_only": False,
             "auth_type": "api_key",
             "delegation_token_file": None,
+            "default_groups": []
         }
 
         self.group_prefix = "oci_"
         self.display = Display()
+        self.supported_default_groups = ["availability_domain", "compartment_name", "region", "freeform_tags", "defined_tags"]
 
     def _get_config_file(self):
         """
@@ -409,6 +425,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 return hostname
         return None
 
+    def _validate_config(self):
+        self._validate_hostname_format()
+        self._validate_filters()
+        self._validate_default_groups()
+
     def _validate_hostname_format(self):
         hostname_format = self.params.get("hostname_format")
         hostname_format_preferences = self.get_option("hostname_format_preferences")
@@ -421,6 +442,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 "The hostname_format %s is not supported for db_hosts"
                 % (hostname_format)
             )
+
+    def _validate_default_groups(self):
+        for group in self.params.get("default_groups"):
+            if group not in self.supported_default_groups:
+                raise AnsibleError("The default_group %s is not supported" % group)
 
     def _validate_filters(self):
         static_filter = self.get_option("filters")
@@ -1056,29 +1082,30 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             raise
         return compartments
 
-    def build_inventory_for_instance(self, instance, region):
-        """Build and return inventory for an instance"""
-        try:
-            instance_inventory = {}
-            compute_client = self.get_compute_client_for_region(region)
-            virtual_nw_client = self.get_virtual_nw_client_for_region(region)
-            compartment = self.compartments[instance.compartment_id]
+    def get_common_groups(self, instance, region):
+        """
+        returns the enabled groups that are common between compute_instance and db_host.
+        A group is enable when it is configured in the default_groups
+        """
+        common_groups = set(["all_hosts"])
 
-            instance_common_vars = to_dict(instance)
-
-            common_groups = set(["all_hosts"])
+        if "availability_domain" in self.params.get("default_groups"):
             # Group by availability domain
             ad = self.sanitize(instance.availability_domain)
             common_groups.add(ad)
 
+        if "compartment_name" in self.params.get("default_groups"):
             # Group by compartments
+            compartment = self.compartments[instance.compartment_id]
             compartment_name = self.sanitize(compartment.name)
             common_groups.add(compartment_name)
-            instance_common_vars.update({"compartment_name": compartment_name})
+
+        if "region" in self.params.get("default_groups"):
             # Group by region
             region_grp = self.sanitize("region_" + region)
             common_groups.add(region_grp)
 
+        if "freeform_tags" in self.params.get("default_groups"):
             # Group by freeform tags tag_key=value
             if hasattr(instance, "freeform_tags") and instance.freeform_tags:
                 for key in instance.freeform_tags:
@@ -1087,6 +1114,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     )
                     common_groups.add(tag_group_name)
 
+        if "defined_tags" in self.params.get("default_groups"):
             # Group by defined tags
             if hasattr(instance, "defined_tags") and instance.defined_tags:
                 for namespace in instance.defined_tags:
@@ -1099,6 +1127,21 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             + instance.defined_tags[namespace][key]
                         )
                         common_groups.add(defined_tag_group_name)
+        return common_groups
+
+    def build_inventory_for_instance(self, instance, region):
+        """Build and return inventory for an instance"""
+        try:
+            instance_inventory = {}
+            compute_client = self.get_compute_client_for_region(region)
+            virtual_nw_client = self.get_virtual_nw_client_for_region(region)
+            compartment = self.compartments[instance.compartment_id]
+
+            instance_common_vars = to_dict(instance)
+            compartment_name = self.sanitize(compartment.name)
+            instance_common_vars.update({"compartment_name": compartment_name})
+
+            common_groups = self.get_common_groups(instance=instance, region=region)
 
             vnic_attachments = [
                 vnic_attachment
@@ -1204,39 +1247,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
             db_host_vars = to_dict(db_host)
 
-            common_groups = set(["all_hosts", "db_hosts"])
-            # Group by availability domain
-            ad = self.sanitize(db_host.availability_domain)
-            common_groups.add(ad)
-
-            # Group by compartments
             compartment_name = self.sanitize(compartment.name)
-            common_groups.add(compartment_name)
             db_host_vars.update({"compartment_name": compartment_name})
-            # Group by region
-            region_grp = self.sanitize("region_" + region)
-            common_groups.add(region_grp)
 
-            # Group by freeform tags tag_key=value
-            if hasattr(db_host, "freeform_tags"):
-                for key in db_host.freeform_tags:
-                    tag_group_name = self.sanitize(
-                        "tag_" + key + "=" + db_host.freeform_tags[key]
-                    )
-                    common_groups.add(tag_group_name)
+            common_groups = self.get_common_groups(instance=db_host, region=region)
 
-            # Group by defined tags
-            if hasattr(db_host, "defined_tags"):
-                for namespace in db_host.defined_tags:
-                    for key in db_host.defined_tags[namespace]:
-                        defined_tag_group_name = self.sanitize(
-                            namespace
-                            + "#"
-                            + key
-                            + "="
-                            + db_host.defined_tags[namespace][key]
-                        )
-                        common_groups.add(defined_tag_group_name)
+            common_groups.add("db_hosts")
 
             if not db_host.vnic_id:
                 return None
@@ -1658,6 +1674,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 "type_to_be": list,
                 "value": config_data.get("hostnames", []),
             },
+            "default_groups": {
+                "type_to_be": list,
+                "value": config_data.get("default_groups", [])
+            }
         }
 
         # validate the options
@@ -1733,6 +1753,14 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.debug("Subscribed regions: {0}.".format(regions))
         hostnames = options["hostnames"]["value"]
 
+        # setting the default_groups to lower case values to avoid case insensitive comparison
+        if self.get_option("default_groups") is None:
+            self.params.update({"default_groups": self.supported_default_groups})
+        else:
+            default_groups = config_data.get("default_groups", [])
+            for group in default_groups:
+                self.params.get("default_groups").append(group.lower())
+
         return regions, filters, hostnames
 
     def _validate_option(self, name, desired_type, option_value):
@@ -1779,7 +1807,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         regions, filters, hostnames = self._process_query_options(config_data)
 
-        self._validate_hostname_format()
+        self._validate_config()
         if self.get_option("hostname_format_preferences"):
             self.debug(
                 "Using hostname_format_preferences: {0} and can be changed via the option 'hostname_format_preferences'".format(
@@ -1793,7 +1821,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     self.params["hostname_format"]
                 )
             )
-        self._validate_filters()
         cache_key = self.get_cache_key(path)
 
         if not regions:

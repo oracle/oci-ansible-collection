@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -77,7 +77,7 @@ options:
             - The number of ESXi hosts to create in the SDDC. You can add more hosts later
               (see L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)).
             - "**Note:** If you later delete EXSi hosts from the SDDC to total less than 3,
-              you are still billed for the 3 minimum recommended EXSi hosts. Also,
+              you are still billed for the 3 minimum recommended ESXi hosts. Also,
               you cannot add more VMware workloads to the SDDC until it again has at least
               3 ESXi hosts."
             - Required for create using I(state=present).
