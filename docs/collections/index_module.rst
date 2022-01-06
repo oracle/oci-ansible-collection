@@ -65,6 +65,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_apm_synthetics_public_vantage_point_facts <ansible_collections.oracle.oci.oci_apm_synthetics_public_vantage_point_facts_module>` -- Fetches details about one or multiple PublicVantagePoint resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_apm_synthetics_script <ansible_collections.oracle.oci.oci_apm_synthetics_script_module>` -- Manage a Script resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_apm_synthetics_script_facts <ansible_collections.oracle.oci.oci_apm_synthetics_script_facts_module>` -- Fetches details about one or multiple Script resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_appmgmt_control_monitored_instance_actions <ansible_collections.oracle.oci.oci_appmgmt_control_monitored_instance_actions_module>` -- Perform actions on a MonitoredInstance resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_appmgmt_control_monitored_instance_facts <ansible_collections.oracle.oci.oci_appmgmt_control_monitored_instance_facts_module>` -- Fetches details about one or multiple MonitoredInstance resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_artifacts_container_configuration <ansible_collections.oracle.oci.oci_artifacts_container_configuration_module>` -- Manage a ContainerConfiguration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_artifacts_container_configuration_facts <ansible_collections.oracle.oci.oci_artifacts_container_configuration_facts_module>` -- Fetches details about a ContainerConfiguration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_artifacts_container_image <ansible_collections.oracle.oci.oci_artifacts_container_image_module>` -- Manage a ContainerImage resource in Oracle Cloud Infrastructure
@@ -101,6 +103,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_bds_instance <ansible_collections.oracle.oci.oci_bds_instance_module>` -- Manage a BdsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_bds_instance_actions <ansible_collections.oracle.oci.oci_bds_instance_actions_module>` -- Perform actions on a BdsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_bds_instance_facts <ansible_collections.oracle.oci.oci_bds_instance_facts_module>` -- Fetches details about one or multiple BdsInstance resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_bds_metastore_configuration <ansible_collections.oracle.oci.oci_bds_metastore_configuration_module>` -- Manage a BdsMetastoreConfiguration resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_bds_metastore_configuration_actions <ansible_collections.oracle.oci.oci_bds_metastore_configuration_actions_module>` -- Perform actions on a BdsMetastoreConfiguration resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_bds_metastore_configuration_facts <ansible_collections.oracle.oci.oci_bds_metastore_configuration_facts_module>` -- Fetches details about one or multiple BdsMetastoreConfiguration resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_blockchain_platform <ansible_collections.oracle.oci.oci_blockchain_platform_module>` -- Manage a BlockchainPlatform resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_blockchain_platform_actions <ansible_collections.oracle.oci.oci_blockchain_platform_actions_module>` -- Perform actions on a BlockchainPlatform resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_blockchain_platform_facts <ansible_collections.oracle.oci.oci_blockchain_platform_facts_module>` -- Fetches details about one or multiple BlockchainPlatform resources in Oracle Cloud Infrastructure
@@ -651,6 +656,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_identity_cost_tracking_tag_facts <ansible_collections.oracle.oci.oci_identity_cost_tracking_tag_facts_module>` -- Fetches details about one or multiple CostTrackingTag resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_identity_customer_secret_key <ansible_collections.oracle.oci.oci_identity_customer_secret_key_module>` -- Manage a CustomerSecretKey resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_identity_customer_secret_key_facts <ansible_collections.oracle.oci.oci_identity_customer_secret_key_facts_module>` -- Fetches details about one or multiple CustomerSecretKey resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_identity_data_plane_security_token_actions <ansible_collections.oracle.oci.oci_identity_data_plane_security_token_actions_module>` -- Perform actions on a SecurityToken resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_identity_db_credential <ansible_collections.oracle.oci.oci_identity_db_credential_module>` -- Manage a DbCredential resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_identity_db_credential_facts <ansible_collections.oracle.oci.oci_identity_db_credential_facts_module>` -- Fetches details about one or multiple DbCredential resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_identity_domain <ansible_collections.oracle.oci.oci_identity_domain_module>` -- Manage a Domain resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_identity_domain_actions <ansible_collections.oracle.oci.oci_identity_domain_actions_module>` -- Perform actions on a Domain resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_identity_domain_facts <ansible_collections.oracle.oci.oci_identity_domain_facts_module>` -- Fetches details about one or multiple Domain resources in Oracle Cloud Infrastructure
@@ -757,10 +765,12 @@ oracle.oci
 * :ref:`oracle.oci.oci_loadbalancer_shape_facts <ansible_collections.oracle.oci.oci_loadbalancer_shape_facts_module>` -- Fetches details about one or multiple LoadBalancerShape resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_loadbalancer_ssl_cipher_suite <ansible_collections.oracle.oci.oci_loadbalancer_ssl_cipher_suite_module>` -- Manage a SslCipherSuite resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_loadbalancer_ssl_cipher_suite_facts <ansible_collections.oracle.oci.oci_loadbalancer_ssl_cipher_suite_facts_module>` -- Fetches details about one or multiple SslCipherSuite resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_log_analytics_category_facts <ansible_collections.oracle.oci.oci_log_analytics_category_facts_module>` -- Fetches details about one or multiple LogAnalyticsCategory resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_entity <ansible_collections.oracle.oci.oci_log_analytics_entity_module>` -- Manage a LogAnalyticsEntity resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_entity_actions <ansible_collections.oracle.oci.oci_log_analytics_entity_actions_module>` -- Perform actions on a LogAnalyticsEntity resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_entity_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_facts_module>` -- Fetches details about one or multiple LogAnalyticsEntity resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_entity_summary_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_summary_facts_module>` -- Fetches details about a LogAnalyticsEntitySummary resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_log_analytics_entity_topology_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_topology_facts_module>` -- Fetches details about one or multiple LogAnalyticsEntityTopology resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_entity_type <ansible_collections.oracle.oci.oci_log_analytics_entity_type_module>` -- Manage a LogAnalyticsEntityType resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_entity_type_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_type_facts_module>` -- Fetches details about one or multiple LogAnalyticsEntityType resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_import_custom_content_actions <ansible_collections.oracle.oci.oci_log_analytics_import_custom_content_actions_module>` -- Perform actions on an ImportCustomContent resource in Oracle Cloud Infrastructure
@@ -775,6 +785,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_log_analytics_preferences_management_actions <ansible_collections.oracle.oci.oci_log_analytics_preferences_management_actions_module>` -- Perform actions on a PreferencesManagement resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_preferences_management_facts <ansible_collections.oracle.oci.oci_log_analytics_preferences_management_facts_module>` -- Fetches details about one or multiple PreferencesManagement resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_recalled_data_facts <ansible_collections.oracle.oci.oci_log_analytics_recalled_data_facts_module>` -- Fetches details about one or multiple RecalledData resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_log_analytics_resource_categories_actions <ansible_collections.oracle.oci.oci_log_analytics_resource_categories_actions_module>` -- Perform actions on a ResourceCategories resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_log_analytics_resource_categories_facts <ansible_collections.oracle.oci.oci_log_analytics_resource_categories_facts_module>` -- Fetches details about one or multiple ResourceCategories resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_scheduled_task <ansible_collections.oracle.oci.oci_log_analytics_scheduled_task_module>` -- Manage a ScheduledTask resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_scheduled_task_actions <ansible_collections.oracle.oci.oci_log_analytics_scheduled_task_actions_module>` -- Perform actions on a ScheduledTask resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_scheduled_task_facts <ansible_collections.oracle.oci.oci_log_analytics_scheduled_task_facts_module>` -- Fetches details about one or multiple ScheduledTask resources in Oracle Cloud Infrastructure

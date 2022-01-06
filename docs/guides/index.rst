@@ -13,4 +13,5 @@ You may check the following documents:
     Wait Configuration <wait-timeout.md>
     AWX <awx.md>
     AWX Deployment<awx/index>
+    Troubleshooting<troubleshooting-guide.md>
 

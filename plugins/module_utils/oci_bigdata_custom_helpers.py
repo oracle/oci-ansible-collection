@@ -1,4 +1,4 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -172,3 +172,22 @@ class BdsAutoScaleConfigHelperCustom:
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
+
+
+class BdsMetastoreConfigurationHelperCustom:
+    # list_resources returns summary model which doesn't have metastore_config_id.
+    def get_get_model_from_summary_model(self, summary_model):
+        return self.client.get_bds_metastore_configuration(
+            bds_instance_id=self.module.params.get("bds_instance_id"),
+            metastore_config_id=summary_model.id,
+        ).data
+
+    # remove the bds_api_key_passphrase, cluster_admin_password parameters for the idempotence check,
+    # As get_resource doesn't return these parameters.
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        update_model_dict = super(
+            BdsMetastoreConfigurationHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+        update_model_dict.pop("bds_api_key_passphrase", None)
+        update_model_dict.pop("cluster_admin_password", None)
+        return update_model_dict

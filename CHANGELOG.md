@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.38.0] - 2022-01-06
+
+## Added
+- Support for `Identity data plane` service.
+- Support for `Resource Discovery and Monitoring` service
+- Support for option `default_groups` in inventory plugin.
+- Support for Categories, listing Entity Topology and verifying Scheduled Task for Log Analytics service.
+- Support for DB password for users, in IAM, to login to their cloud db accounts for Identity service.
+- Adding a new response type enum to the List Service Environments and Get Service Environment for Service Manager Proxy service.
+- Automatically generate logical entities from filename patterns, relationships between business terms across glossaries in Data Catalog service.
+- Support for node replacement in the VMWare Solution service.
+- Support for External Hive Metastore for BDS service.
+- Support for custom CA trust stores in the API Gateway service
+- Troubleshooting Guides for common issues
+
+## Fixed
+- Idempotence issue (#140) in `oci_database_pluggable_database_actions` module.
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.53.1
+
 ## [2.37.0] - 2021-12-16
 
 ## Added

@@ -1,4 +1,4 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -1114,6 +1114,16 @@ class PluggableDatabaseActionsHelperCustom:
     LOCAL_CLONE_ACTION_KEY = "local_clone"
     REMOTE_CLONE_ACTION_KEY = "remote_clone"
 
+    def get_existing_pluggable_databases(self, container_database_id):
+        return [
+            pluggable_db
+            for pluggable_db in oci_common_utils.list_all_resources(
+                self.client.list_pluggable_databases, database_id=container_database_id,
+            )
+            if getattr(pluggable_db, "lifecycle_state", None)
+            not in oci_common_utils.DEAD_STATES
+        ]
+
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
         if action == self.STOP_ACTION_KEY:
@@ -1127,10 +1137,9 @@ class PluggableDatabaseActionsHelperCustom:
                 return False
             return True
         if action == self.LOCAL_CLONE_ACTION_KEY:
-            existing_pluggable_databases = oci_common_utils.call_with_backoff(
-                self.client.list_pluggable_databases,
-                database_id=getattr(resource, "container_database_id", None),
-            ).data
+            existing_pluggable_databases = self.get_existing_pluggable_databases(
+                getattr(resource, "container_database_id", None)
+            )
             for existing_pluggable_database in existing_pluggable_databases:
                 if getattr(
                     existing_pluggable_database, "pdb_name", None
@@ -1138,10 +1147,9 @@ class PluggableDatabaseActionsHelperCustom:
                     return False
             return True
         if action == self.REMOTE_CLONE_ACTION_KEY:
-            existing_pluggable_databases = oci_common_utils.call_with_backoff(
-                self.client.list_pluggable_databases,
-                database_id=self.module.params.get("target_container_database_id"),
-            ).data
+            existing_pluggable_databases = self.get_existing_pluggable_databases(
+                self.module.params.get("target_container_database_id")
+            )
             for existing_pluggable_database in existing_pluggable_databases:
                 if getattr(
                     existing_pluggable_database, "pdb_name", None

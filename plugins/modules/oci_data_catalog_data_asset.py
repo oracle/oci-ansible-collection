@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -392,10 +392,20 @@ data_asset:
                     sample: "2013-10-20T19:20:30+01:00"
                 expression:
                     description:
-                        - The expression used in the pattern that may include qualifiers.
+                        - Input string which drives the selection process, allowing for fine-grained control using qualifiers.
+                          Refer to the user documentation for details of the format and examples. A pattern cannot include both
+                          a prefix and an expression.
                     returned: on success
                     type: str
                     sample: expression_example
+                file_path_prefix:
+                    description:
+                        - Input string which drives the selection process.
+                          Refer to the user documentation for details of the format and examples. A pattern cannot include both
+                          a prefix and an expression.
+                    returned: on success
+                    type: str
+                    sample: file_path_prefix_example
                 lifecycle_state:
                     description:
                         - State of the pattern.
@@ -449,6 +459,7 @@ data_asset:
             "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
             "time_created": "2013-10-20T19:20:30+01:00",
             "expression": "expression_example",
+            "file_path_prefix": "file_path_prefix_example",
             "lifecycle_state": "CREATING"
         }],
         "properties": {}

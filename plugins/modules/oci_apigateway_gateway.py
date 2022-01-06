@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -153,6 +153,31 @@ options:
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
+    ca_bundles:
+        description:
+            - An array of CA bundles that should be used on the Gateway for TLS validation.
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            type:
+                description:
+                    - Type of the CA bundle
+                type: str
+                choices:
+                    - "CA_BUNDLE"
+                    - "CERTIFICATE_AUTHORITY"
+                required: true
+            ca_bundle_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+                    - Applicable when type is 'CA_BUNDLE'
+                type: str
+            certificate_authority_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+                    - Applicable when type is 'CERTIFICATE_AUTHORITY'
+                type: str
     gateway_id:
         description:
             - The ocid of the gateway.
@@ -202,6 +227,12 @@ EXAMPLES = """
       send_timeout_in_ms: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    ca_bundles:
+    - # required
+      type: CA_BUNDLE
+
+      # optional
+      ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update gateway
   oci_apigateway_gateway:
@@ -230,6 +261,12 @@ EXAMPLES = """
       send_timeout_in_ms: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    ca_bundles:
+    - # required
+      type: CA_BUNDLE
+
+      # optional
+      ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_gateway:
@@ -258,6 +295,12 @@ EXAMPLES = """
       send_timeout_in_ms: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    ca_bundles:
+    - # required
+      type: CA_BUNDLE
+
+      # optional
+      ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete gateway
   oci_apigateway_gateway:
@@ -463,6 +506,30 @@ gateway:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        ca_bundles:
+            description:
+                - An array of CA bundles that should be used on the Gateway for TLS validation.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the CA bundle
+                    returned: on success
+                    type: str
+                    sample: CA_BUNDLE
+                ca_bundle_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+                certificate_authority_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -494,7 +561,12 @@ gateway:
             "send_timeout_in_ms": 56
         },
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "ca_bundles": [{
+            "type": "CA_BUNDLE",
+            "ca_bundle_id": "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+        }]
     }
 """
 
@@ -670,6 +742,19 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            ca_bundles=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=["CA_BUNDLE", "CERTIFICATE_AUTHORITY"],
+                    ),
+                    ca_bundle_id=dict(type="str"),
+                    certificate_authority_id=dict(type="str"),
+                ),
+            ),
             gateway_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

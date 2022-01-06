@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -173,7 +173,7 @@ service_connectors:
                     sample: logging
                 log_sources:
                     description:
-                        - The resources affected by this work request.
+                        - The logs for this Logging source.
                     returned: on success
                     type: complex
                     contains:
@@ -296,6 +296,62 @@ service_connectors:
                     returned: on success
                     type: str
                     sample: metric_example
+                dimensions:
+                    description:
+                        - List of dimension names and values.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - "Dimension key. A valid dimension key includes only printable ASCII, excluding periods (.) and spaces.
+                                  Custom dimension keys are acceptable. Avoid entering confidential information.
+                                  Due to use by Service Connector Hub, the following dimension names are reserved: `connectorId`, `connectorName`,
+                                  `connectorSourceType`.
+                                  For information on valid dimension keys and values, see L(MetricDataDetails Reference,https://docs.cloud.oracle.com/en-
+                                  us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails).
+                                  Example: `type`"
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        dimension_value:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                kind:
+                                    description:
+                                        - "The type of dimension value: static or evaluated."
+                                    returned: on success
+                                    type: str
+                                    sample: jmesPath
+                                path:
+                                    description:
+                                        - "The location to use for deriving the dimension value (evaluated).
+                                          The path must start with `logContent` in an acceptable notation style with supported L(JMESPath
+                                          selectors,https://jmespath.org/specification.html): expression with dot and index operator (`.`, and `L(]`).
+                                          Example with dot notation: `logContent.data`
+                                          Example with index notation: `logContent.data[0].content`
+                                          For information on valid dimension keys and values, see [MetricDataDetails Reference,https://docs.cloud.oracle.com/en-
+                                          us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails).
+                                          The returned value depends on the results of evaluation.
+                                          If the evaluated value is valid, then the evaluated value is returned without double quotes. (Any front or trailing
+                                          double quotes are trimmed before returning the value. For example, the evaluated value `\\"compartmentId\\"` is
+                                          returned as `compartmentId`.)
+                                          If the evaluated value is invalid, then the returned value is `SCH_EVAL_INVALID_VALUE`.
+                                          If the evaluated value is empty, then the returned value is `SCH_EVAL_VALUE_EMPTY`."
+                                    returned: on success
+                                    type: str
+                                    sample: path_example
+                                value:
+                                    description:
+                                        - The data extracted from the specified dimension value (passed as-is). Unicode characters only.
+                                          For information on valid dimension keys and values, see L(MetricDataDetails
+                                          Reference,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails).
+                                    returned: on success
+                                    type: str
+                                    sample: value_example
                 topic_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
@@ -413,6 +469,14 @@ service_connectors:
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "metric_namespace": "metric_namespace_example",
             "metric": "metric_example",
+            "dimensions": [{
+                "name": "name_example",
+                "dimension_value": {
+                    "kind": "jmesPath",
+                    "path": "path_example",
+                    "value": "value_example"
+                }
+            }],
             "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
             "enable_formatted_messaging": true,
             "namespace": "namespace_example",

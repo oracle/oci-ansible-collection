@@ -30,7 +30,7 @@ oracle.oci.oci_service_manager_proxy_service_environment_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.37.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.38.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ServiceEnvironment resources in Oracle Cloud Infrastructure
-- List details of environments which the service is authorized to view. This includes the service instance endpoints and service definition details.
+- List the details of Software as a Service (SaaS) environments provisioned by Service Manager. Information includes the service instance endpoints and service definition details.
 - If *service_environment_id* is specified, the details of a single ServiceEnvironment will be returned.
 
 
@@ -180,7 +180,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The unique identifier for the compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> for the compartment.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -256,7 +256,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Id associated with the service environment.</div>
+                                            <div>The unique identifier associated with the service environment.</div>
+                                            <div>**Note:** Not an <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                             <div>Required to get a specific service_environment.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -273,7 +274,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The service definition type of the environment.</div>
+                                            <div>The environment&#x27;s service definition type. For example, &quot;RGBUOROMS&quot; is the service definition type for &quot;Oracle Retail Order Management Cloud Service&quot;.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -406,7 +407,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ServiceEnvironment resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;console_url&#x27;: &#x27;console_url_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;service_definition&#x27;: {&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;short_display_name&#x27;: &#x27;short_display_name_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}, &#x27;service_environment_endpoints&#x27;: [{&#x27;environment_type&#x27;: &#x27;INSTANCE_URL_PROD&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;status&#x27;: &#x27;INITIALIZED&#x27;, &#x27;subscription_id&#x27;: &#x27;ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;console_url&#x27;: &#x27;console_url_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;service_definition&#x27;: {&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;short_display_name&#x27;: &#x27;short_display_name_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}, &#x27;service_environment_endpoints&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;environment_type&#x27;: &#x27;INSTANCE_URL_PROD&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;status&#x27;: &#x27;INITIALIZED&#x27;, &#x27;subscription_id&#x27;: &#x27;ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -421,7 +422,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Compartment Id associated with the service.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> for the compartment.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -457,7 +458,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                             <div>Returned for list operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -476,7 +478,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Example: `{&quot;CostCenter&quot;: &quot;42&quot;}`</div>
                                             <div>Returned for list operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -496,6 +499,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Unqiue identifier for the entitlement related to the environment.</div>
+                                            <div>**Note:** Not an <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -530,7 +534,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Display name of the service.</div>
+                                            <div>Display name of the service. For example, &quot;Oracle Retail Order Management Cloud Service&quot;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -549,7 +553,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Short display name of the service.</div>
+                                            <div>Short display name of the service. For example, &quot;Retail Order Management&quot;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">short_display_name_example</div>
@@ -568,7 +572,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The service definition type.</div>
+                                            <div>The service definition type. For example, a service definition type &quot;RGBUOROMS&quot; would be for the service &quot;Oracle Retail Order Management Cloud Service&quot;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
@@ -595,6 +599,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-service_environments/service_environment_endpoints/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-service_environments/service_environment_endpoints/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Description of the environment link</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-service_environments/service_environment_endpoints/environment_type"></div>
                     <b>environment_type</b>
                     <a class="ansibleOptionLink" href="#return-service_environments/service_environment_endpoints/environment_type" title="Permalink to this return value"></a>
@@ -604,7 +627,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Service Environemnt EndPoint type.</div>
+                                            <div>Service environment endpoint type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INSTANCE_URL_PROD</div>
@@ -623,7 +646,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Service Environemnt Instance EndPoint url.</div>
+                                            <div>Service environment instance URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
@@ -660,7 +683,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The subscription Id corresponding to the service environment Id.</div>
+                                            <div>The unique subscription ID associated with the service environment ID.</div>
+                                            <div>**Note:** Not an <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx</div>

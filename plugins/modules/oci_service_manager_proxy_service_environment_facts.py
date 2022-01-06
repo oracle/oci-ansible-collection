@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,27 +23,28 @@ module: oci_service_manager_proxy_service_environment_facts
 short_description: Fetches details about one or multiple ServiceEnvironment resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ServiceEnvironment resources in Oracle Cloud Infrastructure
-    - List details of environments which the service is authorized to view.
-      This includes the service instance endpoints and service definition
-      details.
+    - List the details of Software as a Service (SaaS) environments provisioned by Service Manager.
+      Information includes the service instance endpoints and service definition details.
     - If I(service_environment_id) is specified, the details of a single ServiceEnvironment will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     service_environment_id:
         description:
-            - The Id associated with the service environment.
+            - The unique identifier associated with the service environment.
+            - "**Note:** Not an L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)."
             - Required to get a specific service_environment.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The unique identifier for the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the compartment.
         type: str
         required: true
     service_environment_type:
         description:
-            - The service definition type of the environment.
+            - "The environment's service definition type.
+              For example, \\"RGBUOROMS\\" is the service definition type for \\"Oracle Retail Order Management Cloud Service\\"."
         type: str
     sort_by:
         description:
@@ -97,12 +98,14 @@ service_environments:
         id:
             description:
                 - Unqiue identifier for the entitlement related to the environment.
+                - "**Note:** Not an L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)."
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         subscription_id:
             description:
-                - The subscription Id corresponding to the service environment Id.
+                - The unique subscription ID associated with the service environment ID.
+                - "**Note:** Not an L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)."
             returned: on success
             type: str
             sample: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
@@ -114,7 +117,7 @@ service_environments:
             sample: INITIALIZED
         compartment_id:
             description:
-                - Compartment Id associated with the service.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -126,19 +129,20 @@ service_environments:
             contains:
                 type:
                     description:
-                        - The service definition type.
+                        - "The service definition type. For example, a service definition type \\"RGBUOROMS\\"
+                          would be for the service \\"Oracle Retail Order Management Cloud Service\\"."
                     returned: on success
                     type: str
                     sample: type_example
                 display_name:
                     description:
-                        - Display name of the service.
+                        - "Display name of the service. For example, \\"Oracle Retail Order Management Cloud Service\\"."
                     returned: on success
                     type: str
                     sample: display_name_example
                 short_display_name:
                     description:
-                        - Short display name of the service.
+                        - "Short display name of the service. For example, \\"Retail Order Management\\"."
                     returned: on success
                     type: str
                     sample: short_display_name_example
@@ -156,28 +160,37 @@ service_environments:
             contains:
                 environment_type:
                     description:
-                        - Service Environemnt EndPoint type.
+                        - Service environment endpoint type.
                     returned: on success
                     type: str
                     sample: INSTANCE_URL_PROD
                 url:
                     description:
-                        - Service Environemnt Instance EndPoint url.
+                        - Service environment instance URL.
                     returned: on success
                     type: str
                     sample: url_example
+                description:
+                    description:
+                        - Description of the environment link
+                    returned: on success
+                    type: str
+                    sample: description_example
         defined_tags:
             description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                 - Returned for list operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"CostCenter\\": \\"42\\"}`"
                 - Returned for list operation
             returned: on success
             type: dict
@@ -195,7 +208,8 @@ service_environments:
         "console_url": "console_url_example",
         "service_environment_endpoints": [{
             "environment_type": "INSTANCE_URL_PROD",
-            "url": "url_example"
+            "url": "url_example",
+            "description": "description_example"
         }],
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'}

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2020 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -51,7 +51,7 @@ release = ""
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["recommonmark", "sphinx_markdown_tables"]
+extensions = ["myst_parser", "sphinx_markdown_tables"]
 
 html_show_sourcelink = False
 
@@ -103,9 +103,9 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 
-html_context = {
-    "css_files": ["_static/theme_overrides.css"],  # override wide tables in RTD theme
-}
+# html_context = {
+#     "css_files": ["_static/theme_overrides.css"],  # override wide tables in RTD theme
+# }
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
 #

@@ -1,4 +1,4 @@
-# Copyright (c) 2019, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -467,6 +467,8 @@ class CreateBdsApiKeyOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter
             client, resource_helper, operation_response, wait_for_states
         )
 
+    # get operation expects 2 paramters
+    # Accepting more than one params for get call is not handled in parent class.
     def get_resource_from_wait_response(self, wait_response):
         entity_type = self.resource_helper.get_entity_type()
         identifier = None
@@ -477,7 +479,6 @@ class CreateBdsApiKeyOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter
         elif hasattr(
             wait_response.data, self.resource_helper.get_module_resource_id_param()
         ):
-            # this handles LB style WorkRequests which contain a field "load_balancer_id"
             identifier = getattr(
                 wait_response.data, self.resource_helper.get_module_resource_id_param()
             )
@@ -491,6 +492,43 @@ class CreateBdsApiKeyOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter
         bds_instance_id = self.resource_helper.module.params.get("bds_instance_id")
         get_response = self.resource_helper.get_get_fn()(
             bds_instance_id=bds_instance_id, api_key_id=identifier
+        )
+        return get_response.data
+
+
+class CreateBdsMetastoreConfigurationOperationWorkRequestWaiter(
+    CreateOperationWorkRequestWaiter
+):
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(CreateBdsMetastoreConfigurationOperationWorkRequestWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    # get operation expects 2 paramters
+    # Accepting more than one params for get call is not handled in parent class.
+    def get_resource_from_wait_response(self, wait_response):
+        entity_type = self.resource_helper.get_entity_type()
+        identifier = None
+        if hasattr(wait_response.data, "resources"):
+            identifier = get_resource_identifier_from_wait_response(
+                wait_response.data, entity_type
+            )
+        elif hasattr(
+            wait_response.data, self.resource_helper.get_module_resource_id_param()
+        ):
+            identifier = getattr(
+                wait_response.data, self.resource_helper.get_module_resource_id_param()
+            )
+
+        if not identifier:
+            self.resource_helper.module.fail_json(
+                msg="Could not get the resource identifier from work request response {0}".format(
+                    to_dict(wait_response.data)
+                )
+            )
+        bds_instance_id = self.resource_helper.module.params.get("bds_instance_id")
+        get_response = self.resource_helper.get_get_fn()(
+            bds_instance_id=bds_instance_id, metastore_config_id=identifier
         )
         return get_response.data
 
@@ -1020,6 +1058,11 @@ _WAITER_OVERRIDE_MAP = {
         "bds_api_key",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): CreateBdsApiKeyOperationWorkRequestWaiter,
+    (
+        "bds",
+        "bds_metastore_configuration",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateBdsMetastoreConfigurationOperationWorkRequestWaiter,
     # As External Databases need a connector to reach to the 'Available' state which is not done as part of the DB generation,
     # hence marking as NoWaiter so that "Not Connected" state can be considered
     (
