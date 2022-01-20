@@ -30,7 +30,7 @@ oracle.oci.oci_network_ip_sec_connection_tunnel -- Manage an IpSecConnectionTunn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -952,6 +952,27 @@ Examples
           oracle_interface_ipv6: oracle_interface_ipv6_example
           customer_interface_ipv6: customer_interface_ipv6_example
           customer_bgp_asn: customer_bgp_asn_example
+        oracle_initiation: INITIATOR_OR_RESPONDER
+        nat_translation_enabled: ENABLED
+        phase_one_config:
+          # optional
+          is_custom_phase_one_config: true
+          authentication_algorithm: SHA2_384
+          encryption_algorithm: AES_256_CBC
+          diffie_helman_group: GROUP2
+          lifetime_in_seconds: 56
+        phase_two_config:
+          # optional
+          is_custom_phase_two_config: true
+          authentication_algorithm: HMAC_SHA2_256_128
+          encryption_algorithm: AES_256_GCM
+          lifetime_in_seconds: 56
+          is_pfs_enabled: true
+          pfs_dh_group: GROUP2
+        dpd_config:
+          # optional
+          dpd_mode: INITIATE_AND_RESPOND
+          dpd_timeout_in_sec: 56
         encryption_domain_config:
           # optional
           oracle_traffic_selector: [ "oracle_traffic_selector_example" ]
@@ -973,6 +994,27 @@ Examples
           oracle_interface_ipv6: oracle_interface_ipv6_example
           customer_interface_ipv6: customer_interface_ipv6_example
           customer_bgp_asn: customer_bgp_asn_example
+        oracle_initiation: INITIATOR_OR_RESPONDER
+        nat_translation_enabled: ENABLED
+        phase_one_config:
+          # optional
+          is_custom_phase_one_config: true
+          authentication_algorithm: SHA2_384
+          encryption_algorithm: AES_256_CBC
+          diffie_helman_group: GROUP2
+          lifetime_in_seconds: 56
+        phase_two_config:
+          # optional
+          is_custom_phase_two_config: true
+          authentication_algorithm: HMAC_SHA2_256_128
+          encryption_algorithm: AES_256_GCM
+          lifetime_in_seconds: 56
+          is_pfs_enabled: true
+          pfs_dh_group: GROUP2
+        dpd_config:
+          # optional
+          dpd_mode: INITIATE_AND_RESPOND
+          dpd_timeout_in_sec: 56
         encryption_domain_config:
           # optional
           oracle_traffic_selector: [ "oracle_traffic_selector_example" ]
@@ -1013,7 +1055,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the IpSecConnectionTunnel resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bgp_session_info&#x27;: {&#x27;bgp_ipv6_state&#x27;: &#x27;UP&#x27;, &#x27;bgp_state&#x27;: &#x27;UP&#x27;, &#x27;customer_bgp_asn&#x27;: &#x27;customer_bgp_asn_example&#x27;, &#x27;customer_interface_ip&#x27;: &#x27;customer_interface_ip_example&#x27;, &#x27;customer_interface_ipv6&#x27;: &#x27;customer_interface_ipv6_example&#x27;, &#x27;oracle_bgp_asn&#x27;: &#x27;oracle_bgp_asn_example&#x27;, &#x27;oracle_interface_ip&#x27;: &#x27;oracle_interface_ip_example&#x27;, &#x27;oracle_interface_ipv6&#x27;: &#x27;oracle_interface_ipv6_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_ip&#x27;: &#x27;cpe_ip_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;encryption_domain_config&#x27;: {&#x27;cpe_traffic_selector&#x27;: [], &#x27;oracle_traffic_selector&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ike_version&#x27;: &#x27;V1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;routing&#x27;: &#x27;BGP&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_status_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vpn_ip&#x27;: &#x27;vpn_ip_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bgp_session_info&#x27;: {&#x27;bgp_ipv6_state&#x27;: &#x27;UP&#x27;, &#x27;bgp_state&#x27;: &#x27;UP&#x27;, &#x27;customer_bgp_asn&#x27;: &#x27;customer_bgp_asn_example&#x27;, &#x27;customer_interface_ip&#x27;: &#x27;customer_interface_ip_example&#x27;, &#x27;customer_interface_ipv6&#x27;: &#x27;customer_interface_ipv6_example&#x27;, &#x27;oracle_bgp_asn&#x27;: &#x27;oracle_bgp_asn_example&#x27;, &#x27;oracle_interface_ip&#x27;: &#x27;oracle_interface_ip_example&#x27;, &#x27;oracle_interface_ipv6&#x27;: &#x27;oracle_interface_ipv6_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_ip&#x27;: &#x27;cpe_ip_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dpd_mode&#x27;: &#x27;INITIATE_AND_RESPOND&#x27;, &#x27;dpd_timeout_in_sec&#x27;: 56, &#x27;encryption_domain_config&#x27;: {&#x27;cpe_traffic_selector&#x27;: [], &#x27;oracle_traffic_selector&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ike_version&#x27;: &#x27;V1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;nat_translation_enabled&#x27;: &#x27;ENABLED&#x27;, &#x27;oracle_can_initiate&#x27;: &#x27;INITIATOR_OR_RESPONDER&#x27;, &#x27;phase_one_details&#x27;: {&#x27;custom_authentication_algorithm&#x27;: &#x27;custom_authentication_algorithm_example&#x27;, &#x27;custom_dh_group&#x27;: &#x27;custom_dh_group_example&#x27;, &#x27;custom_encryption_algorithm&#x27;: &#x27;custom_encryption_algorithm_example&#x27;, &#x27;is_custom_phase_one_config&#x27;: True, &#x27;is_ike_established&#x27;: True, &#x27;lifetime&#x27;: 56, &#x27;negotiated_authentication_algorithm&#x27;: &#x27;negotiated_authentication_algorithm_example&#x27;, &#x27;negotiated_dh_group&#x27;: &#x27;negotiated_dh_group_example&#x27;, &#x27;negotiated_encryption_algorithm&#x27;: &#x27;negotiated_encryption_algorithm_example&#x27;, &#x27;remaining_lifetime&#x27;: 56, &#x27;remaining_lifetime_last_retrieved&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;phase_two_details&#x27;: {&#x27;custom_authentication_algorithm&#x27;: &#x27;custom_authentication_algorithm_example&#x27;, &#x27;custom_encryption_algorithm&#x27;: &#x27;custom_encryption_algorithm_example&#x27;, &#x27;dh_group&#x27;: &#x27;dh_group_example&#x27;, &#x27;is_custom_phase_two_config&#x27;: True, &#x27;is_esp_established&#x27;: True, &#x27;is_pfs_enabled&#x27;: True, &#x27;lifetime&#x27;: 56, &#x27;negotiated_authentication_algorithm&#x27;: &#x27;negotiated_authentication_algorithm_example&#x27;, &#x27;negotiated_dh_group&#x27;: &#x27;negotiated_dh_group_example&#x27;, &#x27;negotiated_encryption_algorithm&#x27;: &#x27;negotiated_encryption_algorithm_example&#x27;, &#x27;remaining_lifetime&#x27;: 56, &#x27;remaining_lifetime_last_retrieved&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;routing&#x27;: &#x27;BGP&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_status_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vpn_ip&#x27;: &#x27;vpn_ip_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1261,6 +1303,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/dpd_mode"></div>
+                    <b>dpd_mode</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/dpd_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>dpd mode</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INITIATE_AND_RESPOND</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/dpd_timeout_in_sec"></div>
+                    <b>dpd_timeout_in_sec</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/dpd_timeout_in_sec" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Dead peer detection (DPD) timeout in seconds.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/encryption_domain_config"></div>
                     <b>encryption_domain_config</b>
                     <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/encryption_domain_config" title="Permalink to this return value"></a>
@@ -1363,6 +1441,515 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/nat_translation_enabled"></div>
+                    <b>nat_translation_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/nat_translation_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether NAT-T Enabled on the tunnel</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/oracle_can_initiate"></div>
+                    <b>oracle_can_initiate</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/oracle_can_initiate" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether Oracle can either initiate the tunnel or respond, or respond only.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INITIATOR_OR_RESPONDER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details"></div>
+                    <b>phase_one_details</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/custom_authentication_algorithm"></div>
+                    <b>custom_authentication_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/custom_authentication_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Custom authentication algorithm</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">custom_authentication_algorithm_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/custom_dh_group"></div>
+                    <b>custom_dh_group</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/custom_dh_group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Custom Diffie-Hellman group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">custom_dh_group_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/custom_encryption_algorithm"></div>
+                    <b>custom_encryption_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/custom_encryption_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Custom encryption algorithm.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">custom_encryption_algorithm_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/is_custom_phase_one_config"></div>
+                    <b>is_custom_phase_one_config</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/is_custom_phase_one_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether custom phase one configuration is enabled.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/is_ike_established"></div>
+                    <b>is_ike_established</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/is_ike_established" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether IKE Phase 1 is established.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/lifetime"></div>
+                    <b>lifetime</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/lifetime" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total configured lifetime of an IKE security association.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/negotiated_authentication_algorithm"></div>
+                    <b>negotiated_authentication_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/negotiated_authentication_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The negotiated authentication algorithm.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">negotiated_authentication_algorithm_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/negotiated_dh_group"></div>
+                    <b>negotiated_dh_group</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/negotiated_dh_group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The negotiated Diffie-Hellman group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">negotiated_dh_group_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/negotiated_encryption_algorithm"></div>
+                    <b>negotiated_encryption_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/negotiated_encryption_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The negotiated encryption algorithm.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">negotiated_encryption_algorithm_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/remaining_lifetime"></div>
+                    <b>remaining_lifetime</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/remaining_lifetime" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The lifetime remaining before the key is refreshed.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_one_details/remaining_lifetime_last_retrieved"></div>
+                    <b>remaining_lifetime_last_retrieved</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_one_details/remaining_lifetime_last_retrieved" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time we retrieved the remaining lifetime, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>Example: `2016-08-25T21:10:29.600Z`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details"></div>
+                    <b>phase_two_details</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/custom_authentication_algorithm"></div>
+                    <b>custom_authentication_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/custom_authentication_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Phase Two authentication algorithm supported during tunnel negotiation.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">custom_authentication_algorithm_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/custom_encryption_algorithm"></div>
+                    <b>custom_encryption_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/custom_encryption_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Custom Encryption Algorithm</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">custom_encryption_algorithm_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/dh_group"></div>
+                    <b>dh_group</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/dh_group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Proposed Diffie-Hellman group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dh_group_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/is_custom_phase_two_config"></div>
+                    <b>is_custom_phase_two_config</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/is_custom_phase_two_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether custom phase two configuration is enabled.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/is_esp_established"></div>
+                    <b>is_esp_established</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/is_esp_established" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ESP Phase 2 established</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/is_pfs_enabled"></div>
+                    <b>is_pfs_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/is_pfs_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Is PFS (perfect forward secrecy) enabled</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/lifetime"></div>
+                    <b>lifetime</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/lifetime" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total configured lifetime of an IKE security association.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/negotiated_authentication_algorithm"></div>
+                    <b>negotiated_authentication_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/negotiated_authentication_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The negotiated authentication algorithm.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">negotiated_authentication_algorithm_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/negotiated_dh_group"></div>
+                    <b>negotiated_dh_group</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/negotiated_dh_group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The negotiated Diffie-Hellman group.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">negotiated_dh_group_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/negotiated_encryption_algorithm"></div>
+                    <b>negotiated_encryption_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/negotiated_encryption_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The negotiated encryption algorithm.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">negotiated_encryption_algorithm_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/remaining_lifetime"></div>
+                    <b>remaining_lifetime</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/remaining_lifetime" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The lifetime remaining before the key is refreshed.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnel/phase_two_details/remaining_lifetime_last_retrieved"></div>
+                    <b>remaining_lifetime_last_retrieved</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnel/phase_two_details/remaining_lifetime_last_retrieved" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time we retrieved the remaining lifetime, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>Example: `2016-08-25T21:10:29.600Z`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

@@ -1,3 +1,5 @@
+/* Include the theme's normal CSS using the CSS @import rule. */
+@import 'css/theme.css';
 /* override table width restrictions */
 @media screen and (min-width: 767px) {
 
@@ -12,7 +14,8 @@
    }
 }
 .wy-nav-content {
-   max-width: 1400px !important;
+   min-width: 767px;
+   max-width: min-content !important;
 }
 
 /* documentation-table is used by tables in the generated module documentation. */
@@ -24,7 +27,7 @@
 }
 
 .documentation-table th, .documentation-table td {
-    padding: 4px;
+    padding: 10px;
     border-left: 1px solid #000;
     border-top: 1px solid #000;
 }
@@ -32,4 +35,6 @@
 .documentation-table {
     border-right: 1px solid #000;
     border-bottom: 1px solid #000;
+    word-spacing: 2px !important;
+    line-height: 1.5 !important;
 }

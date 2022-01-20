@@ -23,7 +23,8 @@ module: oci_jms_fleet_facts
 short_description: Fetches details about one or multiple Fleet resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Fleet resources in Oracle Cloud Infrastructure
-    - Returns a list of all the Fleets contained by a compartment.
+    - Returns a list of all the Fleets contained by a compartment. The query parameter `compartmentId`
+      is required unless the query parameter `id` is specified.
     - If I(fleet_id) is specified, the details of a single Fleet will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

@@ -189,6 +189,9 @@ DOCUMENTATION = """
 """
 
 EXAMPLES = """
+# Please check https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm
+# for more scenario based examples.
+
 # Fetch all hosts
 plugin: oci
 

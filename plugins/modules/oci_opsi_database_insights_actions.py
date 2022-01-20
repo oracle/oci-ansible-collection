@@ -32,6 +32,8 @@ description:
       Either databaseId or id must be specified.
     - For I(action=ingest_sql_plan_lines), the SqlPlanLines endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline.
       Either databaseId or id must be specified.
+    - For I(action=ingest_sql_stats), the SQL Stats endpoint takes in a JSON payload, persists it in Operations Insights ingest pipeline.
+      Either databaseId or id must be specified.
     - "For I(action=ingest_sql_text), the SqlText endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline.
       Either databaseId or id must be specified.
       Disclaimer: SQL text being uploaded explicitly via APIs is not masked. Any sensitive literals contained in the sqlFullText column should be masked prior
@@ -427,20 +429,268 @@ options:
                       30539126:1')]]></hint><hint><![CDATA[OUTLINE_LEAF(@\\\\\\"SEL$1\\\\\\")]]></hint><hint><![CDATA[INDEX(@\\\\\\"SEL$1\\\\\\"
                       \\\\\\"USER$\\\\\\"@\\\\\\"SEL$1\\\\\\" \\\\\\"I_USER#\\\\\\")]]></hint></outline_data></other_xml>\\"`"
                 type: str
-            sql_command:
+            plan_hash_value:
                 description:
-                    - "SQL command
-                      Example: `\\"SELECT\\"`"
+                    - Plan hash value for the SQL Execution Plan
+                type: int
+            last_active_time:
+                description:
+                    - "last_active_time
+                      Example: `\\"0000000099CCE300\\"`"
                 type: str
+            parse_calls:
+                description:
+                    - "Total integer of parse calls
+                       Example: `60`"
+                type: int
+            disk_reads:
+                description:
+                    - Number of disk reads
+                type: int
+            direct_reads:
+                description:
+                    - Number of direct reads
+                type: int
+            direct_writes:
+                description:
+                    - Number of Direct writes
+                type: int
+            buffer_gets:
+                description:
+                    - Number of Buffer Gets
+                type: int
+            rows_processed:
+                description:
+                    - Number of row processed
+                type: int
+            serializable_aborts:
+                description:
+                    - Number of serializable aborts
+                type: int
+            fetches:
+                description:
+                    - Number of fetches
+                type: int
+            executions:
+                description:
+                    - Number of executions
+                type: int
+            avoided_executions:
+                description:
+                    - Number of executions attempted on this object, but prevented due to the SQL statement being in quarantine
+                type: int
+            end_of_fetch_count:
+                description:
+                    - Number of times this cursor was fully executed since the cursor was brought into the library cache
+                type: int
+            loads:
+                description:
+                    - Number of times the object was either loaded or reloaded
+                type: int
+            version_count:
+                description:
+                    - Number of cursors present in the cache with this SQL text and plan
+                type: int
+            invalidations:
+                description:
+                    - Number of times this child cursor has been invalidated
+                type: int
+            obsolete_count:
+                description:
+                    - Number of times that a parent cursor became obsolete
+                type: int
+            px_servers_executions:
+                description:
+                    - Total number of executions performed by parallel execution servers (0 when the statement has never been executed in parallel)
+                type: int
+            cpu_time_in_us:
+                description:
+                    - CPU time (in microseconds) used by this cursor for parsing, executing, and fetching
+                type: int
+            elapsed_time_in_us:
+                description:
+                    - Elapsed time (in microseconds) used by this cursor for parsing, executing, and fetching.
+                type: int
+            avg_hard_parse_time_in_us:
+                description:
+                    - Average hard parse time (in microseconds) used by this cursor
+                type: int
+            concurrency_wait_time_in_us:
+                description:
+                    - Concurrency wait time (in microseconds)
+                type: int
+            application_wait_time_in_us:
+                description:
+                    - Application wait time (in microseconds)
+                type: int
+            cluster_wait_time_in_us:
+                description:
+                    - Cluster wait time (in microseconds). This value is specific to Oracle RAC
+                type: int
+            user_io_wait_time_in_us:
+                description:
+                    - User I/O wait time (in microseconds)
+                type: int
+            plsql_exec_time_in_us:
+                description:
+                    - PL/SQL execution time (in microseconds)
+                type: int
+            java_exec_time_in_us:
+                description:
+                    - Java execution time (in microseconds)
+                type: int
+            sorts:
+                description:
+                    - Number of sorts that were done for the child cursor
+                type: int
+            sharable_mem:
+                description:
+                    - Total shared memory (in bytes) currently occupied by all cursors with this SQL text and plan
+                type: int
+            total_sharable_mem:
+                description:
+                    - Total shared memory (in bytes) occupied by all cursors with this SQL text and plan if they were to be fully loaded in the shared pool
+                      (that is, cursor size)
+                type: int
+            type_check_mem:
+                description:
+                    - Typecheck memory
+                type: int
+            io_cell_offload_eligible_bytes:
+                description:
+                    - Number of I/O bytes which can be filtered by the Exadata storage system
+                type: int
+            io_interconnect_bytes:
+                description:
+                    - Number of I/O bytes exchanged between Oracle Database and the storage system. Typically used for Cache Fusion or parallel queries
+                type: int
+            physical_read_requests:
+                description:
+                    - Number of physical read I/O requests issued by the monitored SQL. The requests may not be disk reads
+                type: int
+            physical_read_bytes:
+                description:
+                    - Number of bytes read from disks by the monitored SQL
+                type: int
+            physical_write_requests:
+                description:
+                    - Number of physical write I/O requests issued by the monitored SQL
+                type: int
+            physical_write_bytes:
+                description:
+                    - Number of bytes written to disks by the monitored SQL
+                type: int
             exact_matching_signature:
                 description:
-                    - "Exact matching signature
+                    - "exact_matching_signature
                       Example: `\\"18067345456756876713\\"`"
                 type: str
             force_matching_signature:
                 description:
-                    - "Force matching signature
+                    - "force_matching_signature
                       Example: `\\"18067345456756876713\\"`"
+                type: str
+            io_cell_uncompressed_bytes:
+                description:
+                    - Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells
+                type: int
+            io_cell_offload_returned_bytes:
+                description:
+                    - Number of bytes that are returned by Exadata cell through the regular I/O path
+                type: int
+            child_number:
+                description:
+                    - Number of this child cursor
+                type: int
+            command_type:
+                description:
+                    - Oracle command type definition
+                type: int
+            users_opening:
+                description:
+                    - Number of users that have any of the child cursors open
+                type: int
+            users_executing:
+                description:
+                    - Number of users executing the statement
+                type: int
+            optimizer_cost:
+                description:
+                    - Cost of this query given by the optimizer
+                type: int
+            full_plan_hash_value:
+                description:
+                    - Total Number of rows in SQLStats table
+                type: str
+            module:
+                description:
+                    - Module name
+                type: str
+            service:
+                description:
+                    - Service name
+                type: str
+            action:
+                description:
+                    - Contains the name of the action that was executing when the SQL statement was first parsed, which is set by calling
+                      DBMS_APPLICATION_INFO.SET_ACTION
+                type: str
+            sql_profile:
+                description:
+                    - SQL profile used for this statement, if any
+                type: str
+            sql_patch:
+                description:
+                    - SQL patch used for this statement, if any
+                type: str
+            sql_plan_baseline:
+                description:
+                    - SQL plan baseline used for this statement, if any
+                type: str
+            delta_execution_count:
+                description:
+                    - Number of executions for the cursor since the last AWR snapshot
+                type: int
+            delta_cpu_time:
+                description:
+                    - CPU time (in microseconds) for the cursor since the last AWR snapshot
+                type: int
+            delta_io_bytes:
+                description:
+                    - Number of I/O bytes exchanged between the Oracle database and the storage system for the cursor since the last AWR snapshot
+                type: int
+            delta_cpu_rank:
+                description:
+                    - Rank based on CPU Consumption
+                type: int
+            delta_execs_rank:
+                description:
+                    - Rank based on number of execution
+                type: int
+            sharable_mem_rank:
+                description:
+                    - Rank based on sharable memory
+                type: int
+            delta_io_rank:
+                description:
+                    - Rank based on I/O Consumption
+                type: int
+            harmonic_sum:
+                description:
+                    - Harmonic sum based on ranking parameters
+                type: int
+            wt_harmonic_sum:
+                description:
+                    - Weight based harmonic sum of ranking parameters
+                type: int
+            total_sql_count:
+                description:
+                    - Total number of rows in SQLStats table
+                type: int
+            sql_command:
+                description:
+                    - "SQL command
+                      Example: `\\"SELECT\\"`"
                 type: str
             sql_full_text:
                 description:
@@ -452,12 +702,14 @@ options:
     database_id:
         description:
             - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
-            - Applicable only for I(action=ingest_database_configuration)I(action=ingest_sql_bucket)I(action=ingest_sql_plan_lines)I(action=ingest_sql_text).
+            - Applicable only for I(action=ingest_database_configuration)I(action=ingest_sql_bucket)I(action=ingest_sql_plan_lines)I(action=ingest_sql_stats)I(a
+              ction=ingest_sql_text).
         type: str
     id:
         description:
             - L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
-            - Applicable only for I(action=ingest_database_configuration)I(action=ingest_sql_bucket)I(action=ingest_sql_plan_lines)I(action=ingest_sql_text).
+            - Applicable only for I(action=ingest_database_configuration)I(action=ingest_sql_bucket)I(action=ingest_sql_plan_lines)I(action=ingest_sql_stats)I(a
+              ction=ingest_sql_text).
         type: str
     action:
         description:
@@ -471,6 +723,7 @@ options:
             - "ingest_database_configuration"
             - "ingest_sql_bucket"
             - "ingest_sql_plan_lines"
+            - "ingest_sql_stats"
             - "ingest_sql_text"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -544,6 +797,27 @@ EXAMPLES = """
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    items:
+    - # required
+      metric_name: DB_OS_CONFIG_INSTANCE
+      instance_name: instance_name_example
+      host_name: host_name_example
+
+      # optional
+      time_collected: time_collected_example
+      num_cp_us: 56
+      num_cpu_cores: 56
+      num_cpu_sockets: 56
+      physical_memory_bytes: 3.4
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Perform action ingest_sql_stats on database_insights
+  oci_opsi_database_insights_actions:
+    # required
+    action: ingest_sql_stats
+
+    # optional
     items:
     - # required
       metric_name: DB_OS_CONFIG_INSTANCE
@@ -871,6 +1145,7 @@ try:
     from oci.opsi.models import IngestDatabaseConfigurationDetails
     from oci.opsi.models import IngestSqlBucketDetails
     from oci.opsi.models import IngestSqlPlanLinesDetails
+    from oci.opsi.models import IngestSqlStatsDetails
     from oci.opsi.models import IngestSqlTextDetails
 
     HAS_OCI_PY_SDK = True
@@ -887,6 +1162,7 @@ class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
         ingest_database_configuration
         ingest_sql_bucket
         ingest_sql_plan_lines
+        ingest_sql_stats
         ingest_sql_text
     """
 
@@ -1032,6 +1308,30 @@ class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def ingest_sql_stats(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, IngestSqlStatsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.ingest_sql_stats,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                ingest_sql_stats_details=action_details,
+                database_id=self.module.params.get("database_id"),
+                id=self.module.params.get("id"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def ingest_sql_text(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, IngestSqlTextDetails
@@ -1160,9 +1460,70 @@ def main():
                     qblock_name=dict(type="str"),
                     elapsed_time_in_sec=dict(type="float"),
                     other_xml=dict(type="str"),
-                    sql_command=dict(type="str"),
+                    plan_hash_value=dict(type="int"),
+                    last_active_time=dict(type="str"),
+                    parse_calls=dict(type="int"),
+                    disk_reads=dict(type="int"),
+                    direct_reads=dict(type="int"),
+                    direct_writes=dict(type="int"),
+                    buffer_gets=dict(type="int"),
+                    rows_processed=dict(type="int"),
+                    serializable_aborts=dict(type="int"),
+                    fetches=dict(type="int"),
+                    executions=dict(type="int"),
+                    avoided_executions=dict(type="int"),
+                    end_of_fetch_count=dict(type="int"),
+                    loads=dict(type="int"),
+                    version_count=dict(type="int"),
+                    invalidations=dict(type="int"),
+                    obsolete_count=dict(type="int"),
+                    px_servers_executions=dict(type="int"),
+                    cpu_time_in_us=dict(type="int"),
+                    elapsed_time_in_us=dict(type="int"),
+                    avg_hard_parse_time_in_us=dict(type="int"),
+                    concurrency_wait_time_in_us=dict(type="int"),
+                    application_wait_time_in_us=dict(type="int"),
+                    cluster_wait_time_in_us=dict(type="int"),
+                    user_io_wait_time_in_us=dict(type="int"),
+                    plsql_exec_time_in_us=dict(type="int"),
+                    java_exec_time_in_us=dict(type="int"),
+                    sorts=dict(type="int"),
+                    sharable_mem=dict(type="int"),
+                    total_sharable_mem=dict(type="int"),
+                    type_check_mem=dict(type="int"),
+                    io_cell_offload_eligible_bytes=dict(type="int"),
+                    io_interconnect_bytes=dict(type="int"),
+                    physical_read_requests=dict(type="int"),
+                    physical_read_bytes=dict(type="int"),
+                    physical_write_requests=dict(type="int"),
+                    physical_write_bytes=dict(type="int"),
                     exact_matching_signature=dict(type="str"),
                     force_matching_signature=dict(type="str"),
+                    io_cell_uncompressed_bytes=dict(type="int"),
+                    io_cell_offload_returned_bytes=dict(type="int"),
+                    child_number=dict(type="int"),
+                    command_type=dict(type="int"),
+                    users_opening=dict(type="int"),
+                    users_executing=dict(type="int"),
+                    optimizer_cost=dict(type="int"),
+                    full_plan_hash_value=dict(type="str"),
+                    module=dict(type="str"),
+                    service=dict(type="str"),
+                    action=dict(type="str"),
+                    sql_profile=dict(type="str"),
+                    sql_patch=dict(type="str"),
+                    sql_plan_baseline=dict(type="str"),
+                    delta_execution_count=dict(type="int"),
+                    delta_cpu_time=dict(type="int"),
+                    delta_io_bytes=dict(type="int"),
+                    delta_cpu_rank=dict(type="int"),
+                    delta_execs_rank=dict(type="int"),
+                    sharable_mem_rank=dict(type="int"),
+                    delta_io_rank=dict(type="int"),
+                    harmonic_sum=dict(type="int"),
+                    wt_harmonic_sum=dict(type="int"),
+                    total_sql_count=dict(type="int"),
+                    sql_command=dict(type="str"),
                     sql_full_text=dict(type="str"),
                 ),
             ),
@@ -1178,6 +1539,7 @@ def main():
                     "ingest_database_configuration",
                     "ingest_sql_bucket",
                     "ingest_sql_plan_lines",
+                    "ingest_sql_stats",
                     "ingest_sql_text",
                 ],
             ),

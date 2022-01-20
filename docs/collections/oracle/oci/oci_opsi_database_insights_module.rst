@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_database_insights -- Manage a DatabaseInsights resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DatabaseInsights resource in Oracle Cloud Infrastructure
 - For *state=present*, create a Database Insight resource for a database in Operations Insights. The database will be enabled in Operations Insights. Database metric collection and analysis will be started.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_opsi_database_insights_actions <ansible_collections.oracle.oci.oci_opsi_database_insights_actions_module>` module: change, disable, enable, ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_text.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_opsi_database_insights_actions <ansible_collections.oracle.oci.oci_opsi_database_insights_actions_module>` module: change, disable, enable, ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_stats, ingest_sql_text.
 
 
 .. Aliases

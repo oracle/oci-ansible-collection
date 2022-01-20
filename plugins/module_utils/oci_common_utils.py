@@ -22,7 +22,7 @@ import json
 try:
     os.environ["OCI_PYTHON_SDK_NO_SERVICE_IMPORTS"] = "1"
     import oci
-    from oci.retry import RetryStrategyBuilder
+    from oci.retry import DEFAULT_RETRY_STRATEGY
     from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
@@ -134,28 +134,9 @@ ANY_OPERATION_KEY = "ANY"
 MEBIBYTE = 1024 * 1024
 
 
-def _get_retry_strategy():
-    retry_strategy_builder = RetryStrategyBuilder(
-        max_attempts_check=True,
-        max_attempts=3,
-        retry_max_wait_between_calls_seconds=60,
-        retry_base_sleep_time_seconds=10,
-        backoff_type=oci.retry.BACKOFF_FULL_JITTER_EQUAL_ON_THROTTLE_VALUE,
-    )
-    retry_strategy_builder.add_service_error_check(
-        service_error_retry_config={
-            429: [],
-            400: ["QuotaExceeded", "LimitExceeded"],
-            409: ["Conflict"],
-        },
-        service_error_retry_on_any_5xx=True,
-    )
-    return retry_strategy_builder.get_retry_strategy()
-
-
 def call_with_backoff(fn, *args, **kwargs):
     if "retry_strategy" not in kwargs:
-        kwargs["retry_strategy"] = _get_retry_strategy()
+        kwargs["retry_strategy"] = DEFAULT_RETRY_STRATEGY
     try:
         return fn(*args, **kwargs)
     except TypeError as te:
