@@ -239,6 +239,182 @@ ip_sec_connection_tunnels:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        oracle_can_initiate:
+            description:
+                - Indicates whether Oracle can either initiate the tunnel or respond, or respond only.
+            returned: on success
+            type: str
+            sample: INITIATOR_OR_RESPONDER
+        nat_translation_enabled:
+            description:
+                - Whether NAT-T Enabled on the tunnel
+            returned: on success
+            type: str
+            sample: ENABLED
+        dpd_mode:
+            description:
+                - dpd mode
+            returned: on success
+            type: str
+            sample: INITIATE_AND_RESPOND
+        dpd_timeout_in_sec:
+            description:
+                - Dead peer detection (DPD) timeout in seconds.
+            returned: on success
+            type: int
+            sample: 56
+        phase_one_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_custom_phase_one_config:
+                    description:
+                        - Indicates whether custom phase one configuration is enabled.
+                    returned: on success
+                    type: bool
+                    sample: true
+                lifetime:
+                    description:
+                        - The total configured lifetime of an IKE security association.
+                    returned: on success
+                    type: int
+                    sample: 56
+                remaining_lifetime:
+                    description:
+                        - The lifetime remaining before the key is refreshed.
+                    returned: on success
+                    type: int
+                    sample: 56
+                custom_authentication_algorithm:
+                    description:
+                        - Custom authentication algorithm
+                    returned: on success
+                    type: str
+                    sample: custom_authentication_algorithm_example
+                negotiated_authentication_algorithm:
+                    description:
+                        - The negotiated authentication algorithm.
+                    returned: on success
+                    type: str
+                    sample: negotiated_authentication_algorithm_example
+                custom_encryption_algorithm:
+                    description:
+                        - Custom encryption algorithm.
+                    returned: on success
+                    type: str
+                    sample: custom_encryption_algorithm_example
+                negotiated_encryption_algorithm:
+                    description:
+                        - The negotiated encryption algorithm.
+                    returned: on success
+                    type: str
+                    sample: negotiated_encryption_algorithm_example
+                custom_dh_group:
+                    description:
+                        - Custom Diffie-Hellman group.
+                    returned: on success
+                    type: str
+                    sample: custom_dh_group_example
+                negotiated_dh_group:
+                    description:
+                        - The negotiated Diffie-Hellman group.
+                    returned: on success
+                    type: str
+                    sample: negotiated_dh_group_example
+                is_ike_established:
+                    description:
+                        - Indicates whether IKE Phase 1 is established.
+                    returned: on success
+                    type: bool
+                    sample: true
+                remaining_lifetime_last_retrieved:
+                    description:
+                        - The date and time we retrieved the remaining lifetime, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                        - "Example: `2016-08-25T21:10:29.600Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+        phase_two_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_custom_phase_two_config:
+                    description:
+                        - Indicates whether custom phase two configuration is enabled.
+                    returned: on success
+                    type: bool
+                    sample: true
+                lifetime:
+                    description:
+                        - The total configured lifetime of an IKE security association.
+                    returned: on success
+                    type: int
+                    sample: 56
+                remaining_lifetime:
+                    description:
+                        - The lifetime remaining before the key is refreshed.
+                    returned: on success
+                    type: int
+                    sample: 56
+                custom_authentication_algorithm:
+                    description:
+                        - Phase Two authentication algorithm supported during tunnel negotiation.
+                    returned: on success
+                    type: str
+                    sample: custom_authentication_algorithm_example
+                negotiated_authentication_algorithm:
+                    description:
+                        - The negotiated authentication algorithm.
+                    returned: on success
+                    type: str
+                    sample: negotiated_authentication_algorithm_example
+                custom_encryption_algorithm:
+                    description:
+                        - Custom Encryption Algorithm
+                    returned: on success
+                    type: str
+                    sample: custom_encryption_algorithm_example
+                negotiated_encryption_algorithm:
+                    description:
+                        - The negotiated encryption algorithm.
+                    returned: on success
+                    type: str
+                    sample: negotiated_encryption_algorithm_example
+                dh_group:
+                    description:
+                        - Proposed Diffie-Hellman group.
+                    returned: on success
+                    type: str
+                    sample: dh_group_example
+                negotiated_dh_group:
+                    description:
+                        - The negotiated Diffie-Hellman group.
+                    returned: on success
+                    type: str
+                    sample: negotiated_dh_group_example
+                is_esp_established:
+                    description:
+                        - ESP Phase 2 established
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_pfs_enabled:
+                    description:
+                        - Is PFS (perfect forward secrecy) enabled
+                    returned: on success
+                    type: bool
+                    sample: true
+                remaining_lifetime_last_retrieved:
+                    description:
+                        - The date and time we retrieved the remaining lifetime, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                        - "Example: `2016-08-25T21:10:29.600Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -264,7 +440,38 @@ ip_sec_connection_tunnels:
         },
         "routing": "BGP",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_status_updated": "2013-10-20T19:20:30+01:00"
+        "time_status_updated": "2013-10-20T19:20:30+01:00",
+        "oracle_can_initiate": "INITIATOR_OR_RESPONDER",
+        "nat_translation_enabled": "ENABLED",
+        "dpd_mode": "INITIATE_AND_RESPOND",
+        "dpd_timeout_in_sec": 56,
+        "phase_one_details": {
+            "is_custom_phase_one_config": true,
+            "lifetime": 56,
+            "remaining_lifetime": 56,
+            "custom_authentication_algorithm": "custom_authentication_algorithm_example",
+            "negotiated_authentication_algorithm": "negotiated_authentication_algorithm_example",
+            "custom_encryption_algorithm": "custom_encryption_algorithm_example",
+            "negotiated_encryption_algorithm": "negotiated_encryption_algorithm_example",
+            "custom_dh_group": "custom_dh_group_example",
+            "negotiated_dh_group": "negotiated_dh_group_example",
+            "is_ike_established": true,
+            "remaining_lifetime_last_retrieved": "2013-10-20T19:20:30+01:00"
+        },
+        "phase_two_details": {
+            "is_custom_phase_two_config": true,
+            "lifetime": 56,
+            "remaining_lifetime": 56,
+            "custom_authentication_algorithm": "custom_authentication_algorithm_example",
+            "negotiated_authentication_algorithm": "negotiated_authentication_algorithm_example",
+            "custom_encryption_algorithm": "custom_encryption_algorithm_example",
+            "negotiated_encryption_algorithm": "negotiated_encryption_algorithm_example",
+            "dh_group": "dh_group_example",
+            "negotiated_dh_group": "negotiated_dh_group_example",
+            "is_esp_established": true,
+            "is_pfs_enabled": true,
+            "remaining_lifetime_last_retrieved": "2013-10-20T19:20:30+01:00"
+        }
     }]
 """
 

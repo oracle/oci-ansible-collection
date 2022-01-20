@@ -1,5 +1,6 @@
+antsibull==0.39.2
 sphinx-rtd-theme
 sphinx
 myst-parser
 sphinx_markdown_tables
-docutils
+docutils<0.17

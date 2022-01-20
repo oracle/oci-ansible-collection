@@ -26,7 +26,7 @@ description:
     - For I(state=present), create a Database Insight resource for a database in Operations Insights. The database will be enabled in Operations Insights.
       Database metric collection and analysis will be started.
     - "This resource has the following action operations in the M(oracle.oci.oci_opsi_database_insights_actions) module: change, disable, enable,
-      ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_text."
+      ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_stats, ingest_sql_text."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

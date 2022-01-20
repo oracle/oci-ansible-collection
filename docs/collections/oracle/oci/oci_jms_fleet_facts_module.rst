@@ -30,7 +30,7 @@ oracle.oci.oci_jms_fleet_facts -- Fetches details about one or multiple Fleet re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Fleet resources in Oracle Cloud Infrastructure
-- Returns a list of all the Fleets contained by a compartment.
+- Returns a list of all the Fleets contained by a compartment. The query parameter `compartmentId` is required unless the query parameter `id` is specified.
 - If *fleet_id* is specified, the details of a single Fleet will be returned.
 
 

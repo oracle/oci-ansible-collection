@@ -21,6 +21,7 @@
 # import os
 # import sys
 from __future__ import absolute_import, division, print_function
+import datetime
 
 __metaclass__ = type
 
@@ -31,15 +32,15 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = "Oracle Cloud Infrastructure Ansible Collection"
-copyright = "2020, Oracle and/or its affliates"
+copyright = "2020, {}, Oracle and/or its affliates".format(datetime.datetime.now().year)
 author = "Oracle Corporation"
 
 # XXX Fill in the version and release from the OCI ansible modules'
 # version
 # The short X.Y version
-version = "1.0"
+version = "2.39.0"
 # The full version, including alpha/beta/rc tags
-release = ""
+release = version
 
 
 # -- General configuration ---------------------------------------------------
@@ -51,7 +52,7 @@ release = ""
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["myst_parser", "sphinx_markdown_tables"]
+extensions = ["myst_parser", "sphinx_markdown_tables", "sphinx_antsibull_ext"]
 
 html_show_sourcelink = False
 
@@ -102,6 +103,11 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+
+# Overrides theme's stylesheet with custom css file.
+# If you only need to override a few styles on the theme,
+# you can include the theme's normal CSS using the CSS @import rule.
+html_style = "theme_overrides.css"
 
 # html_context = {
 #     "css_files": ["_static/theme_overrides.css"],  # override wide tables in RTD theme

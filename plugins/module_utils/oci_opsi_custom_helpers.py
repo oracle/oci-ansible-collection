@@ -346,3 +346,13 @@ class HostInsightActionsHelperCustom:
         return super(HostInsightActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
+
+
+class OperationsInsightsWarehouseHelperCustom:
+    def get_entity_type(self):
+        return "opsiwarehouse"
+
+
+class OperationsInsightsWarehouseUserHelperCustom:
+    def get_entity_type(self):
+        return "opsiwarehouseuser"

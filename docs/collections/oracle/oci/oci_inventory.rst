@@ -30,7 +30,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -273,6 +273,18 @@ Parameters
                                                     <div> ini entries:
                                                                     <p>
                                         [default]<br>fact_caching_prefix = ansible_inventory_
+                                                                                		<div>
+	  	    Removed in: version 2.16
+	  	  	    of ansible.builtin
+	  	  <br>
+	  Why: Fixes typing error in INI section name
+	  <br>
+	  Alternative: Use the &#39;defaults&#39; section instead
+	</div>
+	
+                                    </p>
+                                                                    <p>
+                                        [defaults]<br>fact_caching_prefix = ansible_inventory_
                                                                                 	
                                     </p>
                                                                     <p>
@@ -875,7 +887,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-keyed_groups" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                               	
                                     </td>
                                 <td>
@@ -887,6 +899,135 @@ Parameters
                                             <div>Add hosts to group based on the values of a variable.</div>
                                                         </td>
             </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-keyed_groups/default_value"></div>
+                    <b>default_value</b>
+                    <a class="ansibleOptionLink" href="#parameter-keyed_groups/default_value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                          <div style="font-style: italic; font-size: small; color: darkgreen">
+                        added in 2.12 of ansible.builtin
+                      </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>The default value when the host variable&#x27;s value is an empty string.</div>
+                                            <div>This option is mutually exclusive with <code>trailing_separator</code>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-keyed_groups/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-keyed_groups/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>The key from input dictionary used to generate groups</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-keyed_groups/parent_group"></div>
+                    <b>parent_group</b>
+                    <a class="ansibleOptionLink" href="#parameter-keyed_groups/parent_group" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>parent group for keyed group</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-keyed_groups/prefix"></div>
+                    <b>prefix</b>
+                    <a class="ansibleOptionLink" href="#parameter-keyed_groups/prefix" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                                    <b>Default:</b><br/><div style="color: blue">""</div>
+                                    </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>A keyed group name will start with this prefix</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-keyed_groups/separator"></div>
+                    <b>separator</b>
+                    <a class="ansibleOptionLink" href="#parameter-keyed_groups/separator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                                    <b>Default:</b><br/><div style="color: blue">"_"</div>
+                                    </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>separator used to build the keyed group name</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-keyed_groups/trailing_separator"></div>
+                    <b>trailing_separator</b>
+                    <a class="ansibleOptionLink" href="#parameter-keyed_groups/trailing_separator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                          <div style="font-style: italic; font-size: small; color: darkgreen">
+                        added in 2.12 of ansible.builtin
+                      </div>
+                                                              	
+                                    </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>Set this option to <em>False</em> to omit the <code>separator</code> after the host variable when the value is an empty string.</div>
+                                            <div>This option is mutually exclusive with <code>default_value</code>.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-leading_separator"></div>
@@ -1060,6 +1201,9 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    # Please check https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm
+    # for more scenario based examples.
+
     # Fetch all hosts
     plugin: oci
 

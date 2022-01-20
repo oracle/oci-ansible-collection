@@ -4,15 +4,17 @@
 
 OCI Ansible Collection provides machanism to wait for operations to complete before timeout. Users can override this behaviour by using `wait` & `wait_timeout` parameters in playbook.
 
-##### `wait` parameter
+### `wait` parameter
 
     Description:        Whether to wait for operations to complete.
     Type:               Bool
     Default:            True
 
-##### `wait_timeout` parameter
+### `wait_timeout` parameter
 
-    Description:        Time, in seconds, to wait for operations to complete when I(wait=yes). Default timeout value for most of the services is 1200 seconds. But, some services might have a longer wait timeout.
+    Description:        Time, in seconds, to wait for operations to complete when I(wait=yes).
+                        Default timeout value for most of the services is 1200 seconds.
+                        But, some services might have a longer wait timeout.
     Type:               Int
     Default:            1200 seconds
 
@@ -32,7 +34,7 @@ Users can override wait behavior by following ways:
 
 Users can use `wait_timeout` parameter in the task to override the default timeout value. Following is an example to override timeout value in playbook.
 
-##### Example
+#### Example
 
 ```yaml
 - name: Create new compute instance
@@ -55,7 +57,7 @@ In this case, operation will wait for 2400 seconds to complete instead of servic
 
 Users can opt not to wait for the operation to complete by using `wait` parameter in playbooks. Below is an example to demonstrate this.
 
-##### Example
+#### Example
 
 ```yaml
 - name: Create an instance

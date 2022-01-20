@@ -30,7 +30,7 @@ oracle.oci.oci_network_ip_sec_connection -- Manage an IpSecConnection resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1184,6 +1184,27 @@ Examples
             oracle_interface_ipv6: oracle_interface_ipv6_example
             customer_interface_ipv6: customer_interface_ipv6_example
             customer_bgp_asn: customer_bgp_asn_example
+          oracle_initiation: INITIATOR_OR_RESPONDER
+          nat_translation_enabled: ENABLED
+          phase_one_config:
+            # optional
+            is_custom_phase_one_config: true
+            authentication_algorithm: SHA2_384
+            encryption_algorithm: AES_256_CBC
+            diffie_helman_group: GROUP2
+            lifetime_in_seconds: 56
+          phase_two_config:
+            # optional
+            is_custom_phase_two_config: true
+            authentication_algorithm: HMAC_SHA2_256_128
+            encryption_algorithm: AES_256_GCM
+            lifetime_in_seconds: 56
+            is_pfs_enabled: true
+            pfs_dh_group: GROUP2
+          dpd_config:
+            # optional
+            dpd_mode: INITIATE_AND_RESPOND
+            dpd_timeout_in_sec: 56
           encryption_domain_config:
             # optional
             oracle_traffic_selector: [ "oracle_traffic_selector_example" ]

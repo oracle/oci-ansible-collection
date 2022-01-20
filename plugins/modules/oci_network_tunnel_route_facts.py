@@ -57,7 +57,7 @@ EXAMPLES = """
     tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    advertiser: advertiser_example
+    advertiser: CUSTOMER
 
 """
 

@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_database_insights_actions -- Perform actions on a DatabaseIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.38.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -63,6 +63,7 @@ Synopsis
 - For *action=ingest_database_configuration*, this is a generic ingest endpoint for all database configuration metrics.
 - For *action=ingest_sql_bucket*, the sqlbucket endpoint takes in a JSON payload, persists it in Operations Insights ingest pipeline. Either databaseId or id must be specified.
 - For *action=ingest_sql_plan_lines*, the SqlPlanLines endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline. Either databaseId or id must be specified.
+- For *action=ingest_sql_stats*, the SQL Stats endpoint takes in a JSON payload, persists it in Operations Insights ingest pipeline. Either databaseId or id must be specified.
 - For *action=ingest_sql_text*, the SqlText endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline. Either databaseId or id must be specified. Disclaimer: SQL text being uploaded explicitly via APIs is not masked. Any sensitive literals contained in the sqlFullText column should be masked prior to ingestion.
 
 
@@ -109,6 +110,7 @@ Parameters
                                                                                                                                                                                                 <li>ingest_database_configuration</li>
                                                                                                                                                                                                 <li>ingest_sql_bucket</li>
                                                                                                                                                                                                 <li>ingest_sql_plan_lines</li>
+                                                                                                                                                                                                <li>ingest_sql_stats</li>
                                                                                                                                                                                                 <li>ingest_sql_text</li>
                                                                                     </ul>
                                                                             </td>
@@ -256,7 +258,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Optional <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the associated DBaaS entity.</div>
-                                            <div>Applicable only for <em>action=ingest_database_configuration</em><em>action=ingest_sql_bucket</em><em>action=ingest_sql_plan_lines</em><em>action=ingest_sql_text</em>.</div>
+                                            <div>Applicable only for <em>action=ingest_database_configuration</em><em>action=ingest_sql_bucket</em><em>action=ingest_sql_plan_lines</em><em>action=ingest_sql_stats</em><em>a ction=ingest_sql_text</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -307,7 +309,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div><a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
-                                            <div>Applicable only for <em>action=ingest_database_configuration</em><em>action=ingest_sql_bucket</em><em>action=ingest_sql_plan_lines</em><em>action=ingest_sql_text</em>.</div>
+                                            <div>Applicable only for <em>action=ingest_database_configuration</em><em>action=ingest_sql_bucket</em><em>action=ingest_sql_plan_lines</em><em>action=ingest_sql_stats</em><em>a ction=ingest_sql_text</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -345,6 +347,70 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/action"></div>
+                    <b>action</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/action" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Contains the name of the action that was executing when the SQL statement was first parsed, which is set by calling DBMS_APPLICATION_INFO.SET_ACTION</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/application_wait_time_in_us"></div>
+                    <b>application_wait_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/application_wait_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Application wait time (in microseconds)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/avg_hard_parse_time_in_us"></div>
+                    <b>avg_hard_parse_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/avg_hard_parse_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Average hard parse time (in microseconds) used by this cursor</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/avoided_executions"></div>
+                    <b>avoided_executions</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/avoided_executions" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of executions attempted on this object, but prevented due to the SQL statement being in quarantine</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/bucket_id"></div>
                     <b>bucket_id</b>
                     <a class="ansibleOptionLink" href="#parameter-items/bucket_id" title="Permalink to this option"></a>
@@ -356,6 +422,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>SQL Bucket ID, examples &lt;= 3 secs, 3-10 secs, 10-60 secs, 1-5 min, &gt; 5 min Example: `&quot;&lt;= 3 secs&quot;`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/buffer_gets"></div>
+                    <b>buffer_gets</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/buffer_gets" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of Buffer Gets</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -405,6 +487,70 @@ Parameters
                                                                 <td>
                                             <div>Indicates if it is a CDB or not. This would be &#x27;yes&#x27; or &#x27;no&#x27;.</div>
                                             <div>Applicable when metric_name is &#x27;DB_EXTERNAL_PROPERTIES&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/child_number"></div>
+                    <b>child_number</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/child_number" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of this child cursor</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/cluster_wait_time_in_us"></div>
+                    <b>cluster_wait_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/cluster_wait_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Cluster wait time (in microseconds). This value is specific to Oracle RAC</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/command_type"></div>
+                    <b>command_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/command_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Oracle command type definition</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/concurrency_wait_time_in_us"></div>
+                    <b>concurrency_wait_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/concurrency_wait_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Concurrency wait time (in microseconds)</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -487,6 +633,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Total CPU time Example: `1046`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/cpu_time_in_us"></div>
+                    <b>cpu_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/cpu_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>CPU time (in microseconds) used by this cursor for parsing, executing, and fetching</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -576,6 +738,102 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/delta_cpu_rank"></div>
+                    <b>delta_cpu_rank</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/delta_cpu_rank" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Rank based on CPU Consumption</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/delta_cpu_time"></div>
+                    <b>delta_cpu_time</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/delta_cpu_time" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>CPU time (in microseconds) for the cursor since the last AWR snapshot</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/delta_execs_rank"></div>
+                    <b>delta_execs_rank</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/delta_execs_rank" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Rank based on number of execution</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/delta_execution_count"></div>
+                    <b>delta_execution_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/delta_execution_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of executions for the cursor since the last AWR snapshot</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/delta_io_bytes"></div>
+                    <b>delta_io_bytes</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/delta_io_bytes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of I/O bytes exchanged between the Oracle database and the storage system for the cursor since the last AWR snapshot</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/delta_io_rank"></div>
+                    <b>delta_io_rank</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/delta_io_rank" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Rank based on I/O Consumption</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/depth"></div>
                     <b>depth</b>
                     <a class="ansibleOptionLink" href="#parameter-items/depth" title="Permalink to this option"></a>
@@ -587,6 +845,54 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Depth Example: `3`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/direct_reads"></div>
+                    <b>direct_reads</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/direct_reads" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of direct reads</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/direct_writes"></div>
+                    <b>direct_writes</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/direct_writes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of Direct writes</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/disk_reads"></div>
+                    <b>disk_reads</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/disk_reads" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of disk reads</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -641,6 +947,38 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/elapsed_time_in_us"></div>
+                    <b>elapsed_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/elapsed_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Elapsed time (in microseconds) used by this cursor for parsing, executing, and fetching.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/end_of_fetch_count"></div>
+                    <b>end_of_fetch_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/end_of_fetch_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of times this cursor was fully executed since the cursor was brought into the library cache</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/exact_matching_signature"></div>
                     <b>exact_matching_signature</b>
                     <a class="ansibleOptionLink" href="#parameter-items/exact_matching_signature" title="Permalink to this option"></a>
@@ -651,7 +989,23 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Exact matching signature Example: `&quot;18067345456756876713&quot;`</div>
+                                            <div>exact_matching_signature Example: `&quot;18067345456756876713&quot;`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/executions"></div>
+                    <b>executions</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/executions" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of executions</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -668,6 +1022,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Total number of executions Example: `60`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/fetches"></div>
+                    <b>fetches</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/fetches" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of fetches</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -699,7 +1069,23 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Force matching signature Example: `&quot;18067345456756876713&quot;`</div>
+                                            <div>force_matching_signature Example: `&quot;18067345456756876713&quot;`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/full_plan_hash_value"></div>
+                    <b>full_plan_hash_value</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/full_plan_hash_value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Total Number of rows in SQLStats table</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -717,6 +1103,22 @@ Parameters
                                                                 <td>
                                             <div>Data protection policy.</div>
                                             <div>Applicable when metric_name is &#x27;DB_EXTERNAL_PROPERTIES&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/harmonic_sum"></div>
+                    <b>harmonic_sum</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/harmonic_sum" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Harmonic sum based on ranking parameters</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -806,6 +1208,70 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/invalidations"></div>
+                    <b>invalidations</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/invalidations" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of times this child cursor has been invalidated</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/io_cell_offload_eligible_bytes"></div>
+                    <b>io_cell_offload_eligible_bytes</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/io_cell_offload_eligible_bytes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of I/O bytes which can be filtered by the Exadata storage system</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/io_cell_offload_returned_bytes"></div>
+                    <b>io_cell_offload_returned_bytes</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/io_cell_offload_returned_bytes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of bytes that are returned by Exadata cell through the regular I/O path</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/io_cell_uncompressed_bytes"></div>
+                    <b>io_cell_uncompressed_bytes</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/io_cell_uncompressed_bytes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/io_cost"></div>
                     <b>io_cost</b>
                     <a class="ansibleOptionLink" href="#parameter-items/io_cost" title="Permalink to this option"></a>
@@ -822,6 +1288,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/io_interconnect_bytes"></div>
+                    <b>io_interconnect_bytes</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/io_interconnect_bytes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of I/O bytes exchanged between Oracle Database and the storage system. Typically used for Cache Fusion or parallel queries</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/io_time_in_sec"></div>
                     <b>io_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#parameter-items/io_time_in_sec" title="Permalink to this option"></a>
@@ -833,6 +1315,54 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Total IO time Example: `5810`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/java_exec_time_in_us"></div>
+                    <b>java_exec_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/java_exec_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Java execution time (in microseconds)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/last_active_time"></div>
+                    <b>last_active_time</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/last_active_time" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>last_active_time Example: `&quot;0000000099CCE300&quot;`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/loads"></div>
+                    <b>loads</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/loads" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of times the object was either loaded or reloaded</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -888,6 +1418,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Name of the metric group.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/module"></div>
+                    <b>module</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/module" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Module name</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1057,6 +1603,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/obsolete_count"></div>
+                    <b>obsolete_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/obsolete_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of times that a parent cursor became obsolete</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/open_mode"></div>
                     <b>open_mode</b>
                     <a class="ansibleOptionLink" href="#parameter-items/open_mode" title="Permalink to this option"></a>
@@ -1101,6 +1663,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Optimizer Example: `&quot;CLUSTER&quot;`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/optimizer_cost"></div>
+                    <b>optimizer_cost</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/optimizer_cost" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Cost of this query given by the optimizer</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1219,6 +1797,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/parse_calls"></div>
+                    <b>parse_calls</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/parse_calls" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Total integer of parse calls Example: `60`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/partition_identifier"></div>
                     <b>partition_identifier</b>
                     <a class="ansibleOptionLink" href="#parameter-items/partition_identifier" title="Permalink to this option"></a>
@@ -1284,9 +1878,89 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/physical_read_bytes"></div>
+                    <b>physical_read_bytes</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/physical_read_bytes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of bytes read from disks by the monitored SQL</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/physical_read_requests"></div>
+                    <b>physical_read_requests</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/physical_read_requests" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of physical read I/O requests issued by the monitored SQL. The requests may not be disk reads</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/physical_write_bytes"></div>
+                    <b>physical_write_bytes</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/physical_write_bytes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of bytes written to disks by the monitored SQL</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/physical_write_requests"></div>
+                    <b>physical_write_requests</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/physical_write_requests" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of physical write I/O requests issued by the monitored SQL</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/plan_hash"></div>
                     <b>plan_hash</b>
                     <a class="ansibleOptionLink" href="#parameter-items/plan_hash" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Plan hash value for the SQL Execution Plan</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/plan_hash_value"></div>
+                    <b>plan_hash_value</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/plan_hash_value" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
                                                                     </div>
@@ -1312,6 +1986,22 @@ Parameters
                                                                 <td>
                                             <div>Platform name of the database, OS with architecture.</div>
                                             <div>Applicable when metric_name is &#x27;DB_EXTERNAL_PROPERTIES&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/plsql_exec_time_in_us"></div>
+                    <b>plsql_exec_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/plsql_exec_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>PL/SQL execution time (in microseconds)</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1349,6 +2039,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/px_servers_executions"></div>
+                    <b>px_servers_executions</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/px_servers_executions" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Total number of executions performed by parallel execution servers (0 when the statement has never been executed in parallel)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/qblock_name"></div>
                     <b>qblock_name</b>
                     <a class="ansibleOptionLink" href="#parameter-items/qblock_name" title="Permalink to this option"></a>
@@ -1381,6 +2087,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/rows_processed"></div>
+                    <b>rows_processed</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/rows_processed" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of row processed</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/search_columns"></div>
                     <b>search_columns</b>
                     <a class="ansibleOptionLink" href="#parameter-items/search_columns" title="Permalink to this option"></a>
@@ -1392,6 +2114,86 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Search Columns Example: `3`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/serializable_aborts"></div>
+                    <b>serializable_aborts</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/serializable_aborts" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of serializable aborts</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/service"></div>
+                    <b>service</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/service" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Service name</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/sharable_mem"></div>
+                    <b>sharable_mem</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/sharable_mem" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Total shared memory (in bytes) currently occupied by all cursors with this SQL text and plan</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/sharable_mem_rank"></div>
+                    <b>sharable_mem_rank</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/sharable_mem_rank" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Rank based on sharable memory</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/sorts"></div>
+                    <b>sorts</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/sorts" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of sorts that were done for the child cursor</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1440,6 +2242,54 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Unique SQL_ID for a SQL Statement.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/sql_patch"></div>
+                    <b>sql_patch</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/sql_patch" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>SQL patch used for this statement, if any</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/sql_plan_baseline"></div>
+                    <b>sql_plan_baseline</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/sql_plan_baseline" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>SQL plan baseline used for this statement, if any</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/sql_profile"></div>
+                    <b>sql_profile</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/sql_profile" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>SQL profile used for this statement, if any</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1528,6 +2378,38 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/total_sharable_mem"></div>
+                    <b>total_sharable_mem</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/total_sharable_mem" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Total shared memory (in bytes) occupied by all cursors with this SQL text and plan if they were to be fully loaded in the shared pool (that is, cursor size)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/total_sql_count"></div>
+                    <b>total_sql_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/total_sql_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Total number of rows in SQLStats table</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/total_time_in_sec"></div>
                     <b>total_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#parameter-items/total_time_in_sec" title="Permalink to this option"></a>
@@ -1544,6 +2426,70 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/type_check_mem"></div>
+                    <b>type_check_mem</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/type_check_mem" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Typecheck memory</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/user_io_wait_time_in_us"></div>
+                    <b>user_io_wait_time_in_us</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/user_io_wait_time_in_us" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>User I/O wait time (in microseconds)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/users_executing"></div>
+                    <b>users_executing</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/users_executing" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of users executing the statement</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/users_opening"></div>
+                    <b>users_opening</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/users_opening" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of users that have any of the child cursors open</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-items/version"></div>
                     <b>version</b>
                     <a class="ansibleOptionLink" href="#parameter-items/version" title="Permalink to this option"></a>
@@ -1555,6 +2501,38 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Version Example: `1`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/version_count"></div>
+                    <b>version_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/version_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of cursors present in the cache with this SQL text and plan</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-items/wt_harmonic_sum"></div>
+                    <b>wt_harmonic_sum</b>
+                    <a class="ansibleOptionLink" href="#parameter-items/wt_harmonic_sum" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Weight based harmonic sum of ranking parameters</div>
                                                         </td>
             </tr>
                     
@@ -1715,6 +2693,27 @@ Examples
 
         # optional
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        items:
+        - # required
+          metric_name: DB_OS_CONFIG_INSTANCE
+          instance_name: instance_name_example
+          host_name: host_name_example
+
+          # optional
+          time_collected: time_collected_example
+          num_cp_us: 56
+          num_cpu_cores: 56
+          num_cpu_sockets: 56
+          physical_memory_bytes: 3.4
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Perform action ingest_sql_stats on database_insights
+      oci_opsi_database_insights_actions:
+        # required
+        action: ingest_sql_stats
+
+        # optional
         items:
         - # required
           metric_name: DB_OS_CONFIG_INSTANCE
