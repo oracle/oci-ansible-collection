@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_exadata_infrastructure_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple CloudExadataInfrastructure resources in Oracle Cloud Infrastructure
-- Gets a list of the cloud Exadata infrastructure resources in the specified compartment. Applies to Exadata Cloud Service instances only.
+- Gets a list of the cloud Exadata infrastructure resources in the specified compartment. Applies to Exadata Cloud Service instances and Autonomous Database on dedicated Exadata infrastructure only.
 - If *cloud_exadata_infrastructure_id* is specified, the details of a single CloudExadataInfrastructure will be returned.
 
 

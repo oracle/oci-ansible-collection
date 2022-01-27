@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_actions -- Perform actions on a NetworkLoad
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -377,7 +377,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the NetworkLoadBalancer resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backend_sets&#x27;: {&#x27;backends&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_backup&#x27;: True, &#x27;is_drain&#x27;: True, &#x27;is_offline&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;weight&#x27;: 56}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_data&#x27;: None, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;response_data&#x27;: None, &#x27;retries&#x27;: 56, &#x27;return_code&#x27;: 56, &#x27;timeout_in_millis&#x27;: 56, &#x27;url_path&#x27;: &#x27;url_path_example&#x27;}, &#x27;is_preserve_source&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;policy&#x27;: &#x27;TWO_TUPLE&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_public&#x27;: True, &#x27;reserved_ip&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}], &#x27;is_preserve_source_destination&#x27;: True, &#x27;is_private&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;listeners&#x27;: {&#x27;default_backend_set_name&#x27;: &#x27;default_backend_set_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;ANY&#x27;}, &#x27;network_security_group_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backend_sets&#x27;: {&#x27;backends&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_backup&#x27;: True, &#x27;is_drain&#x27;: True, &#x27;is_offline&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;weight&#x27;: 56}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_data&#x27;: None, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;response_data&#x27;: None, &#x27;retries&#x27;: 56, &#x27;return_code&#x27;: 56, &#x27;timeout_in_millis&#x27;: 56, &#x27;url_path&#x27;: &#x27;url_path_example&#x27;}, &#x27;ip_version&#x27;: &#x27;IPV4&#x27;, &#x27;is_preserve_source&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;policy&#x27;: &#x27;TWO_TUPLE&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;ip_version&#x27;: &#x27;IPV4&#x27;, &#x27;is_public&#x27;: True, &#x27;reserved_ip&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}], &#x27;is_preserve_source_destination&#x27;: True, &#x27;is_private&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;listeners&#x27;: {&#x27;default_backend_set_name&#x27;: &#x27;default_backend_set_name_example&#x27;, &#x27;ip_version&#x27;: &#x27;IPV4&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;ANY&#x27;}, &#x27;network_security_group_ids&#x27;: [], &#x27;nlb_ip_version&#x27;: &#x27;IPV4&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -810,6 +810,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-network_load_balancer/backend_sets/ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#return-network_load_balancer/backend_sets/ip_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>IP version associated with the backend set.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IPV4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-network_load_balancer/backend_sets/is_preserve_source"></div>
                     <b>is_preserve_source</b>
                     <a class="ansibleOptionLink" href="#return-network_load_balancer/backend_sets/is_preserve_source" title="Permalink to this return value"></a>
@@ -1000,6 +1019,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-network_load_balancer/ip_addresses/ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#return-network_load_balancer/ip_addresses/ip_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>IP version associated with this IP address.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IPV4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-network_load_balancer/ip_addresses/is_public"></div>
                     <b>is_public</b>
                     <a class="ansibleOptionLink" href="#return-network_load_balancer/ip_addresses/is_public" title="Permalink to this return value"></a>
@@ -1176,6 +1214,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-network_load_balancer/listeners/ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#return-network_load_balancer/listeners/ip_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>IP version associated with the listener.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IPV4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-network_load_balancer/listeners/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-network_load_balancer/listeners/name" title="Permalink to this return value"></a>
@@ -1253,6 +1310,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: [&quot;ocid1.nsg.oc1.phx.unique_ID&quot;]</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-network_load_balancer/nlb_ip_version"></div>
+                    <b>nlb_ip_version</b>
+                    <a class="ansibleOptionLink" href="#return-network_load_balancer/nlb_ip_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>IP version associated with the NLB.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IPV4</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

@@ -23,7 +23,8 @@ module: oci_network_load_balancer_listener_protocols_facts
 short_description: Fetches details about one or multiple ListenerProtocols resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ListenerProtocols resources in Oracle Cloud Infrastructure
-    - Lists all supported traffic protocols.
+    - This API has been deprecated so it won't return the updated list of supported protocls.
+      Lists all supported traffic protocols.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -34,6 +35,14 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    sort_by:
+        description:
+            - The field to sort by. Only one sort order can be provided. The default order for timeCreated is descending.
+              The default order for displayName is ascending. If no value is specified, then timeCreated is the default.
+        type: str
+        choices:
+            - "timeCreated"
+            - "displayName"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -43,6 +52,7 @@ EXAMPLES = """
 
     # optional
     sort_order: ASC
+    sort_by: timeCreated
 
 """
 
@@ -88,6 +98,7 @@ class NetworkLoadBalancerListenerProtocolsFactsHelperGen(OCIResourceFactsHelperB
     def list_resources(self):
         optional_list_method_params = [
             "sort_order",
+            "sort_by",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -113,7 +124,12 @@ class ResourceFactsHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(sort_order=dict(type="str", choices=["ASC", "DESC"]),))
+    module_args.update(
+        dict(
+            sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
+        )
+    )
 
     module = AnsibleModule(argument_spec=module_args)
 

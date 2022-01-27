@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure_facts -- Fetches detai
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AutonomousExadataInfrastructure resources in Oracle Cloud Infrastructure
-- Gets a list of the Autonomous Exadata Infrastructures in the specified compartment.
+- **Deprecated.** Use the `ListCloudExadataInfrastructures <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/ListCloudExadataInfrastructures>`_ operation to list Exadata Infrastructures in the Oracle cloud and the  `ListCloudAutonomousVmClusters <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/ListCloudAutonomousVmClusters>`_ operation to list Autonomous Exadata VM clusters.
 - If *autonomous_exadata_infrastructure_id* is specified, the details of a single AutonomousExadataInfrastructure will be returned.
 
 

@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_backend_set -- Manage a BackendSet resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -574,6 +574,26 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-ip_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>IPV4</li>
+                                                                                                                                                                                                <li>IPV6</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>IP version associated with the backend set.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-is_preserve_source"></div>
                     <b>is_preserve_source</b>
                     <a class="ansibleOptionLink" href="#parameter-is_preserve_source" title="Permalink to this option"></a>
@@ -796,6 +816,7 @@ Examples
 
         # optional
         is_preserve_source: true
+        ip_version: IPV4
         backends:
         - # required
           port: 56
@@ -818,6 +839,7 @@ Examples
         # optional
         policy: TWO_TUPLE
         is_preserve_source: true
+        ip_version: IPV4
         backends:
         - # required
           port: 56
@@ -887,7 +909,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BackendSet resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backends&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_backup&#x27;: True, &#x27;is_drain&#x27;: True, &#x27;is_offline&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;weight&#x27;: 56}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_data&#x27;: None, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;response_data&#x27;: None, &#x27;retries&#x27;: 56, &#x27;return_code&#x27;: 56, &#x27;timeout_in_millis&#x27;: 56, &#x27;url_path&#x27;: &#x27;url_path_example&#x27;}, &#x27;is_preserve_source&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;policy&#x27;: &#x27;TWO_TUPLE&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backends&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_backup&#x27;: True, &#x27;is_drain&#x27;: True, &#x27;is_offline&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;weight&#x27;: 56}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_data&#x27;: None, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;response_data&#x27;: None, &#x27;retries&#x27;: 56, &#x27;return_code&#x27;: 56, &#x27;timeout_in_millis&#x27;: 56, &#x27;url_path&#x27;: &#x27;url_path_example&#x27;}, &#x27;ip_version&#x27;: &#x27;IPV4&#x27;, &#x27;is_preserve_source&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;policy&#x27;: &#x27;TWO_TUPLE&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1280,6 +1302,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-backend_set/ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#return-backend_set/ip_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>IP version associated with the backend set.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IPV4</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

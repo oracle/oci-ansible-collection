@@ -151,6 +151,12 @@ volume_group:
                     returned: on success
                     type: str
                     sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+                volume_group_replica_id:
+                    description:
+                        - The OCID of the volume group replica.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
                 volume_ids:
                     description:
                         - OCIDs for the volumes in this volume group.
@@ -176,6 +182,32 @@ volume_group:
             returned: on success
             type: bool
             sample: true
+        volume_group_replicas:
+            description:
+                - The list of volume group replicas of this volume group.
+            returned: on success
+            type: complex
+            contains:
+                display_name:
+                    description:
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
+                    returned: on success
+                    type: str
+                    sample: display_name_example
+                volume_group_replica_id:
+                    description:
+                        - The volume group replica's Oracle ID (OCID).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - The availability domain of the boot volume replica replica.
+                        - "Example: `Uocm:PHX-AD-1`"
+                    returned: on success
+                    type: str
+                    sample: Uocm:PHX-AD-1
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -190,11 +222,17 @@ volume_group:
             "type": "volumeGroupBackupId",
             "volume_group_backup_id": "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx",
             "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "volume_group_replica_id": "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx",
             "volume_ids": []
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "volume_ids": [],
-        "is_hydrated": true
+        "is_hydrated": true,
+        "volume_group_replicas": [{
+            "display_name": "display_name_example",
+            "volume_group_replica_id": "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1"
+        }]
     }
 """
 

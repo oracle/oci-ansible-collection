@@ -23,7 +23,9 @@ module: oci_database_autonomous_vm_cluster
 short_description: Manage an AutonomousVmCluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an AutonomousVmCluster resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates an Autonomous VM cluster for Exadata Cloud@Customer.
+    - For I(state=present), creates an Autonomous VM cluster for Exadata Cloud@Customer. To create an Autonomous VM Cluster in the Oracle cloud, see
+      L(CreateCloudAutonomousVmCluster,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/CreateCloudAutonomousVmCluster).
     - "This resource has the following action operations in the M(oracle.oci.oci_database_autonomous_vm_cluster_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)

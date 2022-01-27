@@ -23,7 +23,10 @@ module: oci_database_autonomous_exadata_infrastructure_facts
 short_description: Fetches details about one or multiple AutonomousExadataInfrastructure resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AutonomousExadataInfrastructure resources in Oracle Cloud Infrastructure
-    - Gets a list of the Autonomous Exadata Infrastructures in the specified compartment.
+    - "**Deprecated.** Use the L(ListCloudExadataInfrastructures,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/ListCloudExadataInfrastructures) operation to list Exadata Infrastructures in the Oracle cloud
+      and the  L(ListCloudAutonomousVmClusters,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/ListCloudAutonomousVmClusters) operation to list Autonomous Exadata VM clusters."
     - If I(autonomous_exadata_infrastructure_id) is specified, the details of a single AutonomousExadataInfrastructure will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

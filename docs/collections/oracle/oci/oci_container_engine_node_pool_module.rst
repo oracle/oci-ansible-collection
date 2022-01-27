@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_node_pool -- Manage a NodePool resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -366,6 +366,44 @@ Parameters
                                                         </td>
             </tr>
                                         <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/is_pv_encryption_in_transit_enabled"></div>
+                    <b>is_pv_encryption_in_transit_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/is_pv_encryption_in_transit_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to enable in-transit encryption for the data volume&#x27;s paravirtualized attachment. This field applies to both block volumes and boot volumes. The default value is false.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/kms_key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the Key Management Service key assigned to the boot volume.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-node_config_details/nsg_ids"></div>
@@ -829,6 +867,8 @@ Examples
           # optional
           size: 56
           nsg_ids: [ "nsg_ids_example" ]
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          is_pv_encryption_in_transit_enabled: true
           placement_configs:
           - # required
             availability_domain: Uocm:PHX-AD-1
@@ -866,6 +906,8 @@ Examples
           # optional
           size: 56
           nsg_ids: [ "nsg_ids_example" ]
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          is_pv_encryption_in_transit_enabled: true
           placement_configs:
           - # required
             availability_domain: Uocm:PHX-AD-1
@@ -903,6 +945,8 @@ Examples
           # optional
           size: 56
           nsg_ids: [ "nsg_ids_example" ]
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          is_pv_encryption_in_transit_enabled: true
           placement_configs:
           - # required
             availability_domain: Uocm:PHX-AD-1
@@ -956,7 +1000,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the NodePool resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_config_details&#x27;: {&#x27;nsg_ids&#x27;: [], &#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_image_id&#x27;: &#x27;ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_image_name&#x27;: &#x27;node_image_name_example&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;node_shape_example&#x27;, &#x27;node_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;status_example&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;public_ip&#x27;: &#x27;public_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;quantity_per_subnet&#x27;: 56, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;subnet_ids&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_config_details&#x27;: {&#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_image_id&#x27;: &#x27;ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_image_name&#x27;: &#x27;node_image_name_example&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;node_shape_example&#x27;, &#x27;node_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;status_example&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;public_ip&#x27;: &#x27;public_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;quantity_per_subnet&#x27;: 56, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;subnet_ids&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1121,6 +1165,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/is_pv_encryption_in_transit_enabled"></div>
+                    <b>is_pv_encryption_in_transit_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/is_pv_encryption_in_transit_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether to enable in-transit encryption for the data volume&#x27;s paravirtualized attachment. This field applies to both block volumes and boot volumes. The default value is false.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/kms_key_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the Key Management Service key assigned to the boot volume.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

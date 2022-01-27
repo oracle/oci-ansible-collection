@@ -41,7 +41,10 @@ options:
         required: true
     backend_name:
         description:
-            - The name of the backend server for which to retrieve the health status, specified as <ip>:<port> or as <ip> <OCID>:<port>.
+            - The name of the backend server to retrieve health status for.
+              If the backend was created with an explicitly specified name, that name should be used here.
+              If the backend was created without explicitly specifying the name, but was created using ipAddress, this is specified as <ipAddress>:<port>.
+              If the backend was created without explicitly specifying the name, but was created using targetId, this is specified as <targetId>:<port>.
             - "Example: `10.0.0.3:8080` or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:8080`"
         type: str
         required: true

@@ -101,6 +101,12 @@ network_load_balancer:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        nlb_ip_version:
+            description:
+                - IP version associated with the NLB.
+            returned: on success
+            type: str
+            sample: IPV4
         time_created:
             description:
                 - The date and time the network load balancer was created, in the format defined by RFC3339.
@@ -136,6 +142,12 @@ network_load_balancer:
                     returned: on success
                     type: bool
                     sample: true
+                ip_version:
+                    description:
+                        - IP version associated with this IP address.
+                    returned: on success
+                    type: str
+                    sample: IPV4
                 reserved_ip:
                     description:
                         - ""
@@ -239,6 +251,12 @@ network_load_balancer:
                     returned: on success
                     type: str
                     sample: ANY
+                ip_version:
+                    description:
+                        - IP version associated with the listener.
+                    returned: on success
+                    type: str
+                    sample: IPV4
         backend_sets:
             description:
                 - Backend sets associated with the network load balancer.
@@ -270,6 +288,12 @@ network_load_balancer:
                     returned: on success
                     type: bool
                     sample: true
+                ip_version:
+                    description:
+                        - IP version associated with the backend set.
+                    returned: on success
+                    type: str
+                    sample: IPV4
                 backends:
                     description:
                         - Array of backends.
@@ -450,11 +474,13 @@ network_load_balancer:
         "display_name": "display_name_example",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "nlb_ip_version": "IPV4",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "ip_addresses": [{
             "ip_address": "ip_address_example",
             "is_public": true,
+            "ip_version": "IPV4",
             "reserved_ip": {
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
             }
@@ -467,12 +493,14 @@ network_load_balancer:
             "name": "name_example",
             "default_backend_set_name": "default_backend_set_name_example",
             "port": 56,
-            "protocol": "ANY"
+            "protocol": "ANY",
+            "ip_version": "IPV4"
         },
         "backend_sets": {
             "name": "name_example",
             "policy": "TWO_TUPLE",
             "is_preserve_source": true,
+            "ip_version": "IPV4",
             "backends": [{
                 "name": "name_example",
                 "ip_address": "ip_address_example",

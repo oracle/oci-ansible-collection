@@ -95,6 +95,7 @@ options:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration
                       associated with the instance pool.
+                    - This parameter is updatable.
                 type: str
             size:
                 description:

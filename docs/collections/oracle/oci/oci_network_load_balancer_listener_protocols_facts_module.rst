@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_listener_protocols_facts -- Fetches details
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ListenerProtocols resources in Oracle Cloud Infrastructure
-- Lists all supported traffic protocols.
+- This API has been deprecated so it won't return the updated list of supported protocls. Lists all supported traffic protocols.
 
 
 .. Aliases
@@ -214,6 +214,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>timeCreated</li>
+                                                                                                                                                                                                <li>displayName</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The field to sort by. Only one sort order can be provided. The default order for timeCreated is descending. The default order for displayName is ascending. If no value is specified, then timeCreated is the default.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-sort_order"></div>
                     <b>sort_order</b>
                     <a class="ansibleOptionLink" href="#parameter-sort_order" title="Permalink to this option"></a>
@@ -276,6 +295,7 @@ Examples
 
         # optional
         sort_order: ASC
+        sort_by: timeCreated
 
 
 

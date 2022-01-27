@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_backend_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -180,7 +180,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the backend server to retrieve. This is specified as &lt;ip&gt;:&lt;port&gt;, or as &lt;ip&gt; &lt;OCID&gt;:&lt;port&gt;.</div>
+                                            <div>The name of the backend server to retrieve. If the backend was created with an explicitly specified name, that name should be used here. If the backend was created without explicitly specifying the name, but was created using ipAddress, this is specified as &lt;ipAddress&gt;:&lt;port&gt;. If the backend was created without explicitly specifying the name, but was created using targetId, this is specified as &lt;targetId&gt;:&lt;port&gt;.</div>
                                             <div>Example: `10.0.0.3:8080` or `ocid1.privateip..oc1.&lt;var&gt;&amp;lt;unique_ID&amp;gt;&lt;/var&gt;:8080`</div>
                                             <div>Required to get a specific backend.</div>
                                                         </td>
@@ -264,6 +264,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>timeCreated</li>
+                                                                                                                                                                                                <li>displayName</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The field to sort by. Only one sort order can be provided. The default order for timeCreated is descending. The default order for displayName is ascending. If no value is specified, then timeCreated is the default.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-sort_order"></div>
                     <b>sort_order</b>
                     <a class="ansibleOptionLink" href="#parameter-sort_order" title="Permalink to this option"></a>
@@ -336,6 +355,7 @@ Examples
 
         # optional
         sort_order: ASC
+        sort_by: timeCreated
 
 
 

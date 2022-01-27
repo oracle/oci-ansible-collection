@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_exadata_infrastructure_actions -- Perform actions 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves a cloud Exadata infrastructure resource and its dependent resources to another compartment. Applies to Exadata Cloud Service instances only. For more information about moving resources to a different compartment, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
+- For *action=change_compartment*, moves a cloud Exadata infrastructure resource and its dependent resources to another compartment. Applies to Exadata Cloud Service instances and Autonomous Database on dedicated Exadata infrastructure only.For more information about moving resources to a different compartment, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
 
 
 .. Aliases

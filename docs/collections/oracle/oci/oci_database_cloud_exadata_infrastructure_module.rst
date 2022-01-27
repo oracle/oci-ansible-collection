@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_exadata_infrastructure -- Manage a CloudExadataInf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a cloud Exadata infrastructure resource. This resource is used to create an `Exadata Cloud Service <https://docs.cloud.oracle.com/Content/Database/Concepts/exaoverview.htm>`_ instance.
+- For *state=present*, creates a cloud Exadata infrastructure resource. This resource is used to create either an `Exadata Cloud Service <https://docs.cloud.oracle.com/Content/Database/Concepts/exaoverview.htm>`_ instance or an Autonomous Database on dedicated Exadata infrastructure.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_database_cloud_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_cloud_exadata_infrastructure_actions_module>` module: change_compartment.
 
 

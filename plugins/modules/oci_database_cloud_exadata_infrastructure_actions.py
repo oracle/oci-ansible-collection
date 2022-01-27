@@ -24,7 +24,8 @@ short_description: Perform actions on a CloudExadataInfrastructure resource in O
 description:
     - Perform actions on a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a cloud Exadata infrastructure resource and its dependent resources to another compartment. Applies to Exadata
-      Cloud Service instances only. For more information about moving resources to a different compartment, see L(Moving Database Resources to a Different
+      Cloud Service instances and Autonomous Database on dedicated Exadata infrastructure only.For more information about moving resources to a different
+      compartment, see L(Moving Database Resources to a Different
       Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
 version_added: "2.9.0"
 author: Oracle (@oracle)

@@ -6,8 +6,8 @@ Oracle Cloud Infrastructure Ansible Collection - |version|
 - Github Project URL: https://github.com/oracle/oci-ansible-collection
 
 .. toctree::
-   :maxdepth: 1
-   :caption: OCI Ansible Collection
+   :hidden:
+   :maxdepth: 2
 
    Installation <installation/index>
    Authentication <guides/authentication.md>

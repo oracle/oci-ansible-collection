@@ -195,6 +195,12 @@ data_guard_association:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        is_active_data_guard_enabled:
+            description:
+                - True if active Data Guard is enabled.
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
@@ -210,7 +216,8 @@ data_guard_association:
         "apply_rate": "apply_rate_example",
         "protection_mode": "MAXIMUM_AVAILABILITY",
         "transport_type": "SYNC",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "is_active_data_guard_enabled": true
     }
 """
 

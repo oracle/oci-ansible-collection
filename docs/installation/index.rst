@@ -1,27 +1,13 @@
-
-
-
-
-
-
 Installation
 ~~~~~~~~~~~~
 
-This topic describes how to install Oracle Cloud Infrastructure Ansible Collection
+This topic describes how to install ( or upgrade) Oracle Cloud Infrastructure Ansible Collection
 
 
-==============
 Prerequisites
-==============
+---------------
 
 * python >= 3.6
-
-
-===================
-Installation steps
-===================
-
-You can use the following ways to install(or upgrade) OCI Ansible Collection
 
 
 Oracle Linux 7
@@ -49,6 +35,7 @@ Oracle Linux 8
     # to upgrade oci-ansible-collection
     sudo yum update oci-ansible-collection
 
+Please check :doc:`Installation Using Yum<yum-installer>` for more details.
 
 Linux/macOS
 ---------------
@@ -63,6 +50,7 @@ Linux/macOS
     # to upgrade oci-ansible-collection
     curl -L https://raw.githubusercontent.com/oracle/oci-ansible-collection/master/scripts/install.sh | bash -s -- --verbose --upgrade
 
+Please check :doc:`Installation Script<installer-script>` for more details.
 
 Manual
 -------
@@ -75,16 +63,3 @@ Manual
     pip3 install oci
     pip3 install ansible
     ansible-galaxy collection install -f oracle.oci
-
-
-===================
-Installation guide
-===================
-
-You may check the following document(s) for more details:
-
-.. toctree::
-    :maxdepth: 1
-
-    Installation Guide <installation-guide.rst>
-

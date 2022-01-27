@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_cluster -- Manage a Cluster resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -601,7 +601,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The CIDR block for Kubernetes pods.</div>
+                                            <div>The CIDR block for Kubernetes pods. Optional, defaults to 10.244.0.0/16.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -618,7 +618,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The CIDR block for Kubernetes services.</div>
+                                            <div>The CIDR block for Kubernetes services. Optional, defaults to 10.96.0.0/16.</div>
                                                         </td>
             </tr>
                     
@@ -1603,7 +1603,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The CIDR block for Kubernetes pods.</div>
+                                            <div>The CIDR block for Kubernetes pods. Optional, defaults to 10.244.0.0/16.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pods_cidr_example</div>
@@ -1623,7 +1623,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The CIDR block for Kubernetes services.</div>
+                                            <div>The CIDR block for Kubernetes services. Optional, defaults to 10.96.0.0/16.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">services_cidr_example</div>

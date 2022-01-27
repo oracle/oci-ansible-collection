@@ -68,6 +68,15 @@ options:
             - "ANY"
             - "TCP"
             - "UDP"
+            - "TCP_AND_UDP"
+    ip_version:
+        description:
+            - IP version associated with the listener.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "IPV4"
+            - "IPV6"
     state:
         description:
             - The state of the Listener.
@@ -90,6 +99,9 @@ EXAMPLES = """
     port: 56
     protocol: ANY
 
+    # optional
+    ip_version: IPV4
+
 - name: Update listener
   oci_network_load_balancer_listener:
     # required
@@ -100,6 +112,7 @@ EXAMPLES = """
     default_backend_set_name: default_backend_set_name_example
     port: 56
     protocol: ANY
+    ip_version: IPV4
 
 - name: Delete listener
   oci_network_load_balancer_listener:
@@ -151,11 +164,18 @@ listener:
             returned: on success
             type: str
             sample: ANY
+        ip_version:
+            description:
+                - IP version associated with the listener.
+            returned: on success
+            type: str
+            sample: IPV4
     sample: {
         "name": "name_example",
         "default_backend_set_name": "default_backend_set_name_example",
         "port": 56,
-        "protocol": "ANY"
+        "protocol": "ANY",
+        "ip_version": "IPV4"
     }
 """
 
@@ -311,7 +331,8 @@ def main():
             name=dict(type="str", required=True),
             default_backend_set_name=dict(type="str"),
             port=dict(type="int"),
-            protocol=dict(type="str", choices=["ANY", "TCP", "UDP"]),
+            protocol=dict(type="str", choices=["ANY", "TCP", "UDP", "TCP_AND_UDP"]),
+            ip_version=dict(type="str", choices=["IPV4", "IPV6"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

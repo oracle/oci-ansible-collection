@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_container_database_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -394,7 +394,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousContainerDatabase resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous_exadata_infrastructure_id&#x27;: &#x27;ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_vm_cluster_id&#x27;: &#x27;ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_config&#x27;: {&#x27;backup_destination_details&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patch_id&#x27;: &#x27;ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patch_model&#x27;: &#x27;RELEASE_UPDATES&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;service_level_agreement_type&#x27;: &#x27;STANDARD&#x27;, &#x27;standby_maintenance_buffer_in_days&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous_exadata_infrastructure_id&#x27;: &#x27;ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_vm_cluster_id&#x27;: &#x27;ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_config&#x27;: {&#x27;backup_destination_details&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;example-password&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_version_id&#x27;: &#x27;ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patch_id&#x27;: &#x27;ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patch_model&#x27;: &#x27;RELEASE_UPDATES&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;service_level_agreement_type&#x27;: &#x27;STANDARD&#x27;, &#x27;standby_maintenance_buffer_in_days&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -753,6 +753,99 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_container_database/key_history_entry"></div>
+                    <b>key_history_entry</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_container_database/key_history_entry" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Key History Entry.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_container_database/key_history_entry/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_container_database/key_history_entry/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the Autonomous Database <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>Vault</a> service key management history entry.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_container_database/key_history_entry/kms_key_version_id"></div>
+                    <b>kms_key_version_id</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_container_database/key_history_entry/kms_key_version_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_container_database/key_history_entry/time_activated"></div>
+                    <b>time_activated</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_container_database/key_history_entry/time_activated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the kms key activated.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_container_database/key_history_entry/vault_id"></div>
+                    <b>vault_id</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_container_database/key_history_entry/vault_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>vault</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_container_database/key_store_id"></div>
                     <b>key_store_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_container_database/key_store_id" title="Permalink to this return value"></a>
@@ -802,6 +895,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_container_database/kms_key_version_id"></div>
+                    <b>kms_key_version_id</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_container_database/kms_key_version_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

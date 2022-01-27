@@ -30,7 +30,7 @@ oracle.oci.oci_data_integration_workspace -- Manage a Workspace resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Workspace resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new Data Integration workspace ready for performing data integration tasks.
+- For *state=present*, creates a new Data Integration workspace ready for performing data integration tasks. To retrieve the OCID for the new workspace, use the opc-work-request-id returned by this API and call the `GetWorkRequest <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/data- integration/latest/WorkRequest/GetWorkRequest>`_ API.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_data_integration_workspace_actions <ansible_collections.oracle.oci.oci_data_integration_workspace_actions_module>` module: change_compartment, start, stop.
 
 

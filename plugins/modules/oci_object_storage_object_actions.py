@@ -24,6 +24,8 @@ short_description: Perform actions on an Object resource in Oracle Cloud Infrast
 description:
     - Perform actions on an Object resource in Oracle Cloud Infrastructure
     - For I(action=copy), creates a request to copy an object within a region or to another region.
+      See L(Object Names,https://docs.cloud.oracle.com/Content/Object/Tasks/managingobjects.htm#namerequirements)
+      for object naming requirements.
     - "For I(action=reencrypt), re-encrypts the data encryption keys that encrypt the object and its chunks. By default, when you create a bucket, the Object
       Storage
       service manages the master encryption key used to encrypt each object's data encryption keys. The encryption mechanism that you specify for

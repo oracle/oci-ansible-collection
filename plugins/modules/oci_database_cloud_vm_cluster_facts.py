@@ -23,7 +23,8 @@ module: oci_database_cloud_vm_cluster_facts
 short_description: Fetches details about one or multiple CloudVmCluster resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple CloudVmCluster resources in Oracle Cloud Infrastructure
-    - Gets a list of the cloud VM clusters in the specified compartment. Applies to Exadata Cloud Service instances only.
+    - Gets a list of the cloud VM clusters in the specified compartment. Applies to Exadata Cloud Service instances and Autonomous Database on dedicated Exadata
+      infrastructure only.
     - If I(cloud_vm_cluster_id) is specified, the details of a single CloudVmCluster will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

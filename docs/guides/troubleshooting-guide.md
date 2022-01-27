@@ -57,9 +57,9 @@ export LOG_LEVEL="DEBUG"
 All subsequent debug messages from an Ansible playbook execution using the OCI Ansible Cloud Modules would go to ```/tmp/oci_ansible_module.log```(the default logging location for the OCI Ansible modules).</br>
 OCI Ansible Cloud Modules uses standard Python logging facilities for logging. Use the environment variable ```LOG_PATH``` to change the directory where the log file should be placed and ```LOG_LEVEL``` to change the log level. The default log level is ```INFO```.
 
-### Installation and Configuration Errors
+## Installation and Configuration Errors
 
-#### module oracle.oci.xxx not found in path
+### module oracle.oci.xxx not found in path
 
 ****Problem:****</br></br>
 OCI Ansible module ```oracle.oci.oci_some_module``` was not found in configured module paths.
@@ -70,7 +70,7 @@ OCI Ansible module ```oracle.oci.oci_some_module``` was not found in configured 
 - If OCI Ansible is already installed, verify that the name of the module is correct. You can check the [Module Index](https://oci-ansible-collection.readthedocs.io/en/latest/collections/oracle/oci/index.html) for a list of supported modules.
 - If OCI Ansible is installed, and the module name is correct, upgrade to the latest version of OCI Ansible Collections since the module might not be present in the version that customer is using.
 
-#### oci python sdk required for this module
+### oci python sdk required for this module
 
 ****Problem:****</br></br>
 ```oci python sdk required for this module``` means user is not on the latest version of python sdk.
@@ -81,7 +81,7 @@ OCI Ansible module ```oracle.oci.oci_some_module``` was not found in configured 
 - If it is already installed, it could be because you are using an older version. Please upgrade to the latest version. You can upgrade using the command:
     ```pip install -U oci```
 
-#### Configuration file or profile errors
+## Configuration file or profile errors
 
 ****Problem:****
 The error could be either of these below errors:
@@ -133,9 +133,9 @@ ansible-playbook sample-playbook.yml -e 'ansible_python_interpreter=/usr/local/C
 - To create config file, check: [Configuration_File](https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File)
 - To use instance principal on a compute instance set the environment variable: `OCI_ANSIBLE_AUTH_TYPE=instance_principal`
 
-#### Timeout Errors
+## Timeout Errors
 
-#### Maximum wait time has been exceeded
+### Maximum wait time has been exceeded
 
 ****Problem:****</br></br>
 OCI Ansible module fails with error ```"Maximum wait time has been exceeded"```.
@@ -146,9 +146,9 @@ By default, we use a wait timeout of ```20 minutes``` and a longer timeout for s
 - This error occurs when the operation takes more time than the timeout.
 - You can increase the timeout by following [configure wait-timeout](wait-timeout.md)
 
-### Inventory Plugin errors
+## Inventory Plugin errors
 
-#### Inventory plugin does not return any data
+### Inventory plugin does not return any data
 
 ****Problem:****</br></br>
 The OCI Ansible Inventory plugin does not return any hosts.

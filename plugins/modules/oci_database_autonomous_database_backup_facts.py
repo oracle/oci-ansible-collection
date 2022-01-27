@@ -199,6 +199,13 @@ autonomous_database_backups:
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id:
+            description:
+                - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+                  versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -215,7 +222,8 @@ autonomous_database_backups:
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
         "key_store_wallet_name": "key_store_wallet_name_example",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
-        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

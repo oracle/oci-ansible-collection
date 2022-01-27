@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_vm_cluster_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AutonomousVmCluster resources in Oracle Cloud Infrastructure
-- Gets a list of Exadata Cloud@Customer Autonomous VM clusters in the specified compartment.
+- Gets a list of Exadata Cloud@Customer Autonomous VM clusters in the specified compartment. To list Autonomous VM Clusters in the Oracle Cloud, see `ListCloudAutonomousVmClusters <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/ListCloudAutonomousVmClusters>`_.
 - If *autonomous_vm_cluster_id* is specified, the details of a single AutonomousVmCluster will be returned.
 
 

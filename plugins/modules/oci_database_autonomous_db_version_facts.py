@@ -88,7 +88,7 @@ autonomous_db_versions:
             sample: OLTP
         is_dedicated:
             description:
-                - True if the database uses L(dedicated Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm).
+                - True if the database uses L(dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html).
             returned: on success
             type: bool
             sample: true

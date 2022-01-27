@@ -30,7 +30,7 @@ oracle.oci.oci_object_storage_object -- Manage an Object resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -353,7 +353,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>100-continue</div>
+                                            <div>A value of `100-continue` requests preliminary verification of the request method, path, and headers before the request body is sent. If no error results from such verification, the server will send a 100 (Continue) interim response to indicate readiness for the request body. The only allowed value for this parameter is &quot;100-Continue&quot; (case-insensitive).</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>

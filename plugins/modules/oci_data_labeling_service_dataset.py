@@ -77,7 +77,8 @@ options:
                 required: true
             prefix:
                 description:
-                    - A common path prefix shared by the objects that make up the dataset.
+                    - A common path prefix shared by the objects that make up the dataset. Records will not be generated for objects whose name match exactly
+                      with prefix.
                 type: str
     dataset_format_details:
         description:
@@ -87,7 +88,8 @@ options:
         suboptions:
             format_type:
                 description:
-                    - Format type. IMAGE format are for record contents that are JPEGs or PNGs. TEXT format is for record contents that are txt files.
+                    - Format type. DOCUMENT format is for record contents that are PDFs or TIFFs. IMAGE format is for record contents that are JPEGs or PNGs.
+                      TEXT format is for record contents that are txt files.
                 type: str
                 choices:
                     - "IMAGE"
@@ -121,14 +123,14 @@ options:
                         type: str
     freeform_tags:
         description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+              For example: `{\\"bar-key\\": \\"value\\"}`"
             - This parameter is updatable.
         type: dict
     defined_tags:
         description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - "The defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
     dataset_id:
@@ -314,7 +316,8 @@ dataset:
                     sample: bucket_example
                 prefix:
                     description:
-                        - A common path prefix shared by the objects that make up the dataset.
+                        - A common path prefix shared by the objects that make up the dataset. Records will not be generated for objects whose name match
+                          exactly with prefix.
                     returned: on success
                     type: str
                     sample: prefix_example
@@ -326,7 +329,8 @@ dataset:
             contains:
                 format_type:
                     description:
-                        - Format type. IMAGE format are for record contents that are JPEGs or PNGs. TEXT format is for record contents that are txt files.
+                        - Format type. DOCUMENT format is for record contents that are PDFs or TIFFs. IMAGE format is for record contents that are JPEGs or
+                          PNGs. TEXT format is for record contents that are txt files.
                     returned: on success
                     type: str
                     sample: DOCUMENT
@@ -362,22 +366,22 @@ dataset:
                     sample: 10
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - "The defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
-                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                - "The usage of system tag keys. These predefined keys are scoped to namespaces.
+                  For example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
             returned: on success
             type: dict
             sample: {}

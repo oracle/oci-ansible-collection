@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.40.0] - 2022-01-27
+
+## Added
+- Support for OneSubscription billing schedule and subscription services
+- Support for cross-region replication of volume groups in the Block Storage service
+- Support for reconnecting refreshable clone to source for autonomous database on shared infrastructure in Database service
+- Support to check if an autonomous database on shared infrastructure can be reconnected to source in Database service
+- Support for update dataguard & select active dataguard during dataguard setup in Database service
+- Support for KMS support for key version, key version OCIDs for autonomous database in Database service
+- Support for boot volume encryption in the Container Engine for Kubernetes service
+- Support for multiple protocols on the same listener in the Network Load Balancing service
+- IPv6 support in the Network Load Balancing service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.55.0
+
 ## [2.39.0] - 2021-01-20
 
 ## Added

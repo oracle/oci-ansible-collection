@@ -34,6 +34,14 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    sort_by:
+        description:
+            - The field to sort by. Only one sort order can be provided. The default order for timeCreated is descending.
+              The default order for displayName is ascending. If no value is specified, then timeCreated is the default.
+        type: str
+        choices:
+            - "timeCreated"
+            - "displayName"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -43,6 +51,7 @@ EXAMPLES = """
 
     # optional
     sort_order: ASC
+    sort_by: timeCreated
 
 """
 
@@ -90,6 +99,7 @@ class NetworkLoadBalancerNetworkLoadBalancingPolicyFactsHelperGen(
     def list_resources(self):
         optional_list_method_params = [
             "sort_order",
+            "sort_by",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -115,7 +125,12 @@ class ResourceFactsHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(sort_order=dict(type="str", choices=["ASC", "DESC"]),))
+    module_args.update(
+        dict(
+            sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
+        )
+    )
 
     module = AnsibleModule(argument_spec=module_args)
 

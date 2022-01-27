@@ -23,11 +23,19 @@ module: oci_database_autonomous_exadata_infrastructure_actions
 short_description: Perform actions on an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves the Autonomous Exadata Infrastructure resource and its dependent resources to the specified compartment.
+    - "For I(action=change_compartment), **Deprecated.** Use the L(ChangeCloudExadataInfrastructureCompartment,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/ChangeCloudExadataInfrastructureCompartment) operation to move an Exadata infrastructure
+      resource to a different compartment and  L(ChangeCloudAutonomousVmClusterCompartment,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/ChangeCloudAutonomousVmClusterCompartment) operation to move an Autonomous Exadata VM cluster to
+      a different compartment.
       For more information, see
-      L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
-    - For I(action=rotate_ords_certs), rotates Oracle REST Data Services (ORDS) certs for an Autonomous Exadata Infrastructure resource.
-    - For I(action=rotate_ssl_certs), rotates SSL certs for an Autonomous Exadata Infrastructure resource.
+      L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes)."
+    - "For I(action=rotate_ords_certs), **Deprecated.** Use the L(RotateCloudAutonomousVmClusterOrdsCerts,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/RotateCloudAutonomousVmClusterOrdsCerts) to rotate Oracle REST Data Services (ORDS) certs for an
+      Autonomous Exadata VM cluster instead."
+    - "For I(action=rotate_ssl_certs), **Deprecated.** Use the L(RotateCloudAutonomousVmClusterSslCerts,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/RotateCloudAutonomousVmClusterSslCerts) to rotate SSL certs for an Autonomous Exadata VM cluster
+      instead."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

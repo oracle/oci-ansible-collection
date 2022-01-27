@@ -42,7 +42,10 @@ options:
         required: true
     backend_name:
         description:
-            - The name of the backend server to retrieve. This is specified as <ip>:<port>, or as <ip> <OCID>:<port>.
+            - The name of the backend server to retrieve.
+              If the backend was created with an explicitly specified name, that name should be used here.
+              If the backend was created without explicitly specifying the name, but was created using ipAddress, this is specified as <ipAddress>:<port>.
+              If the backend was created without explicitly specifying the name, but was created using targetId, this is specified as <targetId>:<port>.
             - "Example: `10.0.0.3:8080` or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:8080`"
             - Required to get a specific backend.
         type: str
@@ -53,6 +56,14 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    sort_by:
+        description:
+            - The field to sort by. Only one sort order can be provided. The default order for timeCreated is descending.
+              The default order for displayName is ascending. If no value is specified, then timeCreated is the default.
+        type: str
+        choices:
+            - "timeCreated"
+            - "displayName"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -72,6 +83,7 @@ EXAMPLES = """
 
     # optional
     sort_order: ASC
+    sort_by: timeCreated
 
 """
 
@@ -199,6 +211,7 @@ class NetworkLoadBalancerBackendFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "sort_order",
+            "sort_by",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -233,6 +246,7 @@ def main():
             backend_set_name=dict(type="str", required=True),
             backend_name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
         )
     )
 

@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure_actions -- Perform act
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,9 +57,9 @@ Synopsis
 .. Description
 
 - Perform actions on an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves the Autonomous Exadata Infrastructure resource and its dependent resources to the specified compartment. For more information, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
-- For *action=rotate_ords_certs*, rotates Oracle REST Data Services (ORDS) certs for an Autonomous Exadata Infrastructure resource.
-- For *action=rotate_ssl_certs*, rotates SSL certs for an Autonomous Exadata Infrastructure resource.
+- For *action=change_compartment*, **Deprecated.** Use the `ChangeCloudExadataInfrastructureCompartment <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/ChangeCloudExadataInfrastructureCompartment>`_ operation to move an Exadata infrastructure resource to a different compartment and  `ChangeCloudAutonomousVmClusterCompartment <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/ChangeCloudAutonomousVmClusterCompartment>`_ operation to move an Autonomous Exadata VM cluster to a different compartment. For more information, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
+- For *action=rotate_ords_certs*, **Deprecated.** Use the `RotateCloudAutonomousVmClusterOrdsCerts <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/RotateCloudAutonomousVmClusterOrdsCerts>`_ to rotate Oracle REST Data Services (ORDS) certs for an Autonomous Exadata VM cluster instead.
+- For *action=rotate_ssl_certs*, **Deprecated.** Use the `RotateCloudAutonomousVmClusterSslCerts <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/RotateCloudAutonomousVmClusterSslCerts>`_ to rotate SSL certs for an Autonomous Exadata VM cluster instead.
 
 
 .. Aliases

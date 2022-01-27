@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_listener -- Manage a Listener resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -236,6 +236,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-ip_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>IPV4</li>
+                                                                                                                                                                                                <li>IPV6</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>IP version associated with the listener.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -312,6 +332,7 @@ Parameters
                                                                                                                                                                 <li>ANY</li>
                                                                                                                                                                                                 <li>TCP</li>
                                                                                                                                                                                                 <li>UDP</li>
+                                                                                                                                                                                                <li>TCP_AND_UDP</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -440,6 +461,9 @@ Examples
         port: 56
         protocol: ANY
 
+        # optional
+        ip_version: IPV4
+
     - name: Update listener
       oci_network_load_balancer_listener:
         # required
@@ -450,6 +474,7 @@ Examples
         default_backend_set_name: default_backend_set_name_example
         port: 56
         protocol: ANY
+        ip_version: IPV4
 
     - name: Delete listener
       oci_network_load_balancer_listener:
@@ -493,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Listener resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;default_backend_set_name&#x27;: &#x27;default_backend_set_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;ANY&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;default_backend_set_name&#x27;: &#x27;default_backend_set_name_example&#x27;, &#x27;ip_version&#x27;: &#x27;IPV4&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;ANY&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -513,6 +538,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_backend_set_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-listener/ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#return-listener/ip_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>IP version associated with the listener.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IPV4</div>
                                     </td>
             </tr>
                                 <tr>

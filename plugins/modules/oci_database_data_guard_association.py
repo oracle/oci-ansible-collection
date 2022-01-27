@@ -96,6 +96,11 @@ options:
             - "NewDbSystem"
             - "ExistingVmCluster"
             - "ExistingDbSystem"
+    is_active_data_guard_enabled:
+        description:
+            - True if active Data Guard is enabled.
+            - This parameter is updatable.
+        type: bool
     peer_db_unique_name:
         description:
             - Specifies the `DB_UNIQUE_NAME` of the peer database to be created.
@@ -205,6 +210,7 @@ EXAMPLES = """
 
     # optional
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    is_active_data_guard_enabled: true
     peer_db_unique_name: peer_db_unique_name_example
     peer_sid_prefix: peer_sid_prefix_example
     display_name: display_name_example
@@ -225,6 +231,7 @@ EXAMPLES = """
 
     # optional
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    is_active_data_guard_enabled: true
     peer_db_unique_name: peer_db_unique_name_example
     peer_sid_prefix: peer_sid_prefix_example
     peer_vm_cluster_id: "ocid1.peervmcluster.oc1..xxxxxxEXAMPLExxxxxx"
@@ -240,6 +247,7 @@ EXAMPLES = """
 
     # optional
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    is_active_data_guard_enabled: true
     peer_db_unique_name: peer_db_unique_name_example
     peer_sid_prefix: peer_sid_prefix_example
     peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
@@ -255,6 +263,7 @@ EXAMPLES = """
     database_admin_password: example-password
     protection_mode: MAXIMUM_AVAILABILITY
     transport_type: SYNC
+    is_active_data_guard_enabled: true
 
 - name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_data_guard_association:
@@ -266,6 +275,7 @@ EXAMPLES = """
     database_admin_password: example-password
     protection_mode: MAXIMUM_AVAILABILITY
     transport_type: SYNC
+    is_active_data_guard_enabled: true
 
 """
 
@@ -375,6 +385,12 @@ data_guard_association:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        is_active_data_guard_enabled:
+            description:
+                - True if active Data Guard is enabled.
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
@@ -390,7 +406,8 @@ data_guard_association:
         "apply_rate": "apply_rate_example",
         "protection_mode": "MAXIMUM_AVAILABILITY",
         "transport_type": "SYNC",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "is_active_data_guard_enabled": true
     }
 """
 
@@ -551,6 +568,7 @@ def main():
                 type="str",
                 choices=["NewDbSystem", "ExistingVmCluster", "ExistingDbSystem"],
             ),
+            is_active_data_guard_enabled=dict(type="bool"),
             peer_db_unique_name=dict(type="str"),
             peer_sid_prefix=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
