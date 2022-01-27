@@ -23,7 +23,9 @@ module: oci_data_integration_workspace
 short_description: Manage a Workspace resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Workspace resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Data Integration workspace ready for performing data integration tasks.
+    - For I(state=present), creates a new Data Integration workspace ready for performing data integration tasks. To retrieve the OCID for the new workspace,
+      use the opc-work-request-id returned by this API and call the L(GetWorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/data-
+      integration/latest/WorkRequest/GetWorkRequest) API.
     - "This resource has the following action operations in the M(oracle.oci.oci_data_integration_workspace_actions) module: change_compartment, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)

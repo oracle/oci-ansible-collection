@@ -23,7 +23,8 @@ module: oci_database_autonomous_vm_cluster_facts
 short_description: Fetches details about one or multiple AutonomousVmCluster resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AutonomousVmCluster resources in Oracle Cloud Infrastructure
-    - Gets a list of Exadata Cloud@Customer Autonomous VM clusters in the specified compartment.
+    - Gets a list of Exadata Cloud@Customer Autonomous VM clusters in the specified compartment. To list Autonomous VM Clusters in the Oracle Cloud, see
+      L(ListCloudAutonomousVmClusters,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/ListCloudAutonomousVmClusters).
     - If I(autonomous_vm_cluster_id) is specified, the details of a single AutonomousVmCluster will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure -- Manage an Autonomou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
+- For *state=present*, **Deprecated** To create a new Autonomous Database system on dedicated Exadata Infrastructure, use the `CreateCloudExadataInfrastructure <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure>`_ and `CreateCloudAutonomousVmCluster <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/CreateCloudAutonomousVmCluster>`_ operations instead. Note that to create an Autonomous VM cluster, you must have an existing Exadata Infrastructure resource to contain the VM cluster.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_database_autonomous_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_autonomous_exadata_infrastructure_actions_module>` module: change_compartment, rotate_ords_certs, rotate_ssl_certs.
 
 

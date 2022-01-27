@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_vm_cluster_actions -- Perform actions on a CloudVm
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a CloudVmCluster resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves a cloud VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud Service instances only.
+- For *action=change_compartment*, moves a cloud VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud Service instances and Autonomous Database on dedicated Exadata infrastructure only.
 
 
 .. Aliases

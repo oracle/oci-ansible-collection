@@ -24,7 +24,7 @@ short_description: Perform actions on a CloudVmCluster resource in Oracle Cloud 
 description:
     - Perform actions on a CloudVmCluster resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a cloud VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud Service instances
-      only.
+      and Autonomous Database on dedicated Exadata infrastructure only.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

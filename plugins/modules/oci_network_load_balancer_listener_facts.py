@@ -46,6 +46,14 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    sort_by:
+        description:
+            - The field to sort by. Only one sort order can be provided. The default order for timeCreated is descending.
+              The default order for displayName is ascending. If no value is specified, then timeCreated is the default.
+        type: str
+        choices:
+            - "timeCreated"
+            - "displayName"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -63,6 +71,7 @@ EXAMPLES = """
 
     # optional
     sort_order: ASC
+    sort_by: timeCreated
 
 """
 
@@ -107,11 +116,18 @@ listeners:
             returned: on success
             type: str
             sample: ANY
+        ip_version:
+            description:
+                - IP version associated with the listener.
+            returned: on success
+            type: str
+            sample: IPV4
     sample: [{
         "name": "name_example",
         "default_backend_set_name": "default_backend_set_name_example",
         "port": 56,
-        "protocol": "ANY"
+        "protocol": "ANY",
+        "ip_version": "IPV4"
     }]
 """
 
@@ -154,6 +170,7 @@ class NetworkLoadBalancerListenerFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "sort_order",
+            "sort_by",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -186,6 +203,7 @@ def main():
             network_load_balancer_id=dict(type="str", required=True),
             listener_name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
         )
     )
 

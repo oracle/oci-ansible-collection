@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_db_preview_version_facts -- Fetches details a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AutonomousDbPreviewVersion resources in Oracle Cloud Infrastructure
-- Gets a list of supported Autonomous Database versions. Note that preview version software is only available for databases with `shared Exadata infrastructure <https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI>`_.
+- Gets a list of supported Autonomous Database versions. Note that preview version software is only available for databases with `shared Exadata infrastructure <https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html>`_.
 
 
 .. Aliases

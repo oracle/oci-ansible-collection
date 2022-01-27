@@ -30,7 +30,7 @@ oracle.oci.oci_database_data_guard_association_actions -- Perform actions on a D
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -413,7 +413,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DataGuardAssociation resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_lag&#x27;: &#x27;apply_lag_example&#x27;, &#x27;apply_rate&#x27;: &#x27;apply_rate_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;peer_data_guard_association_id&#x27;: &#x27;ocid1.peerdataguardassociation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_database_id&#x27;: &#x27;ocid1.peerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_db_home_id&#x27;: &#x27;ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_db_system_id&#x27;: &#x27;ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_role&#x27;: &#x27;PRIMARY&#x27;, &#x27;protection_mode&#x27;: &#x27;MAXIMUM_AVAILABILITY&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;transport_type&#x27;: &#x27;SYNC&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_lag&#x27;: &#x27;apply_lag_example&#x27;, &#x27;apply_rate&#x27;: &#x27;apply_rate_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_active_data_guard_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;peer_data_guard_association_id&#x27;: &#x27;ocid1.peerdataguardassociation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_database_id&#x27;: &#x27;ocid1.peerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_db_home_id&#x27;: &#x27;ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_db_system_id&#x27;: &#x27;ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;peer_role&#x27;: &#x27;PRIMARY&#x27;, &#x27;protection_mode&#x27;: &#x27;MAXIMUM_AVAILABILITY&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;transport_type&#x27;: &#x27;SYNC&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -488,6 +488,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-data_guard_association/is_active_data_guard_enabled"></div>
+                    <b>is_active_data_guard_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-data_guard_association/is_active_data_guard_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if active Data Guard is enabled.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

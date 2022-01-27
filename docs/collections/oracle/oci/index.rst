@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.39.0
+Collection version 2.40.0
 
 .. toctree::
     :maxdepth: 1
@@ -156,6 +156,7 @@ Modules
 * :ref:`oci_blockstorage_volume_group_backup_actions <ansible_collections.oracle.oci.oci_blockstorage_volume_group_backup_actions_module>` -- Perform actions on a VolumeGroupBackup resource in Oracle Cloud Infrastructure
 * :ref:`oci_blockstorage_volume_group_backup_facts <ansible_collections.oracle.oci.oci_blockstorage_volume_group_backup_facts_module>` -- Fetches details about one or multiple VolumeGroupBackup resources in Oracle Cloud Infrastructure
 * :ref:`oci_blockstorage_volume_group_facts <ansible_collections.oracle.oci.oci_blockstorage_volume_group_facts_module>` -- Fetches details about one or multiple VolumeGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_blockstorage_volume_group_replica_facts <ansible_collections.oracle.oci.oci_blockstorage_volume_group_replica_facts_module>` -- Fetches details about one or multiple VolumeGroupReplica resources in Oracle Cloud Infrastructure
 * :ref:`oci_blockstorage_volume_kms_key <ansible_collections.oracle.oci.oci_blockstorage_volume_kms_key_module>` -- Manage a VolumeKmsKey resource in Oracle Cloud Infrastructure
 * :ref:`oci_blockstorage_volume_kms_key_facts <ansible_collections.oracle.oci.oci_blockstorage_volume_kms_key_facts_module>` -- Fetches details about a VolumeKmsKey resource in Oracle Cloud Infrastructure
 * :ref:`oci_budget <ansible_collections.oracle.oci.oci_budget_module>` -- Manage a Budget resource in Oracle Cloud Infrastructure
@@ -1173,6 +1174,10 @@ Modules
 * :ref:`oci_osp_gateway_invoice_actions <ansible_collections.oracle.oci.oci_osp_gateway_invoice_actions_module>` -- Perform actions on an Invoice resource in Oracle Cloud Infrastructure
 * :ref:`oci_osp_gateway_invoice_facts <ansible_collections.oracle.oci.oci_osp_gateway_invoice_facts_module>` -- Fetches details about one or multiple Invoice resources in Oracle Cloud Infrastructure
 * :ref:`oci_osp_gateway_invoice_line_facts <ansible_collections.oracle.oci.oci_osp_gateway_invoice_line_facts_module>` -- Fetches details about one or multiple InvoiceLine resources in Oracle Cloud Infrastructure
+* :ref:`oci_osub_billing_schedule_billing_schedule_facts <ansible_collections.oracle.oci.oci_osub_billing_schedule_billing_schedule_facts_module>` -- Fetches details about one or multiple BillingSchedule resources in Oracle Cloud Infrastructure
+* :ref:`oci_osub_subscription_commitment_facts <ansible_collections.oracle.oci.oci_osub_subscription_commitment_facts_module>` -- Fetches details about one or multiple Commitment resources in Oracle Cloud Infrastructure
+* :ref:`oci_osub_subscription_rate_card_facts <ansible_collections.oracle.oci.oci_osub_subscription_rate_card_facts_module>` -- Fetches details about one or multiple RateCard resources in Oracle Cloud Infrastructure
+* :ref:`oci_osub_subscription_subscription_facts <ansible_collections.oracle.oci.oci_osub_subscription_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_module>` -- Manage a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_actions <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_actions_module>` -- Perform actions on a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_facts <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_facts_module>` -- Fetches details about one or multiple ConfigurationSourceProvider resources in Oracle Cloud Infrastructure
@@ -1457,6 +1462,7 @@ Modules
     oci_blockstorage_volume_group_backup_actions_module
     oci_blockstorage_volume_group_backup_facts_module
     oci_blockstorage_volume_group_facts_module
+    oci_blockstorage_volume_group_replica_facts_module
     oci_blockstorage_volume_kms_key_module
     oci_blockstorage_volume_kms_key_facts_module
     oci_budget_module
@@ -2474,6 +2480,10 @@ Modules
     oci_osp_gateway_invoice_actions_module
     oci_osp_gateway_invoice_facts_module
     oci_osp_gateway_invoice_line_facts_module
+    oci_osub_billing_schedule_billing_schedule_facts_module
+    oci_osub_subscription_commitment_facts_module
+    oci_osub_subscription_rate_card_facts_module
+    oci_osub_subscription_subscription_facts_module
     oci_resource_manager_configuration_source_provider_module
     oci_resource_manager_configuration_source_provider_actions_module
     oci_resource_manager_configuration_source_provider_facts_module

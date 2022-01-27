@@ -199,13 +199,13 @@ cluster:
                     contains:
                         pods_cidr:
                             description:
-                                - The CIDR block for Kubernetes pods.
+                                - The CIDR block for Kubernetes pods. Optional, defaults to 10.244.0.0/16.
                             returned: on success
                             type: str
                             sample: pods_cidr_example
                         services_cidr:
                             description:
-                                - The CIDR block for Kubernetes services.
+                                - The CIDR block for Kubernetes services. Optional, defaults to 10.96.0.0/16.
                             returned: on success
                             type: str
                             sample: services_cidr_example

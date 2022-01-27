@@ -170,13 +170,13 @@ volume_attachments:
             sample: true
         is_multipath:
             description:
-                - Whether the attachment is multipath or not.
+                - Whether the Iscsi or Paravirtualized attachment is multipath or not, it is not applicable to NVMe attachment.
             returned: on success
             type: bool
             sample: true
         iscsi_login_state:
             description:
-                - The iscsi login state of the volume attachment. For a multipath volume attachment,
+                - The iscsi login state of the volume attachment. For a Iscsi volume attachment,
                   all iscsi sessions need to be all logged-in or logged-out to be in logged-in or logged-out state.
             returned: on success
             type: str

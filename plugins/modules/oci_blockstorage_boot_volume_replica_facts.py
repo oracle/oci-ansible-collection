@@ -199,6 +199,12 @@ boot_volume_replicas:
             returned: on success
             type: int
             sample: 56
+        volume_group_replica_id:
+            description:
+                - The OCID of the volume group replica.
+            returned: on success
+            type: str
+            sample: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -212,7 +218,8 @@ boot_volume_replicas:
         "time_last_synced": "2013-10-20T19:20:30+01:00",
         "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
         "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
-        "total_data_transferred_in_gbs": 56
+        "total_data_transferred_in_gbs": 56,
+        "volume_group_replica_id": "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

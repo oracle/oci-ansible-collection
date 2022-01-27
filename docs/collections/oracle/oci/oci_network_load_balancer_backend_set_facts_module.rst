@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_backend_set_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -249,6 +249,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>timeCreated</li>
+                                                                                                                                                                                                <li>displayName</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The field to sort by. Only one sort order can be provided. The default order for timeCreated is descending. The default order for displayName is ascending. If no value is specified, then timeCreated is the default.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-sort_order"></div>
                     <b>sort_order</b>
                     <a class="ansibleOptionLink" href="#parameter-sort_order" title="Permalink to this option"></a>
@@ -319,6 +338,7 @@ Examples
 
         # optional
         sort_order: ASC
+        sort_by: timeCreated
 
 
 
@@ -355,7 +375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of BackendSet resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;backends&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_backup&#x27;: True, &#x27;is_drain&#x27;: True, &#x27;is_offline&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;weight&#x27;: 56}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_data&#x27;: None, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;response_data&#x27;: None, &#x27;retries&#x27;: 56, &#x27;return_code&#x27;: 56, &#x27;timeout_in_millis&#x27;: 56, &#x27;url_path&#x27;: &#x27;url_path_example&#x27;}, &#x27;is_preserve_source&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;policy&#x27;: &#x27;TWO_TUPLE&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;backends&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_backup&#x27;: True, &#x27;is_drain&#x27;: True, &#x27;is_offline&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;weight&#x27;: 56}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_data&#x27;: None, &#x27;response_body_regex&#x27;: &#x27;response_body_regex_example&#x27;, &#x27;response_data&#x27;: None, &#x27;retries&#x27;: 56, &#x27;return_code&#x27;: 56, &#x27;timeout_in_millis&#x27;: 56, &#x27;url_path&#x27;: &#x27;url_path_example&#x27;}, &#x27;ip_version&#x27;: &#x27;IPV4&#x27;, &#x27;is_preserve_source&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;policy&#x27;: &#x27;TWO_TUPLE&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -748,6 +768,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-backend_sets/ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#return-backend_sets/ip_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>IP version associated with the backend set.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IPV4</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

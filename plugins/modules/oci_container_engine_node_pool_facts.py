@@ -376,6 +376,19 @@ node_pools:
                     returned: on success
                     type: list
                     sample: []
+                kms_key_id:
+                    description:
+                        - The OCID of the Key Management Service key assigned to the boot volume.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+                is_pv_encryption_in_transit_enabled:
+                    description:
+                        - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. This field applies to both block volumes and
+                          boot volumes. The default value is false.
+                    returned: on success
+                    type: bool
+                    sample: true
                 placement_configs:
                     description:
                         - The placement configurations for the node pool. Provide one placement
@@ -452,6 +465,8 @@ node_pools:
         "node_config_details": {
             "size": 56,
             "nsg_ids": [],
+            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+            "is_pv_encryption_in_transit_enabled": true,
             "placement_configs": [{
                 "availability_domain": "Uocm:PHX-AD-1",
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"

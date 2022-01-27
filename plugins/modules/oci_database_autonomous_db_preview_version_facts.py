@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple AutonomousDbPreviewVers
 description:
     - Fetches details about one or multiple AutonomousDbPreviewVersion resources in Oracle Cloud Infrastructure
     - Gets a list of supported Autonomous Database versions. Note that preview version software is only available for
-      databases with L(shared Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI).
+      databases with L(shared Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

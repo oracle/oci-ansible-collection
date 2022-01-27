@@ -31,7 +31,9 @@ description:
     - For I(action=configure_autonomous_database_vault_key), configures the Autonomous Database Vault service
       L(key,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
     - For I(action=deregister_autonomous_database_data_safe), asynchronously deregisters this Autonomous Database with Data Safe.
+    - For I(action=disable_autonomous_database_management), disables Database Management for the Autonomous Database resource.
     - For I(action=disable_autonomous_database_operations_insights), disables Operations Insights for the Autonomous Database resource.
+    - For I(action=enable_autonomous_database_management), enables Database Management for Autonomous Database.
     - For I(action=enable_autonomous_database_operations_insights), enables the specified Autonomous Database with Operations Insights.
     - For I(action=fail_over), initiates a failover the specified Autonomous Database to a standby. To perform a failover to a standby located in a remote
       region, specify the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the remote standby using the `peerDbId` parameter.
@@ -151,7 +153,9 @@ options:
             - "change_compartment"
             - "configure_autonomous_database_vault_key"
             - "deregister_autonomous_database_data_safe"
+            - "disable_autonomous_database_management"
             - "disable_autonomous_database_operations_insights"
+            - "enable_autonomous_database_management"
             - "enable_autonomous_database_operations_insights"
             - "fail_over"
             - "generate_autonomous_database_wallet"
@@ -200,11 +204,23 @@ EXAMPLES = """
     pdb_admin_password: example-password
     action: deregister_autonomous_database_data_safe
 
+- name: Perform action disable_autonomous_database_management on autonomous_database
+  oci_database_autonomous_database_actions:
+    # required
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: disable_autonomous_database_management
+
 - name: Perform action disable_autonomous_database_operations_insights on autonomous_database
   oci_database_autonomous_database_actions:
     # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_autonomous_database_operations_insights
+
+- name: Perform action enable_autonomous_database_management on autonomous_database
+  oci_database_autonomous_database_actions:
+    # required
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_autonomous_database_management
 
 - name: Perform action enable_autonomous_database_operations_insights on autonomous_database
   oci_database_autonomous_database_actions:
@@ -336,6 +352,13 @@ autonomous_database:
             returned: on success
             type: str
             sample: kms_key_lifecycle_details_example
+        kms_key_version_id:
+            description:
+                - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+                  versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         db_name:
             description:
                 - The database name.
@@ -402,6 +425,13 @@ autonomous_database:
                     returned: on success
                     type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                kms_key_version_id:
+                    description:
+                        - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple
+                          key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
                 vault_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
@@ -462,7 +492,7 @@ autonomous_database:
             sample: CLOUD
         is_dedicated:
             description:
-                - True if the database uses L(dedicated Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm).
+                - True if the database uses L(dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html).
             returned: on success
             type: bool
             sample: true
@@ -627,12 +657,10 @@ autonomous_database:
                 - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
                   premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud.
                   License Included allows you to subscribe to new Oracle Database software licenses and the Database service.
-                  Note that when provisioning an Autonomous Database on L(dedicated Exadata
-                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute
-                  is already set at the
-                  Autonomous Exadata Infrastructure level. When using L(shared Exadata
-                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will
-                  supply the value of `BRING_YOUR_OWN_LICENSE`.
+                  Note that when provisioning an Autonomous Database on L(dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
+                  database/index.html), this attribute must be null because the attribute is already set at the
+                  Autonomous Exadata Infrastructure level. When using L(shared Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-
+                  database/index.html), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
             returned: on success
             type: str
             sample: LICENSE_INCLUDED
@@ -738,7 +766,7 @@ autonomous_database:
         whitelisted_ips:
             description:
                 - The client IP access control list (ACL). This feature is available for autonomous databases on L(shared Exadata
-                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
+                  infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html) and on Exadata Cloud@Customer.
                   Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
                 - "For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
                   Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
@@ -763,7 +791,7 @@ autonomous_database:
         standby_whitelisted_ips:
             description:
                 - The client IP access control list (ACL). This feature is available for autonomous databases on L(shared Exadata
-                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
+                  infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html) and on Exadata Cloud@Customer.
                   Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
                 - "For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
                   Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
@@ -808,6 +836,12 @@ autonomous_database:
         operations_insights_status:
             description:
                 - Status of Operations Insights for this Autonomous Database.
+            returned: on success
+            type: str
+            sample: ENABLING
+        database_management_status:
+            description:
+                - Status of Database Management for this Autonomous Database.
             returned: on success
             type: str
             sample: ENABLING
@@ -895,7 +929,9 @@ autonomous_database:
             sample: "2013-10-20T19:20:30+01:00"
         is_data_guard_enabled:
             description:
-                - Indicates whether the Autonomous Database has Data Guard enabled.
+                - Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous Data Guard
+                  associations, or to
+                  Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
             returned: on success
             type: bool
             sample: true
@@ -991,7 +1027,7 @@ autonomous_database:
                   associations have designated primary and standby regions, and these region types do not change when the database changes roles. The standby
                   regions in Data Guard associations can be the same region designated as the primary region, or they can be remote regions. Certain database
                   administrative operations may be available only in the primary region of the Data Guard association, and cannot be performed when the database
-                  using the \\"primary\\" role is operating in a remote Data Guard standby region.```"
+                  using the \\"primary\\" role is operating in a remote Data Guard standby region."
             returned: on success
             type: str
             sample: PRIMARY_DG_REGION
@@ -1017,6 +1053,19 @@ autonomous_database:
             returned: on success
             type: bool
             sample: true
+        is_reconnect_clone_enabled:
+            description:
+                - Indicates if the refreshable clone can be reconnected to its source database.
+            returned: on success
+            type: bool
+            sample: true
+        time_until_reconnect_clone_enabled:
+            description:
+                - The time and date as an RFC3339 formatted string, e.g., 2022-01-01T12:00:00.000Z, to set the limit for a refreshable clone to be reconnected
+                  to its source database.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         autonomous_maintenance_schedule_type:
             description:
                 - The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous
@@ -1034,6 +1083,7 @@ autonomous_database:
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "kms_key_lifecycle_details": "kms_key_lifecycle_details_example",
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
         "db_name": "db_name_example",
         "is_free_tier": true,
         "system_tags": {},
@@ -1045,6 +1095,7 @@ autonomous_database:
         },
         "key_history_entry": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
             "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
             "time_activated": "2013-10-20T19:20:30+01:00"
         }],
@@ -1104,6 +1155,7 @@ autonomous_database:
         "is_auto_scaling_enabled": true,
         "data_safe_status": "REGISTERING",
         "operations_insights_status": "ENABLING",
+        "database_management_status": "ENABLING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
         "is_refreshable_clone": true,
@@ -1138,6 +1190,8 @@ autonomous_database:
         "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
         "peer_db_ids": [],
         "is_mtls_connection_required": true,
+        "is_reconnect_clone_enabled": true,
+        "time_until_reconnect_clone_enabled": "2013-10-20T19:20:30+01:00",
         "autonomous_maintenance_schedule_type": "EARLY"
     }
 """
@@ -1176,7 +1230,9 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
         change_compartment
         configure_autonomous_database_vault_key
         deregister_autonomous_database_data_safe
+        disable_autonomous_database_management
         disable_autonomous_database_operations_insights
+        enable_autonomous_database_management
         enable_autonomous_database_operations_insights
         fail_over
         generate_autonomous_database_wallet
@@ -1295,9 +1351,43 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def disable_autonomous_database_management(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_autonomous_database_management,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def disable_autonomous_database_operations_insights(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.disable_autonomous_database_operations_insights,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_autonomous_database_management(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_autonomous_database_management,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
@@ -1545,7 +1635,9 @@ def main():
                     "change_compartment",
                     "configure_autonomous_database_vault_key",
                     "deregister_autonomous_database_data_safe",
+                    "disable_autonomous_database_management",
                     "disable_autonomous_database_operations_insights",
+                    "enable_autonomous_database_management",
                     "enable_autonomous_database_operations_insights",
                     "fail_over",
                     "generate_autonomous_database_wallet",

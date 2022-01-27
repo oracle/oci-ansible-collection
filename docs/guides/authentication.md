@@ -1,6 +1,6 @@
 # Authentication Guide
 
-## OCI Ansible supports the following authentication mechanisms:
+OCI Ansible supports the following authentication mechanisms:
 
 - [API Key](#api-key-authentication)
 - [Instance Principal](#instance-principal)
@@ -11,7 +11,7 @@ The *default* option is api_key.
 
 
 
-### API Key Authentication
+## API Key Authentication
 
 - Use api key of the user. [Read more](https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcredentials.htm).
 - Having a [CLI config file](#sdk-and-cli-configuration) is mandatory for api_key.
@@ -27,7 +27,7 @@ The *default* option is api_key.
     region: "us-ashburn-1"
 ```
 
-### Instance Principal
+## Instance Principal
 
 - Use authentication credentials of the compute instance. [Read more](https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/callingservicesfrominstances.htm).
 
@@ -43,7 +43,7 @@ The *default* option is api_key.
 ```
 
 
-### Delegation Auth
+## Delegation Auth
 
 - Can be used when running via cloud shell. [Read more](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellgettingstarted.htm).
 
@@ -56,7 +56,7 @@ The *default* option is api_key.
 ```
 
 
-### Resource Principal
+## Resource Principal
 
 - Very similar to instance principal auth but used for resources  
   that are not instances, such as serverless functions.

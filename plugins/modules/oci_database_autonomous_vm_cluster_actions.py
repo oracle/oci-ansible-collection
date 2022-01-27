@@ -23,9 +23,9 @@ module: oci_database_autonomous_vm_cluster_actions
 short_description: Perform actions on an AutonomousVmCluster resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AutonomousVmCluster resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), to move an Autonomous VM cluster and its dependent resources to another compartment, use the
-      L(ChangeAutonomousVmClusterCompartment,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/database/latest/AutonomousVmCluster/ChangeAutonomousVmClusterCompartment) operation.
+    - For I(action=change_compartment), moves an Autonomous VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud@Customer
+      only. For systems in the Oracle cloud, see L(ChangeAutonomousVmClusterCompartment,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/AutonomousVmCluster/ChangeAutonomousVmClusterCompartment).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

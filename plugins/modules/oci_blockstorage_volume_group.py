@@ -84,10 +84,16 @@ options:
                     - ""
                 type: str
                 choices:
+                    - "volumeGroupReplicaId"
                     - "volumeGroupId"
                     - "volumeIds"
                     - "volumeGroupBackupId"
                 required: true
+            volume_group_replica_id:
+                description:
+                    - The OCID of the volume group replica.
+                    - Required when type is 'volumeGroupReplicaId'
+                type: str
             volume_group_id:
                 description:
                     - The OCID of the volume group to clone from.
@@ -104,6 +110,26 @@ options:
                     - The OCID of the volume group backup to restore from.
                     - Required when type is 'volumeGroupBackupId'
                 type: str
+    volume_group_replicas:
+        description:
+            - The list of volume group replicas that this volume group will be enabled to have
+              in the specified destination availability domains.
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            display_name:
+                description:
+                    - A user-friendly name. Does not have to be unique, and it's changeable.
+                      Avoid entering confidential information.
+                type: str
+                aliases: ["name"]
+            availability_domain:
+                description:
+                    - The availability domain of the volume group replica.
+                    - "Example: `Uocm:PHX-AD-1`"
+                type: str
+                required: true
     volume_group_id:
         description:
             - The Oracle Cloud ID (OCID) that uniquely identifies the volume group.
@@ -117,6 +143,13 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    preserve_volume_replica:
+        description:
+            - Specifies whether to disable or preserve the individual volume replication when removing a volume from the
+              replication enabled volume group. When set to `true`, the individual volume replica is preserved. The default
+              value is `true`.
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the VolumeGroup.
@@ -137,14 +170,20 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source_details:
       # required
-      type: volumeGroupId
-      volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+      type: volumeGroupReplicaId
+      volume_group_replica_id: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    volume_group_replicas:
+    - # required
+      availability_domain: Uocm:PHX-AD-1
+
+      # optional
+      display_name: display_name_example
 
 - name: Update volume_group
   oci_blockstorage_volume_group:
@@ -155,7 +194,14 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    volume_group_replicas:
+    - # required
+      availability_domain: Uocm:PHX-AD-1
+
+      # optional
+      display_name: display_name_example
     volume_ids: [ "volume_ids_example" ]
+    preserve_volume_replica: true
 
 - name: Update volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_group:
@@ -166,7 +212,14 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    volume_group_replicas:
+    - # required
+      availability_domain: Uocm:PHX-AD-1
+
+      # optional
+      display_name: display_name_example
     volume_ids: [ "volume_ids_example" ]
+    preserve_volume_replica: true
 
 - name: Delete volume_group
   oci_blockstorage_volume_group:
@@ -274,6 +327,12 @@ volume_group:
                     returned: on success
                     type: str
                     sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+                volume_group_replica_id:
+                    description:
+                        - The OCID of the volume group replica.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
                 volume_ids:
                     description:
                         - OCIDs for the volumes in this volume group.
@@ -299,6 +358,32 @@ volume_group:
             returned: on success
             type: bool
             sample: true
+        volume_group_replicas:
+            description:
+                - The list of volume group replicas of this volume group.
+            returned: on success
+            type: complex
+            contains:
+                display_name:
+                    description:
+                        - A user-friendly name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
+                    returned: on success
+                    type: str
+                    sample: display_name_example
+                volume_group_replica_id:
+                    description:
+                        - The volume group replica's Oracle ID (OCID).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - The availability domain of the boot volume replica replica.
+                        - "Example: `Uocm:PHX-AD-1`"
+                    returned: on success
+                    type: str
+                    sample: Uocm:PHX-AD-1
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -313,11 +398,17 @@ volume_group:
             "type": "volumeGroupBackupId",
             "volume_group_backup_id": "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx",
             "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "volume_group_replica_id": "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx",
             "volume_ids": []
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "volume_ids": [],
-        "is_hydrated": true
+        "is_hydrated": true,
+        "volume_group_replicas": [{
+            "display_name": "display_name_example",
+            "volume_group_replica_id": "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1"
+        }]
     }
 """
 
@@ -425,6 +516,9 @@ class VolumeGroupHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 volume_group_id=self.module.params.get("volume_group_id"),
                 update_volume_group_details=update_details,
+                preserve_volume_replica=self.module.params.get(
+                    "preserve_volume_replica"
+                ),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -477,15 +571,30 @@ def main():
                     type=dict(
                         type="str",
                         required=True,
-                        choices=["volumeGroupId", "volumeIds", "volumeGroupBackupId"],
+                        choices=[
+                            "volumeGroupReplicaId",
+                            "volumeGroupId",
+                            "volumeIds",
+                            "volumeGroupBackupId",
+                        ],
                     ),
+                    volume_group_replica_id=dict(type="str"),
                     volume_group_id=dict(type="str"),
                     volume_ids=dict(type="list", elements="str"),
                     volume_group_backup_id=dict(type="str"),
                 ),
             ),
+            volume_group_replicas=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    display_name=dict(aliases=["name"], type="str"),
+                    availability_domain=dict(type="str", required=True),
+                ),
+            ),
             volume_group_id=dict(aliases=["id"], type="str"),
             volume_ids=dict(type="list", elements="str"),
+            preserve_volume_replica=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

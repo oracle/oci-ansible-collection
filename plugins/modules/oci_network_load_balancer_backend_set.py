@@ -60,6 +60,14 @@ options:
               The value is true by default.
             - This parameter is updatable.
         type: bool
+    ip_version:
+        description:
+            - IP version associated with the backend set.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "IPV4"
+            - "IPV6"
     backends:
         description:
             - An array of backends to be associated with the backend set.
@@ -217,6 +225,7 @@ EXAMPLES = """
 
     # optional
     is_preserve_source: true
+    ip_version: IPV4
     backends:
     - # required
       port: 56
@@ -239,6 +248,7 @@ EXAMPLES = """
     # optional
     policy: TWO_TUPLE
     is_preserve_source: true
+    ip_version: IPV4
     backends:
     - # required
       port: 56
@@ -307,6 +317,12 @@ backend_set:
             returned: on success
             type: bool
             sample: true
+        ip_version:
+            description:
+                - IP version associated with the backend set.
+            returned: on success
+            type: str
+            sample: IPV4
         backends:
             description:
                 - Array of backends.
@@ -461,6 +477,7 @@ backend_set:
         "name": "name_example",
         "policy": "TWO_TUPLE",
         "is_preserve_source": true,
+        "ip_version": "IPV4",
         "backends": [{
             "name": "name_example",
             "ip_address": "ip_address_example",
@@ -640,6 +657,7 @@ def main():
             name=dict(type="str", required=True),
             policy=dict(type="str", choices=["TWO_TUPLE", "THREE_TUPLE", "FIVE_TUPLE"]),
             is_preserve_source=dict(type="bool"),
+            ip_version=dict(type="str", choices=["IPV4", "IPV6"]),
             backends=dict(
                 type="list",
                 elements="dict",

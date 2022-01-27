@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_listener_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -247,6 +247,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>timeCreated</li>
+                                                                                                                                                                                                <li>displayName</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The field to sort by. Only one sort order can be provided. The default order for timeCreated is descending. The default order for displayName is ascending. If no value is specified, then timeCreated is the default.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-sort_order"></div>
                     <b>sort_order</b>
                     <a class="ansibleOptionLink" href="#parameter-sort_order" title="Permalink to this option"></a>
@@ -317,6 +336,7 @@ Examples
 
         # optional
         sort_order: ASC
+        sort_by: timeCreated
 
 
 
@@ -353,7 +373,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Listener resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;default_backend_set_name&#x27;: &#x27;default_backend_set_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;ANY&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;default_backend_set_name&#x27;: &#x27;default_backend_set_name_example&#x27;, &#x27;ip_version&#x27;: &#x27;IPV4&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;ANY&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -373,6 +393,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_backend_set_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-listeners/ip_version"></div>
+                    <b>ip_version</b>
+                    <a class="ansibleOptionLink" href="#return-listeners/ip_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>IP version associated with the listener.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IPV4</div>
                                     </td>
             </tr>
                                 <tr>

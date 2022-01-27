@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_backend_health_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.39.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -179,7 +179,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the backend server for which to retrieve the health status, specified as &lt;ip&gt;:&lt;port&gt; or as &lt;ip&gt; &lt;OCID&gt;:&lt;port&gt;.</div>
+                                            <div>The name of the backend server to retrieve health status for. If the backend was created with an explicitly specified name, that name should be used here. If the backend was created without explicitly specifying the name, but was created using ipAddress, this is specified as &lt;ipAddress&gt;:&lt;port&gt;. If the backend was created without explicitly specifying the name, but was created using targetId, this is specified as &lt;targetId&gt;:&lt;port&gt;.</div>
                                             <div>Example: `10.0.0.3:8080` or `ocid1.privateip..oc1.&lt;var&gt;&amp;lt;unique_ID&amp;gt;&lt;/var&gt;:8080`</div>
                                                         </td>
             </tr>
