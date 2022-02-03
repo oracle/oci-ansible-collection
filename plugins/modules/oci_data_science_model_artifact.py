@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     model_artifact_file:
         description:
-            - The model artifact file path to upload
+            - The path of model_artifact. The model artifact to upload.
         type: str
         required: true
     model_id:
@@ -41,10 +41,6 @@ options:
         description:
             - The content length of the body.
         type: int
-    model_artifact:
-        description:
-            - The model artifact to upload. We will soon deprecate this param, so please start using model_artifact_file.
-        type: str
     content_disposition:
         description:
             - "This header allows you to specify a filename during upload. This file name is used to dispose of the file contents
@@ -70,12 +66,11 @@ EXAMPLES = """
 - name: Create model_artifact
   oci_data_science_model_artifact:
     # required
-    model_artifact_file: model.zip
+    model_artifact_file: model_artifact_file_example
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     content_length: 56
-    model_artifact: model_artifact_example
     content_disposition: content_disposition_example
 
 """
@@ -112,23 +107,25 @@ class DataScienceModelArtifactHelperGen(OCIResourceHelperBase):
         )
 
     def create_resource(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.create_model_artifact,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                model_id=self.module.params.get("model_id"),
-                content_length=self.module.params.get("content_length"),
-                model_artifact=self.module.params.get("model_artifact"),
-                content_disposition=self.module.params.get("content_disposition"),
-            ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
-            operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_wait_for_states_for_operation(
-                oci_common_utils.CREATE_OPERATION_KEY,
-            ),
-        )
+        file_path = self.module.params.get("model_artifact_file")
+        with open(file_path, "rb") as input_file:
+            return oci_wait_utils.call_and_wait(
+                call_fn=self.client.create_model_artifact,
+                call_fn_args=(),
+                call_fn_kwargs=dict(
+                    model_id=self.module.params.get("model_id"),
+                    content_length=self.module.params.get("content_length"),
+                    model_artifact=input_file,
+                    content_disposition=self.module.params.get("content_disposition"),
+                ),
+                waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+                operation=oci_common_utils.CREATE_OPERATION_KEY,
+                waiter_client=self.get_waiter_client(),
+                resource_helper=self,
+                wait_for_states=self.get_wait_for_states_for_operation(
+                    oci_common_utils.CREATE_OPERATION_KEY,
+                ),
+            )
 
 
 DataScienceModelArtifactHelperCustom = get_custom_class(
@@ -151,7 +148,6 @@ def main():
             model_artifact_file=dict(type="str", required=True),
             model_id=dict(type="str", required=True),
             content_length=dict(type="int"),
-            model_artifact=dict(type="str"),
             content_disposition=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )

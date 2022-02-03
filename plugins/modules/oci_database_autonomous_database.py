@@ -316,6 +316,44 @@ options:
         choices:
             - "EARLY"
             - "REGULAR"
+    scheduled_operations:
+        description:
+            - list of scheduled operations
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            day_of_week:
+                description:
+                    - ""
+                    - Required when source is 'DATABASE'
+                type: dict
+                required: true
+                suboptions:
+                    name:
+                        description:
+                            - Name of the day of the week.
+                            - Required when source is 'DATABASE'
+                        type: str
+                        choices:
+                            - "MONDAY"
+                            - "TUESDAY"
+                            - "WEDNESDAY"
+                            - "THURSDAY"
+                            - "FRIDAY"
+                            - "SATURDAY"
+                            - "SUNDAY"
+                        required: true
+            scheduled_start_time:
+                description:
+                    - "auto start time. value must be of ISO-8601 format \\"HH:mm\\""
+                    - Applicable when source is 'DATABASE'
+                type: str
+            scheduled_stop_time:
+                description:
+                    - "auto stop time. value must be of ISO-8601 format \\"HH:mm\\""
+                    - Applicable when source is 'DATABASE'
+                type: str
     source_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
@@ -446,6 +484,15 @@ EXAMPLES = """
       email: email_example
     is_mtls_connection_required: true
     autonomous_maintenance_schedule_type: EARLY
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
 
 - name: Create autonomous_database with source = CLONE_TO_REFRESHABLE
   oci_database_autonomous_database:
@@ -487,6 +534,15 @@ EXAMPLES = """
       email: email_example
     is_mtls_connection_required: true
     autonomous_maintenance_schedule_type: EARLY
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
     refreshable_mode: AUTOMATIC
 
 - name: Create autonomous_database with source = BACKUP_FROM_ID
@@ -530,6 +586,15 @@ EXAMPLES = """
       email: email_example
     is_mtls_connection_required: true
     autonomous_maintenance_schedule_type: EARLY
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
 
 - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
   oci_database_autonomous_database:
@@ -573,6 +638,15 @@ EXAMPLES = """
       email: email_example
     is_mtls_connection_required: true
     autonomous_maintenance_schedule_type: EARLY
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
 
 - name: Create autonomous_database with source = CROSS_REGION_DATAGUARD
   oci_database_autonomous_database:
@@ -614,6 +688,15 @@ EXAMPLES = """
       email: email_example
     is_mtls_connection_required: true
     autonomous_maintenance_schedule_type: EARLY
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
 
 - name: Create autonomous_database with source = NONE
   oci_database_autonomous_database:
@@ -654,6 +737,15 @@ EXAMPLES = """
       email: email_example
     is_mtls_connection_required: true
     autonomous_maintenance_schedule_type: EARLY
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
 
 - name: Update autonomous_database
   oci_database_autonomous_database:
@@ -687,6 +779,15 @@ EXAMPLES = """
     - # optional
       email: email_example
     is_mtls_connection_required: true
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
     refreshable_mode: AUTOMATIC
     is_refreshable_clone: true
     peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
@@ -725,6 +826,15 @@ EXAMPLES = """
     - # optional
       email: email_example
     is_mtls_connection_required: true
+    scheduled_operations:
+    - # required
+      day_of_week:
+        # required
+        name: MONDAY
+
+      # optional
+      scheduled_start_time: scheduled_start_time_example
+      scheduled_stop_time: scheduled_stop_time_example
     refreshable_mode: AUTOMATIC
     is_refreshable_clone: true
     peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1519,6 +1629,36 @@ autonomous_database:
             returned: on success
             type: str
             sample: EARLY
+        scheduled_operations:
+            description:
+                - list of scheduled operations
+            returned: on success
+            type: complex
+            contains:
+                day_of_week:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the day of the week.
+                            returned: on success
+                            type: str
+                            sample: MONDAY
+                scheduled_start_time:
+                    description:
+                        - "auto start time. value must be of ISO-8601 format \\"HH:mm\\""
+                    returned: on success
+                    type: str
+                    sample: scheduled_start_time_example
+                scheduled_stop_time:
+                    description:
+                        - "auto stop time. value must be of ISO-8601 format \\"HH:mm\\""
+                    returned: on success
+                    type: str
+                    sample: scheduled_stop_time_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1636,7 +1776,14 @@ autonomous_database:
         "is_mtls_connection_required": true,
         "is_reconnect_clone_enabled": true,
         "time_until_reconnect_clone_enabled": "2013-10-20T19:20:30+01:00",
-        "autonomous_maintenance_schedule_type": "EARLY"
+        "autonomous_maintenance_schedule_type": "EARLY",
+        "scheduled_operations": [{
+            "day_of_week": {
+                "name": "MONDAY"
+            },
+            "scheduled_start_time": "scheduled_start_time_example",
+            "scheduled_stop_time": "scheduled_stop_time_example"
+        }]
     }
 """
 
@@ -1853,6 +2000,33 @@ def main():
             is_mtls_connection_required=dict(type="bool"),
             autonomous_maintenance_schedule_type=dict(
                 type="str", choices=["EARLY", "REGULAR"]
+            ),
+            scheduled_operations=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    day_of_week=dict(
+                        type="dict",
+                        required=True,
+                        options=dict(
+                            name=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "MONDAY",
+                                    "TUESDAY",
+                                    "WEDNESDAY",
+                                    "THURSDAY",
+                                    "FRIDAY",
+                                    "SATURDAY",
+                                    "SUNDAY",
+                                ],
+                            )
+                        ),
+                    ),
+                    scheduled_start_time=dict(type="str"),
+                    scheduled_stop_time=dict(type="str"),
+                ),
             ),
             source_id=dict(type="str"),
             clone_type=dict(type="str", choices=["FULL", "METADATA"]),

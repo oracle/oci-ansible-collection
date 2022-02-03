@@ -54,6 +54,11 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
+    ocpu_count:
+        description:
+            - The number of OCPU cores to enable for the VM cluster. Only one decimal place is allowed for the fractional part.
+            - This parameter is updatable.
+        type: float
     memory_size_in_gbs:
         description:
             - The memory to be allocated in GBs.
@@ -67,6 +72,11 @@ options:
     data_storage_size_in_tbs:
         description:
             - The data disk group size to be allocated in TBs.
+            - This parameter is updatable.
+        type: float
+    data_storage_size_in_gbs:
+        description:
+            - The data disk group size to be allocated in GBs.
             - This parameter is updatable.
         type: float
     ssh_public_keys:
@@ -202,9 +212,11 @@ EXAMPLES = """
     gi_version: gi_version_example
 
     # optional
+    ocpu_count: 3.4
     memory_size_in_gbs: 56
     db_node_storage_size_in_gbs: 56
     data_storage_size_in_tbs: 3.4
+    data_storage_size_in_gbs: 3.4
     license_model: LICENSE_INCLUDED
     is_sparse_diskgroup_enabled: true
     is_local_backup_enabled: true
@@ -220,9 +232,11 @@ EXAMPLES = """
 
     # optional
     cpu_core_count: 56
+    ocpu_count: 3.4
     memory_size_in_gbs: 56
     db_node_storage_size_in_gbs: 56
     data_storage_size_in_tbs: 3.4
+    data_storage_size_in_gbs: 3.4
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
     freeform_tags: {'Department': 'Finance'}
@@ -245,9 +259,11 @@ EXAMPLES = """
 
     # optional
     cpu_core_count: 56
+    ocpu_count: 3.4
     memory_size_in_gbs: 56
     db_node_storage_size_in_gbs: 56
     data_storage_size_in_tbs: 3.4
+    data_storage_size_in_gbs: 3.4
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
     freeform_tags: {'Department': 'Finance'}
@@ -365,6 +381,12 @@ vm_cluster:
             returned: on success
             type: int
             sample: 56
+        ocpus_enabled:
+            description:
+                - The number of enabled OCPU cores.
+            returned: on success
+            type: float
+            sample: 3.4
         memory_size_in_gbs:
             description:
                 - The memory allocated in GBs.
@@ -380,6 +402,12 @@ vm_cluster:
         data_storage_size_in_tbs:
             description:
                 - Size, in terabytes, of the DATA disk group.
+            returned: on success
+            type: float
+            sample: 1.2
+        data_storage_size_in_gbs:
+            description:
+                - Size of the DATA disk group in GBs.
             returned: on success
             type: float
             sample: 1.2
@@ -448,9 +476,11 @@ vm_cluster:
         "is_sparse_diskgroup_enabled": true,
         "vm_cluster_network_id": "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx",
         "cpus_enabled": 56,
+        "ocpus_enabled": 3.4,
         "memory_size_in_gbs": 56,
         "db_node_storage_size_in_gbs": 56,
         "data_storage_size_in_tbs": 1.2,
+        "data_storage_size_in_gbs": 1.2,
         "shape": "shape_example",
         "gi_version": "gi_version_example",
         "system_version": "system_version_example",
@@ -545,7 +575,7 @@ class VmClusterHelperGen(OCIResourceHelperBase):
         return CreateVmClusterDetails
 
     def get_exclude_attributes(self):
-        return ["cpu_core_count"]
+        return ["cpu_core_count", "ocpu_count"]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -609,9 +639,11 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             exadata_infrastructure_id=dict(type="str"),
             cpu_core_count=dict(type="int"),
+            ocpu_count=dict(type="float"),
             memory_size_in_gbs=dict(type="int"),
             db_node_storage_size_in_gbs=dict(type="int"),
             data_storage_size_in_tbs=dict(type="float"),
+            data_storage_size_in_gbs=dict(type="float"),
             ssh_public_keys=dict(type="list", elements="str", no_log=True),
             vm_cluster_network_id=dict(type="str"),
             license_model=dict(

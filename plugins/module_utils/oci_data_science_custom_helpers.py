@@ -30,8 +30,8 @@ except ImportError:
 
 
 class DataScienceModelArtifactHelperCustom:
-    # there is no concept of idempotency for this module
-    # it re-executes create new model artifact every time module is invoked
+    # there is no concept of idempotency for this module.
+    # it re-executes create new model artifact every time module is invoked.
     def get_matching_resource(self):
         return None
 
@@ -43,15 +43,6 @@ class DataScienceModelArtifactHelperCustom:
 
     def get_module_resource_id(self):
         return self.module.params.get("model_id")
-
-    def create_resource(self):
-        file_path = self.module.params.get("model_artifact_file")
-        with open(file_path, "rb") as input_file:
-            data = input_file.read()
-        self.module.params["model_artifact"] = data
-        resource = super(DataScienceModelArtifactHelperCustom, self).create_resource()
-        self.module.params.pop("model_artifact", None)
-        return resource
 
 
 class DataScienceModelDeploymentHelperCustom:
@@ -104,21 +95,6 @@ class DataScienceJobHelperCustom:
         ).get_resource_active_states()
         wait_for_states.append("CREATING")
         return wait_for_states
-
-
-class DataScienceJobArtifactHelperCustom:
-    def create_resource(self):
-        file_path = self.module.params.get("job_artifact_file")
-        try:
-            with open(file_path, "rb") as input_file:
-                self.module.params["job_artifact"] = input_file
-                resource = super(
-                    DataScienceJobArtifactHelperCustom, self
-                ).create_resource()
-                self.module.params.pop("job_artifact", None)
-                return resource
-        finally:
-            self.module.params.pop("job_artifact", None)
 
 
 class DataScienceJobRunActionsHelperCustom:

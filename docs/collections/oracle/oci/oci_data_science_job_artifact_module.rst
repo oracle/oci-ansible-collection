@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_job_artifact -- Manage a JobArtifact resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.41.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -258,7 +258,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The job artifact file path to upload</div>
+                                            <div>The path of job_artifact. The job artifact to upload.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -368,8 +368,8 @@ Examples
     - name: Create job_artifact
       oci_data_science_job_artifact:
         # required
-        job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
         job_artifact_file: job_artifact_file_example
+        job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         content_length: 56

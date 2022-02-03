@@ -174,6 +174,12 @@ autonomous_vm_clusters:
             returned: on success
             type: int
             sample: 56
+        ocpus_enabled:
+            description:
+                - The number of enabled OCPU cores.
+            returned: on success
+            type: float
+            sample: 3.4
         available_cpus:
             description:
                 - The numnber of CPU cores available.
@@ -195,6 +201,12 @@ autonomous_vm_clusters:
         data_storage_size_in_tbs:
             description:
                 - The total data storage allocated in TBs
+            returned: on success
+            type: float
+            sample: 1.2
+        data_storage_size_in_gbs:
+            description:
+                - The total data storage allocated in GBs.
             returned: on success
             type: float
             sample: 1.2
@@ -237,10 +249,12 @@ autonomous_vm_clusters:
         "vm_cluster_network_id": "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx",
         "is_local_backup_enabled": true,
         "cpus_enabled": 56,
+        "ocpus_enabled": 3.4,
         "available_cpus": 56,
         "memory_size_in_gbs": 56,
         "db_node_storage_size_in_gbs": 56,
         "data_storage_size_in_tbs": 1.2,
+        "data_storage_size_in_gbs": 1.2,
         "available_data_storage_size_in_tbs": 1.2,
         "license_model": "LICENSE_INCLUDED",
         "freeform_tags": {'Department': 'Finance'},

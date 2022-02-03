@@ -27,6 +27,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    job_artifact_file:
+        description:
+            - The path of job_artifact. The job artifact to upload.
+        type: str
+        required: true
     job_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job.
@@ -36,11 +41,6 @@ options:
         description:
             - The content length of the body.
         type: int
-    job_artifact_file:
-        description:
-            - The job artifact file path to upload
-        type: str
-        required: true
     content_disposition:
         description:
             - "This header allows you to specify a filename during upload. This file name is used to dispose of the file contents
@@ -66,8 +66,8 @@ EXAMPLES = """
 - name: Create job_artifact
   oci_data_science_job_artifact:
     # required
-    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
     job_artifact_file: job_artifact_file_example
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     content_length: 56
@@ -105,23 +105,25 @@ class DataScienceJobArtifactHelperGen(OCIResourceHelperBase):
         return None
 
     def create_resource(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.create_job_artifact,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                job_id=self.module.params.get("job_id"),
-                content_length=self.module.params.get("content_length"),
-                job_artifact=self.module.params.get("job_artifact"),
-                content_disposition=self.module.params.get("content_disposition"),
-            ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
-            operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_wait_for_states_for_operation(
-                oci_common_utils.CREATE_OPERATION_KEY,
-            ),
-        )
+        file_path = self.module.params.get("job_artifact_file")
+        with open(file_path, "rb") as input_file:
+            return oci_wait_utils.call_and_wait(
+                call_fn=self.client.create_job_artifact,
+                call_fn_args=(),
+                call_fn_kwargs=dict(
+                    job_id=self.module.params.get("job_id"),
+                    content_length=self.module.params.get("content_length"),
+                    job_artifact=input_file,
+                    content_disposition=self.module.params.get("content_disposition"),
+                ),
+                waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+                operation=oci_common_utils.CREATE_OPERATION_KEY,
+                waiter_client=self.get_waiter_client(),
+                resource_helper=self,
+                wait_for_states=self.get_wait_for_states_for_operation(
+                    oci_common_utils.CREATE_OPERATION_KEY,
+                ),
+            )
 
 
 DataScienceJobArtifactHelperCustom = get_custom_class(
@@ -141,9 +143,9 @@ def main():
     )
     module_args.update(
         dict(
+            job_artifact_file=dict(type="str", required=True),
             job_id=dict(type="str", required=True),
             content_length=dict(type="int"),
-            job_artifact_file=dict(type="str", required=True),
             content_disposition=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )

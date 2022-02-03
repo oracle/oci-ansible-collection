@@ -26,6 +26,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    generic_artifact_content_file:
+        description:
+            - The path of generic_artifact_content. Uploads an artifact. Provide artifact path, version and content. Avoid entering confidential information
+              when you define the path and version.
+        type: str
+        required: true
     repository_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the repository.
@@ -45,12 +51,6 @@ options:
             - "Example: `1.1.2` or `1.2-beta-2`"
         type: str
         required: true
-    generic_artifact_content_file:
-        description:
-            - The generic artifact content artifact file path to upload
-            - This parameter is updatable.
-        type: str
-        required: true
     state:
         description:
             - The state of the GenericArtifactContent.
@@ -66,12 +66,10 @@ EXAMPLES = """
 - name: Update generic_artifact_content
   oci_generic_artifacts_content_generic_artifact_content:
     # required
+    generic_artifact_content_file: generic_artifact_content_file_example
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     artifact_path: artifact_path_example
     version: version_example
-
-    # optional
-    generic_artifact_content_file: model.zip
 
 """
 
@@ -115,25 +113,25 @@ class GenericArtifactContentHelperGen(OCIResourceHelperBase):
         )
 
     def update_resource(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.put_generic_artifact_content_by_path,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                repository_id=self.module.params.get("repository_id"),
-                artifact_path=self.module.params.get("artifact_path"),
-                version=self.module.params.get("version"),
-                generic_artifact_content_body=self.module.params.get(
-                    "generic_artifact_content_body"
+        file_path = self.module.params.get("generic_artifact_content_file")
+        with open(file_path, "rb") as input_file:
+            return oci_wait_utils.call_and_wait(
+                call_fn=self.client.put_generic_artifact_content_by_path,
+                call_fn_args=(),
+                call_fn_kwargs=dict(
+                    repository_id=self.module.params.get("repository_id"),
+                    artifact_path=self.module.params.get("artifact_path"),
+                    version=self.module.params.get("version"),
+                    generic_artifact_content_body=input_file,
                 ),
-            ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
-            operation=oci_common_utils.UPDATE_OPERATION_KEY,
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_wait_for_states_for_operation(
-                oci_common_utils.UPDATE_OPERATION_KEY,
-            ),
-        )
+                waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+                operation=oci_common_utils.UPDATE_OPERATION_KEY,
+                waiter_client=self.get_waiter_client(),
+                resource_helper=self,
+                wait_for_states=self.get_wait_for_states_for_operation(
+                    oci_common_utils.UPDATE_OPERATION_KEY,
+                ),
+            )
 
 
 GenericArtifactContentHelperCustom = get_custom_class(
@@ -153,10 +151,10 @@ def main():
     )
     module_args.update(
         dict(
+            generic_artifact_content_file=dict(type="str", required=True),
             repository_id=dict(type="str", required=True),
             artifact_path=dict(type="str", required=True),
             version=dict(type="str", required=True),
-            generic_artifact_content_file=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.41.0]
+
+## Added
+
+- Support for OneSubscription usage and organization subscription services
+- Support for automatic start/stop at scheduled times in the Database service.
+- Support for updating autonomous dataguard associations for autonomous container databases in the Database service.
+- Support for setting up automatic failover when creating autonomous container databases in the Database service.
+- Support for cloud VM cluster resources on autonomous dedicated databases in the Database service.
+
+## Breaking
+
+- Deprecated support for  module param `model_artifact` in the module `oci_data_science_model_artifact` for  `data science` service.
+ 
+## Changed
+
+- Minimum required [OCI Python SDK]([https://github.com/oracle/oci-python-sdk]) changed to 2.55.1
+
 ## [2.40.0] - 2022-01-27
 
 ## Added

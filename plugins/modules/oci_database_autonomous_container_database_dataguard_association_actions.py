@@ -169,6 +169,12 @@ autonomous_container_database_dataguard_association:
             returned: on success
             type: str
             sample: apply_rate_example
+        is_automatic_failover_enabled:
+            description:
+                - Indicates whether Automatic Failover is enabled for Autonomous Container Database Dataguard Association
+            returned: on success
+            type: bool
+            sample: true
         transport_lag:
             description:
                 - The approximate number of seconds of redo data not yet available on the standby Autonomous Container Database,
@@ -208,6 +214,7 @@ autonomous_container_database_dataguard_association:
         "protection_mode": "MAXIMUM_AVAILABILITY",
         "apply_lag": "apply_lag_example",
         "apply_rate": "apply_rate_example",
+        "is_automatic_failover_enabled": true,
         "transport_lag": "transport_lag_example",
         "time_last_synced": "2013-10-20T19:20:30+01:00",
         "time_created": "2013-10-20T19:20:30+01:00",
