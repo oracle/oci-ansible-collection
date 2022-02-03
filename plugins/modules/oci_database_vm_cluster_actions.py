@@ -182,6 +182,12 @@ vm_cluster:
             returned: on success
             type: int
             sample: 56
+        ocpus_enabled:
+            description:
+                - The number of enabled OCPU cores.
+            returned: on success
+            type: float
+            sample: 3.4
         memory_size_in_gbs:
             description:
                 - The memory allocated in GBs.
@@ -197,6 +203,12 @@ vm_cluster:
         data_storage_size_in_tbs:
             description:
                 - Size, in terabytes, of the DATA disk group.
+            returned: on success
+            type: float
+            sample: 1.2
+        data_storage_size_in_gbs:
+            description:
+                - Size of the DATA disk group in GBs.
             returned: on success
             type: float
             sample: 1.2
@@ -265,9 +277,11 @@ vm_cluster:
         "is_sparse_diskgroup_enabled": true,
         "vm_cluster_network_id": "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx",
         "cpus_enabled": 56,
+        "ocpus_enabled": 3.4,
         "memory_size_in_gbs": 56,
         "db_node_storage_size_in_gbs": 56,
         "data_storage_size_in_tbs": 1.2,
+        "data_storage_size_in_gbs": 1.2,
         "shape": "shape_example",
         "gi_version": "gi_version_example",
         "system_version": "system_version_example",

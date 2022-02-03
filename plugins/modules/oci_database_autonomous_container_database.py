@@ -71,6 +71,14 @@ options:
         choices:
             - "MAXIMUM_AVAILABILITY"
             - "MAXIMUM_PERFORMANCE"
+    is_automatic_failover_enabled:
+        description:
+            - Indicates whether Automatic Failover is enabled for Autonomous Container Database Dataguard Association
+        type: bool
+    peer_cloud_autonomous_vm_cluster_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the peer cloud Autonomous Exadata VM Cluster.
+        type: str
     peer_autonomous_vm_cluster_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous VM cluster for Autonomous Data Guard.
@@ -134,6 +142,10 @@ options:
     autonomous_vm_cluster_id:
         description:
             - The OCID of the Autonomous VM Cluster.
+        type: str
+    cloud_autonomous_vm_cluster_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Autonomous Exadata VM Cluster.
         type: str
     compartment_id:
         description:
@@ -346,6 +358,8 @@ EXAMPLES = """
     peer_autonomous_exadata_infrastructure_id: "ocid1.peerautonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     peer_autonomous_container_database_display_name: peer_autonomous_container_database_display_name_example
     protection_mode: MAXIMUM_AVAILABILITY
+    is_automatic_failover_enabled: true
+    peer_cloud_autonomous_vm_cluster_id: "ocid1.peercloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     peer_autonomous_vm_cluster_id: "ocid1.peerautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     peer_autonomous_container_database_compartment_id: "ocid1.peerautonomouscontainerdatabasecompartment.oc1..xxxxxxEXAMPLExxxxxx"
     peer_autonomous_container_database_backup_config:
@@ -362,6 +376,7 @@ EXAMPLES = """
       recovery_window_in_days: 56
     peer_db_unique_name: peer_db_unique_name_example
     autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    cloud_autonomous_vm_cluster_id: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     maintenance_window_details:
       # required
       preference: NO_PREFERENCE
@@ -543,6 +558,12 @@ autonomous_container_database:
             returned: on success
             type: str
             sample: CLOUD
+        cloud_autonomous_vm_cluster_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Autonomous Exadata VM Cluster.
+            returned: on success
+            type: str
+            sample: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
@@ -814,6 +835,7 @@ autonomous_container_database:
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
         "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "infrastructure_type": "CLOUD",
+        "cloud_autonomous_vm_cluster_id": "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
@@ -925,6 +947,7 @@ class AutonomousContainerDatabaseHelperGen(OCIResourceHelperBase):
             "autonomous_vm_cluster_id",
             "display_name",
             "service_level_agreement_type",
+            "cloud_autonomous_vm_cluster_id",
         ]
 
         return dict(
@@ -957,6 +980,8 @@ class AutonomousContainerDatabaseHelperGen(OCIResourceHelperBase):
             "peer_autonomous_exadata_infrastructure_id",
             "peer_autonomous_container_database_display_name",
             "protection_mode",
+            "is_automatic_failover_enabled",
+            "peer_cloud_autonomous_vm_cluster_id",
             "peer_autonomous_vm_cluster_id",
             "peer_autonomous_container_database_compartment_id",
             "peer_autonomous_container_database_backup_config",
@@ -1045,6 +1070,8 @@ def main():
             protection_mode=dict(
                 type="str", choices=["MAXIMUM_AVAILABILITY", "MAXIMUM_PERFORMANCE"]
             ),
+            is_automatic_failover_enabled=dict(type="bool"),
+            peer_cloud_autonomous_vm_cluster_id=dict(type="str"),
             peer_autonomous_vm_cluster_id=dict(type="str"),
             peer_autonomous_container_database_compartment_id=dict(type="str"),
             peer_autonomous_container_database_backup_config=dict(
@@ -1075,6 +1102,7 @@ def main():
             ),
             peer_db_unique_name=dict(type="str"),
             autonomous_vm_cluster_id=dict(type="str"),
+            cloud_autonomous_vm_cluster_id=dict(type="str"),
             compartment_id=dict(type="str"),
             patch_model=dict(
                 type="str", choices=["RELEASE_UPDATES", "RELEASE_UPDATE_REVISIONS"]

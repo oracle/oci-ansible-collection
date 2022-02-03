@@ -378,49 +378,51 @@ class ObjectHelperGen(OCIResourceHelperBase):
         return not self.does_resource_exist()
 
     def update_resource(self):
-        optional_enum_params = [
-            "storage_tier",
-        ]
-        optional_enum_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_enum_params
-            if self.module.params.get(param) is not None
-        )
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.put_object,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                namespace_name=self.module.params.get("namespace_name"),
-                bucket_name=self.module.params.get("bucket_name"),
-                object_name=self.module.params.get("object_name"),
-                content_length=self.module.params.get("content_length"),
-                put_object_body=self.module.params.get("put_object_body"),
-                expect=self.module.params.get("expect"),
-                content_md5=self.module.params.get("content_md5"),
-                content_type=self.module.params.get("content_type"),
-                content_language=self.module.params.get("content_language"),
-                content_encoding=self.module.params.get("content_encoding"),
-                content_disposition=self.module.params.get("content_disposition"),
-                cache_control=self.module.params.get("cache_control"),
-                opc_sse_customer_algorithm=self.module.params.get(
-                    "opc_sse_customer_algorithm"
+        file_path = self.module.params.get("src")
+        with open(file_path, "rb") as input_file:
+            optional_enum_params = [
+                "storage_tier",
+            ]
+            optional_enum_kwargs = dict(
+                (param, self.module.params[param])
+                for param in optional_enum_params
+                if self.module.params.get(param) is not None
+            )
+            return oci_wait_utils.call_and_wait(
+                call_fn=self.client.put_object,
+                call_fn_args=(),
+                call_fn_kwargs=dict(
+                    namespace_name=self.module.params.get("namespace_name"),
+                    bucket_name=self.module.params.get("bucket_name"),
+                    object_name=self.module.params.get("object_name"),
+                    content_length=self.module.params.get("content_length"),
+                    put_object_body=input_file,
+                    expect=self.module.params.get("expect"),
+                    content_md5=self.module.params.get("content_md5"),
+                    content_type=self.module.params.get("content_type"),
+                    content_language=self.module.params.get("content_language"),
+                    content_encoding=self.module.params.get("content_encoding"),
+                    content_disposition=self.module.params.get("content_disposition"),
+                    cache_control=self.module.params.get("cache_control"),
+                    opc_sse_customer_algorithm=self.module.params.get(
+                        "opc_sse_customer_algorithm"
+                    ),
+                    opc_sse_customer_key=self.module.params.get("opc_sse_customer_key"),
+                    opc_sse_customer_key_sha256=self.module.params.get(
+                        "opc_sse_customer_key_sha256"
+                    ),
+                    opc_sse_kms_key_id=self.module.params.get("opc_sse_kms_key_id"),
+                    opc_meta=self.module.params.get("opc_meta"),
+                    **optional_enum_kwargs
                 ),
-                opc_sse_customer_key=self.module.params.get("opc_sse_customer_key"),
-                opc_sse_customer_key_sha256=self.module.params.get(
-                    "opc_sse_customer_key_sha256"
+                waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+                operation=oci_common_utils.UPDATE_OPERATION_KEY,
+                waiter_client=self.get_waiter_client(),
+                resource_helper=self,
+                wait_for_states=self.get_wait_for_states_for_operation(
+                    oci_common_utils.UPDATE_OPERATION_KEY,
                 ),
-                opc_sse_kms_key_id=self.module.params.get("opc_sse_kms_key_id"),
-                opc_meta=self.module.params.get("opc_meta"),
-                **optional_enum_kwargs
-            ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
-            operation=oci_common_utils.UPDATE_OPERATION_KEY,
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_wait_for_states_for_operation(
-                oci_common_utils.UPDATE_OPERATION_KEY,
-            ),
-        )
+            )
 
     def delete_resource(self):
         return oci_wait_utils.call_and_wait(

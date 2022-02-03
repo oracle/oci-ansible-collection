@@ -101,6 +101,10 @@ options:
         description:
             - A filter to return only resources that match the given service-level agreement type exactly.
         type: str
+    cloud_autonomous_vm_cluster_id:
+        description:
+            - The cloud Autonomous VM Cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -125,6 +129,7 @@ EXAMPLES = """
     availability_domain: Uocm:PHX-AD-1
     display_name: display_name_example
     service_level_agreement_type: service_level_agreement_type_example
+    cloud_autonomous_vm_cluster_id: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -184,6 +189,12 @@ autonomous_container_databases:
             returned: on success
             type: str
             sample: CLOUD
+        cloud_autonomous_vm_cluster_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Autonomous Exadata VM Cluster.
+            returned: on success
+            type: str
+            sample: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
@@ -455,6 +466,7 @@ autonomous_container_databases:
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
         "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "infrastructure_type": "CLOUD",
+        "cloud_autonomous_vm_cluster_id": "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
@@ -551,6 +563,7 @@ class AutonomousContainerDatabaseFactsHelperGen(OCIResourceFactsHelperBase):
             "availability_domain",
             "display_name",
             "service_level_agreement_type",
+            "cloud_autonomous_vm_cluster_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -610,6 +623,7 @@ def main():
             availability_domain=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             service_level_agreement_type=dict(type="str"),
+            cloud_autonomous_vm_cluster_id=dict(type="str"),
         )
     )
 

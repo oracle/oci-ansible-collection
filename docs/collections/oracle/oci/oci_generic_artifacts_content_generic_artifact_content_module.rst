@@ -30,7 +30,7 @@ oracle.oci.oci_generic_artifacts_content_generic_artifact_content -- Manage a Ge
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.41.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -224,8 +224,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The generic artifact content artifact file path to upload</div>
-                                            <div>This parameter is updatable.</div>
+                                            <div>The path of generic_artifact_content. Uploads an artifact. Provide artifact path, version and content. Avoid entering confidential information when you define the path and version.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -337,12 +336,10 @@ Examples
     - name: Update generic_artifact_content
       oci_generic_artifacts_content_generic_artifact_content:
         # required
+        generic_artifact_content_file: generic_artifact_content_file_example
         repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         artifact_path: artifact_path_example
         version: version_example
-
-        # optional
-        generic_artifact_content_file: model.zip
 
 
 

@@ -49,7 +49,7 @@ class GenericArtifactContentHelperCustom:
 
     def is_update_necessary(self, existing_resource_dict):
         # we need to compare the sha256 digest of the source file and the sha256 digest of the existing file
-        # to check if the update is required
+        # to check if the update is required.
         file_path = self.module.params.get("generic_artifact_content_file")
         existing_sha256_digest = existing_resource_dict.get("sha256", None)
 
@@ -67,14 +67,3 @@ class GenericArtifactContentHelperCustom:
                 h.update(mv[:n])
         readable_hash = h.hexdigest()
         return readable_hash != existing_sha256_digest
-
-    def update(self):
-        file_path = self.module.params.get("generic_artifact_content_file")
-        try:
-            with open(file_path, "rb") as file:
-                self.module.params["generic_artifact_content_body"] = file
-                resource = super(GenericArtifactContentHelperCustom, self).update()
-                self.module.params.pop("generic_artifact_content_body", None)
-                return resource
-        finally:
-            self.module.params.pop("generic_artifact_content_body", None)

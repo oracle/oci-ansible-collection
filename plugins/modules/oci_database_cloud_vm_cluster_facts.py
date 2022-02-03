@@ -293,6 +293,12 @@ cloud_vm_clusters:
             returned: on success
             type: int
             sample: 56
+        ocpu_count:
+            description:
+                - The number of OCPU cores to enable on the cloud VM cluster. Only 1 decimal place is allowed for the fractional part.
+            returned: on success
+            type: float
+            sample: 3.4
         cluster_name:
             description:
                 - The cluster name for cloud VM cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_)
@@ -458,6 +464,7 @@ cloud_vm_clusters:
         "hostname": "hostname_example",
         "domain": "domain_example",
         "cpu_core_count": 56,
+        "ocpu_count": 3.4,
         "cluster_name": "cluster_name_example",
         "data_storage_percentage": 56,
         "is_local_backup_enabled": true,

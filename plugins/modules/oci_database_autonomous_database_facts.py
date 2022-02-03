@@ -926,6 +926,36 @@ autonomous_databases:
             returned: on success
             type: str
             sample: EARLY
+        scheduled_operations:
+            description:
+                - list of scheduled operations
+            returned: on success
+            type: complex
+            contains:
+                day_of_week:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the day of the week.
+                            returned: on success
+                            type: str
+                            sample: MONDAY
+                scheduled_start_time:
+                    description:
+                        - "auto start time. value must be of ISO-8601 format \\"HH:mm\\""
+                    returned: on success
+                    type: str
+                    sample: scheduled_start_time_example
+                scheduled_stop_time:
+                    description:
+                        - "auto stop time. value must be of ISO-8601 format \\"HH:mm\\""
+                    returned: on success
+                    type: str
+                    sample: scheduled_stop_time_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1043,7 +1073,14 @@ autonomous_databases:
         "is_mtls_connection_required": true,
         "is_reconnect_clone_enabled": true,
         "time_until_reconnect_clone_enabled": "2013-10-20T19:20:30+01:00",
-        "autonomous_maintenance_schedule_type": "EARLY"
+        "autonomous_maintenance_schedule_type": "EARLY",
+        "scheduled_operations": [{
+            "day_of_week": {
+                "name": "MONDAY"
+            },
+            "scheduled_start_time": "scheduled_start_time_example",
+            "scheduled_stop_time": "scheduled_stop_time_example"
+        }]
     }]
 """
 

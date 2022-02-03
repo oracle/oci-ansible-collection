@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_model_artifact -- Manage a ModelArtifact resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.40.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.41.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -263,21 +263,6 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-model_artifact"></div>
-                    <b>model_artifact</b>
-                    <a class="ansibleOptionLink" href="#parameter-model_artifact" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The model artifact to upload. We will soon deprecate this param, so please start using model_artifact_file.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-model_artifact_file"></div>
                     <b>model_artifact_file</b>
                     <a class="ansibleOptionLink" href="#parameter-model_artifact_file" title="Permalink to this option"></a>
@@ -288,7 +273,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The model artifact file path to upload</div>
+                                            <div>The path of model_artifact. The model artifact to upload.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -383,12 +368,11 @@ Examples
     - name: Create model_artifact
       oci_data_science_model_artifact:
         # required
-        model_artifact_file: model.zip
+        model_artifact_file: model_artifact_file_example
         model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         content_length: 56
-        model_artifact: model_artifact_example
         content_disposition: content_disposition_example
 
 
