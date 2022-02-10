@@ -108,6 +108,7 @@ applications:
                 - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
                   Java, or Scala application.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
             returned: on success
             type: str
             sample: archive_uri_example
@@ -121,12 +122,14 @@ applications:
                   Example:  `[ \\"--input\\", \\"${input_file}\\", \\"--name\\", \\"John Doe\\" ]`
                   If \\"input_file\\" has a value of \\"mydata.xml\\", then the value above will be translated to
                   `--input mydata.xml --name \\"John Doe\\"`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         class_name:
             description:
                 - The class for the application.
+                - Returned for get operation
             returned: on success
             type: str
             sample: class_name_example
@@ -137,6 +140,7 @@ applications:
                   Example: { \\"spark.app.name\\" : \\"My App Name\\", \\"spark.shuffle.io.maxRetries\\" : \\"4\\" }
                   Note: Not all Spark properties are permitted to be set.  Attempting to set a property that is
                   not allowed to be overwritten will cause a 400 status to be returned."
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -157,6 +161,7 @@ applications:
         description:
             description:
                 - A user-friendly description.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -169,6 +174,7 @@ applications:
         driver_shape:
             description:
                 - The VM shape for the driver. Sets the driver cores and memory.
+                - Returned for get operation
             returned: on success
             type: str
             sample: driver_shape_example
@@ -183,12 +189,14 @@ applications:
                   Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during
                   application create/update, or run create/submit,
                   Data Flow service will use derived information from execute input only."
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
+            sample: execute_example
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
+                - Returned for get operation
             returned: on success
             type: str
             sample: executor_shape_example
@@ -196,6 +204,7 @@ applications:
             description:
                 - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
             returned: on success
             type: str
             sample: file_uri_example
@@ -229,18 +238,21 @@ applications:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
             returned: on success
             type: str
             sample: logs_bucket_uri_example
         metastore_id:
             description:
                 - The OCID of OCI Hive Metastore.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors:
             description:
                 - The number of executor VMs requested.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -264,6 +276,7 @@ applications:
                   (a-z, A-Z, 0-9, _).  The value can be a string of 0 or more characters of any kind.
                   Example:  [ { name: \\"iterations\\", value: \\"10\\"}, { name: \\"input_file\\", value: \\"mydata.xml\\" }, { name: \\"variable_x\\", value:
                   \\"${x}\\"} ]"
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -285,6 +298,7 @@ applications:
         private_endpoint_id:
             description:
                 - The OCID of a private endpoint.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
@@ -308,11 +322,18 @@ applications:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        type:
+            description:
+                - The Spark application processing type.
+            returned: on success
+            type: str
+            sample: BATCH
         warehouse_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
                   for BATCH SQL runs.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
             returned: on success
             type: str
             sample: warehouse_bucket_uri_example
@@ -326,7 +347,7 @@ applications:
         "description": "description_example",
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
-        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
+        "execute": "execute_example",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -346,6 +367,7 @@ applications:
         "spark_version": "spark_version_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "type": "BATCH",
         "warehouse_bucket_uri": "warehouse_bucket_uri_example"
     }]
 """

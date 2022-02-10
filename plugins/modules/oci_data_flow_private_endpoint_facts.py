@@ -125,6 +125,7 @@ private_endpoints:
         description:
             description:
                 - A user-friendly description. Avoid entering confidential information.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -158,6 +159,7 @@ private_endpoints:
         lifecycle_details:
             description:
                 - The detailed messages about the lifecycle state.
+                - Returned for get operation
             returned: on success
             type: str
             sample: lifecycle_details_example

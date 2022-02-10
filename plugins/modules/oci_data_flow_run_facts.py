@@ -63,6 +63,8 @@ options:
             - "CANCELED"
             - "FAILED"
             - "SUCCEEDED"
+            - "STOPPING"
+            - "STOPPED"
     time_created_greater_than:
         description:
             - The epoch time that the resource was created.
@@ -130,6 +132,7 @@ runs:
                 - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
                   Java, or Scala application.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
             returned: on success
             type: str
             sample: archive_uri_example
@@ -143,6 +146,7 @@ runs:
                   Example:  `[ \\"--input\\", \\"${input_file}\\", \\"--name\\", \\"John Doe\\" ]`
                   If \\"input_file\\" has a value of \\"mydata.xml\\", then the value above will be translated to
                   `--input mydata.xml --name \\"John Doe\\"`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -155,6 +159,7 @@ runs:
         class_name:
             description:
                 - The class for the application.
+                - Returned for get operation
             returned: on success
             type: str
             sample: class_name_example
@@ -171,6 +176,7 @@ runs:
                   Example: { \\"spark.app.name\\" : \\"My App Name\\", \\"spark.shuffle.io.maxRetries\\" : \\"4\\" }
                   Note: Not all Spark properties are permitted to be set.  Attempting to set a property that is
                   not allowed to be overwritten will cause a 400 status to be returned."
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {}
@@ -203,6 +209,7 @@ runs:
         driver_shape:
             description:
                 - The VM shape for the driver. Sets the driver cores and memory.
+                - Returned for get operation
             returned: on success
             type: str
             sample: driver_shape_example
@@ -217,12 +224,14 @@ runs:
                   Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during
                   application create/update, or run create/submit,
                   Data Flow service will use derived information from execute input only."
+                - Returned for get operation
             returned: on success
             type: str
-            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
+            sample: execute_example
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
+                - Returned for get operation
             returned: on success
             type: str
             sample: executor_shape_example
@@ -230,6 +239,7 @@ runs:
             description:
                 - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
             returned: on success
             type: str
             sample: file_uri_example
@@ -269,18 +279,21 @@ runs:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
             returned: on success
             type: str
             sample: logs_bucket_uri_example
         metastore_id:
             description:
                 - The OCID of OCI Hive Metastore.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors:
             description:
                 - The number of executor VMs requested.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -311,6 +324,7 @@ runs:
                   (a-z, A-Z, 0-9, _).  The value can be a string of 0 or more characters of any kind.
                   Example:  [ { name: \\"iterations\\", value: \\"10\\"}, { name: \\"input_file\\", value: \\"mydata.xml\\" }, { name: \\"variable_x\\", value:
                   \\"${x}\\"} ]"
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -333,6 +347,7 @@ runs:
             description:
                 - "An array of DNS zone names.
                   Example: `[ \\"app.examplecorp.com\\", \\"app.examplecorp2.com\\" ]`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -342,24 +357,28 @@ runs:
                   to calculate the relevant CIDR block and should be a multiple of 256.  If the value is not a
                   multiple of 256, it is rounded up to the next multiple of 256. For example, 300 is rounded up
                   to 512.
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         private_endpoint_nsg_ids:
             description:
                 - An array of network security group OCIDs.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         private_endpoint_id:
             description:
                 - The OCID of a private endpoint.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_subnet_id:
             description:
                 - The OCID of a subnet.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -372,6 +391,7 @@ runs:
         spark_version:
             description:
                 - The Spark version utilized to run the application.
+                - Returned for get operation
             returned: on success
             type: str
             sample: spark_version_example
@@ -395,11 +415,18 @@ runs:
             returned: on success
             type: int
             sample: 56
+        type:
+            description:
+                - The Spark application processing type.
+            returned: on success
+            type: str
+            sample: BATCH
         warehouse_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
                   for BATCH SQL runs.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
             returned: on success
             type: str
             sample: warehouse_bucket_uri_example
@@ -415,7 +442,7 @@ runs:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
-        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
+        "execute": "execute_example",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -443,6 +470,7 @@ runs:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "total_o_cpu": 56,
+        "type": "BATCH",
         "warehouse_bucket_uri": "warehouse_bucket_uri_example"
     }]
 """
@@ -528,6 +556,8 @@ def main():
                     "CANCELED",
                     "FAILED",
                     "SUCCEEDED",
+                    "STOPPING",
+                    "STOPPED",
                 ],
             ),
             time_created_greater_than=dict(type="str"),

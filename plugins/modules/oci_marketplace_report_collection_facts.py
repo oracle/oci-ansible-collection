@@ -34,7 +34,8 @@ options:
         required: true
     date:
         description:
-            - Date, expressed in `YYYYMMDD` format, where `Y` represents the year, `M` represents the month, and `D` represents the day.
+            - Date, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format. The service only interprets the year, month, and day parts in
+              the input value, and ignores the hour, minute, and second parts.
         type: str
         required: true
     compartment_id:

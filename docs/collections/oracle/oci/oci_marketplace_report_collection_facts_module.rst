@@ -30,7 +30,7 @@ oracle.oci.oci_marketplace_report_collection_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.41.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.42.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -224,7 +224,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Date, expressed in `YYYYMMDD` format, where `Y` represents the year, `M` represents the month, and `D` represents the day.</div>
+                                            <div>Date, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. The service only interprets the year, month, and day parts in the input value, and ignores the hour, minute, and second parts.</div>
                                                         </td>
             </tr>
                                 <tr>

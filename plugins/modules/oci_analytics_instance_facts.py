@@ -240,6 +240,7 @@ analytics_instances:
         private_access_channels:
             description:
                 - Map of PrivateAccessChannel unique identifier key as KEY and PrivateAccessChannel Object as VALUE.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -303,6 +304,7 @@ analytics_instances:
         vanity_url_details:
             description:
                 - Map of VanityUrl unique identifier key as KEY and VanityUrl Object as VALUE.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -347,6 +349,7 @@ analytics_instances:
                 - Defined tags for this resource. Each key is predefined and scoped to a
                   namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -356,6 +359,7 @@ analytics_instances:
                   predefined name, type, or namespace. For more information, see L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

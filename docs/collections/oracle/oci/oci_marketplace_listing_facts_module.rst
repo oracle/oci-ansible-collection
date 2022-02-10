@@ -30,7 +30,7 @@ oracle.oci.oci_marketplace_listing_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.41.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.42.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -229,6 +229,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The profile to load from the config file referenced by <code>config_file_location</code>. If not set, then the value of the OCI_CONFIG_PROFILE environment variable, if any, is used. Otherwise, defaults to the &quot;DEFAULT&quot; profile in <code>config_file_location</code>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-image_id"></div>
+                    <b>image_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-image_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Image ID of the listing</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -474,6 +489,7 @@ Examples
         listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: [ "name_example" ]
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         publisher_id: "ocid1.publisher.oc1..xxxxxxEXAMPLExxxxxx"
         package_type: package_type_example
         sort_by: TIMERELEASED
@@ -519,7 +535,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Listing resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;banner&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;categories&#x27;: [], &#x27;default_package_version&#x27;: &#x27;default_package_version_example&#x27;, &#x27;documentation_links&#x27;: [{&#x27;document_category&#x27;: &#x27;document_category_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;icon&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_featured&#x27;: True, &#x27;keywords&#x27;: &#x27;keywords_example&#x27;, &#x27;languages&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;license_model_description&#x27;: &#x27;license_model_description_example&#x27;, &#x27;links&#x27;: [{&#x27;href&#x27;: &#x27;href_example&#x27;, &#x27;rel&#x27;: &#x27;SELF&#x27;}], &#x27;listing_type&#x27;: &#x27;COMMUNITY&#x27;, &#x27;long_description&#x27;: &#x27;long_description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;package_type&#x27;: &#x27;ORCHESTRATION&#x27;, &#x27;pricing_types&#x27;: [], &#x27;publisher&#x27;: {&#x27;contact_email&#x27;: &#x27;contact_email_example&#x27;, &#x27;contact_phone&#x27;: &#x27;contact_phone_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;hq_address&#x27;: &#x27;hq_address_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;links&#x27;: [{&#x27;href&#x27;: &#x27;href_example&#x27;, &#x27;rel&#x27;: &#x27;SELF&#x27;}], &#x27;logo&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;website_url&#x27;: &#x27;website_url_example&#x27;, &#x27;year_founded&#x27;: 56}, &#x27;regions&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;countries&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;release_notes&#x27;: &#x27;release_notes_example&#x27;, &#x27;screenshots&#x27;: [{&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;short_description&#x27;: &#x27;short_description_example&#x27;, &#x27;support_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone&#x27;: &#x27;phone_example&#x27;, &#x27;subject&#x27;: &#x27;subject_example&#x27;}], &#x27;support_links&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;supported_operating_systems&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;system_requirements&#x27;: &#x27;system_requirements_example&#x27;, &#x27;tagline&#x27;: &#x27;tagline_example&#x27;, &#x27;time_released&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_information&#x27;: &#x27;usage_information_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;videos&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;banner&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;categories&#x27;: [], &#x27;default_package_version&#x27;: &#x27;default_package_version_example&#x27;, &#x27;documentation_links&#x27;: [{&#x27;document_category&#x27;: &#x27;document_category_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;icon&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_featured&#x27;: True, &#x27;is_rover_exportable&#x27;: True, &#x27;keywords&#x27;: &#x27;keywords_example&#x27;, &#x27;languages&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;license_model_description&#x27;: &#x27;license_model_description_example&#x27;, &#x27;links&#x27;: [{&#x27;href&#x27;: &#x27;href_example&#x27;, &#x27;rel&#x27;: &#x27;SELF&#x27;}], &#x27;listing_type&#x27;: &#x27;COMMUNITY&#x27;, &#x27;long_description&#x27;: &#x27;long_description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;package_type&#x27;: &#x27;ORCHESTRATION&#x27;, &#x27;pricing_types&#x27;: [], &#x27;publisher&#x27;: {&#x27;contact_email&#x27;: &#x27;contact_email_example&#x27;, &#x27;contact_phone&#x27;: &#x27;contact_phone_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;hq_address&#x27;: &#x27;hq_address_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;links&#x27;: [{&#x27;href&#x27;: &#x27;href_example&#x27;, &#x27;rel&#x27;: &#x27;SELF&#x27;}], &#x27;logo&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;website_url&#x27;: &#x27;website_url_example&#x27;, &#x27;year_founded&#x27;: 56}, &#x27;regions&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;countries&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;release_notes&#x27;: &#x27;release_notes_example&#x27;, &#x27;screenshots&#x27;: [{&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;short_description&#x27;: &#x27;short_description_example&#x27;, &#x27;support_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone&#x27;: &#x27;phone_example&#x27;, &#x27;subject&#x27;: &#x27;subject_example&#x27;}], &#x27;support_links&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;supported_operating_systems&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;system_requirements&#x27;: &#x27;system_requirements_example&#x27;, &#x27;tagline&#x27;: &#x27;tagline_example&#x27;, &#x27;time_released&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_information&#x27;: &#x27;usage_information_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;videos&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -850,6 +866,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Indicates whether the listing is included in Featured Listings.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-listings/is_rover_exportable"></div>
+                    <b>is_rover_exportable</b>
+                    <a class="ansibleOptionLink" href="#return-listings/is_rover_exportable" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if this application is Rover exportable</div>
+                                            <div>Returned for list operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

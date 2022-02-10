@@ -171,7 +171,7 @@ run:
                   Data Flow service will use derived information from execute input only."
             returned: on success
             type: str
-            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
+            sample: execute_example
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
@@ -347,6 +347,12 @@ run:
             returned: on success
             type: int
             sample: 56
+        type:
+            description:
+                - The Spark application processing type.
+            returned: on success
+            type: str
+            sample: BATCH
         warehouse_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
@@ -367,7 +373,7 @@ run:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
-        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
+        "execute": "execute_example",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -395,6 +401,7 @@ run:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "total_o_cpu": 56,
+        "type": "BATCH",
         "warehouse_bucket_uri": "warehouse_bucket_uri_example"
     }
 """
