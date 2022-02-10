@@ -191,6 +191,13 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    type:
+        description:
+            - The Spark application processing type.
+        type: str
+        choices:
+            - "BATCH"
+            - "STREAMING"
     warehouse_bucket_uri:
         description:
             - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
@@ -246,6 +253,7 @@ EXAMPLES = """
       name: name_example
       value: value_example
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    type: BATCH
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Update application
@@ -412,7 +420,7 @@ application:
                   Data Flow service will use derived information from execute input only."
             returned: on success
             type: str
-            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
+            sample: execute_example
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
@@ -535,6 +543,12 @@ application:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        type:
+            description:
+                - The Spark application processing type.
+            returned: on success
+            type: str
+            sample: BATCH
         warehouse_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
@@ -553,7 +567,7 @@ application:
         "description": "description_example",
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
-        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
+        "execute": "execute_example",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -573,6 +587,7 @@ application:
         "spark_version": "spark_version_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "type": "BATCH",
         "warehouse_bucket_uri": "warehouse_bucket_uri_example"
     }
 """
@@ -749,6 +764,7 @@ def main():
             ),
             private_endpoint_id=dict(type="str"),
             spark_version=dict(type="str"),
+            type=dict(type="str", choices=["BATCH", "STREAMING"]),
             warehouse_bucket_uri=dict(type="str"),
             application_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

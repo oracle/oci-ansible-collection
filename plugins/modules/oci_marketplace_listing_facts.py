@@ -59,6 +59,10 @@ options:
             - The name of the listing.
         type: list
         elements: str
+    image_id:
+        description:
+            - Image ID of the listing
+        type: str
     publisher_id:
         description:
             - Limit results to just this publisher.
@@ -135,6 +139,7 @@ EXAMPLES = """
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: [ "name_example" ]
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     publisher_id: "ocid1.publisher.oc1..xxxxxxEXAMPLExxxxxx"
     package_type: package_type_example
     sort_by: TIMERELEASED
@@ -645,6 +650,13 @@ listings:
                     returned: on success
                     type: str
                     sample: name_example
+        is_rover_exportable:
+            description:
+                - True if this application is Rover exportable
+                - Returned for list operation
+            returned: on success
+            type: bool
+            sample: true
         pricing_types:
             description:
                 - Summary of the pricing types available across all packages in the listing.
@@ -747,6 +759,7 @@ listings:
         "supported_operating_systems": [{
             "name": "name_example"
         }],
+        "is_rover_exportable": true,
         "pricing_types": []
     }]
 """
@@ -796,6 +809,7 @@ class ListingFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "name",
             "listing_id",
+            "image_id",
             "publisher_id",
             "package_type",
             "sort_by",
@@ -831,6 +845,7 @@ def main():
             listing_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             name=dict(type="list", elements="str"),
+            image_id=dict(type="str"),
             publisher_id=dict(type="str"),
             package_type=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMERELEASED"]),

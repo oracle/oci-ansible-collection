@@ -55,7 +55,7 @@ class VanityUrlHelperCustom:
             )
         return vanityurl_details
 
-    # vanity_url doesnt have a get api. we are getting analytics instance and getting vanity_url from it
+    # vanity_url doesnt have a get api. we are getting analytics instance and getting vanity_url from it.
     def get_resource(self):
         vanity_url_list = self.list_resources()
         for resource in vanity_url_list:

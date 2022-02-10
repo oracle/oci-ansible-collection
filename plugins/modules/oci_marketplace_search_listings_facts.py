@@ -23,8 +23,8 @@ module: oci_marketplace_search_listings_facts
 short_description: Fetches details about one or multiple SearchListings resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple SearchListings resources in Oracle Cloud Infrastructure
-    - Find listings that match the specified criteria. The search query could be free text
-      or structured.
+    - Queries all Marketplace Applications to find listings that match the specified criteria. To search
+      for a listing, you can use a free text or structured search.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -38,7 +38,8 @@ options:
         required: true
     matching_context_type:
         description:
-            - The type of matching context returned in the response.
+            - The type of matching context returned in the response. If you specify HIGHLIGHTS, then the service will highlight fragments in its response. The
+              default value is NONE.
         type: str
         choices:
             - "NONE"
@@ -102,6 +103,12 @@ search_listings:
             returned: on success
             type: str
             sample: short_description_example
+        is_rover_exportable:
+            description:
+                - True if this application is Rover exportable
+            returned: on success
+            type: bool
+            sample: true
         tagline:
             description:
                 - The tagline of the listing.
@@ -244,6 +251,7 @@ search_listings:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "short_description": "short_description_example",
+        "is_rover_exportable": true,
         "tagline": "tagline_example",
         "icon": {
             "name": "name_example",
