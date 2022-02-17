@@ -259,6 +259,17 @@ except ImportError:
 class InternetGatewayHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(InternetGatewayHelperGen, self).get_possible_entity_types() + [
+            "internetgateway",
+            "internetgateways",
+            "coreinternetgateway",
+            "coreinternetgateways",
+            "internetgatewayresource",
+            "internetgatewaysresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "ig_id"
 

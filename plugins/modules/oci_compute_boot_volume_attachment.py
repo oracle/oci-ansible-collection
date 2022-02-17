@@ -217,6 +217,19 @@ except ImportError:
 class BootVolumeAttachmentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            BootVolumeAttachmentHelperGen, self
+        ).get_possible_entity_types() + [
+            "bootvolumeattachment",
+            "bootvolumeattachments",
+            "corebootvolumeattachment",
+            "corebootvolumeattachments",
+            "bootvolumeattachmentresource",
+            "bootvolumeattachmentsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "boot_volume_attachment_id"
 

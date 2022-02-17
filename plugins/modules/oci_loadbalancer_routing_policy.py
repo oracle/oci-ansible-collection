@@ -236,6 +236,17 @@ except ImportError:
 class RoutingPolicyHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(RoutingPolicyHelperGen, self).get_possible_entity_types() + [
+            "routingpolicy",
+            "routingpolicies",
+            "loadBalancerroutingpolicy",
+            "loadBalancerroutingpolicies",
+            "routingpolicyresource",
+            "routingpoliciesresource",
+            "loadbalancer",
+        ]
+
     def get_module_resource_id_param(self):
         return "name"
 

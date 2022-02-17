@@ -611,6 +611,17 @@ except ImportError:
 class PolicyConfigHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(PolicyConfigHelperGen, self).get_possible_entity_types() + [
+            "policyconfig",
+            "policyconfigs",
+            "waaspolicyconfig",
+            "waaspolicyconfigs",
+            "policyconfigresource",
+            "policyconfigsresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

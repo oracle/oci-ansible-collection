@@ -206,6 +206,22 @@ except ImportError:
 class GenericArtifactHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(GenericArtifactHelperGen, self).get_possible_entity_types() + [
+            "genericartifact",
+            "genericartifacts",
+            "artifactsgenericartifact",
+            "artifactsgenericartifacts",
+            "genericartifactresource",
+            "genericartifactsresource",
+            "artifact",
+            "artifacts",
+            "artifactsartifact",
+            "artifactsartifacts",
+            "artifactresource",
+            "artifactsresource",
+        ]
+
     def get_module_resource_id_param(self):
         return "artifact_id"
 
@@ -214,6 +230,11 @@ class GenericArtifactHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_generic_artifact
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_generic_artifact, artifact_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

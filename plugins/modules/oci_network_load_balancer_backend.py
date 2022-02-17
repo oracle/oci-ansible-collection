@@ -250,6 +250,19 @@ except ImportError:
 class NetworkLoadBalancerBackendHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            NetworkLoadBalancerBackendHelperGen, self
+        ).get_possible_entity_types() + [
+            "backend",
+            "backends",
+            "networkLoadBalancerbackend",
+            "networkLoadBalancerbackends",
+            "backendresource",
+            "backendsresource",
+            "networkloadbalancer",
+        ]
+
     def get_module_resource_id_param(self):
         return "name"
 
@@ -258,6 +271,14 @@ class NetworkLoadBalancerBackendHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_backend
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_backend,
+            backend_name=summary_model.name,
+            backend_set_name=self.module.params.get("backend_set_name"),
+            network_load_balancer_id=self.module.params.get("network_load_balancer_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

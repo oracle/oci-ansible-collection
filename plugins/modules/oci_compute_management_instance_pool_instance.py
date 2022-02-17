@@ -232,8 +232,34 @@ class InstancePoolInstanceHelperGen(OCIResourceHelperBase):
             self.client._config, **self.client._kwargs
         )
 
+    def get_possible_entity_types(self):
+        return super(
+            InstancePoolInstanceHelperGen, self
+        ).get_possible_entity_types() + [
+            "instancepoolinstance",
+            "instancepoolinstances",
+            "coreinstancepoolinstance",
+            "coreinstancepoolinstances",
+            "instancepoolinstanceresource",
+            "instancepoolinstancesresource",
+            "instance",
+            "instances",
+            "coreinstance",
+            "coreinstances",
+            "instanceresource",
+            "instancesresource",
+            "core",
+        ]
+
     def get_get_fn(self):
         return self.client.get_instance_pool_instance
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_instance_pool_instance,
+            instance_id=summary_model.id,
+            instance_pool_id=self.module.params.get("instance_pool_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

@@ -149,6 +149,17 @@ except ImportError:
 class GoodBotsHelperGen(OCIResourceHelperBase):
     """Supported operations: update and list"""
 
+    def get_possible_entity_types(self):
+        return super(GoodBotsHelperGen, self).get_possible_entity_types() + [
+            "goodbots",
+            "goodbot",
+            "waasgoodbots",
+            "waasgoodbot",
+            "goodbotsresource",
+            "goodbotresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

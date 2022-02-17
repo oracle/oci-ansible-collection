@@ -173,6 +173,20 @@ except ImportError:
 class SignedDataHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(SignedDataHelperGen, self).get_possible_entity_types() + [
+            "signeddata",
+            "keyManagementsigneddata",
+            "signeddataresource",
+            "sign",
+            "signs",
+            "keyManagementsign",
+            "keyManagementsigns",
+            "signresource",
+            "signsresource",
+            "keymanagement",
+        ]
+
     def get_module_resource_id(self):
         return None
 

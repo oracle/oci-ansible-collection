@@ -140,6 +140,17 @@ except ImportError:
 class StorageHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(StorageHelperGen, self).get_possible_entity_types() + [
+            "storage",
+            "storages",
+            "logAnalyticsstorage",
+            "logAnalyticsstorages",
+            "storageresource",
+            "storagesresource",
+            "loganalytics",
+        ]
+
     def get_module_resource_id_param(self):
         return "namespace_name"
 

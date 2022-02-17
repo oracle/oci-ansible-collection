@@ -598,6 +598,17 @@ class ApigatewayGatewayHelperGen(OCIResourceHelperBase):
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestsClient)
 
+    def get_possible_entity_types(self):
+        return super(ApigatewayGatewayHelperGen, self).get_possible_entity_types() + [
+            "gateway",
+            "gateways",
+            "apigatewaygateway",
+            "apigatewaygateways",
+            "gatewayresource",
+            "gatewaysresource",
+            "apigateway",
+        ]
+
     def get_module_resource_id_param(self):
         return "gateway_id"
 
@@ -606,6 +617,11 @@ class ApigatewayGatewayHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_gateway
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_gateway, gateway_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

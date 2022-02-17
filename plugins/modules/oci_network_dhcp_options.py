@@ -399,6 +399,23 @@ except ImportError:
 class DhcpOptionsHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DhcpOptionsHelperGen, self).get_possible_entity_types() + [
+            "dhcpoptions",
+            "dhcpoption",
+            "coredhcpoptions",
+            "coredhcpoption",
+            "dhcpoptionsresource",
+            "dhcpoptionresource",
+            "dhcp",
+            "dhcps",
+            "coredhcp",
+            "coredhcps",
+            "dhcpresource",
+            "dhcpsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "dhcp_id"
 

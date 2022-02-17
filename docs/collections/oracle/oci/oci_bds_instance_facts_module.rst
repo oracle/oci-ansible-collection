@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance_facts -- Fetches details about one or multiple BdsIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -433,6 +433,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div></div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -584,6 +585,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div></div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -884,6 +886,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The user who created the cluster.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
@@ -1046,6 +1049,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div></div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1101,6 +1105,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The list of nodes in the cluster.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1478,6 +1483,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The time the cluster was updated, shown as an RFC 3339 formatted datetime string.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

@@ -902,6 +902,17 @@ except ImportError:
 class SteeringPolicyHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(SteeringPolicyHelperGen, self).get_possible_entity_types() + [
+            "steeringpolicy",
+            "steeringpolicies",
+            "dnssteeringpolicy",
+            "dnssteeringpolicies",
+            "steeringpolicyresource",
+            "steeringpoliciesresource",
+            "dns",
+        ]
+
     def get_module_resource_id_param(self):
         return "steering_policy_id"
 
@@ -910,6 +921,11 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_steering_policy
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_steering_policy, steering_policy_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         optional_params = [

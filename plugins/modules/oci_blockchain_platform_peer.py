@@ -199,6 +199,25 @@ except ImportError:
 class BlockchainPlatformPeerHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            BlockchainPlatformPeerHelperGen, self
+        ).get_possible_entity_types() + [
+            "blockchainplatformpeer",
+            "blockchainplatformpeers",
+            "blockchainblockchainplatformpeer",
+            "blockchainblockchainplatformpeers",
+            "blockchainplatformpeerresource",
+            "blockchainplatformpeersresource",
+            "peer",
+            "peers",
+            "blockchainpeer",
+            "blockchainpeers",
+            "peerresource",
+            "peersresource",
+            "blockchain",
+        ]
+
     def get_module_resource_id_param(self):
         return "peer_id"
 
@@ -207,6 +226,13 @@ class BlockchainPlatformPeerHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_peer
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_peer,
+            peer_id=summary_model.peer_key,
+            blockchain_platform_id=self.module.params.get("blockchain_platform_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

@@ -154,6 +154,20 @@ except ImportError:
 class VerifiedDataHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(VerifiedDataHelperGen, self).get_possible_entity_types() + [
+            "verifieddata",
+            "keyManagementverifieddata",
+            "verifieddataresource",
+            "verify",
+            "verifies",
+            "keyManagementverify",
+            "keyManagementverifies",
+            "verifyresource",
+            "verifiesresource",
+            "keymanagement",
+        ]
+
     def get_module_resource_id(self):
         return None
 

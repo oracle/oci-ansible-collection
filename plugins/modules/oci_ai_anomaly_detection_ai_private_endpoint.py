@@ -266,6 +266,23 @@ except ImportError:
 class AiPrivateEndpointHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(AiPrivateEndpointHelperGen, self).get_possible_entity_types() + [
+            "aianomalydetectionpvtendpoint",
+            "aianomalydetectionpvtendpoints",
+            "aiAnomalyDetectionaianomalydetectionpvtendpoint",
+            "aiAnomalyDetectionaianomalydetectionpvtendpoints",
+            "aianomalydetectionpvtendpointresource",
+            "aianomalydetectionpvtendpointsresource",
+            "aiprivateendpoint",
+            "aiprivateendpoints",
+            "aiAnomalyDetectionaiprivateendpoint",
+            "aiAnomalyDetectionaiprivateendpoints",
+            "aiprivateendpointresource",
+            "aiprivateendpointsresource",
+            "aianomalydetection",
+        ]
+
     def get_module_resource_id_param(self):
         return "ai_private_endpoint_id"
 
@@ -274,6 +291,12 @@ class AiPrivateEndpointHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_ai_private_endpoint
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_ai_private_endpoint,
+            ai_private_endpoint_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

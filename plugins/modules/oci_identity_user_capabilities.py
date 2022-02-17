@@ -317,6 +317,23 @@ except ImportError:
 class UserCapabilitiesHelperGen(OCIResourceHelperBase):
     """Supported operations: update"""
 
+    def get_possible_entity_types(self):
+        return super(UserCapabilitiesHelperGen, self).get_possible_entity_types() + [
+            "usercapabilities",
+            "usercapability",
+            "identityusercapabilities",
+            "identityusercapability",
+            "usercapabilitiesresource",
+            "usercapabilityresource",
+            "capability",
+            "capabilities",
+            "identitycapability",
+            "identitycapabilities",
+            "capabilityresource",
+            "capabilitiesresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "user_id"
 

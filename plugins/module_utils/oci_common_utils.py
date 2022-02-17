@@ -114,14 +114,7 @@ ACTION_DESIRED_STATES = {
 ALWAYS_PERFORM_ACTIONS = ["RESET", "SOFTRESET", "EXPORT", "DETECT_STACK_DRIFT"]
 
 RESOURCE_TYPE_TO_ENTITY_TYPE_MAP = {
-    "waas_policy": "waas",
     "http_redirect": "redirect",
-    "data_safe_private_endpoint": "datasafeprivateendpoints",
-    "bds_instance": "bds",
-    "stack": "ormstack",
-    "workspace": "disworkspace",
-    "bastion": "bastionsresource",
-    "session": "sessionresource",
 }
 
 CREATE_OPERATION_KEY = "CREATE"

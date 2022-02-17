@@ -224,6 +224,25 @@ except ImportError:
 class BdsMetastoreConfigurationHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            BdsMetastoreConfigurationHelperGen, self
+        ).get_possible_entity_types() + [
+            "bdsmetastoreconfiguration",
+            "bdsmetastoreconfigurations",
+            "bdsbdsmetastoreconfiguration",
+            "bdsbdsmetastoreconfigurations",
+            "bdsmetastoreconfigurationresource",
+            "bdsmetastoreconfigurationsresource",
+            "metastoreconfig",
+            "metastoreconfigs",
+            "bdsmetastoreconfig",
+            "bdsmetastoreconfigs",
+            "metastoreconfigresource",
+            "metastoreconfigsresource",
+            "bds",
+        ]
+
     def get_module_resource_id_param(self):
         return "metastore_config_id"
 
@@ -232,6 +251,13 @@ class BdsMetastoreConfigurationHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_bds_metastore_configuration
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_bds_metastore_configuration,
+            metastore_config_id=summary_model.id,
+            bds_instance_id=self.module.params.get("bds_instance_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

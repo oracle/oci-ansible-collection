@@ -326,8 +326,22 @@ except ImportError:
 class DeploymentBackupHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
-    def get_entity_type(self):
-        return "goldengatedeploymentbackup"
+    def get_possible_entity_types(self):
+        return super(DeploymentBackupHelperGen, self).get_possible_entity_types() + [
+            "goldengatedeploymentbackup",
+            "goldengatedeploymentbackups",
+            "goldenGategoldengatedeploymentbackup",
+            "goldenGategoldengatedeploymentbackups",
+            "goldengatedeploymentbackupresource",
+            "goldengatedeploymentbackupsresource",
+            "deploymentbackup",
+            "deploymentbackups",
+            "goldenGatedeploymentbackup",
+            "goldenGatedeploymentbackups",
+            "deploymentbackupresource",
+            "deploymentbackupsresource",
+            "goldengate",
+        ]
 
     def get_module_resource_id_param(self):
         return "deployment_backup_id"
@@ -337,6 +351,11 @@ class DeploymentBackupHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_deployment_backup
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_deployment_backup, deployment_backup_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

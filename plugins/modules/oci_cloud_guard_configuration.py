@@ -128,6 +128,17 @@ except ImportError:
 class ConfigurationHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(ConfigurationHelperGen, self).get_possible_entity_types() + [
+            "configuration",
+            "configurations",
+            "cloudGuardconfiguration",
+            "cloudGuardconfigurations",
+            "configurationresource",
+            "configurationsresource",
+            "cloudguard",
+        ]
+
     def get_get_fn(self):
         return self.client.get_configuration
 

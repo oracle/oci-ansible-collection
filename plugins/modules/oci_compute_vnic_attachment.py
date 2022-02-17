@@ -376,6 +376,17 @@ except ImportError:
 class VnicAttachmentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(VnicAttachmentHelperGen, self).get_possible_entity_types() + [
+            "vnicattachment",
+            "vnicattachments",
+            "corevnicattachment",
+            "corevnicattachments",
+            "vnicattachmentresource",
+            "vnicattachmentsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "vnic_attachment_id"
 

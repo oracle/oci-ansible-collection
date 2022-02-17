@@ -390,6 +390,23 @@ except ImportError:
 class BucketHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(BucketHelperGen, self).get_possible_entity_types() + [
+            "bucket",
+            "buckets",
+            "objectStoragebucket",
+            "objectStoragebuckets",
+            "bucketresource",
+            "bucketsresource",
+            "b",
+            "bs",
+            "objectStorageb",
+            "objectStoragebs",
+            "bresource",
+            "bsresource",
+            "objectstorage",
+        ]
+
     def get_module_resource_id_param(self):
         return "name"
 
@@ -398,6 +415,13 @@ class BucketHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_bucket
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_bucket,
+            bucket_name=summary_model.name,
+            namespace_name=self.module.params.get("namespace_name"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

@@ -181,6 +181,31 @@ except ImportError:
 class DataScienceModelProvenanceHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update and get"""
 
+    def get_possible_entity_types(self):
+        return super(
+            DataScienceModelProvenanceHelperGen, self
+        ).get_possible_entity_types() + [
+            "datasciencemodel",
+            "datasciencemodels",
+            "dataSciencedatasciencemodel",
+            "dataSciencedatasciencemodels",
+            "datasciencemodelresource",
+            "datasciencemodelsresource",
+            "modelprovenance",
+            "modelprovenances",
+            "dataSciencemodelprovenance",
+            "dataSciencemodelprovenances",
+            "modelprovenanceresource",
+            "modelprovenancesresource",
+            "provenance",
+            "provenances",
+            "dataScienceprovenance",
+            "dataScienceprovenances",
+            "provenanceresource",
+            "provenancesresource",
+            "datascience",
+        ]
+
     def get_module_resource_id_param(self):
         return "model_id"
 

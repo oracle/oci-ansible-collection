@@ -134,6 +134,19 @@ except ImportError:
 class VolumeBackupPolicyAssignmentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            VolumeBackupPolicyAssignmentHelperGen, self
+        ).get_possible_entity_types() + [
+            "volumebackuppolicyassignment",
+            "volumebackuppolicyassignments",
+            "corevolumebackuppolicyassignment",
+            "corevolumebackuppolicyassignments",
+            "volumebackuppolicyassignmentresource",
+            "volumebackuppolicyassignmentsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "policy_assignment_id"
 

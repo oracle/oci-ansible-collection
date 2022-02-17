@@ -602,6 +602,17 @@ class MysqlBackupHelperGen(OCIResourceHelperBase):
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestsClient)
 
+    def get_possible_entity_types(self):
+        return super(MysqlBackupHelperGen, self).get_possible_entity_types() + [
+            "backup",
+            "backups",
+            "mysqlbackup",
+            "mysqlbackups",
+            "backupresource",
+            "backupsresource",
+            "mysql",
+        ]
+
     def get_module_resource_id_param(self):
         return "backup_id"
 
@@ -610,6 +621,11 @@ class MysqlBackupHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_backup
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_backup, backup_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

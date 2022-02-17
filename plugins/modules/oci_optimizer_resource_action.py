@@ -270,6 +270,17 @@ except ImportError:
 class ResourceActionHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(ResourceActionHelperGen, self).get_possible_entity_types() + [
+            "resourceaction",
+            "resourceactions",
+            "optimizerresourceaction",
+            "optimizerresourceactions",
+            "resourceactionresource",
+            "resourceactionsresource",
+            "optimizer",
+        ]
+
     def get_module_resource_id_param(self):
         return "resource_action_id"
 
@@ -278,6 +289,11 @@ class ResourceActionHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_resource_action
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_resource_action, resource_action_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

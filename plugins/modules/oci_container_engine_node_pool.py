@@ -174,6 +174,20 @@ options:
                       boot volumes. The default value is false.
                     - This parameter is updatable.
                 type: bool
+            freeform_tags:
+                description:
+                    - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                      For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      Example: `{\\"Department\\": \\"Finance\\"}`"
+                    - This parameter is updatable.
+                type: dict
+            defined_tags:
+                description:
+                    - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                      For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                    - This parameter is updatable.
+                type: dict
             placement_configs:
                 description:
                     - The placement configurations for the node pool. Provide one placement
@@ -195,6 +209,24 @@ options:
                             - The OCID of the subnet in which to place nodes.
                         type: str
                         required: true
+                    capacity_reservation_id:
+                        description:
+                            - The OCID of the compute capacity reservation in which to place the compute instance.
+                        type: str
+    freeform_tags:
+        description:
+            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
     node_pool_id:
         description:
             - The OCID of the node pool.
@@ -251,10 +283,17 @@ EXAMPLES = """
       nsg_ids: [ "nsg_ids_example" ]
       kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
       is_pv_encryption_in_transit_enabled: true
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
       placement_configs:
       - # required
         availability_domain: Uocm:PHX-AD-1
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update node_pool
   oci_container_engine_node_pool:
@@ -290,10 +329,17 @@ EXAMPLES = """
       nsg_ids: [ "nsg_ids_example" ]
       kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
       is_pv_encryption_in_transit_enabled: true
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
       placement_configs:
       - # required
         availability_domain: Uocm:PHX-AD-1
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_node_pool:
@@ -329,10 +375,17 @@ EXAMPLES = """
       nsg_ids: [ "nsg_ids_example" ]
       kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
       is_pv_encryption_in_transit_enabled: true
+      freeform_tags: {'Department': 'Finance'}
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
       placement_configs:
       - # required
         availability_domain: Uocm:PHX-AD-1
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete node_pool
   oci_container_engine_node_pool:
@@ -608,6 +661,29 @@ node_pool:
                             returned: on success
                             type: str
                             sample: "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
+                freeform_tags:
+                    description:
+                        - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                          For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                          Example: `{\\"Department\\": \\"Finance\\"}`"
+                    returned: on success
+                    type: dict
+                    sample: {'Department': 'Finance'}
+                defined_tags:
+                    description:
+                        - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                          For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                          Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                    returned: on success
+                    type: dict
+                    sample: {'Operations': {'CostCenter': 'US'}}
+                system_tags:
+                    description:
+                        - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                          Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                    returned: on success
+                    type: dict
+                    sample: {}
                 lifecycle_state:
                     description:
                         - The state of the node.
@@ -652,6 +728,22 @@ node_pool:
                     returned: on success
                     type: bool
                     sample: true
+                freeform_tags:
+                    description:
+                        - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                          For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                          Example: `{\\"Department\\": \\"Finance\\"}`"
+                    returned: on success
+                    type: dict
+                    sample: {'Department': 'Finance'}
+                defined_tags:
+                    description:
+                        - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                          For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                          Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                    returned: on success
+                    type: dict
+                    sample: {'Operations': {'CostCenter': 'US'}}
                 placement_configs:
                     description:
                         - The placement configurations for the node pool. Provide one placement
@@ -675,6 +767,35 @@ node_pool:
                             returned: on success
                             type: str
                             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                        capacity_reservation_id:
+                            description:
+                                - The OCID of the compute capacity reservation in which to place the compute instance.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -722,6 +843,9 @@ node_pool:
                 "status": "status_example",
                 "opc_request_id": "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
             },
+            "freeform_tags": {'Department': 'Finance'},
+            "defined_tags": {'Operations': {'CostCenter': 'US'}},
+            "system_tags": {},
             "lifecycle_state": "CREATING",
             "lifecycle_details": "lifecycle_details_example"
         }],
@@ -730,11 +854,17 @@ node_pool:
             "nsg_ids": [],
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
             "is_pv_encryption_in_transit_enabled": true,
+            "freeform_tags": {'Department': 'Finance'},
+            "defined_tags": {'Operations': {'CostCenter': 'US'}},
             "placement_configs": [{
                 "availability_domain": "Uocm:PHX-AD-1",
-                "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+                "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
             }]
-        }
+        },
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }
 """
 
@@ -760,6 +890,17 @@ except ImportError:
 
 class NodePoolHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def get_possible_entity_types(self):
+        return super(NodePoolHelperGen, self).get_possible_entity_types() + [
+            "nodepool",
+            "nodepools",
+            "containerEnginenodepool",
+            "containerEnginenodepools",
+            "nodepoolresource",
+            "nodepoolsresource",
+            "containerengine",
+        ]
 
     def get_module_resource_id_param(self):
         return "node_pool_id"
@@ -907,16 +1048,21 @@ def main():
                     nsg_ids=dict(type="list", elements="str"),
                     kms_key_id=dict(type="str"),
                     is_pv_encryption_in_transit_enabled=dict(type="bool"),
+                    freeform_tags=dict(type="dict"),
+                    defined_tags=dict(type="dict"),
                     placement_configs=dict(
                         type="list",
                         elements="dict",
                         options=dict(
                             availability_domain=dict(type="str", required=True),
                             subnet_id=dict(type="str", required=True),
+                            capacity_reservation_id=dict(type="str"),
                         ),
                     ),
                 ),
             ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             node_pool_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

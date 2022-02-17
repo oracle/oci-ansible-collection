@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_node_pool -- Manage a NodePool resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -233,6 +233,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -248,6 +264,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether to attempt non-idempotent creation of a resource. By default, create resource is an idempotent operation, and doesn&#x27;t create the resource if it already exists. Setting this option to true, forcefully creates a copy of the resource, even if it already exists.This option is mutually exclusive with <em>key_by</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -368,6 +400,40 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/defined_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/freeform_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-node_config_details/is_pv_encryption_in_transit_enabled"></div>
                     <b>is_pv_encryption_in_transit_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-node_config_details/is_pv_encryption_in_transit_enabled" title="Permalink to this option"></a>
@@ -452,6 +518,23 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The availability domain in which to place nodes. Example: `Uocm:PHX-AD-1`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/placement_configs/capacity_reservation_id"></div>
+                    <b>capacity_reservation_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/placement_configs/capacity_reservation_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the compute capacity reservation in which to place the compute instance.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -869,10 +952,17 @@ Examples
           nsg_ids: [ "nsg_ids_example" ]
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
           is_pv_encryption_in_transit_enabled: true
+          freeform_tags: {'Department': 'Finance'}
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
           placement_configs:
           - # required
             availability_domain: Uocm:PHX-AD-1
             subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+            capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update node_pool
       oci_container_engine_node_pool:
@@ -908,10 +998,17 @@ Examples
           nsg_ids: [ "nsg_ids_example" ]
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
           is_pv_encryption_in_transit_enabled: true
+          freeform_tags: {'Department': 'Finance'}
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
           placement_configs:
           - # required
             availability_domain: Uocm:PHX-AD-1
             subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+            capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_container_engine_node_pool:
@@ -947,10 +1044,17 @@ Examples
           nsg_ids: [ "nsg_ids_example" ]
           kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
           is_pv_encryption_in_transit_enabled: true
+          freeform_tags: {'Department': 'Finance'}
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
           placement_configs:
           - # required
             availability_domain: Uocm:PHX-AD-1
             subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+            # optional
+            capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete node_pool
       oci_container_engine_node_pool:
@@ -1000,7 +1104,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the NodePool resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_config_details&#x27;: {&#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_image_id&#x27;: &#x27;ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_image_name&#x27;: &#x27;node_image_name_example&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;node_shape_example&#x27;, &#x27;node_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;status_example&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;public_ip&#x27;: &#x27;public_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;quantity_per_subnet&#x27;: 56, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;subnet_ids&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_config_details&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_image_id&#x27;: &#x27;ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_image_name&#x27;: &#x27;node_image_name_example&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;node_shape_example&#x27;, &#x27;node_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;status_example&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;public_ip&#x27;: &#x27;public_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}}], &#x27;quantity_per_subnet&#x27;: 56, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;subnet_ids&#x27;: [], &#x27;system_tags&#x27;: {}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1037,6 +1141,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/defined_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/freeform_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1168,6 +1308,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/defined_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/freeform_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/is_pv_encryption_in_transit_enabled"></div>
                     <b>is_pv_encryption_in_transit_enabled</b>
                     <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/is_pv_encryption_in_transit_enabled" title="Permalink to this return value"></a>
@@ -1255,6 +1433,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/placement_configs/capacity_reservation_id"></div>
+                    <b>capacity_reservation_id</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/placement_configs/capacity_reservation_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the compute capacity reservation in which to place the compute instance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1610,6 +1808,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/nodes/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/nodes/defined_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-node_pool/nodes/fault_domain"></div>
                     <b>fault_domain</b>
                     <a class="ansibleOptionLink" href="#return-node_pool/nodes/fault_domain" title="Permalink to this return value"></a>
@@ -1623,6 +1840,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FAULT-DOMAIN-1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/nodes/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/nodes/freeform_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1894,6 +2130,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/nodes/system_tags"></div>
+                    <b>system_tags</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/nodes/system_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                        <br/>
+                                                        </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1944,6 +2197,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCIDs of the subnets in which to place nodes for this node pool.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/system_tags"></div>
+                    <b>system_tags</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/system_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
                                         <br/>
                                                         </td>
             </tr>

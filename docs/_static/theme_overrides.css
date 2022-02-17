@@ -16,6 +16,7 @@
 .wy-nav-content {
    min-width: 767px;
    max-width: min-content !important;
+   overflow: auto
 }
 
 /* documentation-table is used by tables in the generated module documentation. */

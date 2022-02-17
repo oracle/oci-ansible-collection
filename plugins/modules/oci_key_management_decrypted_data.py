@@ -170,6 +170,20 @@ except ImportError:
 class DecryptedDataHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(DecryptedDataHelperGen, self).get_possible_entity_types() + [
+            "decrypteddata",
+            "keyManagementdecrypteddata",
+            "decrypteddataresource",
+            "decrypt",
+            "decrypts",
+            "keyManagementdecrypt",
+            "keyManagementdecrypts",
+            "decryptresource",
+            "decryptsresource",
+            "keymanagement",
+        ]
+
     def get_module_resource_id(self):
         return None
 

@@ -259,6 +259,17 @@ except ImportError:
 class ViewHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(ViewHelperGen, self).get_possible_entity_types() + [
+            "view",
+            "views",
+            "dnsview",
+            "dnsviews",
+            "viewresource",
+            "viewsresource",
+            "dns",
+        ]
+
     def get_module_resource_id_param(self):
         return "view_id"
 
@@ -267,6 +278,11 @@ class ViewHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_view
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_view, view_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         optional_params = [

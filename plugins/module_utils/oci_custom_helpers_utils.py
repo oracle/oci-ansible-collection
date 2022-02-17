@@ -77,7 +77,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_optimizer_custom_helpers,
     oci_management_dashboards_custom_helpers,
     oci_artifacts_custom_helpers,
-    oci_compute_capacity_reservation_helper,
     oci_network_load_balancer_custom_helpers,
     oci_service_catalog_custom_helpers,
     oci_golden_gate_custom_helpers,
@@ -88,11 +87,11 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_apm_synthetics_custom_helpers,
     oci_ai_anomaly_detection_custom_helpers,
     oci_usage_custom_helpers,
-    oci_email_custom_helpers,
     oci_devops_custom_helpers,
     oci_certificates_management_custom_helpers,
     oci_budget_custom_helpers,
     oci_identity_data_plane_custom_helpers,
+    oci_visual_builder_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -145,7 +144,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_optimizer_custom_helpers,
         oci_management_dashboards_custom_helpers,
         oci_artifacts_custom_helpers,
-        oci_compute_capacity_reservation_helper,
         oci_network_load_balancer_custom_helpers,
         oci_service_catalog_custom_helpers,
         oci_golden_gate_custom_helpers,
@@ -155,10 +153,10 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_apm_synthetics_custom_helpers,
         oci_ai_anomaly_detection_custom_helpers,
         oci_usage_custom_helpers,
-        oci_email_custom_helpers,
         oci_devops_custom_helpers,
         oci_certificates_management_custom_helpers,
         oci_budget_custom_helpers,
         oci_identity_data_plane_custom_helpers,
+        oci_visual_builder_custom_helpers,
     ]
 )

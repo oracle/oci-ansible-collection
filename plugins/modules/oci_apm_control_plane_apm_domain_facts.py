@@ -102,6 +102,7 @@ apm_domains:
         data_upload_endpoint:
             description:
                 - The endpoint where the APM agents upload their observations and metrics.
+                - Returned for get operation
             returned: on success
             type: str
             sample: data_upload_endpoint_example

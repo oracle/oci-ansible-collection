@@ -27,17 +27,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    name:
+        description:
+            - The name of the certificate whose details needs to be fetched. Required to get a specific certificate.
+        type: str
     load_balancer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer associated with the certificate bundles
               to be listed.
         type: str
         required: true
-    name:
-        description:
-            - The name of the certificate whose details needs to be fetched.
-            - Required to get a specific certificate.
-        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -46,6 +45,9 @@ EXAMPLES = """
   oci_loadbalancer_certificate_facts:
     # required
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    name: name_example
 
 """
 
@@ -147,7 +149,7 @@ class ResourceFactsHelper(CertificateFactsHelperCustom, CertificateFactsHelperGe
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
-        dict(load_balancer_id=dict(type="str", required=True), name=dict(type="str"),)
+        dict(name=dict(type="str"), load_balancer_id=dict(type="str", required=True),)
     )
 
     module = AnsibleModule(argument_spec=module_args)

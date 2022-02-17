@@ -326,6 +326,21 @@ except ImportError:
 class BudgetAlertRuleHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(BudgetAlertRuleHelperGen, self).get_possible_entity_types() + [
+            "budgetalertrule",
+            "budgetalertrules",
+            "budgetbudgetalertrule",
+            "budgetbudgetalertrules",
+            "budgetalertruleresource",
+            "budgetalertrulesresource",
+            "alertrule",
+            "alertrules",
+            "alertruleresource",
+            "alertrulesresource",
+            "budget",
+        ]
+
     def get_module_resource_id_param(self):
         return "alert_rule_id"
 
@@ -334,6 +349,13 @@ class BudgetAlertRuleHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_alert_rule
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_alert_rule,
+            alert_rule_id=summary_model.id,
+            budget_id=self.module.params.get("budget_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

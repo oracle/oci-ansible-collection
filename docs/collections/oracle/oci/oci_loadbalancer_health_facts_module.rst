@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_health_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -349,6 +349,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of backend sets that are currently in the `CRITICAL` health state. The list identifies each backend set by the friendly name you assigned when you created it.</div>
                                             <div>Example: `example_backend_set`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -365,6 +366,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the load balancer the health status is associated with.</div>
+                                            <div>Returned for list operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -410,6 +412,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The total number of backend sets associated with this load balancer.</div>
                                             <div>Example: `4`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -429,6 +432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of backend sets that are currently in the `UNKNOWN` health state. The list identifies each backend set by the friendly name you assigned when you created it.</div>
                                             <div>Example: `example_backend_set2`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -446,6 +450,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of backend sets that are currently in the `WARNING` health state. The list identifies each backend set by the friendly name you assigned when you created it.</div>
                                             <div>Example: `example_backend_set3`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>

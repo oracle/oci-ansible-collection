@@ -326,6 +326,17 @@ except ImportError:
 class VolumeBackupHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(VolumeBackupHelperGen, self).get_possible_entity_types() + [
+            "volumebackup",
+            "volumebackups",
+            "corevolumebackup",
+            "corevolumebackups",
+            "volumebackupresource",
+            "volumebackupsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "volume_backup_id"
 

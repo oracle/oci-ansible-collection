@@ -501,6 +501,17 @@ class ImageHelperGen(OCIResourceHelperBase):
             self.client._config, **self.client._kwargs
         )
 
+    def get_possible_entity_types(self):
+        return super(ImageHelperGen, self).get_possible_entity_types() + [
+            "image",
+            "images",
+            "coreimage",
+            "coreimages",
+            "imageresource",
+            "imagesresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "image_id"
 

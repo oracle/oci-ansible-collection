@@ -276,6 +276,23 @@ except ImportError:
 class ResolverEndpointHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(ResolverEndpointHelperGen, self).get_possible_entity_types() + [
+            "resolverendpoint",
+            "resolverendpoints",
+            "dnsresolverendpoint",
+            "dnsresolverendpoints",
+            "resolverendpointresource",
+            "resolverendpointsresource",
+            "endpoint",
+            "endpoints",
+            "dnsendpoint",
+            "dnsendpoints",
+            "endpointresource",
+            "endpointsresource",
+            "dns",
+        ]
+
     def get_module_resource_id_param(self):
         return "name"
 
@@ -284,6 +301,13 @@ class ResolverEndpointHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_resolver_endpoint
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_resolver_endpoint,
+            resolver_endpoint_name=summary_model.name,
+            resolver_id=self.module.params.get("resolver_id"),
+        ).data
 
     def get_resource(self):
         optional_params = [

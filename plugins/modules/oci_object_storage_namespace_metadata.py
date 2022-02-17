@@ -118,6 +118,20 @@ except ImportError:
 class NamespaceMetadataHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(NamespaceMetadataHelperGen, self).get_possible_entity_types() + [
+            "namespacemetadata",
+            "objectStoragenamespacemetadata",
+            "namespacemetadataresource",
+            "n",
+            "ns",
+            "objectStoragen",
+            "objectStoragens",
+            "nresource",
+            "nsresource",
+            "objectstorage",
+        ]
+
     def get_module_resource_id_param(self):
         return "namespace_name"
 

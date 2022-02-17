@@ -254,6 +254,17 @@ except ImportError:
 class EmailDomainHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(EmailDomainHelperGen, self).get_possible_entity_types() + [
+            "emaildomain",
+            "emaildomains",
+            "emailemaildomain",
+            "emailemaildomains",
+            "emaildomainresource",
+            "emaildomainsresource",
+            "email",
+        ]
+
     def get_module_resource_id_param(self):
         return "email_domain_id"
 
@@ -262,6 +273,11 @@ class EmailDomainHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_email_domain
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_email_domain, email_domain_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

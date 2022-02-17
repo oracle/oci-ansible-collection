@@ -232,6 +232,19 @@ except ImportError:
 class PrivateAccessChannelHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            PrivateAccessChannelHelperGen, self
+        ).get_possible_entity_types() + [
+            "privateaccesschannel",
+            "privateaccesschannels",
+            "analyticsprivateaccesschannel",
+            "analyticsprivateaccesschannels",
+            "privateaccesschannelresource",
+            "privateaccesschannelsresource",
+            "analytics",
+        ]
+
     def get_module_resource_id_param(self):
         return "analytics_instance_id"
 

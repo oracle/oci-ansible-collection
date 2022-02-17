@@ -189,6 +189,19 @@ except ImportError:
 class AppCatalogSubscriptionHelperGen(OCIResourceHelperBase):
     """Supported operations: create, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            AppCatalogSubscriptionHelperGen, self
+        ).get_possible_entity_types() + [
+            "appcatalogsubscription",
+            "appcatalogsubscriptions",
+            "coreappcatalogsubscription",
+            "coreappcatalogsubscriptions",
+            "appcatalogsubscriptionresource",
+            "appcatalogsubscriptionsresource",
+            "core",
+        ]
+
     # needs custom GET via LIST implementation because resource does not have an 'id' field
 
     def get_required_kwargs_for_list(self):

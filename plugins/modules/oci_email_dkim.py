@@ -294,6 +294,21 @@ except ImportError:
 class DkimHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DkimHelperGen, self).get_possible_entity_types() + [
+            "emaildkim",
+            "emaildkims",
+            "emailemaildkim",
+            "emailemaildkims",
+            "emaildkimresource",
+            "emaildkimsresource",
+            "dkim",
+            "dkims",
+            "dkimresource",
+            "dkimsresource",
+            "email",
+        ]
+
     def get_module_resource_id_param(self):
         return "dkim_id"
 
@@ -302,6 +317,11 @@ class DkimHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_dkim
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_dkim, dkim_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

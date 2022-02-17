@@ -105,6 +105,25 @@ class AutonomousDatabaseRegionalWalletHelperGen(OCIResourceHelperBase):
             self.client._config, **self.client._kwargs
         )
 
+    def get_possible_entity_types(self):
+        return super(
+            AutonomousDatabaseRegionalWalletHelperGen, self
+        ).get_possible_entity_types() + [
+            "autonomousdatabaseregionalwallet",
+            "autonomousdatabaseregionalwallets",
+            "databaseautonomousdatabaseregionalwallet",
+            "databaseautonomousdatabaseregionalwallets",
+            "autonomousdatabaseregionalwalletresource",
+            "autonomousdatabaseregionalwalletsresource",
+            "wallet",
+            "wallets",
+            "databasewallet",
+            "databasewallets",
+            "walletresource",
+            "walletsresource",
+            "database",
+        ]
+
     def get_get_fn(self):
         return self.client.get_autonomous_database_regional_wallet
 

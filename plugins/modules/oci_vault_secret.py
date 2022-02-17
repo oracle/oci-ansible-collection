@@ -444,6 +444,17 @@ except ImportError:
 class SecretHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(SecretHelperGen, self).get_possible_entity_types() + [
+            "secret",
+            "secrets",
+            "vaultsecret",
+            "vaultsecrets",
+            "secretresource",
+            "secretsresource",
+            "vault",
+        ]
+
     def get_module_resource_id_param(self):
         return "secret_id"
 
@@ -452,6 +463,11 @@ class SecretHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_secret
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_secret, secret_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

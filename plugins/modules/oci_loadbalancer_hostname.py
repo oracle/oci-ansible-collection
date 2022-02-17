@@ -139,6 +139,17 @@ except ImportError:
 class HostnameHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(HostnameHelperGen, self).get_possible_entity_types() + [
+            "hostname",
+            "hostnames",
+            "loadBalancerhostname",
+            "loadBalancerhostnames",
+            "hostnameresource",
+            "hostnamesresource",
+            "loadbalancer",
+        ]
+
     def get_module_resource_id_param(self):
         return "name"
 

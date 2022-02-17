@@ -139,6 +139,7 @@ sddcs:
                   If this isn't set, the SDDC's `displayName` is used as the prefix.
                 - For example, if the value is `MySDDC`, the ESXi hosts are named `MySDDC-1`,
                   `MySDDC-2`, and so on.
+                - Returned for get operation
             returned: on success
             type: str
             sample: instance_display_name_prefix_example
@@ -177,6 +178,7 @@ sddcs:
             description:
                 - The billing option selected during SDDC creation.
                   L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+                - Returned for get operation
             returned: on success
             type: str
             sample: HOUR
@@ -199,6 +201,7 @@ sddcs:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `PrivateIp` object that is
                   the virtual IP (VIP) for vCenter. For information about `PrivateIp` objects, see the
                   Core Services API.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx"
@@ -207,6 +210,7 @@ sddcs:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `PrivateIp` object that is
                   the virtual IP (VIP) for NSX Manager. For information about `PrivateIp` objects, see the
                   Core Services API.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx"
@@ -214,6 +218,7 @@ sddcs:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. Make sure
                   to change this initial vCenter password to a different value.
+                - Returned for get operation
             returned: on success
             type: str
             sample: example-password
@@ -221,6 +226,7 @@ sddcs:
             description:
                 - The SDDC includes an administrator username and initial password for NSX Manager. Make sure
                   to change this initial NSX Manager password to a different value.
+                - Returned for get operation
             returned: on success
             type: str
             sample: example-password
@@ -228,6 +234,7 @@ sddcs:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. You can
                   change this initial username to a different value in vCenter.
+                - Returned for get operation
             returned: on success
             type: str
             sample: vcenter_username_example
@@ -235,6 +242,7 @@ sddcs:
             description:
                 - The SDDC includes an administrator username and initial password for NSX Manager. You
                   can change this initial username to a different value in NSX Manager.
+                - Returned for get operation
             returned: on success
             type: str
             sample: nsx_manager_username_example
@@ -251,6 +259,7 @@ sddcs:
                 - Therefore, if you upgrade the existing ESXi hosts in the SDDC to use different
                   SSH keys, you should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update
                   the SDDC's `sshAuthorizedKeys` with the new public keys.
+                - Returned for get operation
             returned: on success
             type: str
             sample: ssh_authorized_keys_example
@@ -258,6 +267,7 @@ sddcs:
             description:
                 - The CIDR block for the IP addresses that VMware VMs in the SDDC use to run application
                   workloads.
+                - Returned for get operation
             returned: on success
             type: str
             sample: workload_network_cidr_example
@@ -265,6 +275,7 @@ sddcs:
             description:
                 - The VMware NSX overlay workload segment to host your application. Connect to workload
                   portgroup in vCenter to access this overlay segment.
+                - Returned for get operation
             returned: on success
             type: str
             sample: nsx_overlay_segment_name_example
@@ -274,6 +285,7 @@ sddcs:
                   the virtual IP (VIP) for the NSX Edge Uplink. Use this OCID as the route target for
                   route table rules when setting up connectivity between the SDDC and other networks.
                   For information about `PrivateIp` objects, see the Core Services API.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx"
@@ -281,6 +293,7 @@ sddcs:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the management subnet used
                   to provision the SDDC.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -297,6 +310,7 @@ sddcs:
                   for the vSphere component of the VMware environment, you
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vsphereVlanId` with that new VLAN's OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -313,6 +327,7 @@ sddcs:
                   for the vMotion component of the VMware environment, you
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vmotionVlanId` with that new VLAN's OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -329,6 +344,7 @@ sddcs:
                   for the vSAN component of the VMware environment, you
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vsanVlanId` with that new VLAN's OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -345,6 +361,7 @@ sddcs:
                   for the NSX VTEP component of the VMware environment, you
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxVTepVlanId` with that new VLAN's OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -361,6 +378,7 @@ sddcs:
                   for the NSX Edge VTEP component of the VMware environment, you
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeVTepVlanId` with that new VLAN's OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -377,6 +395,7 @@ sddcs:
                   for the NSX Edge Uplink 1 component of the VMware environment, you
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeUplink1VlanId` with that new VLAN's OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -393,6 +412,7 @@ sddcs:
                   for the NSX Edge Uplink 2 component of the VMware environment, you
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeUplink2VlanId` with that new VLAN's OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -400,6 +420,7 @@ sddcs:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
                   for the vSphere Replication component of the VMware environment.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -407,6 +428,7 @@ sddcs:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
                   for the Provisioning component of the VMware environment.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -415,6 +437,7 @@ sddcs:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `PrivateIp` object that is
                   the virtual IP (VIP) for HCX Manager. For information about `PrivateIp` objects, see the
                   Core Services API.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx"
@@ -429,6 +452,7 @@ sddcs:
             description:
                 - The SDDC includes an administrator username and initial password for HCX Manager. Make sure
                   to change this initial HCX Manager password to a different value.
+                - Returned for get operation
             returned: on success
             type: str
             sample: example-password
@@ -445,6 +469,7 @@ sddcs:
                   for the HCX component of the VMware environment, you
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `hcxVlanId` with that new VLAN's OCID.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -459,24 +484,28 @@ sddcs:
                 - The activation keys to use on the on-premises HCX Enterprise appliances you site pair with HCX Manager in your VMware Solution.
                   The number of keys provided depends on the HCX license type. HCX Advanced provides 3 activation keys.
                   HCX Enterprise provides 10 activation keys.
+                - Returned for get operation
             returned: on success
             type: str
             sample: hcx_on_prem_key_example
         is_hcx_enterprise_enabled:
             description:
                 - Indicates whether HCX Enterprise is enabled for this SDDC.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         is_hcx_pending_downgrade:
             description:
                 - Indicates whether SDDC is pending downgrade from HCX Enterprise to HCX Advanced.
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         hcx_on_prem_licenses:
             description:
                 - The activation licenses to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -502,6 +531,7 @@ sddcs:
             description:
                 - The date and time current HCX Enterprise billing cycle ends, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -510,6 +540,7 @@ sddcs:
                 - The date and time the SDDC's HCX on-premise license status was updated, in the format defined by
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

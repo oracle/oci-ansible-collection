@@ -310,6 +310,17 @@ except ImportError:
 class TagHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(TagHelperGen, self).get_possible_entity_types() + [
+            "tag",
+            "tags",
+            "identitytag",
+            "identitytags",
+            "tagresource",
+            "tagsresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "name"
 
@@ -318,6 +329,13 @@ class TagHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_tag
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_tag,
+            tag_name=summary_model.name,
+            tag_namespace_id=self.module.params.get("tag_namespace_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

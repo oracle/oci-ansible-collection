@@ -349,6 +349,17 @@ class AutonomousVmClusterHelperGen(OCIResourceHelperBase):
             self.client._config, **self.client._kwargs
         )
 
+    def get_possible_entity_types(self):
+        return super(AutonomousVmClusterHelperGen, self).get_possible_entity_types() + [
+            "autonomousvmcluster",
+            "autonomousvmclusters",
+            "databaseautonomousvmcluster",
+            "databaseautonomousvmclusters",
+            "autonomousvmclusterresource",
+            "autonomousvmclustersresource",
+            "database",
+        ]
+
     def get_module_resource_id_param(self):
         return "autonomous_vm_cluster_id"
 
@@ -357,6 +368,12 @@ class AutonomousVmClusterHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_autonomous_vm_cluster
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_autonomous_vm_cluster,
+            autonomous_vm_cluster_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

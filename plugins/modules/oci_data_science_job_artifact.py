@@ -97,6 +97,31 @@ except ImportError:
 class DataScienceJobArtifactHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(
+            DataScienceJobArtifactHelperGen, self
+        ).get_possible_entity_types() + [
+            "datasciencejob",
+            "datasciencejobs",
+            "dataSciencedatasciencejob",
+            "dataSciencedatasciencejobs",
+            "datasciencejobresource",
+            "datasciencejobsresource",
+            "jobartifact",
+            "jobartifacts",
+            "dataSciencejobartifact",
+            "dataSciencejobartifacts",
+            "jobartifactresource",
+            "jobartifactsresource",
+            "artifact",
+            "artifacts",
+            "dataScienceartifact",
+            "dataScienceartifacts",
+            "artifactresource",
+            "artifactsresource",
+            "datascience",
+        ]
+
     def get_module_resource_id(self):
         return None
 

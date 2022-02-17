@@ -769,6 +769,17 @@ except ImportError:
 class ScheduledTaskHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(ScheduledTaskHelperGen, self).get_possible_entity_types() + [
+            "scheduledtask",
+            "scheduledtasks",
+            "logAnalyticsscheduledtask",
+            "logAnalyticsscheduledtasks",
+            "scheduledtaskresource",
+            "scheduledtasksresource",
+            "loganalytics",
+        ]
+
     def get_module_resource_id_param(self):
         return "scheduled_task_id"
 
@@ -777,6 +788,13 @@ class ScheduledTaskHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_scheduled_task
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_scheduled_task,
+            scheduled_task_id=summary_model.id,
+            namespace_name=self.module.params.get("namespace_name"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

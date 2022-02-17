@@ -109,6 +109,23 @@ except ImportError:
 class VolumeKmsKeyHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get and delete"""
 
+    def get_possible_entity_types(self):
+        return super(VolumeKmsKeyHelperGen, self).get_possible_entity_types() + [
+            "volumekmskey",
+            "volumekmskeys",
+            "corevolumekmskey",
+            "corevolumekmskeys",
+            "volumekmskeyresource",
+            "volumekmskeysresource",
+            "kmskey",
+            "kmskeys",
+            "corekmskey",
+            "corekmskeys",
+            "kmskeyresource",
+            "kmskeysresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "volume_id"
 

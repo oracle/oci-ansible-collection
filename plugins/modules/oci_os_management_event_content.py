@@ -87,6 +87,23 @@ except ImportError:
 class EventContentHelperGen(OCIResourceHelperBase):
     """Supported operations: get and delete"""
 
+    def get_possible_entity_types(self):
+        return super(EventContentHelperGen, self).get_possible_entity_types() + [
+            "eventcontent",
+            "eventcontents",
+            "osManagementeventcontent",
+            "osManagementeventcontents",
+            "eventcontentresource",
+            "eventcontentsresource",
+            "content",
+            "contents",
+            "osManagementcontent",
+            "osManagementcontents",
+            "contentresource",
+            "contentsresource",
+            "osmanagement",
+        ]
+
     def get_module_resource_id_param(self):
         return "event_id"
 

@@ -471,6 +471,21 @@ except ImportError:
 class DeployEnvironmentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DeployEnvironmentHelperGen, self).get_possible_entity_types() + [
+            "devopsdeployenvironment",
+            "devopsdeployenvironments",
+            "devopsdevopsdeployenvironment",
+            "devopsdevopsdeployenvironments",
+            "devopsdeployenvironmentresource",
+            "devopsdeployenvironmentsresource",
+            "deployenvironment",
+            "deployenvironments",
+            "deployenvironmentresource",
+            "deployenvironmentsresource",
+            "devops",
+        ]
+
     def get_module_resource_id_param(self):
         return "deploy_environment_id"
 
@@ -479,6 +494,11 @@ class DeployEnvironmentHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_deploy_environment
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_deploy_environment, deploy_environment_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

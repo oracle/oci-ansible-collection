@@ -113,6 +113,7 @@ bds_api_keys:
         user_id:
             description:
                 - The user OCID for which this API key was created.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
@@ -132,12 +133,14 @@ bds_api_keys:
         tenant_id:
             description:
                 - The OCID of your tenancy.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         fingerprint:
             description:
                 - The fingerprint that corresponds to the public API key requested.
+                - Returned for get operation
             returned: on success
             type: str
             sample: fingerprint_example
@@ -145,6 +148,7 @@ bds_api_keys:
             description:
                 - The full path and file name of the private key used for authentication. This location will be automatically selected
                   on the BDS local file system.
+                - Returned for get operation
             returned: on success
             type: str
             sample: pemfilepath_example

@@ -337,6 +337,17 @@ except ImportError:
 class NetworkSourcesHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(NetworkSourcesHelperGen, self).get_possible_entity_types() + [
+            "networksources",
+            "networksource",
+            "identitynetworksources",
+            "identitynetworksource",
+            "networksourcesresource",
+            "networksourceresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "network_source_id"
 
@@ -345,6 +356,11 @@ class NetworkSourcesHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_network_source
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_network_source, network_source_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

@@ -210,6 +210,19 @@ class MysqlHeatWaveClusterHelperGen(OCIResourceHelperBase):
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestsClient)
 
+    def get_possible_entity_types(self):
+        return super(
+            MysqlHeatWaveClusterHelperGen, self
+        ).get_possible_entity_types() + [
+            "heatwavecluster",
+            "heatwaveclusters",
+            "mysqlheatwavecluster",
+            "mysqlheatwaveclusters",
+            "heatwaveclusterresource",
+            "heatwaveclustersresource",
+            "mysql",
+        ]
+
     def get_module_resource_id_param(self):
         return "db_system_id"
 

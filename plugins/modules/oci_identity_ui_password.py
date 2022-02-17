@@ -128,6 +128,17 @@ except ImportError:
 class UiPasswordHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(UiPasswordHelperGen, self).get_possible_entity_types() + [
+            "uipassword",
+            "uipasswords",
+            "identityuipassword",
+            "identityuipasswords",
+            "uipasswordresource",
+            "uipasswordsresource",
+            "identity",
+        ]
+
     def get_module_resource_id(self):
         return None
 

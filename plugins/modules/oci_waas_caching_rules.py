@@ -263,6 +263,17 @@ except ImportError:
 class CachingRulesHelperGen(OCIResourceHelperBase):
     """Supported operations: update and list"""
 
+    def get_possible_entity_types(self):
+        return super(CachingRulesHelperGen, self).get_possible_entity_types() + [
+            "cachingrules",
+            "cachingrule",
+            "waascachingrules",
+            "waascachingrule",
+            "cachingrulesresource",
+            "cachingruleresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

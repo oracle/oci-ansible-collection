@@ -335,6 +335,23 @@ except ImportError:
 class RrsetHelperGen(OCIResourceHelperBase):
     """Supported operations: update, patch, get and delete"""
 
+    def get_possible_entity_types(self):
+        return super(RrsetHelperGen, self).get_possible_entity_types() + [
+            "rrset",
+            "rrsets",
+            "dnsrrset",
+            "dnsrrsets",
+            "rrsetresource",
+            "rrsetsresource",
+            "{domain}",
+            "{domain}s",
+            "dns{domain}",
+            "dns{domain}s",
+            "{domain}resource",
+            "{domain}sresource",
+            "dns",
+        ]
+
     def get_module_resource_id_param(self):
         return "rtype"
 

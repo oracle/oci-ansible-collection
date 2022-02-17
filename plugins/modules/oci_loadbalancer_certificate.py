@@ -189,6 +189,17 @@ except ImportError:
 class CertificateHelperGen(OCIResourceHelperBase):
     """Supported operations: create, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(CertificateHelperGen, self).get_possible_entity_types() + [
+            "certificate",
+            "certificates",
+            "loadBalancercertificate",
+            "loadBalancercertificates",
+            "certificateresource",
+            "certificatesresource",
+            "loadbalancer",
+        ]
+
     def get_module_resource_id_param(self):
         return "certificate_name"
 

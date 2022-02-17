@@ -812,6 +812,21 @@ except ImportError:
 class DeploymentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(DeploymentHelperGen, self).get_possible_entity_types() + [
+            "devopsdeployment",
+            "devopsdeployments",
+            "devopsdevopsdeployment",
+            "devopsdevopsdeployments",
+            "devopsdeploymentresource",
+            "devopsdeploymentsresource",
+            "deployment",
+            "deployments",
+            "deploymentresource",
+            "deploymentsresource",
+            "devops",
+        ]
+
     def get_module_resource_id_param(self):
         return "deployment_id"
 
@@ -820,6 +835,11 @@ class DeploymentHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_deployment
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_deployment, deployment_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

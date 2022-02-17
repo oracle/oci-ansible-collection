@@ -368,6 +368,19 @@ except ImportError:
 class ComputeImageCapabilitySchemaHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            ComputeImageCapabilitySchemaHelperGen, self
+        ).get_possible_entity_types() + [
+            "computeimagecapabilityschema",
+            "computeimagecapabilityschemas",
+            "corecomputeimagecapabilityschema",
+            "corecomputeimagecapabilityschemas",
+            "computeimagecapabilityschemaresource",
+            "computeimagecapabilityschemasresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "compute_image_capability_schema_id"
 
@@ -376,6 +389,12 @@ class ComputeImageCapabilitySchemaHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_compute_image_capability_schema
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_compute_image_capability_schema,
+            compute_image_capability_schema_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

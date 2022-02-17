@@ -312,6 +312,17 @@ except ImportError:
 class PrivateIpHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(PrivateIpHelperGen, self).get_possible_entity_types() + [
+            "privateip",
+            "privateips",
+            "coreprivateip",
+            "coreprivateips",
+            "privateipresource",
+            "privateipsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "private_ip_id"
 

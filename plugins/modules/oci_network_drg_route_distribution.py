@@ -237,6 +237,19 @@ except ImportError:
 class DrgRouteDistributionHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            DrgRouteDistributionHelperGen, self
+        ).get_possible_entity_types() + [
+            "drgroutedistribution",
+            "drgroutedistributions",
+            "coredrgroutedistribution",
+            "coredrgroutedistributions",
+            "drgroutedistributionresource",
+            "drgroutedistributionsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "drg_route_distribution_id"
 

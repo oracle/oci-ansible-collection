@@ -456,6 +456,21 @@ except ImportError:
 class RepositoryHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(RepositoryHelperGen, self).get_possible_entity_types() + [
+            "devopsrepository",
+            "devopsrepositories",
+            "devopsdevopsrepository",
+            "devopsdevopsrepositories",
+            "devopsrepositoryresource",
+            "devopsrepositoriesresource",
+            "repository",
+            "repositories",
+            "repositoryresource",
+            "repositoriesresource",
+            "devops",
+        ]
+
     def get_module_resource_id_param(self):
         return "repository_id"
 
@@ -464,6 +479,11 @@ class RepositoryHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_repository
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_repository, repository_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
