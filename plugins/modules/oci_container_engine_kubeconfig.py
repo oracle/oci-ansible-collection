@@ -103,6 +103,29 @@ except ImportError:
 class KubeconfigHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(KubeconfigHelperGen, self).get_possible_entity_types() + [
+            "cluster",
+            "clusters",
+            "containerEnginecluster",
+            "containerEngineclusters",
+            "clusterresource",
+            "clustersresource",
+            "kubeconfig",
+            "kubeconfigs",
+            "containerEnginekubeconfig",
+            "containerEnginekubeconfigs",
+            "kubeconfigresource",
+            "kubeconfigsresource",
+            "content",
+            "contents",
+            "containerEnginecontent",
+            "containerEnginecontents",
+            "contentresource",
+            "contentsresource",
+            "containerengine",
+        ]
+
     def get_module_resource_id(self):
         return None
 

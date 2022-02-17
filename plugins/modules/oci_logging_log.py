@@ -455,6 +455,17 @@ except ImportError:
 class LogHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(LogHelperGen, self).get_possible_entity_types() + [
+            "log",
+            "logs",
+            "logginglog",
+            "logginglogs",
+            "logresource",
+            "logsresource",
+            "logging",
+        ]
+
     def get_module_resource_id_param(self):
         return "log_id"
 
@@ -463,6 +474,13 @@ class LogHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_log
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_log,
+            log_id=summary_model.id,
+            log_group_id=self.module.params.get("log_group_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

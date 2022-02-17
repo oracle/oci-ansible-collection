@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.42.0
+Collection version 2.43.0
 
 .. toctree::
     :maxdepth: 1
@@ -271,6 +271,10 @@ Modules
 * :ref:`oci_container_engine_node_pool <ansible_collections.oracle.oci.oci_container_engine_node_pool_module>` -- Manage a NodePool resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_node_pool_facts <ansible_collections.oracle.oci.oci_container_engine_node_pool_facts_module>` -- Fetches details about one or multiple NodePool resources in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_node_pool_options_facts <ansible_collections.oracle.oci.oci_container_engine_node_pool_options_facts_module>` -- Fetches details about a NodePoolOptions resource in Oracle Cloud Infrastructure
+* :ref:`oci_dashboard_service_dashboard <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_module>` -- Manage a Dashboard resource in Oracle Cloud Infrastructure
+* :ref:`oci_dashboard_service_dashboard_facts <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_facts_module>` -- Fetches details about one or multiple Dashboard resources in Oracle Cloud Infrastructure
+* :ref:`oci_dashboard_service_dashboard_group <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_group_module>` -- Manage a DashboardGroup resource in Oracle Cloud Infrastructure
+* :ref:`oci_dashboard_service_dashboard_group_facts <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_group_facts_module>` -- Fetches details about one or multiple DashboardGroup resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_catalog <ansible_collections.oracle.oci.oci_data_catalog_catalog_module>` -- Manage a Catalog resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_catalog_actions <ansible_collections.oracle.oci.oci_data_catalog_catalog_actions_module>` -- Perform actions on a Catalog resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_catalog_facts <ansible_collections.oracle.oci.oci_data_catalog_catalog_facts_module>` -- Fetches details about one or multiple Catalog resources in Oracle Cloud Infrastructure
@@ -1252,6 +1256,9 @@ Modules
 * :ref:`oci_vault_secret_facts <ansible_collections.oracle.oci.oci_vault_secret_facts_module>` -- Fetches details about one or multiple Secret resources in Oracle Cloud Infrastructure
 * :ref:`oci_vault_secret_version_actions <ansible_collections.oracle.oci.oci_vault_secret_version_actions_module>` -- Perform actions on a SecretVersion resource in Oracle Cloud Infrastructure
 * :ref:`oci_vault_secret_version_facts <ansible_collections.oracle.oci.oci_vault_secret_version_facts_module>` -- Fetches details about one or multiple SecretVersion resources in Oracle Cloud Infrastructure
+* :ref:`oci_visual_builder_vb_instance <ansible_collections.oracle.oci.oci_visual_builder_vb_instance_module>` -- Manage a VbInstance resource in Oracle Cloud Infrastructure
+* :ref:`oci_visual_builder_vb_instance_actions <ansible_collections.oracle.oci.oci_visual_builder_vb_instance_actions_module>` -- Perform actions on a VbInstance resource in Oracle Cloud Infrastructure
+* :ref:`oci_visual_builder_vb_instance_facts <ansible_collections.oracle.oci.oci_visual_builder_vb_instance_facts_module>` -- Fetches details about one or multiple VbInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_vulnerability_scanning_container_scan_recipe <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_recipe_module>` -- Manage a ContainerScanRecipe resource in Oracle Cloud Infrastructure
 * :ref:`oci_vulnerability_scanning_container_scan_recipe_actions <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_recipe_actions_module>` -- Perform actions on a ContainerScanRecipe resource in Oracle Cloud Infrastructure
 * :ref:`oci_vulnerability_scanning_container_scan_recipe_facts <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_recipe_facts_module>` -- Fetches details about one or multiple ContainerScanRecipe resources in Oracle Cloud Infrastructure
@@ -1584,6 +1591,10 @@ Modules
     oci_container_engine_node_pool_module
     oci_container_engine_node_pool_facts_module
     oci_container_engine_node_pool_options_facts_module
+    oci_dashboard_service_dashboard_module
+    oci_dashboard_service_dashboard_facts_module
+    oci_dashboard_service_dashboard_group_module
+    oci_dashboard_service_dashboard_group_facts_module
     oci_data_catalog_catalog_module
     oci_data_catalog_catalog_actions_module
     oci_data_catalog_catalog_facts_module
@@ -2565,6 +2576,9 @@ Modules
     oci_vault_secret_facts_module
     oci_vault_secret_version_actions_module
     oci_vault_secret_version_facts_module
+    oci_visual_builder_vb_instance_module
+    oci_visual_builder_vb_instance_actions_module
+    oci_visual_builder_vb_instance_facts_module
     oci_vulnerability_scanning_container_scan_recipe_module
     oci_vulnerability_scanning_container_scan_recipe_actions_module
     oci_vulnerability_scanning_container_scan_recipe_facts_module

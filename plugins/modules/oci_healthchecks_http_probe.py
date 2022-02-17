@@ -235,6 +235,23 @@ except ImportError:
 class HttpProbeHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(HttpProbeHelperGen, self).get_possible_entity_types() + [
+            "httpprobe",
+            "httpprobes",
+            "healthcheckshttpprobe",
+            "healthcheckshttpprobes",
+            "httpproberesource",
+            "httpprobesresource",
+            "httpproberesult",
+            "httpproberesults",
+            "healthcheckshttpproberesult",
+            "healthcheckshttpproberesults",
+            "httpproberesultresource",
+            "httpproberesultsresource",
+            "healthchecks",
+        ]
+
     def get_module_resource_id(self):
         return None
 

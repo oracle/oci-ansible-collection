@@ -197,6 +197,17 @@ except ImportError:
 class CaptchasHelperGen(OCIResourceHelperBase):
     """Supported operations: update and list"""
 
+    def get_possible_entity_types(self):
+        return super(CaptchasHelperGen, self).get_possible_entity_types() + [
+            "captchas",
+            "captcha",
+            "waascaptchas",
+            "waascaptcha",
+            "captchasresource",
+            "captcharesource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

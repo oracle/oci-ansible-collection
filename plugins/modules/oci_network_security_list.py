@@ -1138,6 +1138,17 @@ except ImportError:
 class SecurityListHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(SecurityListHelperGen, self).get_possible_entity_types() + [
+            "securitylist",
+            "securitylists",
+            "coresecuritylist",
+            "coresecuritylists",
+            "securitylistresource",
+            "securitylistsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "security_list_id"
 

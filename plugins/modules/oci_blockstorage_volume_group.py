@@ -435,6 +435,17 @@ except ImportError:
 class VolumeGroupHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(VolumeGroupHelperGen, self).get_possible_entity_types() + [
+            "volumegroup",
+            "volumegroups",
+            "corevolumegroup",
+            "corevolumegroups",
+            "volumegroupresource",
+            "volumegroupsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "volume_group_id"
 

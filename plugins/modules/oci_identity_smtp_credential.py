@@ -179,6 +179,17 @@ except ImportError:
 class SmtpCredentialHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(SmtpCredentialHelperGen, self).get_possible_entity_types() + [
+            "smtpcredential",
+            "smtpcredentials",
+            "identitysmtpcredential",
+            "identitysmtpcredentials",
+            "smtpcredentialresource",
+            "smtpcredentialsresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "smtp_credential_id"
 

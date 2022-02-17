@@ -224,6 +224,19 @@ except ImportError:
 class NetworkSecurityGroupHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            NetworkSecurityGroupHelperGen, self
+        ).get_possible_entity_types() + [
+            "networksecuritygroup",
+            "networksecuritygroups",
+            "corenetworksecuritygroup",
+            "corenetworksecuritygroups",
+            "networksecuritygroupresource",
+            "networksecuritygroupsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "network_security_group_id"
 

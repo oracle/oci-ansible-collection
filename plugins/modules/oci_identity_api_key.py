@@ -166,6 +166,17 @@ except ImportError:
 class ApiKeyHelperGen(OCIResourceHelperBase):
     """Supported operations: create, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(ApiKeyHelperGen, self).get_possible_entity_types() + [
+            "apikey",
+            "apikeys",
+            "identityapikey",
+            "identityapikeys",
+            "apikeyresource",
+            "apikeysresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "fingerprint"
 

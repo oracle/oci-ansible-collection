@@ -26,8 +26,3 @@ class InstanceAgentCommandHelperCustom:
     # values and there is no way for us to distinguish if the user wants to create another or not.
     def get_matching_resource(self):
         return None
-
-    # this method is being overwritten as the InstanceAgentCommandSummary model does not reurn back `id` field,
-    # it returns back the field `instance_agent_command_id`
-    def get_get_model_from_summary_model(self, summary_model):
-        return self.get_get_fn()(summary_model.instance_agent_command_id).data

@@ -153,6 +153,7 @@ bds_instances:
         network_config:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -171,6 +172,7 @@ bds_instances:
         cluster_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -255,6 +257,7 @@ bds_instances:
         nodes:
             description:
                 - The list of nodes in the cluster.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -363,6 +366,7 @@ bds_instances:
         cloud_sql_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -413,6 +417,7 @@ bds_instances:
         created_by:
             description:
                 - The user who created the cluster.
+                - Returned for get operation
             returned: on success
             type: str
             sample: created_by_example
@@ -425,6 +430,7 @@ bds_instances:
         time_updated:
             description:
                 - The time the cluster was updated, shown as an RFC 3339 formatted datetime string.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

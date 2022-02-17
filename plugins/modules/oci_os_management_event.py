@@ -322,6 +322,17 @@ except ImportError:
 class EventHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(EventHelperGen, self).get_possible_entity_types() + [
+            "event",
+            "events",
+            "osManagementevent",
+            "osManagementevents",
+            "eventresource",
+            "eventsresource",
+            "osmanagement",
+        ]
+
     def get_module_resource_id_param(self):
         return "event_id"
 
@@ -330,6 +341,13 @@ class EventHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_event
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_event,
+            event_id=summary_model.id,
+            managed_instance_id=self.module.params.get("managed_instance_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

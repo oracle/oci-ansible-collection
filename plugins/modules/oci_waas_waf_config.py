@@ -2907,6 +2907,17 @@ except ImportError:
 class WafConfigHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(WafConfigHelperGen, self).get_possible_entity_types() + [
+            "wafconfig",
+            "wafconfigs",
+            "waaswafconfig",
+            "waaswafconfigs",
+            "wafconfigresource",
+            "wafconfigsresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

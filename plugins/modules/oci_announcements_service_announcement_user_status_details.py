@@ -127,6 +127,25 @@ except ImportError:
 class AnnouncementUserStatusDetailsHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(
+            AnnouncementUserStatusDetailsHelperGen, self
+        ).get_possible_entity_types() + [
+            "announcementuserstatusdetails",
+            "announcementuserstatusdetail",
+            "announcementsServiceannouncementuserstatusdetails",
+            "announcementsServiceannouncementuserstatusdetail",
+            "announcementuserstatusdetailsresource",
+            "announcementuserstatusdetailresource",
+            "userstatus",
+            "userstatuses",
+            "announcementsServiceuserstatus",
+            "announcementsServiceuserstatuses",
+            "userstatusresource",
+            "userstatusesresource",
+            "announcementsservice",
+        ]
+
     def get_module_resource_id_param(self):
         return "announcement_id"
 

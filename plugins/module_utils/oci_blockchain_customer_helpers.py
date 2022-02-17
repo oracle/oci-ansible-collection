@@ -54,13 +54,6 @@ class BlockchainPlatformOsnHelperCustom:
     def get_matching_resource(self):
         return None
 
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_osn,
-            blockchain_platform_id=self.module.params.get("blockchain_platform_id"),
-            osn_id=summary_model.osn_key,
-        ).data
-
     def get_entity_type(self):
         return "instance"
 
@@ -94,13 +87,6 @@ class BlockchainPlatformPeerHelperCustom:
     # no way for us to distinguish if the user wants to create another or not.
     def get_matching_resource(self):
         return None
-
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_peer,
-            blockchain_platform_id=self.module.params.get("blockchain_platform_id"),
-            peer_id=summary_model.peer_key,
-        ).data
 
     def get_entity_type(self):
         return "instance"

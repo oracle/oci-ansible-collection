@@ -162,6 +162,29 @@ clusters:
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         options:
             description:
                 - Optional attributes for the cluster.
@@ -222,6 +245,50 @@ clusters:
                             returned: on success
                             type: bool
                             sample: true
+                persistent_volume_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        freeform_tags:
+                            description:
+                                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Department': 'Finance'}
+                        defined_tags:
+                            description:
+                                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Operations': {'CostCenter': 'US'}}
+                service_lb_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        freeform_tags:
+                            description:
+                                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Department': 'Finance'}
+                        defined_tags:
+                            description:
+                                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Operations': {'CostCenter': 'US'}}
         metadata:
             description:
                 - Metadata about the cluster.
@@ -361,6 +428,9 @@ clusters:
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "kubernetes_version": "kubernetes_version_example",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "options": {
             "service_lb_subnet_ids": [],
             "kubernetes_network_config": {
@@ -373,6 +443,14 @@ clusters:
             },
             "admission_controller_options": {
                 "is_pod_security_policy_enabled": true
+            },
+            "persistent_volume_config": {
+                "freeform_tags": {'Department': 'Finance'},
+                "defined_tags": {'Operations': {'CostCenter': 'US'}}
+            },
+            "service_lb_config": {
+                "freeform_tags": {'Department': 'Finance'},
+                "defined_tags": {'Operations': {'CostCenter': 'US'}}
             }
         },
         "metadata": {

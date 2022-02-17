@@ -1005,6 +1005,21 @@ except ImportError:
 class BuildRunHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(BuildRunHelperGen, self).get_possible_entity_types() + [
+            "devopsbuildrun",
+            "devopsbuildruns",
+            "devopsdevopsbuildrun",
+            "devopsdevopsbuildruns",
+            "devopsbuildrunresource",
+            "devopsbuildrunsresource",
+            "buildrun",
+            "buildruns",
+            "buildrunresource",
+            "buildrunsresource",
+            "devops",
+        ]
+
     def get_module_resource_id_param(self):
         return "build_run_id"
 
@@ -1013,6 +1028,11 @@ class BuildRunHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_build_run
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_build_run, build_run_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

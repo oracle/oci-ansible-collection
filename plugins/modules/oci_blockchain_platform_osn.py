@@ -167,6 +167,25 @@ except ImportError:
 class BlockchainPlatformOsnHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            BlockchainPlatformOsnHelperGen, self
+        ).get_possible_entity_types() + [
+            "blockchainplatformosn",
+            "blockchainplatformosns",
+            "blockchainblockchainplatformosn",
+            "blockchainblockchainplatformosns",
+            "blockchainplatformosnresource",
+            "blockchainplatformosnsresource",
+            "osn",
+            "osns",
+            "blockchainosn",
+            "blockchainosns",
+            "osnresource",
+            "osnsresource",
+            "blockchain",
+        ]
+
     def get_module_resource_id_param(self):
         return "osn_id"
 
@@ -175,6 +194,13 @@ class BlockchainPlatformOsnHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_osn
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_osn,
+            osn_id=summary_model.osn_key,
+            blockchain_platform_id=self.module.params.get("blockchain_platform_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

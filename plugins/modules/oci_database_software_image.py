@@ -329,6 +329,19 @@ class DatabaseSoftwareImageHelperGen(OCIResourceHelperBase):
             self.client._config, **self.client._kwargs
         )
 
+    def get_possible_entity_types(self):
+        return super(
+            DatabaseSoftwareImageHelperGen, self
+        ).get_possible_entity_types() + [
+            "databasesoftwareimage",
+            "databasesoftwareimages",
+            "databasedatabasesoftwareimage",
+            "databasedatabasesoftwareimages",
+            "databasesoftwareimageresource",
+            "databasesoftwareimagesresource",
+            "database",
+        ]
+
     def get_module_resource_id_param(self):
         return "database_software_image_id"
 
@@ -337,6 +350,12 @@ class DatabaseSoftwareImageHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_database_software_image
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_database_software_image,
+            database_software_image_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

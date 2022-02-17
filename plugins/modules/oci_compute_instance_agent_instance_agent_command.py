@@ -434,6 +434,19 @@ except ImportError:
 class InstanceAgentCommandHelperGen(OCIResourceHelperBase):
     """Supported operations: create, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            InstanceAgentCommandHelperGen, self
+        ).get_possible_entity_types() + [
+            "instanceagentcommand",
+            "instanceagentcommands",
+            "computeInstanceAgentinstanceagentcommand",
+            "computeInstanceAgentinstanceagentcommands",
+            "instanceagentcommandresource",
+            "instanceagentcommandsresource",
+            "computeinstanceagent",
+        ]
+
     def get_module_resource_id_param(self):
         return "instance_agent_command_id"
 
@@ -442,6 +455,12 @@ class InstanceAgentCommandHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_instance_agent_command
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_instance_agent_command,
+            instance_agent_command_id=summary_model.instance_agent_command_id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

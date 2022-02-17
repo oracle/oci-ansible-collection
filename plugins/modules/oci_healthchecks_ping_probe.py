@@ -194,6 +194,23 @@ except ImportError:
 class PingProbeHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(PingProbeHelperGen, self).get_possible_entity_types() + [
+            "pingprobe",
+            "pingprobes",
+            "healthcheckspingprobe",
+            "healthcheckspingprobes",
+            "pingproberesource",
+            "pingprobesresource",
+            "pingproberesult",
+            "pingproberesults",
+            "healthcheckspingproberesult",
+            "healthcheckspingproberesults",
+            "pingproberesultresource",
+            "pingproberesultsresource",
+            "healthchecks",
+        ]
+
     def get_module_resource_id(self):
         return None
 

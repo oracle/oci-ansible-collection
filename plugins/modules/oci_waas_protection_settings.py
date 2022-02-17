@@ -351,6 +351,17 @@ except ImportError:
 class ProtectionSettingsHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(ProtectionSettingsHelperGen, self).get_possible_entity_types() + [
+            "protectionsettings",
+            "protectionsetting",
+            "waasprotectionsettings",
+            "waasprotectionsetting",
+            "protectionsettingsresource",
+            "protectionsettingresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

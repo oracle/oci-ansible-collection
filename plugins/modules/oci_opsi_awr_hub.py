@@ -261,6 +261,17 @@ except ImportError:
 class AwrHubHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(AwrHubHelperGen, self).get_possible_entity_types() + [
+            "awrhub",
+            "awrhubs",
+            "opsiawrhub",
+            "opsiawrhubs",
+            "awrhubresource",
+            "awrhubsresource",
+            "opsi",
+        ]
+
     def get_module_resource_id_param(self):
         return "awr_hub_id"
 
@@ -269,6 +280,11 @@ class AwrHubHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_awr_hub
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_awr_hub, awr_hub_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

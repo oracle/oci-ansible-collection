@@ -103,6 +103,7 @@ network_load_balancer_healths:
                 - A list of backend sets that are currently in the `WARNING` health state. The list identifies each backend set by the
                   user-friendly name you assigned when you created the backend set.
                 - "Example: `example_backend_set3`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -111,6 +112,7 @@ network_load_balancer_healths:
                 - A list of backend sets that are currently in the `CRITICAL` health state. The list identifies each backend set by the
                   user-friendly name you assigned when you created the backend set.
                 - "Example: `example_backend_set`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -119,6 +121,7 @@ network_load_balancer_healths:
                 - A list of backend sets that are currently in the `UNKNOWN` health state. The list identifies each backend set by the
                   user-friendly name you assigned when you created the backend set.
                 - "Example: `example_backend_set2`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -126,6 +129,7 @@ network_load_balancer_healths:
             description:
                 - The total number of backend sets associated with this network load balancer.
                 - "Example: `4`"
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -133,6 +137,7 @@ network_load_balancer_healths:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer with which the health status
                   is associated.
+                - Returned for list operation
             returned: on success
             type: str
             sample: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"

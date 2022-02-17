@@ -363,6 +363,23 @@ except ImportError:
 class NetworkAddressListHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(NetworkAddressListHelperGen, self).get_possible_entity_types() + [
+            "webappfirewallnetworkaddresslist",
+            "webappfirewallnetworkaddresslists",
+            "wafwebappfirewallnetworkaddresslist",
+            "wafwebappfirewallnetworkaddresslists",
+            "webappfirewallnetworkaddresslistresource",
+            "webappfirewallnetworkaddresslistsresource",
+            "networkaddresslist",
+            "networkaddresslists",
+            "wafnetworkaddresslist",
+            "wafnetworkaddresslists",
+            "networkaddresslistresource",
+            "networkaddresslistsresource",
+            "waf",
+        ]
+
     def get_module_resource_id_param(self):
         return "network_address_list_id"
 
@@ -371,6 +388,12 @@ class NetworkAddressListHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_network_address_list
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_network_address_list,
+            network_address_list_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

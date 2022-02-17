@@ -482,6 +482,17 @@ except ImportError:
 class CrossConnectHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(CrossConnectHelperGen, self).get_possible_entity_types() + [
+            "crossconnect",
+            "crossconnects",
+            "corecrossconnect",
+            "corecrossconnects",
+            "crossconnectresource",
+            "crossconnectsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "cross_connect_id"
 

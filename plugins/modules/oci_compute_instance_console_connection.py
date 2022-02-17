@@ -218,6 +218,19 @@ except ImportError:
 class InstanceConsoleConnectionHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            InstanceConsoleConnectionHelperGen, self
+        ).get_possible_entity_types() + [
+            "instanceconsoleconnection",
+            "instanceconsoleconnections",
+            "coreinstanceconsoleconnection",
+            "coreinstanceconsoleconnections",
+            "instanceconsoleconnectionresource",
+            "instanceconsoleconnectionsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "instance_console_connection_id"
 

@@ -144,6 +144,19 @@ except ImportError:
 class DataSafeConfigurationHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(
+            DataSafeConfigurationHelperGen, self
+        ).get_possible_entity_types() + [
+            "configuration",
+            "configurations",
+            "dataSafeconfiguration",
+            "dataSafeconfigurations",
+            "configurationresource",
+            "configurationsresource",
+            "datasafe",
+        ]
+
     def get_get_fn(self):
         return self.client.get_data_safe_configuration
 

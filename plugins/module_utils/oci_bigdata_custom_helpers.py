@@ -76,19 +76,6 @@ class BdsAutoScaleConfigHelperCustom:
 
         return get_fn
 
-    # return back differnet entity_type as the work_request obtained from CREATE API persists to
-    # bds_instance resource
-    def get_entity_type(self):
-        return "bds"
-
-    # override done for fetching the proper resource (autoScaleConfig)
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_auto_scaling_configuration,
-            bds_instance_id=self.module.params.get("bds_instance_id"),
-            auto_scaling_configuration_id=summary_model.id,
-        ).data
-
     def create_resource(self):
         super(BdsAutoScaleConfigHelperCustom, self).create_resource()
         list_auto_scale_configs = self.list_resources()
@@ -175,12 +162,6 @@ class BdsAutoScaleConfigHelperCustom:
 
 
 class BdsMetastoreConfigurationHelperCustom:
-    # list_resources returns summary model which doesn't have metastore_config_id.
-    def get_get_model_from_summary_model(self, summary_model):
-        return self.client.get_bds_metastore_configuration(
-            bds_instance_id=self.module.params.get("bds_instance_id"),
-            metastore_config_id=summary_model.id,
-        ).data
 
     # remove the bds_api_key_passphrase, cluster_admin_password parameters for the idempotence check,
     # As get_resource doesn't return these parameters.

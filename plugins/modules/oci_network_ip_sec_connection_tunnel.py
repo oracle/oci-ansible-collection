@@ -824,6 +824,25 @@ except ImportError:
 class IpSecConnectionTunnelHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(
+            IpSecConnectionTunnelHelperGen, self
+        ).get_possible_entity_types() + [
+            "ipsecconnectiontunnel",
+            "ipsecconnectiontunnels",
+            "coreipsecconnectiontunnel",
+            "coreipsecconnectiontunnels",
+            "ipsecconnectiontunnelresource",
+            "ipsecconnectiontunnelsresource",
+            "tunnel",
+            "tunnels",
+            "coretunnel",
+            "coretunnels",
+            "tunnelresource",
+            "tunnelsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "tunnel_id"
 

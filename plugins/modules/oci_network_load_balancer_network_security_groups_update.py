@@ -90,6 +90,25 @@ except ImportError:
 class NetworkLoadBalancerNetworkSecurityGroupsUpdateHelperGen(OCIResourceHelperBase):
     """Supported operations: update"""
 
+    def get_possible_entity_types(self):
+        return super(
+            NetworkLoadBalancerNetworkSecurityGroupsUpdateHelperGen, self
+        ).get_possible_entity_types() + [
+            "networksecuritygroupsupdate",
+            "networksecuritygroupsupdates",
+            "networkLoadBalancernetworksecuritygroupsupdate",
+            "networkLoadBalancernetworksecuritygroupsupdates",
+            "networksecuritygroupsupdateresource",
+            "networksecuritygroupsupdatesresource",
+            "networksecuritygroup",
+            "networksecuritygroups",
+            "networkLoadBalancernetworksecuritygroup",
+            "networkLoadBalancernetworksecuritygroups",
+            "networksecuritygroupresource",
+            "networksecuritygroupsresource",
+            "networkloadbalancer",
+        ]
+
     def get_module_resource_id_param(self):
         return "network_load_balancer_id"
 

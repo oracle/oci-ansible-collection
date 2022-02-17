@@ -107,6 +107,9 @@ class OCIResourceCommonBase:
             return oci_common_utils.RESOURCE_TYPE_TO_ENTITY_TYPE_MAP[self.resource_type]
         return self.resource_type.strip().replace("_", "")
 
+    def get_possible_entity_types(self):
+        return [self.get_entity_type()]
+
 
 class OCIResourceFactsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):

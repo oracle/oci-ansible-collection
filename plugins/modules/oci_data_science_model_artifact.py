@@ -97,6 +97,31 @@ except ImportError:
 class DataScienceModelArtifactHelperGen(OCIResourceHelperBase):
     """Supported operations: create and get"""
 
+    def get_possible_entity_types(self):
+        return super(
+            DataScienceModelArtifactHelperGen, self
+        ).get_possible_entity_types() + [
+            "datasciencemodel",
+            "datasciencemodels",
+            "dataSciencedatasciencemodel",
+            "dataSciencedatasciencemodels",
+            "datasciencemodelresource",
+            "datasciencemodelsresource",
+            "modelartifact",
+            "modelartifacts",
+            "dataSciencemodelartifact",
+            "dataSciencemodelartifacts",
+            "modelartifactresource",
+            "modelartifactsresource",
+            "artifact",
+            "artifacts",
+            "dataScienceartifact",
+            "dataScienceartifacts",
+            "artifactresource",
+            "artifactsresource",
+            "datascience",
+        ]
+
     def get_get_fn(self):
         return self.client.get_model_artifact_content
 

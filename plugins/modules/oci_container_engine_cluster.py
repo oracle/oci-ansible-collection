@@ -79,6 +79,20 @@ options:
             - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
               When used, `kubernetesVersion` must be at least `v1.13.0`.
         type: str
+    freeform_tags:
+        description:
+            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
     options:
         description:
             - Optional attributes for the cluster.
@@ -125,6 +139,40 @@ options:
                         description:
                             - Whether or not to enable the Pod Security Policy admission controller.
                         type: bool
+            persistent_volume_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    freeform_tags:
+                        description:
+                            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Example: `{\\"Department\\": \\"Finance\\"}`"
+                        type: dict
+                    defined_tags:
+                        description:
+                            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                        type: dict
+            service_lb_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    freeform_tags:
+                        description:
+                            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Example: `{\\"Department\\": \\"Finance\\"}`"
+                        type: dict
+                    defined_tags:
+                        description:
+                            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                        type: dict
     image_policy_config:
         description:
             - The image verification policy for signature validation. Once a policy is created and enabled with
@@ -184,6 +232,8 @@ EXAMPLES = """
       nsg_ids: [ "nsg_ids_example" ]
       is_public_ip_enabled: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     options:
       # optional
       service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
@@ -198,6 +248,14 @@ EXAMPLES = """
       admission_controller_options:
         # optional
         is_pod_security_policy_enabled: true
+      persistent_volume_config:
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+      service_lb_config:
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -213,6 +271,8 @@ EXAMPLES = """
     # optional
     name: name_example
     kubernetes_version: kubernetes_version_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     options:
       # optional
       service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
@@ -227,6 +287,14 @@ EXAMPLES = """
       admission_controller_options:
         # optional
         is_pod_security_policy_enabled: true
+      persistent_volume_config:
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+      service_lb_config:
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -242,6 +310,8 @@ EXAMPLES = """
 
     # optional
     kubernetes_version: kubernetes_version_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     options:
       # optional
       service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
@@ -256,6 +326,14 @@ EXAMPLES = """
       admission_controller_options:
         # optional
         is_pod_security_policy_enabled: true
+      persistent_volume_config:
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+      service_lb_config:
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -347,6 +425,29 @@ cluster:
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         options:
             description:
                 - Optional attributes for the cluster.
@@ -407,6 +508,50 @@ cluster:
                             returned: on success
                             type: bool
                             sample: true
+                persistent_volume_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        freeform_tags:
+                            description:
+                                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Department': 'Finance'}
+                        defined_tags:
+                            description:
+                                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Operations': {'CostCenter': 'US'}}
+                service_lb_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        freeform_tags:
+                            description:
+                                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Department': 'Finance'}
+                        defined_tags:
+                            description:
+                                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Operations': {'CostCenter': 'US'}}
         metadata:
             description:
                 - Metadata about the cluster.
@@ -546,6 +691,9 @@ cluster:
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "kubernetes_version": "kubernetes_version_example",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "options": {
             "service_lb_subnet_ids": [],
             "kubernetes_network_config": {
@@ -558,6 +706,14 @@ cluster:
             },
             "admission_controller_options": {
                 "is_pod_security_policy_enabled": true
+            },
+            "persistent_volume_config": {
+                "freeform_tags": {'Department': 'Finance'},
+                "defined_tags": {'Operations': {'CostCenter': 'US'}}
+            },
+            "service_lb_config": {
+                "freeform_tags": {'Department': 'Finance'},
+                "defined_tags": {'Operations': {'CostCenter': 'US'}}
             }
         },
         "metadata": {
@@ -610,6 +766,17 @@ except ImportError:
 
 class ClusterHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def get_possible_entity_types(self):
+        return super(ClusterHelperGen, self).get_possible_entity_types() + [
+            "cluster",
+            "clusters",
+            "containerEnginecluster",
+            "containerEngineclusters",
+            "clusterresource",
+            "clustersresource",
+            "containerengine",
+        ]
 
     def get_module_resource_id_param(self):
         return "cluster_id"
@@ -731,6 +898,8 @@ def main():
             vcn_id=dict(type="str"),
             kubernetes_version=dict(type="str"),
             kms_key_id=dict(type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             options=dict(
                 type="dict",
                 options=dict(
@@ -751,6 +920,20 @@ def main():
                     admission_controller_options=dict(
                         type="dict",
                         options=dict(is_pod_security_policy_enabled=dict(type="bool")),
+                    ),
+                    persistent_volume_config=dict(
+                        type="dict",
+                        options=dict(
+                            freeform_tags=dict(type="dict"),
+                            defined_tags=dict(type="dict"),
+                        ),
+                    ),
+                    service_lb_config=dict(
+                        type="dict",
+                        options=dict(
+                            freeform_tags=dict(type="dict"),
+                            defined_tags=dict(type="dict"),
+                        ),
                     ),
                 ),
             ),

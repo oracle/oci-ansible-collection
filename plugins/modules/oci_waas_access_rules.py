@@ -600,6 +600,17 @@ except ImportError:
 class AccessRulesHelperGen(OCIResourceHelperBase):
     """Supported operations: update and list"""
 
+    def get_possible_entity_types(self):
+        return super(AccessRulesHelperGen, self).get_possible_entity_types() + [
+            "accessrules",
+            "accessrule",
+            "waasaccessrules",
+            "waasaccessrule",
+            "accessrulesresource",
+            "accessruleresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

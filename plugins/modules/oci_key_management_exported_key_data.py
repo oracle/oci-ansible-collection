@@ -173,6 +173,20 @@ except ImportError:
 class ExportedKeyDataHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(ExportedKeyDataHelperGen, self).get_possible_entity_types() + [
+            "exportedkeydata",
+            "keyManagementexportedkeydata",
+            "exportedkeydataresource",
+            "exportkey",
+            "exportkeys",
+            "keyManagementexportkey",
+            "keyManagementexportkeys",
+            "exportkeyresource",
+            "exportkeysresource",
+            "keymanagement",
+        ]
+
     def get_module_resource_id(self):
         return None
 

@@ -1549,6 +1549,17 @@ class InstanceHelperGen(OCIResourceHelperBase):
             self.client._config, **self.client._kwargs
         )
 
+    def get_possible_entity_types(self):
+        return super(InstanceHelperGen, self).get_possible_entity_types() + [
+            "instance",
+            "instances",
+            "coreinstance",
+            "coreinstances",
+            "instanceresource",
+            "instancesresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "instance_id"
 

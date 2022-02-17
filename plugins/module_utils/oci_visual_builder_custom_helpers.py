@@ -9,6 +9,14 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-class ComputeCapacityReservationHelperCustom:
-    def get_entity_type(self):
-        return "computeCapacityReservations"
+class VbInstanceActionsHelperCustom:
+    def get_action_idempotent_states(self, action):
+        action_idempotent_states = super(
+            VbInstanceActionsHelperCustom, self
+        ).get_action_idempotent_states(action)
+
+        if action.lower() == "stop":
+            return action_idempotent_states + [
+                "INACTIVE",
+            ]
+        return action_idempotent_states

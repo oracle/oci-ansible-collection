@@ -186,6 +186,23 @@ except ImportError:
 class IdpGroupMappingHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(IdpGroupMappingHelperGen, self).get_possible_entity_types() + [
+            "idpgroupmapping",
+            "idpgroupmappings",
+            "identityidpgroupmapping",
+            "identityidpgroupmappings",
+            "idpgroupmappingresource",
+            "idpgroupmappingsresource",
+            "groupmapping",
+            "groupmappings",
+            "identitygroupmapping",
+            "identitygroupmappings",
+            "groupmappingresource",
+            "groupmappingsresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "mapping_id"
 

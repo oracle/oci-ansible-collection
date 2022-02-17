@@ -968,6 +968,19 @@ except ImportError:
 class CertificateAuthorityHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(
+            CertificateAuthorityHelperGen, self
+        ).get_possible_entity_types() + [
+            "certificateauthority",
+            "certificateauthorities",
+            "certificatesManagementcertificateauthority",
+            "certificatesManagementcertificateauthorities",
+            "certificateauthorityresource",
+            "certificateauthoritiesresource",
+            "certificatesmanagement",
+        ]
+
     def get_module_resource_id_param(self):
         return "certificate_authority_id"
 
@@ -976,6 +989,12 @@ class CertificateAuthorityHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_certificate_authority
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_certificate_authority,
+            certificate_authority_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

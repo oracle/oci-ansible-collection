@@ -187,8 +187,26 @@ except ImportError:
 class KeyVersionHelperGen(OCIResourceHelperBase):
     """Supported operations: create, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(KeyVersionHelperGen, self).get_possible_entity_types() + [
+            "keyversion",
+            "keyversions",
+            "keyManagementkeyversion",
+            "keyManagementkeyversions",
+            "keyversionresource",
+            "keyversionsresource",
+            "keymanagement",
+        ]
+
     def get_get_fn(self):
         return self.client.get_key_version
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_key_version,
+            key_version_id=summary_model.id,
+            key_id=self.module.params.get("key_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

@@ -724,6 +724,19 @@ except ImportError:
 class AutoScalingConfigurationHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            AutoScalingConfigurationHelperGen, self
+        ).get_possible_entity_types() + [
+            "autoscalingconfiguration",
+            "autoscalingconfigurations",
+            "autoscalingautoscalingconfiguration",
+            "autoscalingautoscalingconfigurations",
+            "autoscalingconfigurationresource",
+            "autoscalingconfigurationsresource",
+            "autoscaling",
+        ]
+
     def get_module_resource_id_param(self):
         return "auto_scaling_configuration_id"
 
@@ -732,6 +745,12 @@ class AutoScalingConfigurationHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_auto_scaling_configuration
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_auto_scaling_configuration,
+            auto_scaling_configuration_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

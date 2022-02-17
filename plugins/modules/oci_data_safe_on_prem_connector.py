@@ -253,6 +253,25 @@ except ImportError:
 class DataSafeOnPremConnectorHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            DataSafeOnPremConnectorHelperGen, self
+        ).get_possible_entity_types() + [
+            "datasafeonpremconnector",
+            "datasafeonpremconnectors",
+            "dataSafedatasafeonpremconnector",
+            "dataSafedatasafeonpremconnectors",
+            "datasafeonpremconnectorresource",
+            "datasafeonpremconnectorsresource",
+            "onpremconnector",
+            "onpremconnectors",
+            "dataSafeonpremconnector",
+            "dataSafeonpremconnectors",
+            "onpremconnectorresource",
+            "onpremconnectorsresource",
+            "datasafe",
+        ]
+
     def get_module_resource_id_param(self):
         return "on_prem_connector_id"
 
@@ -261,6 +280,11 @@ class DataSafeOnPremConnectorHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_on_prem_connector
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_on_prem_connector, on_prem_connector_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

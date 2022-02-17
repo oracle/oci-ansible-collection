@@ -240,6 +240,19 @@ class AutonomousContainerDatabaseDataguardAssociationHelperGen(OCIResourceHelper
             self.client._config, **self.client._kwargs
         )
 
+    def get_possible_entity_types(self):
+        return super(
+            AutonomousContainerDatabaseDataguardAssociationHelperGen, self
+        ).get_possible_entity_types() + [
+            "autonomouscontainerdatabasedataguardassociation",
+            "autonomouscontainerdatabasedataguardassociations",
+            "databaseautonomouscontainerdatabasedataguardassociation",
+            "databaseautonomouscontainerdatabasedataguardassociations",
+            "autonomouscontainerdatabasedataguardassociationresource",
+            "autonomouscontainerdatabasedataguardassociationsresource",
+            "database",
+        ]
+
     def get_module_resource_id_param(self):
         return "autonomous_container_database_dataguard_association_id"
 

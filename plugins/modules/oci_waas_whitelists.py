@@ -137,6 +137,17 @@ except ImportError:
 class WhitelistsHelperGen(OCIResourceHelperBase):
     """Supported operations: update and list"""
 
+    def get_possible_entity_types(self):
+        return super(WhitelistsHelperGen, self).get_possible_entity_types() + [
+            "whitelists",
+            "whitelist",
+            "waaswhitelists",
+            "waaswhitelist",
+            "whitelistsresource",
+            "whitelistresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

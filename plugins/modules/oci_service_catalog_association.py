@@ -145,6 +145,19 @@ except ImportError:
 class ServiceCatalogAssociationHelperGen(OCIResourceHelperBase):
     """Supported operations: create, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            ServiceCatalogAssociationHelperGen, self
+        ).get_possible_entity_types() + [
+            "servicecatalogassociation",
+            "servicecatalogassociations",
+            "serviceCatalogservicecatalogassociation",
+            "serviceCatalogservicecatalogassociations",
+            "servicecatalogassociationresource",
+            "servicecatalogassociationsresource",
+            "servicecatalog",
+        ]
+
     def get_module_resource_id_param(self):
         return "service_catalog_association_id"
 
@@ -153,6 +166,12 @@ class ServiceCatalogAssociationHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_service_catalog_association
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_service_catalog_association,
+            service_catalog_association_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

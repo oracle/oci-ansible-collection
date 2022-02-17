@@ -197,6 +197,25 @@ except ImportError:
 class ImageShapeCompatibilityEntryHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            ImageShapeCompatibilityEntryHelperGen, self
+        ).get_possible_entity_types() + [
+            "imageshapecompatibilityentry",
+            "imageshapecompatibilityentries",
+            "coreimageshapecompatibilityentry",
+            "coreimageshapecompatibilityentries",
+            "imageshapecompatibilityentryresource",
+            "imageshapecompatibilityentriesresource",
+            "shape",
+            "shapes",
+            "coreshape",
+            "coreshapes",
+            "shaperesource",
+            "shapesresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "shape_name"
 
@@ -205,6 +224,13 @@ class ImageShapeCompatibilityEntryHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_image_shape_compatibility_entry
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_image_shape_compatibility_entry,
+            shape_name=summary_model.shape,
+            image_id=self.module.params.get("image_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

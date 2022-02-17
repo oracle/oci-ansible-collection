@@ -260,6 +260,17 @@ except ImportError:
 class DrgRouteTableHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DrgRouteTableHelperGen, self).get_possible_entity_types() + [
+            "drgroutetable",
+            "drgroutetables",
+            "coredrgroutetable",
+            "coredrgroutetables",
+            "drgroutetableresource",
+            "drgroutetablesresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "drg_route_table_id"
 

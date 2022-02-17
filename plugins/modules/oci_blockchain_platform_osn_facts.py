@@ -98,12 +98,14 @@ blockchain_platform_osns:
         ad:
             description:
                 - Availability Domain of OSN
+                - Returned for get operation
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
         ocpu_allocation_param:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

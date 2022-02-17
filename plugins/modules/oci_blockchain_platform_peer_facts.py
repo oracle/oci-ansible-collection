@@ -98,18 +98,21 @@ blockchain_platform_peers:
         role:
             description:
                 - Peer role
+                - Returned for get operation
             returned: on success
             type: str
             sample: role_example
         alias:
             description:
                 - peer alias
+                - Returned for get operation
             returned: on success
             type: str
             sample: alias_example
         ocpu_allocation_param:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -122,12 +125,14 @@ blockchain_platform_peers:
         host:
             description:
                 - Host on which the Peer exists
+                - Returned for get operation
             returned: on success
             type: str
             sample: host_example
         ad:
             description:
                 - Availability Domain of peer
+                - Returned for get operation
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1

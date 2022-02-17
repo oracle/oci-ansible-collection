@@ -22,14 +22,6 @@ def get_logger():
 
 
 class DataCatalogDataAssetHelperCustom:
-    # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `data_asset_key`.
-    # overriding this method due to naming mismatch in input parameter (data_asset_key) and output parameter (key)
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_data_asset,
-            catalog_id=self.module.params.get("catalog_id"),
-            data_asset_key=summary_model.key,
-        ).data
 
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `connection_key`.
     # overriding this method due to naming mismatch in input parameter (connection_key) and output parameter (key)
@@ -48,16 +40,6 @@ class DataCatalogConnectionHelperCustom:
         return dict(
             (param, self.module.params[param]) for param in optional_list_method_params
         )
-
-    # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `connection_key`.
-    # overriding this method due to naming mismatch in input parameter (connection_key) and output parameter (key)
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_connection,
-            catalog_id=self.module.params.get("catalog_id"),
-            data_asset_key=summary_model.data_asset_key,
-            connection_key=summary_model.key,
-        ).data
 
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `connection_key`.
     # overriding this method due to naming mismatch in input parameter (connection_key) and output parameter (key)
@@ -85,13 +67,6 @@ class DataCatalogCatalogActionsHelperCustom:
 
 
 class DataCatalogNamespaceHelperCustom:
-    # this resource does not use standard `id` or `resource_id` as identifier, it uses `key`.
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_namespace,
-            catalog_id=self.module.params.get("catalog_id"),
-            namespace_id=summary_model.key,
-        ).data
 
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key`.
     # overriding this method due to mismatch in primary_identifier by the service and ansible module
@@ -101,14 +76,6 @@ class DataCatalogNamespaceHelperCustom:
 
 
 class DataCatalogCustomPropertyHelperCustom:
-    # this resource does not use standard `id` or `resource_id` as identifier, it uses `key`.
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_custom_property,
-            catalog_id=self.module.params.get("catalog_id"),
-            namespace_id=self.module.params.get("namespace_id"),
-            custom_property_key=summary_model.key,
-        ).data
 
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `custom_property_key`.
     # overriding this method due to naming mismatch in input parameter (custom_property_key) and output parameter (key)

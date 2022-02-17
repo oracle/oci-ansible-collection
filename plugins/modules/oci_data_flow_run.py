@@ -585,6 +585,23 @@ except ImportError:
 class DataFlowRunHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and list"""
 
+    def get_possible_entity_types(self):
+        return super(DataFlowRunHelperGen, self).get_possible_entity_types() + [
+            "dataflowrun",
+            "dataflowruns",
+            "dataFlowdataflowrun",
+            "dataFlowdataflowruns",
+            "dataflowrunresource",
+            "dataflowrunsresource",
+            "run",
+            "runs",
+            "dataFlowrun",
+            "dataFlowruns",
+            "runresource",
+            "runsresource",
+            "dataflow",
+        ]
+
     def get_module_resource_id_param(self):
         return "run_id"
 
@@ -593,6 +610,11 @@ class DataFlowRunHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_run
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_run, run_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

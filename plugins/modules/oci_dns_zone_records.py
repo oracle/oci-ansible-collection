@@ -300,6 +300,23 @@ except ImportError:
 class ZoneRecordsHelperGen(OCIResourceHelperBase):
     """Supported operations: update, patch and get"""
 
+    def get_possible_entity_types(self):
+        return super(ZoneRecordsHelperGen, self).get_possible_entity_types() + [
+            "zonerecords",
+            "zonerecord",
+            "dnszonerecords",
+            "dnszonerecord",
+            "zonerecordsresource",
+            "zonerecordresource",
+            "record",
+            "records",
+            "dnsrecord",
+            "dnsrecords",
+            "recordresource",
+            "recordsresource",
+            "dns",
+        ]
+
     def get_module_resource_id_param(self):
         return "zone_name_or_id"
 

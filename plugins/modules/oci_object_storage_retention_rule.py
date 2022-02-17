@@ -256,6 +256,17 @@ except ImportError:
 class RetentionRuleHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(RetentionRuleHelperGen, self).get_possible_entity_types() + [
+            "retentionrule",
+            "retentionrules",
+            "objectStorageretentionrule",
+            "objectStorageretentionrules",
+            "retentionruleresource",
+            "retentionrulesresource",
+            "objectstorage",
+        ]
+
     def get_module_resource_id_param(self):
         return "retention_rule_id"
 
@@ -264,6 +275,14 @@ class RetentionRuleHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_retention_rule
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_retention_rule,
+            retention_rule_id=summary_model.id,
+            bucket_name=self.module.params.get("bucket_name"),
+            namespace_name=self.module.params.get("namespace_name"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

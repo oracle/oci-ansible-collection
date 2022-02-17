@@ -287,6 +287,23 @@ except ImportError:
 class UserStateHelperGen(OCIResourceHelperBase):
     """Supported operations: update"""
 
+    def get_possible_entity_types(self):
+        return super(UserStateHelperGen, self).get_possible_entity_types() + [
+            "userstate",
+            "userstates",
+            "identityuserstate",
+            "identityuserstates",
+            "userstateresource",
+            "userstatesresource",
+            "state",
+            "states",
+            "identitystate",
+            "identitystates",
+            "stateresource",
+            "statesresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "user_id"
 

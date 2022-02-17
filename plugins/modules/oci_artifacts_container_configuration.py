@@ -107,6 +107,25 @@ except ImportError:
 class ContainerConfigurationHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(
+            ContainerConfigurationHelperGen, self
+        ).get_possible_entity_types() + [
+            "containerconfiguration",
+            "containerconfigurations",
+            "artifactscontainerconfiguration",
+            "artifactscontainerconfigurations",
+            "containerconfigurationresource",
+            "containerconfigurationsresource",
+            "configuration",
+            "configurations",
+            "artifactsconfiguration",
+            "artifactsconfigurations",
+            "configurationresource",
+            "configurationsresource",
+            "artifacts",
+        ]
+
     def get_get_fn(self):
         return self.client.get_container_configuration
 

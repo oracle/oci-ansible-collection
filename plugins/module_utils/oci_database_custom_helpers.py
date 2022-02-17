@@ -414,12 +414,6 @@ class DataGuardAssociationHelperCustom:
     def get_module_resource_id_param(self):
         return None
 
-    def get_get_model_from_summary_model(self, summary_model):
-        return self.client.get_data_guard_association(
-            database_id=self.module.params["database_id"],
-            data_guard_association_id=summary_model.id,
-        ).data
-
     def get_get_fn(self):
         def get_fn(data_guard_association_id):
             return self.client.get_data_guard_association(

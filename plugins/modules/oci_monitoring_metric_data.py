@@ -335,6 +335,20 @@ except ImportError:
 class MetricDataHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(MetricDataHelperGen, self).get_possible_entity_types() + [
+            "metricdata",
+            "monitoringmetricdata",
+            "metricdataresource",
+            "metric",
+            "metrics",
+            "monitoringmetric",
+            "monitoringmetrics",
+            "metricresource",
+            "metricsresource",
+            "monitoring",
+        ]
+
     def get_module_resource_id(self):
         return None
 

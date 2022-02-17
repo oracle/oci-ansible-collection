@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.43.0]
+
+# 
+ ## Added
+
+ - Support for the Visual Builder service
+ - Support for the Console Dashboard service
+ - Support for tagging in the Container Engine for Kubernetes service
+ - Support for capacity reservation in the Container Engine for Kubernetes service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.57.0
+
 ## [2.42.0]
 
 ## Added

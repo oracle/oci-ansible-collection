@@ -229,6 +229,19 @@ except ImportError:
 class LogAnalyticsEntityTypeHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            LogAnalyticsEntityTypeHelperGen, self
+        ).get_possible_entity_types() + [
+            "loganalyticsentitytype",
+            "loganalyticsentitytypes",
+            "logAnalyticsloganalyticsentitytype",
+            "logAnalyticsloganalyticsentitytypes",
+            "loganalyticsentitytyperesource",
+            "loganalyticsentitytypesresource",
+            "loganalytics",
+        ]
+
     def get_module_resource_id_param(self):
         return "name"
 
@@ -237,6 +250,13 @@ class LogAnalyticsEntityTypeHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_log_analytics_entity_type
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_log_analytics_entity_type,
+            entity_type_name=summary_model.name,
+            namespace_name=self.module.params.get("namespace_name"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

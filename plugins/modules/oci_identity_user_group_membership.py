@@ -161,6 +161,17 @@ except ImportError:
 class UserGroupMembershipHelperGen(OCIResourceHelperBase):
     """Supported operations: create, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(UserGroupMembershipHelperGen, self).get_possible_entity_types() + [
+            "usergroupmembership",
+            "usergroupmemberships",
+            "identityusergroupmembership",
+            "identityusergroupmemberships",
+            "usergroupmembershipresource",
+            "usergroupmembershipsresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "user_group_membership_id"
 

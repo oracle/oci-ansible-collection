@@ -346,7 +346,7 @@ class VolumeBackupCopyOperationWorkRequestWaiter(WorkRequestWaiter):
         entity_type = self.resource_helper.get_entity_type()
         identifier = None
         if hasattr(wait_response.data, "resources"):
-            identifier = get_resource_identifier_from_wait_response(
+            identifier = get_resource_identifier_from_wait_response_resources(
                 wait_response.data, entity_type
             )
         if not identifier:
@@ -374,7 +374,7 @@ class BootVolumeBackupCopyOperationWorkRequestWaiter(WorkRequestWaiter):
         entity_type = self.resource_helper.get_entity_type()
         identifier = None
         if hasattr(wait_response.data, "resources"):
-            identifier = get_resource_identifier_from_wait_response(
+            identifier = get_resource_identifier_from_wait_response_resources(
                 wait_response.data, entity_type
             )
         if not identifier:
@@ -406,10 +406,57 @@ class CreateOperationWorkRequestWaiter(WorkRequestWaiter):
         )
 
     def get_resource_from_wait_response(self, wait_response):
-        entity_type = self.resource_helper.get_entity_type()
+        """
+        we get the resource from the wait_response hierarchically.
+        1. first we check if the operation_response is there and it has id in it.
+        2. if we don't find the id in operation_response, we will loop through all the entity_types
+            till we find the matching resource and get the id of the resource.
+        3. if we still dont find the resource id, we check if the number of resources in the work_request response
+            are just one. if one, we return the identifier of the only resource
+        """
+
+        if (
+            self.operation_response
+            and hasattr(self.operation_response.data, "id")
+            and self.operation_response.data.id
+        ):
+            get_response = self.resource_helper.get_get_fn()(
+                self.operation_response.data.id
+            )
+            return get_response.data
+
+        identifier = self.get_resource_identifier_from_wait_response(wait_response)
+
+        if not identifier:
+            self.resource_helper.module.fail_json(
+                msg="Could not get the resource identifier from work request response {0}".format(
+                    to_dict(wait_response.data)
+                )
+            )
+
+        get_response = self.resource_helper.get_get_fn()(identifier)
+        return get_response.data
+
+    def get_resource_identifier_from_wait_response(self, wait_response):
+
+        for entity_type in self.resource_helper.get_possible_entity_types():
+            identifier = self.get_resource_identifier_of_wait_response_matching_entity_type(
+                wait_response, entity_type
+            )
+            if identifier:
+                return identifier
+
+        if len(wait_response.data.resources) == 1:
+            return get_identifier_of_wait_response_resource(
+                wait_response.data.resources[0]
+            )
+
+    def get_resource_identifier_of_wait_response_matching_entity_type(
+        self, wait_response, entity_type
+    ):
         identifier = None
         if hasattr(wait_response.data, "resources"):
-            identifier = get_resource_identifier_from_wait_response(
+            identifier = get_resource_identifier_from_wait_response_resources(
                 wait_response.data, entity_type
             )
         elif hasattr(
@@ -419,15 +466,7 @@ class CreateOperationWorkRequestWaiter(WorkRequestWaiter):
             identifier = getattr(
                 wait_response.data, self.resource_helper.get_module_resource_id_param()
             )
-
-        if not identifier:
-            self.resource_helper.module.fail_json(
-                msg="Could not get the resource identifier from work request response {0}".format(
-                    to_dict(wait_response.data)
-                )
-            )
-        get_response = self.resource_helper.get_get_fn()(identifier)
-        return get_response.data
+        return identifier
 
 
 class CreateDatabaseOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter):
@@ -473,7 +512,7 @@ class CreateBdsApiKeyOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter
         entity_type = self.resource_helper.get_entity_type()
         identifier = None
         if hasattr(wait_response.data, "resources"):
-            identifier = get_resource_identifier_from_wait_response(
+            identifier = get_resource_identifier_from_wait_response_resources(
                 wait_response.data, entity_type
             )
         elif hasattr(
@@ -510,7 +549,7 @@ class CreateBdsMetastoreConfigurationOperationWorkRequestWaiter(
         entity_type = self.resource_helper.get_entity_type()
         identifier = None
         if hasattr(wait_response.data, "resources"):
-            identifier = get_resource_identifier_from_wait_response(
+            identifier = get_resource_identifier_from_wait_response_resources(
                 wait_response.data, entity_type
             )
         elif hasattr(
@@ -1328,7 +1367,7 @@ def call_and_wait(
     return waiter.wait()
 
 
-def get_resource_identifier_from_wait_response(wait_response, entity_type):
+def get_resource_identifier_from_wait_response_resources(wait_response, entity_type):
     identifier = None
     for resource in wait_response.resources:
         if (
@@ -1336,20 +1375,7 @@ def get_resource_identifier_from_wait_response(wait_response, entity_type):
             and getattr(resource, "entity_type").lower().strip().replace("-", "")
             == entity_type.lower()
         ):
-            # Different resources sometimes have
-            # the resource identifier in attributes
-            # other than ".identifier".
-            # We are checking for all of them.
-            if hasattr(resource, "identifier"):
-                identifier = resource.identifier
-            elif hasattr(resource, "id"):
-                identifier = resource.id
-            elif hasattr(resource, "entity_id"):
-                identifier = resource.entity_id
-            else:
-                raise AttributeError(
-                    "resource object has no valid resource identifier attribute"
-                )
+            identifier = get_identifier_of_wait_response_resource(resource)
         # this handles Analytics Instance & Digital Assistant Instance style WorkRequests which contains a field
         # 'resource_type' instead of 'entity_type'
         elif (
@@ -1357,9 +1383,28 @@ def get_resource_identifier_from_wait_response(wait_response, entity_type):
             and getattr(resource, "resource_type").lower().strip().replace("_", "")
             == entity_type.lower()
         ):
-            if hasattr(resource, "identifier"):
-                identifier = resource.identifier
-            # identifier that was assigned when ODA instance was created.
-            elif hasattr(resource, "resource_id"):
-                identifier = resource.resource_id
+            identifier = get_identifier_of_wait_response_resource(resource)
+    return identifier
+
+
+def get_identifier_of_wait_response_resource(resource):
+    # Different resources sometimes have
+    # the resource identifier in attributes
+    # other than ".identifier".
+    # We are checking for all of them.
+    if hasattr(resource, "identifier"):
+        identifier = resource.identifier
+    elif hasattr(resource, "id"):
+        identifier = resource.id
+    elif hasattr(resource, "entity_id"):
+        identifier = resource.entity_id
+    elif hasattr(resource, "identifier"):
+        identifier = resource.identifier
+    # identifier that was assigned when ODA instance was created.
+    elif hasattr(resource, "resource_id"):
+        identifier = resource.resource_id
+    else:
+        raise AttributeError(
+            "resource object has no valid resource identifier attribute"
+        )
     return identifier

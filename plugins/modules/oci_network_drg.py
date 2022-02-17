@@ -322,6 +322,17 @@ except ImportError:
 class DrgHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DrgHelperGen, self).get_possible_entity_types() + [
+            "drg",
+            "drgs",
+            "coredrg",
+            "coredrgs",
+            "drgresource",
+            "drgsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "drg_id"
 

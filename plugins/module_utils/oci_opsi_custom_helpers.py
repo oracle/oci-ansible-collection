@@ -310,11 +310,6 @@ class SqlStatisticsTimeSeriesFactsHelperCustom:
         )
 
 
-class EnterpriseManagerBridgeHelperCustom:
-    def get_entity_type(self):
-        return "opsienterprisemanagerbridge"
-
-
 class HostInsightHelperCustom:
     def get_entity_type(self):
         return "opsidatabaseinsight"

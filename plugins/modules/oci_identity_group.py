@@ -248,6 +248,17 @@ except ImportError:
 class GroupHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(GroupHelperGen, self).get_possible_entity_types() + [
+            "group",
+            "groups",
+            "identitygroup",
+            "identitygroups",
+            "groupresource",
+            "groupsresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "group_id"
 

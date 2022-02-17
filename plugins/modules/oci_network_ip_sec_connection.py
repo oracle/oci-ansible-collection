@@ -620,6 +620,17 @@ except ImportError:
 class IpSecConnectionHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(IpSecConnectionHelperGen, self).get_possible_entity_types() + [
+            "ipsecconnection",
+            "ipsecconnections",
+            "coreipsecconnection",
+            "coreipsecconnections",
+            "ipsecconnectionresource",
+            "ipsecconnectionsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "ipsc_id"
 

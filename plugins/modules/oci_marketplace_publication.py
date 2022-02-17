@@ -473,6 +473,17 @@ except ImportError:
 class PublicationHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(PublicationHelperGen, self).get_possible_entity_types() + [
+            "publication",
+            "publications",
+            "marketplacepublication",
+            "marketplacepublications",
+            "publicationresource",
+            "publicationsresource",
+            "marketplace",
+        ]
+
     def get_module_resource_id_param(self):
         return "publication_id"
 
@@ -481,6 +492,11 @@ class PublicationHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_publication
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_publication, publication_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

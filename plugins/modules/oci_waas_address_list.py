@@ -235,6 +235,17 @@ except ImportError:
 class AddressListHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(AddressListHelperGen, self).get_possible_entity_types() + [
+            "addresslist",
+            "addresslists",
+            "waasaddresslist",
+            "waasaddresslists",
+            "addresslistresource",
+            "addresslistsresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "address_list_id"
 
@@ -243,6 +254,11 @@ class AddressListHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_address_list
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_address_list, address_list_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

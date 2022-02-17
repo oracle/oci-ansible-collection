@@ -60,9 +60,6 @@ class MysqlDbSystemActionsHelperCustom:
 
 
 class MysqlDbSystemHelperCustom:
-    # # overriding entity_type
-    def get_entity_type(self):
-        return "mysqldbsystem"
 
     # get model doesn't return admin_username and admin_password of existing database resources. Thus, excluding
     # these for idempotency.

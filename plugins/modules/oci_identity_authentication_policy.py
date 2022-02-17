@@ -217,6 +217,19 @@ except ImportError:
 class AuthenticationPolicyHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(
+            AuthenticationPolicyHelperGen, self
+        ).get_possible_entity_types() + [
+            "authenticationpolicy",
+            "authenticationpolicies",
+            "identityauthenticationpolicy",
+            "identityauthenticationpolicies",
+            "authenticationpolicyresource",
+            "authenticationpoliciesresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "compartment_id"
 

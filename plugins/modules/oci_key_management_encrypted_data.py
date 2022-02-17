@@ -165,6 +165,20 @@ except ImportError:
 class EncryptedDataHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(EncryptedDataHelperGen, self).get_possible_entity_types() + [
+            "encrypteddata",
+            "keyManagementencrypteddata",
+            "encrypteddataresource",
+            "encrypt",
+            "encrypts",
+            "keyManagementencrypt",
+            "keyManagementencrypts",
+            "encryptresource",
+            "encryptsresource",
+            "keymanagement",
+        ]
+
     def get_module_resource_id(self):
         return None
 

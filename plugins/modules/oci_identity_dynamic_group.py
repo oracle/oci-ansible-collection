@@ -264,6 +264,17 @@ except ImportError:
 class DynamicGroupHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DynamicGroupHelperGen, self).get_possible_entity_types() + [
+            "dynamicgroup",
+            "dynamicgroups",
+            "identitydynamicgroup",
+            "identitydynamicgroups",
+            "dynamicgroupresource",
+            "dynamicgroupsresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "dynamic_group_id"
 

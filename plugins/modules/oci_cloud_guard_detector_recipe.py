@@ -1130,6 +1130,23 @@ except ImportError:
 class DetectorRecipeHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DetectorRecipeHelperGen, self).get_possible_entity_types() + [
+            "cloudguarddetectorrecipe",
+            "cloudguarddetectorrecipes",
+            "cloudGuardcloudguarddetectorrecipe",
+            "cloudGuardcloudguarddetectorrecipes",
+            "cloudguarddetectorreciperesource",
+            "cloudguarddetectorrecipesresource",
+            "detectorrecipe",
+            "detectorrecipes",
+            "cloudGuarddetectorrecipe",
+            "cloudGuarddetectorrecipes",
+            "detectorreciperesource",
+            "detectorrecipesresource",
+            "cloudguard",
+        ]
+
     def get_module_resource_id_param(self):
         return "detector_recipe_id"
 
@@ -1138,6 +1155,11 @@ class DetectorRecipeHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_detector_recipe
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_detector_recipe, detector_recipe_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

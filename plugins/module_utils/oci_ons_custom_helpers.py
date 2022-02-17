@@ -14,8 +14,6 @@ __metaclass__ = type
 
 
 class NotificationTopicHelperCustom:
-    def get_get_model_from_summary_model(self, summary_model):
-        return self.client.get_topic(topic_id=summary_model.topic_id).data
 
     # The generated module operations have NONE_WAITER which is not correct. Overriding to wait on lifecycle_state
     # waiter. This should ideally be handled in the codegen or add an override in oci_wait_utils instead of overriding

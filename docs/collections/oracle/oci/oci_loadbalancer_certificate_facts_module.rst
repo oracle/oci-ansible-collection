@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_certificate_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.42.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -224,8 +224,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the certificate whose details needs to be fetched.</div>
-                                            <div>Required to get a specific certificate.</div>
+                                            <div>The name of the certificate whose details needs to be fetched. Required to get a specific certificate.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -287,6 +286,9 @@ Examples
       oci_loadbalancer_certificate_facts:
         # required
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        name: name_example
 
 
 

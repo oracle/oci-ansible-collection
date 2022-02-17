@@ -95,6 +95,25 @@ except ImportError:
 class GenericArtifactContentHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(
+            GenericArtifactContentHelperGen, self
+        ).get_possible_entity_types() + [
+            "genericartifactcontent",
+            "genericartifactcontents",
+            "genericArtifactsContentgenericartifactcontent",
+            "genericArtifactsContentgenericartifactcontents",
+            "genericartifactcontentresource",
+            "genericartifactcontentsresource",
+            "content",
+            "contents",
+            "genericArtifactsContentcontent",
+            "genericArtifactsContentcontents",
+            "contentresource",
+            "contentsresource",
+            "genericartifactscontent",
+        ]
+
     def get_module_resource_id_param(self):
         return "version"
 

@@ -12,10 +12,3 @@ __metaclass__ = type
 class DataSafeConfigurationHelperCustom:
     def is_update(self):
         return True
-
-
-class DataSafeOnPremConnectorHelperCustom:
-    # base class returns: onpremconnector
-    # expected value (value in the service response is): onpremconnectors
-    def get_entity_type(self):
-        return "onpremconnectors"

@@ -228,6 +228,17 @@ except ImportError:
 class IndexHelperGen(OCIResourceHelperBase):
     """Supported operations: create, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(IndexHelperGen, self).get_possible_entity_types() + [
+            "index",
+            "indexes",
+            "nosqlindex",
+            "nosqlindexes",
+            "indexresource",
+            "indexesresource",
+            "nosql",
+        ]
+
     def get_module_resource_id_param(self):
         return "name"
 
@@ -236,6 +247,13 @@ class IndexHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_index
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_index,
+            index_name=summary_model.name,
+            table_name_or_id=self.module.params.get("table_name_or_id"),
+        ).data
 
     def get_resource(self):
         optional_params = [

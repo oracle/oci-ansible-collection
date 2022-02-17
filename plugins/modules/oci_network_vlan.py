@@ -322,6 +322,17 @@ except ImportError:
 class VlanHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(VlanHelperGen, self).get_possible_entity_types() + [
+            "vlan",
+            "vlans",
+            "corevlan",
+            "corevlans",
+            "vlanresource",
+            "vlansresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "vlan_id"
 

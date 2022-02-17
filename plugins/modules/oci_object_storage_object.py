@@ -316,6 +316,23 @@ except ImportError:
 class ObjectHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(ObjectHelperGen, self).get_possible_entity_types() + [
+            "object",
+            "objects",
+            "objectStorageobject",
+            "objectStorageobjects",
+            "objectresource",
+            "objectsresource",
+            "o",
+            "os",
+            "objectStorageo",
+            "objectStorageos",
+            "oresource",
+            "osresource",
+            "objectstorage",
+        ]
+
     def get_module_resource_id_param(self):
         return "object_name"
 

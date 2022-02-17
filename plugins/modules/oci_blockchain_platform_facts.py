@@ -130,6 +130,7 @@ blockchain_platforms:
         is_byol:
             description:
                 - Bring your own license
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
@@ -148,12 +149,14 @@ blockchain_platforms:
         platform_version:
             description:
                 - Platform Version
+                - Returned for get operation
             returned: on success
             type: str
             sample: platform_version_example
         service_version:
             description:
                 - The version of the Platform Instance.
+                - Returned for get operation
             returned: on success
             type: str
             sample: service_version_example
@@ -172,12 +175,14 @@ blockchain_platforms:
         platform_shape_type:
             description:
                 - "Type of Platform shape - DEFAULT or CUSTOM"
+                - Returned for get operation
             returned: on success
             type: str
             sample: DEFAULT
         load_balancer_shape:
             description:
                 - "Type of Load Balancer shape - LB_100_MBPS or LB_400_MBPS. Default is LB_100_MBPS."
+                - Returned for get operation
             returned: on success
             type: str
             sample: LB_100_MBPS
@@ -203,30 +208,35 @@ blockchain_platforms:
         storage_size_in_tbs:
             description:
                 - Storage size in TBs
+                - Returned for get operation
             returned: on success
             type: float
             sample: 1.2
         storage_used_in_t_bs:
             description:
                 - Storage used in TBs
+                - Returned for get operation
             returned: on success
             type: float
             sample: 1.2
         is_multi_ad:
             description:
                 - True for multi-AD blockchain plaforms, false for single-AD
+                - Returned for get operation
             returned: on success
             type: bool
             sample: true
         total_ocpu_capacity:
             description:
                 - Number of total OCPUs allocated to the platform cluster
+                - Returned for get operation
             returned: on success
             type: int
             sample: 56
         component_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -323,6 +333,7 @@ blockchain_platforms:
         replicas:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -347,6 +358,7 @@ blockchain_platforms:
         host_ocpu_utilization_info:
             description:
                 - List of OcpuUtilization for all hosts
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

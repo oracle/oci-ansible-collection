@@ -232,6 +232,17 @@ except ImportError:
 class BackendHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(BackendHelperGen, self).get_possible_entity_types() + [
+            "backend",
+            "backends",
+            "loadBalancerbackend",
+            "loadBalancerbackends",
+            "backendresource",
+            "backendsresource",
+            "loadbalancer",
+        ]
+
     def get_get_fn(self):
         return self.client.get_backend
 

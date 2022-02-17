@@ -174,6 +174,23 @@ except ImportError:
 class GeneratedKeyHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
 
+    def get_possible_entity_types(self):
+        return super(GeneratedKeyHelperGen, self).get_possible_entity_types() + [
+            "generatedkey",
+            "generatedkeys",
+            "keyManagementgeneratedkey",
+            "keyManagementgeneratedkeys",
+            "generatedkeyresource",
+            "generatedkeysresource",
+            "generatedataencryptionkey",
+            "generatedataencryptionkeys",
+            "keyManagementgeneratedataencryptionkey",
+            "keyManagementgeneratedataencryptionkeys",
+            "generatedataencryptionkeyresource",
+            "generatedataencryptionkeysresource",
+            "keymanagement",
+        ]
+
     def get_module_resource_id(self):
         return None
 

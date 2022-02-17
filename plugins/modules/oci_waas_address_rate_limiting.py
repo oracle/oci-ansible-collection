@@ -142,6 +142,17 @@ except ImportError:
 class AddressRateLimitingHelperGen(OCIResourceHelperBase):
     """Supported operations: update and get"""
 
+    def get_possible_entity_types(self):
+        return super(AddressRateLimitingHelperGen, self).get_possible_entity_types() + [
+            "addressratelimiting",
+            "addressratelimitings",
+            "waasaddressratelimiting",
+            "waasaddressratelimitings",
+            "addressratelimitingresource",
+            "addressratelimitingsresource",
+            "waas",
+        ]
+
     def get_module_resource_id_param(self):
         return "waas_policy_id"
 

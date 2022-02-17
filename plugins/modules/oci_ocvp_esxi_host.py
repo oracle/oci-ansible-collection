@@ -350,6 +350,17 @@ class EsxiHostHelperGen(OCIResourceHelperBase):
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestClient)
 
+    def get_possible_entity_types(self):
+        return super(EsxiHostHelperGen, self).get_possible_entity_types() + [
+            "esxihost",
+            "esxihosts",
+            "ocvpesxihost",
+            "ocvpesxihosts",
+            "esxihostresource",
+            "esxihostsresource",
+            "ocvp",
+        ]
+
     def get_module_resource_id_param(self):
         return "esxi_host_id"
 
@@ -358,6 +369,11 @@ class EsxiHostHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_esxi_host
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_esxi_host, esxi_host_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

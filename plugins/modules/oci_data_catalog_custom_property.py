@@ -527,6 +527,19 @@ except ImportError:
 class DataCatalogCustomPropertyHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            DataCatalogCustomPropertyHelperGen, self
+        ).get_possible_entity_types() + [
+            "customproperty",
+            "customproperties",
+            "dataCatalogcustomproperty",
+            "dataCatalogcustomproperties",
+            "custompropertyresource",
+            "custompropertiesresource",
+            "datacatalog",
+        ]
+
     def get_module_resource_id_param(self):
         return "custom_property_key"
 
@@ -535,6 +548,14 @@ class DataCatalogCustomPropertyHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_custom_property
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_custom_property,
+            custom_property_key=summary_model.key,
+            namespace_id=self.module.params.get("namespace_id"),
+            catalog_id=self.module.params.get("catalog_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

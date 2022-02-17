@@ -416,6 +416,17 @@ except ImportError:
 class DrgAttachmentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DrgAttachmentHelperGen, self).get_possible_entity_types() + [
+            "drgattachment",
+            "drgattachments",
+            "coredrgattachment",
+            "coredrgattachments",
+            "drgattachmentresource",
+            "drgattachmentsresource",
+            "core",
+        ]
+
     def get_module_resource_id_param(self):
         return "drg_attachment_id"
 

@@ -441,6 +441,23 @@ except ImportError:
 class DatasetHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DatasetHelperGen, self).get_possible_entity_types() + [
+            "datalabelingdataset",
+            "datalabelingdatasets",
+            "dataLabelingServicedatalabelingdataset",
+            "dataLabelingServicedatalabelingdatasets",
+            "datalabelingdatasetresource",
+            "datalabelingdatasetsresource",
+            "dataset",
+            "datasets",
+            "dataLabelingServicedataset",
+            "dataLabelingServicedatasets",
+            "datasetresource",
+            "datasetsresource",
+            "datalabelingservice",
+        ]
+
     def get_module_resource_id_param(self):
         return "dataset_id"
 
@@ -449,6 +466,11 @@ class DatasetHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_dataset
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_dataset, dataset_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

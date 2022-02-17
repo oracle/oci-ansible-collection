@@ -199,6 +199,17 @@ except ImportError:
 class CustomerSecretKeyHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(CustomerSecretKeyHelperGen, self).get_possible_entity_types() + [
+            "customersecretkey",
+            "customersecretkeys",
+            "identitycustomersecretkey",
+            "identitycustomersecretkeys",
+            "customersecretkeyresource",
+            "customersecretkeysresource",
+            "identity",
+        ]
+
     def get_module_resource_id_param(self):
         return "customer_secret_key_id"
 

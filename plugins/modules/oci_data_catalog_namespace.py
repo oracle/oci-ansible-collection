@@ -216,6 +216,19 @@ except ImportError:
 class DataCatalogNamespaceHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(
+            DataCatalogNamespaceHelperGen, self
+        ).get_possible_entity_types() + [
+            "namespace",
+            "namespaces",
+            "dataCatalognamespace",
+            "dataCatalognamespaces",
+            "namespaceresource",
+            "namespacesresource",
+            "datacatalog",
+        ]
+
     def get_module_resource_id_param(self):
         return "namespace_id"
 
@@ -224,6 +237,13 @@ class DataCatalogNamespaceHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_namespace
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_namespace,
+            namespace_id=summary_model.key,
+            catalog_id=self.module.params.get("catalog_id"),
+        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
