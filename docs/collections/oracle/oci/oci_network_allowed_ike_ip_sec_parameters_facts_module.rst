@@ -30,7 +30,7 @@ oracle.oci.oci_network_allowed_ike_ip_sec_parameters_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a AllowedIkeIpSecParameters resource in Oracle Cloud Infrastructure
-- The allowed parameters for IKE IPSec
+- The parameters allowed for IKE IPSec tunnels.
 
 
 .. Aliases
@@ -322,7 +322,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Phase One Authentication Algorithms</div>
+                                            <div>Allowed phase one authentication algorithms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -339,7 +339,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>DH Groups</div>
+                                            <div>Allowed phase one Diffie-Hellman groups.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -356,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Phase One Encryption Algorithms</div>
+                                            <div>Allowed phase one encryption algorithms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -390,7 +390,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Phase Two Authentication Algorithms</div>
+                                            <div>Allowed phase two authentication algorithms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -407,7 +407,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Phase Two Encryption Algorithms</div>
+                                            <div>Allowed phase two encryption algorithms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -424,7 +424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>PFS DH Groups</div>
+                                            <div>Allowed perfect forward secrecy Diffie-Hellman groups.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -458,7 +458,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Default Phase One Authentication Algorithms</div>
+                                            <div>Default phase one authentication algorithms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -475,7 +475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Default DH Groups</div>
+                                            <div>Default phase one Diffie-Hellman groups.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -492,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Default Phase One Encryption Algorithms</div>
+                                            <div>Default phase one encryption algorithms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -526,7 +526,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Default Phase Two Authentication Algorithms</div>
+                                            <div>Default phase two authentication algorithms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -543,7 +543,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Default Phase Two Encryption Algorithms</div>
+                                            <div>Default phase two encryption algorithms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -560,7 +560,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Default PFS DH Group</div>
+                                            <div>Default perfect forward secrecy Diffie-Hellman groups.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_pfs_dh_group_example</div>

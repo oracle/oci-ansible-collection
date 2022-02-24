@@ -23,7 +23,7 @@ module: oci_database_management_role_facts
 short_description: Fetches details about one or multiple Role resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Role resources in Oracle Cloud Infrastructure
-    - Gets the list of roles granted for the specified user.
+    - Gets the list of roles granted to a specific user.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -81,39 +81,39 @@ roles:
     contains:
         name:
             description:
-                - The name of a granted role
+                - The name of the role granted to the user.
             returned: on success
             type: str
             sample: name_example
         admin_option:
             description:
-                - Indicates whether the grant was with the ADMIN OPTION (YES) or not (NO)
+                - Indicates whether the role is granted with the ADMIN OPTION (YES) or not (NO).
             returned: on success
             type: str
             sample: YES
         delegate_option:
             description:
-                - Indicates whether the grant was with the DELEGATE OPTION (YES) or not (NO)
+                - Indicates whether the role is granted with the DELEGATE OPTION (YES) or not (NO).
             returned: on success
             type: str
             sample: YES
         default_role:
             description:
-                - Indicates whether the role is designated as a DEFAULT ROLE for the user (YES) or not (NO)
+                - Indicates whether the role is designated as a DEFAULT ROLE for the user (YES) or not (NO).
             returned: on success
             type: str
             sample: YES
         common:
             description:
-                - "Indicates how the grant was made. Possible values:
-                  YES if the role was granted commonly (CONTAINER=ALL was used)
-                  NO if the role was granted locally (CONTAINER=ALL was not used)"
+                - "Indicates how the role was granted. Possible values:
+                  YES if the role is granted commonly (CONTAINER=ALL is used)
+                  NO if the role is granted locally (CONTAINER=ALL is not used)"
             returned: on success
             type: str
             sample: YES
         inherited:
             description:
-                - Indicates whether the role grant was inherited from another container (YES) or not (NO)
+                - Indicates whether the granted role is inherited from another container (YES) or not (NO).
             returned: on success
             type: str
             sample: YES

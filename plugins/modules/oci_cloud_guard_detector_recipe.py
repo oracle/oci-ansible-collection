@@ -30,7 +30,8 @@ author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - DetectorRecipe Display Name
+            - Detector recipe display name.
+            - Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -38,7 +39,8 @@ options:
         aliases: ["name"]
     description:
         description:
-            - DetectorRecipe Description
+            - Detector recipe description.
+            - Avoid entering confidential information.
             - This parameter is updatable.
         type: str
     source_detector_recipe_id:
@@ -86,7 +88,6 @@ options:
                             - "MEDIUM"
                             - "LOW"
                             - "MINOR"
-                        required: true
                     configurations:
                         description:
                             - Configuration details
@@ -221,6 +222,7 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - Avoid entering confidential information.
             - This parameter is updatable.
         type: dict
     defined_tags:
@@ -264,9 +266,9 @@ EXAMPLES = """
       details:
         # required
         is_enabled: true
-        risk_level: CRITICAL
 
         # optional
+        risk_level: CRITICAL
         configurations:
         - # required
           config_key: config_key_example
@@ -307,9 +309,9 @@ EXAMPLES = """
       details:
         # required
         is_enabled: true
-        risk_level: CRITICAL
 
         # optional
+        risk_level: CRITICAL
         configurations:
         - # required
           config_key: config_key_example
@@ -350,9 +352,9 @@ EXAMPLES = """
       details:
         # required
         is_enabled: true
-        risk_level: CRITICAL
 
         # optional
+        risk_level: CRITICAL
         configurations:
         - # required
           config_key: config_key_example
@@ -409,13 +411,13 @@ detector_recipe:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - DisplayName of detector recipe
+                - DisplayName of detector recipe.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Detector recipe description
+                - Detector recipe description.
             returned: on success
             type: str
             sample: description_example
@@ -451,19 +453,19 @@ detector_recipe:
             contains:
                 detector_rule_id:
                     description:
-                        - The unique identifier of the detector rule
+                        - The unique identifier of the detector rule.
                     returned: on success
                     type: str
                     sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
-                        - displayName
+                        - Display name for DetectorRecipeDetectorRule.
                     returned: on success
                     type: str
                     sample: display_name_example
                 description:
                     description:
-                        - Description for DetectorRecipeDetectorRule
+                        - Description for DetectorRecipeDetectorRule.
                     returned: on success
                     type: str
                     sample: description_example
@@ -641,6 +643,60 @@ detector_recipe:
                             returned: on success
                             type: bool
                             sample: true
+                        problem_threshold:
+                            description:
+                                - Cutover point for an elevated resource Risk Score to create a Problem
+                            returned: on success
+                            type: int
+                            sample: 56
+                        target_types:
+                            description:
+                                - List of target types for which the detector rule is applicable
+                            returned: on success
+                            type: list
+                            sample: []
+                        sighting_types:
+                            description:
+                                - List of sighting types
+                            returned: on success
+                            type: complex
+                            contains:
+                                id:
+                                    description:
+                                        - The unique identifier of sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                                display_name:
+                                    description:
+                                        - Name of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: display_name_example
+                                description:
+                                    description:
+                                        - Description of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: description_example
+                                mitre_link:
+                                    description:
+                                        - Link of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: mitre_link_example
+                                tactic:
+                                    description:
+                                        - Mitre Att&ck tactic
+                                    returned: on success
+                                    type: str
+                                    sample: tactic_example
+                                techniques:
+                                    description:
+                                        - List of Mitre Att&ck Techniques
+                                    returned: on success
+                                    type: list
+                                    sample: []
                 managed_list_types:
                     description:
                         - List of cloudguard managed list types related to this rule
@@ -704,19 +760,19 @@ detector_recipe:
             contains:
                 detector_rule_id:
                     description:
-                        - The unique identifier of the detector rule
+                        - The unique identifier of the detector rule.
                     returned: on success
                     type: str
                     sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
-                        - displayName
+                        - Display name for DetectorRecipeDetectorRule.
                     returned: on success
                     type: str
                     sample: display_name_example
                 description:
                     description:
-                        - Description for DetectorRecipeDetectorRule
+                        - Description for DetectorRecipeDetectorRule.
                     returned: on success
                     type: str
                     sample: description_example
@@ -894,6 +950,60 @@ detector_recipe:
                             returned: on success
                             type: bool
                             sample: true
+                        problem_threshold:
+                            description:
+                                - Cutover point for an elevated resource Risk Score to create a Problem
+                            returned: on success
+                            type: int
+                            sample: 56
+                        target_types:
+                            description:
+                                - List of target types for which the detector rule is applicable
+                            returned: on success
+                            type: list
+                            sample: []
+                        sighting_types:
+                            description:
+                                - List of sighting types
+                            returned: on success
+                            type: complex
+                            contains:
+                                id:
+                                    description:
+                                        - The unique identifier of sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                                display_name:
+                                    description:
+                                        - Name of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: display_name_example
+                                description:
+                                    description:
+                                        - Description of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: description_example
+                                mitre_link:
+                                    description:
+                                        - Link of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: mitre_link_example
+                                tactic:
+                                    description:
+                                        - Mitre Att&ck tactic
+                                    returned: on success
+                                    type: str
+                                    sample: tactic_example
+                                techniques:
+                                    description:
+                                        - List of Mitre Att&ck Techniques
+                                    returned: on success
+                                    type: list
+                                    sample: []
                 managed_list_types:
                     description:
                         - List of cloudguard managed list types related to this rule
@@ -967,10 +1077,17 @@ detector_recipe:
             returned: on success
             type: str
             sample: CREATING
+        source_data_retention:
+            description:
+                - The number of days for which source data is retained
+            returned: on success
+            type: int
+            sample: 56
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Avoid entering confidential information.
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -1035,7 +1152,17 @@ detector_recipe:
                     "value_type": "MANAGED"
                 },
                 "labels": [],
-                "is_configuration_allowed": true
+                "is_configuration_allowed": true,
+                "problem_threshold": 56,
+                "target_types": [],
+                "sighting_types": [{
+                    "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                    "display_name": "display_name_example",
+                    "description": "description_example",
+                    "mitre_link": "mitre_link_example",
+                    "tactic": "tactic_example",
+                    "techniques": []
+                }]
             },
             "managed_list_types": [],
             "candidate_responder_rules": [{
@@ -1085,7 +1212,17 @@ detector_recipe:
                     "value_type": "MANAGED"
                 },
                 "labels": [],
-                "is_configuration_allowed": true
+                "is_configuration_allowed": true,
+                "problem_threshold": 56,
+                "target_types": [],
+                "sighting_types": [{
+                    "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                    "display_name": "display_name_example",
+                    "description": "description_example",
+                    "mitre_link": "mitre_link_example",
+                    "tactic": "tactic_example",
+                    "techniques": []
+                }]
             },
             "managed_list_types": [],
             "candidate_responder_rules": [{
@@ -1101,6 +1238,7 @@ detector_recipe:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "source_data_retention": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}
@@ -1286,7 +1424,6 @@ def main():
                             is_enabled=dict(type="bool", required=True),
                             risk_level=dict(
                                 type="str",
-                                required=True,
                                 choices=["CRITICAL", "HIGH", "MEDIUM", "LOW", "MINOR"],
                             ),
                             configurations=dict(

@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_execution_plan_stats_comparision_facts -- Fet
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a ExecutionPlanStatsComparision resource in Oracle Cloud Infrastructure
-- A SQL tuning task may suggest new execution plan for a SQL. The API returns the stats comparison report for the plans.
+- Retrieves a comparison of the existing SQL execution plan and a new plan. A SQL tuning task may suggest a new execution plan for a SQL, and this API retrieves the comparison report of the statistics of the two plans.
 
 
 .. Aliases
@@ -209,7 +209,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The execution id for an execution of a SQL tuning task. This is not the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
+                                            <div>The execution ID for an execution of a SQL tuning task. This is not the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -254,7 +254,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The SQL object id for the SQL tuning task. This is not the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
+                                            <div>The SQL object ID for the SQL tuning task. This is not the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -424,7 +424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of the plan for the original or the new plan with profile/index etc.</div>
+                                            <div>The type of the original or modified plan with profile, index, and so on.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plan_type_example</div>
@@ -496,7 +496,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of the plan for the original or the new plan with profile/index etc.</div>
+                                            <div>The type of the original or modified plan with profile, index, and so on.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plan_type_example</div>

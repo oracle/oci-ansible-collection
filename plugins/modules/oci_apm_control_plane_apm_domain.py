@@ -66,7 +66,7 @@ options:
         type: bool
     apm_domain_id:
         description:
-            - The OCID of the APM domain
+            - The OCID of the APM domain.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str

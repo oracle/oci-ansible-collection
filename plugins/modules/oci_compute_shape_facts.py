@@ -339,6 +339,61 @@ shapes:
                             returned: on success
                             type: str
                             sample: default_value_example
+        is_billed_for_stopped_instance:
+            description:
+                - Whether billing continues when the instances that use this shape are in the stopped state.
+            returned: on success
+            type: bool
+            sample: true
+        billing_type:
+            description:
+                - How instances that use this shape are charged.
+            returned: on success
+            type: str
+            sample: ALWAYS_FREE
+        quota_names:
+            description:
+                - The list of of compartment quotas for the shape.
+            returned: on success
+            type: list
+            sample: []
+        is_subcore:
+            description:
+                - Whether the shape supports creating subcore or burstable instances. A L(burstable
+                  instance,https://docs.cloud.oracle.com/iaas/Content/Compute/References/burstable-instances.htm)
+                  is a virtual machine (VM) instance that provides a baseline level of CPU performance with the ability to burst to a higher level to support
+                  occasional
+                  spikes in usage.
+            returned: on success
+            type: bool
+            sample: true
+        is_flexible:
+            description:
+                - Whether the shape supports creating flexible instances. A L(flexible
+                  shape,https://docs.cloud.oracle.com/iaas/Content/Compute/References/computeshapes.htm#flexible)
+                  is a shape that lets you customize the number of OCPUs and the amount of memory when launching or resizing your instance.
+            returned: on success
+            type: bool
+            sample: true
+        resize_compatible_shapes:
+            description:
+                - The list of compatible shapes that this shape can be changed to. For more information,
+                  see L(Changing the Shape of an Instance,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/resizinginstances.htm).
+            returned: on success
+            type: list
+            sample: []
+        recommended_alternatives:
+            description:
+                - The list of shapes and shape details (if applicable) that Oracle recommends that you use as an alternative to the current shape.
+            returned: on success
+            type: complex
+            contains:
+                shape_name:
+                    description:
+                        - The name of the shape.
+                    returned: on success
+                    type: str
+                    sample: shape_name_example
     sample: [{
         "baseline_ocpu_utilizations": [],
         "min_total_baseline_ocpus_required": 10,
@@ -393,7 +448,16 @@ shapes:
                 "service_allowed_values": [],
                 "default_value": "default_value_example"
             }
-        }
+        },
+        "is_billed_for_stopped_instance": true,
+        "billing_type": "ALWAYS_FREE",
+        "quota_names": [],
+        "is_subcore": true,
+        "is_flexible": true,
+        "resize_compatible_shapes": [],
+        "recommended_alternatives": [{
+            "shape_name": "shape_name_example"
+        }]
     }]
 """
 

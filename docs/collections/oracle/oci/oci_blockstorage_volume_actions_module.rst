@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_volume_actions -- Perform actions on a Volume resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -358,7 +358,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of Volume Performance Units per GB that this volume is effectively tuned to when it&#x27;s idle.</div>
+                                            <div>The number of Volume Performance Units per GB that this volume is effectively tuned to.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -562,7 +562,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether the auto-tune performance is enabled for this volume.</div>
+                                            <div>Specifies whether the auto-tune performance is enabled for this volume. This field is deprecated. Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -782,6 +782,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* `0`: Represents Lower Cost option.</div>
                                             <div>* `10`: Represents Balanced option.</div>
                                             <div>* `20`: Represents Higher Performance option.</div>
+                                            <div>For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

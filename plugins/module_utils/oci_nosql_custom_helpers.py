@@ -8,6 +8,8 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+
 
 class IndexHelperCustom:
     def is_create(self):
@@ -32,3 +34,10 @@ class TableActionsHelperCustom:
         if self.module.params.get("to_compartment_id") == resource.compartment_id:
             return False
         return True
+
+
+class TableHelperCustom:
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_table, table_name_or_id=summary_model.id,
+        ).data

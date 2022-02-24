@@ -23,7 +23,7 @@ module: oci_network_allowed_ike_ip_sec_parameters_facts
 short_description: Fetches details about a AllowedIkeIpSecParameters resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AllowedIkeIpSecParameters resource in Oracle Cloud Infrastructure
-    - The allowed parameters for IKE IPSec
+    - The parameters allowed for IKE IPSec tunnels.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options: {}
@@ -51,19 +51,19 @@ allowed_ike_ip_sec_parameters:
             contains:
                 encryption_algorithms:
                     description:
-                        - Phase One Encryption Algorithms
+                        - Allowed phase one encryption algorithms.
                     returned: on success
                     type: list
                     sample: []
                 authentication_algorithms:
                     description:
-                        - Phase One Authentication Algorithms
+                        - Allowed phase one authentication algorithms.
                     returned: on success
                     type: list
                     sample: []
                 dh_groups:
                     description:
-                        - DH Groups
+                        - Allowed phase one Diffie-Hellman groups.
                     returned: on success
                     type: list
                     sample: []
@@ -75,19 +75,19 @@ allowed_ike_ip_sec_parameters:
             contains:
                 encryption_algorithms:
                     description:
-                        - Phase Two Encryption Algorithms
+                        - Allowed phase two encryption algorithms.
                     returned: on success
                     type: list
                     sample: []
                 authentication_algorithms:
                     description:
-                        - Phase Two Authentication Algorithms
+                        - Allowed phase two authentication algorithms.
                     returned: on success
                     type: list
                     sample: []
                 pfs_dh_groups:
                     description:
-                        - PFS DH Groups
+                        - Allowed perfect forward secrecy Diffie-Hellman groups.
                     returned: on success
                     type: list
                     sample: []
@@ -99,19 +99,19 @@ allowed_ike_ip_sec_parameters:
             contains:
                 default_encryption_algorithms:
                     description:
-                        - Default Phase One Encryption Algorithms
+                        - Default phase one encryption algorithms.
                     returned: on success
                     type: list
                     sample: []
                 default_authentication_algorithms:
                     description:
-                        - Default Phase One Authentication Algorithms
+                        - Default phase one authentication algorithms.
                     returned: on success
                     type: list
                     sample: []
                 default_dh_groups:
                     description:
-                        - Default DH Groups
+                        - Default phase one Diffie-Hellman groups.
                     returned: on success
                     type: list
                     sample: []
@@ -123,19 +123,19 @@ allowed_ike_ip_sec_parameters:
             contains:
                 default_encryption_algorithms:
                     description:
-                        - Default Phase Two Encryption Algorithms
+                        - Default phase two encryption algorithms.
                     returned: on success
                     type: list
                     sample: []
                 default_authentication_algorithms:
                     description:
-                        - Default Phase Two Authentication Algorithms
+                        - Default phase two authentication algorithms.
                     returned: on success
                     type: list
                     sample: []
                 default_pfs_dh_group:
                     description:
-                        - Default PFS DH Group
+                        - Default perfect forward secrecy Diffie-Hellman groups.
                     returned: on success
                     type: str
                     sample: default_pfs_dh_group_example

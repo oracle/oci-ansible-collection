@@ -263,6 +263,7 @@ instance_configurations:
                                         - " * `0`: Represents Lower Cost option."
                                         - " * `10`: Represents Balanced option."
                                         - " * `20`: Represents Higher Performance option."
+                                        - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -580,7 +581,7 @@ instance_configurations:
                                     sample: true
                                 numa_nodes_per_socket:
                                     description:
-                                        - The number of NUMA nodes per socket.
+                                        - The number of NUMA nodes per socket (NPS).
                                     returned: on success
                                     type: str
                                     sample: NPS0

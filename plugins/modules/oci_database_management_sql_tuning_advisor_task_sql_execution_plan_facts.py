@@ -23,7 +23,7 @@ module: oci_database_management_sql_tuning_advisor_task_sql_execution_plan_facts
 short_description: Fetches details about a SqlTuningAdvisorTaskSqlExecutionPlan resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a SqlTuningAdvisorTaskSqlExecutionPlan resource in Oracle Cloud Infrastructure
-    - Retrieve a SQL execution plan for a SQL being tuned, for original or new plan
+    - Retrieves a SQL execution plan for the SQL being tuned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -40,7 +40,7 @@ options:
         required: true
     sql_object_id:
         description:
-            - The SQL object id for the SQL tuning task. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The SQL object ID for the SQL tuning task. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: int
         required: true
     attribute:
@@ -76,69 +76,69 @@ sql_tuning_advisor_task_sql_execution_plan:
     contains:
         plan:
             description:
-                - A SQL execution plan as a list of steps
+                - A SQL execution plan as a list of steps.
             returned: on success
             type: complex
             contains:
                 plan_hash_value:
                     description:
-                        - Numerical representation of the execution plan
+                        - The numerical representation of the SQL execution plan.
                     returned: on success
                     type: int
                     sample: 56
                 step_id:
                     description:
-                        - Identification number for this step in the execution plan. It is unique within the execution plan.
-                          It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                        - The identification number of a step in the SQL execution plan. This is unique within the SQL execution plan.
+                          This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: int
                     sample: 56
                 parent_step_id:
                     description:
-                        - ID of the next step that operates on the results of this step.
-                          It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                        - The ID of the next step that operates on the results of this step.
+                          This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: int
                     sample: 56
                 position:
                     description:
-                        - Order of processing for steps with the same parent ID.
+                        - The order of processing for steps with the same parent ID.
                     returned: on success
                     type: int
                     sample: 56
                 operation:
                     description:
-                        - Name of the operation performed at this step
+                        - The name of the operation performed at this step.
                     returned: on success
                     type: str
                     sample: operation_example
                 options:
                     description:
-                        - Options used for the operation performed at this step.
+                        - The options used for the operation performed at this step.
                     returned: on success
                     type: str
                     sample: options_example
                 optimizer_mode:
                     description:
-                        - Current mode of the optimizer, such as all_rows, first_rows_n (where n = 1, 10, 100, 1000 etc).
+                        - The current mode of the optimizer, such as all_rows, first_rows_n (where n = 1, 10, 100, 1000, and so on).
                     returned: on success
                     type: str
                     sample: optimizer_mode_example
                 cost:
                     description:
-                        - Cost of the current operation estimated by the cost-based optimizer (CBO).
+                        - The cost of the current operation estimated by the cost-based optimizer (CBO).
                     returned: on success
                     type: float
                     sample: 1.2
                 cardinality:
                     description:
-                        - Number of rows returned by the current operation (estimated by the CBO).
+                        - The number of rows returned by the current operation (estimated by the CBO).
                     returned: on success
                     type: int
                     sample: 56
                 bytes:
                     description:
-                        - Number of bytes returned by the current operation.
+                        - The number of bytes returned by the current operation.
                     returned: on success
                     type: int
                     sample: 56
@@ -156,77 +156,77 @@ sql_tuning_advisor_task_sql_execution_plan:
                     sample: 1.2
                 temp_space:
                     description:
-                        - Temporary space usage (in bytes) of the operation (sort or hash-join) as estimated by the CBO.
+                        - The temporary space usage (in bytes) of the operation (sort or hash-join) as estimated by the CBO.
                     returned: on success
                     type: int
                     sample: 56
                 time:
                     description:
-                        - Elapsed time (in seconds) of the operation as estimated by the CBO.
+                        - The elapsed time (in seconds) of the operation as estimated by the CBO.
                     returned: on success
                     type: int
                     sample: 56
                 object_node:
                     description:
-                        - Name of the database link used to reference the object.
+                        - The name of the database link used to reference the object.
                     returned: on success
                     type: str
                     sample: object_node_example
                 object_owner:
                     description:
-                        - Owner of the object.
+                        - The owner of the object.
                     returned: on success
                     type: str
                     sample: object_owner_example
                 object_name:
                     description:
-                        - Name of the object.
+                        - The name of the object.
                     returned: on success
                     type: str
                     sample: object_name_example
                 object_position:
                     description:
-                        - Numbered position of the object name in the original SQL statement.
+                        - The numbered position of the object name in the original SQL statement.
                     returned: on success
                     type: int
                     sample: 56
                 object_type:
                     description:
-                        - Descriptive modifier that further describes the type of object.
+                        - The descriptive modifier that further describes the type of object.
                     returned: on success
                     type: str
                     sample: object_type_example
                 partition_start:
                     description:
-                        - A step may get data from a range of partitions of a partitioned object, such table or index,
+                        - A step may get data from a range of partitions of a partitioned object, such as table or index,
                           based on predicates and sorting order. The partionStart is the starting partition of the range.
-                          The partitionStop is the ending partition of the range
+                          The partitionStop is the ending partition of the range.
                     returned: on success
                     type: str
                     sample: partition_start_example
                 partition_stop:
                     description:
-                        - A step may get data from a range of partitions of a partitioned object, such table or index,
+                        - A step may get data from a range of partitions of a partitioned object, such as table or index,
                           based on predicates and sorting order. The partionStart is the starting partition of the range.
-                          The partitionStop is the ending partition of the range
+                          The partitionStop is the ending partition of the range.
                     returned: on success
                     type: str
                     sample: partition_stop_example
                 partition_id:
                     description:
-                        - The id of the step in the execution plan that has computed the pair of values of the partitionStart and partitionStop
+                        - The ID of the step in the execution plan that has computed the pair of values of partitionStart and partitionStop.
                     returned: on success
                     type: int
                     sample: 56
                 remarks:
                     description:
-                        - Place for comments that can be added to the steps of the execution plan.
+                        - The place for comments that can be added to the steps of the execution plan.
                     returned: on success
                     type: str
                     sample: remarks_example
                 number_of_search_column:
                     description:
-                        - Number of index columns with start and stop keys (that is, the number of columns with matching predicates)
+                        - Number of index columns with start and stop keys (that is, the number of columns with matching predicates).
                     returned: on success
                     type: int
                     sample: 56
@@ -244,20 +244,20 @@ sql_tuning_advisor_task_sql_execution_plan:
                     sample: other_tag_example
                 attribute:
                     description:
-                        - Text string identifying the type of the execution plan.
+                        - The text string identifying the type of execution plan.
                     returned: on success
                     type: str
                     sample: attribute_example
                 access_predicates:
                     description:
-                        - Predicates used to locate rows in an access structure. For example,
+                        - The predicates used to locate rows in an access structure. For example,
                           start or stop predicates for an index range scan.
                     returned: on success
                     type: str
                     sample: access_predicates_example
                 filter_predicates:
                     description:
-                        - Predicates used to filter rows before producing them.
+                        - The predicates used to filter rows before producing them.
                     returned: on success
                     type: str
                     sample: filter_predicates_example

@@ -306,6 +306,12 @@ tablespaces:
             returned: on success
             type: float
             sample: 1.2
+        is_default:
+            description:
+                - Indicates whether this is the default tablespace.
+            returned: on success
+            type: bool
+            sample: true
         datafiles:
             description:
                 - A list of the data files associated with the tablespace.
@@ -444,6 +450,7 @@ tablespaces:
         "used_space_kb": 10,
         "used_percent_available": 1.2,
         "used_percent_allocated": 1.2,
+        "is_default": true,
         "datafiles": [{
             "name": "name_example",
             "status": "AVAILABLE",

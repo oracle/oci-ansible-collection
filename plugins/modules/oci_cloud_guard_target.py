@@ -29,7 +29,8 @@ author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - DetectorTemplate Identifier
+            - DetectorTemplate identifier.
+            - Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -45,6 +46,7 @@ options:
     description:
         description:
             - The target description.
+            - Avoid entering confidential information.
         type: str
     target_resource_type:
         description:
@@ -337,6 +339,7 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - Avoid entering confidential information.
             - This parameter is updatable.
         type: dict
     defined_tags:
@@ -560,13 +563,13 @@ target:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Target Identifier, can be renamed
+                - Target display name, can be renamed.
             returned: on success
             type: str
             sample: display_name_example
@@ -614,13 +617,13 @@ target:
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
-                        - DisplayName of detector recipe
+                        - Display name of detector recipe.
                     returned: on success
                     type: str
                     sample: display_name_example
                 description:
                     description:
-                        - Detector recipe description
+                        - Detector recipe description.
                     returned: on success
                     type: str
                     sample: description_example
@@ -656,19 +659,19 @@ target:
                     contains:
                         detector_rule_id:
                             description:
-                                - The unique identifier of the detector rule
+                                - The unique identifier of the detector rule.
                             returned: on success
                             type: str
                             sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
-                                - displayName
+                                - Display name for TargetDetectorRecipeDetectorRule. information.
                             returned: on success
                             type: str
                             sample: display_name_example
                         description:
                             description:
-                                - Description for TargetDetectorRecipeDetectorRule
+                                - Description for TargetDetectorRecipeDetectorRule. information.
                             returned: on success
                             type: str
                             sample: description_example
@@ -858,6 +861,60 @@ target:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                problem_threshold:
+                                    description:
+                                        - Cutover point for an elevated resource Risk Score to create a Problem
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                target_types:
+                                    description:
+                                        - List of target types for which the detector rule is applicable
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                sighting_types:
+                                    description:
+                                        - List of sighting types
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        id:
+                                            description:
+                                                - The unique identifier of sighting type
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                                        display_name:
+                                            description:
+                                                - Name of the sighting type
+                                            returned: on success
+                                            type: str
+                                            sample: display_name_example
+                                        description:
+                                            description:
+                                                - Description of the sighting type
+                                            returned: on success
+                                            type: str
+                                            sample: description_example
+                                        mitre_link:
+                                            description:
+                                                - Link of the sighting type
+                                            returned: on success
+                                            type: str
+                                            sample: mitre_link_example
+                                        tactic:
+                                            description:
+                                                - Mitre Att&ck tactic
+                                            returned: on success
+                                            type: str
+                                            sample: tactic_example
+                                        techniques:
+                                            description:
+                                                - List of Mitre Att&ck Techniques
+                                            returned: on success
+                                            type: list
+                                            sample: []
                         managed_list_types:
                             description:
                                 - List of cloudguard managed list types related to this rule
@@ -897,19 +954,19 @@ target:
                     contains:
                         detector_rule_id:
                             description:
-                                - The unique identifier of the detector rule
+                                - The unique identifier of the detector rule.
                             returned: on success
                             type: str
                             sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
-                                - displayName
+                                - Display name for TargetDetectorRecipeDetectorRule. information.
                             returned: on success
                             type: str
                             sample: display_name_example
                         description:
                             description:
-                                - Description for TargetDetectorRecipeDetectorRule
+                                - Description for TargetDetectorRecipeDetectorRule. information.
                             returned: on success
                             type: str
                             sample: description_example
@@ -1099,6 +1156,60 @@ target:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                problem_threshold:
+                                    description:
+                                        - Cutover point for an elevated resource Risk Score to create a Problem
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                target_types:
+                                    description:
+                                        - List of target types for which the detector rule is applicable
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                sighting_types:
+                                    description:
+                                        - List of sighting types
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        id:
+                                            description:
+                                                - The unique identifier of sighting type
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                                        display_name:
+                                            description:
+                                                - Name of the sighting type
+                                            returned: on success
+                                            type: str
+                                            sample: display_name_example
+                                        description:
+                                            description:
+                                                - Description of the sighting type
+                                            returned: on success
+                                            type: str
+                                            sample: description_example
+                                        mitre_link:
+                                            description:
+                                                - Link of the sighting type
+                                            returned: on success
+                                            type: str
+                                            sample: mitre_link_example
+                                        tactic:
+                                            description:
+                                                - Mitre Att&ck tactic
+                                            returned: on success
+                                            type: str
+                                            sample: tactic_example
+                                        techniques:
+                                            description:
+                                                - List of Mitre Att&ck Techniques
+                                            returned: on success
+                                            type: list
+                                            sample: []
                         managed_list_types:
                             description:
                                 - List of cloudguard managed list types related to this rule
@@ -1148,6 +1259,12 @@ target:
                     returned: on success
                     type: str
                     sample: CREATING
+                source_data_retention:
+                    description:
+                        - The number of days for which source data is retained
+                    returned: on success
+                    type: int
+                    sample: 56
         target_responder_recipes:
             description:
                 - List of responder recipes associated with target
@@ -1156,13 +1273,13 @@ target:
             contains:
                 id:
                     description:
-                        - Unique identifier of TargetResponderRecipe that is immutable on creation
+                        - Unique identifier of TargetResponderRecipe that can't be changed after creation.
                     returned: on success
                     type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 responder_recipe_id:
                     description:
-                        - Unique identifier for Responder Recipe of which this is an extension
+                        - Unique identifier for Responder Recipe of which this is an extension.
                     returned: on success
                     type: str
                     sample: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1174,13 +1291,13 @@ target:
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
-                        - ResponderRecipe Identifier Name
+                        - ResponderRecipe display name.
                     returned: on success
                     type: str
                     sample: display_name_example
                 description:
                     description:
-                        - ResponderRecipe Description
+                        - ResponderRecipe description.
                     returned: on success
                     type: str
                     sample: description_example
@@ -1210,19 +1327,19 @@ target:
                     contains:
                         responder_rule_id:
                             description:
-                                - Identifier for ResponderRule.
+                                - Unique ResponderRule identifier.
                             returned: on success
                             type: str
                             sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
-                                - ResponderRule Display Name
+                                - ResponderRule display name.
                             returned: on success
                             type: str
                             sample: display_name_example
                         description:
                             description:
-                                - ResponderRule Description
+                                - ResponderRule description.
                             returned: on success
                             type: str
                             sample: description_example
@@ -1391,19 +1508,19 @@ target:
                     contains:
                         responder_rule_id:
                             description:
-                                - Identifier for ResponderRule.
+                                - Unique ResponderRule identifier.
                             returned: on success
                             type: str
                             sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
-                                - ResponderRule Display Name
+                                - ResponderRule display name.
                             returned: on success
                             type: str
                             sample: display_name_example
                         description:
                             description:
-                                - ResponderRule Description
+                                - ResponderRule description.
                             returned: on success
                             type: str
                             sample: description_example
@@ -1599,6 +1716,7 @@ target:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Avoid entering confidential information.
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -1674,7 +1792,17 @@ target:
                         }
                     }],
                     "labels": [],
-                    "is_configuration_allowed": true
+                    "is_configuration_allowed": true,
+                    "problem_threshold": 56,
+                    "target_types": [],
+                    "sighting_types": [{
+                        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                        "display_name": "display_name_example",
+                        "description": "description_example",
+                        "mitre_link": "mitre_link_example",
+                        "tactic": "tactic_example",
+                        "techniques": []
+                    }]
                 },
                 "managed_list_types": [],
                 "time_created": "2013-10-20T19:20:30+01:00",
@@ -1722,7 +1850,17 @@ target:
                         }
                     }],
                     "labels": [],
-                    "is_configuration_allowed": true
+                    "is_configuration_allowed": true,
+                    "problem_threshold": 56,
+                    "target_types": [],
+                    "sighting_types": [{
+                        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                        "display_name": "display_name_example",
+                        "description": "description_example",
+                        "mitre_link": "mitre_link_example",
+                        "tactic": "tactic_example",
+                        "techniques": []
+                    }]
                 },
                 "managed_list_types": [],
                 "time_created": "2013-10-20T19:20:30+01:00",
@@ -1732,7 +1870,8 @@ target:
             }],
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
-            "lifecycle_state": "CREATING"
+            "lifecycle_state": "CREATING",
+            "source_data_retention": 56
         }],
         "target_responder_recipes": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

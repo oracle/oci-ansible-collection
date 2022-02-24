@@ -163,6 +163,14 @@ tables:
                     returned: on success
                     type: int
                     sample: 56
+                capacity_mode:
+                    description:
+                        - The capacity mode of the table.  If capacityMode = ON_DEMAND,
+                          maxReadUnits and maxWriteUnits are not used, and both will have
+                          the value of zero.
+                    returned: on success
+                    type: str
+                    sample: PROVISIONED
         lifecycle_state:
             description:
                 - The state of a table.
@@ -286,7 +294,8 @@ tables:
         "table_limits": {
             "max_read_units": 56,
             "max_write_units": 56,
-            "max_storage_in_g_bs": 56
+            "max_storage_in_g_bs": 56,
+            "capacity_mode": "PROVISIONED"
         },
         "lifecycle_state": "CREATING",
         "is_auto_reclaimable": true,

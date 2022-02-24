@@ -95,6 +95,36 @@ configuration:
             returned: on success
             type: str
             sample: CREATING
+        data_safe_nat_gateway_ip_address:
+            description:
+                - The Oracle Data Safe's NAT Gateway IP Address.
+            returned: on success
+            type: str
+            sample: data_safe_nat_gateway_ip_address_example
+        global_settings:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_paid_usage:
+                    description:
+                        - The paid usage option chosen by the customer admin.
+                    returned: on success
+                    type: bool
+                    sample: true
+                online_retention_period:
+                    description:
+                        - The online retention period in months.
+                    returned: on success
+                    type: int
+                    sample: 56
+                offline_retention_period:
+                    description:
+                        - The offline retention period in months.
+                    returned: on success
+                    type: int
+                    sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
@@ -117,6 +147,12 @@ configuration:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_enabled": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "data_safe_nat_gateway_ip_address": "data_safe_nat_gateway_ip_address_example",
+        "global_settings": {
+            "is_paid_usage": true,
+            "online_retention_period": 56,
+            "offline_retention_period": 56
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

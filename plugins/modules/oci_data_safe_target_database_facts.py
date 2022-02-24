@@ -39,6 +39,10 @@ options:
             - A filter to return only resources that match the specified compartment OCID.
             - Required to list multiple target_databases.
         type: str
+    associated_resource_id:
+        description:
+            - A filter to return the target databases that are associated to the resource id passed in as a parameter value.
+        type: str
     display_name:
         description:
             - A filter to return only resources that match the specified display name.
@@ -122,6 +126,7 @@ EXAMPLES = """
 
     # optional
     target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    associated_resource_id: "ocid1.associatedresource.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     lifecycle_state: CREATING
     database_type: DATABASE_CLOUD_SERVICE
@@ -308,6 +313,12 @@ target_databases:
                     returned: on success
                     type: str
                     sample: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        associated_resource_ids:
+            description:
+                - The OCIDs of associated resources like Database, Data Safe private endpoint etc.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The current state of the target database in Data Safe.
@@ -403,6 +414,7 @@ target_databases:
             "on_prem_connector_id": "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx",
             "datasafe_private_endpoint_id": "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "associated_resource_ids": [],
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -451,6 +463,7 @@ class DataSafeTargetDatabaseFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "associated_resource_id",
             "target_database_id",
             "display_name",
             "lifecycle_state",
@@ -490,6 +503,7 @@ def main():
         dict(
             target_database_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            associated_resource_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",

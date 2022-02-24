@@ -23,7 +23,7 @@ module: oci_network_tunnel_route_facts
 short_description: Fetches details about one or multiple TunnelRoute resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple TunnelRoute resources in Oracle Cloud Infrastructure
-    - The routes advertised to the Customer and the routes received from the Customer.
+    - The routes advertised to the on-premises network and the routes received from the on-premises network.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -39,9 +39,9 @@ options:
         required: true
     advertiser:
         description:
-            - Specifies the advertiser of the routes. If set to ORACLE, then returns only the
-              routes advertised by ORACLE, else if set to CUSTOMER, then returns only the
-              routes advertised by the CUSTOMER.
+            - Specifies the advertiser of the routes. If set to `ORACLE`, this returns only the
+              routes advertised by Oracle. When set to `CUSTOMER`, this returns only the
+              routes advertised by the CPE.
         type: str
         choices:
             - "CUSTOMER"
@@ -70,31 +70,31 @@ tunnel_routes:
     contains:
         prefix:
             description:
-                - BGP Network Layer Reachability Information
+                - The BGP network layer reachability information.
             returned: on success
             type: str
             sample: prefix_example
         age:
             description:
-                - The age of the route
+                - The age of the route.
             returned: on success
             type: int
             sample: 56
         is_best_path:
             description:
-                - Is this the best route
+                - Indicates this is the best route.
             returned: on success
             type: bool
             sample: true
         as_path:
             description:
-                - List of ASNs in AS Path
+                - A list of ASNs in AS_Path.
             returned: on success
             type: list
             sample: []
         advertiser:
             description:
-                - Route advertiser
+                - The source of the route advertisement.
             returned: on success
             type: str
             sample: CUSTOMER

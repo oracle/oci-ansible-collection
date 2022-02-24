@@ -222,7 +222,7 @@ users:
                         - Indicates if the user can log in to the console.
                     returned: on success
                     type: bool
-                    sample: example-password
+                    sample: true
                 can_use_api_keys:
                     description:
                         - Indicates if the user can use API keys.
@@ -301,7 +301,7 @@ users:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "capabilities": {
-            "can_use_console_password": example-password,
+            "can_use_console_password": true,
             "can_use_api_keys": true,
             "can_use_auth_tokens": true,
             "can_use_smtp_credentials": true,

@@ -137,6 +137,12 @@ cross_connect_mappings:
             returned: on success
             type: str
             sample: UP
+        oci_logical_device_name:
+            description:
+                - The FastConnect device that terminates the logical connection.
+            returned: on success
+            type: str
+            sample: oci_logical_device_name_example
     sample: [{
         "bgp_md5_auth_key": "bgp_md5_auth_key_example",
         "cross_connect_or_cross_connect_group_id": "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx",
@@ -146,7 +152,8 @@ cross_connect_mappings:
         "oracle_bgp_peering_ipv6": "oracle_bgp_peering_ipv6_example",
         "vlan": 56,
         "ipv4_bgp_status": "UP",
-        "ipv6_bgp_status": "UP"
+        "ipv6_bgp_status": "UP",
+        "oci_logical_device_name": "oci_logical_device_name_example"
     }]
 """
 

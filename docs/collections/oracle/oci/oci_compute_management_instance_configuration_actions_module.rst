@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_configuration_actions -- Perform acti
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -595,6 +595,7 @@ Parameters
                                             <div>* `0`: Represents Lower Cost option.</div>
                                             <div>* `10`: Represents Balanced option.</div>
                                             <div>* `20`: Represents Higher Performance option.</div>
+                                            <div>For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.</div>
                                                         </td>
             </tr>
                     
@@ -1631,7 +1632,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The number of NUMA nodes per socket.</div>
+                                            <div>The number of NUMA nodes per socket (NPS).</div>
                                             <div>Applicable when type is &#x27;AMD_MILAN_BM&#x27;</div>
                                                         </td>
             </tr>

@@ -23,7 +23,7 @@ module: oci_network_tunnel_security_association_facts
 short_description: Fetches details about one or multiple TunnelSecurityAssociation resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple TunnelSecurityAssociation resources in Oracle Cloud Infrastructure
-    - Lists the tunnel Security Associations information for the specified IPSec Tunnel ID.
+    - Lists the tunnel security associations information for the specified IPSec tunnel ID.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -58,31 +58,31 @@ tunnel_security_associations:
     contains:
         cpe_subnet:
             description:
-                - IP and mask of the Partner Subnet for Policy Based VPNs or Static Routes
+                - The IP address and mask of the partner subnet used in policy based VPNs or static routes.
             returned: on success
             type: str
             sample: cpe_subnet_example
         oracle_subnet:
             description:
-                - IP and mask of the Local Subnet for Policy Based VPNs or Static Routes
+                - The IP address and mask of the local subnet used in policy based VPNs or static routes.
             returned: on success
             type: str
             sample: oracle_subnet_example
         tunnel_sa_status:
             description:
-                - Phase 1 Status of the Tunnel
+                - The IPSec tunnel's phase one status.
             returned: on success
             type: str
             sample: INITIATING
         tunnel_sa_error_info:
             description:
-                - Current state if status is not up, including phase1/phase2 and possible reason for tunnel not up
+                - Current state if the IPSec tunnel status is not `UP`, including phase one and phase two details and a possible reason the tunnel is not `UP`.
             returned: on success
             type: str
             sample: tunnel_sa_error_info_example
         time:
             description:
-                - Seconds in current state
+                - Time in the current state, in seconds.
             returned: on success
             type: str
             sample: time_example

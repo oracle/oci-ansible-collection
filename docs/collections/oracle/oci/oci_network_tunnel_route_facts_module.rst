@@ -30,7 +30,7 @@ oracle.oci.oci_network_tunnel_route_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple TunnelRoute resources in Oracle Cloud Infrastructure
-- The routes advertised to the Customer and the routes received from the Customer.
+- The routes advertised to the on-premises network and the routes received from the on-premises network.
 
 
 .. Aliases
@@ -102,7 +102,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the advertiser of the routes. If set to ORACLE, then returns only the routes advertised by ORACLE, else if set to CUSTOMER, then returns only the routes advertised by the CUSTOMER.</div>
+                                            <div>Specifies the advertiser of the routes. If set to `ORACLE`, this returns only the routes advertised by Oracle. When set to `CUSTOMER`, this returns only the routes advertised by the CPE.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -360,7 +360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Route advertiser</div>
+                                            <div>The source of the route advertisement.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER</div>
@@ -378,7 +378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The age of the route</div>
+                                            <div>The age of the route.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -396,7 +396,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of ASNs in AS Path</div>
+                                            <div>A list of ASNs in AS_Path.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -412,7 +412,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Is this the best route</div>
+                                            <div>Indicates this is the best route.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -430,7 +430,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>BGP Network Layer Reachability Information</div>
+                                            <div>The BGP network layer reachability information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">prefix_example</div>

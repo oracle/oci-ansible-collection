@@ -23,10 +23,9 @@ module: oci_database_management_managed_database_actions
 short_description: Perform actions on a ManagedDatabase resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a ManagedDatabase resource in Oracle Cloud Infrastructure
-    - For I(action=clone_sql_tuning_task), clone and start a SQL tuning task for a given SQL tuning task.
-    - For I(action=drop_sql_tuning_task), drop a SQL tuning task and its related results from the database.
-    - For I(action=start_sql_tuning_task), start a SQL tuning task for a given set of SQLs from active session history
-      top SQLs.
+    - For I(action=clone_sql_tuning_task), clones and runs a SQL tuning task in the database.
+    - For I(action=drop_sql_tuning_task), drops a SQL tuning task and its related results from the database.
+    - For I(action=start_sql_tuning_task), starts a SQL tuning task for a given set of SQL statements from the active session history top SQL statements.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -38,15 +37,16 @@ options:
         required: true
     task_name:
         description:
-            - The name of the SQL tuning task. The name is unique per user in a database, and it is case sensitive.
+            - The name of the SQL tuning task. The name is unique per user in a database, and it is case-sensitive.
             - Required for I(action=clone_sql_tuning_task), I(action=start_sql_tuning_task).
         type: str
     original_task_id:
         description:
-            - The identifier of the task being cloned. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The identifier of the SQL tuning task being cloned. This is not the
+              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
               It can be retrieved from the following endpoint
               L(ListSqlTuningAdvisorTasks,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database-
-              management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks)
+              management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks).
             - Required for I(action=clone_sql_tuning_task).
         type: int
     task_description:
@@ -62,7 +62,7 @@ options:
         suboptions:
             sql_tuning_task_credential_type:
                 description:
-                    - The type pf the credential for SQL tuning task.
+                    - The type of credential for the SQL tuning task.
                 type: str
                 choices:
                     - "SECRET"
@@ -70,7 +70,7 @@ options:
                 required: true
             username:
                 description:
-                    - The user to connect to the database.
+                    - The user name used to connect to the database.
                 type: str
                 required: true
             role:
@@ -94,10 +94,11 @@ options:
                 type: str
     task_id:
         description:
-            - The identifier of the task being dropped. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The identifier of the SQL tuning task being dropped. This is not the
+              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
               It can be retrieved from the following endpoint
               L(ListSqlTuningAdvisorTasks,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database-
-              management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks)
+              management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks).
             - Required for I(action=drop_sql_tuning_task).
         type: int
     total_time_limit_in_minutes:
@@ -108,7 +109,7 @@ options:
     scope:
         description:
             - The scope for the SQL tuning task. For LIMITED scope, the SQL profile recommendation
-              is excluded, so the task is faster. For COMPREHENSIVE scope, the SQL profile recommendation
+              is excluded, so the task is executed faster. For COMPREHENSIVE scope, the SQL profile recommendation
               is included.
             - Required for I(action=start_sql_tuning_task).
         type: str
@@ -117,13 +118,13 @@ options:
             - "COMPREHENSIVE"
     statement_time_limit_in_minutes:
         description:
-            - The time limit per SQL statement in minutes. This is for task with COMPREHENSIVE scope.
-              Per statement time limit should not be larger than the total time limit.
+            - The time limit per SQL statement (in minutes). This is for a task with the COMPREHENSIVE scope.
+              The time limit per SQL statement should not be more than the total time limit.
             - Applicable only for I(action=start_sql_tuning_task).
         type: int
     sql_details:
         description:
-            - The array of the details of SQL statments on which the tuning is performed.
+            - The array of the details of SQL statement on which tuning is performed.
             - Required for I(action=start_sql_tuning_task).
         type: list
         elements: dict
@@ -135,12 +136,12 @@ options:
                 required: true
     time_started:
         description:
-            - The start time of the period, in which SQL statements are running.
+            - The start time of the period in which SQL statements are running.
             - Required for I(action=start_sql_tuning_task).
         type: str
     time_ended:
         description:
-            - The end time of the period, in which SQL statements are running.
+            - The end time of the period in which SQL statements are running.
             - Required for I(action=start_sql_tuning_task).
         type: str
     action:

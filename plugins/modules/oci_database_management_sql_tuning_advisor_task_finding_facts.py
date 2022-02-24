@@ -23,7 +23,7 @@ module: oci_database_management_sql_tuning_advisor_task_finding_facts
 short_description: Fetches details about one or multiple SqlTuningAdvisorTaskFinding resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple SqlTuningAdvisorTaskFinding resources in Oracle Cloud Infrastructure
-    - Takes in a task id, and a finding/object type filter and applies some SQLs to find return the output.
+    - Gets an array of the details of the findings that match specific filters.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -47,8 +47,8 @@ options:
         type: int
     search_period:
         description:
-            - How far back the API will search for begin and end exec id, if not supplied. Unused if beginExecId and endExecId optional query params are both
-              supplied.
+            - The search period during which the API will search for begin and end exec id, if not supplied.
+              Unused if beginExecId and endExecId optional query params are both supplied.
         type: str
         choices:
             - "LAST_24HR"
@@ -58,7 +58,7 @@ options:
             - "ALL"
     finding_filter:
         description:
-            - Filters which findings get shown in the report
+            - The filter used to display specific findings in the report.
         type: str
         choices:
             - "none"
@@ -136,44 +136,45 @@ sql_tuning_advisor_task_findings:
     contains:
         sql_tuning_advisor_task_id:
             description:
-                - Unique identifier of the task. It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                - The unique identifier of the SQL Tuning Advisor task. This is not the
+                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: int
             sample: 56
         sql_tuning_advisor_task_object_id:
             description:
-                - Key of the object to which these recommendations apply.
-                  It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                - The key of the object to which these recommendations apply.
+                  This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: int
             sample: 56
         sql_tuning_advisor_task_object_execution_id:
             description:
-                - Execution id of the analyzed SQL object. It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                - The execution id of the analyzed SQL object. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: int
             sample: 56
         sql_text:
             description:
-                - Text of the SQL statement.
+                - The text of the SQL statement.
             returned: on success
             type: str
             sample: sql_text_example
         parsing_schema:
             description:
-                - Parsing schema of the object.
+                - The parsing schema of the object.
             returned: on success
             type: str
             sample: parsing_schema_example
         sql_key:
             description:
-                - Unique key of this SQL statement
+                - The unique key of this SQL statement.
             returned: on success
             type: str
             sample: sql_key_example
         db_time_benefit:
             description:
-                - Time benefit in seconds for the highest-rated finding for this object.
+                - The time benefit (in seconds) for the highest-rated finding for this object.
             returned: on success
             type: float
             sample: 3.4
@@ -185,55 +186,55 @@ sql_tuning_advisor_task_findings:
             sample: 56
         is_stats_finding_present:
             description:
-                - Whether a statistics recommendation was found for this SQL statement.
+                - Indicates whether a statistics recommendation was reported for this SQL statement.
             returned: on success
             type: bool
             sample: true
         is_sql_profile_finding_present:
             description:
-                - Whether a SQL Profile recommendation was found for this SQL statement.
+                - Indicates whether a SQL Profile recommendation was reported for this SQL statement.
             returned: on success
             type: bool
             sample: true
         is_sql_profile_finding_implemented:
             description:
-                - Whether a SQL Profile recommendation has been implemented for this SQL statement.
+                - Indicates whether a SQL Profile recommendation has been implemented for this SQL statement.
             returned: on success
             type: bool
             sample: true
         is_index_finding_present:
             description:
-                - Whether an index recommendation was found for this SQL statement.
+                - Indicates whether an index recommendation was reported for this SQL statement.
             returned: on success
             type: bool
             sample: true
         is_restructure_sql_finding_present:
             description:
-                - Whether a restructure SQL recommendation was found for this SQL statement.
+                - Indicates whether a restructure SQL recommendation was reported for this SQL statement.
             returned: on success
             type: bool
             sample: true
         is_alternative_plan_finding_present:
             description:
-                - Whether an alternative execution plan was found for this SQL statement.
+                - Indicates whether an alternative execution plan was reported for this SQL statement.
             returned: on success
             type: bool
             sample: true
         is_miscellaneous_finding_present:
             description:
-                - Whether a miscellaneous finding was found for this SQL statement.
+                - Indicates whether a miscellaneous finding was reported for this SQL statement.
             returned: on success
             type: bool
             sample: true
         is_error_finding_present:
             description:
-                - Whether there is an error in this SQL statement.
+                - Indicates whether there is an error in this SQL statement.
             returned: on success
             type: bool
             sample: true
         is_timeout_finding_present:
             description:
-                - Whether the task timed out.
+                - Indicates whether the task timed out.
             returned: on success
             type: bool
             sample: true

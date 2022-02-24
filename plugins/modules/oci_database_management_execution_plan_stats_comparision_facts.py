@@ -23,8 +23,9 @@ module: oci_database_management_execution_plan_stats_comparision_facts
 short_description: Fetches details about a ExecutionPlanStatsComparision resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a ExecutionPlanStatsComparision resource in Oracle Cloud Infrastructure
-    - A SQL tuning task may suggest new execution plan for a SQL. The API returns the
-      stats comparison report for the plans.
+    - Retrieves a comparison of the existing SQL execution plan and a new plan.
+      A SQL tuning task may suggest a new execution plan for a SQL,
+      and this API retrieves the comparison report of the statistics of the two plans.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -41,12 +42,12 @@ options:
         required: true
     sql_object_id:
         description:
-            - The SQL object id for the SQL tuning task. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The SQL object ID for the SQL tuning task. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: int
         required: true
     execution_id:
         description:
-            - The execution id for an execution of a SQL tuning task. This is not the
+            - The execution ID for an execution of a SQL tuning task. This is not the
               L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: int
         required: true
@@ -79,7 +80,7 @@ execution_plan_stats_comparision:
             contains:
                 plan_type:
                     description:
-                        - The type of the plan for the original or the new plan with profile/index etc.
+                        - The type of the original or modified plan with profile, index, and so on.
                     returned: on success
                     type: str
                     sample: plan_type_example
@@ -104,7 +105,7 @@ execution_plan_stats_comparision:
             contains:
                 plan_type:
                     description:
-                        - The type of the plan for the original or the new plan with profile/index etc.
+                        - The type of the original or modified plan with profile, index, and so on.
                     returned: on success
                     type: str
                     sample: plan_type_example

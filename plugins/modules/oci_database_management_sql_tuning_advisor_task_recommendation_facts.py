@@ -23,7 +23,8 @@ module: oci_database_management_sql_tuning_advisor_task_recommendation_facts
 short_description: Fetches details about one or multiple SqlTuningAdvisorTaskRecommendation resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple SqlTuningAdvisorTaskRecommendation resources in Oracle Cloud Infrastructure
-    - Takes in a task id and object id and returns the recommendations/findings.
+    - Gets the findings and possible actions for a given object in a SQL tuning task.
+      The task ID and object ID are used to retrieve the findings and recommendations.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -39,12 +40,12 @@ options:
         required: true
     sql_object_id:
         description:
-            - The SQL object id for the SQL tuning task. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The SQL object ID for the SQL tuning task. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: int
         required: true
     execution_id:
         description:
-            - The execution id for an execution of a SQL tuning task. This is not the
+            - The execution ID for an execution of a SQL tuning task. This is not the
               L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: int
         required: true
@@ -89,38 +90,38 @@ sql_tuning_advisor_task_recommendations:
     contains:
         sql_tuning_advisor_task_id:
             description:
-                - Unique identifier of the task. It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                - The unique identifier of the task. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: int
             sample: 56
         sql_tuning_advisor_task_object_id:
             description:
-                - Key of the object to which these recommendations apply. It is not the
+                - The key of the object to which these recommendations apply. This is not the
                   L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: int
             sample: 56
         recommendation_key:
             description:
-                - Unique identifier of the recommendation in the scope of the task.
+                - The unique identifier of the recommendation in the scope of the task.
             returned: on success
             type: int
             sample: 56
         recommendation_type:
             description:
-                - Type of recommendation
+                - Type of recommendation.
             returned: on success
             type: str
             sample: STATISTICS
         finding:
             description:
-                - Summary of the issue found for the SQL statement.
+                - Summary of the issue found in the SQL statement.
             returned: on success
             type: str
             sample: finding_example
         recommendation:
             description:
-                - Particular recommendation for the finding.
+                - The recommendation for a specific finding.
             returned: on success
             type: str
             sample: recommendation_example

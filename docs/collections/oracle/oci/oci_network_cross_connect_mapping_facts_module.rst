@@ -30,7 +30,7 @@ oracle.oci.oci_network_cross_connect_mapping_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -307,7 +307,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of CrossConnectMapping resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;customer_bgp_peering_ip_example&#x27;, &#x27;customer_bgp_peering_ipv6&#x27;: &#x27;customer_bgp_peering_ipv6_example&#x27;, &#x27;ipv4_bgp_status&#x27;: &#x27;UP&#x27;, &#x27;ipv6_bgp_status&#x27;: &#x27;UP&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;oracle_bgp_peering_ip_example&#x27;, &#x27;oracle_bgp_peering_ipv6&#x27;: &#x27;oracle_bgp_peering_ipv6_example&#x27;, &#x27;vlan&#x27;: 56}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;customer_bgp_peering_ip_example&#x27;, &#x27;customer_bgp_peering_ipv6&#x27;: &#x27;customer_bgp_peering_ipv6_example&#x27;, &#x27;ipv4_bgp_status&#x27;: &#x27;UP&#x27;, &#x27;ipv6_bgp_status&#x27;: &#x27;UP&#x27;, &#x27;oci_logical_device_name&#x27;: &#x27;oci_logical_device_name_example&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;oracle_bgp_peering_ip_example&#x27;, &#x27;oracle_bgp_peering_ipv6&#x27;: &#x27;oracle_bgp_peering_ipv6_example&#x27;, &#x27;vlan&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -420,6 +420,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cross_connect_mappings/oci_logical_device_name"></div>
+                    <b>oci_logical_device_name</b>
+                    <a class="ansibleOptionLink" href="#return-cross_connect_mappings/oci_logical_device_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The FastConnect device that terminates the logical connection.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_logical_device_name_example</div>
                                     </td>
             </tr>
                                 <tr>

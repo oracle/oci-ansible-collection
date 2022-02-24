@@ -52,7 +52,7 @@ options:
                 required: true
     apm_domain_id:
         description:
-            - The OCID of the APM domain
+            - The OCID of the APM domain.
         type: str
         aliases: ["id"]
         required: true

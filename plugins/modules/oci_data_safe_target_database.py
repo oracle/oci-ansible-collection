@@ -524,6 +524,12 @@ target_database:
                     returned: on success
                     type: str
                     sample: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        associated_resource_ids:
+            description:
+                - The OCIDs of associated resources like Database, Data Safe private endpoint etc.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The current state of the target database in Data Safe.
@@ -603,6 +609,7 @@ target_database:
             "on_prem_connector_id": "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx",
             "datasafe_private_endpoint_id": "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "associated_resource_ids": [],
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",

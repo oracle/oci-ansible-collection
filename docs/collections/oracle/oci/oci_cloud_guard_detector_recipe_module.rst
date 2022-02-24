@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_detector_recipe -- Manage a DetectorRecipe resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -244,7 +244,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DetectorRecipe Description</div>
+                                            <div>Detector recipe description.</div>
+                                            <div>Avoid entering confidential information.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -750,7 +751,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-detector_rules/details/risk_level" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -795,7 +796,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DetectorRecipe Display Name</div>
+                                            <div>Detector recipe display name.</div>
+                                            <div>Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
@@ -834,6 +836,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Avoid entering confidential information.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -993,9 +996,9 @@ Examples
           details:
             # required
             is_enabled: true
-            risk_level: CRITICAL
 
             # optional
+            risk_level: CRITICAL
             configurations:
             - # required
               config_key: config_key_example
@@ -1036,9 +1039,9 @@ Examples
           details:
             # required
             is_enabled: true
-            risk_level: CRITICAL
 
             # optional
+            risk_level: CRITICAL
             configurations:
             - # required
               config_key: config_key_example
@@ -1079,9 +1082,9 @@ Examples
           details:
             # required
             is_enabled: true
-            risk_level: CRITICAL
 
             # optional
+            risk_level: CRITICAL
             configurations:
             - # required
               config_key: config_key_example
@@ -1156,7 +1159,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DetectorRecipe resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rules&#x27;: [{&#x27;candidate_responder_rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_preferred&#x27;: True}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_detector_rules&#x27;: [{&#x27;candidate_responder_rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_preferred&#x27;: True}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;source_detector_recipe_id&#x27;: &#x27;ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rules&#x27;: [{&#x27;candidate_responder_rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_preferred&#x27;: True}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_detector_rules&#x27;: [{&#x27;candidate_responder_rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_preferred&#x27;: True}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;source_data_retention&#x27;: 56, &#x27;source_detector_recipe_id&#x27;: &#x27;ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1207,7 +1210,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Detector recipe description</div>
+                                            <div>Detector recipe description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -1338,7 +1341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Description for DetectorRecipeDetectorRule</div>
+                                            <div>Description for DetectorRecipeDetectorRule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -1842,6 +1845,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/problem_threshold"></div>
+                    <b>problem_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/problem_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Cutover point for an elevated resource Risk Score to create a Problem</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/risk_level"></div>
                     <b>risk_level</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/risk_level" title="Permalink to this return value"></a>
@@ -1856,6 +1879,167 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CRITICAL</div>
                                     </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/sighting_types"></div>
+                    <b>sighting_types</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/sighting_types" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of sighting types</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/sighting_types/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/sighting_types/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Description of the sighting type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/sighting_types/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/sighting_types/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the sighting type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/sighting_types/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/sighting_types/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unique identifier of sighting type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/sighting_types/mitre_link"></div>
+                    <b>mitre_link</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/sighting_types/mitre_link" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Link of the sighting type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">mitre_link_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/sighting_types/tactic"></div>
+                    <b>tactic</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/sighting_types/tactic" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Mitre Att&amp;ck tactic</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tactic_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/sighting_types/techniques"></div>
+                    <b>techniques</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/sighting_types/techniques" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of Mitre Att&amp;ck Techniques</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/details/target_types"></div>
+                    <b>target_types</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/target_types" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of target types for which the detector rule is applicable</div>
+                                        <br/>
+                                                        </td>
             </tr>
                     
                                 <tr>
@@ -1890,7 +2074,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The unique identifier of the detector rule</div>
+                                            <div>The unique identifier of the detector rule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1909,7 +2093,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>displayName</div>
+                                            <div>Display name for DetectorRecipeDetectorRule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -2078,7 +2262,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>DisplayName of detector recipe</div>
+                                            <div>DisplayName of detector recipe.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -2191,7 +2375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Description for DetectorRecipeDetectorRule</div>
+                                            <div>Description for DetectorRecipeDetectorRule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -2695,6 +2879,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/problem_threshold"></div>
+                    <b>problem_threshold</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/problem_threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Cutover point for an elevated resource Risk Score to create a Problem</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/risk_level"></div>
                     <b>risk_level</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/risk_level" title="Permalink to this return value"></a>
@@ -2709,6 +2913,167 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CRITICAL</div>
                                     </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/sighting_types"></div>
+                    <b>sighting_types</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/sighting_types" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of sighting types</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/sighting_types/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/sighting_types/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Description of the sighting type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/sighting_types/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/sighting_types/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the sighting type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/sighting_types/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/sighting_types/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unique identifier of sighting type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/sighting_types/mitre_link"></div>
+                    <b>mitre_link</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/sighting_types/mitre_link" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Link of the sighting type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">mitre_link_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/sighting_types/tactic"></div>
+                    <b>tactic</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/sighting_types/tactic" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Mitre Att&amp;ck tactic</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tactic_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/sighting_types/techniques"></div>
+                    <b>techniques</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/sighting_types/techniques" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of Mitre Att&amp;ck Techniques</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/details/target_types"></div>
+                    <b>target_types</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/target_types" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of target types for which the detector rule is applicable</div>
+                                        <br/>
+                                                        </td>
             </tr>
                     
                                 <tr>
@@ -2743,7 +3108,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The unique identifier of the detector rule</div>
+                                            <div>The unique identifier of the detector rule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -2762,7 +3127,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>displayName</div>
+                                            <div>Display name for DetectorRecipeDetectorRule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -2932,6 +3297,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Avoid entering confidential information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -2989,6 +3355,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/source_data_retention"></div>
+                    <b>source_data_retention</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/source_data_retention" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of days for which source data is retained</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

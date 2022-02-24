@@ -167,6 +167,7 @@ options:
                             - " * `0`: Represents Lower Cost option."
                             - " * `10`: Represents Balanced option."
                             - " * `20`: Represents Higher Performance option."
+                            - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
                         type: int
                     size_in_gbs:
                         description:
@@ -433,7 +434,7 @@ options:
                         type: bool
                     numa_nodes_per_socket:
                         description:
-                            - The number of NUMA nodes per socket.
+                            - The number of NUMA nodes per socket (NPS).
                             - Applicable when type is 'AMD_MILAN_BM'
                         type: str
                         choices:

@@ -23,7 +23,7 @@ module: oci_database_management_proxied_for_user_facts
 short_description: Fetches details about one or multiple ProxiedForUser resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ProxiedForUser resources in Oracle Cloud Infrastructure
-    - Gets the list of Users for which the current user acts as proxy.
+    - Gets the list of users on whose behalf the current user acts as proxy.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -81,19 +81,19 @@ proxied_for_users:
     contains:
         name:
             description:
-                - The name of a proxy user or name of the user who the proxy user can act as
+                - The name of a proxy user or the name of the client user.
             returned: on success
             type: str
             sample: name_example
         authentication:
             description:
-                - Indicates whether the proxy is required to supply the client credentials (YES) or not (NO)
+                - Indicates whether the proxy is required to supply the client credentials (YES) or not (NO).
             returned: on success
             type: str
             sample: YES
         flags:
             description:
-                - Flags associated with the proxy/client pair
+                - The flags associated with the proxy/client pair.
             returned: on success
             type: str
             sample: PROXY_MAY_ACTIVATE_ALL_CLIENT_ROLES

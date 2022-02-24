@@ -30,7 +30,7 @@ oracle.oci.oci_network_drg_route_distribution_statements_actions -- Perform acti
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -330,7 +330,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The action is applied only if all of the match criteria is met. If there are no match criteria in a statement, match ALL is implied.</div>
+                                            <div>The action is applied only if all of the match criteria is met.</div>
                                                         </td>
             </tr>
                                         <tr>

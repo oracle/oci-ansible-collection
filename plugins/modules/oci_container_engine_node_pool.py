@@ -911,6 +911,11 @@ class NodePoolHelperGen(OCIResourceHelperBase):
     def get_get_fn(self):
         return self.client.get_node_pool
 
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_node_pool, node_pool_id=summary_model.id,
+        ).data
+
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_node_pool,

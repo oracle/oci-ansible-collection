@@ -23,7 +23,7 @@ module: oci_network_ip_sec_connection_tunnel_error_facts
 short_description: Fetches details about a IpSecConnectionTunnelError resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a IpSecConnectionTunnelError resource in Oracle Cloud Infrastructure
-    - Get the identified error for the specified IPSec Tunnel ID.
+    - Gets the identified error for the specified IPSec tunnel ID.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -59,37 +59,37 @@ ip_sec_connection_tunnel_error:
     contains:
         id:
             description:
-                - unique id generated for each error report
+                - Unique ID generated for each error report.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         error_code:
             description:
-                - unique code describes error type
+                - Unique code describes the error type.
             returned: on success
             type: str
             sample: error_code_example
         error_description:
             description:
-                - detailed description of the error
+                - A detailed description of the error.
             returned: on success
             type: str
             sample: error_description_example
         solution:
             description:
-                - how to resolve the error
+                - Resolution for the error.
             returned: on success
             type: str
             sample: solution_example
         oci_resources_link:
             description:
-                - link to oracle resources
+                - Link to more Oracle resources or relevant documentation.
             returned: on success
             type: str
             sample: oci_resources_link_example
         timestamp:
             description:
-                - timestamp when error occurred.
+                - Timestamp when the error occurred.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

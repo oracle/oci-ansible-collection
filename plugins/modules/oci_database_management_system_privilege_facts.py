@@ -23,7 +23,7 @@ module: oci_database_management_system_privilege_facts
 short_description: Fetches details about one or multiple SystemPrivilege resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple SystemPrivilege resources in Oracle Cloud Infrastructure
-    - Gets the list of System Privileges granted for the specified user.
+    - Gets the list of system privileges granted to a specific user.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -81,27 +81,27 @@ system_privileges:
     contains:
         name:
             description:
-                - The name of a system privilege
+                - The name of a system privilege.
             returned: on success
             type: str
             sample: name_example
         admin_option:
             description:
-                - Indicates whether the grant was with the ADMIN option (YES) or not (NO)
+                - Indicates whether the system privilege is granted with the ADMIN option (YES) or not (NO).
             returned: on success
             type: str
             sample: YES
         common:
             description:
-                - "Indicates how the grant was made. Possible values:
-                  YES if the role was granted commonly (CONTAINER=ALL was used)
-                  NO if the role was granted locally (CONTAINER=ALL was not used)"
+                - "Indicates how the system privilege was granted. Possible values:
+                  YES if the system privilege is granted commonly (CONTAINER=ALL is used)
+                  NO if the system privilege is granted locally (CONTAINER=ALL is not used)"
             returned: on success
             type: str
             sample: YES
         inherited:
             description:
-                - Indicates whether the role grant was inherited from another container (YES) or not (NO)
+                - Indicates whether the granted system privilege is inherited from another container (YES) or not (NO).
             returned: on success
             type: str
             sample: YES

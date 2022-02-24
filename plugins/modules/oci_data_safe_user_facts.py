@@ -73,7 +73,7 @@ options:
         type: str
     target_id:
         description:
-            - A filter to return only items that match the specified target.
+            - A filter to return only items related to a specific target OCID.
         type: str
     time_last_login_greater_than_or_equal_to:
         description:

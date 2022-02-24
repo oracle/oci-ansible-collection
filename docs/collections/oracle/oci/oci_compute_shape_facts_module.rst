@@ -30,7 +30,7 @@ oracle.oci.oci_compute_shape_facts -- Fetches details about one or multiple Shap
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -342,7 +342,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Shape resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;is_live_migration_supported&#x27;: True, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;platform_config_options&#x27;: {&#x27;measured_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;numa_nodes_per_socket_platform_options&#x27;: {&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;service_allowed_values&#x27;: []}, &#x27;secure_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;trusted_platform_module_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;billing_type&#x27;: &#x27;ALWAYS_FREE&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;is_billed_for_stopped_instance&#x27;: True, &#x27;is_flexible&#x27;: True, &#x27;is_live_migration_supported&#x27;: True, &#x27;is_subcore&#x27;: True, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;platform_config_options&#x27;: {&#x27;measured_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;numa_nodes_per_socket_platform_options&#x27;: {&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;service_allowed_values&#x27;: []}, &#x27;secure_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;trusted_platform_module_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;quota_names&#x27;: [], &#x27;recommended_alternatives&#x27;: [{&#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;}], &#x27;resize_compatible_shapes&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -360,6 +360,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For a subcore burstable VM, the supported baseline OCPU utilization for instances that use this shape.</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/billing_type"></div>
+                    <b>billing_type</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/billing_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>How instances that use this shape are charged.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ALWAYS_FREE</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -401,6 +419,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/is_billed_for_stopped_instance"></div>
+                    <b>is_billed_for_stopped_instance</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/is_billed_for_stopped_instance" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether billing continues when the instances that use this shape are in the stopped state.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/is_flexible"></div>
+                    <b>is_flexible</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/is_flexible" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the shape supports creating flexible instances. A <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/References/computeshapes.htm#flexible'>flexible shape</a> is a shape that lets you customize the number of OCPUs and the amount of memory when launching or resizing your instance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/is_live_migration_supported"></div>
                     <b>is_live_migration_supported</b>
                     <a class="ansibleOptionLink" href="#return-shapes/is_live_migration_supported" title="Permalink to this return value"></a>
@@ -411,6 +465,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Whether live migration is supported for this shape.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/is_subcore"></div>
+                    <b>is_subcore</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/is_subcore" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the shape supports creating subcore or burstable instances. A <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/References/burstable-instances.htm'>burstable instance</a> is a virtual machine (VM) instance that provides a baseline level of CPU performance with the ability to burst to a higher level to support occasional spikes in usage.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1154,6 +1226,74 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">processor_description_example</div>
                                     </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/quota_names"></div>
+                    <b>quota_names</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/quota_names" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of of compartment quotas for the shape.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/recommended_alternatives"></div>
+                    <b>recommended_alternatives</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/recommended_alternatives" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of shapes and shape details (if applicable) that Oracle recommends that you use as an alternative to the current shape.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/recommended_alternatives/shape_name"></div>
+                    <b>shape_name</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/recommended_alternatives/shape_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the shape.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/resize_compatible_shapes"></div>
+                    <b>resize_compatible_shapes</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/resize_compatible_shapes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of compatible shapes that this shape can be changed to. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/resizinginstances.htm'>Changing the Shape of an Instance</a>.</div>
+                                        <br/>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
