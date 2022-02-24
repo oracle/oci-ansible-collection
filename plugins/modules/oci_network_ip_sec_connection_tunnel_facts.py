@@ -77,14 +77,14 @@ ip_sec_connection_tunnels:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         vpn_ip:
             description:
-                - The IP address of Oracle's VPN headend.
+                - The IP address of the Oracle VPN headend for the connection.
                 - "Example: `203.0.113.21`"
             returned: on success
             type: str
             sample: vpn_ip_example
         cpe_ip:
             description:
-                - The IP address of the CPE's VPN headend.
+                - The IP address of the CPE device's VPN headend.
                 - "Example: `203.0.113.22`"
             returned: on success
             type: str
@@ -221,45 +221,54 @@ ip_sec_connection_tunnels:
                     sample: []
         routing:
             description:
-                - The type of routing used for this tunnel (either BGP dynamic routing or static routing).
+                - The type of routing used for this tunnel (BGP dynamic routing, static routing, or policy-based routing).
             returned: on success
             type: str
             sample: BGP
         time_created:
             description:
-                - The date and time the IPSec connection tunnel was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the IPSec tunnel was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_status_updated:
             description:
-                - When the status of the tunnel last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - When the status of the IPSec tunnel last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         oracle_can_initiate:
             description:
-                - Indicates whether Oracle can either initiate the tunnel or respond, or respond only.
+                - Indicates whether Oracle can only respond to a request to start an IPSec tunnel from the CPE device, or both respond to and initiate requests.
             returned: on success
             type: str
             sample: INITIATOR_OR_RESPONDER
         nat_translation_enabled:
             description:
-                - Whether NAT-T Enabled on the tunnel
+                - By default (the `AUTO` setting), IKE sends packets with a source and destination port set to 500,
+                  and when it detects that the port used to forward packets has changed (most likely because a NAT device
+                  is between the CPE device and the Oracle VPN headend) it will try to negotiate the use of NAT-T.
+                - The `ENABLED` option sets the IKE protocol to use port 4500 instead of 500 and forces encapsulating traffic with the ESP protocol inside UDP
+                  packets.
+                - The `DISABLED` option directs IKE to completely refuse to negotiate NAT-T
+                  even if it senses there may be a NAT device in use.
+                - .
             returned: on success
             type: str
             sample: ENABLED
         dpd_mode:
             description:
-                - dpd mode
+                - Dead peer detection (DPD) mode set on the Oracle side of the connection.
+                  This mode sets whether Oracle can only respond to a request from the CPE device to start DPD,
+                  or both respond to and initiate requests.
             returned: on success
             type: str
             sample: INITIATE_AND_RESPOND
         dpd_timeout_in_sec:
             description:
-                - Dead peer detection (DPD) timeout in seconds.
+                - DPD timeout in seconds.
             returned: on success
             type: int
             sample: 56
@@ -272,24 +281,25 @@ ip_sec_connection_tunnels:
                 is_custom_phase_one_config:
                     description:
                         - Indicates whether custom phase one configuration is enabled.
+                          If this option is not enabled, default settings are proposed.
                     returned: on success
                     type: bool
                     sample: true
                 lifetime:
                     description:
-                        - The total configured lifetime of an IKE security association.
+                        - The total configured lifetime of the IKE security association.
                     returned: on success
                     type: int
                     sample: 56
                 remaining_lifetime:
                     description:
-                        - The lifetime remaining before the key is refreshed.
+                        - The remaining lifetime before the key is refreshed.
                     returned: on success
                     type: int
                     sample: 56
                 custom_authentication_algorithm:
                     description:
-                        - Custom authentication algorithm
+                        - The proposed custom authentication algorithm.
                     returned: on success
                     type: str
                     sample: custom_authentication_algorithm_example
@@ -301,7 +311,7 @@ ip_sec_connection_tunnels:
                     sample: negotiated_authentication_algorithm_example
                 custom_encryption_algorithm:
                     description:
-                        - Custom encryption algorithm.
+                        - The proposed custom encryption algorithm.
                     returned: on success
                     type: str
                     sample: custom_encryption_algorithm_example
@@ -313,7 +323,7 @@ ip_sec_connection_tunnels:
                     sample: negotiated_encryption_algorithm_example
                 custom_dh_group:
                     description:
-                        - Custom Diffie-Hellman group.
+                        - The proposed custom Diffie-Hellman group.
                     returned: on success
                     type: str
                     sample: custom_dh_group_example
@@ -325,7 +335,7 @@ ip_sec_connection_tunnels:
                     sample: negotiated_dh_group_example
                 is_ike_established:
                     description:
-                        - Indicates whether IKE Phase 1 is established.
+                        - Indicates whether IKE phase one is established.
                     returned: on success
                     type: bool
                     sample: true
@@ -345,36 +355,37 @@ ip_sec_connection_tunnels:
                 is_custom_phase_two_config:
                     description:
                         - Indicates whether custom phase two configuration is enabled.
+                          If this option is not enabled, default settings are proposed.
                     returned: on success
                     type: bool
                     sample: true
                 lifetime:
                     description:
-                        - The total configured lifetime of an IKE security association.
+                        - The total configured lifetime of the IKE security association.
                     returned: on success
                     type: int
                     sample: 56
                 remaining_lifetime:
                     description:
-                        - The lifetime remaining before the key is refreshed.
+                        - The remaining lifetime before the key is refreshed.
                     returned: on success
                     type: int
                     sample: 56
                 custom_authentication_algorithm:
                     description:
-                        - Phase Two authentication algorithm supported during tunnel negotiation.
+                        - Phase two authentication algorithm proposed during tunnel negotiation.
                     returned: on success
                     type: str
                     sample: custom_authentication_algorithm_example
                 negotiated_authentication_algorithm:
                     description:
-                        - The negotiated authentication algorithm.
+                        - The negotiated phase two authentication algorithm.
                     returned: on success
                     type: str
                     sample: negotiated_authentication_algorithm_example
                 custom_encryption_algorithm:
                     description:
-                        - Custom Encryption Algorithm
+                        - The proposed custom phase two encryption algorithm.
                     returned: on success
                     type: str
                     sample: custom_encryption_algorithm_example
@@ -386,7 +397,7 @@ ip_sec_connection_tunnels:
                     sample: negotiated_encryption_algorithm_example
                 dh_group:
                     description:
-                        - Proposed Diffie-Hellman group.
+                        - The proposed Diffie-Hellman group.
                     returned: on success
                     type: str
                     sample: dh_group_example
@@ -398,19 +409,19 @@ ip_sec_connection_tunnels:
                     sample: negotiated_dh_group_example
                 is_esp_established:
                     description:
-                        - ESP Phase 2 established
+                        - Indicates that ESP phase two is established.
                     returned: on success
                     type: bool
                     sample: true
                 is_pfs_enabled:
                     description:
-                        - Is PFS (perfect forward secrecy) enabled
+                        - Indicates that PFS (perfect forward secrecy) is enabled.
                     returned: on success
                     type: bool
                     sample: true
                 remaining_lifetime_last_retrieved:
                     description:
-                        - The date and time we retrieved the remaining lifetime, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                        - The date and time the remaining lifetime was last retrieved, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: str

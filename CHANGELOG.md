@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.44.0]
+
+## Added
+
+- Support for Threat Intelligence service
+- Support for more VM shape configurations when listing shapes in the Compute service
+- Support for FastConnect device information in the Networking service
+- Support for creation of NoSQL database tables with on-demand throughput capacity in the NoSQL Database Cloud service
+- Support for listing fast launch job configurations in the Data Science service
+- Support for filtering using `associated_resource_id` in `oci_data_safe_target_database_facts` module in Data safe service
+- Return attributes `data_safe_nat_gateway_ip_address` and `global_settings` in configuration modules in Data safe service
+- Return attribute `source_data_retention` in detector recipe module in Cloud guard service
+- Attribute `risk_level` is made optional in the attribute `detector_rules` in detector recipe module in Cloud guard service
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.58.0
+
 ## [2.43.0]
 
 # 

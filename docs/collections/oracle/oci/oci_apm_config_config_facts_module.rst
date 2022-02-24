@@ -30,7 +30,7 @@ oracle.oci.oci_apm_config_config_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Config resources in Oracle Cloud Infrastructure
-- Returns all configured items optionally filtered by configuration type
+- Returns all configuration items, which can optionally be filtered by configuration type.
 - If *config_id* is specified, the details of a single Config will be returned.
 
 
@@ -159,7 +159,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The APM Domain Id the request is intended for.</div>
+                                            <div>The APM Domain ID the request is intended for.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -210,7 +210,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the ConfiguredItem.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the configuration item.</div>
                                             <div>Required to get a specific config.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -242,7 +242,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to match only configuration items of the given type. Supported values are SPAN_FILTER, METRIC_GROUP, and APDEX.</div>
+                                            <div>A filter to match configuration items of a given type. Supported values are SPAN_FILTER, METRIC_GROUP, and APDEX.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -257,7 +257,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources that match the entire display name given.</div>
+                                            <div>A filter to return resources that match the given display name.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -293,7 +293,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The field to sort by. You can provide one sort by (`sortBy`). Default order for displayName, timeCreated and timeUpdated is ascending. The displayName sort by is case sensitive.</div>
+                                            <div>The field to sort by. You can provide one &quot;sortBy&quot; value. The default order for displayName, timeCreated and timeUpdated is ascending. The displayName sort by is case-sensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -312,7 +312,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either ascending (`ASC`) or descending (`DESC`). The displayName sort order is case sensitive.</div>
+                                            <div>The sort order to use, either ascending (`ASC`) or descending (`DESC`). The displayName sort order is case-sensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -422,7 +422,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of configuration item</div>
+                                            <div>The type of configuration item.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SPAN_FILTER</div>
@@ -458,7 +458,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An optional string that describes what the filter is intended or used for.</div>
+                                            <div>An optional string that describes what the span filter is intended or used for.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -477,7 +477,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of dimensions for this metric</div>
+                                            <div>A list of dimensions for the metric. This variable should not be used.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -495,7 +495,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The dimension name</div>
+                                            <div>The name of the dimension.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -514,7 +514,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The source to populate the dimension. Must be NULL at the moment.</div>
+                                            <div>The source to populate the dimension. This must not be specified.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_source_example</div>
@@ -533,7 +533,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name by which this rule set can be displayed to the user.</div>
+                                            <div>The name by which the rule set is displayed to the end user.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -552,7 +552,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a Span Filter. The filterId is mandatory for the creation of MetricGroups. A filterId will be generated when a Span Filter is created.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a Span Filter. The filterId is mandatory for the creation of MetricGroups. A filterId is generated when a Span Filter is created.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -608,7 +608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the configuration item. An OCID will be generated when the item is created.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the configuration item. An OCID is generated when the item is created.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -626,7 +626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>The list of metrics in this group.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -644,7 +644,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A description of the metric</div>
+                                            <div>A description of the metric.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -663,7 +663,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the metric</div>
+                                            <div>The name of the metric. This must be a known metric name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -682,7 +682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The unit of the metric</div>
+                                            <div>The unit of the metric.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
@@ -701,7 +701,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Must be NULL at the moment, and &quot;name&quot; must be a known metric.</div>
+                                            <div>This must not be set.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_source_example</div>
@@ -720,7 +720,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The namespace to write the metrics to</div>
+                                            <div>The namespace to which the metrics are published. It must be one of several predefined namespaces.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -757,7 +757,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly name that provides a short description this rule.</div>
+                                            <div>A user-friendly name that provides a short description of this rule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -795,7 +795,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, the rule will compute the actual Apdex score for spans that have been marked as errors. If false, the rule will always set the Apdex for error spans to frustrating, regardless of the configured thresholds. Default is false.</div>
+                                            <div>Specifies whether an Apdex score should be computed for error spans. Setting it to &quot;true&quot; means that the Apdex score is computed in the usual way. Setting it to &quot;false&quot; skips the Apdex computation and sets the Apdex score to &quot;frustrating&quot; regardless of the configured thresholds. The default is &quot;false&quot;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -814,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies if the Apdex rule will be computed for spans matching the rule. Can be used to make sure certain spans don&#x27;t get an Apdex score. The default is &quot;true&quot;.</div>
+                                            <div>Specifies whether the Apdex score should be computed for spans matching the rule. This can be used to disable Apdex score for spans that do not need or require it. The default is &quot;true&quot;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -852,7 +852,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum response time in milliseconds that will be considered satisfactory for the end user.</div>
+                                            <div>The maximum response time in milliseconds that is considered &quot;satisfactory&quot; for the end user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -871,7 +871,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum response time in milliseconds that will be considered tolerable for the end user. Response times beyond this threshold will be considered frustrating. This value cannot be lower than &quot;satisfiedResponseTime&quot;.</div>
+                                            <div>The maximum response time in milliseconds that is considered &quot;tolerable&quot; for the end user. A response time beyond this threshold is considered &quot;frustrating&quot;. This value cannot be lower than &quot;satisfiedResponseTime&quot;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

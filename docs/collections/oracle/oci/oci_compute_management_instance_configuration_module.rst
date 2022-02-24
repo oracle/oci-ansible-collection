@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_configuration -- Manage an InstanceCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -750,6 +750,7 @@ Parameters
                                             <div>* `0`: Represents Lower Cost option.</div>
                                             <div>* `10`: Represents Balanced option.</div>
                                             <div>* `20`: Represents Higher Performance option.</div>
+                                            <div>For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.</div>
                                                         </td>
             </tr>
                     
@@ -1772,7 +1773,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The number of NUMA nodes per socket.</div>
+                                            <div>The number of NUMA nodes per socket (NPS).</div>
                                             <div>Applicable when type is &#x27;AMD_MILAN_BM&#x27;</div>
                                                         </td>
             </tr>
@@ -3303,6 +3304,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* `0`: Represents Lower Cost option.</div>
                                             <div>* `10`: Represents Balanced option.</div>
                                             <div>* `20`: Represents Higher Performance option.</div>
+                                            <div>For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -4353,7 +4355,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of NUMA nodes per socket.</div>
+                                            <div>The number of NUMA nodes per socket (NPS).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NPS0</div>

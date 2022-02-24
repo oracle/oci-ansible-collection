@@ -244,6 +244,19 @@ cross_connects:
                     returned: on success
                     type: str
                     sample: AES128_GCM
+        oci_physical_device_name:
+            description:
+                - The FastConnect device that terminates the physical connection.
+            returned: on success
+            type: str
+            sample: oci_physical_device_name_example
+        oci_logical_device_name:
+            description:
+                - The FastConnect device that terminates the logical connection.
+                  This device might be different than the device that terminates the physical connection.
+            returned: on success
+            type: str
+            sample: oci_logical_device_name_example
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cross_connect_group_id": "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx",
@@ -266,7 +279,9 @@ cross_connects:
                 "connectivity_association_key_secret_version": 56
             },
             "encryption_cipher": "AES128_GCM"
-        }
+        },
+        "oci_physical_device_name": "oci_physical_device_name_example",
+        "oci_logical_device_name": "oci_logical_device_name_example"
     }]
 """
 

@@ -23,7 +23,7 @@ module: oci_database_management_sql_tuning_advisor_task_summary_report_facts
 short_description: Fetches details about a SqlTuningAdvisorTaskSummaryReport resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a SqlTuningAdvisorTaskSummaryReport resource in Oracle Cloud Infrastructure
-    - Gets the summary report for the specific SQL Tuning Advisor task.
+    - Gets the summary report for the specified SQL Tuning Advisor task.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -101,49 +101,49 @@ sql_tuning_advisor_task_summary_report:
             contains:
                 id:
                     description:
-                        - The SQL Tuning Advisor task id. It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                        - The ID of the SQL Tuning Advisor task. This is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: int
                     sample: 56
                 name:
                     description:
-                        - The SQL Tuning Advisor task name.
+                        - The name of the SQL Tuning Advisor task.
                     returned: on success
                     type: str
                     sample: name_example
                 description:
                     description:
-                        - The SQL Tuning Advisor task description. Not defined on Auto SQL Tuning tasks.
+                        - The description of the SQL Tuning Advisor task. This is not defined for Auto SQL Tuning tasks.
                     returned: on success
                     type: str
                     sample: description_example
                 owner:
                     description:
-                        - The SQL Tuning Advisor task user owner.
+                        - The owner of the SQL Tuning Advisor task.
                     returned: on success
                     type: str
                     sample: owner_example
                 status:
                     description:
-                        - The SQL Tuning Advisor task status. Not defined on Auto SQL Tuning tasks.
+                        - The status of the SQL Tuning Advisor task. This is not defined for Auto SQL Tuning tasks.
                     returned: on success
                     type: str
                     sample: COMPLETED
                 time_started:
                     description:
-                        - Start timestamp of task execution.
+                        - The start time of the task execution.
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 time_ended:
                     description:
-                        - End timestamp of task execution.
+                        - The end time of the task execution.
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
                 running_time:
                     description:
-                        - The total running time in seconds. Not defined on Auto SQL Tuning tasks.
+                        - The total running time in seconds. This is not defined for Auto SQL Tuning tasks.
                     returned: on success
                     type: int
                     sample: 56
@@ -161,25 +161,25 @@ sql_tuning_advisor_task_summary_report:
                     contains:
                         distinct_sql:
                             description:
-                                - The count of distinct SQL statements.
+                                - The number of distinct SQL statements.
                             returned: on success
                             type: int
                             sample: 56
                         total_sql:
                             description:
-                                - The total count of SQL statements.
+                                - The total number of SQL statements.
                             returned: on success
                             type: int
                             sample: 56
                         finding_count:
                             description:
-                                - The count of distinct SQL statements with findings.
+                                - The number of distinct SQL statements with findings.
                             returned: on success
                             type: int
                             sample: 56
                         error_count:
                             description:
-                                - The count of distinct SQL statements with errors.
+                                - The number of distinct SQL statements with errors.
                             returned: on success
                             type: int
                             sample: 56
@@ -191,37 +191,37 @@ sql_tuning_advisor_task_summary_report:
                     contains:
                         recommended_sql_profile:
                             description:
-                                - The count of distinct SQL statements with recommended SQL profiles.
+                                - The number of distinct SQL statements with recommended SQL profiles.
                             returned: on success
                             type: int
                             sample: 56
                         implemented_sql_profile:
                             description:
-                                - The count of distinct SQL statements with implemented SQL profiles.
+                                - The number of distinct SQL statements with implemented SQL profiles.
                             returned: on success
                             type: int
                             sample: 56
                         index:
                             description:
-                                - The count of distinct SQL statements with index recommendations.
+                                - The number of distinct SQL statements with index recommendations.
                             returned: on success
                             type: int
                             sample: 56
                         restructure:
                             description:
-                                - The count of distinct SQL statements with restructure SQL recommendations.
+                                - The number of distinct SQL statements with restructured SQL recommendations.
                             returned: on success
                             type: int
                             sample: 56
                         statistics:
                             description:
-                                - The count of distinct SQL statements with stale/missing optimizer statistics recommendations.
+                                - The number of distinct SQL statements with stale or missing optimizer statistics recommendations.
                             returned: on success
                             type: int
                             sample: 56
                         alternate_plan:
                             description:
-                                - The count of distinct SQL statements with alternative plan recommendations.
+                                - The number of distinct SQL statements with alternative plan recommendations.
                             returned: on success
                             type: int
                             sample: 56
@@ -233,25 +233,25 @@ sql_tuning_advisor_task_summary_report:
                     contains:
                         db_time_before_recommended:
                             description:
-                                - The count of Potential database time before SQL recommendations are implemented.
+                                - The actual database time of the SQL statements for which SQL Tuning Advisor recommendations are not implemented.
                             returned: on success
                             type: int
                             sample: 56
                         db_time_after_recommended:
                             description:
-                                - The count of Potential database time after SQL recommendations are implemented.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        db_time_before_implemented:
-                            description:
-                                - The count of database time benefit before SQL recommendations are implemented.
+                                - The estimated database time of the above SQL statements, if SQL Tuning Advisor recommendations are implemented.
                             returned: on success
                             type: int
                             sample: 56
                         db_time_after_implemented:
                             description:
-                                - The count of database time benefit after SQL recommendations are implemented.
+                                - The actual database time of the SQL statements for which SQL Tuning Advisor recommendations are implemented.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        db_time_before_implemented:
+                            description:
+                                - The actual database time of the above SQL statements, before SQL Tuning Advisor recommendations are implemented.
                             returned: on success
                             type: int
                             sample: 56
@@ -368,8 +368,8 @@ sql_tuning_advisor_task_summary_report:
             "finding_benefits": {
                 "db_time_before_recommended": 56,
                 "db_time_after_recommended": 56,
-                "db_time_before_implemented": 56,
-                "db_time_after_implemented": 56
+                "db_time_after_implemented": 56,
+                "db_time_before_implemented": 56
             }
         },
         "object_stat_findings": [{

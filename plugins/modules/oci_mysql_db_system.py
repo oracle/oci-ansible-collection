@@ -238,6 +238,15 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    crash_recovery:
+        description:
+            - Whether to run the DB System with InnoDB Redo Logs and the Double Write Buffer enabled or disabled,
+              and whether to enable or disable syncing of the Binary Logs.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "ENABLED"
+            - "DISABLED"
     db_system_id:
         description:
             - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -296,6 +305,7 @@ EXAMPLES = """
       window_start_time: window_start_time_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    crash_recovery: ENABLED
 
 - name: Update db_system
   oci_mysql_db_system:
@@ -331,6 +341,7 @@ EXAMPLES = """
       window_start_time: window_start_time_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    crash_recovery: ENABLED
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
@@ -366,6 +377,7 @@ EXAMPLES = """
       window_start_time: window_start_time_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    crash_recovery: ENABLED
 
 - name: Delete db_system
   oci_mysql_db_system:
@@ -939,6 +951,13 @@ db_system:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        crash_recovery:
+            description:
+                - Whether to run the DB System with InnoDB Redo Logs and the Double Write Buffer enabled or disabled,
+                  and whether to enable or disable syncing of the Binary Logs.
+            returned: on success
+            type: str
+            sample: ENABLED
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -1033,7 +1052,8 @@ db_system:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "crash_recovery": "ENABLED"
     }
 """
 
@@ -1242,6 +1262,7 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            crash_recovery=dict(type="str", choices=["ENABLED", "DISABLED"]),
             db_system_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

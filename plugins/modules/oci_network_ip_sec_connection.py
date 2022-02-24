@@ -146,7 +146,7 @@ options:
                 aliases: ["name"]
             routing:
                 description:
-                    - The type of routing to use for this tunnel (either BGP dynamic routing or static routing).
+                    - The type of routing to use for this tunnel (BGP dynamic routing, static routing, or policy-based routing).
                 type: str
                 choices:
                     - "BGP"
@@ -231,14 +231,20 @@ options:
                         type: str
             oracle_initiation:
                 description:
-                    - Whether Oracle side is the initiator for negotiation.
+                    - Indicates whether the Oracle end of the IPSec connection is able to initiate starting up the IPSec tunnel.
                 type: str
                 choices:
                     - "INITIATOR_OR_RESPONDER"
                     - "RESPONDER_ONLY"
             nat_translation_enabled:
                 description:
-                    - Whether NAT-T Enabled on the tunnel
+                    - By default (the `AUTO` setting), IKE sends packets with a source and destination port set to 500,
+                      and when it detects that the port used to forward packets has changed (most likely because a NAT device
+                      is between the CPE device and the Oracle VPN headend) it will try to negotiate the use of NAT-T.
+                    - The `ENABLED` option sets the IKE protocol to use port 4500 instead of 500 and forces encapsulating traffic with the ESP protocol inside
+                      UDP packets.
+                    - The `DISABLED` option directs IKE to completely refuse to negotiate NAT-T
+                      even if it senses there may be a NAT device in use.
                 type: str
                 choices:
                     - "ENABLED"
@@ -251,11 +257,11 @@ options:
                 suboptions:
                     is_custom_phase_one_config:
                         description:
-                            - Indicates whether custom phase one configuration is enabled.
+                            - Indicates whether custom configuration is enabled for phase one options.
                         type: bool
                     authentication_algorithm:
                         description:
-                            - Phase one authentication algorithm supported during tunnel negotiation.
+                            - The custom authentication algorithm proposed during phase one tunnel negotiation.
                         type: str
                         choices:
                             - "SHA2_384"
@@ -263,7 +269,7 @@ options:
                             - "SHA1_96"
                     encryption_algorithm:
                         description:
-                            - Phase one encryption algorithm supported during tunnel negotiation.
+                            - The custom encryption algorithm proposed during phase one tunnel negotiation.
                         type: str
                         choices:
                             - "AES_256_CBC"
@@ -271,7 +277,7 @@ options:
                             - "AES_128_CBC"
                     diffie_helman_group:
                         description:
-                            - Phase One Diffie Hellman group supported during tunnel negotiation.
+                            - The custom Diffie-Hellman group proposed during phase one tunnel negotiation.
                         type: str
                         choices:
                             - "GROUP2"
@@ -282,7 +288,8 @@ options:
                             - "GROUP24"
                     lifetime_in_seconds:
                         description:
-                            - IKE session key lifetime in seconds for IPSec phase one.
+                            - Internet key association (IKE) session key lifetime in seconds for IPSec phase one. The default is 28800 which is equivalent to 8
+                              hours.
                         type: int
             phase_two_config:
                 description:
@@ -291,18 +298,18 @@ options:
                 suboptions:
                     is_custom_phase_two_config:
                         description:
-                            - Indicates whether custom phase two configuration is enabled.
+                            - Indicates whether custom configuration is enabled for phase two options.
                         type: bool
                     authentication_algorithm:
                         description:
-                            - Phase two authentication algorithm supported during tunnel negotiation.
+                            - The authentication algorithm proposed during phase two tunnel negotiation.
                         type: str
                         choices:
                             - "HMAC_SHA2_256_128"
                             - "HMAC_SHA1_128"
                     encryption_algorithm:
                         description:
-                            - Phase two encryption algorithm supported during tunnel negotiation.
+                            - The encryption algorithm proposed during phase two tunnel negotiation.
                         type: str
                         choices:
                             - "AES_256_GCM"
@@ -313,7 +320,7 @@ options:
                             - "AES_128_CBC"
                     lifetime_in_seconds:
                         description:
-                            - Lifetime in seconds for IPSec phase two.
+                            - Lifetime in seconds for the IPSec session key set in phase two. The default is 3600 which is equivalent to 1 hour.
                         type: int
                     is_pfs_enabled:
                         description:
@@ -321,7 +328,7 @@ options:
                         type: bool
                     pfs_dh_group:
                         description:
-                            - Diffie-Hellman group used for PFS.
+                            - The Diffie-Hellman group used for PFS, if PFS is enabled.
                         type: str
                         choices:
                             - "GROUP2"
@@ -337,14 +344,15 @@ options:
                 suboptions:
                     dpd_mode:
                         description:
-                            - dpd mode
+                            - This option defines whether DPD can be initiated from the Oracle side of the connection.
                         type: str
                         choices:
                             - "INITIATE_AND_RESPOND"
                             - "RESPOND_ONLY"
                     dpd_timeout_in_sec:
                         description:
-                            - DPD Timeout in seconds.
+                            - DPD timeout in seconds. This sets the longest interval between CPE device health messages before the IPSec connection indicates it
+                              has lost contact with the CPE. The default is 20 seconds.
                         type: int
             encryption_domain_config:
                 description:

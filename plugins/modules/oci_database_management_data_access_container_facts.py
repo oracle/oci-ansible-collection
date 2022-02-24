@@ -23,7 +23,7 @@ module: oci_database_management_data_access_container_facts
 short_description: Fetches details about one or multiple DataAccessContainer resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DataAccessContainer resources in Oracle Cloud Infrastructure
-    - Gets the list of Containers if it does not apply to all containers for the specified user.
+    - Gets the list of containers for a specific user. This is only applicable if ALL_CONTAINERS !='Y'.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -81,7 +81,7 @@ data_access_containers:
     contains:
         name:
             description:
-                - The name of a container included in this attribute if it does not apply to all containers.
+                - The name of the container included in the attribute.
             returned: on success
             type: str
             sample: name_example

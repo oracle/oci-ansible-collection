@@ -143,13 +143,13 @@ data_mask_rules:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Data Mask Rule Identifier, can be renamed
+                - Data Mask Rule Identifier, can be renamed.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment Identifier where the resource is created
+                - Compartment Identifier where the resource is created.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -224,6 +224,7 @@ data_mask_rules:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Avoid entering confidential information.
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

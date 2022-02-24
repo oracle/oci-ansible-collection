@@ -23,7 +23,7 @@ module: oci_database_management_consumer_group_privilege_facts
 short_description: Fetches details about one or multiple ConsumerGroupPrivilege resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ConsumerGroupPrivilege resources in Oracle Cloud Infrastructure
-    - Gets the list of Consumer Group Privileges granted for the specified user.
+    - Gets the list of consumer group privileges granted to a specific user.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -81,19 +81,19 @@ consumer_group_privileges:
     contains:
         name:
             description:
-                - The name of granted consumer group.
+                - The name of the granted consumer group privilege.
             returned: on success
             type: str
             sample: name_example
         grant_option:
             description:
-                - Indicates whether the grant was with the GRANT option (YES) or not (NO).
+                - Indicates whether the privilege is granted with the GRANT option (YES) or not (NO).
             returned: on success
             type: str
             sample: YES
         initial_group:
             description:
-                - Indicates whether the consumer group is designated as the default for this user or role (YES) or not (NO)
+                - Indicates whether the consumer group is designated as the default for this user or role (YES) or not (NO).
             returned: on success
             type: str
             sample: YES

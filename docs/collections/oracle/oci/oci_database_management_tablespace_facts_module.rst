@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_tablespace_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -365,7 +365,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Tablespace resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;allocated_size_kb&#x27;: 10, &#x27;allocation_type&#x27;: &#x27;SYSTEM&#x27;, &#x27;block_size_bytes&#x27;: 10, &#x27;compress_for&#x27;: &#x27;BASIC&#x27;, &#x27;datafiles&#x27;: [{&#x27;allocated_size_kb&#x27;: 10, &#x27;free_space_kb&#x27;: 10, &#x27;increment_by&#x27;: 10, &#x27;instance_id&#x27;: 10, &#x27;is_auto_extensible&#x27;: True, &#x27;lost_write_protect&#x27;: &#x27;ENABLED&#x27;, &#x27;max_size_kb&#x27;: 10, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;online_status&#x27;: &#x27;SYSOFF&#x27;, &#x27;shared&#x27;: &#x27;SHARED&#x27;, &#x27;status&#x27;: &#x27;AVAILABLE&#x27;, &#x27;used_percent_allocated&#x27;: 1.2, &#x27;used_percent_available&#x27;: 1.2, &#x27;used_space_kb&#x27;: 10, &#x27;user_size_kb&#x27;: 10}], &#x27;default_cell_memory&#x27;: &#x27;default_cell_memory_example&#x27;, &#x27;default_in_memory&#x27;: &#x27;ENABLED&#x27;, &#x27;default_in_memory_compression&#x27;: &#x27;NO_MEMCOMPRESS&#x27;, &#x27;default_in_memory_distribute&#x27;: &#x27;AUTO&#x27;, &#x27;default_in_memory_duplicate&#x27;: &#x27;NO_DUPLICATE&#x27;, &#x27;default_in_memory_priority&#x27;: &#x27;LOW&#x27;, &#x27;default_in_memory_service&#x27;: &#x27;DEFAULT&#x27;, &#x27;default_in_memory_service_name&#x27;: &#x27;default_in_memory_service_name_example&#x27;, &#x27;default_index_compression&#x27;: &#x27;ENABLED&#x27;, &#x27;default_table_compression&#x27;: &#x27;ENABLED&#x27;, &#x27;extent_management&#x27;: &#x27;LOCAL&#x27;, &#x27;free_space_kb&#x27;: 10, &#x27;index_compress_for&#x27;: &#x27;ADVANCED_LOW&#x27;, &#x27;is_bigfile&#x27;: True, &#x27;is_chunk_tablespace&#x27;: True, &#x27;is_encrypted&#x27;: True, &#x27;is_force_logging&#x27;: True, &#x27;is_plugged_in&#x27;: True, &#x27;logging&#x27;: &#x27;LOGGING&#x27;, &#x27;lost_write_protect&#x27;: &#x27;ENABLED&#x27;, &#x27;max_size_kb&#x27;: 10, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;predicate_evaluation&#x27;: &#x27;HOST&#x27;, &#x27;retention&#x27;: &#x27;GUARANTEE&#x27;, &#x27;segment_space_management&#x27;: &#x27;MANUAL&#x27;, &#x27;shared&#x27;: &#x27;SHARED&#x27;, &#x27;status&#x27;: &#x27;ONLINE&#x27;, &#x27;temp_group&#x27;: &#x27;temp_group_example&#x27;, &#x27;type&#x27;: &#x27;UNDO&#x27;, &#x27;used_percent_allocated&#x27;: 1.2, &#x27;used_percent_available&#x27;: 1.2, &#x27;used_space_kb&#x27;: 10, &#x27;user_size_kb&#x27;: 10}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;allocated_size_kb&#x27;: 10, &#x27;allocation_type&#x27;: &#x27;SYSTEM&#x27;, &#x27;block_size_bytes&#x27;: 10, &#x27;compress_for&#x27;: &#x27;BASIC&#x27;, &#x27;datafiles&#x27;: [{&#x27;allocated_size_kb&#x27;: 10, &#x27;free_space_kb&#x27;: 10, &#x27;increment_by&#x27;: 10, &#x27;instance_id&#x27;: 10, &#x27;is_auto_extensible&#x27;: True, &#x27;lost_write_protect&#x27;: &#x27;ENABLED&#x27;, &#x27;max_size_kb&#x27;: 10, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;online_status&#x27;: &#x27;SYSOFF&#x27;, &#x27;shared&#x27;: &#x27;SHARED&#x27;, &#x27;status&#x27;: &#x27;AVAILABLE&#x27;, &#x27;used_percent_allocated&#x27;: 1.2, &#x27;used_percent_available&#x27;: 1.2, &#x27;used_space_kb&#x27;: 10, &#x27;user_size_kb&#x27;: 10}], &#x27;default_cell_memory&#x27;: &#x27;default_cell_memory_example&#x27;, &#x27;default_in_memory&#x27;: &#x27;ENABLED&#x27;, &#x27;default_in_memory_compression&#x27;: &#x27;NO_MEMCOMPRESS&#x27;, &#x27;default_in_memory_distribute&#x27;: &#x27;AUTO&#x27;, &#x27;default_in_memory_duplicate&#x27;: &#x27;NO_DUPLICATE&#x27;, &#x27;default_in_memory_priority&#x27;: &#x27;LOW&#x27;, &#x27;default_in_memory_service&#x27;: &#x27;DEFAULT&#x27;, &#x27;default_in_memory_service_name&#x27;: &#x27;default_in_memory_service_name_example&#x27;, &#x27;default_index_compression&#x27;: &#x27;ENABLED&#x27;, &#x27;default_table_compression&#x27;: &#x27;ENABLED&#x27;, &#x27;extent_management&#x27;: &#x27;LOCAL&#x27;, &#x27;free_space_kb&#x27;: 10, &#x27;index_compress_for&#x27;: &#x27;ADVANCED_LOW&#x27;, &#x27;is_bigfile&#x27;: True, &#x27;is_chunk_tablespace&#x27;: True, &#x27;is_default&#x27;: True, &#x27;is_encrypted&#x27;: True, &#x27;is_force_logging&#x27;: True, &#x27;is_plugged_in&#x27;: True, &#x27;logging&#x27;: &#x27;LOGGING&#x27;, &#x27;lost_write_protect&#x27;: &#x27;ENABLED&#x27;, &#x27;max_size_kb&#x27;: 10, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;predicate_evaluation&#x27;: &#x27;HOST&#x27;, &#x27;retention&#x27;: &#x27;GUARANTEE&#x27;, &#x27;segment_space_management&#x27;: &#x27;MANUAL&#x27;, &#x27;shared&#x27;: &#x27;SHARED&#x27;, &#x27;status&#x27;: &#x27;ONLINE&#x27;, &#x27;temp_group&#x27;: &#x27;temp_group_example&#x27;, &#x27;type&#x27;: &#x27;UNDO&#x27;, &#x27;used_percent_allocated&#x27;: 1.2, &#x27;used_percent_available&#x27;: 1.2, &#x27;used_space_kb&#x27;: 10, &#x27;user_size_kb&#x27;: 10}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1007,6 +1007,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Indicates whether this is a chunk tablespace.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-tablespaces/is_default"></div>
+                    <b>is_default</b>
+                    <a class="ansibleOptionLink" href="#return-tablespaces/is_default" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether this is the default tablespace.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

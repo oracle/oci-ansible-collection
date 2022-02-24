@@ -23,7 +23,7 @@ module: oci_database_management_object_privilege_facts
 short_description: Fetches details about one or multiple ObjectPrivilege resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ObjectPrivilege resources in Oracle Cloud Infrastructure
-    - Gets the list of Object Privileges granted for the specified user.
+    - Gets the list of object privileges granted to a specific user.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -87,7 +87,7 @@ object_privileges:
             sample: name_example
         schema_type:
             description:
-                - The type of the object.
+                - The type of object.
             returned: on success
             type: str
             sample: schema_type_example
@@ -99,13 +99,13 @@ object_privileges:
             sample: owner_example
         grantor:
             description:
-                - The name of the user who performed the grant
+                - The name of the user who granted the object privilege.
             returned: on success
             type: str
             sample: grantor_example
         hierarchy:
             description:
-                - Indicates whether the privilege was granted with the HIERARCHY OPTION (YES) or not (NO)
+                - Indicates whether the privilege is granted with the HIERARCHY OPTION (YES) or not (NO).
             returned: on success
             type: str
             sample: YES
@@ -117,21 +117,21 @@ object_privileges:
             sample: object_example
         grant_option:
             description:
-                - Indicates whether the privilege was granted with the GRANT OPTION (YES) or not (NO)
+                - Indicates whether the privilege is granted with the GRANT OPTION (YES) or not (NO).
             returned: on success
             type: str
             sample: YES
         common:
             description:
-                - "Indicates how the grant was made. Possible values:
-                  YES if the role was granted commonly (CONTAINER=ALL was used)
-                  NO if the role was granted locally (CONTAINER=ALL was not used)"
+                - "Indicates how the object privilege was granted. Possible values:
+                  YES if the role is granted commonly (CONTAINER=ALL is used)
+                  NO if the role is granted locally (CONTAINER=ALL is not used)"
             returned: on success
             type: str
             sample: YES
         inherited:
             description:
-                - Indicates whether the role grant was inherited from another container (YES) or not (NO)
+                - Indicates whether the granted privilege is inherited from another container (YES) or not (NO).
             returned: on success
             type: str
             sample: YES

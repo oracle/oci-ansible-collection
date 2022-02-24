@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_data_access_container_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple DataAccessContainer resources in Oracle Cloud Infrastructure
-- Gets the list of Containers if it does not apply to all containers for the specified user.
+- Gets the list of containers for a specific user. This is only applicable if ALL_CONTAINERS !='Y'.
 
 
 .. Aliases
@@ -395,7 +395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of a container included in this attribute if it does not apply to all containers.</div>
+                                            <div>The name of the container included in the attribute.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>

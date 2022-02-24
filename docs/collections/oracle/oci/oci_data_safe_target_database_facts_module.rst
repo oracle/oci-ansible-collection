@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_target_database_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -164,6 +164,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-associated_resource_id"></div>
+                    <b>associated_resource_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-associated_resource_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return the target databases that are associated to the resource id passed in as a parameter value.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -456,6 +471,7 @@ Examples
 
         # optional
         target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        associated_resource_id: "ocid1.associatedresource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         lifecycle_state: CREATING
         database_type: DATABASE_CLOUD_SERVICE
@@ -500,10 +516,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of TargetDatabase resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_option&#x27;: {&#x27;connection_type&#x27;: &#x27;PRIVATE_ENDPOINT&#x27;, &#x27;datasafe_private_endpoint_id&#x27;: &#x27;ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;on_prem_connector_id&#x27;: &#x27;ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;credentials&#x27;: {&#x27;password&#x27;: &#x27;example-password&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}, &#x27;database_details&#x27;: {&#x27;autonomous_database_id&#x27;: &#x27;ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_type&#x27;: &#x27;DATABASE_CLOUD_SERVICE&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;ORACLE_CLOUD&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [], &#x27;listener_port&#x27;: 56, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;database_type&#x27;: &#x27;DATABASE_CLOUD_SERVICE&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;ORACLE_CLOUD&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;tls_config&#x27;: {&#x27;certificate_store_type&#x27;: &#x27;JKS&#x27;, &#x27;key_store_content&#x27;: &#x27;key_store_content_example&#x27;, &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;store_password&#x27;: &#x27;example-password&#x27;, &#x27;trust_store_content&#x27;: &#x27;trust_store_content_example&#x27;}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;associated_resource_ids&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_option&#x27;: {&#x27;connection_type&#x27;: &#x27;PRIVATE_ENDPOINT&#x27;, &#x27;datasafe_private_endpoint_id&#x27;: &#x27;ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;on_prem_connector_id&#x27;: &#x27;ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;credentials&#x27;: {&#x27;password&#x27;: &#x27;example-password&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}, &#x27;database_details&#x27;: {&#x27;autonomous_database_id&#x27;: &#x27;ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_type&#x27;: &#x27;DATABASE_CLOUD_SERVICE&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;ORACLE_CLOUD&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [], &#x27;listener_port&#x27;: 56, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;database_type&#x27;: &#x27;DATABASE_CLOUD_SERVICE&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;ORACLE_CLOUD&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;tls_config&#x27;: {&#x27;certificate_store_type&#x27;: &#x27;JKS&#x27;, &#x27;key_store_content&#x27;: &#x27;key_store_content_example&#x27;, &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;store_password&#x27;: &#x27;example-password&#x27;, &#x27;trust_store_content&#x27;: &#x27;trust_store_content_example&#x27;}}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-target_databases/associated_resource_ids"></div>
+                    <b>associated_resource_ids</b>
+                    <a class="ansibleOptionLink" href="#return-target_databases/associated_resource_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCIDs of associated resources like Database, Data Safe private endpoint etc.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-target_databases/compartment_id"></div>

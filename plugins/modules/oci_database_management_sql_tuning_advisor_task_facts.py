@@ -56,7 +56,7 @@ options:
         type: str
     sort_by:
         description:
-            - The option to sort the SQL Tuning advisor task summary data.
+            - The option to sort the SQL Tuning Advisor task summary data.
         type: str
         choices:
             - "NAME"
@@ -96,73 +96,75 @@ sql_tuning_advisor_tasks:
     contains:
         sql_tuning_advisor_task_id:
             description:
-                - Unique identifier of the task. It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                - The unique identifier of the SQL Tuning Advisor task. This is not the
+                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: int
             sample: 56
         instance_id:
             description:
-                - The instance id of the task. It is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                - The instance ID of the SQL Tuning Advisor task. This is not the
+                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: int
             sample: 56
         name:
             description:
-                - The name of the task.
+                - The name of the SQL Tuning Advisor task.
             returned: on success
             type: str
             sample: name_example
         description:
             description:
-                - The description of the task.
+                - The description of the SQL Tuning Advisor task.
             returned: on success
             type: str
             sample: description_example
         owner:
             description:
-                - The owner of the task.
+                - The owner of the SQL Tuning Advisor task.
             returned: on success
             type: str
             sample: owner_example
         time_created:
             description:
-                - Creation date of the task.
+                - The Creation date of the SQL Tuning Advisor task.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         task_status:
             description:
-                - The status of the task.
+                - The status of the SQL Tuning Advisor task.
             returned: on success
             type: str
             sample: COMPLETED
         days_to_expire:
             description:
-                - Days to expire the task. If the value equals -1 then the task has no expiration time (UNLIMITED).
+                - The number of days left before the task expires. If the value equals -1, then the task has no expiration time (UNLIMITED).
             returned: on success
             type: int
             sample: 56
         time_execution_started:
             description:
-                - Start timestamp of task execution.
+                - The start time of the task execution.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_execution_ended:
             description:
-                - End timestamp of task execution.
+                - The end time of the task execution.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         total_sql_statements:
             description:
-                - The total number of SQL statements related to the SQL tuning advisor task.
+                - The total number of SQL statements related to the SQL Tuning Advisor task.
             returned: on success
             type: int
             sample: 56
         recommendation_count:
             description:
-                - Number of recommendations produced.
+                - The number of recommendations provided for the SQL Tuning Advisor task.
             returned: on success
             type: int
             sample: 56

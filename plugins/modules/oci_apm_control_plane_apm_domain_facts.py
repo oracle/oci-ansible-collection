@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     apm_domain_id:
         description:
-            - The OCID of the APM domain
+            - The OCID of the APM domain.
             - Required to get a specific apm_domain.
         type: str
         aliases: ["id"]
@@ -65,7 +65,7 @@ options:
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is
-              ascending. If no value is specified timeCreated is default.
+              ascending. If no value is specified, timeCreated is default.
         type: str
         choices:
             - "timeCreated"

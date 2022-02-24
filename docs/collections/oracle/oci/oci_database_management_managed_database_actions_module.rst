@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_managed_database_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,9 +57,9 @@ Synopsis
 .. Description
 
 - Perform actions on a ManagedDatabase resource in Oracle Cloud Infrastructure
-- For *action=clone_sql_tuning_task*, clone and start a SQL tuning task for a given SQL tuning task.
-- For *action=drop_sql_tuning_task*, drop a SQL tuning task and its related results from the database.
-- For *action=start_sql_tuning_task*, start a SQL tuning task for a given set of SQLs from active session history top SQLs.
+- For *action=clone_sql_tuning_task*, clones and runs a SQL tuning task in the database.
+- For *action=drop_sql_tuning_task*, drops a SQL tuning task and its related results from the database.
+- For *action=start_sql_tuning_task*, starts a SQL tuning task for a given set of SQL statements from the active session history top SQL statements.
 
 
 .. Aliases
@@ -305,7 +305,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type pf the credential for SQL tuning task.</div>
+                                            <div>The type of credential for the SQL tuning task.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -321,7 +321,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The user to connect to the database.</div>
+                                            <div>The user name used to connect to the database.</div>
                                                         </td>
             </tr>
                     
@@ -353,7 +353,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The identifier of the task being cloned. This is not the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. It can be retrieved from the following endpoint <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database- management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks'>ListSqlTuningAdvisorTasks</a></div>
+                                            <div>The identifier of the SQL tuning task being cloned. This is not the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. It can be retrieved from the following endpoint <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database- management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks'>ListSqlTuningAdvisorTasks</a>.</div>
                                             <div>Required for <em>action=clone_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
@@ -388,7 +388,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The scope for the SQL tuning task. For LIMITED scope, the SQL profile recommendation is excluded, so the task is faster. For COMPREHENSIVE scope, the SQL profile recommendation is included.</div>
+                                            <div>The scope for the SQL tuning task. For LIMITED scope, the SQL profile recommendation is excluded, so the task is executed faster. For COMPREHENSIVE scope, the SQL profile recommendation is included.</div>
                                             <div>Required for <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
@@ -404,7 +404,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The array of the details of SQL statments on which the tuning is performed.</div>
+                                            <div>The array of the details of SQL statement on which tuning is performed.</div>
                                             <div>Required for <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
@@ -437,7 +437,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The time limit per SQL statement in minutes. This is for task with COMPREHENSIVE scope. Per statement time limit should not be larger than the total time limit.</div>
+                                            <div>The time limit per SQL statement (in minutes). This is for a task with the COMPREHENSIVE scope. The time limit per SQL statement should not be more than the total time limit.</div>
                                             <div>Applicable only for <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
@@ -469,7 +469,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The identifier of the task being dropped. This is not the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. It can be retrieved from the following endpoint <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database- management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks'>ListSqlTuningAdvisorTasks</a></div>
+                                            <div>The identifier of the SQL tuning task being dropped. This is not the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. It can be retrieved from the following endpoint <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database- management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks'>ListSqlTuningAdvisorTasks</a>.</div>
                                             <div>Required for <em>action=drop_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
@@ -485,7 +485,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the SQL tuning task. The name is unique per user in a database, and it is case sensitive.</div>
+                                            <div>The name of the SQL tuning task. The name is unique per user in a database, and it is case-sensitive.</div>
                                             <div>Required for <em>action=clone_sql_tuning_task</em>, <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
@@ -516,7 +516,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The end time of the period, in which SQL statements are running.</div>
+                                            <div>The end time of the period in which SQL statements are running.</div>
                                             <div>Required for <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
@@ -532,7 +532,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The start time of the period, in which SQL statements are running.</div>
+                                            <div>The start time of the period in which SQL statements are running.</div>
                                             <div>Required for <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>

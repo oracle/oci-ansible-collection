@@ -691,6 +691,13 @@ db_systems:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        crash_recovery:
+            description:
+                - Whether to run the DB System with InnoDB Redo Logs and the Double Write Buffer enabled or disabled,
+                  and whether to enable or disable syncing of the Binary Logs.
+            returned: on success
+            type: str
+            sample: ENABLED
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -785,7 +792,8 @@ db_systems:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "crash_recovery": "ENABLED"
     }]
 """
 

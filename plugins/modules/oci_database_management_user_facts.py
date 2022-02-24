@@ -95,7 +95,7 @@ users:
             sample: name_example
         status:
             description:
-                - The account status of the User
+                - The status of the user account.
             returned: on success
             type: str
             sample: OPEN
@@ -108,7 +108,7 @@ users:
             sample: "2013-10-20T19:20:30+01:00"
         time_expiring:
             description:
-                - The date of expiration of the account
+                - The date and time of the expiration of the user account.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -126,14 +126,14 @@ users:
             sample: temp_tablespace_example
         local_temp_tablespace:
             description:
-                - The default local temporary tablespace for the User.
+                - The default local temporary tablespace for the user.
                 - Returned for get operation
             returned: on success
             type: str
             sample: local_temp_tablespace_example
         time_created:
             description:
-                - The User creation date.
+                - The date and time the user was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -152,28 +152,28 @@ users:
             sample: consumer_group_example
         external_name:
             description:
-                - The external name of User.
+                - The external name of the user.
                 - Returned for get operation
             returned: on success
             type: str
             sample: external_name_example
         password_versions:
             description:
-                - "The list of versions of the password hashes (also known as \\"verifiers\\") existing for the account."
+                - "The list of existing versions of the password hashes (also known as \\"verifiers\\") for the account."
                 - Returned for get operation
             returned: on success
             type: str
             sample: password_versions_example
         editions_enabled:
             description:
-                - Indicates whether editions have been enabled for the corresponding user (Y) or not (N)
+                - Indicates whether editions have been enabled for the corresponding user (Y) or not (N).
                 - Returned for get operation
             returned: on success
             type: str
             sample: YES
         authentication:
             description:
-                - The authentication mechanism for the user
+                - The authentication mechanism for the user.
                 - Returned for get operation
             returned: on success
             type: str
@@ -195,7 +195,7 @@ users:
             sample: YES
         time_last_login:
             description:
-                - The time of the last user login.
+                - The date and time of the last user login.
                   This column is not populated when a user connects to the database with administrative privileges, that is, AS { SYSASM | SYSBACKUP | SYSDBA |
                   SYSDG | SYSOPER | SYSRAC | SYSKM }.
                 - Returned for get operation
@@ -204,35 +204,35 @@ users:
             sample: "2013-10-20T19:20:30+01:00"
         oracle_maintained:
             description:
-                - Indicates whether the user was created, and is maintained, by Oracle-supplied scripts (such as catalog.sql or catproc.sql).
+                - Indicates whether the user was created and is maintained by Oracle-supplied scripts (such as catalog.sql or catproc.sql).
                 - Returned for get operation
             returned: on success
             type: str
             sample: YES
         inherited:
             description:
-                - Indicates whether the user definition was inherited from another container (YES) or not (NO)
+                - Indicates whether the user definition is inherited from another container (YES) or not (NO).
                 - Returned for get operation
             returned: on success
             type: str
             sample: YES
         default_collation:
             description:
-                - The default collation for the user's schema.
+                - The default collation for the user schema.
                 - Returned for get operation
             returned: on success
             type: str
             sample: default_collation_example
         implicit:
             description:
-                - Indicates whether this user is a common user created by an implicit application (YES) or not (NO)
+                - Indicates whether the user is a common user created by an implicit application (YES) or not (NO).
                 - Returned for get operation
             returned: on success
             type: str
             sample: YES
         all_shared:
             description:
-                - In a sharded database, the value in this column indicates whether the user was created with shard DDL enabled.
+                - In a sharded database, indicates whether the user is created with shard DDL enabled (YES) or not (NO).
                 - Returned for get operation
             returned: on success
             type: str
@@ -246,7 +246,7 @@ users:
             sample: YES
         time_password_changed:
             description:
-                - The date on which the user's password was last set.
+                - The date and time when the user password was last set.
                   This column is populated only when the value of the AUTHENTICATION_TYPE column is PASSWORD. Otherwise, this column is null.
                 - Returned for get operation
             returned: on success

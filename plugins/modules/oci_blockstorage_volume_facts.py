@@ -195,6 +195,7 @@ volumes:
                 - " * `0`: Represents Lower Cost option."
                 - " * `10`: Represents Balanced option."
                 - " * `20`: Represents Higher Performance option."
+                - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
             returned: on success
             type: int
             sample: 56
@@ -243,13 +244,14 @@ volumes:
             sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
-                - Specifies whether the auto-tune performance is enabled for this volume.
+                - Specifies whether the auto-tune performance is enabled for this volume. This field is deprecated.
+                  Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.
             returned: on success
             type: bool
             sample: true
         auto_tuned_vpus_per_gb:
             description:
-                - The number of Volume Performance Units per GB that this volume is effectively tuned to when it's idle.
+                - The number of Volume Performance Units per GB that this volume is effectively tuned to.
             returned: on success
             type: int
             sample: 56

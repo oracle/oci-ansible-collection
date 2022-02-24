@@ -30,7 +30,8 @@ author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - ManagedList display name
+            - Managed list display name.
+            - Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -49,7 +50,8 @@ options:
         type: str
     description:
         description:
-            - ManagedList description
+            - Managed list description.
+            - Avoid entering confidential information.
             - This parameter is updatable.
         type: str
     list_type:
@@ -79,6 +81,7 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - Avoid entering confidential information.
             - This parameter is updatable.
         type: dict
     defined_tags:
@@ -175,13 +178,13 @@ managed_list:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - ManagedList display name
+                - ManagedList display name.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - ManagedList description
+                - ManagedList description.
             returned: on success
             type: str
             sample: description_example
@@ -250,6 +253,7 @@ managed_list:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Avoid entering confidential information.
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

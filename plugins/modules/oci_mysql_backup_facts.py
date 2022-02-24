@@ -432,6 +432,13 @@ backups:
                     returned: on success
                     type: dict
                     sample: {'Operations': {'CostCenter': 'US'}}
+                crash_recovery:
+                    description:
+                        - Whether to run the DB System with InnoDB Redo Logs and the Double Write Buffer enabled or disabled,
+                          and whether to enable or disable syncing of the Binary Logs.
+                    returned: on success
+                    type: str
+                    sample: ENABLED
         backup_size_in_gbs:
             description:
                 - The size of the backup in base-2 (IEC) gibibytes. (GiB).
@@ -526,7 +533,8 @@ backups:
                 "window_start_time": "window_start_time_example"
             },
             "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
+            "defined_tags": {'Operations': {'CostCenter': 'US'}},
+            "crash_recovery": "ENABLED"
         },
         "backup_size_in_gbs": 56,
         "retention_in_days": 56,

@@ -73,13 +73,13 @@ managed_list:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - ManagedList display name
+                - ManagedList display name.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - ManagedList description
+                - ManagedList description.
             returned: on success
             type: str
             sample: description_example
@@ -148,6 +148,7 @@ managed_list:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Avoid entering confidential information.
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

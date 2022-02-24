@@ -30,7 +30,7 @@ oracle.oci.oci_network_ip_sec_connection -- Manage an IpSecConnection resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -656,7 +656,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>dpd mode</div>
+                                            <div>This option defines whether DPD can be initiated from the Oracle side of the connection.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -673,7 +673,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DPD Timeout in seconds.</div>
+                                            <div>DPD timeout in seconds. This sets the longest interval between CPE device health messages before the IPSec connection indicates it has lost contact with the CPE. The default is 20 seconds.</div>
                                                         </td>
             </tr>
                     
@@ -766,7 +766,9 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether NAT-T Enabled on the tunnel</div>
+                                            <div>By default (the `AUTO` setting), IKE sends packets with a source and destination port set to 500, and when it detects that the port used to forward packets has changed (most likely because a NAT device is between the CPE device and the Oracle VPN headend) it will try to negotiate the use of NAT-T.</div>
+                                            <div>The `ENABLED` option sets the IKE protocol to use port 4500 instead of 500 and forces encapsulating traffic with the ESP protocol inside UDP packets.</div>
+                                            <div>The `DISABLED` option directs IKE to completely refuse to negotiate NAT-T even if it senses there may be a NAT device in use.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -786,7 +788,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether Oracle side is the initiator for negotiation.</div>
+                                            <div>Indicates whether the Oracle end of the IPSec connection is able to initiate starting up the IPSec tunnel.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -824,7 +826,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Phase one authentication algorithm supported during tunnel negotiation.</div>
+                                            <div>The custom authentication algorithm proposed during phase one tunnel negotiation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -849,7 +851,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Phase One Diffie Hellman group supported during tunnel negotiation.</div>
+                                            <div>The custom Diffie-Hellman group proposed during phase one tunnel negotiation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -871,7 +873,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Phase one encryption algorithm supported during tunnel negotiation.</div>
+                                            <div>The custom encryption algorithm proposed during phase one tunnel negotiation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -892,7 +894,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Indicates whether custom phase one configuration is enabled.</div>
+                                            <div>Indicates whether custom configuration is enabled for phase one options.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -909,7 +911,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>IKE session key lifetime in seconds for IPSec phase one.</div>
+                                            <div>Internet key association (IKE) session key lifetime in seconds for IPSec phase one. The default is 28800 which is equivalent to 8 hours.</div>
                                                         </td>
             </tr>
                     
@@ -947,7 +949,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Phase two authentication algorithm supported during tunnel negotiation.</div>
+                                            <div>The authentication algorithm proposed during phase two tunnel negotiation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -972,7 +974,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Phase two encryption algorithm supported during tunnel negotiation.</div>
+                                            <div>The encryption algorithm proposed during phase two tunnel negotiation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -993,7 +995,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Indicates whether custom phase two configuration is enabled.</div>
+                                            <div>Indicates whether custom configuration is enabled for phase two options.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1031,7 +1033,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Lifetime in seconds for IPSec phase two.</div>
+                                            <div>Lifetime in seconds for the IPSec session key set in phase two. The default is 3600 which is equivalent to 1 hour.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1056,7 +1058,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Diffie-Hellman group used for PFS.</div>
+                                            <div>The Diffie-Hellman group used for PFS, if PFS is enabled.</div>
                                                         </td>
             </tr>
                     
@@ -1078,7 +1080,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of routing to use for this tunnel (either BGP dynamic routing or static routing).</div>
+                                            <div>The type of routing to use for this tunnel (BGP dynamic routing, static routing, or policy-based routing).</div>
                                                         </td>
             </tr>
                                 <tr>

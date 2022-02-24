@@ -321,6 +321,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_data_safe_user_assessment_comparison_facts <ansible_collections.oracle.oci.oci_data_safe_user_assessment_comparison_facts_module>` -- Fetches details about a UserAssessmentComparison resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_user_assessment_facts <ansible_collections.oracle.oci.oci_data_safe_user_assessment_facts_module>` -- Fetches details about one or multiple UserAssessment resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_user_facts <ansible_collections.oracle.oci.oci_data_safe_user_facts_module>` -- Fetches details about one or multiple User resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_data_science_fast_launch_job_config_facts <ansible_collections.oracle.oci.oci_data_science_fast_launch_job_config_facts_module>` -- Fetches details about one or multiple FastLaunchJobConfig resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_job <ansible_collections.oracle.oci.oci_data_science_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_job_actions <ansible_collections.oracle.oci.oci_data_science_job_actions_module>` -- Perform actions on a Job resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_job_artifact <ansible_collections.oracle.oci.oci_data_science_job_artifact_module>` -- Manage a JobArtifact resource in Oracle Cloud Infrastructure
@@ -1226,6 +1227,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_streaming_stream_pool <ansible_collections.oracle.oci.oci_streaming_stream_pool_module>` -- Manage a StreamPool resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_streaming_stream_pool_actions <ansible_collections.oracle.oci.oci_streaming_stream_pool_actions_module>` -- Perform actions on a StreamPool resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_streaming_stream_pool_facts <ansible_collections.oracle.oci.oci_streaming_stream_pool_facts_module>` -- Fetches details about one or multiple StreamPool resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_threat_intelligence_indicator_count_facts <ansible_collections.oracle.oci.oci_threat_intelligence_indicator_count_facts_module>` -- Fetches details about one or multiple IndicatorCount resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_threat_intelligence_indicator_facts <ansible_collections.oracle.oci.oci_threat_intelligence_indicator_facts_module>` -- Fetches details about one or multiple Indicator resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_threat_intelligence_threat_types_facts <ansible_collections.oracle.oci.oci_threat_intelligence_threat_types_facts_module>` -- Fetches details about one or multiple ThreatTypes resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_usage_configuration_facts <ansible_collections.oracle.oci.oci_usage_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_usage_custom_table <ansible_collections.oracle.oci.oci_usage_custom_table_module>` -- Manage a CustomTable resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_usage_custom_table_facts <ansible_collections.oracle.oci.oci_usage_custom_table_facts_module>` -- Fetches details about one or multiple CustomTable resources in Oracle Cloud Infrastructure

@@ -30,7 +30,7 @@ oracle.oci.oci_network_tunnel_security_association_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple TunnelSecurityAssociation resources in Oracle Cloud Infrastructure
-- Lists the tunnel Security Associations information for the specified IPSec Tunnel ID.
+- Lists the tunnel security associations information for the specified IPSec tunnel ID.
 
 
 .. Aliases
@@ -338,7 +338,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>IP and mask of the Partner Subnet for Policy Based VPNs or Static Routes</div>
+                                            <div>The IP address and mask of the partner subnet used in policy based VPNs or static routes.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cpe_subnet_example</div>
@@ -356,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>IP and mask of the Local Subnet for Policy Based VPNs or Static Routes</div>
+                                            <div>The IP address and mask of the local subnet used in policy based VPNs or static routes.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oracle_subnet_example</div>
@@ -374,7 +374,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Seconds in current state</div>
+                                            <div>Time in the current state, in seconds.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">time_example</div>
@@ -392,7 +392,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Current state if status is not up, including phase1/phase2 and possible reason for tunnel not up</div>
+                                            <div>Current state if the IPSec tunnel status is not `UP`, including phase one and phase two details and a possible reason the tunnel is not `UP`.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tunnel_sa_error_info_example</div>
@@ -410,7 +410,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Phase 1 Status of the Tunnel</div>
+                                            <div>The IPSec tunnel&#x27;s phase one status.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INITIATING</div>

@@ -30,14 +30,16 @@ author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - ResponderRecipe Display Name
+            - Responder recipe display name.
+            - Avoid entering confidential information.
             - Required for create using I(state=present), update using I(state=present) with responder_recipe_id present.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
     description:
         description:
-            - ResponderRecipe Description
+            - Responder recipe description.
+            - Avoid entering confidential information.
             - This parameter is updatable.
         type: str
     source_responder_recipe_id:
@@ -79,6 +81,7 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - Avoid entering confidential information.
             - This parameter is updatable.
         type: dict
     defined_tags:
@@ -189,13 +192,13 @@ responder_recipe:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - ResponderRecipe Display Name
+                - ResponderRecipe display name.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - ResponderRecipe Description
+                - ResponderRecipe description.
             returned: on success
             type: str
             sample: description_example
@@ -219,13 +222,13 @@ responder_recipe:
                     sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
-                        - ResponderRule Display Name
+                        - ResponderRule display name.
                     returned: on success
                     type: str
                     sample: display_name_example
                 description:
                     description:
-                        - ResponderRule Description
+                        - ResponderRule description.
                     returned: on success
                     type: str
                     sample: description_example
@@ -400,13 +403,13 @@ responder_recipe:
                     sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
-                        - ResponderRule Display Name
+                        - ResponderRule display name.
                     returned: on success
                     type: str
                     sample: display_name_example
                 description:
                     description:
-                        - ResponderRule Description
+                        - ResponderRule description.
                     returned: on success
                     type: str
                     sample: description_example
@@ -608,6 +611,7 @@ responder_recipe:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Avoid entering confidential information.
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

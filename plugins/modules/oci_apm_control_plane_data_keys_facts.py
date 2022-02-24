@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     apm_domain_id:
         description:
-            - The OCID of the APM domain
+            - The OCID of the APM domain.
         type: str
         required: true
     data_key_type:

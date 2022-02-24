@@ -346,7 +346,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
-    from oci.database_management import SqlTuningClient
+    from oci.database_management import DbManagementClient
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -433,7 +433,7 @@ def main():
     resource_facts_helper = ResourceFactsHelper(
         module=module,
         resource_type="managed_database",
-        service_client_class=SqlTuningClient,
+        service_client_class=DbManagementClient,
         namespace="database_management",
     )
 

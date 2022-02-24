@@ -30,7 +30,7 @@ oracle.oci.oci_identity_user_facts -- Fetches details about one or multiple User
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -445,7 +445,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of User resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capabilities&#x27;: {&#x27;can_use_api_keys&#x27;: True, &#x27;can_use_auth_tokens&#x27;: True, &#x27;can_use_console_password&#x27;: &#x27;example-password&#x27;, &#x27;can_use_customer_secret_keys&#x27;: True, &#x27;can_use_db_credentials&#x27;: True, &#x27;can_use_smtp_credentials&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_user_name&#x27;: &#x27;db_user_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;email_verified&#x27;: True, &#x27;external_identifier&#x27;: &#x27;external_identifier_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;identity_provider_id&#x27;: &#x27;ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;is_mfa_activated&#x27;: True, &#x27;last_successful_login_time&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;previous_successful_login_time&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capabilities&#x27;: {&#x27;can_use_api_keys&#x27;: True, &#x27;can_use_auth_tokens&#x27;: True, &#x27;can_use_console_password&#x27;: True, &#x27;can_use_customer_secret_keys&#x27;: True, &#x27;can_use_db_credentials&#x27;: True, &#x27;can_use_smtp_credentials&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_user_name&#x27;: &#x27;db_user_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;email_verified&#x27;: True, &#x27;external_identifier&#x27;: &#x27;external_identifier_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;identity_provider_id&#x27;: &#x27;ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;is_mfa_activated&#x27;: True, &#x27;last_successful_login_time&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;previous_successful_login_time&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -518,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Indicates if the user can log in to the console.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example-password</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

@@ -684,6 +684,11 @@ options:
             - Specifies whether to delete or preserve the boot volume when terminating an instance.
               When set to `true`, the boot volume is preserved. The default value is `false`.
         type: bool
+    preserve_data_volumes:
+        description:
+            - Specifies whether to delete or preserve the data volumes when terminating an instance.
+              When set to `true`, the boot volume is preserved. The default value is `false`.
+        type: bool
     state:
         description:
             - The state of the Instance.
@@ -881,6 +886,7 @@ EXAMPLES = """
 
     # optional
     preserve_boot_volume: true
+    preserve_data_volumes: true
 
 - name: Delete instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
@@ -1660,6 +1666,7 @@ class InstanceHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 instance_id=self.module.params.get("instance_id"),
                 preserve_boot_volume=self.module.params.get("preserve_boot_volume"),
+                preserve_data_volumes=self.module.params.get("preserve_data_volumes"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -1828,6 +1835,7 @@ def main():
             ),
             instance_id=dict(aliases=["id"], type="str"),
             preserve_boot_volume=dict(type="bool"),
+            preserve_data_volumes=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

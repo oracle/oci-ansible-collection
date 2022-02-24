@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_security_assessment_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -428,7 +428,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only items that match the specified target.</div>
+                                            <div>A filter to return only items related to a specific target OCID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -458,7 +458,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only security assessments that were created after the specified date and time, as defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Using TimeCreatedGreaterThanOrEqualToQueryParam parameter retrieves all assessments created after that date.</div>
+                                            <div>A filter to return only the resources that were created after the specified date and time, as defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Using TimeCreatedGreaterThanOrEqualToQueryParam parameter retrieves all resources created after that date.</div>
                                             <div>**Example:** 2016-12-19T16:39:57.600Z</div>
                                                         </td>
             </tr>
@@ -474,7 +474,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Search for items that were created before a specific date. Specifying this parameter corresponding `timeCreatedLessThan` parameter will retrieve all items created before the specified created date, in &quot;YYYY-MM-ddThh:mmZ&quot; format with a Z offset, as defined by RFC 3339.</div>
+                                            <div>Search for resources that were created before a specific date. Specifying this parameter corresponding `timeCreatedLessThan` parameter will retrieve all resources created before the specified created date, in &quot;YYYY-MM-ddThh:mmZ&quot; format with a Z offset, as defined by RFC 3339.</div>
                                             <div>**Example:** 2016-12-19T16:39:57.600Z</div>
                                                         </td>
             </tr>

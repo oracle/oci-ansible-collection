@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_proxy_user_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ProxyUser resources in Oracle Cloud Infrastructure
-- Gets the list of proxy users for the current User.
+- Gets the list of proxy users for the current user.
 
 
 .. Aliases
@@ -395,7 +395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Indicates whether the proxy is required to supply the client credentials (YES) or not (NO)</div>
+                                            <div>Indicates whether the proxy is required to supply the client credentials (YES) or not (NO).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -413,7 +413,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Flags associated with the proxy/client pair</div>
+                                            <div>The flags associated with the proxy/client pair.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROXY_MAY_ACTIVATE_ALL_CLIENT_ROLES</div>
@@ -431,7 +431,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of a proxy user or name of the user who the proxy user can act as</div>
+                                            <div>The name of a proxy user or the name of the client user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>

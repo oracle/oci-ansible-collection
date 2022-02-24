@@ -30,7 +30,7 @@ oracle.oci.oci_network_cross_connect_group -- Manage a CrossConnectGroup resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.43.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -723,7 +723,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the CrossConnectGroup resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_reference_name&#x27;: &#x27;customer_reference_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;macsec_properties&#x27;: {&#x27;encryption_cipher&#x27;: &#x27;AES128_GCM&#x27;, &#x27;primary_key&#x27;: {&#x27;connectivity_association_key_secret_id&#x27;: &#x27;ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connectivity_association_key_secret_version&#x27;: 56, &#x27;connectivity_association_name_secret_id&#x27;: &#x27;ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connectivity_association_name_secret_version&#x27;: 56}, &#x27;state&#x27;: &#x27;ENABLED&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_reference_name&#x27;: &#x27;customer_reference_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;macsec_properties&#x27;: {&#x27;encryption_cipher&#x27;: &#x27;AES128_GCM&#x27;, &#x27;primary_key&#x27;: {&#x27;connectivity_association_key_secret_id&#x27;: &#x27;ocid1.connectivityassociationkeysecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connectivity_association_key_secret_version&#x27;: 56, &#x27;connectivity_association_name_secret_id&#x27;: &#x27;ocid1.connectivityassociationnamesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connectivity_association_name_secret_version&#x27;: 56}, &#x27;state&#x27;: &#x27;ENABLED&#x27;}, &#x27;oci_logical_device_name&#x27;: &#x27;oci_logical_device_name_example&#x27;, &#x27;oci_physical_device_name&#x27;: &#x27;oci_physical_device_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1007,6 +1007,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cross_connect_group/oci_logical_device_name"></div>
+                    <b>oci_logical_device_name</b>
+                    <a class="ansibleOptionLink" href="#return-cross_connect_group/oci_logical_device_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The FastConnect device that terminates the logical connection. This device might be different than the device that terminates the physical connection.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_logical_device_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cross_connect_group/oci_physical_device_name"></div>
+                    <b>oci_physical_device_name</b>
+                    <a class="ansibleOptionLink" href="#return-cross_connect_group/oci_physical_device_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The FastConnect device that terminates the physical connection.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_physical_device_name_example</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

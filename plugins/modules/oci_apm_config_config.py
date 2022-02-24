@@ -23,18 +23,18 @@ module: oci_apm_config_config
 short_description: Manage a Config resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Config resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Configuration item.
+    - For I(state=present), creates a new configuration item.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
         description:
-            - The APM Domain Id the request is intended for.
+            - The APM Domain ID the request is intended for.
         type: str
         required: true
     config_type:
         description:
-            - The type of configuration item
+            - The type of configuration item.
             - Required for create using I(state=present), update using I(state=present) with config_id present.
         type: str
         choices:
@@ -55,7 +55,7 @@ options:
         type: dict
     display_name:
         description:
-            - The name by which this filter can be displayed in the UI.
+            - The name by which the span filter can be displayed in the UI.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -78,20 +78,20 @@ options:
     filter_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Span Filter. The filterId is mandatory for the creation
-              of MetricGroups. A filterId will be generated when a Span Filter is created.
+              of MetricGroups. A filterId is generated when a Span Filter is created.
             - This parameter is updatable.
             - Applicable when config_type is 'METRIC_GROUP'
             - Required when config_type is 'METRIC_GROUP'
         type: str
     namespace:
         description:
-            - The namespace to write the metrics to
+            - The namespace to which the metrics are published. It must be one of several predefined namespaces.
             - This parameter is updatable.
             - Applicable when config_type is 'METRIC_GROUP'
         type: str
     dimensions:
         description:
-            - A list of dimensions for this metric
+            - A list of dimensions for the metric. This variable should not be used.
             - This parameter is updatable.
             - Applicable when config_type is 'METRIC_GROUP'
         type: list
@@ -99,18 +99,18 @@ options:
         suboptions:
             name:
                 description:
-                    - The dimension name
+                    - The name of the dimension.
                     - Required when config_type is 'METRIC_GROUP'
                 type: str
                 required: true
             value_source:
                 description:
-                    - The source to populate the dimension. Must be NULL at the moment.
+                    - The source to populate the dimension. This must not be specified.
                     - Applicable when config_type is 'METRIC_GROUP'
                 type: str
     metrics:
         description:
-            - ""
+            - The list of metrics in this group.
             - This parameter is updatable.
             - Applicable when config_type is 'METRIC_GROUP'
             - Required when config_type is 'METRIC_GROUP'
@@ -119,23 +119,23 @@ options:
         suboptions:
             name:
                 description:
-                    - The name of the metric
+                    - The name of the metric. This must be a known metric name.
                     - Required when config_type is 'METRIC_GROUP'
                 type: str
                 required: true
             value_source:
                 description:
-                    - "Must be NULL at the moment, and \\"name\\" must be a known metric."
+                    - This must not be set.
                     - Applicable when config_type is 'METRIC_GROUP'
                 type: str
             unit:
                 description:
-                    - The unit of the metric
+                    - The unit of the metric.
                     - Applicable when config_type is 'METRIC_GROUP'
                 type: str
             description:
                 description:
-                    - A description of the metric
+                    - A description of the metric.
                     - Applicable when config_type is 'METRIC_GROUP'
                 type: str
     rules:
@@ -162,44 +162,44 @@ options:
                 required: true
             is_enabled:
                 description:
-                    - "Specifies if the Apdex rule will be computed for spans matching the rule. Can be used to make sure certain
-                      spans don't get an Apdex score. The default is \\"true\\"."
+                    - "Specifies whether the Apdex score should be computed for spans matching the rule. This can be used to disable
+                      Apdex score for spans that do not need or require it. The default is \\"true\\"."
                     - Applicable when config_type is 'APDEX'
                 type: bool
             satisfied_response_time:
                 description:
-                    - The maximum response time in milliseconds that will be considered satisfactory for the end user.
+                    - "The maximum response time in milliseconds that is considered \\"satisfactory\\" for the end user."
                     - Applicable when config_type is 'APDEX'
                 type: int
             tolerating_response_time:
                 description:
-                    - "The maximum response time in milliseconds that will be considered tolerable for the end user. Response
-                      times beyond this threshold will be considered frustrating.
+                    - "The maximum response time in milliseconds that is considered \\"tolerable\\" for the end user. A response
+                      time beyond this threshold is considered \\"frustrating\\".
                       This value cannot be lower than \\"satisfiedResponseTime\\"."
                     - Applicable when config_type is 'APDEX'
                 type: int
             is_apply_to_error_spans:
                 description:
-                    - If true, the rule will compute the actual Apdex score for spans that have been marked as errors. If false,
-                      the rule will always set the Apdex for error spans to frustrating, regardless of the configured thresholds.
-                      Default is false.
+                    - "Specifies whether an Apdex score should be computed for error spans. Setting it to \\"true\\" means that the Apdex
+                      score is computed in the usual way. Setting it to \\"false\\" skips the Apdex computation and sets the Apdex
+                      score to \\"frustrating\\" regardless of the configured thresholds. The default is \\"false\\"."
                     - Applicable when config_type is 'APDEX'
                 type: bool
             display_name:
                 description:
-                    - A user-friendly name that provides a short description this rule.
+                    - A user-friendly name that provides a short description of this rule.
                     - Applicable when config_type is 'APDEX'
                 type: str
                 aliases: ["name"]
     opc_dry_run:
         description:
-            - "Indicates that this request is a dry-run.
-              If set to \\"true\\", nothing will be modified, only the validation will be performed."
+            - "Indicates that the request is a dry run, if set to \\"true\\". A dry run request does not modify the
+              configuration item details and is used only to perform validation on the submitted data."
             - This parameter is updatable.
         type: str
     config_id:
         description:
-            - The OCID of the ConfiguredItem.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -419,14 +419,14 @@ config:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item. An OCID will be generated
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item. An OCID is generated
                   when the item is created.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         config_type:
             description:
-                - The type of configuration item
+                - The type of configuration item.
             returned: on success
             type: str
             sample: SPAN_FILTER
@@ -462,7 +462,7 @@ config:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - The name by which this rule set can be displayed to the user.
+                - The name by which the rule set is displayed to the end user.
             returned: on success
             type: str
             sample: display_name_example
@@ -488,36 +488,36 @@ config:
                     sample: 56
                 is_enabled:
                     description:
-                        - "Specifies if the Apdex rule will be computed for spans matching the rule. Can be used to make sure certain
-                          spans don't get an Apdex score. The default is \\"true\\"."
+                        - "Specifies whether the Apdex score should be computed for spans matching the rule. This can be used to disable
+                          Apdex score for spans that do not need or require it. The default is \\"true\\"."
                     returned: on success
                     type: bool
                     sample: true
                 satisfied_response_time:
                     description:
-                        - The maximum response time in milliseconds that will be considered satisfactory for the end user.
+                        - "The maximum response time in milliseconds that is considered \\"satisfactory\\" for the end user."
                     returned: on success
                     type: int
                     sample: 56
                 tolerating_response_time:
                     description:
-                        - "The maximum response time in milliseconds that will be considered tolerable for the end user. Response
-                          times beyond this threshold will be considered frustrating.
+                        - "The maximum response time in milliseconds that is considered \\"tolerable\\" for the end user. A response
+                          time beyond this threshold is considered \\"frustrating\\".
                           This value cannot be lower than \\"satisfiedResponseTime\\"."
                     returned: on success
                     type: int
                     sample: 56
                 is_apply_to_error_spans:
                     description:
-                        - If true, the rule will compute the actual Apdex score for spans that have been marked as errors. If false,
-                          the rule will always set the Apdex for error spans to frustrating, regardless of the configured thresholds.
-                          Default is false.
+                        - "Specifies whether an Apdex score should be computed for error spans. Setting it to \\"true\\" means that the Apdex
+                          score is computed in the usual way. Setting it to \\"false\\" skips the Apdex computation and sets the Apdex
+                          score to \\"frustrating\\" regardless of the configured thresholds. The default is \\"false\\"."
                     returned: on success
                     type: bool
                     sample: true
                 display_name:
                     description:
-                        - A user-friendly name that provides a short description this rule.
+                        - A user-friendly name that provides a short description of this rule.
                     returned: on success
                     type: str
                     sample: display_name_example
@@ -525,61 +525,61 @@ config:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Span Filter. The filterId is mandatory for the
                   creation
-                  of MetricGroups. A filterId will be generated when a Span Filter is created.
+                  of MetricGroups. A filterId is generated when a Span Filter is created.
             returned: on success
             type: str
             sample: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
         namespace:
             description:
-                - The namespace to write the metrics to
+                - The namespace to which the metrics are published. It must be one of several predefined namespaces.
             returned: on success
             type: str
             sample: namespace_example
         dimensions:
             description:
-                - A list of dimensions for this metric
+                - A list of dimensions for the metric. This variable should not be used.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - The dimension name
+                        - The name of the dimension.
                     returned: on success
                     type: str
                     sample: name_example
                 value_source:
                     description:
-                        - The source to populate the dimension. Must be NULL at the moment.
+                        - The source to populate the dimension. This must not be specified.
                     returned: on success
                     type: str
                     sample: value_source_example
         metrics:
             description:
-                - ""
+                - The list of metrics in this group.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - The name of the metric
+                        - The name of the metric. This must be a known metric name.
                     returned: on success
                     type: str
                     sample: name_example
                 value_source:
                     description:
-                        - "Must be NULL at the moment, and \\"name\\" must be a known metric."
+                        - This must not be set.
                     returned: on success
                     type: str
                     sample: value_source_example
                 unit:
                     description:
-                        - The unit of the metric
+                        - The unit of the metric.
                     returned: on success
                     type: str
                     sample: unit_example
                 description:
                     description:
-                        - A description of the metric
+                        - A description of the metric.
                     returned: on success
                     type: str
                     sample: description_example
@@ -591,7 +591,7 @@ config:
             sample: filter_text_example
         description:
             description:
-                - An optional string that describes what the filter is intended or used for.
+                - An optional string that describes what the span filter is intended or used for.
             returned: on success
             type: str
             sample: description_example

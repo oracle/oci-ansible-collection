@@ -313,6 +313,23 @@ except ImportError:
 class DashboardHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_possible_entity_types(self):
+        return super(DashboardHelperGen, self).get_possible_entity_types() + [
+            "consoledashboard",
+            "consoledashboards",
+            "dashboardServiceconsoledashboard",
+            "dashboardServiceconsoledashboards",
+            "consoledashboardresource",
+            "consoledashboardsresource",
+            "dashboard",
+            "dashboards",
+            "dashboardServicedashboard",
+            "dashboardServicedashboards",
+            "dashboardresource",
+            "dashboardsresource",
+            "dashboardservice",
+        ]
+
     def get_module_resource_id_param(self):
         return "dashboard_id"
 
@@ -321,6 +338,11 @@ class DashboardHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_dashboard
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_dashboard, dashboard_id=summary_model.id,
+        ).data
 
     def get_resource(self):
         optional_params = [
