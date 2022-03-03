@@ -130,13 +130,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the route table belongs to.
             - Required for create using I(state=present).
         type: str
-    rt_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     purge_route_rules:
         description:
             - Purge route rules from route table which are not present in the provided route table.
@@ -155,6 +148,13 @@ options:
             - This parameter is updatable.
         type: bool
         default: "false"
+    rt_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the RouteTable.
@@ -551,9 +551,9 @@ def main():
                 ),
             ),
             vcn_id=dict(type="str"),
-            rt_id=dict(aliases=["id"], type="str"),
             purge_route_rules=dict(type="bool", default="true"),
             delete_route_rules=dict(type="bool", default="false"),
+            rt_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -102,6 +102,7 @@ public_ip_pools:
         cidr_blocks:
             description:
                 - The CIDR blocks added to this pool. This could be all or a portion of a BYOIP CIDR block.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []

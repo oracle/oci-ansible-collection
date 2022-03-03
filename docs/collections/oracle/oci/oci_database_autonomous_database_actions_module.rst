@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database_actions -- Perform actions on an Aut
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -667,13 +667,13 @@ Examples
       oci_database_autonomous_database_actions:
         # required
         autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-        password: example-password
         wallet_file: /tmp/atp_wallet.zip
+        password: example-password
         action: generate_autonomous_database_wallet
 
         # optional
-        generate_type: ALL
         force: true
+        generate_type: ALL
 
     - name: Perform action register_autonomous_database_data_safe on autonomous_database
       oci_database_autonomous_database_actions:

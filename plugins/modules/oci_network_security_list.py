@@ -356,13 +356,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the security list belongs to.
             - Required for create using I(state=present).
         type: str
-    security_list_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the security list.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     purge_security_rules:
         description:
             - Purge security rules  from security list which are not present in the provided group security list.
@@ -383,6 +376,13 @@ options:
             - This parameter is updatable.
         type: bool
         default: "false"
+    security_list_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the security list.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the SecurityList.
@@ -1386,9 +1386,9 @@ def main():
                 ),
             ),
             vcn_id=dict(type="str"),
-            security_list_id=dict(aliases=["id"], type="str"),
             purge_security_rules=dict(type="bool", default="true"),
             delete_security_rules=dict(type="bool", default="false"),
+            security_list_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

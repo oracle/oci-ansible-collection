@@ -226,6 +226,14 @@ database_registrations:
             returned: on success
             type: str
             sample: connection_string_example
+        session_mode:
+            description:
+                - "The mode of the database connection session to be established by the data client. REDIRECT - for a RAC database, DIRECT - for a non-RAC
+                  database. Connection to a RAC database involves a redirection received from the SCAN listeners to the database node to connect to. By default
+                  the mode would be DIRECT."
+            returned: on success
+            type: str
+            sample: DIRECT
         alias_name:
             description:
                 - Credential store alias.
@@ -286,6 +294,7 @@ database_registrations:
         "system_tags": {},
         "username": "username_example",
         "connection_string": "connection_string_example",
+        "session_mode": "DIRECT",
         "alias_name": "alias_name_example",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",

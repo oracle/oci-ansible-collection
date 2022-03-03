@@ -30,7 +30,7 @@ oracle.oci.oci_announcements_service_announcements_preferences -- Manage an Anno
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - This module allows the user to create and update an AnnouncementsPreferences resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a request that specifies preferences for the tenancy regarding receiving announcements by email.
+- This call is subject to an Announcements limit that applies to the total number of requests across all read or write operations. Announcements might throttle this call to reject an otherwise valid request when the total rate of operations exceeds 20 requests per second for a given user. The service might also throttle this call to reject an otherwise valid request when the total rate of operations exceeds 100 requests per second for a given tenancy.
 
 
 .. Aliases

@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.45.0]
+
+## Added
+
+- Support for ai_speech service
+- Support for RAC Databases in GoldenGate Service
+- Support for customer managed encryption keys for secrets stored in Analytics service
+- Support for Announcements Subscriptions feature
+- Support for upgrading and managing payment for subscriptions in the Account Management service (osp_gateway)
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.59.0
+
 ## [2.44.0]
 
 ## Added

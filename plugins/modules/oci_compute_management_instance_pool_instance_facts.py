@@ -109,6 +109,7 @@ instance_pool_instances:
         instance_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
@@ -121,6 +122,7 @@ instance_pool_instances:
         lifecycle_state:
             description:
                 - The attachment state of the instance in relation to the instance pool.
+                - Returned for get operation
             returned: on success
             type: str
             sample: ATTACHING

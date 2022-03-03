@@ -118,6 +118,7 @@ compute_image_capability_schemas:
         compute_global_image_capability_schema_id:
             description:
                 - The ocid of the compute global image capability schema
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"

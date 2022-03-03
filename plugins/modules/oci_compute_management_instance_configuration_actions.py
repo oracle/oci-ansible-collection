@@ -1618,7 +1618,8 @@ class InstanceConfigurationActionsHelperGen(OCIActionsHelperBase):
         )
 
     def get_response_field_name(self, action):
-        return "instance"
+        response_fields = dict(launch="instance", change_compartment="instance",)
+        return response_fields.get(action, "instance")
 
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(

@@ -363,6 +363,14 @@ analytics_instances:
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
+        kms_key_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI Vault Key encrypting the customer data stored in
+                  this Analytics instance. A null value indicates Oracle managed default encryption.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the instance was created, in the format defined by RFC3339.
@@ -423,6 +431,7 @@ analytics_instances:
         "service_url": "service_url_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"
     }]

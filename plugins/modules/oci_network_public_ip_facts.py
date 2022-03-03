@@ -49,6 +49,14 @@ options:
             - Required to get a specific public_ip.
         type: str
         aliases: ["id"]
+    private_ip_id:
+        description:
+            - OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve information of a public IP assigned to it.
+        type: str
+    ip_address:
+        description:
+            - OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve information of a public IP assigned to it.
+        type: str
     scope:
         description:
             - Whether the public IP is regional or specific to a particular availability domain.
@@ -85,14 +93,6 @@ options:
         description:
             - A filter to return only resources that belong to the given public IP pool.
         type: str
-    private_ip_id:
-        description:
-            - OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve information of a public IP assigned to it.
-        type: str
-    ip_address:
-        description:
-            - OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve information of a public IP assigned to it.
-        type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -109,11 +109,11 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    private_ip_id: private_ip_id_example
+    ip_address: ip_address_example
     availability_domain: Uocm:PHX-AD-1
     lifetime: EPHEMERAL
     public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
-    private_ip_id: private_ip_id_example
-    ip_address: ip_address_example
 
 """
 
@@ -340,13 +340,13 @@ def main():
     module_args.update(
         dict(
             public_ip_id=dict(aliases=["id"], type="str"),
+            private_ip_id=dict(type="str"),
+            ip_address=dict(type="str"),
             scope=dict(type="str", choices=["REGION", "AVAILABILITY_DOMAIN"]),
             compartment_id=dict(type="str"),
             availability_domain=dict(type="str"),
             lifetime=dict(type="str", choices=["EPHEMERAL", "RESERVED"]),
             public_ip_pool_id=dict(type="str"),
-            private_ip_id=dict(type="str"),
-            ip_address=dict(type="str"),
             display_name=dict(type="str"),
         )
     )

@@ -127,6 +127,7 @@ instance_configurations:
         instance_details:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -977,6 +978,7 @@ instance_configurations:
                 - Parameters that were not specified when the instance configuration was created, but that
                   are required to launch an instance from the instance configuration. See the
                   L(LaunchInstanceConfiguration,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/LaunchInstanceConfiguration) operation.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []

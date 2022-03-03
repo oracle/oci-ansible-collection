@@ -30,7 +30,7 @@ oracle.oci.oci_database_backup -- Manage a Backup resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -197,7 +197,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The compartment <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -420,11 +419,13 @@ Examples
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
+        # optional
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
     - name: Delete backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_backup:
         # required
         display_name: display_name_example
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

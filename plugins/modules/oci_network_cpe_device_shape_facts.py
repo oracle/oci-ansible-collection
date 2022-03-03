@@ -69,6 +69,7 @@ cpe_device_shapes:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE device shape.
                   This value uniquely identifies the type of CPE device.
+                - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
@@ -99,6 +100,7 @@ cpe_device_shapes:
                   provide the answers, use
                   L(UpdateTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig).
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -130,6 +132,7 @@ cpe_device_shapes:
                     us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent)
                     * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
                     us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)"
+                - Returned for get operation
             returned: on success
             type: str
             sample: template_example
@@ -137,6 +140,7 @@ cpe_device_shapes:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE device shape.
                   This value uniquely identifies the type of CPE device.
+                - Returned for list operation
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

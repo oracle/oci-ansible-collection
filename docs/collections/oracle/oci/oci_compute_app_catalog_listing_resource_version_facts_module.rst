@@ -30,7 +30,7 @@ oracle.oci.oci_compute_app_catalog_listing_resource_version_facts -- Fetches det
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -369,6 +369,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>List of accessible ports for instances launched with this listing resource version.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -385,6 +386,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Allowed actions for the listing resource.</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -403,6 +405,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of regions that this listing resource version is available.</div>
                                             <div>For information about Regions, see <a href='https://docs.cloud.oracle.com/#General/Concepts/regions.htm'>Regions</a>.</div>
                                             <div>Example: `[&quot;us-ashburn-1&quot;, &quot;us-phoenix-1&quot;]`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -421,6 +424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Array of shapes compatible with this resource.</div>
                                             <div>You may enumerate all available shapes by calling listShapes.</div>
                                             <div>Example: `[&quot;VM.Standard1.1&quot;, &quot;VM.Standard1.2&quot;]`</div>
+                                            <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
             </tr>

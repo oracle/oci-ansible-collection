@@ -109,6 +109,7 @@ cloud_vm_clusters:
         iorm_config_cache:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

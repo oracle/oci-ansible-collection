@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.44.0
+Collection version 2.45.0
 
 .. toctree::
     :maxdepth: 1
@@ -36,6 +36,11 @@ Modules
 * :ref:`oci_ai_anomaly_detection_project <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_project_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_project_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_speech_transcription_job <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_module>` -- Manage a TranscriptionJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_speech_transcription_job_actions <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_actions_module>` -- Perform actions on a TranscriptionJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_speech_transcription_job_facts <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_facts_module>` -- Fetches details about one or multiple TranscriptionJob resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_speech_transcription_task_actions <ansible_collections.oracle.oci.oci_ai_speech_transcription_task_actions_module>` -- Perform actions on a TranscriptionTask resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_speech_transcription_task_facts <ansible_collections.oracle.oci.oci_ai_speech_transcription_task_facts_module>` -- Fetches details about one or multiple TranscriptionTask resources in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance <ansible_collections.oracle.oci.oci_analytics_instance_module>` -- Manage an AnalyticsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance_actions <ansible_collections.oracle.oci.oci_analytics_instance_actions_module>` -- Perform actions on an AnalyticsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance_facts <ansible_collections.oracle.oci.oci_analytics_instance_facts_module>` -- Fetches details about one or multiple AnalyticsInstance resources in Oracle Cloud Infrastructure
@@ -43,6 +48,9 @@ Modules
 * :ref:`oci_analytics_private_access_channel_facts <ansible_collections.oracle.oci.oci_analytics_private_access_channel_facts_module>` -- Fetches details about a PrivateAccessChannel resource in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_vanity_url <ansible_collections.oracle.oci.oci_analytics_vanity_url_module>` -- Manage a VanityUrl resource in Oracle Cloud Infrastructure
 * :ref:`oci_announcements_service_announcement_facts <ansible_collections.oracle.oci.oci_announcements_service_announcement_facts_module>` -- Fetches details about a Announcement resource in Oracle Cloud Infrastructure
+* :ref:`oci_announcements_service_announcement_subscription <ansible_collections.oracle.oci.oci_announcements_service_announcement_subscription_module>` -- Manage an AnnouncementSubscription resource in Oracle Cloud Infrastructure
+* :ref:`oci_announcements_service_announcement_subscription_actions <ansible_collections.oracle.oci.oci_announcements_service_announcement_subscription_actions_module>` -- Perform actions on an AnnouncementSubscription resource in Oracle Cloud Infrastructure
+* :ref:`oci_announcements_service_announcement_subscription_facts <ansible_collections.oracle.oci.oci_announcements_service_announcement_subscription_facts_module>` -- Fetches details about one or multiple AnnouncementSubscription resources in Oracle Cloud Infrastructure
 * :ref:`oci_announcements_service_announcement_user_status_details <ansible_collections.oracle.oci.oci_announcements_service_announcement_user_status_details_module>` -- Manage an AnnouncementUserStatusDetails resource in Oracle Cloud Infrastructure
 * :ref:`oci_announcements_service_announcement_user_status_details_facts <ansible_collections.oracle.oci.oci_announcements_service_announcement_user_status_details_facts_module>` -- Fetches details about a AnnouncementUserStatusDetails resource in Oracle Cloud Infrastructure
 * :ref:`oci_announcements_service_announcements_collection_facts <ansible_collections.oracle.oci.oci_announcements_service_announcements_collection_facts_module>` -- Fetches details about one or multiple AnnouncementsCollection resources in Oracle Cloud Infrastructure
@@ -1183,6 +1191,8 @@ Modules
 * :ref:`oci_osp_gateway_invoice_actions <ansible_collections.oracle.oci.oci_osp_gateway_invoice_actions_module>` -- Perform actions on an Invoice resource in Oracle Cloud Infrastructure
 * :ref:`oci_osp_gateway_invoice_facts <ansible_collections.oracle.oci.oci_osp_gateway_invoice_facts_module>` -- Fetches details about one or multiple Invoice resources in Oracle Cloud Infrastructure
 * :ref:`oci_osp_gateway_invoice_line_facts <ansible_collections.oracle.oci.oci_osp_gateway_invoice_line_facts_module>` -- Fetches details about one or multiple InvoiceLine resources in Oracle Cloud Infrastructure
+* :ref:`oci_osp_gateway_subscription <ansible_collections.oracle.oci.oci_osp_gateway_subscription_module>` -- Manage a Subscription resource in Oracle Cloud Infrastructure
+* :ref:`oci_osp_gateway_subscription_facts <ansible_collections.oracle.oci.oci_osp_gateway_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
 * :ref:`oci_osub_billing_schedule_billing_schedule_facts <ansible_collections.oracle.oci.oci_osub_billing_schedule_billing_schedule_facts_module>` -- Fetches details about one or multiple BillingSchedule resources in Oracle Cloud Infrastructure
 * :ref:`oci_osub_organization_subscription_subscription_facts <ansible_collections.oracle.oci.oci_osub_organization_subscription_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
 * :ref:`oci_osub_subscription_commitment_facts <ansible_collections.oracle.oci.oci_osub_subscription_commitment_facts_module>` -- Fetches details about one or multiple Commitment resources in Oracle Cloud Infrastructure
@@ -1360,6 +1370,11 @@ Modules
     oci_ai_anomaly_detection_project_module
     oci_ai_anomaly_detection_project_actions_module
     oci_ai_anomaly_detection_project_facts_module
+    oci_ai_speech_transcription_job_module
+    oci_ai_speech_transcription_job_actions_module
+    oci_ai_speech_transcription_job_facts_module
+    oci_ai_speech_transcription_task_actions_module
+    oci_ai_speech_transcription_task_facts_module
     oci_analytics_instance_module
     oci_analytics_instance_actions_module
     oci_analytics_instance_facts_module
@@ -1367,6 +1382,9 @@ Modules
     oci_analytics_private_access_channel_facts_module
     oci_analytics_vanity_url_module
     oci_announcements_service_announcement_facts_module
+    oci_announcements_service_announcement_subscription_module
+    oci_announcements_service_announcement_subscription_actions_module
+    oci_announcements_service_announcement_subscription_facts_module
     oci_announcements_service_announcement_user_status_details_module
     oci_announcements_service_announcement_user_status_details_facts_module
     oci_announcements_service_announcements_collection_facts_module
@@ -2507,6 +2525,8 @@ Modules
     oci_osp_gateway_invoice_actions_module
     oci_osp_gateway_invoice_facts_module
     oci_osp_gateway_invoice_line_facts_module
+    oci_osp_gateway_subscription_module
+    oci_osp_gateway_subscription_facts_module
     oci_osub_billing_schedule_billing_schedule_facts_module
     oci_osub_organization_subscription_subscription_facts_module
     oci_osub_subscription_commitment_facts_module

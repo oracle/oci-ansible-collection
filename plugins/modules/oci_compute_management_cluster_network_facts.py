@@ -329,6 +329,7 @@ cluster_networks:
         placement_configuration:
             description:
                 - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

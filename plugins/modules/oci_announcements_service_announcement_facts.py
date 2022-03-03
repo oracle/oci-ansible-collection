@@ -24,6 +24,9 @@ short_description: Fetches details about a Announcement resource in Oracle Cloud
 description:
     - Fetches details about a Announcement resource in Oracle Cloud Infrastructure
     - Gets the details of a specific announcement.
+    - This call is subject to an Announcements limit that applies to the total number of requests across all read or write operations. Announcements might
+      throttle this call to reject an otherwise valid request when the total rate of operations exceeds 20 requests per second for a given user. The service
+      might also throttle this call to reject an otherwise valid request when the total rate of operations exceeds 100 requests per second for a given tenancy.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -164,6 +167,18 @@ announcement:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        environment_name:
+            description:
+                - The name of the environment that this announcement pertains to.
+            returned: on success
+            type: str
+            sample: environment_name_example
+        platform_type:
+            description:
+                - The platform type that this announcement pertains to.
+            returned: on success
+            type: str
+            sample: IAAS
         description:
             description:
                 - A detailed explanation of the event, expressed by using Markdown language. Avoid entering
@@ -239,6 +254,8 @@ announcement:
         "is_banner": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "environment_name": "environment_name_example",
+        "platform_type": "IAAS",
         "description": "description_example",
         "additional_information": "additional_information_example",
         "affected_resources": [{
