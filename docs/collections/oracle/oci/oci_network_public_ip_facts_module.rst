@@ -30,7 +30,7 @@ oracle.oci.oci_network_public_ip_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -419,11 +419,11 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        private_ip_id: private_ip_id_example
+        ip_address: ip_address_example
         availability_domain: Uocm:PHX-AD-1
         lifetime: EPHEMERAL
         public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
-        private_ip_id: private_ip_id_example
-        ip_address: ip_address_example
 
 
 

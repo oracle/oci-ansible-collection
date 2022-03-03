@@ -161,6 +161,7 @@ instance_pools:
         placement_configurations:
             description:
                 - The placement configurations for the instance pool.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -227,6 +228,7 @@ instance_pools:
         load_balancers:
             description:
                 - The load balancers attached to the instance pool.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -279,6 +281,7 @@ instance_pools:
         availability_domains:
             description:
                 - The availability domains for the instance pool.
+                - Returned for list operation
             returned: on success
             type: list
             sample: []

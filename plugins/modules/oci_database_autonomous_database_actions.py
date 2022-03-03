@@ -97,6 +97,19 @@ options:
               in a different (remote) region from the source primary Autonomous Database.
             - Applicable only for I(action=fail_over)I(action=switchover).
         type: str
+    wallet_file:
+        description:
+            - The destination file path with file name when downloading wallet. The file must have 'zip' extension. I(wallet_file) is required if
+              I(state='generate_wallet').
+            - Required for I(action=generate_autonomous_database_wallet).
+        type: str
+    force:
+        description:
+            - Force overwriting existing wallet file when downloading wallet.
+            - Applicable only for I(action=generate_autonomous_database_wallet).
+        type: bool
+        default: "true"
+        aliases: ["overwrite"]
     generate_type:
         description:
             - The type of wallet to generate.
@@ -130,19 +143,6 @@ options:
             - Restores to the last known good state with the least possible data loss.
             - Applicable only for I(action=restore).
         type: bool
-    wallet_file:
-        description:
-            - The destination file path with file name when downloading wallet. The file must have 'zip' extension. I(wallet_file) is required if
-              I(state='generate_wallet').
-            - Required for I(action=generate_autonomous_database_wallet).
-        type: str
-    force:
-        description:
-            - Force overwriting existing wallet file when downloading wallet.
-            - Applicable only for I(action=generate_autonomous_database_wallet).
-        type: bool
-        default: "true"
-        aliases: ["overwrite"]
     action:
         description:
             - The action to perform on the AutonomousDatabase.
@@ -241,13 +241,13 @@ EXAMPLES = """
   oci_database_autonomous_database_actions:
     # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    password: example-password
     wallet_file: /tmp/atp_wallet.zip
+    password: example-password
     action: generate_autonomous_database_wallet
 
     # optional
-    generate_type: ALL
     force: true
+    generate_type: ALL
 
 - name: Perform action register_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
@@ -1657,13 +1657,13 @@ def main():
             is_using_oracle_managed_keys=dict(type="bool", no_log=True),
             pdb_admin_password=dict(type="str", no_log=True),
             peer_db_id=dict(type="str"),
+            wallet_file=dict(type="str"),
+            force=dict(aliases=["overwrite"], type="bool", default="true"),
             generate_type=dict(type="str", choices=["ALL", "SINGLE"]),
             password=dict(type="str", no_log=True),
             timestamp=dict(type="str"),
             database_scn=dict(type="str"),
             latest=dict(type="bool"),
-            wallet_file=dict(type="str"),
-            force=dict(aliases=["overwrite"], type="bool", default="true"),
             action=dict(
                 type="str",
                 required=True,

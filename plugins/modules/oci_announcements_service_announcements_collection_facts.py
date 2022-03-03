@@ -24,13 +24,15 @@ short_description: Fetches details about one or multiple AnnouncementsCollection
 description:
     - Fetches details about one or multiple AnnouncementsCollection resources in Oracle Cloud Infrastructure
     - Gets a list of announcements for the current tenancy.
+    - This call is subject to an Announcements limit that applies to the total number of requests across all read or write operations. Announcements might
+      throttle this call to reject an otherwise valid request when the total rate of operations exceeds 20 requests per second for a given user. The service
+      might also throttle this call to reject an otherwise valid request when the total rate of operations exceeds 100 requests per second for a given tenancy.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment. Because announcements are specific to a tenancy, this is the
-              OCID of the root compartment.
+            - The OCID of the compartment.
         type: str
         required: true
     announcement_type:
@@ -74,6 +76,26 @@ options:
         description:
             - The boundary for the latest `timeOneValue` date on announcements that you want to see.
         type: str
+    environment_name:
+        description:
+            - A filter to return only announcements that match a specific environment name.
+        type: str
+    service:
+        description:
+            - A filter to return only announcements affecting a specific service.
+        type: str
+    platform_type:
+        description:
+            - A filter to return only announcements affecting a specific platform.
+        type: str
+        choices:
+            - "IAAS"
+            - "SAAS"
+    exclude_announcement_types:
+        description:
+            - Exclude The type of announcement.
+        type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -91,6 +113,10 @@ EXAMPLES = """
     sort_order: ASC
     time_one_earliest_time: 2013-10-20T19:20:30+01:00
     time_one_latest_time: 2013-10-20T19:20:30+01:00
+    environment_name: environment_name_example
+    service: service_example
+    platform_type: IAAS
+    exclude_announcement_types: [ "exclude_announcement_types_example" ]
 
 """
 
@@ -220,6 +246,18 @@ announcements_collection:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+                environment_name:
+                    description:
+                        - The name of the environment that this announcement pertains to.
+                    returned: on success
+                    type: str
+                    sample: environment_name_example
+                platform_type:
+                    description:
+                        - The platform type that this announcement pertains to.
+                    returned: on success
+                    type: str
+                    sample: IAAS
         user_statuses:
             description:
                 - The user-specific status for found announcements.
@@ -263,7 +301,9 @@ announcements_collection:
             "lifecycle_state": "ACTIVE",
             "is_banner": true,
             "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00"
+            "time_updated": "2013-10-20T19:20:30+01:00",
+            "environment_name": "environment_name_example",
+            "platform_type": "IAAS"
         }],
         "user_statuses": [{
             "user_status_announcement_id": "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx",
@@ -305,6 +345,10 @@ class AnnouncementsCollectionFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_order",
             "time_one_earliest_time",
             "time_one_latest_time",
+            "environment_name",
+            "service",
+            "platform_type",
+            "exclude_announcement_types",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -351,6 +395,10 @@ def main():
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             time_one_earliest_time=dict(type="str"),
             time_one_latest_time=dict(type="str"),
+            environment_name=dict(type="str"),
+            service=dict(type="str"),
+            platform_type=dict(type="str", choices=["IAAS", "SAAS"]),
+            exclude_announcement_types=dict(type="list", elements="str"),
         )
     )
 

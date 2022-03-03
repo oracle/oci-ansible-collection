@@ -115,6 +115,7 @@ compute_global_image_capability_schema_versions:
         schema_data:
             description:
                 - The map of each capability name to its ImageCapabilityDescriptor.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:

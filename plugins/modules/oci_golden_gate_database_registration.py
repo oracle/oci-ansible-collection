@@ -97,6 +97,16 @@ options:
             - Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a database.
             - This parameter is updatable.
         type: str
+    session_mode:
+        description:
+            - "The mode of the database connection session to be established by the data client. REDIRECT - for a RAC database, DIRECT - for a non-RAC database.
+              Connection to a RAC database involves a redirection received from the SCAN listeners to the database node to connect to. By default the mode would
+              be DIRECT."
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "DIRECT"
+            - "REDIRECT"
     wallet:
         description:
             - The wallet contents Oracle GoldenGate uses to make connections to a database.  This attribute is expected to be base64 encoded.
@@ -164,6 +174,7 @@ EXAMPLES = """
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     connection_string: connection_string_example
+    session_mode: DIRECT
     wallet: wallet_example
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
@@ -183,6 +194,7 @@ EXAMPLES = """
     username: username_example
     password: example-password
     connection_string: connection_string_example
+    session_mode: DIRECT
     wallet: wallet_example
     alias_name: alias_name_example
 
@@ -200,6 +212,7 @@ EXAMPLES = """
     username: username_example
     password: example-password
     connection_string: connection_string_example
+    session_mode: DIRECT
     wallet: wallet_example
     alias_name: alias_name_example
 
@@ -344,6 +357,14 @@ database_registration:
             returned: on success
             type: str
             sample: connection_string_example
+        session_mode:
+            description:
+                - "The mode of the database connection session to be established by the data client. REDIRECT - for a RAC database, DIRECT - for a non-RAC
+                  database. Connection to a RAC database involves a redirection received from the SCAN listeners to the database node to connect to. By default
+                  the mode would be DIRECT."
+            returned: on success
+            type: str
+            sample: DIRECT
         alias_name:
             description:
                 - Credential store alias.
@@ -401,6 +422,7 @@ database_registration:
         "system_tags": {},
         "username": "username_example",
         "connection_string": "connection_string_example",
+        "session_mode": "DIRECT",
         "alias_name": "alias_name_example",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
@@ -588,6 +610,7 @@ def main():
             username=dict(type="str"),
             password=dict(type="str", no_log=True),
             connection_string=dict(type="str"),
+            session_mode=dict(type="str", choices=["DIRECT", "REDIRECT"]),
             wallet=dict(type="str"),
             alias_name=dict(type="str"),
             vault_id=dict(type="str"),

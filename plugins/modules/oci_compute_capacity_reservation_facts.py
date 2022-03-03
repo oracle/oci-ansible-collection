@@ -169,6 +169,7 @@ compute_capacity_reservations:
                 - The capacity configurations for the capacity reservation.
                 - To use the reservation for the desired shape, specify the shape, count, and
                   optionally the fault domain where you want this configuration.
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -239,6 +240,7 @@ compute_capacity_reservations:
             description:
                 - The date and time the compute capacity reservation was updated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

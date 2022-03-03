@@ -31,6 +31,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    validation_report_dest:
+        description:
+            - The destination file path to write the report to when I(action=download_validation_report). The file will be created if it does not exist. If the
+              file already exists, the content will be overwritten. I(validation_report_dest) is required if I(action=download_validation_report).
+            - Required for I(action=download_validation_report).
+        type: str
     exadata_infrastructure_id:
         description:
             - The Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -49,12 +55,6 @@ options:
               I(action=download_vm_cluster_network_config_file).
             - Required for I(action=download_vm_cluster_network_config_file).
         type: str
-    validation_report_dest:
-        description:
-            - The destination file path to write the report to when I(action=download_validation_report). The file will be created if it does not exist. If the
-              file already exists, the content will be overwritten. I(validation_report_dest) is required if I(action=download_validation_report).
-            - Required for I(action=download_validation_report).
-        type: str
     action:
         description:
             - The action to perform on the VmClusterNetwork.
@@ -71,9 +71,9 @@ EXAMPLES = """
 - name: Perform action download_validation_report on vm_cluster_network
   oci_database_vm_cluster_network_actions:
     # required
+    validation_report_dest: /tmp/exadata_validation_report
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
-    validation_report_dest: /tmp/exadata_validation_report
     action: download_validation_report
 
 - name: Perform action download_vm_cluster_network_config_file on vm_cluster_network
@@ -460,10 +460,10 @@ def main():
     )
     module_args.update(
         dict(
+            validation_report_dest=dict(type="str"),
             exadata_infrastructure_id=dict(type="str", required=True),
             vm_cluster_network_id=dict(aliases=["id"], type="str", required=True),
             config_file_dest=dict(type="str"),
-            validation_report_dest=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

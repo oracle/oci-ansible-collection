@@ -41,17 +41,16 @@ options:
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
+    compartment_id:
+        description:
+            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
     backup_id:
         description:
             - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     state:
         description:
             - The state of the Backup.
@@ -77,11 +76,13 @@ EXAMPLES = """
     backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Delete backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup:
     # required
     display_name: display_name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -331,8 +332,8 @@ def main():
         dict(
             database_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            backup_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            backup_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

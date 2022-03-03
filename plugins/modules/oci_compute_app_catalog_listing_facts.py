@@ -85,12 +85,14 @@ app_catalog_listings:
         contact_url:
             description:
                 - Listing's contact URL.
+                - Returned for get operation
             returned: on success
             type: str
             sample: contact_url_example
         description:
             description:
                 - Description of the listing.
+                - Returned for get operation
             returned: on success
             type: str
             sample: description_example
@@ -111,12 +113,14 @@ app_catalog_listings:
             description:
                 - "Date and time the listing was published, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
                   Example: `2018-03-20T12:32:53.532Z`"
+                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         publisher_logo_url:
             description:
                 - Publisher's logo URL.
+                - Returned for get operation
             returned: on success
             type: str
             sample: publisher_logo_url_example

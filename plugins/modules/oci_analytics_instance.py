@@ -26,7 +26,7 @@ description:
     - For I(state=present), create a new AnalyticsInstance in the specified compartment. The operation is long-running
       and creates a new WorkRequest.
     - "This resource has the following action operations in the M(oracle.oci.oci_analytics_instance_actions) module: change_compartment,
-      change_analytics_instance_network_endpoint, scale, start, stop."
+      change_analytics_instance_network_endpoint, scale, set_kms_key, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -157,6 +157,11 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
+    kms_key_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI Vault Key encrypting the customer data stored in
+              this Analytics instance. A null value indicates Oracle managed default encryption.
+        type: str
     analytics_instance_id:
         description:
             - The OCID of the AnalyticsInstance.
@@ -200,6 +205,7 @@ EXAMPLES = """
     idcs_access_token: idcs_access_token_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update analytics_instance
   oci_analytics_instance:
@@ -485,6 +491,13 @@ analytics_instance:
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
+        kms_key_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI Vault Key encrypting the customer data stored in
+                  this Analytics instance. A null value indicates Oracle managed default encryption.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the instance was created, in the format defined by RFC3339.
@@ -545,6 +558,7 @@ analytics_instance:
         "service_url": "service_url_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"
     }
@@ -747,6 +761,7 @@ def main():
             idcs_access_token=dict(type="str", no_log=True),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
+            kms_key_id=dict(type="str"),
             analytics_instance_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

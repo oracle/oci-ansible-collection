@@ -105,6 +105,7 @@ app_catalog_listing_resource_versions:
                 - For information about Regions, see
                   L(Regions,https://docs.cloud.oracle.com/#General/Concepts/regions.htm).
                 - "Example: `[\\"us-ashburn-1\\", \\"us-phoenix-1\\"]`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
@@ -113,18 +114,21 @@ app_catalog_listing_resource_versions:
                 - Array of shapes compatible with this resource.
                 - You may enumerate all available shapes by calling listShapes.
                 - "Example: `[\\"VM.Standard1.1\\", \\"VM.Standard1.2\\"]`"
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         accessible_ports:
             description:
                 - List of accessible ports for instances launched with this listing resource version.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []
         allowed_actions:
             description:
                 - Allowed actions for the listing resource.
+                - Returned for get operation
             returned: on success
             type: list
             sample: []

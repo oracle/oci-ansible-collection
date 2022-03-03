@@ -29,6 +29,7 @@ description:
       and creates a new WorkRequest.
     - For I(action=scale), scale an Analytics instance up or down. The operation is long-running
       and creates a new WorkRequest.
+    - For I(action=set_kms_key), encrypts the customer data of this Analytics instance using either a customer OCI Vault Key or Oracle managed default key.
     - For I(action=start), starts the specified Analytics instance. The operation is long-running
       and creates a new WorkRequest.
     - For I(action=stop), stop the specified Analytics instance. The operation is long-running
@@ -116,6 +117,12 @@ options:
                       number of CPUs, amount of memory or other resources allocated to the instance."
                 type: int
                 required: true
+    kms_key_id:
+        description:
+            - OCID of the OCI Vault Key encrypting the customer data stored in this Analytics instance. An empty value indicates Oracle managed default
+              encryption (null is not supported in this API).
+            - Required for I(action=set_kms_key).
+        type: str
     action:
         description:
             - The action to perform on the AnalyticsInstance.
@@ -125,6 +132,7 @@ options:
             - "change_compartment"
             - "change_analytics_instance_network_endpoint"
             - "scale"
+            - "set_kms_key"
             - "start"
             - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -158,6 +166,13 @@ EXAMPLES = """
       capacity_type: OLPU_COUNT
       capacity_value: 56
     action: scale
+
+- name: Perform action set_kms_key on analytics_instance
+  oci_analytics_instance_actions:
+    # required
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    action: set_kms_key
 
 - name: Perform action start on analytics_instance
   oci_analytics_instance_actions:
@@ -417,6 +432,13 @@ analytics_instance:
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
+        kms_key_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI Vault Key encrypting the customer data stored in
+                  this Analytics instance. A null value indicates Oracle managed default encryption.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the instance was created, in the format defined by RFC3339.
@@ -477,6 +499,7 @@ analytics_instance:
         "service_url": "service_url_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"
     }
@@ -497,6 +520,7 @@ try:
     from oci.analytics.models import ChangeCompartmentDetails
     from oci.analytics.models import ChangeAnalyticsInstanceNetworkEndpointDetails
     from oci.analytics.models import ScaleAnalyticsInstanceDetails
+    from oci.analytics.models import SetKmsKeyDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -509,6 +533,7 @@ class AnalyticsInstanceActionsHelperGen(OCIActionsHelperBase):
         change_compartment
         change_analytics_instance_network_endpoint
         scale
+        set_kms_key
         start
         stop
     """
@@ -581,6 +606,27 @@ class AnalyticsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 analytics_instance_id=self.module.params.get("analytics_instance_id"),
                 scale_analytics_instance_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def set_kms_key(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, SetKmsKeyDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.set_kms_key,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                analytics_instance_id=self.module.params.get("analytics_instance_id"),
+                set_kms_key_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -674,6 +720,7 @@ def main():
                     capacity_value=dict(type="int", required=True),
                 ),
             ),
+            kms_key_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
@@ -681,6 +728,7 @@ def main():
                     "change_compartment",
                     "change_analytics_instance_network_endpoint",
                     "scale",
+                    "set_kms_key",
                     "start",
                     "stop",
                 ],

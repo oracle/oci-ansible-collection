@@ -30,7 +30,7 @@ oracle.oci.oci_announcements_service_announcements_preferences_facts -- Fetches 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - Fetches details about one or multiple AnnouncementsPreferences resources in Oracle Cloud Infrastructure
 - Gets the current preferences of the tenancy regarding receiving announcements by email.
+- This call is subject to an Announcements limit that applies to the total number of requests across all read or write operations. Announcements might throttle this call to reject an otherwise valid request when the total rate of operations exceeds 20 requests per second for a given user. The service might also throttle this call to reject an otherwise valid request when the total rate of operations exceeds 100 requests per second for a given tenancy.
 - If *preference_id* is specified, the details of a single AnnouncementsPreferences will be returned.
 
 
@@ -180,7 +181,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment. Because announcements are specific to a tenancy, this is the OCID of the root compartment.</div>
+                                            <div>The OCID of the compartment.</div>
                                             <div>Required to list multiple announcements_preferences.</div>
                                                         </td>
             </tr>

@@ -153,6 +153,7 @@ dedicated_vm_hosts:
                 - Defined tags for this resource. Each key is predefined and scoped to a
                   namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -181,6 +182,7 @@ dedicated_vm_hosts:
                   predefined name, type, or namespace. For more information, see L(Resource
                   Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
+                - Returned for get operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

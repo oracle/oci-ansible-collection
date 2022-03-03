@@ -32,6 +32,10 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
     pdb_name:
         description:
             - The name for the pluggable database (PDB). The name is unique in the context of a L(container database,https://docs.cloud.oracle.com/en-
@@ -78,10 +82,6 @@ options:
             - Required for delete using I(state=absent).
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
     state:
         description:
             - The state of the PluggableDatabase.
@@ -102,12 +102,12 @@ EXAMPLES = """
     container_database_id: "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     pdb_admin_password: example-password
     tde_wallet_password: example-password
     should_pdb_admin_account_be_locked: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update pluggable_database
   oci_database_pluggable_database:
@@ -409,6 +409,7 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             pdb_name=dict(type="str"),
             container_database_id=dict(type="str"),
             pdb_admin_password=dict(type="str", no_log=True),
@@ -417,7 +418,6 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             pluggable_database_id=dict(aliases=["id"], type="str"),
-            compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -30,7 +30,7 @@ oracle.oci.oci_database_pluggable_database -- Manage a PluggableDatabase resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.44.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -496,12 +496,12 @@ Examples
         container_database_id: "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_admin_password: example-password
         tde_wallet_password: example-password
         should_pdb_admin_account_be_locked: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update pluggable_database
       oci_database_pluggable_database:
