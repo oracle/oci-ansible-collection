@@ -105,6 +105,49 @@ database_registrations:
     returned: on success
     type: complex
     contains:
+        ip_address:
+            description:
+                - The private IP address in the customer's VCN of the customer's endpoint, typically a database.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: ip_address_example
+        rce_private_ip:
+            description:
+                - A Private Endpoint IP Address created in the customer's subnet.  A customer database can expect network traffic initiated by GGS from this IP
+                  address and send network traffic to this IP address, typically in response to requests from GGS (OGG).  The customer may utilize this IP
+                  address in Security Lists or Network Security Groups (NSG) as needed.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: rce_private_ip_example
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being referenced. If provided, this
+                  will reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage
+                  secrets contained within this vault.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id:
+            description:
+                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being referenced. If
+                  provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate
+                  Service to utilize this key to manage secrets."
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the the GGS Secret will be
+                  created. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the
+                  GoldenGate Service to utilize this Compartment in which to create a Secret.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the databaseRegistration being referenced.
@@ -176,34 +219,12 @@ database_registrations:
             returned: on success
             type: str
             sample: fqdn_example
-        ip_address:
-            description:
-                - The private IP address in the customer's VCN of the customer's endpoint, typically a database.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: ip_address_example
         subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        database_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
-            returned: on success
-            type: str
-            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        rce_private_ip:
-            description:
-                - A Private Endpoint IP Address created in the customer's subnet.  A customer database can expect network traffic initiated by GGS from this IP
-                  address and send network traffic to this IP address, typically in response to requests from GGS (OGG).  The customer may utilize this IP
-                  address in Security Lists or Network Security Groups (NSG) as needed.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: rce_private_ip_example
         system_tags:
             description:
                 - "The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is
@@ -213,6 +234,12 @@ database_registrations:
             returned: on success
             type: dict
             sample: {}
+        database_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
+            returned: on success
+            type: str
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         username:
             description:
                 - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must already exist and be available for use by the
@@ -240,33 +267,6 @@ database_registrations:
             returned: on success
             type: str
             sample: alias_name_example
-        vault_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being referenced. If provided, this
-                  will reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage
-                  secrets contained within this vault.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        key_id:
-            description:
-                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being referenced. If
-                  provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate
-                  Service to utilize this key to manage secrets."
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        secret_compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the the GGS Secret will be
-                  created. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the
-                  GoldenGate Service to utilize this Compartment in which to create a Secret.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         secret_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer GGS Secret being referenced. If provided,
@@ -276,6 +276,11 @@ database_registrations:
             type: str
             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "ip_address": "ip_address_example",
+        "rce_private_ip": "rce_private_ip_example",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
+        "secret_compartment_id": "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -287,18 +292,13 @@ database_registrations:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "fqdn": "fqdn_example",
-        "ip_address": "ip_address_example",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "rce_private_ip": "rce_private_ip_example",
         "system_tags": {},
+        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "username": "username_example",
         "connection_string": "connection_string_example",
         "session_mode": "DIRECT",
         "alias_name": "alias_name_example",
-        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
-        "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
-        "secret_compartment_id": "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """

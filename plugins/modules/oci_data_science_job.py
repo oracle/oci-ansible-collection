@@ -89,6 +89,7 @@ options:
                     - The infrastructure type used for job run.
                 type: str
                 choices:
+                    - "ME_STANDALONE"
                     - "STANDALONE"
                 required: true
             shape_name:
@@ -96,16 +97,16 @@ options:
                     - The shape used to launch the job run instances.
                 type: str
                 required: true
-            subnet_id:
-                description:
-                    - The subnet to create a secondary vnic in to attach to the instance running the job
-                type: str
-                required: true
             block_storage_size_in_gbs:
                 description:
                     - The size of the block storage volume to attach to the instance running the job
                 type: int
                 required: true
+            subnet_id:
+                description:
+                    - The subnet to create a secondary vnic in to attach to the instance running the job
+                    - Required when job_infrastructure_type is 'STANDALONE'
+                type: str
     job_log_configuration_details:
         description:
             - ""
@@ -180,9 +181,8 @@ EXAMPLES = """
       maximum_runtime_in_minutes: 56
     job_infrastructure_configuration_details:
       # required
-      job_infrastructure_type: STANDALONE
+      job_infrastructure_type: ME_STANDALONE
       shape_name: shape_name_example
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       block_storage_size_in_gbs: 56
 
     # optional
@@ -207,9 +207,8 @@ EXAMPLES = """
     description: description_example
     job_infrastructure_configuration_details:
       # required
-      job_infrastructure_type: STANDALONE
+      job_infrastructure_type: ME_STANDALONE
       shape_name: shape_name_example
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       block_storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -224,9 +223,8 @@ EXAMPLES = """
     description: description_example
     job_infrastructure_configuration_details:
       # required
-      job_infrastructure_type: STANDALONE
+      job_infrastructure_type: ME_STANDALONE
       shape_name: shape_name_example
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       block_storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -622,11 +620,13 @@ def main():
                 type="dict",
                 options=dict(
                     job_infrastructure_type=dict(
-                        type="str", required=True, choices=["STANDALONE"]
+                        type="str",
+                        required=True,
+                        choices=["ME_STANDALONE", "STANDALONE"],
                     ),
                     shape_name=dict(type="str", required=True),
-                    subnet_id=dict(type="str", required=True),
                     block_storage_size_in_gbs=dict(type="int", required=True),
+                    subnet_id=dict(type="str"),
                 ),
             ),
             job_log_configuration_details=dict(

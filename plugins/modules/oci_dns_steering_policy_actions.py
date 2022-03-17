@@ -251,6 +251,15 @@ steering_policy:
             returned: on success
             type: complex
             contains:
+                default_count:
+                    description:
+                        - "Defines a default count if `cases` is not defined for the rule or a matching case does
+                          not define `count`. `defaultCount` is **not** applied if `cases` is defined and there
+                          are no matching cases. In this scenario, the next rule will be processed. If no rules
+                          remain to be processed, the answer will be chosen from the remaining list of answers."
+                    returned: on success
+                    type: int
+                    sample: 56
                 description:
                     description:
                         - A user-defined description of the rule's purpose or behavior.
@@ -366,15 +375,6 @@ steering_policy:
                             returned: on success
                             type: int
                             sample: 56
-                default_count:
-                    description:
-                        - "Defines a default count if `cases` is not defined for the rule or a matching case does
-                          not define `count`. `defaultCount` is **not** applied if `cases` is defined and there
-                          are no matching cases. In this scenario, the next rule will be processed. If no rules
-                          remain to be processed, the answer will be chosen from the remaining list of answers."
-                    returned: on success
-                    type: int
-                    sample: 56
         _self:
             description:
                 - The canonical absolute URL of the resource.
@@ -416,6 +416,7 @@ steering_policy:
             "is_disabled": true
         }],
         "rules": [{
+            "default_count": 56,
             "description": "description_example",
             "rule_type": "FILTER",
             "cases": [{
@@ -431,8 +432,7 @@ steering_policy:
                 "answer_condition": "answer_condition_example",
                 "should_keep": true,
                 "value": 56
-            }],
-            "default_count": 56
+            }]
         }],
         "_self": "_self_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

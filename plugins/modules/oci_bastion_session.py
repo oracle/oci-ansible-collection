@@ -211,6 +211,12 @@ session:
             returned: on success
             type: complex
             contains:
+                target_resource_operating_system_user_name:
+                    description:
+                        - The name of the user on the target resource operating system that the session uses for the connection.
+                    returned: on success
+                    type: str
+                    sample: target_resource_operating_system_user_name_example
                 session_type:
                     description:
                         - The Bastion service recognizes two types of sessions, managed SSH sessions and SSH port forwarding sessions. Managed SSH sessions
@@ -224,12 +230,6 @@ session:
                     returned: on success
                     type: int
                     sample: 56
-                target_resource_operating_system_user_name:
-                    description:
-                        - The name of the user on the target resource operating system that the session uses for the connection.
-                    returned: on success
-                    type: str
-                    sample: target_resource_operating_system_user_name_example
                 target_resource_id:
                     description:
                         - The unique identifier (OCID) of the target resource (a Compute instance, for example) that the session connects to.
@@ -318,9 +318,9 @@ session:
         "bastion_name": "bastion_name_example",
         "bastion_user_name": "bastion_user_name_example",
         "target_resource_details": {
+            "target_resource_operating_system_user_name": "target_resource_operating_system_user_name_example",
             "session_type": "MANAGED_SSH",
             "target_resource_port": 56,
-            "target_resource_operating_system_user_name": "target_resource_operating_system_user_name_example",
             "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
             "target_resource_private_ip_address": "target_resource_private_ip_address_example",
             "target_resource_display_name": "target_resource_display_name_example"

@@ -302,13 +302,6 @@ class ResolverEndpointHelperGen(OCIResourceHelperBase):
     def get_get_fn(self):
         return self.client.get_resolver_endpoint
 
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_resolver_endpoint,
-            resolver_endpoint_name=summary_model.name,
-            resolver_id=self.module.params.get("resolver_id"),
-        ).data
-
     def get_resource(self):
         optional_params = [
             "scope",

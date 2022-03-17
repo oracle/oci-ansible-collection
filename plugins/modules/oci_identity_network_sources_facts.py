@@ -105,6 +105,21 @@ network_sources:
     returned: on success
     type: complex
     contains:
+        lifecycle_state:
+            description:
+                - The network source object's current state. After creating a network source, make sure its `lifecycleState` changes from CREATING to
+                  ACTIVE before using it.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: CREATING
+        inactive_status:
+            description:
+                - The detailed status of INACTIVE lifecycleState.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
         id:
             description:
                 - The OCID of the network source.
@@ -170,21 +185,6 @@ network_sources:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The network source object's current state. After creating a network source, make sure its `lifecycleState` changes from CREATING to
-                  ACTIVE before using it.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: CREATING
-        inactive_status:
-            description:
-                - The detailed status of INACTIVE lifecycleState.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -202,6 +202,8 @@ network_sources:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "lifecycle_state": "CREATING",
+        "inactive_status": 56,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -213,8 +215,6 @@ network_sources:
         }],
         "services": [],
         "time_created": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "inactive_status": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

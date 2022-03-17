@@ -111,6 +111,20 @@ management_agent_install_keys:
     returned: on success
     type: complex
     contains:
+        key:
+            description:
+                - Management Agent Install Key
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: key_example
+        time_updated:
+            description:
+                - The time when Management Agent install Key was updated. An RFC3339 formatted date time string
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         id:
             description:
                 - Agent install Key identifier
@@ -123,25 +137,12 @@ management_agent_install_keys:
             returned: on success
             type: str
             sample: display_name_example
-        key:
-            description:
-                - Management Agent Install Key
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: key_example
         created_by_principal_id:
             description:
                 - Principal id of user who created the Agent Install key
             returned: on success
             type: str
             sample: "ocid1.createdbyprincipal.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - Compartment Identifier
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         allowed_key_install_count:
             description:
                 - Total number of install for this keys
@@ -167,38 +168,37 @@ management_agent_install_keys:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        time_expires:
-            description:
-                - date after which key would expire after creation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - The time when Management Agent install Key was created. An RFC3339 formatted date time string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
+        time_expires:
             description:
-                - The time when Management Agent install Key was updated. An RFC3339 formatted date time string
-                - Returned for get operation
+                - date after which key would expire after creation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        compartment_id:
+            description:
+                - Compartment Identifier
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "key": "key_example",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "key": "key_example",
         "created_by_principal_id": "ocid1.createdbyprincipal.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "allowed_key_install_count": 56,
         "current_key_install_count": 56,
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "time_expires": "2013-10-20T19:20:30+01:00",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00"
+        "time_expires": "2013-10-20T19:20:30+01:00",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

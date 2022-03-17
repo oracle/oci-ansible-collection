@@ -119,24 +119,12 @@ data_asset:
             returned: on success
             type: complex
             contains:
-                data_source_type:
-                    description:
-                        - Data source type where actually data asset is being stored
-                    returned: on success
-                    type: str
-                    sample: ORACLE_OBJECT_STORAGE
                 version_specific_details:
                     description:
                         - ""
                     returned: on success
                     type: complex
                     contains:
-                        influx_version:
-                            description:
-                                - Data source type where actually data asset is being stored
-                            returned: on success
-                            type: str
-                            sample: V_1_8
                         database_name:
                             description:
                                 - DB Name for influx connection
@@ -149,6 +137,12 @@ data_asset:
                             returned: on success
                             type: str
                             sample: retention_policy_name_example
+                        influx_version:
+                            description:
+                                - Data source type where actually data asset is being stored
+                            returned: on success
+                            type: str
+                            sample: V_1_8
                         bucket_name:
                             description:
                                 - Bucket Name for influx connection
@@ -251,6 +245,12 @@ data_asset:
                     returned: on success
                     type: str
                     sample: table_name_example
+                data_source_type:
+                    description:
+                        - Data source type where actually data asset is being stored
+                    returned: on success
+                    type: str
+                    sample: ORACLE_OBJECT_STORAGE
                 namespace:
                     description:
                         - Object storage namespace
@@ -306,11 +306,10 @@ data_asset:
         "lifecycle_state": "ACTIVE",
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "data_source_details": {
-            "data_source_type": "ORACLE_OBJECT_STORAGE",
             "version_specific_details": {
-                "influx_version": "V_1_8",
                 "database_name": "database_name_example",
                 "retention_policy_name": "retention_policy_name_example",
+                "influx_version": "V_1_8",
                 "bucket_name": "bucket_name_example",
                 "organization_name": "organization_name_example"
             },
@@ -329,6 +328,7 @@ data_asset:
             "truststore_file_secret_id": "ocid1.truststorefilesecret.oc1..xxxxxxEXAMPLExxxxxx",
             "database_name": "database_name_example",
             "table_name": "table_name_example",
+            "data_source_type": "ORACLE_OBJECT_STORAGE",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
             "object_name": "object_name_example"

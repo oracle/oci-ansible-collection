@@ -105,6 +105,13 @@ enterprise_manager_bridges:
     returned: on success
     type: complex
     contains:
+        description:
+            description:
+                - Description of Enterprise Manager Bridge
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: description_example
         id:
             description:
                 - Enterprise Manager bridge identifier
@@ -123,13 +130,6 @@ enterprise_manager_bridges:
             returned: on success
             type: str
             sample: display_name_example
-        description:
-            description:
-                - Description of Enterprise Manager Bridge
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: description_example
         object_storage_namespace_name:
             description:
                 - Object Storage Namespace Name
@@ -196,10 +196,10 @@ enterprise_manager_bridges:
             type: str
             sample: lifecycle_details_example
     sample: [{
+        "description": "description_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "description": "description_example",
         "object_storage_namespace_name": "object_storage_namespace_name_example",
         "object_storage_bucket_name": "object_storage_bucket_name_example",
         "object_storage_bucket_status_details": "object_storage_bucket_status_details_example",

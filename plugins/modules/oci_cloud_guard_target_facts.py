@@ -131,24 +131,6 @@ targets:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - Unique identifier that is immutable on creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Target display name, can be renamed.
-            returned: on success
-            type: str
-            sample: display_name_example
-        compartment_id:
-            description:
-                - Compartment Identifier where the resource is created
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The target description.
@@ -156,24 +138,6 @@ targets:
             returned: on success
             type: str
             sample: description_example
-        target_resource_type:
-            description:
-                - possible type of targets
-            returned: on success
-            type: str
-            sample: COMPARTMENT
-        target_resource_id:
-            description:
-                - Resource ID which the target uses to monitor
-            returned: on success
-            type: str
-            sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
-        recipe_count:
-            description:
-                - Total number of recipes attached to target
-            returned: on success
-            type: int
-            sample: 56
         target_detector_recipes:
             description:
                 - List of detector recipes associated with target
@@ -361,12 +325,6 @@ targets:
                                             returned: on success
                                             type: complex
                                             contains:
-                                                kind:
-                                                    description:
-                                                        - Type of condition object
-                                                    returned: on success
-                                                    type: str
-                                                    sample: COMPOSITE
                                                 left_operand:
                                                     description:
                                                         - ""
@@ -397,6 +355,12 @@ targets:
                                                             returned: on success
                                                             type: str
                                                             sample: COMPOSITE
+                                                kind:
+                                                    description:
+                                                        - Type of condition object
+                                                    returned: on success
+                                                    type: str
+                                                    sample: COMPOSITE
                                                 parameter:
                                                     description:
                                                         - parameter Key
@@ -656,12 +620,6 @@ targets:
                                             returned: on success
                                             type: complex
                                             contains:
-                                                kind:
-                                                    description:
-                                                        - Type of condition object
-                                                    returned: on success
-                                                    type: str
-                                                    sample: COMPOSITE
                                                 left_operand:
                                                     description:
                                                         - ""
@@ -692,6 +650,12 @@ targets:
                                                             returned: on success
                                                             type: str
                                                             sample: COMPOSITE
+                                                kind:
+                                                    description:
+                                                        - Type of condition object
+                                                    returned: on success
+                                                    type: str
+                                                    sample: COMPOSITE
                                                 parameter:
                                                     description:
                                                         - parameter Key
@@ -946,12 +910,6 @@ targets:
                                     returned: on success
                                     type: complex
                                     contains:
-                                        kind:
-                                            description:
-                                                - Type of condition object
-                                            returned: on success
-                                            type: str
-                                            sample: COMPOSITE
                                         left_operand:
                                             description:
                                                 - ""
@@ -982,6 +940,12 @@ targets:
                                                     returned: on success
                                                     type: str
                                                     sample: COMPOSITE
+                                        kind:
+                                            description:
+                                                - Type of condition object
+                                            returned: on success
+                                            type: str
+                                            sample: COMPOSITE
                                         parameter:
                                             description:
                                                 - parameter Key
@@ -1127,12 +1091,6 @@ targets:
                                     returned: on success
                                     type: complex
                                     contains:
-                                        kind:
-                                            description:
-                                                - Type of condition object
-                                            returned: on success
-                                            type: str
-                                            sample: COMPOSITE
                                         left_operand:
                                             description:
                                                 - ""
@@ -1163,6 +1121,12 @@ targets:
                                                     returned: on success
                                                     type: str
                                                     sample: COMPOSITE
+                                        kind:
+                                            description:
+                                                - Type of condition object
+                                            returned: on success
+                                            type: str
+                                            sample: COMPOSITE
                                         parameter:
                                             description:
                                                 - parameter Key
@@ -1261,6 +1225,42 @@ targets:
             returned: on success
             type: list
             sample: []
+        id:
+            description:
+                - Unique identifier that is immutable on creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Target display name, can be renamed.
+            returned: on success
+            type: str
+            sample: display_name_example
+        compartment_id:
+            description:
+                - Compartment Identifier where the resource is created
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        target_resource_type:
+            description:
+                - possible type of targets
+            returned: on success
+            type: str
+            sample: COMPARTMENT
+        target_resource_id:
+            description:
+                - Resource ID which the target uses to monitor
+            returned: on success
+            type: str
+            sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
+        recipe_count:
+            description:
+                - Total number of recipes attached to target
+            returned: on success
+            type: int
+            sample: 56
         time_created:
             description:
                 - The date and time the target was created. Format defined by RFC3339.
@@ -1311,13 +1311,7 @@ targets:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
-        "target_resource_type": "COMPARTMENT",
-        "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
-        "recipe_count": 56,
         "target_detector_recipes": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example",
@@ -1351,7 +1345,6 @@ targets:
                     "condition_groups": [{
                         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                         "condition": {
-                            "kind": "COMPOSITE",
                             "left_operand": {
                                 "kind": "COMPOSITE"
                             },
@@ -1359,6 +1352,7 @@ targets:
                             "right_operand": {
                                 "kind": "COMPOSITE"
                             },
+                            "kind": "COMPOSITE",
                             "parameter": "parameter_example",
                             "operator": "IN",
                             "value": "value_example",
@@ -1409,7 +1403,6 @@ targets:
                     "condition_groups": [{
                         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                         "condition": {
-                            "kind": "COMPOSITE",
                             "left_operand": {
                                 "kind": "COMPOSITE"
                             },
@@ -1417,6 +1410,7 @@ targets:
                             "right_operand": {
                                 "kind": "COMPOSITE"
                             },
+                            "kind": "COMPOSITE",
                             "parameter": "parameter_example",
                             "operator": "IN",
                             "value": "value_example",
@@ -1465,7 +1459,6 @@ targets:
                 "supported_modes": [],
                 "details": {
                     "condition": {
-                        "kind": "COMPOSITE",
                         "left_operand": {
                             "kind": "COMPOSITE"
                         },
@@ -1473,6 +1466,7 @@ targets:
                         "right_operand": {
                             "kind": "COMPOSITE"
                         },
+                        "kind": "COMPOSITE",
                         "parameter": "parameter_example",
                         "operator": "IN",
                         "value": "value_example",
@@ -1501,7 +1495,6 @@ targets:
                 "supported_modes": [],
                 "details": {
                     "condition": {
-                        "kind": "COMPOSITE",
                         "left_operand": {
                             "kind": "COMPOSITE"
                         },
@@ -1509,6 +1502,7 @@ targets:
                         "right_operand": {
                             "kind": "COMPOSITE"
                         },
+                        "kind": "COMPOSITE",
                         "parameter": "parameter_example",
                         "operator": "IN",
                         "value": "value_example",
@@ -1530,6 +1524,12 @@ targets:
             }]
         }],
         "inherited_by_compartments": [],
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "target_resource_type": "COMPARTMENT",
+        "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
+        "recipe_count": 56,
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

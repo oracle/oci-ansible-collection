@@ -107,6 +107,21 @@ models:
     returned: on success
     type: complex
     contains:
+        time_updated:
+            description:
+                - The time the Model was updated. An RFC3339 formatted datetime string.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         id:
             description:
                 - The OCID of the model that is immutable on creation.
@@ -119,6 +134,12 @@ models:
             returned: on success
             type: str
             sample: display_name_example
+        description:
+            description:
+                - A short description of the Model.
+            returned: on success
+            type: str
+            sample: description_example
         compartment_id:
             description:
                 - The OCID for the model's compartment.
@@ -269,28 +290,9 @@ models:
                             returned: on success
                             type: str
                             sample: DELETE_ROW
-        project_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the model.
-            returned: on success
-            type: str
-            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - A short description of the Model.
-            returned: on success
-            type: str
-            sample: description_example
         time_created:
             description:
                 - The time the the Model was created. An RFC3339 formatted datetime string.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the Model was updated. An RFC3339 formatted datetime string.
-                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -300,14 +302,12 @@ models:
             returned: on success
             type: str
             sample: DELETING
-        lifecycle_details:
+        project_id:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-                - Returned for get operation
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the model.
             returned: on success
             type: str
-            sample: lifecycle_details_example
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -330,8 +330,11 @@ models:
             type: dict
             sample: {}
     sample: [{
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_details": "lifecycle_details_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
+        "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "model_training_details": {
             "target_fap": 3.4,
@@ -360,12 +363,9 @@ models:
                 "reduction_method": "DELETE_ROW"
             }
         },
-        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
-        "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "DELETING",
-        "lifecycle_details": "lifecycle_details_example",
+        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

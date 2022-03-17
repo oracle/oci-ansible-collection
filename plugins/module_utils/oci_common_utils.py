@@ -209,8 +209,17 @@ def list_all_resources(target_fn, **kwargs):
 # But if a parameter present in the create/update model and not in existing resource, it is considered a mismatch by default
 # This behaviour can be changed by setting the flag `ignore_attr_if_not_in_target`.
 def compare_dicts(
-    source_dict, target_dict, attrs=None, ignore_attr_if_not_in_target=False
+    source_dict,
+    target_dict,
+    attrs=None,
+    ignore_attr_if_not_in_target=False,
+    exclude_attributes=None,
+    stack=None,
 ):
+    if exclude_attributes is None:
+        exclude_attributes = []
+    if stack is None:
+        stack = []
     if source_dict is None:
         _debug("dict is not subset because source dict is None")
         return False
@@ -234,21 +243,27 @@ def compare_dicts(
     if not attrs:
         attrs = list(source_dict)
     for attr in attrs:
+        stack.append(attr)
+        if is_any_key_matching_stack(exclude_attributes, stack):
+            stack.pop()
+            continue
         # compare attributes if it is only in source dict
         if attr not in source_dict or source_dict.get(attr) is None:
+            stack.pop()
             continue
         if attr not in target_dict:
             if ignore_attr_if_not_in_target:
                 # if the ignore parameter is set, ignore this attribute.
                 # This might be useful in cases where some of the attributes used in create
                 # are not exposed in the get model
+                stack.pop()
                 continue
-
             _debug(
                 "dict is not subset because attribute '{attr}' is not in target dict".format(
                     attr=attr
                 )
             )
+            stack.pop()
             return False
         source_val = source_dict.get(attr)
         target_val = target_dict.get(attr)
@@ -259,12 +274,16 @@ def compare_dicts(
                         attr=attr
                     )
                 )
+                stack.pop()
                 return False
             if not compare_dicts(
                 source_val,
                 target_val,
                 ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+                exclude_attributes=exclude_attributes,
+                stack=stack,
             ):
+                stack.pop()
                 return False
         elif isinstance(source_val, list):
             if not isinstance(target_val, list):
@@ -273,23 +292,39 @@ def compare_dicts(
                         attr=attr
                     )
                 )
+                stack.pop()
                 return False
-            if not compare_lists(source_val, target_val):
+            if not compare_lists(
+                source_val,
+                target_val,
+                exclude_attributes=exclude_attributes,
+                stack=stack,
+            ):
+                stack.pop()
                 return False
         elif source_val != target_val:
             if "time" in attr:
                 if deserialize_datetime(source_val) == deserialize_datetime(target_val):
+                    stack.pop()
                     return True
             _debug(
                 "dict is not subset because attribute '{attr}' value in source does not match target".format(
                     attr=attr
                 )
             )
+            stack.pop()
             return False
+        stack.pop()
     return True
 
 
-def compare_lists(source_list, target_list, ignore_attr_if_not_in_target=False):
+def compare_lists(
+    source_list,
+    target_list,
+    ignore_attr_if_not_in_target=False,
+    exclude_attributes=None,
+    stack=None,
+):
     if source_list is None:
         _debug("list is not subset because source list is None")
         return False
@@ -319,6 +354,8 @@ def compare_lists(source_list, target_list, ignore_attr_if_not_in_target=False):
             target_list,
             element,
             ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+            exclude_attributes=exclude_attributes,
+            stack=stack,
         ):
             _debug(
                 "list is not subset because element at index {} in source list, is not present in target list".format(
@@ -330,7 +367,13 @@ def compare_lists(source_list, target_list, ignore_attr_if_not_in_target=False):
     return True
 
 
-def is_in_list(target_list, element, ignore_attr_if_not_in_target=False):
+def is_in_list(
+    target_list,
+    element,
+    ignore_attr_if_not_in_target=False,
+    exclude_attributes=None,
+    stack=None,
+):
     if isinstance(element, dict):
         if any(
             [
@@ -338,6 +381,8 @@ def is_in_list(target_list, element, ignore_attr_if_not_in_target=False):
                     element,
                     target_element,
                     ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+                    exclude_attributes=exclude_attributes,
+                    stack=stack,
                 )
                 for target_element in target_list
             ]
@@ -772,3 +817,24 @@ def replace_values_in_dict_with_stubs(input_dict):
             input_dict[key] = "STUBBED_VALUE"
 
     return input_dict
+
+
+def is_any_key_matching_stack(keys, stack):
+    if keys is None or stack is None:
+        return False
+    for key in keys:
+        if is_key_matching_stack(key, stack):
+            return True
+    return False
+
+
+def is_key_matching_stack(key, stack):
+    if key is None or stack is None:
+        return False
+    key_segments = key.split(".")
+    if len(key_segments) != len(stack):
+        return False
+    for i in range(0, len(key_segments)):
+        if key_segments[i] != stack[i]:
+            return False
+    return True

@@ -128,6 +128,25 @@ dedicated_vm_hosts:
     returned: on success
     type: complex
     contains:
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
         availability_domain:
             description:
                 - The availability domain the dedicated virtual machine host is running in.
@@ -148,15 +167,6 @@ dedicated_vm_hosts:
             returned: on success
             type: str
             sample: dedicated_vm_host_shape_example
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -176,16 +186,6 @@ dedicated_vm_hosts:
             returned: on success
             type: str
             sample: FAULT-DOMAIN-1
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the dedicated VM host.
@@ -205,15 +205,15 @@ dedicated_vm_hosts:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        total_ocpus:
-            description:
-                - The total OCPUs of the dedicated VM host.
-            returned: on success
-            type: float
-            sample: 3.4
         remaining_ocpus:
             description:
                 - The available OCPUs of the dedicated VM host.
+            returned: on success
+            type: float
+            sample: 3.4
+        total_ocpus:
+            description:
+                - The total OCPUs of the dedicated VM host.
             returned: on success
             type: float
             sample: 3.4
@@ -230,18 +230,18 @@ dedicated_vm_hosts:
             type: float
             sample: 3.4
     sample: [{
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_shape": "dedicated_vm_host_shape_example",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "fault_domain": "FAULT-DOMAIN-1",
-        "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "total_ocpus": 3.4,
         "remaining_ocpus": 3.4,
+        "total_ocpus": 3.4,
         "total_memory_in_gbs": 3.4,
         "remaining_memory_in_gbs": 3.4
     }]

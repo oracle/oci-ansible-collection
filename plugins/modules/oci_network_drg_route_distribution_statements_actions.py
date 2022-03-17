@@ -55,6 +55,7 @@ options:
                         choices:
                             - "DRG_ATTACHMENT_ID"
                             - "DRG_ATTACHMENT_TYPE"
+                            - "MATCH_ALL"
                         required: true
                     drg_attachment_id:
                         description:
@@ -164,12 +165,6 @@ drg_route_distribution_statements:
             returned: on success
             type: complex
             contains:
-                match_type:
-                    description:
-                        - The type of the match criteria for a route distribution statement.
-                    returned: on success
-                    type: str
-                    sample: DRG_ATTACHMENT_TYPE
                 drg_attachment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG attachment.
@@ -183,6 +178,12 @@ drg_route_distribution_statements:
                     returned: on success
                     type: str
                     sample: VCN
+                match_type:
+                    description:
+                        - The type of the match criteria for a route distribution statement.
+                    returned: on success
+                    type: str
+                    sample: DRG_ATTACHMENT_TYPE
         action:
             description:
                 - "`ACCEPT` indicates the route should be imported or exported as-is."
@@ -208,9 +209,9 @@ drg_route_distribution_statements:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "match_criteria": [{
-            "match_type": "DRG_ATTACHMENT_TYPE",
             "drg_attachment_id": "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx",
-            "attachment_type": "VCN"
+            "attachment_type": "VCN",
+            "match_type": "DRG_ATTACHMENT_TYPE"
         }],
         "action": "ACCEPT",
         "priority": 56,
@@ -360,7 +361,11 @@ def main():
                             match_type=dict(
                                 type="str",
                                 required=True,
-                                choices=["DRG_ATTACHMENT_ID", "DRG_ATTACHMENT_TYPE"],
+                                choices=[
+                                    "DRG_ATTACHMENT_ID",
+                                    "DRG_ATTACHMENT_TYPE",
+                                    "MATCH_ALL",
+                                ],
                             ),
                             drg_attachment_id=dict(type="str"),
                             attachment_type=dict(

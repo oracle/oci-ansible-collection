@@ -103,30 +103,6 @@ blockchain_platforms:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - unique identifier that is immutable on creation
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Platform Instance Display name, can be renamed
-            returned: on success
-            type: str
-            sample: display_name_example
-        compartment_id:
-            description:
-                - Compartment Identifier
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - Platform Instance Description
-            returned: on success
-            type: str
-            sample: description_example
         is_byol:
             description:
                 - Bring your own license
@@ -134,18 +110,6 @@ blockchain_platforms:
             returned: on success
             type: bool
             sample: true
-        time_created:
-            description:
-                - The time the the Platform Instance was created. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the Platform Instance was updated. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         platform_version:
             description:
                 - Platform Version
@@ -160,18 +124,6 @@ blockchain_platforms:
             returned: on success
             type: str
             sample: service_version_example
-        platform_role:
-            description:
-                - "Role of platform - FOUNDER or PARTICIPANT"
-            returned: on success
-            type: str
-            sample: FOUNDER
-        compute_shape:
-            description:
-                - "Compute shape - STANDARD or ENTERPRISE_SMALL or ENTERPRISE_MEDIUM or ENTERPRISE_LARGE or ENTERPRISE_EXTRA_LARGE or ENTERPRISE_CUSTOM"
-            returned: on success
-            type: str
-            sample: STANDARD
         platform_shape_type:
             description:
                 - "Type of Platform shape - DEFAULT or CUSTOM"
@@ -186,25 +138,6 @@ blockchain_platforms:
             returned: on success
             type: str
             sample: LB_100_MBPS
-        service_endpoint:
-            description:
-                - Service endpoint URL, valid post-provisioning
-            returned: on success
-            type: str
-            sample: service_endpoint_example
-        lifecycle_state:
-            description:
-                - The current state of the Platform Instance.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         storage_size_in_tbs:
             description:
                 - Storage size in TBs
@@ -380,6 +313,73 @@ blockchain_platforms:
                     returned: on success
                     type: float
                     sample: 3.4
+        id:
+            description:
+                - unique identifier that is immutable on creation
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Platform Instance Display name, can be renamed
+            returned: on success
+            type: str
+            sample: display_name_example
+        compartment_id:
+            description:
+                - Compartment Identifier
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - Platform Instance Description
+            returned: on success
+            type: str
+            sample: description_example
+        time_created:
+            description:
+                - The time the the Platform Instance was created. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the Platform Instance was updated. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        platform_role:
+            description:
+                - "Role of platform - FOUNDER or PARTICIPANT"
+            returned: on success
+            type: str
+            sample: FOUNDER
+        compute_shape:
+            description:
+                - "Compute shape - STANDARD or ENTERPRISE_SMALL or ENTERPRISE_MEDIUM or ENTERPRISE_LARGE or ENTERPRISE_EXTRA_LARGE or ENTERPRISE_CUSTOM"
+            returned: on success
+            type: str
+            sample: STANDARD
+        service_endpoint:
+            description:
+                - Service endpoint URL, valid post-provisioning
+            returned: on success
+            type: str
+            sample: service_endpoint_example
+        lifecycle_state:
+            description:
+                - The current state of the Platform Instance.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -395,22 +395,11 @@ blockchain_platforms:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "description": "description_example",
         "is_byol": true,
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
         "platform_version": "platform_version_example",
         "service_version": "service_version_example",
-        "platform_role": "FOUNDER",
-        "compute_shape": "STANDARD",
         "platform_shape_type": "DEFAULT",
         "load_balancer_shape": "LB_100_MBPS",
-        "service_endpoint": "service_endpoint_example",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
         "storage_size_in_tbs": 1.2,
         "storage_used_in_t_bs": 1.2,
         "is_multi_ad": true,
@@ -446,6 +435,17 @@ blockchain_platforms:
             "ocpu_utilization_number": 3.4,
             "ocpu_capacity_number": 3.4
         }],
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "platform_role": "FOUNDER",
+        "compute_shape": "STANDARD",
+        "service_endpoint": "service_endpoint_example",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

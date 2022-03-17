@@ -171,29 +171,6 @@ instance_agent_command_executions:
             returned: on success
             type: complex
             contains:
-                output_type:
-                    description:
-                        - "The output destination type for the command. The following values are supported:"
-                        - "- TEXT - the command output is returned as plain text.
-                          - OBJECT_STORAGE_URI - the command output is saved to an Object Storage URL.
-                          - OBJECT_STORAGE_TUPLE - the command output is saved to an Object Storage bucket."
-                        - For background information about Object Storage buckets and URLs, see
-                          L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
-                    returned: on success
-                    type: str
-                    sample: TEXT
-                exit_code:
-                    description:
-                        - The exit code for the command. Exit code `0` indicates success.
-                    returned: on success
-                    type: int
-                    sample: 56
-                message:
-                    description:
-                        - An optional status message that Oracle Cloud Agent can populate for additional troubleshooting.
-                    returned: on success
-                    type: str
-                    sample: message_example
                 bucket_name:
                     description:
                         - The Object Storage bucket for the command output.
@@ -218,6 +195,29 @@ instance_agent_command_executions:
                     returned: on success
                     type: str
                     sample: output_uri_example
+                output_type:
+                    description:
+                        - "The output destination type for the command. The following values are supported:"
+                        - "- TEXT - the command output is returned as plain text.
+                          - OBJECT_STORAGE_URI - the command output is saved to an Object Storage URL.
+                          - OBJECT_STORAGE_TUPLE - the command output is saved to an Object Storage bucket."
+                        - For background information about Object Storage buckets and URLs, see
+                          L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
+                    returned: on success
+                    type: str
+                    sample: TEXT
+                exit_code:
+                    description:
+                        - The exit code for the command. Exit code `0` indicates success.
+                    returned: on success
+                    type: int
+                    sample: 56
+                message:
+                    description:
+                        - An optional status message that Oracle Cloud Agent can populate for additional troubleshooting.
+                    returned: on success
+                    type: str
+                    sample: message_example
                 text:
                     description:
                         - The command output.
@@ -240,13 +240,13 @@ instance_agent_command_executions:
         "sequence_number": 56,
         "display_name": "display_name_example",
         "content": {
-            "output_type": "TEXT",
-            "exit_code": 56,
-            "message": "message_example",
             "bucket_name": "bucket_name_example",
             "namespace_name": "namespace_name_example",
             "object_name": "object_name_example",
             "output_uri": "output_uri_example",
+            "output_type": "TEXT",
+            "exit_code": 56,
+            "message": "message_example",
             "text": "text_example",
             "text_sha256": "text_sha256_example"
         }

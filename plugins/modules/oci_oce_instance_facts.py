@@ -104,6 +104,27 @@ oce_instances:
     returned: on success
     type: complex
     contains:
+        identity_stripe:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                service_name:
+                    description:
+                        - "Name of the Identity Cloud Service instance in My Services to be used.
+                          Example: `secondstripe`"
+                    returned: on success
+                    type: str
+                    sample: service_name_example
+                tenancy:
+                    description:
+                        - "Value of the Identity Cloud Service tenancy.
+                          Example: `idcs-8416ebdd0d674f84803f4193cce026e9`"
+                    returned: on success
+                    type: str
+                    sample: tenancy_example
         id:
             description:
                 - Unique identifier that is immutable on creation
@@ -152,34 +173,6 @@ oce_instances:
             returned: on success
             type: str
             sample: tenancy_name_example
-        upgrade_schedule:
-            description:
-                - Upgrade schedule type representing service to be upgraded immediately whenever latest version is released
-                  or delay upgrade of the service to previous released version
-            returned: on success
-            type: str
-            sample: UPGRADE_IMMEDIATELY
-        identity_stripe:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                service_name:
-                    description:
-                        - "Name of the Identity Cloud Service instance in My Services to be used.
-                          Example: `secondstripe`"
-                    returned: on success
-                    type: str
-                    sample: service_name_example
-                tenancy:
-                    description:
-                        - "Value of the Identity Cloud Service tenancy.
-                          Example: `idcs-8416ebdd0d674f84803f4193cce026e9`"
-                    returned: on success
-                    type: str
-                    sample: tenancy_example
         instance_usage_type:
             description:
                 - Instance type based on its usage
@@ -198,6 +191,13 @@ oce_instances:
             returned: on success
             type: str
             sample: admin_email_example
+        upgrade_schedule:
+            description:
+                - Upgrade schedule type representing service to be upgraded immediately whenever latest version is released
+                  or delay upgrade of the service to previous released version
+            returned: on success
+            type: str
+            sample: UPGRADE_IMMEDIATELY
         waf_primary_domain:
             description:
                 - Web Application Firewall(WAF) primary domain
@@ -241,6 +241,13 @@ oce_instances:
             returned: on success
             type: str
             sample: state_message_example
+        service:
+            description:
+                - "SERVICE data.
+                  Example: `{\\"service\\": {\\"IDCS\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -262,14 +269,11 @@ oce_instances:
             returned: on success
             type: dict
             sample: {}
-        service:
-            description:
-                - "SERVICE data.
-                  Example: `{\\"service\\": {\\"IDCS\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {}
     sample: [{
+        "identity_stripe": {
+            "service_name": "service_name_example",
+            "tenancy": "tenancy_example"
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "guid": "guid_example",
         "description": "description_example",
@@ -278,14 +282,10 @@ oce_instances:
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
         "idcs_tenancy": "idcs_tenancy_example",
         "tenancy_name": "tenancy_name_example",
-        "upgrade_schedule": "UPGRADE_IMMEDIATELY",
-        "identity_stripe": {
-            "service_name": "service_name_example",
-            "tenancy": "tenancy_example"
-        },
         "instance_usage_type": "PRIMARY",
         "object_storage_namespace": "object_storage_namespace_example",
         "admin_email": "admin_email_example",
+        "upgrade_schedule": "UPGRADE_IMMEDIATELY",
         "waf_primary_domain": "waf_primary_domain_example",
         "instance_access_type": "PUBLIC",
         "instance_license_type": "NEW",
@@ -293,10 +293,10 @@ oce_instances:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "state_message": "state_message_example",
+        "service": {},
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "service": {}
+        "system_tags": {}
     }]
 """
 

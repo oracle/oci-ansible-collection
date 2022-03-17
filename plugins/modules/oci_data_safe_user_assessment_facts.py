@@ -182,6 +182,14 @@ user_assessments:
     returned: on success
     type: complex
     contains:
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
         compartment_id:
             description:
                 - The OCID of the compartment that contains the user assessment.
@@ -335,15 +343,8 @@ user_assessments:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        system_tags:
-            description:
-                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
     sample: [{
+        "system_tags": {},
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "display_name": "display_name_example",
@@ -364,8 +365,7 @@ user_assessments:
         "triggered_by": "USER",
         "type": "LATEST",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

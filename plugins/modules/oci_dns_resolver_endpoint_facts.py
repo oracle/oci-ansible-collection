@@ -119,6 +119,14 @@ resolver_endpoints:
     returned: on success
     type: complex
     contains:
+        nsg_ids:
+            description:
+                - An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the
+                  resolver endpoint is a part of.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         name:
             description:
                 - The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.
@@ -198,15 +206,8 @@ resolver_endpoints:
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids:
-            description:
-                - An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the
-                  resolver endpoint is a part of.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
     sample: [{
+        "nsg_ids": [],
         "name": "name_example",
         "endpoint_type": "VNIC",
         "forwarding_address": "forwarding_address_example",
@@ -218,8 +219,7 @@ resolver_endpoints:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "_self": "_self_example",
-        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "nsg_ids": []
+        "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

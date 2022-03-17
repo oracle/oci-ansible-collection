@@ -325,18 +325,18 @@ db_system:
             returned: on success
             type: complex
             contains:
-                source_type:
-                    description:
-                        - The specific source identifier.
-                    returned: on success
-                    type: str
-                    sample: NONE
                 backup_id:
                     description:
                         - The OCID of the backup to be used as the source for the new DB System.
                     returned: on success
                     type: str
                     sample: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+                source_type:
+                    description:
+                        - The specific source identifier.
+                    returned: on success
+                    type: str
+                    sample: NONE
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
@@ -684,8 +684,8 @@ db_system:
             "defined_tags": {'Operations': {'CostCenter': 'US'}}
         },
         "source": {
-            "source_type": "NONE",
-            "backup_id": "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+            "backup_id": "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx",
+            "source_type": "NONE"
         },
         "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx",
         "data_storage_size_in_gbs": 56,

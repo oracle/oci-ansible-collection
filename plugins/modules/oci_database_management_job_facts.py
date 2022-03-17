@@ -108,43 +108,6 @@ jobs:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the job.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the job resides.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - The display name of the job.
-            returned: on success
-            type: str
-            sample: name_example
-        description:
-            description:
-                - The description of the job.
-            returned: on success
-            type: str
-            sample: description_example
-        managed_database_group_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group where the job has to be
-                  executed.
-            returned: on success
-            type: str
-            sample: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
-        managed_database_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database where the job has to be executed.
-            returned: on success
-            type: str
-            sample: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
         managed_databases_details:
             description:
                 - The details of the Managed Databases where the job has to be executed.
@@ -195,36 +158,6 @@ jobs:
                     returned: on success
                     type: str
                     sample: OLTP
-        database_sub_type:
-            description:
-                - The subtype of the Oracle Database where the job has to be executed. Applicable only when managedDatabaseGroupId is provided.
-            returned: on success
-            type: str
-            sample: CDB
-        schedule_type:
-            description:
-                - The schedule type of the job.
-            returned: on success
-            type: str
-            sample: IMMEDIATE
-        job_type:
-            description:
-                - The type of job.
-            returned: on success
-            type: str
-            sample: SQL
-        lifecycle_state:
-            description:
-                - The lifecycle state of the job.
-            returned: on success
-            type: str
-            sample: ACTIVE
-        timeout:
-            description:
-                - "The job timeout duration, which is expressed like \\"1h 10m 15s\\"."
-            returned: on success
-            type: str
-            sample: timeout_example
         result_location:
             description:
                 - ""
@@ -250,54 +183,6 @@ jobs:
                     returned: on success
                     type: str
                     sample: bucket_name_example
-        schedule_details:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                start_time:
-                    description:
-                        - "The start time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
-                    returned: on success
-                    type: str
-                    sample: start_time_example
-                end_time:
-                    description:
-                        - "The end time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
-                    returned: on success
-                    type: str
-                    sample: end_time_example
-                interval_type:
-                    description:
-                        - The interval type for a recurring scheduled job. For a non-recurring (one time) job, NEVER must be specified as the interval type.
-                    returned: on success
-                    type: str
-                    sample: DAILY
-                interval_value:
-                    description:
-                        - The value for the interval period for a recurring scheduled job.
-                    returned: on success
-                    type: str
-                    sample: interval_value_example
-        submission_error_message:
-            description:
-                - The error message that is returned if the job submission fails. Null is returned in all other scenarios.
-            returned: on success
-            type: str
-            sample: submission_error_message_example
-        time_created:
-            description:
-                - The date and time when the job was created.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The date and time when the job was last updated.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         sql_type:
             description:
                 - The type of SQL. This is a mandatory field for the EXECUTE_SQL operationType.
@@ -334,13 +219,122 @@ jobs:
             returned: on success
             type: str
             sample: NORMAL
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the job.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the job resides.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The display name of the job.
+            returned: on success
+            type: str
+            sample: name_example
+        description:
+            description:
+                - The description of the job.
+            returned: on success
+            type: str
+            sample: description_example
+        managed_database_group_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group where the job has to be
+                  executed.
+            returned: on success
+            type: str
+            sample: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
+        managed_database_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database where the job has to be executed.
+            returned: on success
+            type: str
+            sample: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        database_sub_type:
+            description:
+                - The subtype of the Oracle Database where the job has to be executed. Applicable only when managedDatabaseGroupId is provided.
+            returned: on success
+            type: str
+            sample: CDB
+        schedule_type:
+            description:
+                - The schedule type of the job.
+            returned: on success
+            type: str
+            sample: IMMEDIATE
+        schedule_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                start_time:
+                    description:
+                        - "The start time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
+                    returned: on success
+                    type: str
+                    sample: start_time_example
+                end_time:
+                    description:
+                        - "The end time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
+                    returned: on success
+                    type: str
+                    sample: end_time_example
+                interval_type:
+                    description:
+                        - The interval type for a recurring scheduled job. For a non-recurring (one time) job, NEVER must be specified as the interval type.
+                    returned: on success
+                    type: str
+                    sample: DAILY
+                interval_value:
+                    description:
+                        - The value for the interval period for a recurring scheduled job.
+                    returned: on success
+                    type: str
+                    sample: interval_value_example
+        job_type:
+            description:
+                - The type of job.
+            returned: on success
+            type: str
+            sample: SQL
+        lifecycle_state:
+            description:
+                - The lifecycle state of the job.
+            returned: on success
+            type: str
+            sample: ACTIVE
+        timeout:
+            description:
+                - "The job timeout duration, which is expressed like \\"1h 10m 15s\\"."
+            returned: on success
+            type: str
+            sample: timeout_example
+        submission_error_message:
+            description:
+                - The error message that is returned if the job submission fails. Null is returned in all other scenarios.
+            returned: on success
+            type: str
+            sample: submission_error_message_example
+        time_created:
+            description:
+                - The date and time when the job was created.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The date and time when the job was last updated.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
-        "description": "description_example",
-        "managed_database_group_id": "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx",
-        "managed_database_id": "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx",
         "managed_databases_details": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "name": "name_example",
@@ -350,30 +344,36 @@ jobs:
             "is_cluster": true,
             "workload_type": "OLTP"
         }],
-        "database_sub_type": "CDB",
-        "schedule_type": "IMMEDIATE",
-        "job_type": "SQL",
-        "lifecycle_state": "ACTIVE",
-        "timeout": "timeout_example",
         "result_location": {
             "type": "OBJECT_STORAGE",
             "namespace_name": "namespace_name_example",
             "bucket_name": "bucket_name_example"
         },
+        "sql_type": "QUERY",
+        "sql_text": "sql_text_example",
+        "operation_type": "EXECUTE_SQL",
+        "user_name": "user_name_example",
+        "role": "NORMAL",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "description": "description_example",
+        "managed_database_group_id": "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx",
+        "managed_database_id": "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_sub_type": "CDB",
+        "schedule_type": "IMMEDIATE",
         "schedule_details": {
             "start_time": "start_time_example",
             "end_time": "end_time_example",
             "interval_type": "DAILY",
             "interval_value": "interval_value_example"
         },
+        "job_type": "SQL",
+        "lifecycle_state": "ACTIVE",
+        "timeout": "timeout_example",
         "submission_error_message": "submission_error_message_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "sql_type": "QUERY",
-        "sql_text": "sql_text_example",
-        "operation_type": "EXECUTE_SQL",
-        "user_name": "user_name_example",
-        "role": "NORMAL"
+        "time_updated": "2013-10-20T19:20:30+01:00"
     }]
 """
 

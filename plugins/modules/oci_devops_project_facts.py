@@ -98,6 +98,14 @@ projects:
     returned: on success
     type: complex
     contains:
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -158,14 +166,6 @@ projects:
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -189,6 +189,7 @@ projects:
             type: dict
             sample: {}
     sample: [{
+        "lifecycle_details": "lifecycle_details_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
@@ -200,7 +201,6 @@ projects:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

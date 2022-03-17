@@ -98,18 +98,6 @@ templates:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the template.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing this template.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - Unique identifier for the category where the template is located.
@@ -118,18 +106,6 @@ templates:
             returned: on success
             type: str
             sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Human-readable name of the template.
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - Brief description of the template.
-            returned: on success
-            type: str
-            sample: description_example
         long_description:
             description:
                 - Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded. Avoid
@@ -138,20 +114,6 @@ templates:
             returned: on success
             type: str
             sample: long_description_example
-        is_free_tier:
-            description:
-                - whether the template will work for free tier tenancy.
-            returned: on success
-            type: bool
-            sample: true
-        time_created:
-            description:
-                - "The date and time at which the template was created.
-                  Format is defined by RFC3339.
-                  Example: `2020-11-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         template_config_source:
             description:
                 - ""
@@ -165,12 +127,6 @@ templates:
                     returned: on success
                     type: str
                     sample: ZIP_UPLOAD
-        lifecycle_state:
-            description:
-                - The current lifecycle state of the template.
-            returned: on success
-            type: str
-            sample: ACTIVE
         freeform_tags:
             description:
                 - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -189,21 +145,65 @@ templates:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        id:
+            description:
+                - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the template.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing this template.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Human-readable name of the template.
+            returned: on success
+            type: str
+            sample: display_name_example
+        description:
+            description:
+                - Brief description of the template.
+            returned: on success
+            type: str
+            sample: description_example
+        is_free_tier:
+            description:
+                - whether the template will work for free tier tenancy.
+            returned: on success
+            type: bool
+            sample: true
+        time_created:
+            description:
+                - "The date and time at which the template was created.
+                  Format is defined by RFC3339.
+                  Example: `2020-11-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current lifecycle state of the template.
+            returned: on success
+            type: str
+            sample: ACTIVE
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "category_id": "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
         "long_description": "long_description_example",
-        "is_free_tier": true,
-        "time_created": "2013-10-20T19:20:30+01:00",
         "template_config_source": {
             "template_config_source_type": "ZIP_UPLOAD"
         },
-        "lifecycle_state": "ACTIVE",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "is_free_tier": true,
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "ACTIVE"
     }]
 """
 

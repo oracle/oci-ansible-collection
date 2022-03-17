@@ -103,6 +103,13 @@ compute_image_capability_schemas:
     returned: on success
     type: complex
     contains:
+        compute_global_image_capability_schema_id:
+            description:
+                - The ocid of the compute global image capability schema
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The id of the compute global image capability schema version
@@ -115,13 +122,6 @@ compute_image_capability_schemas:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        compute_global_image_capability_schema_id:
-            description:
-                - The ocid of the compute global image capability schema
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         compute_global_image_capability_schema_version_name:
             description:
                 - The name of the compute global image capability schema version
@@ -134,14 +134,6 @@ compute_image_capability_schemas:
             returned: on success
             type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -149,33 +141,12 @@ compute_image_capability_schemas:
             returned: on success
             type: str
             sample: display_name_example
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
         schema_data:
             description:
                 - The map of each capability name to its ImageCapabilityDescriptor.
             returned: on success
             type: complex
             contains:
-                descriptor_type:
-                    description:
-                        - The image capability schema descriptor type for the capability
-                    returned: on success
-                    type: str
-                    sample: boolean
-                source:
-                    description:
-                        - ""
-                    returned: on success
-                    type: str
-                    sample: GLOBAL
                 boolean_default_value:
                     description:
                         - the default value
@@ -194,6 +165,18 @@ compute_image_capability_schemas:
                     returned: on success
                     type: int
                     sample: 56
+                descriptor_type:
+                    description:
+                        - The image capability schema descriptor type for the capability
+                    returned: on success
+                    type: str
+                    sample: boolean
+                source:
+                    description:
+                        - ""
+                    returned: on success
+                    type: str
+                    sample: GLOBAL
                 enum_string_values:
                     description:
                         - the list of values for the enum
@@ -214,25 +197,42 @@ compute_image_capability_schemas:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
     sample: [{
+        "compute_global_image_capability_schema_id": "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "compute_global_image_capability_schema_id": "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_global_image_capability_schema_version_name": "compute_global_image_capability_schema_version_name_example",
         "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
-        "freeform_tags": {'Department': 'Finance'},
         "schema_data": {
-            "descriptor_type": "boolean",
-            "source": "GLOBAL",
             "boolean_default_value": true,
             "enum_integer_values": [],
             "enum_integer_default_value": 56,
+            "descriptor_type": "boolean",
+            "source": "GLOBAL",
             "enum_string_values": [],
             "enum_string_default_value": "default_value_example"
         },
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'}
     }]
 """
 

@@ -155,128 +155,6 @@ database_insights:
     returned: on success
     type: complex
     contains:
-        entity_source:
-            description:
-                - Source of the database entity.
-            returned: on success
-            type: str
-            sample: AUTONOMOUS_DATABASE
-        id:
-            description:
-                - Database insight identifier
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - Compartment identifier of the database
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        status:
-            description:
-                - Indicates the status of a database insight in Operations Insights
-            returned: on success
-            type: str
-            sample: DISABLED
-        database_type:
-            description:
-                - Operations Insights internal representation of the database type.
-            returned: on success
-            type: str
-            sample: database_type_example
-        database_version:
-            description:
-                - The version of the database.
-            returned: on success
-            type: str
-            sample: database_version_example
-        processor_count:
-            description:
-                - Processor count. This is the OCPU count for Autonomous Database and CPU core count for other database types.
-            returned: on success
-            type: int
-            sample: 56
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        system_tags:
-            description:
-                - "System tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-            returned: on success
-            type: dict
-            sample: {}
-        time_created:
-            description:
-                - The time the the database insight was first enabled. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the database insight was updated. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current state of the database.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
-        database_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
-            returned: on success
-            type: str
-            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        database_name:
-            description:
-                - Name of database
-            returned: on success
-            type: str
-            sample: database_name_example
-        database_display_name:
-            description:
-                - Display name of database
-            returned: on success
-            type: str
-            sample: database_display_name_example
-        database_resource_type:
-            description:
-                - OCI database resource type
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: database_resource_type_example
-        db_additional_details:
-            description:
-                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
-                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
-                  string. Note that this string needs to be escaped when specified in the curl command.
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
@@ -390,6 +268,64 @@ database_insights:
                     returned: on success
                     type: str
                     sample: CREDENTIALS_BY_SOURCE
+        database_resource_type:
+            description:
+                - OCI database resource type
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: database_resource_type_example
+        db_additional_details:
+            description:
+                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
+                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
+                  string. Note that this string needs to be escaped when specified in the curl command.
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        id:
+            description:
+                - Database insight identifier
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        database_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
+            returned: on success
+            type: str
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - Compartment identifier of the database
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name:
+            description:
+                - Name of database
+            returned: on success
+            type: str
+            sample: database_name_example
+        database_display_name:
+            description:
+                - Display name of database
+            returned: on success
+            type: str
+            sample: database_display_name_example
+        database_type:
+            description:
+                - Operations Insights internal representation of the database type.
+            returned: on success
+            type: str
+            sample: database_type_example
+        database_version:
+            description:
+                - The version of the database.
+            returned: on success
+            type: str
+            sample: database_version_example
         database_host_names:
             description:
                 - The hostnames for the database.
@@ -397,26 +333,71 @@ database_insights:
             returned: on success
             type: list
             sample: []
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
+        entity_source:
+            description:
+                - Source of the database entity.
+            returned: on success
+            type: str
+            sample: AUTONOMOUS_DATABASE
+        processor_count:
+            description:
+                - Processor count. This is the OCPU count for Autonomous Database and CPU core count for other database types.
+            returned: on success
+            type: int
+            sample: 56
+        status:
+            description:
+                - Indicates the status of a database insight in Operations Insights
+            returned: on success
+            type: str
+            sample: DISABLED
+        time_created:
+            description:
+                - The time the the database insight was first enabled. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the database insight was updated. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the database.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
     sample: [{
-        "entity_source": "AUTONOMOUS_DATABASE",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "status": "DISABLED",
-        "database_type": "database_type_example",
-        "database_version": "database_version_example",
-        "processor_count": 56,
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "database_name": "database_name_example",
-        "database_display_name": "database_display_name_example",
-        "database_resource_type": "database_resource_type_example",
-        "db_additional_details": {},
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
         "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
@@ -436,7 +417,26 @@ database_insights:
             "credential_source_name": "credential_source_name_example",
             "credential_type": "CREDENTIALS_BY_SOURCE"
         },
-        "database_host_names": []
+        "database_resource_type": "database_resource_type_example",
+        "db_additional_details": {},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_name": "database_name_example",
+        "database_display_name": "database_display_name_example",
+        "database_type": "database_type_example",
+        "database_version": "database_version_example",
+        "database_host_names": [],
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
+        "entity_source": "AUTONOMOUS_DATABASE",
+        "processor_count": 56,
+        "status": "DISABLED",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example"
     }]
 """
 

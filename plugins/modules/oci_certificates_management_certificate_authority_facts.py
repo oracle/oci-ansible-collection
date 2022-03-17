@@ -108,57 +108,6 @@ certificate_authorities:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the CA.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        issuer_certificate_authority_id:
-            description:
-                - The OCID of the parent CA that issued this CA. If this is the root CA, then this value is null.
-            returned: on success
-            type: str
-            sample: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - A user-friendly name for the CA. Names are unique within a compartment. Avoid entering confidential information. Valid characters include
-                  uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
-            returned: on success
-            type: str
-            sample: name_example
-        description:
-            description:
-                - A brief description of the CA.
-            returned: on success
-            type: str
-            sample: description_example
-        time_created:
-            description:
-                - "A property indicating when the CA was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                  Example: `2019-04-03T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_of_deletion:
-            description:
-                - "An optional property indicating when to delete the CA version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                  Example: `2019-04-03T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        kms_key_id:
-            description:
-                - The OCID of the Oracle Cloud Infrastructure Vault key used to encrypt the CA.
-            returned: on success
-            type: str
-            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state:
-            description:
-                - The current lifecycle state of the certificate authority.
-            returned: on success
-            type: str
-            sample: CREATING
         lifecycle_details:
             description:
                 - Additional information about the current CA lifecycle state.
@@ -166,40 +115,6 @@ certificate_authorities:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        compartment_id:
-            description:
-                - The OCID of the compartment under which the CA is created.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        certificate_authority_rules:
-            description:
-                - An optional list of rules that control how the CA is used and managed.
-            returned: on success
-            type: complex
-            contains:
-                rule_type:
-                    description:
-                        - The type of rule, whether a renewal rule regarding when to renew the CA or an issuance expiry rule that governs how long the
-                          certificates and CAs issued by the CA are valid. (For internal use only) An internal issuance rule defines the number and type of
-                          certificates that the CA can issue.
-                    returned: on success
-                    type: str
-                    sample: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
-                leaf_certificate_max_validity_duration:
-                    description:
-                        - A property indicating the maximum validity duration, in days, of leaf certificates issued by this CA.
-                          Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
-                    returned: on success
-                    type: str
-                    sample: leaf_certificate_max_validity_duration_example
-                certificate_authority_max_validity_duration:
-                    description:
-                        - A property indicating the maximum validity duration, in days, of subordinate CA's issued by this CA.
-                          Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
-                    returned: on success
-                    type: str
-                    sample: certificate_authority_max_validity_duration_example
         current_version:
             description:
                 - ""
@@ -343,12 +258,192 @@ certificate_authorities:
                     returned: on success
                     type: list
                     sample: []
-        config_type:
+        id:
             description:
-                - The origin of the CA.
+                - The OCID of the CA.
             returned: on success
             type: str
-            sample: ROOT_CA_GENERATED_INTERNALLY
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        issuer_certificate_authority_id:
+            description:
+                - The OCID of the parent CA that issued this CA. If this is the root CA, then this value is null.
+            returned: on success
+            type: str
+            sample: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - A user-friendly name for the CA. Names are unique within a compartment. Avoid entering confidential information. Valid characters include
+                  uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
+            returned: on success
+            type: str
+            sample: name_example
+        description:
+            description:
+                - A brief description of the CA.
+            returned: on success
+            type: str
+            sample: description_example
+        time_created:
+            description:
+                - "A property indicating when the CA was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                  Example: `2019-04-03T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_of_deletion:
+            description:
+                - "An optional property indicating when to delete the CA version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                  Example: `2019-04-03T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        kms_key_id:
+            description:
+                - The OCID of the Oracle Cloud Infrastructure Vault key used to encrypt the CA.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_state:
+            description:
+                - The current lifecycle state of the certificate authority.
+            returned: on success
+            type: str
+            sample: CREATING
+        compartment_id:
+            description:
+                - The OCID of the compartment under which the CA is created.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        certificate_authority_rules:
+            description:
+                - An optional list of rules that control how the CA is used and managed.
+            returned: on success
+            type: complex
+            contains:
+                rule_type:
+                    description:
+                        - The type of rule, whether a renewal rule regarding when to renew the CA or an issuance expiry rule that governs how long the
+                          certificates and CAs issued by the CA are valid. (For internal use only) An internal issuance rule defines the number and type of
+                          certificates that the CA can issue.
+                    returned: on success
+                    type: str
+                    sample: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
+                leaf_certificate_max_validity_duration:
+                    description:
+                        - A property indicating the maximum validity duration, in days, of leaf certificates issued by this CA.
+                          Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
+                    returned: on success
+                    type: str
+                    sample: leaf_certificate_max_validity_duration_example
+                certificate_authority_max_validity_duration:
+                    description:
+                        - A property indicating the maximum validity duration, in days, of subordinate CA's issued by this CA.
+                          Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
+                    returned: on success
+                    type: str
+                    sample: certificate_authority_max_validity_duration_example
+        current_version_summary:
+            description:
+                - ""
+                - Returned for list operation
+            returned: on success
+            type: complex
+            contains:
+                certificate_authority_id:
+                    description:
+                        - The OCID of the CA.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+                issuer_ca_version_number:
+                    description:
+                        - The version number of the issuing CA.
+                    returned: on success
+                    type: int
+                    sample: 56
+                serial_number:
+                    description:
+                        - "A unique certificate identifier used in certificate revocation tracking, formatted as octets.
+                          Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`"
+                    returned: on success
+                    type: str
+                    sample: serial_number_example
+                time_created:
+                    description:
+                        - "A optional property indicating when the CA version was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                          timestamp format.
+                          Example: `2019-04-03T21:10:29.600Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                version_number:
+                    description:
+                        - The version number of the CA.
+                    returned: on success
+                    type: int
+                    sample: 56
+                version_name:
+                    description:
+                        - The name of the CA version. When this value is not null, the name is unique across CA versions for a given CA.
+                    returned: on success
+                    type: str
+                    sample: version_name_example
+                time_of_deletion:
+                    description:
+                        - "An optional property indicating when to delete the CA version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
+                          format.
+                          Example: `2019-04-03T21:10:29.600Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                validity:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        time_of_validity_not_before:
+                            description:
+                                - "The date on which the certificate validity period begins, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                                  timestamp format.
+                                  Example: `2019-04-03T21:10:29.600Z`"
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        time_of_validity_not_after:
+                            description:
+                                - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                                  timestamp format.
+                                  Example: `2019-04-03T21:10:29.600Z`"
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                stages:
+                    description:
+                        - A list of rotation states for this CA version.
+                    returned: on success
+                    type: list
+                    sample: []
+                revocation_status:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        time_of_revocation:
+                            description:
+                                - "The time when the entity was revoked, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                                  Example: `2019-04-03T21:10:29.600Z`"
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        revocation_reason:
+                            description:
+                                - The reason the certificate or certificate authority (CA) was revoked.
+                            returned: on success
+                            type: str
+                            sample: UNSPECIFIED
         subject:
             description:
                 - ""
@@ -457,6 +552,12 @@ certificate_authorities:
                     returned: on success
                     type: str
                     sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+        config_type:
+            description:
+                - The origin of the CA.
+            returned: on success
+            type: str
+            sample: ROOT_CA_GENERATED_INTERNALLY
         signing_algorithm:
             description:
                 - The algorithm used to sign public key certificates that the CA issues.
@@ -477,123 +578,8 @@ certificate_authorities:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        current_version_summary:
-            description:
-                - ""
-                - Returned for list operation
-            returned: on success
-            type: complex
-            contains:
-                certificate_authority_id:
-                    description:
-                        - The OCID of the CA.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
-                issuer_ca_version_number:
-                    description:
-                        - The version number of the issuing CA.
-                    returned: on success
-                    type: int
-                    sample: 56
-                serial_number:
-                    description:
-                        - "A unique certificate identifier used in certificate revocation tracking, formatted as octets.
-                          Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`"
-                    returned: on success
-                    type: str
-                    sample: serial_number_example
-                time_created:
-                    description:
-                        - "A optional property indicating when the CA version was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                          timestamp format.
-                          Example: `2019-04-03T21:10:29.600Z`"
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                version_number:
-                    description:
-                        - The version number of the CA.
-                    returned: on success
-                    type: int
-                    sample: 56
-                version_name:
-                    description:
-                        - The name of the CA version. When this value is not null, the name is unique across CA versions for a given CA.
-                    returned: on success
-                    type: str
-                    sample: version_name_example
-                time_of_deletion:
-                    description:
-                        - "An optional property indicating when to delete the CA version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
-                          format.
-                          Example: `2019-04-03T21:10:29.600Z`"
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                validity:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        time_of_validity_not_before:
-                            description:
-                                - "The date on which the certificate validity period begins, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                                  timestamp format.
-                                  Example: `2019-04-03T21:10:29.600Z`"
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                        time_of_validity_not_after:
-                            description:
-                                - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                                  timestamp format.
-                                  Example: `2019-04-03T21:10:29.600Z`"
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                stages:
-                    description:
-                        - A list of rotation states for this CA version.
-                    returned: on success
-                    type: list
-                    sample: []
-                revocation_status:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        time_of_revocation:
-                            description:
-                                - "The time when the entity was revoked, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                                  Example: `2019-04-03T21:10:29.600Z`"
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                        revocation_reason:
-                            description:
-                                - The reason the certificate or certificate authority (CA) was revoked.
-                            returned: on success
-                            type: str
-                            sample: UNSPECIFIED
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "issuer_certificate_authority_id": "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
-        "description": "description_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_of_deletion": "2013-10-20T19:20:30+01:00",
-        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "certificate_authority_rules": [{
-            "rule_type": "CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE",
-            "leaf_certificate_max_validity_duration": "leaf_certificate_max_validity_duration_example",
-            "certificate_authority_max_validity_duration": "certificate_authority_max_validity_duration_example"
-        }],
         "current_version": {
             "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
             "issuer_ca_version_number": 56,
@@ -620,7 +606,38 @@ certificate_authorities:
             },
             "custom_formatted_urls": []
         },
-        "config_type": "ROOT_CA_GENERATED_INTERNALLY",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "issuer_certificate_authority_id": "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "description": "description_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "CREATING",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "certificate_authority_rules": [{
+            "rule_type": "CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE",
+            "leaf_certificate_max_validity_duration": "leaf_certificate_max_validity_duration_example",
+            "certificate_authority_max_validity_duration": "certificate_authority_max_validity_duration_example"
+        }],
+        "current_version_summary": {
+            "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
+            "issuer_ca_version_number": 56,
+            "serial_number": "serial_number_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "version_number": 56,
+            "version_name": "version_name_example",
+            "time_of_deletion": "2013-10-20T19:20:30+01:00",
+            "validity": {
+                "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",
+                "time_of_validity_not_after": "2013-10-20T19:20:30+01:00"
+            },
+            "stages": [],
+            "revocation_status": {
+                "time_of_revocation": "2013-10-20T19:20:30+01:00",
+                "revocation_reason": "UNSPECIFIED"
+            }
+        },
         "subject": {
             "common_name": "common_name_example",
             "country": "country_example",
@@ -640,27 +657,10 @@ certificate_authorities:
             "title": "title_example",
             "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "config_type": "ROOT_CA_GENERATED_INTERNALLY",
         "signing_algorithm": "SHA256_WITH_RSA",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "current_version_summary": {
-            "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
-            "issuer_ca_version_number": 56,
-            "serial_number": "serial_number_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "version_number": 56,
-            "version_name": "version_name_example",
-            "time_of_deletion": "2013-10-20T19:20:30+01:00",
-            "validity": {
-                "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",
-                "time_of_validity_not_after": "2013-10-20T19:20:30+01:00"
-            },
-            "stages": [],
-            "revocation_status": {
-                "time_of_revocation": "2013-10-20T19:20:30+01:00",
-                "revocation_reason": "UNSPECIFIED"
-            }
-        }
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

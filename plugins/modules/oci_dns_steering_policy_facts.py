@@ -146,85 +146,6 @@ steering_policies:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The OCID of the compartment containing the steering policy.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - A user-friendly name for the steering policy. Does not have to be unique and can be changed.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        ttl:
-            description:
-                - The Time To Live (TTL) for responses from the steering policy, in seconds.
-                  If not specified during creation, a value of 30 seconds will be used.
-            returned: on success
-            type: int
-            sample: 56
-        health_check_monitor_id:
-            description:
-                - The OCID of the health check monitor providing health data about the answers of the
-                  steering policy. A steering policy answer with `rdata` matching a monitored endpoint
-                  will use the health data of that endpoint. A steering policy answer with `rdata` not
-                  matching any monitored endpoint will be assumed healthy.
-                - "**Note:** To use the Health Check monitoring feature in a steering policy, a monitor
-                  must be created using the Health Checks service first. For more information on how to
-                  create a monitor, please see L(Managing Health
-                  Checks,https://docs.cloud.oracle.com/iaas/Content/HealthChecks/Tasks/managinghealthchecks.htm)."
-            returned: on success
-            type: str
-            sample: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
-        template:
-            description:
-                - A set of predefined rules based on the desired purpose of the steering policy. Each
-                  template utilizes Traffic Management's rules in a different order to produce the desired
-                  results when answering DNS queries.
-                - "**Example:** The `FAILOVER` template determines answers by filtering the policy's answers
-                  using the `FILTER` rule first, then the following rules in succession: `HEALTH`, `PRIORITY`,
-                  and `LIMIT`. This gives the domain dynamic failover capability."
-                - "It is **strongly recommended** to use a template other than `CUSTOM` when creating
-                  a steering policy."
-                - All templates require the rule order to begin with an unconditional `FILTER` rule that keeps
-                  answers contingent upon `answer.isDisabled != true`, except for `CUSTOM`. A defined
-                  `HEALTH` rule must follow the `FILTER` rule if the policy references a `healthCheckMonitorId`.
-                  The last rule of a template must must be a `LIMIT` rule. For more information about templates
-                  and code examples, see L(Traffic Management API
-                  Guide,https://docs.cloud.oracle.com/iaas/Content/TrafficManagement/Concepts/trafficmanagementapi.htm).
-                - "**Template Types**"
-                - "* `FAILOVER` - Uses health check information on your endpoints to determine which DNS answers
-                  to serve. If an endpoint fails a health check, the answer for that endpoint will be removed
-                  from the list of available answers until the endpoint is detected as healthy."
-                - "* `LOAD_BALANCE` - Distributes web traffic to specified endpoints based on defined weights."
-                - "* `ROUTE_BY_GEO` - Answers DNS queries based on the query's geographic location. For a list of geographic
-                  locations to route by, see L(Traffic Management Geographic
-                  Locations,https://docs.cloud.oracle.com/iaas/Content/TrafficManagement/Reference/trafficmanagementgeo.htm)."
-                - "* `ROUTE_BY_ASN` - Answers DNS queries based on the query's originating ASN."
-                - "* `ROUTE_BY_IP` - Answers DNS queries based on the query's IP address."
-                - "* `CUSTOM` - Allows a customized configuration of rules."
-            returned: on success
-            type: str
-            sample: FAILOVER
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "**Example:** `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
         answers:
             description:
                 - The set of all answers that can potentially issue from the steering policy.
@@ -323,6 +244,15 @@ steering_policies:
             returned: on success
             type: complex
             contains:
+                default_count:
+                    description:
+                        - "Defines a default count if `cases` is not defined for the rule or a matching case does
+                          not define `count`. `defaultCount` is **not** applied if `cases` is defined and there
+                          are no matching cases. In this scenario, the next rule will be processed. If no rules
+                          remain to be processed, the answer will be chosen from the remaining list of answers."
+                    returned: on success
+                    type: int
+                    sample: 56
                 description:
                     description:
                         - A user-defined description of the rule's purpose or behavior.
@@ -438,15 +368,85 @@ steering_policies:
                             returned: on success
                             type: int
                             sample: 56
-                default_count:
-                    description:
-                        - "Defines a default count if `cases` is not defined for the rule or a matching case does
-                          not define `count`. `defaultCount` is **not** applied if `cases` is defined and there
-                          are no matching cases. In this scenario, the next rule will be processed. If no rules
-                          remain to be processed, the answer will be chosen from the remaining list of answers."
-                    returned: on success
-                    type: int
-                    sample: 56
+        compartment_id:
+            description:
+                - The OCID of the compartment containing the steering policy.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name for the steering policy. Does not have to be unique and can be changed.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        ttl:
+            description:
+                - The Time To Live (TTL) for responses from the steering policy, in seconds.
+                  If not specified during creation, a value of 30 seconds will be used.
+            returned: on success
+            type: int
+            sample: 56
+        health_check_monitor_id:
+            description:
+                - The OCID of the health check monitor providing health data about the answers of the
+                  steering policy. A steering policy answer with `rdata` matching a monitored endpoint
+                  will use the health data of that endpoint. A steering policy answer with `rdata` not
+                  matching any monitored endpoint will be assumed healthy.
+                - "**Note:** To use the Health Check monitoring feature in a steering policy, a monitor
+                  must be created using the Health Checks service first. For more information on how to
+                  create a monitor, please see L(Managing Health
+                  Checks,https://docs.cloud.oracle.com/iaas/Content/HealthChecks/Tasks/managinghealthchecks.htm)."
+            returned: on success
+            type: str
+            sample: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
+        template:
+            description:
+                - A set of predefined rules based on the desired purpose of the steering policy. Each
+                  template utilizes Traffic Management's rules in a different order to produce the desired
+                  results when answering DNS queries.
+                - "**Example:** The `FAILOVER` template determines answers by filtering the policy's answers
+                  using the `FILTER` rule first, then the following rules in succession: `HEALTH`, `PRIORITY`,
+                  and `LIMIT`. This gives the domain dynamic failover capability."
+                - "It is **strongly recommended** to use a template other than `CUSTOM` when creating
+                  a steering policy."
+                - All templates require the rule order to begin with an unconditional `FILTER` rule that keeps
+                  answers contingent upon `answer.isDisabled != true`, except for `CUSTOM`. A defined
+                  `HEALTH` rule must follow the `FILTER` rule if the policy references a `healthCheckMonitorId`.
+                  The last rule of a template must must be a `LIMIT` rule. For more information about templates
+                  and code examples, see L(Traffic Management API
+                  Guide,https://docs.cloud.oracle.com/iaas/Content/TrafficManagement/Concepts/trafficmanagementapi.htm).
+                - "**Template Types**"
+                - "* `FAILOVER` - Uses health check information on your endpoints to determine which DNS answers
+                  to serve. If an endpoint fails a health check, the answer for that endpoint will be removed
+                  from the list of available answers until the endpoint is detected as healthy."
+                - "* `LOAD_BALANCE` - Distributes web traffic to specified endpoints based on defined weights."
+                - "* `ROUTE_BY_GEO` - Answers DNS queries based on the query's geographic location. For a list of geographic
+                  locations to route by, see L(Traffic Management Geographic
+                  Locations,https://docs.cloud.oracle.com/iaas/Content/TrafficManagement/Reference/trafficmanagementgeo.htm)."
+                - "* `ROUTE_BY_ASN` - Answers DNS queries based on the query's originating ASN."
+                - "* `ROUTE_BY_IP` - Answers DNS queries based on the query's IP address."
+                - "* `CUSTOM` - Allows a customized configuration of rules."
+            returned: on success
+            type: str
+            sample: FAILOVER
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "**Example:** `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
         _self:
             description:
                 - The canonical absolute URL of the resource.
@@ -473,13 +473,6 @@ steering_policies:
             type: str
             sample: ACTIVE
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "ttl": 56,
-        "health_check_monitor_id": "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx",
-        "template": "FAILOVER",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "answers": [{
             "name": "name_example",
             "rtype": "rtype_example",
@@ -488,6 +481,7 @@ steering_policies:
             "is_disabled": true
         }],
         "rules": [{
+            "default_count": 56,
             "description": "description_example",
             "rule_type": "FILTER",
             "cases": [{
@@ -503,9 +497,15 @@ steering_policies:
                 "answer_condition": "answer_condition_example",
                 "should_keep": true,
                 "value": 56
-            }],
-            "default_count": 56
+            }]
         }],
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "ttl": 56,
+        "health_check_monitor_id": "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx",
+        "template": "FAILOVER",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "_self": "_self_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",

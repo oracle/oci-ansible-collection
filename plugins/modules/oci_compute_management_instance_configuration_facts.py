@@ -87,43 +87,6 @@ instance_configurations:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
-                  containing the instance configuration.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_details:
             description:
                 - ""
@@ -149,6 +112,12 @@ instance_configurations:
                             returned: on success
                             type: complex
                             contains:
+                                use_chap:
+                                    description:
+                                        - Whether to use CHAP authentication for the volume attachment. Defaults to false.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 display_name:
                                     description:
                                         - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -183,12 +152,6 @@ instance_configurations:
                                     returned: on success
                                     type: str
                                     sample: iscsi
-                                use_chap:
-                                    description:
-                                        - Whether to use CHAP authentication for the volume attachment. Defaults to false.
-                                    returned: on success
-                                    type: bool
-                                    sample: true
                                 is_pv_encryption_in_transit_enabled:
                                     description:
                                         - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
@@ -556,6 +519,12 @@ instance_configurations:
                             returned: on success
                             type: complex
                             contains:
+                                numa_nodes_per_socket:
+                                    description:
+                                        - The number of NUMA nodes per socket (NPS).
+                                    returned: on success
+                                    type: str
+                                    sample: NPS0
                                 type:
                                     description:
                                         - The type of platform being configured.
@@ -580,18 +549,18 @@ instance_configurations:
                                     returned: on success
                                     type: bool
                                     sample: true
-                                numa_nodes_per_socket:
-                                    description:
-                                        - The number of NUMA nodes per socket (NPS).
-                                    returned: on success
-                                    type: str
-                                    sample: NPS0
                         source_details:
                             description:
                                 - ""
                             returned: on success
                             type: complex
                             contains:
+                                boot_volume_id:
+                                    description:
+                                        - The OCID of the boot volume used to boot the instance.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                                 source_type:
                                     description:
                                         - The source type for the instance.
@@ -600,12 +569,6 @@ instance_configurations:
                                     returned: on success
                                     type: str
                                     sample: bootVolume
-                                boot_volume_id:
-                                    description:
-                                        - The OCID of the boot volume used to boot the instance.
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                                 boot_volume_size_in_gbs:
                                     description:
                                         - The size of the boot volume in GBs. The minimum value is 50 GB and the maximum
@@ -982,6 +945,26 @@ instance_configurations:
             returned: on success
             type: list
             sample: []
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
+                  containing the instance configuration.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the instance configuration was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -989,22 +972,34 @@ instance_configurations:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "display_name_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_details": {
             "instance_type": "compute",
             "block_volumes": [{
                 "attach_details": {
+                    "use_chap": true,
                     "display_name": "display_name_example",
                     "is_read_only": true,
                     "device": "device_example",
                     "is_shareable": true,
                     "type": "iscsi",
-                    "use_chap": true,
                     "is_pv_encryption_in_transit_enabled": true
                 },
                 "create_details": {
@@ -1053,15 +1048,15 @@ instance_configurations:
                     "baseline_ocpu_utilization": "BASELINE_1_8"
                 },
                 "platform_config": {
+                    "numa_nodes_per_socket": "NPS0",
                     "type": "AMD_MILAN_BM",
                     "is_secure_boot_enabled": true,
                     "is_trusted_platform_module_enabled": true,
-                    "is_measured_boot_enabled": true,
-                    "numa_nodes_per_socket": "NPS0"
+                    "is_measured_boot_enabled": true
                 },
                 "source_details": {
-                    "source_type": "bootVolume",
                     "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
+                    "source_type": "bootVolume",
                     "boot_volume_size_in_gbs": 56,
                     "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 },
@@ -1118,7 +1113,12 @@ instance_configurations:
             }]
         },
         "deferred_fields": [],
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'}
     }]
 """
 

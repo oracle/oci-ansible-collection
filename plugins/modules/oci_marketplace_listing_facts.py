@@ -159,18 +159,6 @@ listings:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The unique identifier for the listing in Marketplace.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - The name of the listing.
-            returned: on success
-            type: str
-            sample: name_example
         version:
             description:
                 - The version of the listing.
@@ -178,12 +166,6 @@ listings:
             returned: on success
             type: str
             sample: version_example
-        tagline:
-            description:
-                - The tagline of the listing.
-            returned: on success
-            type: str
-            sample: tagline_example
         keywords:
             description:
                 - Keywords associated with the listing.
@@ -191,12 +173,6 @@ listings:
             returned: on success
             type: str
             sample: keywords_example
-        short_description:
-            description:
-                - A short description of the listing.
-            returned: on success
-            type: str
-            sample: short_description_example
         usage_information:
             description:
                 - Usage information for the listing.
@@ -239,114 +215,6 @@ listings:
             returned: on success
             type: str
             sample: release_notes_example
-        categories:
-            description:
-                - Categories that the listing belongs to.
-            returned: on success
-            type: list
-            sample: []
-        publisher:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - Unique identifier for the publisher.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                name:
-                    description:
-                        - The name of the publisher.
-                    returned: on success
-                    type: str
-                    sample: name_example
-                description:
-                    description:
-                        - A description of the publisher.
-                    returned: on success
-                    type: str
-                    sample: description_example
-                year_founded:
-                    description:
-                        - The year the publisher's company or organization was founded.
-                    returned: on success
-                    type: int
-                    sample: 56
-                website_url:
-                    description:
-                        - The publisher's website.
-                    returned: on success
-                    type: str
-                    sample: website_url_example
-                contact_email:
-                    description:
-                        - The email address of the publisher.
-                    returned: on success
-                    type: str
-                    sample: contact_email_example
-                contact_phone:
-                    description:
-                        - The phone number of the publisher.
-                    returned: on success
-                    type: str
-                    sample: contact_phone_example
-                hq_address:
-                    description:
-                        - The address of the publisher's headquarters.
-                    returned: on success
-                    type: str
-                    sample: hq_address_example
-                logo:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - The name used to refer to the upload data.
-                            returned: on success
-                            type: str
-                            sample: name_example
-                        content_url:
-                            description:
-                                - The content URL of the upload data.
-                            returned: on success
-                            type: str
-                            sample: content_url_example
-                        mime_type:
-                            description:
-                                - The MIME type of the upload data.
-                            returned: on success
-                            type: str
-                            sample: mime_type_example
-                        file_extension:
-                            description:
-                                - The file extension of the upload data.
-                            returned: on success
-                            type: str
-                            sample: file_extension_example
-                links:
-                    description:
-                        - Reference links.
-                    returned: on success
-                    type: complex
-                    contains:
-                        rel:
-                            description:
-                                - Reference links to the previous page, next page, and other pages.
-                            returned: on success
-                            type: str
-                            sample: SELF
-                        href:
-                            description:
-                                - The anchor tag.
-                            returned: on success
-                            type: str
-                            sample: href_example
         languages:
             description:
                 - Languages supported by the listing.
@@ -497,36 +365,6 @@ listings:
                     returned: on success
                     type: str
                     sample: document_category_example
-        icon:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name used to refer to the upload data.
-                    returned: on success
-                    type: str
-                    sample: name_example
-                content_url:
-                    description:
-                        - The content URL of the upload data.
-                    returned: on success
-                    type: str
-                    sample: content_url_example
-                mime_type:
-                    description:
-                        - The MIME type of the upload data.
-                    returned: on success
-                    type: str
-                    sample: mime_type_example
-                file_extension:
-                    description:
-                        - The file extension of the upload data.
-                    returned: on success
-                    type: str
-                    sample: file_extension_example
         banner:
             description:
                 - ""
@@ -558,6 +396,106 @@ listings:
                     returned: on success
                     type: str
                     sample: file_extension_example
+        default_package_version:
+            description:
+                - The default package version.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: default_package_version_example
+        links:
+            description:
+                - Links to reference material.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                rel:
+                    description:
+                        - Reference links to the previous page, next page, and other pages.
+                    returned: on success
+                    type: str
+                    sample: SELF
+                href:
+                    description:
+                        - The anchor tag.
+                    returned: on success
+                    type: str
+                    sample: href_example
+        id:
+            description:
+                - The unique identifier for the listing in Marketplace.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The name of the listing.
+            returned: on success
+            type: str
+            sample: name_example
+        short_description:
+            description:
+                - A short description of the listing.
+            returned: on success
+            type: str
+            sample: short_description_example
+        is_rover_exportable:
+            description:
+                - True if this application is Rover exportable
+                - Returned for list operation
+            returned: on success
+            type: bool
+            sample: true
+        tagline:
+            description:
+                - The tagline of the listing.
+            returned: on success
+            type: str
+            sample: tagline_example
+        icon:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name used to refer to the upload data.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                content_url:
+                    description:
+                        - The content URL of the upload data.
+                    returned: on success
+                    type: str
+                    sample: content_url_example
+                mime_type:
+                    description:
+                        - The MIME type of the upload data.
+                    returned: on success
+                    type: str
+                    sample: mime_type_example
+                file_extension:
+                    description:
+                        - The file extension of the upload data.
+                    returned: on success
+                    type: str
+                    sample: file_extension_example
+        package_type:
+            description:
+                - The listing's package type.
+            returned: on success
+            type: str
+            sample: ORCHESTRATION
+        pricing_types:
+            description:
+                - Summary of the pricing types available across all packages in the listing.
+                - Returned for list operation
+            returned: on success
+            type: list
+            sample: []
         regions:
             description:
                 - The regions where you can deploy the listing. (Some listings have restrictions that limit their deployment to United States regions only.)
@@ -594,50 +532,120 @@ listings:
                             returned: on success
                             type: str
                             sample: code_example
-        package_type:
-            description:
-                - The listing's package type.
-            returned: on success
-            type: str
-            sample: ORCHESTRATION
-        default_package_version:
-            description:
-                - The default package version.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: default_package_version_example
-        links:
-            description:
-                - Links to reference material.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                rel:
-                    description:
-                        - Reference links to the previous page, next page, and other pages.
-                    returned: on success
-                    type: str
-                    sample: SELF
-                href:
-                    description:
-                        - The anchor tag.
-                    returned: on success
-                    type: str
-                    sample: href_example
         is_featured:
             description:
                 - Indicates whether the listing is included in Featured Listings.
             returned: on success
             type: bool
             sample: true
-        listing_type:
+        categories:
             description:
-                - The publisher category to which the listing belongs. The publisher category informs where the listing appears for use.
+                - Categories that the listing belongs to.
             returned: on success
-            type: str
-            sample: COMMUNITY
+            type: list
+            sample: []
+        publisher:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - Unique identifier for the publisher.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                name:
+                    description:
+                        - The name of the publisher.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                description:
+                    description:
+                        - A description of the publisher.
+                    returned: on success
+                    type: str
+                    sample: description_example
+                year_founded:
+                    description:
+                        - The year the publisher's company or organization was founded.
+                    returned: on success
+                    type: int
+                    sample: 56
+                website_url:
+                    description:
+                        - The publisher's website.
+                    returned: on success
+                    type: str
+                    sample: website_url_example
+                contact_email:
+                    description:
+                        - The email address of the publisher.
+                    returned: on success
+                    type: str
+                    sample: contact_email_example
+                contact_phone:
+                    description:
+                        - The phone number of the publisher.
+                    returned: on success
+                    type: str
+                    sample: contact_phone_example
+                hq_address:
+                    description:
+                        - The address of the publisher's headquarters.
+                    returned: on success
+                    type: str
+                    sample: hq_address_example
+                logo:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - The name used to refer to the upload data.
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        content_url:
+                            description:
+                                - The content URL of the upload data.
+                            returned: on success
+                            type: str
+                            sample: content_url_example
+                        mime_type:
+                            description:
+                                - The MIME type of the upload data.
+                            returned: on success
+                            type: str
+                            sample: mime_type_example
+                        file_extension:
+                            description:
+                                - The file extension of the upload data.
+                            returned: on success
+                            type: str
+                            sample: file_extension_example
+                links:
+                    description:
+                        - Reference links.
+                    returned: on success
+                    type: complex
+                    contains:
+                        rel:
+                            description:
+                                - Reference links to the previous page, next page, and other pages.
+                            returned: on success
+                            type: str
+                            sample: SELF
+                        href:
+                            description:
+                                - The anchor tag.
+                            returned: on success
+                            type: str
+                            sample: href_example
         supported_operating_systems:
             description:
                 - List of operating systems supported by the listing.
@@ -650,54 +658,21 @@ listings:
                     returned: on success
                     type: str
                     sample: name_example
-        is_rover_exportable:
+        listing_type:
             description:
-                - True if this application is Rover exportable
-                - Returned for list operation
+                - The publisher category to which the listing belongs. The publisher category informs where the listing appears for use.
             returned: on success
-            type: bool
-            sample: true
-        pricing_types:
-            description:
-                - Summary of the pricing types available across all packages in the listing.
-                - Returned for list operation
-            returned: on success
-            type: list
-            sample: []
+            type: str
+            sample: COMMUNITY
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
         "version": "version_example",
-        "tagline": "tagline_example",
         "keywords": "keywords_example",
-        "short_description": "short_description_example",
         "usage_information": "usage_information_example",
         "long_description": "long_description_example",
         "license_model_description": "license_model_description_example",
         "system_requirements": "system_requirements_example",
         "time_released": "2013-10-20T19:20:30+01:00",
         "release_notes": "release_notes_example",
-        "categories": [],
-        "publisher": {
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "name": "name_example",
-            "description": "description_example",
-            "year_founded": 56,
-            "website_url": "website_url_example",
-            "contact_email": "contact_email_example",
-            "contact_phone": "contact_phone_example",
-            "hq_address": "hq_address_example",
-            "logo": {
-                "name": "name_example",
-                "content_url": "content_url_example",
-                "mime_type": "mime_type_example",
-                "file_extension": "file_extension_example"
-            },
-            "links": [{
-                "rel": "SELF",
-                "href": "href_example"
-            }]
-        },
         "languages": [{
             "name": "name_example",
             "code": "code_example"
@@ -728,18 +703,30 @@ listings:
             "url": "url_example",
             "document_category": "document_category_example"
         }],
-        "icon": {
-            "name": "name_example",
-            "content_url": "content_url_example",
-            "mime_type": "mime_type_example",
-            "file_extension": "file_extension_example"
-        },
         "banner": {
             "name": "name_example",
             "content_url": "content_url_example",
             "mime_type": "mime_type_example",
             "file_extension": "file_extension_example"
         },
+        "default_package_version": "default_package_version_example",
+        "links": [{
+            "rel": "SELF",
+            "href": "href_example"
+        }],
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "short_description": "short_description_example",
+        "is_rover_exportable": true,
+        "tagline": "tagline_example",
+        "icon": {
+            "name": "name_example",
+            "content_url": "content_url_example",
+            "mime_type": "mime_type_example",
+            "file_extension": "file_extension_example"
+        },
+        "package_type": "ORCHESTRATION",
+        "pricing_types": [],
         "regions": [{
             "name": "name_example",
             "code": "code_example",
@@ -748,19 +735,32 @@ listings:
                 "code": "code_example"
             }]
         }],
-        "package_type": "ORCHESTRATION",
-        "default_package_version": "default_package_version_example",
-        "links": [{
-            "rel": "SELF",
-            "href": "href_example"
-        }],
         "is_featured": true,
-        "listing_type": "COMMUNITY",
+        "categories": [],
+        "publisher": {
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "name": "name_example",
+            "description": "description_example",
+            "year_founded": 56,
+            "website_url": "website_url_example",
+            "contact_email": "contact_email_example",
+            "contact_phone": "contact_phone_example",
+            "hq_address": "hq_address_example",
+            "logo": {
+                "name": "name_example",
+                "content_url": "content_url_example",
+                "mime_type": "mime_type_example",
+                "file_extension": "file_extension_example"
+            },
+            "links": [{
+                "rel": "SELF",
+                "href": "href_example"
+            }]
+        },
         "supported_operating_systems": [{
             "name": "name_example"
         }],
-        "is_rover_exportable": true,
-        "pricing_types": []
+        "listing_type": "COMMUNITY"
     }]
 """
 

@@ -135,6 +135,83 @@ host_insights:
     returned: on success
     type: complex
     contains:
+        enterprise_manager_identifier:
+            description:
+                - Enterprise Manager Unique Identifier
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: enterprise_manager_identifier_example
+        enterprise_manager_entity_name:
+            description:
+                - Enterprise Manager Entity Name
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_name_example
+        enterprise_manager_entity_type:
+            description:
+                - Enterprise Manager Entity Type
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_type_example
+        enterprise_manager_entity_identifier:
+            description:
+                - Enterprise Manager Entity Unique Identifier
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_identifier_example
+        enterprise_manager_entity_display_name:
+            description:
+                - Enterprise Manager Entity Display Name
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_display_name_example
+        enterprise_manager_bridge_id:
+            description:
+                - OPSI Enterprise Manager Bridge OCID
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_insight_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        management_agent_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+        platform_name:
+            description:
+                - Platform name.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: platform_name_example
+        platform_type:
+            description:
+                - Platform type.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: LINUX
+        platform_version:
+            description:
+                - Platform version.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: platform_version_example
         entity_source:
             description:
                 - Source of the host entity.
@@ -229,84 +306,18 @@ host_insights:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        enterprise_manager_identifier:
-            description:
-                - Enterprise Manager Unique Identifier
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: enterprise_manager_identifier_example
-        enterprise_manager_entity_name:
-            description:
-                - Enterprise Manager Entity Name
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_name_example
-        enterprise_manager_entity_type:
-            description:
-                - Enterprise Manager Entity Type
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_type_example
-        enterprise_manager_entity_identifier:
-            description:
-                - Enterprise Manager Entity Unique Identifier
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_identifier_example
-        enterprise_manager_entity_display_name:
-            description:
-                - Enterprise Manager Entity Display Name
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_display_name_example
-        enterprise_manager_bridge_id:
-            description:
-                - OPSI Enterprise Manager Bridge OCID
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
-        platform_type:
-            description:
-                - Platform type.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: LINUX
-        platform_name:
-            description:
-                - Platform name.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: platform_name_example
-        platform_version:
-            description:
-                - Platform version.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: platform_version_example
-        exadata_insight_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
-        management_agent_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
+        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
+        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
+        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
+        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
+        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
+        "platform_name": "platform_name_example",
+        "platform_type": "LINUX",
+        "platform_version": "platform_version_example",
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -321,18 +332,7 @@ host_insights:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
-        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
-        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
-        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
-        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
-        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
-        "platform_type": "LINUX",
-        "platform_name": "platform_name_example",
-        "platform_version": "platform_version_example",
-        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
-        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+        "lifecycle_details": "lifecycle_details_example"
     }]
 """
 

@@ -98,6 +98,14 @@ configuration_source_providers:
     returned: on success
     type: complex
     contains:
+        api_endpoint:
+            description:
+                - "The GitHub service endpoint.
+                  Example: `https://github.com/`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: api_endpoint_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the configuration source provider.
@@ -163,15 +171,8 @@ configuration_source_providers:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        api_endpoint:
-            description:
-                - "The GitHub service endpoint.
-                  Example: `https://github.com/`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: api_endpoint_example
     sample: [{
+        "api_endpoint": "api_endpoint_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -180,8 +181,7 @@ configuration_source_providers:
         "lifecycle_state": "ACTIVE",
         "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "api_endpoint": "api_endpoint_example"
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

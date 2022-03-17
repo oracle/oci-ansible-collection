@@ -379,6 +379,24 @@ external_database_connector:
             returned: on success
             type: complex
             contains:
+                username:
+                    description:
+                        - The username that will be used to connect to the database.
+                    returned: on success
+                    type: str
+                    sample: username_example
+                password:
+                    description:
+                        - The password that will be used to connect to the database.
+                    returned: on success
+                    type: str
+                    sample: example-password
+                role:
+                    description:
+                        - The role of the user that will be connecting to the database.
+                    returned: on success
+                    type: str
+                    sample: SYSDBA
                 credential_type:
                     description:
                         - The type of credential used to connect to the database.
@@ -398,24 +416,6 @@ external_database_connector:
                     returned: on success
                     type: str
                     sample: credential_name_example
-                username:
-                    description:
-                        - The username that will be used to connect to the database.
-                    returned: on success
-                    type: str
-                    sample: username_example
-                password:
-                    description:
-                        - The password that will be used to connect to the database.
-                    returned: on success
-                    type: str
-                    sample: example-password
-                role:
-                    description:
-                        - The role of the user that will be connecting to the database.
-                    returned: on success
-                    type: str
-                    sample: SYSDBA
         connector_agent_id:
             description:
                 - The ID of the agent used for the
@@ -444,11 +444,11 @@ external_database_connector:
             "protocol": "TCP"
         },
         "connection_credentials": {
-            "credential_type": "NAME_REFERENCE",
-            "credential_name": "credential_name_example",
             "username": "username_example",
             "password": "example-password",
-            "role": "SYSDBA"
+            "role": "SYSDBA",
+            "credential_type": "NAME_REFERENCE",
+            "credential_name": "credential_name_example"
         },
         "connector_agent_id": "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"
     }

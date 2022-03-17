@@ -98,6 +98,20 @@ private_application_packages:
     returned: on success
     type: complex
     contains:
+        content_url:
+            description:
+                - The content URL of the terraform configuration.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: content_url_example
+        mime_type:
+            description:
+                - The MIME type of the terraform configuration.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: mime_type_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private application package.
@@ -136,29 +150,15 @@ private_application_packages:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        content_url:
-            description:
-                - The content URL of the terraform configuration.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: content_url_example
-        mime_type:
-            description:
-                - The MIME type of the terraform configuration.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: mime_type_example
     sample: [{
+        "content_url": "content_url_example",
+        "mime_type": "mime_type_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "private_application_id": "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "version": "version_example",
         "package_type": "STACK",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "content_url": "content_url_example",
-        "mime_type": "mime_type_example"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

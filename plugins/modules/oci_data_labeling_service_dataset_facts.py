@@ -105,6 +105,77 @@ datasets:
     returned: on success
     type: complex
     contains:
+        description:
+            description:
+                - A user provided description of the dataset
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: description_example
+        dataset_source_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - Source type.  OBJECT_STORAGE allows the customer to describe where the dataset is in object storage.
+                    returned: on success
+                    type: str
+                    sample: OBJECT_STORAGE
+                namespace:
+                    description:
+                        - Namespace of the bucket that contains the dataset data source
+                    returned: on success
+                    type: str
+                    sample: namespace_example
+                bucket:
+                    description:
+                        - The object storage bucket that contains the dataset data source
+                    returned: on success
+                    type: str
+                    sample: bucket_example
+                prefix:
+                    description:
+                        - A common path prefix shared by the objects that make up the dataset. Records will not be generated for objects whose name match
+                          exactly with prefix.
+                    returned: on success
+                    type: str
+                    sample: prefix_example
+        label_set:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - An ordered collection of Labels that are unique by name.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - An unique name for a label within its dataset.
+                            returned: on success
+                            type: str
+                            sample: name_example
+        initial_record_generation_configuration:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                limit:
+                    description:
+                        - the maximum number of records to generate.
+                    returned: on success
+                    type: float
+                    sample: 10
         id:
             description:
                 - The OCID of the Dataset.
@@ -123,13 +194,6 @@ datasets:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - A user provided description of the dataset
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: description_example
         time_created:
             description:
                 - The date and time the resource was created, in the timestamp format defined by RFC3339.
@@ -168,38 +232,6 @@ datasets:
             returned: on success
             type: str
             sample: annotation_format_example
-        dataset_source_details:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                source_type:
-                    description:
-                        - Source type.  OBJECT_STORAGE allows the customer to describe where the dataset is in object storage.
-                    returned: on success
-                    type: str
-                    sample: OBJECT_STORAGE
-                namespace:
-                    description:
-                        - Namespace of the bucket that contains the dataset data source
-                    returned: on success
-                    type: str
-                    sample: namespace_example
-                bucket:
-                    description:
-                        - The object storage bucket that contains the dataset data source
-                    returned: on success
-                    type: str
-                    sample: bucket_example
-                prefix:
-                    description:
-                        - A common path prefix shared by the objects that make up the dataset. Records will not be generated for objects whose name match
-                          exactly with prefix.
-                    returned: on success
-                    type: str
-                    sample: prefix_example
         dataset_format_details:
             description:
                 - ""
@@ -213,38 +245,6 @@ datasets:
                     returned: on success
                     type: str
                     sample: DOCUMENT
-        label_set:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                items:
-                    description:
-                        - An ordered collection of Labels that are unique by name.
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - An unique name for a label within its dataset.
-                            returned: on success
-                            type: str
-                            sample: name_example
-        initial_record_generation_configuration:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                limit:
-                    description:
-                        - the maximum number of records to generate.
-                    returned: on success
-                    type: float
-                    sample: 10
         freeform_tags:
             description:
                 - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
@@ -267,23 +267,12 @@ datasets:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "annotation_format": "annotation_format_example",
         "dataset_source_details": {
             "source_type": "OBJECT_STORAGE",
             "namespace": "namespace_example",
             "bucket": "bucket_example",
             "prefix": "prefix_example"
-        },
-        "dataset_format_details": {
-            "format_type": "DOCUMENT"
         },
         "label_set": {
             "items": [{
@@ -292,6 +281,17 @@ datasets:
         },
         "initial_record_generation_configuration": {
             "limit": 10
+        },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
+        "annotation_format": "annotation_format_example",
+        "dataset_format_details": {
+            "format_type": "DOCUMENT"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

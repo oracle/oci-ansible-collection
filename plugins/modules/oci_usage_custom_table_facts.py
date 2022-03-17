@@ -85,12 +85,6 @@ custom_tables:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The custom table OCID.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         saved_report_id:
             description:
                 - The custom table associated saved report OCID.
@@ -105,6 +99,12 @@ custom_tables:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The custom table OCID.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         saved_custom_table:
             description:
                 - ""
@@ -176,9 +176,9 @@ custom_tables:
                     type: float
                     sample: 10
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "saved_report_id": "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "saved_custom_table": {
             "display_name": "display_name_example",
             "row_group_by": [],

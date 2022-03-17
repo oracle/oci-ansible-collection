@@ -138,6 +138,314 @@ detector_recipes:
     returned: on success
     type: complex
     contains:
+        effective_detector_rules:
+            description:
+                - List of effective detector rules for the detector type for recipe after applying defaults
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                detector_rule_id:
+                    description:
+                        - The unique identifier of the detector rule.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
+                display_name:
+                    description:
+                        - Display name for DetectorRecipeDetectorRule.
+                    returned: on success
+                    type: str
+                    sample: display_name_example
+                description:
+                    description:
+                        - Description for DetectorRecipeDetectorRule.
+                    returned: on success
+                    type: str
+                    sample: description_example
+                recommendation:
+                    description:
+                        - Recommendation for DetectorRecipeDetectorRule
+                    returned: on success
+                    type: str
+                    sample: recommendation_example
+                detector:
+                    description:
+                        - detector for the rule
+                    returned: on success
+                    type: str
+                    sample: IAAS_ACTIVITY_DETECTOR
+                service_type:
+                    description:
+                        - service type of the configuration to which the rule is applied
+                    returned: on success
+                    type: str
+                    sample: service_type_example
+                resource_type:
+                    description:
+                        - resource type of the configuration to which the rule is applied
+                    returned: on success
+                    type: str
+                    sample: resource_type_example
+                details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_enabled:
+                            description:
+                                - Enables the control
+                            returned: on success
+                            type: bool
+                            sample: true
+                        risk_level:
+                            description:
+                                - The Risk Level
+                            returned: on success
+                            type: str
+                            sample: CRITICAL
+                        configurations:
+                            description:
+                                - Configuration details
+                            returned: on success
+                            type: complex
+                            contains:
+                                config_key:
+                                    description:
+                                        - Unique name of the configuration
+                                    returned: on success
+                                    type: str
+                                    sample: config_key_example
+                                name:
+                                    description:
+                                        - configuration name
+                                    returned: on success
+                                    type: str
+                                    sample: name_example
+                                value:
+                                    description:
+                                        - configuration value
+                                    returned: on success
+                                    type: str
+                                    sample: value_example
+                                data_type:
+                                    description:
+                                        - configuration data type
+                                    returned: on success
+                                    type: str
+                                    sample: data_type_example
+                                values:
+                                    description:
+                                        - List of configuration values
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        list_type:
+                                            description:
+                                                - configuration list item type, either CUSTOM or MANAGED
+                                            returned: on success
+                                            type: str
+                                            sample: MANAGED
+                                        managed_list_type:
+                                            description:
+                                                - type of the managed list
+                                            returned: on success
+                                            type: str
+                                            sample: managed_list_type_example
+                                        value:
+                                            description:
+                                                - configuration value
+                                            returned: on success
+                                            type: str
+                                            sample: value_example
+                        condition:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                left_operand:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        kind:
+                                            description:
+                                                - Type of condition object
+                                            returned: on success
+                                            type: str
+                                            sample: COMPOSITE
+                                composite_operator:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: AND
+                                right_operand:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        kind:
+                                            description:
+                                                - Type of condition object
+                                            returned: on success
+                                            type: str
+                                            sample: COMPOSITE
+                                kind:
+                                    description:
+                                        - Type of condition object
+                                    returned: on success
+                                    type: str
+                                    sample: COMPOSITE
+                                parameter:
+                                    description:
+                                        - parameter Key
+                                    returned: on success
+                                    type: str
+                                    sample: parameter_example
+                                operator:
+                                    description:
+                                        - type of operator
+                                    returned: on success
+                                    type: str
+                                    sample: IN
+                                value:
+                                    description:
+                                        - type of operator
+                                    returned: on success
+                                    type: str
+                                    sample: value_example
+                                value_type:
+                                    description:
+                                        - type of value
+                                    returned: on success
+                                    type: str
+                                    sample: MANAGED
+                        labels:
+                            description:
+                                - user defined labels for a detector rule
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_configuration_allowed:
+                            description:
+                                - configuration allowed or not
+                            returned: on success
+                            type: bool
+                            sample: true
+                        problem_threshold:
+                            description:
+                                - Cutover point for an elevated resource Risk Score to create a Problem
+                            returned: on success
+                            type: int
+                            sample: 56
+                        target_types:
+                            description:
+                                - List of target types for which the detector rule is applicable
+                            returned: on success
+                            type: list
+                            sample: []
+                        sighting_types:
+                            description:
+                                - List of sighting types
+                            returned: on success
+                            type: complex
+                            contains:
+                                id:
+                                    description:
+                                        - The unique identifier of sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                                display_name:
+                                    description:
+                                        - Name of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: display_name_example
+                                description:
+                                    description:
+                                        - Description of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: description_example
+                                mitre_link:
+                                    description:
+                                        - Link of the sighting type
+                                    returned: on success
+                                    type: str
+                                    sample: mitre_link_example
+                                tactic:
+                                    description:
+                                        - Mitre Att&ck tactic
+                                    returned: on success
+                                    type: str
+                                    sample: tactic_example
+                                techniques:
+                                    description:
+                                        - List of Mitre Att&ck Techniques
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                managed_list_types:
+                    description:
+                        - List of cloudguard managed list types related to this rule
+                    returned: on success
+                    type: list
+                    sample: []
+                candidate_responder_rules:
+                    description:
+                        - List of CandidateResponderRule related to this rule
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - The unique identifier of the Responder rule
+                            returned: on success
+                            type: str
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                        display_name:
+                            description:
+                                - The display name of the Responder rule
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        is_preferred:
+                            description:
+                                - Preferred state
+                            returned: on success
+                            type: bool
+                            sample: true
+                time_created:
+                    description:
+                        - The date and time the detector recipe rule was created. Format defined by RFC3339.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_updated:
+                    description:
+                        - The date and time the detector recipe rule was updated. Format defined by RFC3339.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                lifecycle_state:
+                    description:
+                        - The current state of the DetectorRule.
+                    returned: on success
+                    type: str
+                    sample: CREATING
+                lifecycle_details:
+                    description:
+                        - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in
+                          Failed state.
+                    returned: on success
+                    type: str
+                    sample: lifecycle_details_example
         id:
             description:
                 - Ocid for detector recipe
@@ -306,12 +614,6 @@ detector_recipes:
                             returned: on success
                             type: complex
                             contains:
-                                kind:
-                                    description:
-                                        - Type of condition object
-                                    returned: on success
-                                    type: str
-                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -342,314 +644,12 @@ detector_recipes:
                                             returned: on success
                                             type: str
                                             sample: COMPOSITE
-                                parameter:
-                                    description:
-                                        - parameter Key
-                                    returned: on success
-                                    type: str
-                                    sample: parameter_example
-                                operator:
-                                    description:
-                                        - type of operator
-                                    returned: on success
-                                    type: str
-                                    sample: IN
-                                value:
-                                    description:
-                                        - type of operator
-                                    returned: on success
-                                    type: str
-                                    sample: value_example
-                                value_type:
-                                    description:
-                                        - type of value
-                                    returned: on success
-                                    type: str
-                                    sample: MANAGED
-                        labels:
-                            description:
-                                - user defined labels for a detector rule
-                            returned: on success
-                            type: list
-                            sample: []
-                        is_configuration_allowed:
-                            description:
-                                - configuration allowed or not
-                            returned: on success
-                            type: bool
-                            sample: true
-                        problem_threshold:
-                            description:
-                                - Cutover point for an elevated resource Risk Score to create a Problem
-                            returned: on success
-                            type: int
-                            sample: 56
-                        target_types:
-                            description:
-                                - List of target types for which the detector rule is applicable
-                            returned: on success
-                            type: list
-                            sample: []
-                        sighting_types:
-                            description:
-                                - List of sighting types
-                            returned: on success
-                            type: complex
-                            contains:
-                                id:
-                                    description:
-                                        - The unique identifier of sighting type
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                                display_name:
-                                    description:
-                                        - Name of the sighting type
-                                    returned: on success
-                                    type: str
-                                    sample: display_name_example
-                                description:
-                                    description:
-                                        - Description of the sighting type
-                                    returned: on success
-                                    type: str
-                                    sample: description_example
-                                mitre_link:
-                                    description:
-                                        - Link of the sighting type
-                                    returned: on success
-                                    type: str
-                                    sample: mitre_link_example
-                                tactic:
-                                    description:
-                                        - Mitre Att&ck tactic
-                                    returned: on success
-                                    type: str
-                                    sample: tactic_example
-                                techniques:
-                                    description:
-                                        - List of Mitre Att&ck Techniques
-                                    returned: on success
-                                    type: list
-                                    sample: []
-                managed_list_types:
-                    description:
-                        - List of cloudguard managed list types related to this rule
-                    returned: on success
-                    type: list
-                    sample: []
-                candidate_responder_rules:
-                    description:
-                        - List of CandidateResponderRule related to this rule
-                    returned: on success
-                    type: complex
-                    contains:
-                        id:
-                            description:
-                                - The unique identifier of the Responder rule
-                            returned: on success
-                            type: str
-                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                        display_name:
-                            description:
-                                - The display name of the Responder rule
-                            returned: on success
-                            type: str
-                            sample: display_name_example
-                        is_preferred:
-                            description:
-                                - Preferred state
-                            returned: on success
-                            type: bool
-                            sample: true
-                time_created:
-                    description:
-                        - The date and time the detector recipe rule was created. Format defined by RFC3339.
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                time_updated:
-                    description:
-                        - The date and time the detector recipe rule was updated. Format defined by RFC3339.
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                lifecycle_state:
-                    description:
-                        - The current state of the DetectorRule.
-                    returned: on success
-                    type: str
-                    sample: CREATING
-                lifecycle_details:
-                    description:
-                        - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in
-                          Failed state.
-                    returned: on success
-                    type: str
-                    sample: lifecycle_details_example
-        effective_detector_rules:
-            description:
-                - List of effective detector rules for the detector type for recipe after applying defaults
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                detector_rule_id:
-                    description:
-                        - The unique identifier of the detector rule.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
-                display_name:
-                    description:
-                        - Display name for DetectorRecipeDetectorRule.
-                    returned: on success
-                    type: str
-                    sample: display_name_example
-                description:
-                    description:
-                        - Description for DetectorRecipeDetectorRule.
-                    returned: on success
-                    type: str
-                    sample: description_example
-                recommendation:
-                    description:
-                        - Recommendation for DetectorRecipeDetectorRule
-                    returned: on success
-                    type: str
-                    sample: recommendation_example
-                detector:
-                    description:
-                        - detector for the rule
-                    returned: on success
-                    type: str
-                    sample: IAAS_ACTIVITY_DETECTOR
-                service_type:
-                    description:
-                        - service type of the configuration to which the rule is applied
-                    returned: on success
-                    type: str
-                    sample: service_type_example
-                resource_type:
-                    description:
-                        - resource type of the configuration to which the rule is applied
-                    returned: on success
-                    type: str
-                    sample: resource_type_example
-                details:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        is_enabled:
-                            description:
-                                - Enables the control
-                            returned: on success
-                            type: bool
-                            sample: true
-                        risk_level:
-                            description:
-                                - The Risk Level
-                            returned: on success
-                            type: str
-                            sample: CRITICAL
-                        configurations:
-                            description:
-                                - Configuration details
-                            returned: on success
-                            type: complex
-                            contains:
-                                config_key:
-                                    description:
-                                        - Unique name of the configuration
-                                    returned: on success
-                                    type: str
-                                    sample: config_key_example
-                                name:
-                                    description:
-                                        - configuration name
-                                    returned: on success
-                                    type: str
-                                    sample: name_example
-                                value:
-                                    description:
-                                        - configuration value
-                                    returned: on success
-                                    type: str
-                                    sample: value_example
-                                data_type:
-                                    description:
-                                        - configuration data type
-                                    returned: on success
-                                    type: str
-                                    sample: data_type_example
-                                values:
-                                    description:
-                                        - List of configuration values
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        list_type:
-                                            description:
-                                                - configuration list item type, either CUSTOM or MANAGED
-                                            returned: on success
-                                            type: str
-                                            sample: MANAGED
-                                        managed_list_type:
-                                            description:
-                                                - type of the managed list
-                                            returned: on success
-                                            type: str
-                                            sample: managed_list_type_example
-                                        value:
-                                            description:
-                                                - configuration value
-                                            returned: on success
-                                            type: str
-                                            sample: value_example
-                        condition:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
                                 kind:
                                     description:
                                         - Type of condition object
                                     returned: on success
                                     type: str
                                     sample: COMPOSITE
-                                left_operand:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        kind:
-                                            description:
-                                                - Type of condition object
-                                            returned: on success
-                                            type: str
-                                            sample: COMPOSITE
-                                composite_operator:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: AND
-                                right_operand:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        kind:
-                                            description:
-                                                - Type of condition object
-                                            returned: on success
-                                            type: str
-                                            sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
@@ -844,6 +844,66 @@ detector_recipes:
             type: dict
             sample: {}
     sample: [{
+        "effective_detector_rules": [{
+            "detector_rule_id": "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx",
+            "display_name": "display_name_example",
+            "description": "description_example",
+            "recommendation": "recommendation_example",
+            "detector": "IAAS_ACTIVITY_DETECTOR",
+            "service_type": "service_type_example",
+            "resource_type": "resource_type_example",
+            "details": {
+                "is_enabled": true,
+                "risk_level": "CRITICAL",
+                "configurations": [{
+                    "config_key": "config_key_example",
+                    "name": "name_example",
+                    "value": "value_example",
+                    "data_type": "data_type_example",
+                    "values": [{
+                        "list_type": "MANAGED",
+                        "managed_list_type": "managed_list_type_example",
+                        "value": "value_example"
+                    }]
+                }],
+                "condition": {
+                    "left_operand": {
+                        "kind": "COMPOSITE"
+                    },
+                    "composite_operator": "AND",
+                    "right_operand": {
+                        "kind": "COMPOSITE"
+                    },
+                    "kind": "COMPOSITE",
+                    "parameter": "parameter_example",
+                    "operator": "IN",
+                    "value": "value_example",
+                    "value_type": "MANAGED"
+                },
+                "labels": [],
+                "is_configuration_allowed": true,
+                "problem_threshold": 56,
+                "target_types": [],
+                "sighting_types": [{
+                    "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                    "display_name": "display_name_example",
+                    "description": "description_example",
+                    "mitre_link": "mitre_link_example",
+                    "tactic": "tactic_example",
+                    "techniques": []
+                }]
+            },
+            "managed_list_types": [],
+            "candidate_responder_rules": [{
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "display_name": "display_name_example",
+                "is_preferred": true
+            }],
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00",
+            "lifecycle_state": "CREATING",
+            "lifecycle_details": "lifecycle_details_example"
+        }],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -874,7 +934,6 @@ detector_recipes:
                     }]
                 }],
                 "condition": {
-                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
@@ -882,66 +941,7 @@ detector_recipes:
                     "right_operand": {
                         "kind": "COMPOSITE"
                     },
-                    "parameter": "parameter_example",
-                    "operator": "IN",
-                    "value": "value_example",
-                    "value_type": "MANAGED"
-                },
-                "labels": [],
-                "is_configuration_allowed": true,
-                "problem_threshold": 56,
-                "target_types": [],
-                "sighting_types": [{
-                    "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-                    "display_name": "display_name_example",
-                    "description": "description_example",
-                    "mitre_link": "mitre_link_example",
-                    "tactic": "tactic_example",
-                    "techniques": []
-                }]
-            },
-            "managed_list_types": [],
-            "candidate_responder_rules": [{
-                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-                "display_name": "display_name_example",
-                "is_preferred": true
-            }],
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00",
-            "lifecycle_state": "CREATING",
-            "lifecycle_details": "lifecycle_details_example"
-        }],
-        "effective_detector_rules": [{
-            "detector_rule_id": "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "description": "description_example",
-            "recommendation": "recommendation_example",
-            "detector": "IAAS_ACTIVITY_DETECTOR",
-            "service_type": "service_type_example",
-            "resource_type": "resource_type_example",
-            "details": {
-                "is_enabled": true,
-                "risk_level": "CRITICAL",
-                "configurations": [{
-                    "config_key": "config_key_example",
-                    "name": "name_example",
-                    "value": "value_example",
-                    "data_type": "data_type_example",
-                    "values": [{
-                        "list_type": "MANAGED",
-                        "managed_list_type": "managed_list_type_example",
-                        "value": "value_example"
-                    }]
-                }],
-                "condition": {
                     "kind": "COMPOSITE",
-                    "left_operand": {
-                        "kind": "COMPOSITE"
-                    },
-                    "composite_operator": "AND",
-                    "right_operand": {
-                        "kind": "COMPOSITE"
-                    },
                     "parameter": "parameter_example",
                     "operator": "IN",
                     "value": "value_example",

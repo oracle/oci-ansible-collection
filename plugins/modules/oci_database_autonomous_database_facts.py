@@ -956,6 +956,27 @@ autonomous_databases:
                     returned: on success
                     type: str
                     sample: scheduled_stop_time_example
+        is_auto_scaling_for_storage_enabled:
+            description:
+                - Indicates if auto scaling is enabled for the Autonomous Database storage. The default value is `FALSE`.
+            returned: on success
+            type: bool
+            sample: true
+        allocated_storage_size_in_tbs:
+            description:
+                - The amount of storage currently allocated for the database tables and billed for, rounded up. When auto-scaling is not enabled, this value is
+                  equal to the `dataStorageSizeInTBs` value. You can compare this value to the `actualUsedDataStorageSizeInTBs` value to determine if a manual
+                  shrink operation is appropriate for your allocated storage.
+                - "**Note:** Auto-scaling does not automatically decrease allocated storage when data is deleted from the database."
+            returned: on success
+            type: float
+            sample: 1.2
+        actual_used_data_storage_size_in_tbs:
+            description:
+                - The current amount of storage in use for user and system data, in terabytes (TB).
+            returned: on success
+            type: float
+            sample: 1.2
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1080,7 +1101,10 @@ autonomous_databases:
             },
             "scheduled_start_time": "scheduled_start_time_example",
             "scheduled_stop_time": "scheduled_stop_time_example"
-        }]
+        }],
+        "is_auto_scaling_for_storage_enabled": true,
+        "allocated_storage_size_in_tbs": 1.2,
+        "actual_used_data_storage_size_in_tbs": 1.2
     }]
 """
 

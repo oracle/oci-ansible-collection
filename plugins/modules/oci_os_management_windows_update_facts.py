@@ -84,20 +84,6 @@ windows_updates:
     returned: on success
     type: complex
     contains:
-        display_name:
-            description:
-                - Windows Update name.
-            returned: on success
-            type: str
-            sample: display_name_example
-        name:
-            description:
-                - "Unique identifier for the Windows update. NOTE - This is not an OCID,
-                  but is a unique identifier assigned by Microsoft.
-                  Example: `6981d463-cd91-4a26-b7c4-ea4ded9183ed`"
-            returned: on success
-            type: str
-            sample: name_example
         description:
             description:
                 - Information about the Windows Update.
@@ -105,12 +91,6 @@ windows_updates:
             returned: on success
             type: str
             sample: description_example
-        update_type:
-            description:
-                - The purpose of this update.
-            returned: on success
-            type: str
-            sample: SECURITY
         size_in_bytes:
             description:
                 - size of the package in bytes
@@ -132,12 +112,6 @@ windows_updates:
             returned: on success
             type: list
             sample: []
-        is_reboot_required_for_installation:
-            description:
-                - Indicates whether a reboot may be required to complete installation of this update.
-            returned: on success
-            type: bool
-            sample: true
         kb_article_ids:
             description:
                 - List of the Microsoft Knowledge Base Article Ids related to this Windows Update.
@@ -145,6 +119,26 @@ windows_updates:
             returned: on success
             type: list
             sample: []
+        display_name:
+            description:
+                - Windows Update name.
+            returned: on success
+            type: str
+            sample: display_name_example
+        name:
+            description:
+                - "Unique identifier for the Windows update. NOTE - This is not an OCID,
+                  but is a unique identifier assigned by Microsoft.
+                  Example: `6981d463-cd91-4a26-b7c4-ea4ded9183ed`"
+            returned: on success
+            type: str
+            sample: name_example
+        update_type:
+            description:
+                - The purpose of this update.
+            returned: on success
+            type: str
+            sample: SECURITY
         installable:
             description:
                 - Indicates whether the update can be installed using OSMS.
@@ -152,17 +146,23 @@ windows_updates:
             returned: on success
             type: str
             sample: INSTALLABLE
+        is_reboot_required_for_installation:
+            description:
+                - Indicates whether a reboot may be required to complete installation of this update.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
-        "display_name": "display_name_example",
-        "name": "name_example",
         "description": "description_example",
-        "update_type": "SECURITY",
         "size_in_bytes": 56,
         "is_eligible_for_installation": "INSTALLABLE",
         "installation_requirements": [],
-        "is_reboot_required_for_installation": true,
         "kb_article_ids": [],
-        "installable": "INSTALLABLE"
+        "display_name": "display_name_example",
+        "name": "name_example",
+        "update_type": "SECURITY",
+        "installable": "INSTALLABLE",
+        "is_reboot_required_for_installation": true
     }]
 """
 

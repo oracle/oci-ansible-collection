@@ -88,6 +88,38 @@ private_applications:
     returned: on success
     type: complex
     contains:
+        long_description:
+            description:
+                - A long description of the private application.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: long_description_example
+        time_updated:
+            description:
+                - The date and time the private application was last modified, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                  timestamp format.
+                - "Example: `2021-12-10T05:10:29.721Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
         lifecycle_state:
             description:
                 - The lifecycle state of the private application.
@@ -118,13 +150,6 @@ private_applications:
             returned: on success
             type: str
             sample: short_description_example
-        long_description:
-            description:
-                - A long description of the private application.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: long_description_example
         logo:
             description:
                 - ""
@@ -163,48 +188,23 @@ private_applications:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The date and time the private application was last modified, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                - "Example: `2021-12-10T05:10:29.721Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
     sample: [{
+        "long_description": "long_description_example",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
         "lifecycle_state": "CREATING",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "short_description": "short_description_example",
-        "long_description": "long_description_example",
         "logo": {
             "display_name": "display_name_example",
             "content_url": "content_url_example",
             "mime_type": "mime_type_example"
         },
         "package_type": "STACK",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "freeform_tags": {'Department': 'Finance'}
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

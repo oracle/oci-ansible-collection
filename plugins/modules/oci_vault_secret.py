@@ -325,12 +325,6 @@ secret:
             returned: on success
             type: complex
             contains:
-                rule_type:
-                    description:
-                        - The type of rule, which either controls when the secret contents expire or whether they can be reused.
-                    returned: on success
-                    type: str
-                    sample: SECRET_EXPIRY_RULE
                 secret_version_expiry_interval:
                     description:
                         - A property indicating how long the secret contents will be considered valid, expressed in
@@ -361,6 +355,12 @@ secret:
                     returned: on success
                     type: bool
                     sample: true
+                rule_type:
+                    description:
+                        - The type of rule, which either controls when the secret contents expire or whether they can be reused.
+                    returned: on success
+                    type: str
+                    sample: SECRET_EXPIRY_RULE
                 is_enforced_on_deleted_secret_versions:
                     description:
                         - A property indicating whether the rule is applied even if the secret version with the content you are trying to reuse was deleted.
@@ -408,10 +408,10 @@ secret:
         "metadata": {},
         "secret_name": "secret_name_example",
         "secret_rules": [{
-            "rule_type": "SECRET_EXPIRY_RULE",
             "secret_version_expiry_interval": "secret_version_expiry_interval_example",
             "time_of_absolute_expiry": "2013-10-20T19:20:30+01:00",
             "is_secret_content_retrieval_blocked_on_expiry": true,
+            "rule_type": "SECRET_EXPIRY_RULE",
             "is_enforced_on_deleted_secret_versions": true
         }],
         "time_created": "2013-10-20T19:20:30+01:00",

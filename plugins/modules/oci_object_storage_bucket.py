@@ -416,13 +416,6 @@ class BucketHelperGen(OCIResourceHelperBase):
     def get_get_fn(self):
         return self.client.get_bucket
 
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_bucket,
-            bucket_name=summary_model.name,
-            namespace_name=self.module.params.get("namespace_name"),
-        ).data
-
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_bucket,

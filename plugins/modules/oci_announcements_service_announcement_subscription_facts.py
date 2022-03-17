@@ -99,6 +99,46 @@ announcement_subscriptions:
     returned: on success
     type: complex
     contains:
+        description:
+            description:
+                - A description of the announcement subscription. Avoid entering confidential information.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: description_example
+        filter_groups:
+            description:
+                - A list of filter groups for the announcement subscription. A filter group is a combination of multiple filters applied to announcements for
+                  matching purposes.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the group. The name must be unique and it cannot be changed. Avoid entering confidential information.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                filters:
+                    description:
+                        - A list of filters against which the Announcements service matches announcements. You cannot have more than one of any given filter
+                          type within a filter group. You also cannot combine the RESOURCE_ID filter with any other type of filter within a given filter group.
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The type of filter.
+                            returned: on success
+                            type: str
+                            sample: COMPARTMENT_ID
+                        value:
+                            description:
+                                - The value of the filter.
+                            returned: on success
+                            type: str
+                            sample: value_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the announcement subscription.
@@ -112,13 +152,6 @@ announcement_subscriptions:
             returned: on success
             type: str
             sample: display_name_example
-        description:
-            description:
-                - A description of the announcement subscription. Avoid entering confidential information.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: description_example
         compartment_id:
             description:
                 - The OCID of the compartment that contains the announcement subscription.
@@ -159,39 +192,6 @@ announcement_subscriptions:
             returned: on success
             type: str
             sample: "ocid1.onstopic.oc1..xxxxxxEXAMPLExxxxxx"
-        filter_groups:
-            description:
-                - A list of filter groups for the announcement subscription. A filter group is a combination of multiple filters applied to announcements for
-                  matching purposes.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name of the group. The name must be unique and it cannot be changed. Avoid entering confidential information.
-                    returned: on success
-                    type: str
-                    sample: name_example
-                filters:
-                    description:
-                        - A list of filters against which the Announcements service matches announcements. You cannot have more than one of any given filter
-                          type within a filter group. You also cannot combine the RESOURCE_ID filter with any other type of filter within a given filter group.
-                    returned: on success
-                    type: complex
-                    contains:
-                        type:
-                            description:
-                                - The type of filter.
-                            returned: on success
-                            type: str
-                            sample: COMPARTMENT_ID
-                        value:
-                            description:
-                                - The value of the filter.
-                            returned: on success
-                            type: str
-                            sample: value_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -214,15 +214,7 @@ announcement_subscriptions:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "description": "description_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACTIVE",
-        "lifecycle_details": "lifecycle_details_example",
-        "ons_topic_id": "ocid1.onstopic.oc1..xxxxxxEXAMPLExxxxxx",
         "filter_groups": {
             "name": "name_example",
             "filters": [{
@@ -230,6 +222,14 @@ announcement_subscriptions:
                 "value": "value_example"
             }]
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "ACTIVE",
+        "lifecycle_details": "lifecycle_details_example",
+        "ons_topic_id": "ocid1.onstopic.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

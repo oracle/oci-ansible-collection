@@ -24,6 +24,7 @@ short_description: Fetches details about one or multiple Tablespace resources in
 description:
     - Fetches details about one or multiple Tablespace resources in Oracle Cloud Infrastructure
     - Gets the list of tablespaces for the specified managedDatabaseId.
+    - If I(tablespace_name) is specified, the details of a single Tablespace will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -32,6 +33,11 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
         type: str
         required: true
+    tablespace_name:
+        description:
+            - The name of the tablespace.
+            - Required to get a specific tablespace.
+        type: str
     name:
         description:
             - A filter to return only resources that match the entire name.
@@ -56,6 +62,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Get a specific tablespace
+  oci_database_management_tablespace_facts:
+    # required
+    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    tablespace_name: tablespace_name_example
+
 - name: List tablespaces
   oci_database_management_tablespace_facts:
     # required
@@ -487,12 +499,25 @@ except ImportError:
 
 
 class TablespaceFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: list"""
+    """Supported operations: get, list"""
+
+    def get_required_params_for_get(self):
+        return [
+            "managed_database_id",
+            "tablespace_name",
+        ]
 
     def get_required_params_for_list(self):
         return [
             "managed_database_id",
         ]
+
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_tablespace,
+            managed_database_id=self.module.params.get("managed_database_id"),
+            tablespace_name=self.module.params.get("tablespace_name"),
+        )
 
     def list_resources(self):
         optional_list_method_params = [
@@ -524,6 +549,7 @@ def main():
     module_args.update(
         dict(
             managed_database_id=dict(type="str", required=True),
+            tablespace_name=dict(type="str"),
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "NAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
@@ -544,7 +570,9 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_list():
+    if resource_facts_helper.is_get():
+        result = [resource_facts_helper.get()]
+    elif resource_facts_helper.is_list():
         result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()

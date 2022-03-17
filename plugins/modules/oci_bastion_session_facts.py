@@ -100,30 +100,6 @@ sessions:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The unique identifier (OCID) of the session, which can't be changed after creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The name of the session.
-            returned: on success
-            type: str
-            sample: display_name_example
-        bastion_id:
-            description:
-                - The unique identifier (OCID) of the bastion that is hosting this session.
-            returned: on success
-            type: str
-            sample: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
-        bastion_name:
-            description:
-                - The name of the bastion that is hosting this session.
-            returned: on success
-            type: str
-            sample: bastion_name_example
         bastion_user_name:
             description:
                 - The username that the session uses to connect to the target resource.
@@ -131,49 +107,6 @@ sessions:
             returned: on success
             type: str
             sample: bastion_user_name_example
-        target_resource_details:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                session_type:
-                    description:
-                        - The Bastion service recognizes two types of sessions, managed SSH sessions and SSH port forwarding sessions. Managed SSH sessions
-                          require that the target resource has an OpenSSH server and the Oracle Cloud Agent both running.
-                    returned: on success
-                    type: str
-                    sample: MANAGED_SSH
-                target_resource_port:
-                    description:
-                        - The port number to connect to on the target resource.
-                    returned: on success
-                    type: int
-                    sample: 56
-                target_resource_operating_system_user_name:
-                    description:
-                        - The name of the user on the target resource operating system that the session uses for the connection.
-                    returned: on success
-                    type: str
-                    sample: target_resource_operating_system_user_name_example
-                target_resource_id:
-                    description:
-                        - The unique identifier (OCID) of the target resource (a Compute instance, for example) that the session connects to.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
-                target_resource_private_ip_address:
-                    description:
-                        - The private IP address of the target resource that the session connects to.
-                    returned: on success
-                    type: str
-                    sample: target_resource_private_ip_address_example
-                target_resource_display_name:
-                    description:
-                        - The display name of the target Compute instance that the session connects to.
-                    returned: on success
-                    type: str
-                    sample: target_resource_display_name_example
         ssh_metadata:
             description:
                 - The connection message for the session.
@@ -209,6 +142,73 @@ sessions:
             returned: on success
             type: str
             sample: bastion_public_host_key_info_example
+        id:
+            description:
+                - The unique identifier (OCID) of the session, which can't be changed after creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The name of the session.
+            returned: on success
+            type: str
+            sample: display_name_example
+        bastion_name:
+            description:
+                - The name of the bastion that is hosting this session.
+            returned: on success
+            type: str
+            sample: bastion_name_example
+        bastion_id:
+            description:
+                - The unique identifier (OCID) of the bastion that is hosting this session.
+            returned: on success
+            type: str
+            sample: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+        target_resource_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                target_resource_operating_system_user_name:
+                    description:
+                        - The name of the user on the target resource operating system that the session uses for the connection.
+                    returned: on success
+                    type: str
+                    sample: target_resource_operating_system_user_name_example
+                session_type:
+                    description:
+                        - The Bastion service recognizes two types of sessions, managed SSH sessions and SSH port forwarding sessions. Managed SSH sessions
+                          require that the target resource has an OpenSSH server and the Oracle Cloud Agent both running.
+                    returned: on success
+                    type: str
+                    sample: MANAGED_SSH
+                target_resource_port:
+                    description:
+                        - The port number to connect to on the target resource.
+                    returned: on success
+                    type: int
+                    sample: 56
+                target_resource_id:
+                    description:
+                        - The unique identifier (OCID) of the target resource (a Compute instance, for example) that the session connects to.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
+                target_resource_private_ip_address:
+                    description:
+                        - The private IP address of the target resource that the session connects to.
+                    returned: on success
+                    type: str
+                    sample: target_resource_private_ip_address_example
+                target_resource_display_name:
+                    description:
+                        - The display name of the target Compute instance that the session connects to.
+                    returned: on success
+                    type: str
+                    sample: target_resource_display_name_example
         time_created:
             description:
                 - "The time the session was created. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -242,25 +242,25 @@ sessions:
             type: int
             sample: 56
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "bastion_id": "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx",
-        "bastion_name": "bastion_name_example",
         "bastion_user_name": "bastion_user_name_example",
-        "target_resource_details": {
-            "session_type": "MANAGED_SSH",
-            "target_resource_port": 56,
-            "target_resource_operating_system_user_name": "target_resource_operating_system_user_name_example",
-            "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
-            "target_resource_private_ip_address": "target_resource_private_ip_address_example",
-            "target_resource_display_name": "target_resource_display_name_example"
-        },
         "ssh_metadata": {},
         "key_type": "PUB",
         "key_details": {
             "public_key_content": "public_key_content_example"
         },
         "bastion_public_host_key_info": "bastion_public_host_key_info_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "bastion_name": "bastion_name_example",
+        "bastion_id": "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx",
+        "target_resource_details": {
+            "target_resource_operating_system_user_name": "target_resource_operating_system_user_name_example",
+            "session_type": "MANAGED_SSH",
+            "target_resource_port": 56,
+            "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "target_resource_private_ip_address": "target_resource_private_ip_address_example",
+            "target_resource_display_name": "target_resource_display_name_example"
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

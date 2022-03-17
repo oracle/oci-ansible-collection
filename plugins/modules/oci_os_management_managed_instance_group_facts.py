@@ -109,30 +109,6 @@ managed_instance_groups:
     returned: on success
     type: complex
     contains:
-        display_name:
-            description:
-                - Managed Instance Group identifier
-            returned: on success
-            type: str
-            sample: display_name_example
-        id:
-            description:
-                - OCID for the managed instance group
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - Information specified by the user about the managed instance group
-            returned: on success
-            type: str
-            sample: description_example
-        compartment_id:
-            description:
-                - OCID for the Compartment
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         managed_instances:
             description:
                 - list of Managed Instances in the group
@@ -152,6 +128,37 @@ managed_instance_groups:
                     returned: on success
                     type: str
                     sample: display_name_example
+        display_name:
+            description:
+                - Managed Instance Group identifier
+            returned: on success
+            type: str
+            sample: display_name_example
+        id:
+            description:
+                - OCID for the managed instance group
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - OCID for the Compartment
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - Information specified by the user about the managed instance group
+            returned: on success
+            type: str
+            sample: description_example
+        managed_instance_count:
+            description:
+                - Number of managed instances in this managed instance group
+                - Returned for list operation
+            returned: on success
+            type: int
+            sample: 56
         lifecycle_state:
             description:
                 - The current state of the Software Source.
@@ -178,27 +185,20 @@ managed_instance_groups:
             returned: on success
             type: str
             sample: LINUX
-        managed_instance_count:
-            description:
-                - Number of managed instances in this managed instance group
-                - Returned for list operation
-            returned: on success
-            type: int
-            sample: 56
     sample: [{
-        "display_name": "display_name_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "description": "description_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "managed_instances": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example"
         }],
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "managed_instance_count": 56,
         "lifecycle_state": "CREATING",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "os_family": "LINUX",
-        "managed_instance_count": 56
+        "os_family": "LINUX"
     }]
 """
 

@@ -101,54 +101,6 @@ data_assets:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The Unique Oracle ID (OCID) that is immutable on creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The OCID of the compartment containing the DataAsset.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - A short description of the data asset.
-            returned: on success
-            type: str
-            sample: description_example
-        time_created:
-            description:
-                - The time the the DataAsset was created. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the the DataAsset was updated. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The lifecycle state of the Data Asset.
-            returned: on success
-            type: str
-            sample: ACTIVE
-        project_id:
-            description:
-                - The Unique project id which is created at project creation that is immutable on creation.
-            returned: on success
-            type: str
-            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         data_source_details:
             description:
                 - ""
@@ -156,24 +108,12 @@ data_assets:
             returned: on success
             type: complex
             contains:
-                data_source_type:
-                    description:
-                        - Data source type where actually data asset is being stored
-                    returned: on success
-                    type: str
-                    sample: ORACLE_OBJECT_STORAGE
                 version_specific_details:
                     description:
                         - ""
                     returned: on success
                     type: complex
                     contains:
-                        influx_version:
-                            description:
-                                - Data source type where actually data asset is being stored
-                            returned: on success
-                            type: str
-                            sample: V_1_8
                         database_name:
                             description:
                                 - DB Name for influx connection
@@ -186,6 +126,12 @@ data_assets:
                             returned: on success
                             type: str
                             sample: retention_policy_name_example
+                        influx_version:
+                            description:
+                                - Data source type where actually data asset is being stored
+                            returned: on success
+                            type: str
+                            sample: V_1_8
                         bucket_name:
                             description:
                                 - Bucket Name for influx connection
@@ -288,6 +234,12 @@ data_assets:
                     returned: on success
                     type: str
                     sample: table_name_example
+                data_source_type:
+                    description:
+                        - Data source type where actually data asset is being stored
+                    returned: on success
+                    type: str
+                    sample: ORACLE_OBJECT_STORAGE
                 namespace:
                     description:
                         - Object storage namespace
@@ -306,6 +258,61 @@ data_assets:
                     returned: on success
                     type: str
                     sample: object_name_example
+        id:
+            description:
+                - The Unique Oracle ID (OCID) that is immutable on creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The OCID of the compartment containing the DataAsset.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        description:
+            description:
+                - A short description of the data asset.
+            returned: on success
+            type: str
+            sample: description_example
+        time_created:
+            description:
+                - The time the the DataAsset was created. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the the DataAsset was updated. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The lifecycle state of the Data Asset.
+            returned: on success
+            type: str
+            sample: ACTIVE
+        project_id:
+            description:
+                - The Unique project id which is created at project creation that is immutable on creation.
+            returned: on success
+            type: str
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        data_source_type:
+            description:
+                - Data source type where actually data asset is being stored
+                - Returned for list operation
+            returned: on success
+            type: str
+            sample: ORACLE_OBJECT_STORAGE
         private_endpoint_id:
             description:
                 - OCID of Private Endpoint.
@@ -333,28 +340,12 @@ data_assets:
             returned: on success
             type: dict
             sample: {}
-        data_source_type:
-            description:
-                - Data source type where actually data asset is being stored
-                - Returned for list operation
-            returned: on success
-            type: str
-            sample: ORACLE_OBJECT_STORAGE
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACTIVE",
-        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "data_source_details": {
-            "data_source_type": "ORACLE_OBJECT_STORAGE",
             "version_specific_details": {
-                "influx_version": "V_1_8",
                 "database_name": "database_name_example",
                 "retention_policy_name": "retention_policy_name_example",
+                "influx_version": "V_1_8",
                 "bucket_name": "bucket_name_example",
                 "organization_name": "organization_name_example"
             },
@@ -373,15 +364,24 @@ data_assets:
             "truststore_file_secret_id": "ocid1.truststorefilesecret.oc1..xxxxxxEXAMPLExxxxxx",
             "database_name": "database_name_example",
             "table_name": "table_name_example",
+            "data_source_type": "ORACLE_OBJECT_STORAGE",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
             "object_name": "object_name_example"
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "ACTIVE",
+        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+        "data_source_type": "ORACLE_OBJECT_STORAGE",
         "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "data_source_type": "ORACLE_OBJECT_STORAGE"
+        "system_tags": {}
     }]
 """
 

@@ -102,6 +102,24 @@ integration_instances:
     returned: on success
     type: complex
     contains:
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name,
+                  type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Usage of predefined tag keys. These predefined keys are scoped to
+                  namespaces.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -151,24 +169,6 @@ integration_instances:
             returned: on success
             type: str
             sample: state_message_example
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name,
-                  type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Usage of predefined tag keys. These predefined keys are scoped to
-                  namespaces.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
         is_byol:
             description:
                 - Bring your own license.
@@ -296,6 +296,8 @@ integration_instances:
                     type: bool
                     sample: true
     sample: [{
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -304,8 +306,6 @@ integration_instances:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "state_message": "state_message_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "is_byol": true,
         "instance_url": "instance_url_example",
         "message_packs": 56,

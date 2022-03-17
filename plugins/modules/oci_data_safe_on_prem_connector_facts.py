@@ -120,6 +120,13 @@ on_prem_connectors:
     returned: on success
     type: complex
     contains:
+        available_version:
+            description:
+                - Latest available version of the on-premises connector.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: available_version_example
         id:
             description:
                 - The OCID of the on-premises connector.
@@ -185,13 +192,6 @@ on_prem_connectors:
             returned: on success
             type: dict
             sample: {}
-        available_version:
-            description:
-                - Latest available version of the on-premises connector.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: available_version_example
         created_version:
             description:
                 - Created version of the on-premises connector.
@@ -199,6 +199,7 @@ on_prem_connectors:
             type: str
             sample: created_version_example
     sample: [{
+        "available_version": "available_version_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -209,7 +210,6 @@ on_prem_connectors:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "available_version": "available_version_example",
         "created_version": "created_version_example"
     }]
 """

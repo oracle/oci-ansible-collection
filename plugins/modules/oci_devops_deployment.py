@@ -276,6 +276,12 @@ deployment:
     returned: on success
     type: complex
     contains:
+        previous_deployment_id:
+            description:
+                - Specifies the OCID of the previous deployment to be redeployed.
+            returned: on success
+            type: str
+            sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_artifacts:
             description:
                 - ""
@@ -511,6 +517,24 @@ deployment:
                     returned: on success
                     type: complex
                     contains:
+                        approval_actions:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                subject_id:
+                                    description:
+                                        - The subject ID of the user who approves or disapproves a DevOps deployment stage.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx"
+                                action:
+                                    description:
+                                        - The action of the user on the DevOps deployment stage.
+                                    returned: on success
+                                    type: str
+                                    sample: APPROVE
                         deploy_stage_display_name:
                             description:
                                 - Stage display name. Avoid entering confidential information.
@@ -644,24 +668,6 @@ deployment:
                                             returned: on success
                                             type: str
                                             sample: "2013-10-20T19:20:30+01:00"
-                        approval_actions:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                subject_id:
-                                    description:
-                                        - The subject ID of the user who approves or disapproves a DevOps deployment stage.
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx"
-                                action:
-                                    description:
-                                        - The action of the user on the DevOps deployment stage.
-                                    returned: on success
-                                    type: str
-                                    sample: APPROVE
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -684,12 +690,6 @@ deployment:
             returned: on success
             type: dict
             sample: {}
-        previous_deployment_id:
-            description:
-                - Specifies the OCID of the previous deployment to be redeployed.
-            returned: on success
-            type: str
-            sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_stage_id:
             description:
                 - Specifies the OCID of the stage to be deployed.
@@ -697,6 +697,7 @@ deployment:
             type: str
             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
+        "previous_deployment_id": "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_pipeline_artifacts": {
             "items": [{
                 "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
@@ -748,6 +749,10 @@ deployment:
             "time_started": "2013-10-20T19:20:30+01:00",
             "time_finished": "2013-10-20T19:20:30+01:00",
             "deploy_stage_execution_progress": {
+                "approval_actions": [{
+                    "subject_id": "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx",
+                    "action": "APPROVE"
+                }],
                 "deploy_stage_display_name": "deploy_stage_display_name_example",
                 "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT",
                 "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
@@ -774,17 +779,12 @@ deployment:
                         "time_started": "2013-10-20T19:20:30+01:00",
                         "time_finished": "2013-10-20T19:20:30+01:00"
                     }]
-                }],
-                "approval_actions": [{
-                    "subject_id": "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx",
-                    "action": "APPROVE"
                 }]
             }
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "previous_deployment_id": "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

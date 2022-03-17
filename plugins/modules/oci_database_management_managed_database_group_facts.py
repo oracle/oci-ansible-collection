@@ -102,30 +102,6 @@ managed_database_groups:
     returned: on success
     type: complex
     contains:
-        name:
-            description:
-                - The name of the Managed Database Group.
-            returned: on success
-            type: str
-            sample: name_example
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - The information specified by the user about the Managed Database Group.
-            returned: on success
-            type: str
-            sample: description_example
         managed_databases:
             description:
                 - A list of Managed Databases in the Managed Database Group.
@@ -183,6 +159,44 @@ managed_database_groups:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The date and time the Managed Database Group was last updated.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        name:
+            description:
+                - The name of the Managed Database Group.
+            returned: on success
+            type: str
+            sample: name_example
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - The information specified by the user about the Managed Database Group.
+            returned: on success
+            type: str
+            sample: description_example
+        managed_database_count:
+            description:
+                - The number of Managed Databases in the Managed Database Group.
+                - Returned for list operation
+            returned: on success
+            type: int
+            sample: 56
         lifecycle_state:
             description:
                 - The current lifecycle state of the Managed Database Group.
@@ -195,25 +209,7 @@ managed_database_groups:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The date and time the Managed Database Group was last updated.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        managed_database_count:
-            description:
-                - The number of Managed Databases in the Managed Database Group.
-                - Returned for list operation
-            returned: on success
-            type: int
-            sample: 56
     sample: [{
-        "name": "name_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "description": "description_example",
         "managed_databases": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "name": "name_example",
@@ -224,10 +220,14 @@ managed_database_groups:
             "database_sub_type": "CDB",
             "time_added": "2013-10-20T19:20:30+01:00"
         }],
-        "lifecycle_state": "CREATING",
-        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "managed_database_count": 56
+        "name": "name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "managed_database_count": 56,
+        "lifecycle_state": "CREATING",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

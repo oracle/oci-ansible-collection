@@ -97,42 +97,6 @@ managed_instances:
     returned: on success
     type: complex
     contains:
-        display_name:
-            description:
-                - Managed Instance identifier
-            returned: on success
-            type: str
-            sample: display_name_example
-        id:
-            description:
-                - OCID for the managed instance
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - Information specified by the user about the managed instance
-            returned: on success
-            type: str
-            sample: description_example
-        last_checkin:
-            description:
-                - Time at which the instance last checked in
-            returned: on success
-            type: str
-            sample: last_checkin_example
-        last_boot:
-            description:
-                - Time at which the instance last booted
-            returned: on success
-            type: str
-            sample: last_boot_example
-        updates_available:
-            description:
-                - Number of updates available to be installed
-            returned: on success
-            type: int
-            sample: 56
         os_name:
             description:
                 - Operating System Name
@@ -154,18 +118,6 @@ managed_instances:
             returned: on success
             type: str
             sample: os_kernel_version_example
-        compartment_id:
-            description:
-                - OCID for the Compartment
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        status:
-            description:
-                - status of the managed instance.
-            returned: on success
-            type: str
-            sample: NORMAL
         parent_software_source:
             description:
                 - the parent (base) Software Source attached to the Managed Instance
@@ -224,18 +176,6 @@ managed_instances:
                     returned: on success
                     type: str
                     sample: display_name_example
-        os_family:
-            description:
-                - The Operating System type of the managed instance.
-            returned: on success
-            type: str
-            sample: LINUX
-        is_reboot_required:
-            description:
-                - Indicates whether a reboot is required to complete installation of updates.
-            returned: on success
-            type: bool
-            sample: true
         notification_topic_id:
             description:
                 - OCID of the ONS topic used to send notification to users
@@ -312,18 +252,70 @@ managed_instances:
             returned: on success
             type: int
             sample: 56
+        display_name:
+            description:
+                - Managed Instance identifier
+            returned: on success
+            type: str
+            sample: display_name_example
+        id:
+            description:
+                - OCID for the managed instance
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        last_checkin:
+            description:
+                - Time at which the instance last checked in
+            returned: on success
+            type: str
+            sample: last_checkin_example
+        last_boot:
+            description:
+                - Time at which the instance last booted
+            returned: on success
+            type: str
+            sample: last_boot_example
+        updates_available:
+            description:
+                - Number of updates available to be installed
+            returned: on success
+            type: int
+            sample: 56
+        compartment_id:
+            description:
+                - OCID for the Compartment
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - Information specified by the user about the managed instance
+            returned: on success
+            type: str
+            sample: description_example
+        status:
+            description:
+                - status of the managed instance.
+            returned: on success
+            type: str
+            sample: NORMAL
+        os_family:
+            description:
+                - The Operating System type of the managed instance.
+            returned: on success
+            type: str
+            sample: LINUX
+        is_reboot_required:
+            description:
+                - Indicates whether a reboot is required to complete installation of updates.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
-        "display_name": "display_name_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "description": "description_example",
-        "last_checkin": "last_checkin_example",
-        "last_boot": "last_boot_example",
-        "updates_available": 56,
         "os_name": "os_name_example",
         "os_version": "os_version_example",
         "os_kernel_version": "os_kernel_version_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "status": "NORMAL",
         "parent_software_source": {
             "name": "name_example",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -336,8 +328,6 @@ managed_instances:
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example"
         }],
-        "os_family": "LINUX",
-        "is_reboot_required": true,
         "notification_topic_id": "ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx",
         "ksplice_effective_kernel_version": "ksplice_effective_kernel_version_example",
         "is_data_collection_authorized": true,
@@ -349,7 +339,17 @@ managed_instances:
         "enhancement_updates_available": 56,
         "other_updates_available": 56,
         "scheduled_job_count": 56,
-        "work_request_count": 56
+        "work_request_count": 56,
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "last_checkin": "last_checkin_example",
+        "last_boot": "last_boot_example",
+        "updates_available": 56,
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "status": "NORMAL",
+        "os_family": "LINUX",
+        "is_reboot_required": true
     }]
 """
 

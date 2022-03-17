@@ -113,6 +113,27 @@ dashboards:
     returned: on success
     type: complex
     contains:
+        schema_version:
+            description:
+                - The schema describing how to interpret the dashboard configuration and widgets.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: V1
+        config:
+            description:
+                - The dashboard configuration. For example, the layout and widget placement.
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        widgets:
+            description:
+                - The visualization building blocks of the dashboard.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the dashboard resource.
@@ -146,13 +167,6 @@ dashboards:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        schema_version:
-            description:
-                - The schema describing how to interpret the dashboard configuration and widgets.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: V1
         time_created:
             description:
                 - The date and time the dashboard was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -194,35 +208,21 @@ dashboards:
             returned: on success
             type: dict
             sample: {}
-        config:
-            description:
-                - The dashboard configuration. For example, the layout and widget placement.
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
-        widgets:
-            description:
-                - The visualization building blocks of the dashboard.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
     sample: [{
+        "schema_version": "V1",
+        "config": {},
+        "widgets": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "dashboard_group_id": "ocid1.dashboardgroup.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "schema_version": "V1",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "config": {},
-        "widgets": []
+        "system_tags": {}
     }]
 """
 

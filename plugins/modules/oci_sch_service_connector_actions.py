@@ -155,12 +155,6 @@ service_connector:
             returned: on success
             type: complex
             contains:
-                kind:
-                    description:
-                        - The type descriminator.
-                    returned: on success
-                    type: str
-                    sample: logging
                 log_sources:
                     description:
                         - The logs for this Logging source.
@@ -186,6 +180,12 @@ service_connector:
                             returned: on success
                             type: str
                             sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+                kind:
+                    description:
+                        - The type descriminator.
+                    returned: on success
+                    type: str
+                    sample: logging
                 stream_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
@@ -210,12 +210,6 @@ service_connector:
             returned: on success
             type: complex
             contains:
-                kind:
-                    description:
-                        - The type descriminator.
-                    returned: on success
-                    type: str
-                    sample: function
                 function_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function to be used as a task.
@@ -234,6 +228,12 @@ service_connector:
                     returned: on success
                     type: int
                     sample: 56
+                kind:
+                    description:
+                        - The type descriminator.
+                    returned: on success
+                    type: str
+                    sample: function
                 condition:
                     description:
                         - A filter or mask to limit the source used in the flow defined by the service connector.
@@ -246,12 +246,6 @@ service_connector:
             returned: on success
             type: complex
             contains:
-                kind:
-                    description:
-                        - The type descriminator.
-                    returned: on success
-                    type: str
-                    sample: functions
                 function_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
@@ -308,12 +302,6 @@ service_connector:
                             returned: on success
                             type: complex
                             contains:
-                                kind:
-                                    description:
-                                        - "The type of dimension value: static or evaluated."
-                                    returned: on success
-                                    type: str
-                                    sample: jmesPath
                                 path:
                                     description:
                                         - "The location to use for deriving the dimension value (evaluated).
@@ -332,6 +320,12 @@ service_connector:
                                     returned: on success
                                     type: str
                                     sample: path_example
+                                kind:
+                                    description:
+                                        - "The type of dimension value: static or evaluated."
+                                    returned: on success
+                                    type: str
+                                    sample: jmesPath
                                 value:
                                     description:
                                         - The data extracted from the specified dimension value (passed as-is). Unicode characters only.
@@ -384,6 +378,12 @@ service_connector:
                     returned: on success
                     type: int
                     sample: 56
+                kind:
+                    description:
+                        - The type descriminator.
+                    returned: on success
+                    type: str
+                    sample: functions
                 stream_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
@@ -423,26 +423,25 @@ service_connector:
         "lifecycle_state": "CREATING",
         "lifecyle_details": "lifecyle_details_example",
         "source": {
-            "kind": "logging",
             "log_sources": [{
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
             }],
+            "kind": "logging",
             "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx",
             "cursor": {
                 "kind": "LATEST"
             }
         },
         "tasks": [{
-            "kind": "function",
             "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
             "batch_size_in_kbs": 56,
             "batch_time_in_sec": 56,
+            "kind": "function",
             "condition": "condition_example"
         }],
         "target": {
-            "kind": "functions",
             "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -451,8 +450,8 @@ service_connector:
             "dimensions": [{
                 "name": "name_example",
                 "dimension_value": {
-                    "kind": "jmesPath",
                     "path": "path_example",
+                    "kind": "jmesPath",
                     "value": "value_example"
                 }
             }],
@@ -463,6 +462,7 @@ service_connector:
             "object_name_prefix": "object_name_prefix_example",
             "batch_rollover_size_in_mbs": 56,
             "batch_rollover_time_in_ms": 56,
+            "kind": "functions",
             "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "freeform_tags": {'Department': 'Finance'},

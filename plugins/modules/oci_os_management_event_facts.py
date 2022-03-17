@@ -118,18 +118,6 @@ events:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - OCID identifier of the event
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        instance_id:
-            description:
-                - OCI identifier of the instance where the event occurred
-            returned: on success
-            type: str
-            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCI identifier of the compartement where the instance is
@@ -144,18 +132,6 @@ events:
             returned: on success
             type: str
             sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
-        summary:
-            description:
-                - human readable description of the event
-            returned: on success
-            type: str
-            sample: summary_example
-        timestamp:
-            description:
-                - Time of the occurrence of the event
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         event_fingerprint:
             description:
                 - Unique ID used to group event with the same characteristics together.
@@ -164,39 +140,6 @@ events:
             returned: on success
             type: str
             sample: event_fingerprint_example
-        count:
-            description:
-                - Event occurrence count. Number of time the event has happen on the system.
-            returned: on success
-            type: int
-            sample: 56
-        event_type:
-            description:
-                - Type of the Event.
-            returned: on success
-            type: str
-            sample: KERNEL_OOPS
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        system_tags:
-            description:
-                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-            returned: on success
-            type: dict
-            sample: {}
         reason:
             description:
                 - reason of the crash
@@ -304,19 +247,67 @@ events:
                     returned: on success
                     type: str
                     sample: os_system_version_example
+        id:
+            description:
+                - OCID identifier of the event
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        instance_id:
+            description:
+                - OCI identifier of the instance where the event occurred
+            returned: on success
+            type: str
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+        summary:
+            description:
+                - human readable description of the event
+            returned: on success
+            type: str
+            sample: summary_example
+        event_type:
+            description:
+                - Type of the Event.
+            returned: on success
+            type: str
+            sample: KERNEL_OOPS
+        count:
+            description:
+                - Event occurrence count. Number of time the event has happen on the system.
+            returned: on success
+            type: int
+            sample: 56
+        timestamp:
+            description:
+                - Time of the occurrence of the event
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
-        "summary": "summary_example",
-        "timestamp": "2013-10-20T19:20:30+01:00",
         "event_fingerprint": "event_fingerprint_example",
-        "count": 56,
-        "event_type": "KERNEL_OOPS",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
         "reason": "reason_example",
         "time_first_occurred": "2013-10-20T19:20:30+01:00",
         "vmcore": {
@@ -336,7 +327,16 @@ events:
             "os_kernel_release": "os_kernel_release_example",
             "os_kernel_version": "os_kernel_version_example",
             "os_system_version": "os_system_version_example"
-        }
+        },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
+        "summary": "summary_example",
+        "event_type": "KERNEL_OOPS",
+        "count": 56,
+        "timestamp": "2013-10-20T19:20:30+01:00",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }]
 """
 

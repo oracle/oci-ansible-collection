@@ -108,56 +108,6 @@ instance_pools:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
-                  pool.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        instance_configuration_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration associated
-                  with the instance pool.
-            returned: on success
-            type: str
-            sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state:
-            description:
-                - The current state of the instance pool.
-            returned: on success
-            type: str
-            sample: PROVISIONING
         placement_configurations:
             description:
                 - The placement configurations for the instance pool.
@@ -212,19 +162,6 @@ instance_pools:
                             returned: on success
                             type: str
                             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        size:
-            description:
-                - The number of instances that should be in the instance pool.
-            returned: on success
-            type: int
-            sample: 56
-        time_created:
-            description:
-                - "The date and time the instance pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                  Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         load_balancers:
             description:
                 - The load balancers attached to the instance pool.
@@ -278,6 +215,39 @@ instance_pools:
                     returned: on success
                     type: str
                     sample: ATTACHING
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
+                  pool.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        instance_configuration_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration associated
+                  with the instance pool.
+            returned: on success
+            type: str
+            sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_state:
+            description:
+                - The current state of the instance pool.
+            returned: on success
+            type: str
+            sample: PROVISIONING
         availability_domains:
             description:
                 - The availability domains for the instance pool.
@@ -285,14 +255,37 @@ instance_pools:
             returned: on success
             type: list
             sample: []
+        size:
+            description:
+                - The number of instances that should be in the instance pool.
+            returned: on success
+            type: int
+            sample: 56
+        time_created:
+            description:
+                - "The date and time the instance pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                  Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "display_name_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "instance_configuration_id": "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "PROVISIONING",
         "placement_configurations": [{
             "availability_domain": "Uocm:PHX-AD-1",
             "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",
@@ -302,8 +295,6 @@ instance_pools:
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
             }]
         }],
-        "size": 56,
-        "time_created": "2013-10-20T19:20:30+01:00",
         "load_balancers": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "instance_pool_id": "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx",
@@ -313,7 +304,16 @@ instance_pools:
             "vnic_selection": "vnic_selection_example",
             "lifecycle_state": "ATTACHING"
         }],
-        "availability_domains": []
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "instance_configuration_id": "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "PROVISIONING",
+        "availability_domains": [],
+        "size": 56,
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'}
     }]
 """
 

@@ -534,18 +534,6 @@ unified_agent_configuration:
                     returned: on success
                     type: complex
                     contains:
-                        name:
-                            description:
-                                - unique name for the source
-                            returned: on success
-                            type: str
-                            sample: name_example
-                        source_type:
-                            description:
-                                - Unified schema logging source type.
-                            returned: on success
-                            type: str
-                            sample: LOG_TAIL
                         paths:
                             description:
                                 - ""
@@ -558,6 +546,126 @@ unified_agent_configuration:
                             returned: on success
                             type: complex
                             contains:
+                                time_type:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: FLOAT
+                                format_firstline:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: format_firstline_example
+                                format:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                grok_name_key:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: grok_name_key_example
+                                grok_failure_key:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: grok_failure_key_example
+                                multi_line_start_regexp:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: multi_line_start_regexp_example
+                                patterns:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        pattern:
+                                            description:
+                                                - The grok pattern.
+                                            returned: on success
+                                            type: str
+                                            sample: pattern_example
+                                        name:
+                                            description:
+                                                - The name key to tag this grok pattern.
+                                            returned: on success
+                                            type: str
+                                            sample: name_example
+                                        field_time_key:
+                                            description:
+                                                - Specify the time field for the event time. If the event doesn't have this field, the current time is used.
+                                            returned: on success
+                                            type: str
+                                            sample: field_time_key_example
+                                        field_time_format:
+                                            description:
+                                                - Process value using the specified format. This is available only when time_type is a string.
+                                            returned: on success
+                                            type: str
+                                            sample: field_time_format_example
+                                        field_time_zone:
+                                            description:
+                                                - Use the specified time zone. The time value can be parsed or formatted in the specified time zone.
+                                            returned: on success
+                                            type: str
+                                            sample: field_time_zone_example
+                                message_key:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: message_key_example
+                                expression:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: expression_example
+                                time_format:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: time_format_example
+                                rfc5424_time_format:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: rfc5424_time_format_example
+                                message_format:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: RFC3164
+                                is_with_priority:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                is_support_colonless_ident:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                syslog_parser_type:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: STRING
                                 parser_type:
                                     description:
                                         - Type of fluent parser.
@@ -618,126 +726,18 @@ unified_agent_configuration:
                                     returned: on success
                                     type: list
                                     sample: []
-                                grok_name_key:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: grok_name_key_example
-                                grok_failure_key:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: grok_failure_key_example
-                                patterns:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        pattern:
-                                            description:
-                                                - The grok pattern.
-                                            returned: on success
-                                            type: str
-                                            sample: pattern_example
-                                        name:
-                                            description:
-                                                - The name key to tag this grok pattern.
-                                            returned: on success
-                                            type: str
-                                            sample: name_example
-                                        field_time_key:
-                                            description:
-                                                - Specify the time field for the event time. If the event doesn't have this field, the current time is used.
-                                            returned: on success
-                                            type: str
-                                            sample: field_time_key_example
-                                        field_time_format:
-                                            description:
-                                                - Process value using the specified format. This is available only when time_type is a string.
-                                            returned: on success
-                                            type: str
-                                            sample: field_time_format_example
-                                        field_time_zone:
-                                            description:
-                                                - Use the specified time zone. The time value can be parsed or formatted in the specified time zone.
-                                            returned: on success
-                                            type: str
-                                            sample: field_time_zone_example
-                                time_type:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: FLOAT
-                                time_format:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: time_format_example
-                                format_firstline:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: format_firstline_example
-                                format:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: list
-                                    sample: []
-                                multi_line_start_regexp:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: multi_line_start_regexp_example
-                                message_key:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: message_key_example
-                                expression:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: expression_example
-                                rfc5424_time_format:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: rfc5424_time_format_example
-                                message_format:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: RFC3164
-                                is_with_priority:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: bool
-                                    sample: true
-                                is_support_colonless_ident:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: bool
-                                    sample: true
-                                syslog_parser_type:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: STRING
+                        name:
+                            description:
+                                - unique name for the source
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        source_type:
+                            description:
+                                - Unified schema logging source type.
+                            returned: on success
+                            type: str
+                            sample: LOG_TAIL
                         channels:
                             description:
                                 - ""
@@ -783,10 +783,29 @@ unified_agent_configuration:
         "service_configuration": {
             "configuration_type": "LOGGING",
             "sources": [{
-                "name": "name_example",
-                "source_type": "LOG_TAIL",
                 "paths": [],
                 "parser": {
+                    "time_type": "FLOAT",
+                    "format_firstline": "format_firstline_example",
+                    "format": [],
+                    "grok_name_key": "grok_name_key_example",
+                    "grok_failure_key": "grok_failure_key_example",
+                    "multi_line_start_regexp": "multi_line_start_regexp_example",
+                    "patterns": [{
+                        "pattern": "pattern_example",
+                        "name": "name_example",
+                        "field_time_key": "field_time_key_example",
+                        "field_time_format": "field_time_format_example",
+                        "field_time_zone": "field_time_zone_example"
+                    }],
+                    "message_key": "message_key_example",
+                    "expression": "expression_example",
+                    "time_format": "time_format_example",
+                    "rfc5424_time_format": "rfc5424_time_format_example",
+                    "message_format": "RFC3164",
+                    "is_with_priority": true,
+                    "is_support_colonless_ident": true,
+                    "syslog_parser_type": "STRING",
                     "parser_type": "AUDITD",
                     "field_time_key": "field_time_key_example",
                     "types": {},
@@ -796,29 +815,10 @@ unified_agent_configuration:
                     "is_keep_time_key": true,
                     "timeout_in_milliseconds": 56,
                     "delimiter": "delimiter_example",
-                    "keys": [],
-                    "grok_name_key": "grok_name_key_example",
-                    "grok_failure_key": "grok_failure_key_example",
-                    "patterns": [{
-                        "pattern": "pattern_example",
-                        "name": "name_example",
-                        "field_time_key": "field_time_key_example",
-                        "field_time_format": "field_time_format_example",
-                        "field_time_zone": "field_time_zone_example"
-                    }],
-                    "time_type": "FLOAT",
-                    "time_format": "time_format_example",
-                    "format_firstline": "format_firstline_example",
-                    "format": [],
-                    "multi_line_start_regexp": "multi_line_start_regexp_example",
-                    "message_key": "message_key_example",
-                    "expression": "expression_example",
-                    "rfc5424_time_format": "rfc5424_time_format_example",
-                    "message_format": "RFC3164",
-                    "is_with_priority": true,
-                    "is_support_colonless_ident": true,
-                    "syslog_parser_type": "STRING"
+                    "keys": []
                 },
+                "name": "name_example",
+                "source_type": "LOG_TAIL",
                 "channels": []
             }],
             "destination": {

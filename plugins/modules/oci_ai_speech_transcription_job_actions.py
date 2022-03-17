@@ -200,15 +200,6 @@ transcription_job:
             returned: on success
             type: complex
             contains:
-                location_type:
-                    description:
-                        - "The type of input location.
-                          Allowed values are:
-                          - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.
-                          - `OBJECT_LIST_FILE_INPUT_LOCATION`: An object in Object Storage that contains a list of input files."
-                    returned: on success
-                    type: str
-                    sample: OBJECT_LIST_INLINE_INPUT_LOCATION
                 object_location:
                     description:
                         - ""
@@ -233,6 +224,15 @@ transcription_job:
                             returned: on success
                             type: list
                             sample: []
+                location_type:
+                    description:
+                        - "The type of input location.
+                          Allowed values are:
+                          - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.
+                          - `OBJECT_LIST_FILE_INPUT_LOCATION`: An object in Object Storage that contains a list of input files."
+                    returned: on success
+                    type: str
+                    sample: OBJECT_LIST_INLINE_INPUT_LOCATION
                 object_locations:
                     description:
                         - A list of ObjectLocations.
@@ -345,12 +345,12 @@ transcription_job:
         "ttl_in_days": 56,
         "percent_complete": 56,
         "input_location": {
-            "location_type": "OBJECT_LIST_INLINE_INPUT_LOCATION",
             "object_location": {
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example",
                 "object_names": []
             },
+            "location_type": "OBJECT_LIST_INLINE_INPUT_LOCATION",
             "object_locations": [{
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example",

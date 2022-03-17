@@ -85,6 +85,12 @@ options:
                         Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
                     - This parameter is updatable.
                 type: str
+            vcn_route_type:
+                description:
+                    - Indicates whether the VCN CIDR(s) or the individual Subnet CIDR(s) are imported from the attachment.
+                      Routes from the VCN Ingress Route Table are always imported.
+                    - This parameter is updatable.
+                type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -169,6 +175,7 @@ EXAMPLES = """
 
       # optional
       route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+      vcn_route_type: vcn_route_type_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
@@ -189,6 +196,7 @@ EXAMPLES = """
 
       # optional
       route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+      vcn_route_type: vcn_route_type_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
@@ -209,6 +217,7 @@ EXAMPLES = """
 
       # optional
       route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+      vcn_route_type: vcn_route_type_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
@@ -288,18 +297,6 @@ drg_attachment:
             returned: on success
             type: complex
             contains:
-                type:
-                    description:
-                        - ""
-                    returned: on success
-                    type: str
-                    sample: VCN
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 ipsec_connection_id:
                     description:
                         - The IPSec connection that contains the attached IPSec tunnel.
@@ -317,6 +314,25 @@ drg_attachment:
                     returned: on success
                     type: str
                     sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+                vcn_route_type:
+                    description:
+                        - Indicates whether the VCN CIDR(s) or the individual Subnet CIDR(s) are imported from the attachment.
+                          Routes from the VCN Ingress Route Table are always imported.
+                    returned: on success
+                    type: str
+                    sample: VCN_CIDRS
+                type:
+                    description:
+                        - ""
+                    returned: on success
+                    type: str
+                    sample: VCN
+                id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -379,10 +395,11 @@ drg_attachment:
         "time_created": "2013-10-20T19:20:30+01:00",
         "drg_route_table_id": "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx",
         "network_details": {
-            "type": "VCN",
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "ipsec_connection_id": "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx",
-            "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+            "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
+            "vcn_route_type": "VCN_CIDRS",
+            "type": "VCN",
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
@@ -558,6 +575,7 @@ def main():
                     type=dict(type="str", required=True, choices=["VCN"]),
                     id=dict(type="str"),
                     route_table_id=dict(type="str"),
+                    vcn_route_type=dict(type="str"),
                 ),
             ),
             defined_tags=dict(type="dict"),

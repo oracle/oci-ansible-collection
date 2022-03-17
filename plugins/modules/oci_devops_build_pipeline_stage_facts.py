@@ -102,113 +102,6 @@ build_pipeline_stages:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - Unique identifier that is immutable on creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Stage display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - Optional description about the build stage.
-            returned: on success
-            type: str
-            sample: description_example
-        project_id:
-            description:
-                - The OCID of the DevOps project.
-            returned: on success
-            type: str
-            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-        build_pipeline_id:
-            description:
-                - The OCID of the build pipeline.
-            returned: on success
-            type: str
-            sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The OCID of the compartment where the pipeline is created.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        build_pipeline_stage_type:
-            description:
-                - "Defines the stage type, which is one of the following: Build, Deliver Artifacts, Wait, and Trigger Deployment."
-            returned: on success
-            type: str
-            sample: WAIT
-        time_created:
-            description:
-                - The time the stage was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the stage was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current state of the stage.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
-        build_pipeline_stage_predecessor_collection:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                items:
-                    description:
-                        - A list of build pipeline stage predecessors for a stage.
-                    returned: on success
-                    type: complex
-                    contains:
-                        id:
-                            description:
-                                - The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's ID.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        system_tags:
-            description:
-                - "Usage of system tag keys. These predefined keys are scoped to namespaces. See L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\":
-                  \\"true\\"}}`"
-            returned: on success
-            type: dict
-            sample: {}
         image:
             description:
                 - Image name for the build environment.
@@ -244,6 +137,12 @@ build_pipeline_stages:
                     returned: on success
                     type: complex
                     contains:
+                        repository_id:
+                            description:
+                                - The DevOps code repository ID.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                         name:
                             description:
                                 - Name of the build source. This must be unique within a build source collection. The name can be used by customers to locate
@@ -269,12 +168,6 @@ build_pipeline_stages:
                             returned: on success
                             type: str
                             sample: branch_example
-                        repository_id:
-                            description:
-                                - The DevOps code repository ID.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                         connection_id:
                             description:
                                 - Connection identifier pertinent to GitHub source provider.
@@ -349,36 +242,124 @@ build_pipeline_stages:
                     returned: on success
                     type: str
                     sample: wait_duration_example
+        id:
+            description:
+                - Unique identifier that is immutable on creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Stage display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        project_id:
+            description:
+                - The OCID of the DevOps project.
+            returned: on success
+            type: str
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        build_pipeline_id:
+            description:
+                - The OCID of the build pipeline.
+            returned: on success
+            type: str
+            sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The OCID of the compartment where the pipeline is created.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        build_pipeline_stage_type:
+            description:
+                - "Defines the stage type, which is one of the following: Build, Deliver Artifacts, Wait, and Trigger Deployment."
+            returned: on success
+            type: str
+            sample: WAIT
+        time_created:
+            description:
+                - The time the stage was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the stage was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the stage.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        description:
+            description:
+                - Optional description about the build stage.
+            returned: on success
+            type: str
+            sample: description_example
+        build_pipeline_stage_predecessor_collection:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - A list of build pipeline stage predecessors for a stage.
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's ID.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces. See L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\":
+                  \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
-        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
-        "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "build_pipeline_stage_type": "WAIT",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "build_pipeline_stage_predecessor_collection": {
-            "items": [{
-                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-            }]
-        },
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
         "image": "OL7_X86_64_STANDARD_10",
         "build_spec_file": "build_spec_file_example",
         "stage_execution_timeout_in_seconds": 56,
         "build_source_collection": {
             "items": [{
+                "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
                 "name": "name_example",
                 "connection_type": "GITHUB",
                 "repository_url": "repository_url_example",
                 "branch": "branch_example",
-                "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
                 "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
             }]
         },
@@ -394,7 +375,26 @@ build_pipeline_stages:
         "wait_criteria": {
             "wait_type": "ABSOLUTE_WAIT",
             "wait_duration": "wait_duration_example"
-        }
+        },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+        "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "build_pipeline_stage_type": "WAIT",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
+        "description": "description_example",
+        "build_pipeline_stage_predecessor_collection": {
+            "items": [{
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
+        },
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }]
 """
 

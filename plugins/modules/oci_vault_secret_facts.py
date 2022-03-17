@@ -106,12 +106,6 @@ secrets:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The OCID of the compartment where you want to create the secret.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_version_number:
             description:
                 - The version number of the secret version that's currently in use.
@@ -119,52 +113,6 @@ secrets:
             returned: on success
             type: int
             sample: 56
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        description:
-            description:
-                - A brief description of the secret. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: description_example
-        freeform_tags:
-            description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        id:
-            description:
-                - The OCID of the secret.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        key_id:
-            description:
-                - The OCID of the master encryption key that is used to encrypt the secret.
-            returned: on success
-            type: str
-            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_details:
-            description:
-                - Additional information about the current lifecycle state of the secret.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
-        lifecycle_state:
-            description:
-                - The current lifecycle state of the secret.
-            returned: on success
-            type: str
-            sample: CREATING
         metadata:
             description:
                 - Additional metadata that you can use to provide context about how to use the secret or during rotation or
@@ -174,12 +122,6 @@ secrets:
             returned: on success
             type: dict
             sample: {}
-        secret_name:
-            description:
-                - The user-friendly name of the secret. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: secret_name_example
         secret_rules:
             description:
                 - A list of rules that control how the secret is used and managed.
@@ -187,12 +129,6 @@ secrets:
             returned: on success
             type: complex
             contains:
-                rule_type:
-                    description:
-                        - The type of rule, which either controls when the secret contents expire or whether they can be reused.
-                    returned: on success
-                    type: str
-                    sample: SECRET_EXPIRY_RULE
                 secret_version_expiry_interval:
                     description:
                         - A property indicating how long the secret contents will be considered valid, expressed in
@@ -223,12 +159,76 @@ secrets:
                     returned: on success
                     type: bool
                     sample: true
+                rule_type:
+                    description:
+                        - The type of rule, which either controls when the secret contents expire or whether they can be reused.
+                    returned: on success
+                    type: str
+                    sample: SECRET_EXPIRY_RULE
                 is_enforced_on_deleted_secret_versions:
                     description:
                         - A property indicating whether the rule is applied even if the secret version with the content you are trying to reuse was deleted.
                     returned: on success
                     type: bool
                     sample: true
+        compartment_id:
+            description:
+                - The OCID of the compartment where you want to create the secret.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        description:
+            description:
+                - A brief description of the secret. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: description_example
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        key_id:
+            description:
+                - The OCID of the master encryption key that is used to encrypt the secret.
+            returned: on success
+            type: str
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The OCID of the secret.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_details:
+            description:
+                - Additional information about the current lifecycle state of the secret.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        lifecycle_state:
+            description:
+                - The current lifecycle state of the secret.
+            returned: on success
+            type: str
+            sample: CREATING
+        secret_name:
+            description:
+                - The user-friendly name of the secret. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: secret_name_example
         time_created:
             description:
                 - "A property indicating when the secret was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -258,24 +258,24 @@ secrets:
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "current_version_number": 56,
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "description": "description_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_details": "lifecycle_details_example",
-        "lifecycle_state": "CREATING",
         "metadata": {},
-        "secret_name": "secret_name_example",
         "secret_rules": [{
-            "rule_type": "SECRET_EXPIRY_RULE",
             "secret_version_expiry_interval": "secret_version_expiry_interval_example",
             "time_of_absolute_expiry": "2013-10-20T19:20:30+01:00",
             "is_secret_content_retrieval_blocked_on_expiry": true,
+            "rule_type": "SECRET_EXPIRY_RULE",
             "is_enforced_on_deleted_secret_versions": true
         }],
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "description": "description_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_details": "lifecycle_details_example",
+        "lifecycle_state": "CREATING",
+        "secret_name": "secret_name_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_of_current_version_expiry": "2013-10-20T19:20:30+01:00",
         "time_of_deletion": "2013-10-20T19:20:30+01:00",

@@ -100,36 +100,6 @@ software_sources:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - OCID for the Software Source
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - OCID for the Compartment
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - User friendly name for the software source
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - Information specified by the user about the software source
-            returned: on success
-            type: str
-            sample: description_example
-        repo_type:
-            description:
-                - Type of the Software Source
-            returned: on success
-            type: str
-            sample: repo_type_example
         arch_type:
             description:
                 - The architecture type supported by the Software Source
@@ -144,18 +114,6 @@ software_sources:
             returned: on success
             type: str
             sample: url_example
-        parent_id:
-            description:
-                - OCID for the parent software source, if there is one
-            returned: on success
-            type: str
-            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
-        parent_name:
-            description:
-                - Display name the parent software source, if there is one
-            returned: on success
-            type: str
-            sample: parent_name_example
         checksum_type:
             description:
                 - The yum repository checksum type used by this software source
@@ -205,24 +163,6 @@ software_sources:
             returned: on success
             type: str
             sample: gpg_key_fingerprint_example
-        status:
-            description:
-                - status of the software source.
-            returned: on success
-            type: str
-            sample: NORMAL
-        lifecycle_state:
-            description:
-                - The current state of the Software Source.
-            returned: on success
-            type: str
-            sample: CREATING
-        packages:
-            description:
-                - Number of packages
-            returned: on success
-            type: int
-            sample: 56
         associated_managed_instances:
             description:
                 - list of the Managed Instances associated with this Software Sources
@@ -242,6 +182,66 @@ software_sources:
                     returned: on success
                     type: str
                     sample: display_name_example
+        id:
+            description:
+                - OCID for the Software Source
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - Information specified by the user about the software source
+            returned: on success
+            type: str
+            sample: description_example
+        compartment_id:
+            description:
+                - OCID for the Compartment
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - User friendly name for the software source
+            returned: on success
+            type: str
+            sample: display_name_example
+        repo_type:
+            description:
+                - Type of the Software Source
+            returned: on success
+            type: str
+            sample: repo_type_example
+        status:
+            description:
+                - status of the software source.
+            returned: on success
+            type: str
+            sample: NORMAL
+        packages:
+            description:
+                - Number of packages
+            returned: on success
+            type: int
+            sample: 56
+        lifecycle_state:
+            description:
+                - The current state of the Software Source.
+            returned: on success
+            type: str
+            sample: CREATING
+        parent_id:
+            description:
+                - OCID for the parent software source, if there is one
+            returned: on success
+            type: str
+            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
+        parent_name:
+            description:
+                - Display name the parent software source, if there is one
+            returned: on success
+            type: str
+            sample: parent_name_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -257,15 +257,8 @@ software_sources:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
-        "repo_type": "repo_type_example",
         "arch_type": "IA_32",
         "url": "url_example",
-        "parent_id": "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx",
-        "parent_name": "parent_name_example",
         "checksum_type": "SHA1",
         "maintainer_name": "maintainer_name_example",
         "maintainer_email": "maintainer_email_example",
@@ -273,13 +266,20 @@ software_sources:
         "gpg_key_url": "gpg_key_url_example",
         "gpg_key_id": "ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx",
         "gpg_key_fingerprint": "gpg_key_fingerprint_example",
-        "status": "NORMAL",
-        "lifecycle_state": "CREATING",
-        "packages": 56,
         "associated_managed_instances": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example"
         }],
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "repo_type": "repo_type_example",
+        "status": "NORMAL",
+        "packages": 56,
+        "lifecycle_state": "CREATING",
+        "parent_id": "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx",
+        "parent_name": "parent_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

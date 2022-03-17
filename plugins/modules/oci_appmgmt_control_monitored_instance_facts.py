@@ -87,6 +87,28 @@ monitored_instances:
     returned: on success
     type: complex
     contains:
+        time_created:
+            description:
+                - The time the MonitoredInstance was created. An RFC3339 formatted datetime string
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the MonitoredInstance was updated. An RFC3339 formatted datetime string
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         instance_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of monitored instance.
@@ -114,50 +136,28 @@ monitored_instances:
             returned: on success
             type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - The time the MonitoredInstance was created. An RFC3339 formatted datetime string
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the MonitoredInstance was updated. An RFC3339 formatted datetime string
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        monitoring_state:
-            description:
-                - Monitoring status. Can be either enabled or disabled.
-            returned: on success
-            type: str
-            sample: ENABLED
         lifecycle_state:
             description:
                 - The current state of the monitored instance.
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_details:
+        monitoring_state:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-                - Returned for get operation
+                - Monitoring status. Can be either enabled or disabled.
             returned: on success
             type: str
-            sample: lifecycle_details_example
+            sample: ENABLED
     sample: [{
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_details": "lifecycle_details_example",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "monitoring_state": "ENABLED",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example"
+        "monitoring_state": "ENABLED"
     }]
 """
 

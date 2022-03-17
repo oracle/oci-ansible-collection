@@ -97,24 +97,6 @@ transcription_jobs:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - Unique identifier that is immutable on creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Job name.
-            returned: on success
-            type: str
-            sample: display_name_example
-        compartment_id:
-            description:
-                - The OCID of the compartment that contains the transcriptionJob.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Job description.
@@ -172,52 +154,10 @@ transcription_jobs:
                             returned: on success
                             type: str
                             sample: MASK
-        time_accepted:
-            description:
-                - Job accepted time.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_started:
-            description:
-                - Job started time.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_finished:
-            description:
-                - Job finished time.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        total_tasks:
-            description:
-                - Total tasks in a job.
-            returned: on success
-            type: int
-            sample: 56
-        outstanding_tasks:
-            description:
-                - Total outstanding tasks in a job.
-            returned: on success
-            type: int
-            sample: 56
-        successful_tasks:
-            description:
-                - Total successful tasks in a job.
-            returned: on success
-            type: int
-            sample: 56
         ttl_in_days:
             description:
                 - Time to live duration in days for Job. Job will be available till max 90 days.
                 - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
-        percent_complete:
-            description:
-                - How much progress the operation has made, vs the total amount of work that must be performed.
             returned: on success
             type: int
             sample: 56
@@ -228,15 +168,6 @@ transcription_jobs:
             returned: on success
             type: complex
             contains:
-                location_type:
-                    description:
-                        - "The type of input location.
-                          Allowed values are:
-                          - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.
-                          - `OBJECT_LIST_FILE_INPUT_LOCATION`: An object in Object Storage that contains a list of input files."
-                    returned: on success
-                    type: str
-                    sample: OBJECT_LIST_INLINE_INPUT_LOCATION
                 object_location:
                     description:
                         - ""
@@ -261,6 +192,15 @@ transcription_jobs:
                             returned: on success
                             type: list
                             sample: []
+                location_type:
+                    description:
+                        - "The type of input location.
+                          Allowed values are:
+                          - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.
+                          - `OBJECT_LIST_FILE_INPUT_LOCATION`: An object in Object Storage that contains a list of input files."
+                    returned: on success
+                    type: str
+                    sample: OBJECT_LIST_INLINE_INPUT_LOCATION
                 object_locations:
                     description:
                         - A list of ObjectLocations.
@@ -310,12 +250,72 @@ transcription_jobs:
                     returned: on success
                     type: str
                     sample: prefix_example
+        id:
+            description:
+                - Unique identifier that is immutable on creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Job name.
+            returned: on success
+            type: str
+            sample: display_name_example
+        compartment_id:
+            description:
+                - The OCID of the compartment that contains the transcriptionJob.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - OCID of the user who created the transcriptionJob.
             returned: on success
             type: str
             sample: created_by_example
+        percent_complete:
+            description:
+                - How much progress the operation has made, vs the total amount of work that must be performed.
+            returned: on success
+            type: int
+            sample: 56
+        time_accepted:
+            description:
+                - Job accepted time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_started:
+            description:
+                - Job started time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_finished:
+            description:
+                - Job finished time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        total_tasks:
+            description:
+                - Total tasks in a job.
+            returned: on success
+            type: int
+            sample: 56
+        outstanding_tasks:
+            description:
+                - Total outstanding tasks in a job.
+            returned: on success
+            type: int
+            sample: 56
+        successful_tasks:
+            description:
+                - Total successful tasks in a job.
+            returned: on success
+            type: int
+            sample: 56
         lifecycle_state:
             description:
                 - The current state of the Job.
@@ -351,9 +351,6 @@ transcription_jobs:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "model_details": {
             "domain": "GENERIC",
@@ -365,21 +362,14 @@ transcription_jobs:
                 "mode": "MASK"
             }]
         },
-        "time_accepted": "2013-10-20T19:20:30+01:00",
-        "time_started": "2013-10-20T19:20:30+01:00",
-        "time_finished": "2013-10-20T19:20:30+01:00",
-        "total_tasks": 56,
-        "outstanding_tasks": 56,
-        "successful_tasks": 56,
         "ttl_in_days": 56,
-        "percent_complete": 56,
         "input_location": {
-            "location_type": "OBJECT_LIST_INLINE_INPUT_LOCATION",
             "object_location": {
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example",
                 "object_names": []
             },
+            "location_type": "OBJECT_LIST_INLINE_INPUT_LOCATION",
             "object_locations": [{
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example",
@@ -391,7 +381,17 @@ transcription_jobs:
             "bucket_name": "bucket_name_example",
             "prefix": "prefix_example"
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
+        "percent_complete": 56,
+        "time_accepted": "2013-10-20T19:20:30+01:00",
+        "time_started": "2013-10-20T19:20:30+01:00",
+        "time_finished": "2013-10-20T19:20:30+01:00",
+        "total_tasks": 56,
+        "outstanding_tasks": 56,
+        "successful_tasks": 56,
         "lifecycle_state": "ACCEPTED",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},

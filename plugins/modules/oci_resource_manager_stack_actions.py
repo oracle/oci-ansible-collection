@@ -134,20 +134,6 @@ stack:
             returned: on success
             type: complex
             contains:
-                config_source_type:
-                    description:
-                        - The type of configuration source to use for the Terraform configuration.
-                    returned: on success
-                    type: str
-                    sample: ZIP_UPLOAD
-                working_directory:
-                    description:
-                        - File path to the directory to use for running Terraform.
-                          If not specified, the root directory is used.
-                          This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
-                    returned: on success
-                    type: str
-                    sample: working_directory_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
@@ -156,13 +142,6 @@ stack:
                     returned: on success
                     type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                region:
-                    description:
-                        - The region to use for creating the stack. The new stack will include definitions for
-                          supported resource types in this region.
-                    returned: on success
-                    type: str
-                    sample: us-phoenix-1
                 services_to_discover:
                     description:
                         - "Filter for L(services to use with Resource
@@ -192,6 +171,13 @@ stack:
                     returned: on success
                     type: str
                     sample: branch_name_example
+                region:
+                    description:
+                        - The region to use for creating the stack. The new stack will include definitions for
+                          supported resource types in this region.
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
                 namespace:
                     description:
                         - The Object Storage namespace that contains the bucket.
@@ -205,6 +191,20 @@ stack:
                     returned: on success
                     type: str
                     sample: bucket_name_example
+                config_source_type:
+                    description:
+                        - The type of configuration source to use for the Terraform configuration.
+                    returned: on success
+                    type: str
+                    sample: ZIP_UPLOAD
+                working_directory:
+                    description:
+                        - File path to the directory to use for running Terraform.
+                          If not specified, the root directory is used.
+                          This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                    returned: on success
+                    type: str
+                    sample: working_directory_example
         variables:
             description:
                 - "Terraform variables associated with this resource.
@@ -259,16 +259,16 @@ stack:
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "config_source": {
-            "config_source_type": "ZIP_UPLOAD",
-            "working_directory": "working_directory_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "us-phoenix-1",
             "services_to_discover": [],
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
+            "region": "us-phoenix-1",
             "namespace": "namespace_example",
-            "bucket_name": "bucket_name_example"
+            "bucket_name": "bucket_name_example",
+            "config_source_type": "ZIP_UPLOAD",
+            "working_directory": "working_directory_example"
         },
         "variables": {},
         "terraform_version": "terraform_version_example",

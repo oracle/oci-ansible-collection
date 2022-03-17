@@ -85,12 +85,38 @@ certificate_authority_versions:
     returned: on success
     type: complex
     contains:
+        subject_alternative_names:
+            description:
+                - A list of subject alternative names. A subject alternative name specifies the domain names, including subdomains, and IP addresses covered by
+                  the certificates issued by this CA.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The subject alternative name type. Currently only DNS domain or host names and IP addresses are supported.
+                    returned: on success
+                    type: str
+                    sample: DNS
+                value:
+                    description:
+                        - The subject alternative name.
+                    returned: on success
+                    type: str
+                    sample: value_example
         certificate_authority_id:
             description:
                 - The OCID of the CA.
             returned: on success
             type: str
             sample: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+        issuer_ca_version_number:
+            description:
+                - The version number of the issuing CA.
+            returned: on success
+            type: int
+            sample: 56
         serial_number:
             description:
                 - "A unique certificate identifier used in certificate revocation tracking, formatted as octets.
@@ -112,38 +138,12 @@ certificate_authority_versions:
             returned: on success
             type: int
             sample: 56
-        issuer_ca_version_number:
-            description:
-                - The version number of the issuing CA.
-            returned: on success
-            type: int
-            sample: 56
         version_name:
             description:
                 - The name of the CA version. When the value is not null, a name is unique across versions for a given CA.
             returned: on success
             type: str
             sample: version_name_example
-        subject_alternative_names:
-            description:
-                - A list of subject alternative names. A subject alternative name specifies the domain names, including subdomains, and IP addresses covered by
-                  the certificates issued by this CA.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                type:
-                    description:
-                        - The subject alternative name type. Currently only DNS domain or host names and IP addresses are supported.
-                    returned: on success
-                    type: str
-                    sample: DNS
-                value:
-                    description:
-                        - The subject alternative name.
-                    returned: on success
-                    type: str
-                    sample: value_example
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the CA version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -199,16 +199,16 @@ certificate_authority_versions:
                     type: str
                     sample: UNSPECIFIED
     sample: [{
-        "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
-        "serial_number": "serial_number_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "version_number": 56,
-        "issuer_ca_version_number": 56,
-        "version_name": "version_name_example",
         "subject_alternative_names": [{
             "type": "DNS",
             "value": "value_example"
         }],
+        "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
+        "issuer_ca_version_number": 56,
+        "serial_number": "serial_number_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "version_number": 56,
+        "version_name": "version_name_example",
         "time_of_deletion": "2013-10-20T19:20:30+01:00",
         "validity": {
             "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",

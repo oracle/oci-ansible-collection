@@ -562,8 +562,8 @@ class CrossConnectHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
-            "far_cross_connect_or_cross_connect_group_id",
             "near_cross_connect_or_cross_connect_group_id",
+            "far_cross_connect_or_cross_connect_group_id",
         ]
 
     def create_resource(self):

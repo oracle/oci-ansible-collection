@@ -86,6 +86,41 @@ vaults:
     returned: on success
     type: complex
     contains:
+        time_of_deletion:
+            description:
+                - "An optional property to indicate when to delete the vault, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                  Example: `2018-04-03T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        wrappingkey_id:
+            description:
+                - The OCID of the vault's wrapping key.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_details:
+            description:
+                - The value to assign to the replica_details property of this Vault.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a vault operation
+                    returned: on success
+                    type: str
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - The value to assign to the is_primary property of this Vault.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         compartment_id:
             description:
                 - The OCID of the compartment that contains this vault.
@@ -151,14 +186,6 @@ vaults:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_of_deletion:
-            description:
-                - "An optional property to indicate when to delete the vault, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                  Example: `2018-04-03T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         vault_type:
             description:
                 - The type of vault. Each type of vault stores the key with different
@@ -166,34 +193,13 @@ vaults:
             returned: on success
             type: str
             sample: VIRTUAL_PRIVATE
-        wrappingkey_id:
-            description:
-                - The OCID of the vault's wrapping key.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
-        replica_details:
-            description:
-                - The value to assign to the replica_details property of this Vault.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                replication_id:
-                    description:
-                        - ReplicationId associated with a vault operation
-                    returned: on success
-                    type: str
-                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
-        is_primary:
-            description:
-                - The value to assign to the is_primary property of this Vault.
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
     sample: [{
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
+        "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "crypto_endpoint": "crypto_endpoint_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -203,13 +209,7 @@ vaults:
         "lifecycle_state": "CREATING",
         "management_endpoint": "management_endpoint_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_of_deletion": "2013-10-20T19:20:30+01:00",
-        "vault_type": "VIRTUAL_PRIVATE",
-        "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx",
-        "replica_details": {
-            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
-        },
-        "is_primary": true
+        "vault_type": "VIRTUAL_PRIVATE"
     }]
 """
 

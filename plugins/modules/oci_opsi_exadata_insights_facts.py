@@ -122,49 +122,6 @@ exadata_insights:
     returned: on success
     type: complex
     contains:
-        entity_source:
-            description:
-                - Source of the Exadata system.
-            returned: on success
-            type: str
-            sample: EM_MANAGED_EXTERNAL_EXADATA
-        id:
-            description:
-                - Exadata insight identifier
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - Compartment identifier of the Exadata insight resource
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        exadata_name:
-            description:
-                - The Exadata system name. If the Exadata systems managed by Enterprise Manager, the name is unique amongst the Exadata systems managed by the
-                  same Enterprise Manager.
-            returned: on success
-            type: str
-            sample: exadata_name_example
-        exadata_display_name:
-            description:
-                - The user-friendly name for the Exadata system. The name does not have to be unique.
-            returned: on success
-            type: str
-            sample: exadata_display_name_example
-        exadata_type:
-            description:
-                - Operations Insights internal representation of the the Exadata system type.
-            returned: on success
-            type: str
-            sample: DBMACHINE
-        exadata_rack_type:
-            description:
-                - Exadata rack type.
-            returned: on success
-            type: str
-            sample: FULL
         is_virtualized_exadata:
             description:
                 - true if virtualization is used in the Exadata system
@@ -172,58 +129,6 @@ exadata_insights:
             returned: on success
             type: bool
             sample: true
-        status:
-            description:
-                - Indicates the status of an Exadata insight in Operations Insights
-            returned: on success
-            type: str
-            sample: DISABLED
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        system_tags:
-            description:
-                - "System tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-            returned: on success
-            type: dict
-            sample: {}
-        time_created:
-            description:
-                - The time the the Exadata insight was first enabled. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the Exadata insight was updated. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current state of the Exadata insight.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
@@ -274,7 +179,110 @@ exadata_insights:
             returned: on success
             type: bool
             sample: true
+        entity_source:
+            description:
+                - Source of the Exadata system.
+            returned: on success
+            type: str
+            sample: EM_MANAGED_EXTERNAL_EXADATA
+        id:
+            description:
+                - Exadata insight identifier
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - Compartment identifier of the Exadata insight resource
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_name:
+            description:
+                - The Exadata system name. If the Exadata systems managed by Enterprise Manager, the name is unique amongst the Exadata systems managed by the
+                  same Enterprise Manager.
+            returned: on success
+            type: str
+            sample: exadata_name_example
+        exadata_display_name:
+            description:
+                - The user-friendly name for the Exadata system. The name does not have to be unique.
+            returned: on success
+            type: str
+            sample: exadata_display_name_example
+        exadata_type:
+            description:
+                - Operations Insights internal representation of the the Exadata system type.
+            returned: on success
+            type: str
+            sample: DBMACHINE
+        exadata_rack_type:
+            description:
+                - Exadata rack type.
+            returned: on success
+            type: str
+            sample: FULL
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
+        status:
+            description:
+                - Indicates the status of an Exadata insight in Operations Insights
+            returned: on success
+            type: str
+            sample: DISABLED
+        time_created:
+            description:
+                - The time the the Exadata insight was first enabled. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the Exadata insight was updated. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the Exadata insight.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
     sample: [{
+        "is_virtualized_exadata": true,
+        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
+        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
+        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
+        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
+        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
+        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_auto_sync_enabled": true,
         "entity_source": "EM_MANAGED_EXTERNAL_EXADATA",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -282,22 +290,14 @@ exadata_insights:
         "exadata_display_name": "exadata_display_name_example",
         "exadata_type": "DBMACHINE",
         "exadata_rack_type": "FULL",
-        "is_virtualized_exadata": true,
-        "status": "DISABLED",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
+        "status": "DISABLED",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
-        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
-        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
-        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
-        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
-        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_auto_sync_enabled": true
+        "lifecycle_details": "lifecycle_details_example"
     }]
 """
 

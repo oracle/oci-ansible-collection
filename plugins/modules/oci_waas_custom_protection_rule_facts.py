@@ -115,24 +115,6 @@ custom_protection_rules:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule's compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The user-friendly name of the custom protection rule.
-            returned: on success
-            type: str
-            sample: display_name_example
         description:
             description:
                 - The description of the custom protection rule.
@@ -140,12 +122,6 @@ custom_protection_rules:
             returned: on success
             type: str
             sample: description_example
-        mod_security_rule_ids:
-            description:
-                - The auto-generated ID for the custom protection rule. These IDs are referenced in logs.
-            returned: on success
-            type: list
-            sample: []
         template:
             description:
                 - The template text of the custom protection rule. All custom protection rules are expressed in ModSecurity Rule Language.
@@ -183,6 +159,30 @@ custom_protection_rules:
             returned: on success
             type: str
             sample: template_example
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule's compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The user-friendly name of the custom protection rule.
+            returned: on success
+            type: str
+            sample: display_name_example
+        mod_security_rule_ids:
+            description:
+                - The auto-generated ID for the custom protection rule. These IDs are referenced in logs.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The current lifecycle state of the custom protection rule.
@@ -212,12 +212,12 @@ custom_protection_rules:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "description": "description_example",
+        "template": "template_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "description": "description_example",
         "mod_security_rule_ids": [],
-        "template": "template_example",
         "lifecycle_state": "CREATING",
         "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},

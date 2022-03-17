@@ -93,6 +93,55 @@ compute_global_image_capability_schema_versions:
     returned: on success
     type: complex
     contains:
+        schema_data:
+            description:
+                - The map of each capability name to its ImageCapabilityDescriptor.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                boolean_default_value:
+                    description:
+                        - the default value
+                    returned: on success
+                    type: bool
+                    sample: true
+                enum_integer_values:
+                    description:
+                        - the list of values for the enum
+                    returned: on success
+                    type: list
+                    sample: []
+                enum_integer_default_value:
+                    description:
+                        - the default value
+                    returned: on success
+                    type: int
+                    sample: 56
+                descriptor_type:
+                    description:
+                        - The image capability schema descriptor type for the capability
+                    returned: on success
+                    type: str
+                    sample: boolean
+                source:
+                    description:
+                        - ""
+                    returned: on success
+                    type: str
+                    sample: GLOBAL
+                enum_string_values:
+                    description:
+                        - the list of values for the enum
+                    returned: on success
+                    type: list
+                    sample: []
+                enum_string_default_value:
+                    description:
+                        - the default value
+                    returned: on success
+                    type: str
+                    sample: default_value_example
         name:
             description:
                 - The name of the compute global image capability schema version
@@ -112,55 +161,6 @@ compute_global_image_capability_schema_versions:
             returned: on success
             type: str
             sample: display_name_example
-        schema_data:
-            description:
-                - The map of each capability name to its ImageCapabilityDescriptor.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                descriptor_type:
-                    description:
-                        - The image capability schema descriptor type for the capability
-                    returned: on success
-                    type: str
-                    sample: boolean
-                source:
-                    description:
-                        - ""
-                    returned: on success
-                    type: str
-                    sample: GLOBAL
-                boolean_default_value:
-                    description:
-                        - the default value
-                    returned: on success
-                    type: bool
-                    sample: true
-                enum_integer_values:
-                    description:
-                        - the list of values for the enum
-                    returned: on success
-                    type: list
-                    sample: []
-                enum_integer_default_value:
-                    description:
-                        - the default value
-                    returned: on success
-                    type: int
-                    sample: 56
-                enum_string_values:
-                    description:
-                        - the list of values for the enum
-                    returned: on success
-                    type: list
-                    sample: []
-                enum_string_default_value:
-                    description:
-                        - the default value
-                    returned: on success
-                    type: str
-                    sample: default_value_example
         time_created:
             description:
                 - The date and time the compute global image capability schema version was created, in the format defined by
@@ -170,18 +170,18 @@ compute_global_image_capability_schema_versions:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "name": "name_example",
-        "compute_global_image_capability_schema_id": "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "schema_data": {
-            "descriptor_type": "boolean",
-            "source": "GLOBAL",
             "boolean_default_value": true,
             "enum_integer_values": [],
             "enum_integer_default_value": 56,
+            "descriptor_type": "boolean",
+            "source": "GLOBAL",
             "enum_string_values": [],
             "enum_string_default_value": "default_value_example"
         },
+        "name": "name_example",
+        "compute_global_image_capability_schema_id": "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
         "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """

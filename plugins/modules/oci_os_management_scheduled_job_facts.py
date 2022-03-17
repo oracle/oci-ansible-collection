@@ -134,24 +134,6 @@ scheduled_jobs:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - OCID for the Scheduled Job
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - OCID for the Compartment
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Scheduled Job name
-            returned: on success
-            type: str
-            sample: display_name_example
         description:
             description:
                 - Details describing the Scheduled Job.
@@ -159,6 +141,85 @@ scheduled_jobs:
             returned: on success
             type: str
             sample: description_example
+        interval_type:
+            description:
+                - the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: HOUR
+        interval_value:
+            description:
+                - the value for the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: interval_value_example
+        update_type:
+            description:
+                - Type of the update (only if operation type is UPDATEALL)
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: SECURITY
+        package_names:
+            description:
+                - the names of the updates (only if operation type is INSTALL/UPDATE/REMOVE)
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - package identifier
+                    returned: on success
+                    type: str
+                    sample: name_example
+        work_requests:
+            description:
+                - list of Work Requests associated with this Scheduled Job
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - unique identifier that is immutable on creation
+                    returned: on success
+                    type: str
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                display_name:
+                    description:
+                        - User friendly name
+                    returned: on success
+                    type: str
+                    sample: display_name_example
+        update_names:
+            description:
+                - The unique names of the Windows Updates (only if operation type is INSTALL).
+                  This is only applicable when the osFamily is for Windows managed instances.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
+        id:
+            description:
+                - OCID for the Scheduled Job
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Scheduled Job name
+            returned: on success
+            type: str
+            sample: display_name_example
+        compartment_id:
+            description:
+                - OCID for the Compartment
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         schedule_type:
             description:
                 - the type of scheduling this Scheduled Job follows
@@ -177,20 +238,6 @@ scheduled_jobs:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        interval_type:
-            description:
-                - the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: HOUR
-        interval_value:
-            description:
-                - the value for the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: interval_value_example
         managed_instances:
             description:
                 - the list of managed instances this scheduled job operates on (mutually exclusive with managedInstanceGroups)
@@ -233,45 +280,6 @@ scheduled_jobs:
             returned: on success
             type: str
             sample: INSTALL
-        update_type:
-            description:
-                - Type of the update (only if operation type is UPDATEALL)
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: SECURITY
-        package_names:
-            description:
-                - the names of the updates (only if operation type is INSTALL/UPDATE/REMOVE)
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - package identifier
-                    returned: on success
-                    type: str
-                    sample: name_example
-        work_requests:
-            description:
-                - list of Work Requests associated with this Scheduled Job
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - unique identifier that is immutable on creation
-                    returned: on success
-                    type: str
-                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                display_name:
-                    description:
-                        - User friendly name
-                    returned: on success
-                    type: str
-                    sample: display_name_example
         lifecycle_state:
             description:
                 - The current state of the Scheduled Job.
@@ -292,14 +300,6 @@ scheduled_jobs:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        update_names:
-            description:
-                - The unique names of the Windows Updates (only if operation type is INSTALL).
-                  This is only applicable when the osFamily is for Windows managed instances.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
         os_family:
             description:
                 - The Operating System type of the managed instance.
@@ -313,15 +313,24 @@ scheduled_jobs:
             type: bool
             sample: true
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "description": "description_example",
+        "interval_type": "HOUR",
+        "interval_value": "interval_value_example",
+        "update_type": "SECURITY",
+        "package_names": [{
+            "name": "name_example"
+        }],
+        "work_requests": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "display_name": "display_name_example"
+        }],
+        "update_names": [],
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "schedule_type": "ONETIME",
         "time_next_execution": "2013-10-20T19:20:30+01:00",
         "time_last_execution": "2013-10-20T19:20:30+01:00",
-        "interval_type": "HOUR",
-        "interval_value": "interval_value_example",
         "managed_instances": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example"
@@ -331,18 +340,9 @@ scheduled_jobs:
             "display_name": "display_name_example"
         }],
         "operation_type": "INSTALL",
-        "update_type": "SECURITY",
-        "package_names": [{
-            "name": "name_example"
-        }],
-        "work_requests": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example"
-        }],
         "lifecycle_state": "CREATING",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "update_names": [],
         "os_family": "LINUX",
         "is_restricted": true
     }]

@@ -97,6 +97,12 @@ repository_ref:
     returned: on success
     type: complex
     contains:
+        commit_id:
+            description:
+                - Commit ID pointed to by the new branch.
+            returned: on success
+            type: str
+            sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
         ref_name:
             description:
                 - Unique reference name inside a repository.
@@ -121,12 +127,6 @@ repository_ref:
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-        commit_id:
-            description:
-                - Commit ID pointed to by the new branch.
-            returned: on success
-            type: str
-            sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
         object_id:
             description:
                 - SHA-1 hash value of the object pointed to by the tag.
@@ -134,11 +134,11 @@ repository_ref:
             type: str
             sample: "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
+        "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
         "ref_name": "ref_name_example",
         "ref_type": "BRANCH",
         "full_ref_name": "full_ref_name_example",
         "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-        "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
         "object_id": "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

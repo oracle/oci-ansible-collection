@@ -192,12 +192,6 @@ managed_lists:
             returned: on success
             type: str
             sample: CIDR_BLOCK
-        list_items:
-            description:
-                - List of ManagedListItem
-            returned: on success
-            type: list
-            sample: []
         feed_provider:
             description:
                 - provider of the feed
@@ -210,6 +204,12 @@ managed_lists:
             returned: on success
             type: bool
             sample: true
+        list_items:
+            description:
+                - List of ManagedListItem
+            returned: on success
+            type: list
+            sample: []
         time_created:
             description:
                 - The date and time the managed list was created. Format defined by RFC3339.
@@ -266,9 +266,9 @@ managed_lists:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "source_managed_list_id": "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx",
         "list_type": "CIDR_BLOCK",
-        "list_items": [],
         "feed_provider": "CUSTOMER",
         "is_editable": true,
+        "list_items": [],
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

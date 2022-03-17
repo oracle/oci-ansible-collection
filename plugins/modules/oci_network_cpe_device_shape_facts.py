@@ -73,24 +73,6 @@ cpe_device_shapes:
             returned: on success
             type: str
             sample: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
-        cpe_device_info:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                vendor:
-                    description:
-                        - The vendor that makes the CPE device.
-                    returned: on success
-                    type: str
-                    sample: vendor_example
-                platform_software_version:
-                    description:
-                        - The platform or software version of the CPE device.
-                    returned: on success
-                    type: str
-                    sample: platform_software_version_example
         parameters:
             description:
                 - For certain CPE devices types, the customer can provide answers to
@@ -144,19 +126,37 @@ cpe_device_shapes:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        cpe_device_info:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                vendor:
+                    description:
+                        - The vendor that makes the CPE device.
+                    returned: on success
+                    type: str
+                    sample: vendor_example
+                platform_software_version:
+                    description:
+                        - The platform or software version of the CPE device.
+                    returned: on success
+                    type: str
+                    sample: platform_software_version_example
     sample: [{
         "cpe_device_shape_id": "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx",
-        "cpe_device_info": {
-            "vendor": "vendor_example",
-            "platform_software_version": "platform_software_version_example"
-        },
         "parameters": [{
             "key": "key_example",
             "display_name": "display_name_example",
             "explanation": "explanation_example"
         }],
         "template": "template_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "cpe_device_info": {
+            "vendor": "vendor_example",
+            "platform_software_version": "platform_software_version_example"
+        }
     }]
 """
 

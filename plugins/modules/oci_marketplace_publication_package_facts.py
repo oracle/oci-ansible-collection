@@ -87,59 +87,6 @@ publication_packages:
     returned: on success
     type: complex
     contains:
-        description:
-            description:
-                - A description of the package.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: description_example
-        listing_id:
-            description:
-                - The ID of the listing that the specified package belongs to.
-            returned: on success
-            type: str
-            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-        version:
-            description:
-                - The package version.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: version_example
-        package_type:
-            description:
-                - The specified package's type.
-            returned: on success
-            type: str
-            sample: ORCHESTRATION
-        resource_id:
-            description:
-                - The unique identifier for the package resource.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - The date and time the publication package was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                - "Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        operating_system:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name of the operating system.
-                    returned: on success
-                    type: str
-                    sample: name_example
         app_catalog_listing_id:
             description:
                 - The ID of the listing resource associated with this publication package. For more information, see
@@ -162,6 +109,33 @@ publication_packages:
             returned: on success
             type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - A description of the package.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: description_example
+        version:
+            description:
+                - The package version.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: version_example
+        operating_system:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the operating system.
+                    returned: on success
+                    type: str
+                    sample: name_example
         resource_link:
             description:
                 - A link to the stack resource.
@@ -212,6 +186,12 @@ publication_packages:
                     returned: on success
                     type: str
                     sample: hint_message_example
+        listing_id:
+            description:
+                - The ID of the listing that the specified package belongs to.
+            returned: on success
+            type: str
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         package_version:
             description:
                 - The version of the specified package.
@@ -219,19 +199,35 @@ publication_packages:
             returned: on success
             type: str
             sample: package_version_example
+        package_type:
+            description:
+                - The specified package's type.
+            returned: on success
+            type: str
+            sample: ORCHESTRATION
+        resource_id:
+            description:
+                - The unique identifier for the package resource.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        time_created:
+            description:
+                - The date and time the publication package was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                  timestamp format.
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "description": "description_example",
-        "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
-        "version": "version_example",
-        "package_type": "ORCHESTRATION",
-        "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "operating_system": {
-            "name": "name_example"
-        },
         "app_catalog_listing_id": "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx",
         "app_catalog_listing_resource_version": "app_catalog_listing_resource_version_example",
         "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "version": "version_example",
+        "operating_system": {
+            "name": "name_example"
+        },
         "resource_link": "resource_link_example",
         "variables": [{
             "name": "name_example",
@@ -241,7 +237,11 @@ publication_packages:
             "is_mandatory": true,
             "hint_message": "hint_message_example"
         }],
-        "package_version": "package_version_example"
+        "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
+        "package_version": "package_version_example",
+        "package_type": "ORCHESTRATION",
+        "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

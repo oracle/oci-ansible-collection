@@ -89,12 +89,6 @@ blockchain_platform_osns:
     returned: on success
     type: complex
     contains:
-        osn_key:
-            description:
-                - OSN identifier
-            returned: on success
-            type: str
-            sample: osn_key_example
         ad:
             description:
                 - Availability Domain of OSN
@@ -115,6 +109,12 @@ blockchain_platform_osns:
                     returned: on success
                     type: float
                     sample: 3.4
+        osn_key:
+            description:
+                - OSN identifier
+            returned: on success
+            type: str
+            sample: osn_key_example
         lifecycle_state:
             description:
                 - The current state of the OSN.
@@ -122,11 +122,11 @@ blockchain_platform_osns:
             type: str
             sample: ACTIVE
     sample: [{
-        "osn_key": "osn_key_example",
         "ad": "Uocm:PHX-AD-1",
         "ocpu_allocation_param": {
             "ocpu_allocation_number": 3.4
         },
+        "osn_key": "osn_key_example",
         "lifecycle_state": "ACTIVE"
     }]
 """

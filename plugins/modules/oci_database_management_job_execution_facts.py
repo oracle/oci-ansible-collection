@@ -115,6 +115,103 @@ job_executions:
     returned: on success
     type: complex
     contains:
+        job_run_id:
+            description:
+                - The identifier of the associated job run.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx"
+        error_message:
+            description:
+                - The error message that is returned if the job execution fails. Null is returned if the job is
+                  still running or if the job execution is successful.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: error_message_example
+        result_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of job execution result.
+                    returned: on success
+                    type: str
+                    sample: OBJECT_STORAGE
+                namespace_name:
+                    description:
+                        - The Object Storage namespace used for job execution result storage.
+                    returned: on success
+                    type: str
+                    sample: namespace_name_example
+                bucket_name:
+                    description:
+                        - The name of the bucket used for job execution result storage.
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+                object_name:
+                    description:
+                        - The name of the object containing the job execution result.
+                    returned: on success
+                    type: str
+                    sample: object_name_example
+                row_count:
+                    description:
+                        - The number of rows returned in the result. Only applicable for QUERY SqlType.
+                    returned: on success
+                    type: int
+                    sample: 56
+        user_name:
+            description:
+                - The database user name used to execute the SQL job.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: user_name_example
+        sql_text:
+            description:
+                - The SQL text executed as part of the job.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: sql_text_example
+        schedule_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                start_time:
+                    description:
+                        - "The start time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
+                    returned: on success
+                    type: str
+                    sample: start_time_example
+                end_time:
+                    description:
+                        - "The end time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
+                    returned: on success
+                    type: str
+                    sample: end_time_example
+                interval_type:
+                    description:
+                        - The interval type for a recurring scheduled job. For a non-recurring (one time) job, NEVER must be specified as the interval type.
+                    returned: on success
+                    type: str
+                    sample: DAILY
+                interval_value:
+                    description:
+                        - The value for the interval period for a recurring scheduled job.
+                    returned: on success
+                    type: str
+                    sample: interval_value_example
         id:
             description:
                 - The identifier of the job execution.
@@ -194,64 +291,12 @@ job_executions:
             returned: on success
             type: str
             sample: job_name_example
-        job_run_id:
-            description:
-                - The identifier of the associated job run.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - The status of the job execution.
             returned: on success
             type: str
             sample: SUCCEEDED
-        error_message:
-            description:
-                - The error message that is returned if the job execution fails. Null is returned if the job is
-                  still running or if the job execution is successful.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: error_message_example
-        result_details:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                type:
-                    description:
-                        - The type of job execution result.
-                    returned: on success
-                    type: str
-                    sample: OBJECT_STORAGE
-                namespace_name:
-                    description:
-                        - The Object Storage namespace used for job execution result storage.
-                    returned: on success
-                    type: str
-                    sample: namespace_name_example
-                bucket_name:
-                    description:
-                        - The name of the bucket used for job execution result storage.
-                    returned: on success
-                    type: str
-                    sample: bucket_name_example
-                object_name:
-                    description:
-                        - The name of the object containing the job execution result.
-                    returned: on success
-                    type: str
-                    sample: object_name_example
-                row_count:
-                    description:
-                        - The number of rows returned in the result. Only applicable for QUERY SqlType.
-                    returned: on success
-                    type: int
-                    sample: 56
         time_created:
             description:
                 - The date and time when the job execution was created.
@@ -264,52 +309,24 @@ job_executions:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        user_name:
-            description:
-                - The database user name used to execute the SQL job.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: user_name_example
-        sql_text:
-            description:
-                - The SQL text executed as part of the job.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: sql_text_example
-        schedule_details:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                start_time:
-                    description:
-                        - "The start time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
-                    returned: on success
-                    type: str
-                    sample: start_time_example
-                end_time:
-                    description:
-                        - "The end time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
-                    returned: on success
-                    type: str
-                    sample: end_time_example
-                interval_type:
-                    description:
-                        - The interval type for a recurring scheduled job. For a non-recurring (one time) job, NEVER must be specified as the interval type.
-                    returned: on success
-                    type: str
-                    sample: DAILY
-                interval_value:
-                    description:
-                        - The value for the interval period for a recurring scheduled job.
-                    returned: on success
-                    type: str
-                    sample: interval_value_example
     sample: [{
+        "job_run_id": "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx",
+        "error_message": "error_message_example",
+        "result_details": {
+            "type": "OBJECT_STORAGE",
+            "namespace_name": "namespace_name_example",
+            "bucket_name": "bucket_name_example",
+            "object_name": "object_name_example",
+            "row_count": 56
+        },
+        "user_name": "user_name_example",
+        "sql_text": "sql_text_example",
+        "schedule_details": {
+            "start_time": "start_time_example",
+            "end_time": "end_time_example",
+            "interval_type": "DAILY",
+            "interval_value": "interval_value_example"
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -323,26 +340,9 @@ job_executions:
         "workload_type": "OLTP",
         "job_id": "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx",
         "job_name": "job_name_example",
-        "job_run_id": "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx",
         "status": "SUCCEEDED",
-        "error_message": "error_message_example",
-        "result_details": {
-            "type": "OBJECT_STORAGE",
-            "namespace_name": "namespace_name_example",
-            "bucket_name": "bucket_name_example",
-            "object_name": "object_name_example",
-            "row_count": 56
-        },
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_completed": "2013-10-20T19:20:30+01:00",
-        "user_name": "user_name_example",
-        "sql_text": "sql_text_example",
-        "schedule_details": {
-            "start_time": "start_time_example",
-            "end_time": "end_time_example",
-            "interval_type": "DAILY",
-            "interval_value": "interval_value_example"
-        }
+        "time_completed": "2013-10-20T19:20:30+01:00"
     }]
 """
 

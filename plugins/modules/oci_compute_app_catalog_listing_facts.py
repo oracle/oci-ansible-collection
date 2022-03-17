@@ -96,19 +96,6 @@ app_catalog_listings:
             returned: on success
             type: str
             sample: description_example
-        listing_id:
-            description:
-                - The OCID of the listing.
-            returned: on success
-            type: str
-            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
         time_published:
             description:
                 - "Date and time the listing was published, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
@@ -124,27 +111,40 @@ app_catalog_listings:
             returned: on success
             type: str
             sample: publisher_logo_url_example
-        publisher_name:
+        listing_id:
             description:
-                - Name of the publisher who published this listing.
+                - The OCID of the listing.
             returned: on success
             type: str
-            sample: publisher_name_example
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
         summary:
             description:
                 - Summary of the listing.
             returned: on success
             type: str
             sample: summary_example
+        publisher_name:
+            description:
+                - Name of the publisher who published this listing.
+            returned: on success
+            type: str
+            sample: publisher_name_example
     sample: [{
         "contact_url": "contact_url_example",
         "description": "description_example",
-        "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "time_published": "2013-10-20T19:20:30+01:00",
         "publisher_logo_url": "publisher_logo_url_example",
-        "publisher_name": "publisher_name_example",
-        "summary": "summary_example"
+        "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "summary": "summary_example",
+        "publisher_name": "publisher_name_example"
     }]
 """
 

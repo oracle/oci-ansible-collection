@@ -102,6 +102,14 @@ email_domains:
     returned: on success
     type: complex
     contains:
+        is_spf:
+            description:
+                - Value of the SPF field. For more information about SPF, please see
+                  L(SPF Authentication,https://docs.cloud.oracle.com/iaas/Content/Email/Concepts/overview.htm#components).
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         name:
             description:
                 - The name of the email domain in the Internet Domain Name System (DNS).
@@ -134,14 +142,6 @@ email_domains:
             returned: on success
             type: str
             sample: "ocid1.activedkim.oc1..xxxxxxEXAMPLExxxxxx"
-        is_spf:
-            description:
-                - Value of the SPF field. For more information about SPF, please see
-                  L(SPF Authentication,https://docs.cloud.oracle.com/iaas/Content/Email/Concepts/overview.htm#components).
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
         description:
             description:
                 - The description of a email domain.
@@ -180,12 +180,12 @@ email_domains:
             type: dict
             sample: {}
     sample: [{
+        "is_spf": true,
         "name": "name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ACTIVE",
         "active_dkim_id": "ocid1.activedkim.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_spf": true,
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},

@@ -112,40 +112,6 @@ suppressions:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The OCID of the compartment to contain the suppression. Since
-                  suppressions are at the customer level, this must be the tenancy
-                  OCID.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        email_address:
-            description:
-                - Email address of the suppression.
-            returned: on success
-            type: str
-            sample: email_address_example
-        id:
-            description:
-                - The unique ID of the suppression.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        reason:
-            description:
-                - The reason that the email address was suppressed. For more information on the types of bounces, see L(Suppression List,https://docs.us-
-                  phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm#components).
-            returned: on success
-            type: str
-            sample: UNKNOWN
-        time_created:
-            description:
-                - "The date and time the suppression was added in \\"YYYY-MM-ddThh:mmZ\\"
-                  format with a Z offset, as defined by RFC 3339."
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         time_last_suppressed:
             description:
                 - "The last date and time the suppression prevented submission
@@ -183,16 +149,50 @@ suppressions:
             returned: on success
             type: str
             sample: error_source_example
+        compartment_id:
+            description:
+                - The OCID of the compartment to contain the suppression. Since
+                  suppressions are at the customer level, this must be the tenancy
+                  OCID.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        email_address:
+            description:
+                - Email address of the suppression.
+            returned: on success
+            type: str
+            sample: email_address_example
+        id:
+            description:
+                - The unique ID of the suppression.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        reason:
+            description:
+                - The reason that the email address was suppressed. For more information on the types of bounces, see L(Suppression List,https://docs.us-
+                  phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm#components).
+            returned: on success
+            type: str
+            sample: UNKNOWN
+        time_created:
+            description:
+                - "The date and time the suppression was added in \\"YYYY-MM-ddThh:mmZ\\"
+                  format with a Z offset, as defined by RFC 3339."
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "time_last_suppressed": "2013-10-20T19:20:30+01:00",
+        "message_id": "ocid1.message.oc1..xxxxxxEXAMPLExxxxxx",
+        "error_detail": "error_detail_example",
+        "error_source": "error_source_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "email_address": "email_address_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "reason": "UNKNOWN",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_last_suppressed": "2013-10-20T19:20:30+01:00",
-        "message_id": "ocid1.message.oc1..xxxxxxEXAMPLExxxxxx",
-        "error_detail": "error_detail_example",
-        "error_source": "error_source_example"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

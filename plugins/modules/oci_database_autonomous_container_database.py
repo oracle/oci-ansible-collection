@@ -998,14 +998,14 @@ class AutonomousContainerDatabaseHelperGen(OCIResourceHelperBase):
         return [
             "peer_autonomous_exadata_infrastructure_id",
             "peer_autonomous_container_database_display_name",
-            "protection_mode",
-            "is_automatic_failover_enabled",
             "peer_cloud_autonomous_vm_cluster_id",
-            "peer_autonomous_vm_cluster_id",
-            "peer_autonomous_container_database_compartment_id",
-            "peer_autonomous_container_database_backup_config",
-            "peer_db_unique_name",
             "maintenance_window_details",
+            "peer_db_unique_name",
+            "peer_autonomous_container_database_backup_config",
+            "peer_autonomous_container_database_compartment_id",
+            "is_automatic_failover_enabled",
+            "protection_mode",
+            "peer_autonomous_vm_cluster_id",
         ]
 
     def create_resource(self):

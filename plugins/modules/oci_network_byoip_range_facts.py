@@ -100,6 +100,40 @@ byoip_ranges:
     returned: on success
     type: complex
     contains:
+        time_validated:
+            description:
+                - The date and time the `ByoipRange` resource was validated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_advertised:
+            description:
+                - The date and time the `ByoipRange` resource was advertised to the internet by BGP, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_withdrawn:
+            description:
+                - The date and time the `ByoipRange` resource was withdrawn from advertisement by BGP to the internet, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        validation_token:
+            description:
+                - The validation token is an internally-generated ASCII string used in the validation process. See L(Importing a CIDR
+                  block,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: validation_token_example
         cidr_block:
             description:
                 - The public IPv4 CIDR block being imported from on-premises to the Oracle cloud.
@@ -142,18 +176,18 @@ byoip_ranges:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_details:
-            description:
-                - The `ByoipRange` resource's current status.
-            returned: on success
-            type: str
-            sample: CREATING
         lifecycle_state:
             description:
                 - The `ByoipRange` resource's current state.
             returned: on success
             type: str
             sample: INACTIVE
+        lifecycle_details:
+            description:
+                - The `ByoipRange` resource's current status.
+            returned: on success
+            type: str
+            sample: CREATING
         time_created:
             description:
                 - The date and time the `ByoipRange` resource was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -161,54 +195,20 @@ byoip_ranges:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_validated:
-            description:
-                - The date and time the `ByoipRange` resource was validated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                - "Example: `2016-08-25T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_advertised:
-            description:
-                - The date and time the `ByoipRange` resource was advertised to the internet by BGP, in the format defined by
-                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                - "Example: `2016-08-25T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_withdrawn:
-            description:
-                - The date and time the `ByoipRange` resource was withdrawn from advertisement by BGP to the internet, in the format defined by
-                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                - "Example: `2016-08-25T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        validation_token:
-            description:
-                - The validation token is an internally-generated ASCII string used in the validation process. See L(Importing a CIDR
-                  block,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: validation_token_example
     sample: [{
+        "time_validated": "2013-10-20T19:20:30+01:00",
+        "time_advertised": "2013-10-20T19:20:30+01:00",
+        "time_withdrawn": "2013-10-20T19:20:30+01:00",
+        "validation_token": "validation_token_example",
         "cidr_block": "cidr_block_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_details": "CREATING",
         "lifecycle_state": "INACTIVE",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_validated": "2013-10-20T19:20:30+01:00",
-        "time_advertised": "2013-10-20T19:20:30+01:00",
-        "time_withdrawn": "2013-10-20T19:20:30+01:00",
-        "validation_token": "validation_token_example"
+        "lifecycle_details": "CREATING",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

@@ -719,7 +719,12 @@ class ConnectionHelperGen(OCIResourceHelperBase):
         return CreateConnectionDetails
 
     def get_exclude_attributes(self):
-        return ["tls_wallet", "tls_keystore"]
+        return [
+            "admin_credentials.password",
+            "tls_keystore",
+            "tls_wallet",
+            "ssh_details.sshkey",
+        ]
 
     def create_resource(self):
         create_details = self.get_create_model()

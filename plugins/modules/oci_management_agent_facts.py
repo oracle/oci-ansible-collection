@@ -156,6 +156,13 @@ management_agents:
     returned: on success
     type: complex
     contains:
+        install_path:
+            description:
+                - Path where Management Agent is installed
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: install_path_example
         id:
             description:
                 - agent identifier
@@ -208,6 +215,25 @@ management_agents:
             returned: on success
             type: str
             sample: resource_artifact_version_example
+        is_agent_auto_upgradable:
+            description:
+                - true if the agent can be upgraded automatically; false if it must be upgraded manually. This flag is derived from the tenancy level auto
+                  upgrade preference.
+            returned: on success
+            type: bool
+            sample: true
+        time_created:
+            description:
+                - The time the Management Agent was created. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the Management Agent was updated. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         host:
             description:
                 - Management Agent host machine name
@@ -220,13 +246,6 @@ management_agents:
             returned: on success
             type: str
             sample: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
-        install_path:
-            description:
-                - Path where Management Agent is installed
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: install_path_example
         plugin_list:
             description:
                 - list of managementAgentPlugins associated with the agent
@@ -269,25 +288,6 @@ management_agents:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        is_agent_auto_upgradable:
-            description:
-                - true if the agent can be upgraded automatically; false if it must be upgraded manually. This flag is derived from the tenancy level auto
-                  upgrade preference.
-            returned: on success
-            type: bool
-            sample: true
-        time_created:
-            description:
-                - The time the Management Agent was created. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the Management Agent was updated. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         time_last_heartbeat:
             description:
                 - The time the Management Agent has last recorded its health status in telemetry. This value will be null if the agent has not recorded its
@@ -341,6 +341,7 @@ management_agents:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "install_path": "install_path_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "install_key_id": "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -349,9 +350,11 @@ management_agents:
         "platform_version": "platform_version_example",
         "version": "version_example",
         "resource_artifact_version": "resource_artifact_version_example",
+        "is_agent_auto_upgradable": true,
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "host": "host_example",
         "host_id": "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx",
-        "install_path": "install_path_example",
         "plugin_list": [{
             "plugin_id": "ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx",
             "plugin_name": "plugin_name_example",
@@ -360,9 +363,6 @@ management_agents:
             "is_enabled": true
         }],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_agent_auto_upgradable": true,
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
         "time_last_heartbeat": "2013-10-20T19:20:30+01:00",
         "availability_status": "ACTIVE",
         "lifecycle_state": "CREATING",

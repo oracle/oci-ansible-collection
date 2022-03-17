@@ -93,6 +93,13 @@ quotas:
     returned: on success
     type: complex
     contains:
+        statements:
+            description:
+                - An array of one or more quota statements written in the declarative quota statement language.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - The OCID of the quota.
@@ -112,13 +119,6 @@ quotas:
             returned: on success
             type: str
             sample: name_example
-        statements:
-            description:
-                - An array of one or more quota statements written in the declarative quota statement language.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
         description:
             description:
                 - The description you assign to the quota.
@@ -156,10 +156,10 @@ quotas:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "statements": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
-        "statements": [],
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",

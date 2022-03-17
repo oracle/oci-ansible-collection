@@ -103,6 +103,14 @@ build_pipelines:
     returned: on success
     type: complex
     contains:
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -151,14 +159,6 @@ build_pipelines:
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         build_pipeline_parameters:
             description:
                 - ""
@@ -213,6 +213,7 @@ build_pipelines:
             type: dict
             sample: {}
     sample: [{
+        "lifecycle_details": "lifecycle_details_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "display_name": "display_name_example",
@@ -221,7 +222,6 @@ build_pipelines:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
         "build_pipeline_parameters": {
             "items": [{
                 "name": "name_example",

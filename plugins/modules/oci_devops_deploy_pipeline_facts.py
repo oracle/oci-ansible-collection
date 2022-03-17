@@ -103,36 +103,6 @@ deploy_pipelines:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - Unique identifier that is immutable on creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - Optional description about the deployment pipeline.
-            returned: on success
-            type: str
-            sample: description_example
-        display_name:
-            description:
-                - Deployment pipeline display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        project_id:
-            description:
-                - The OCID of a project.
-            returned: on success
-            type: str
-            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The OCID of the compartment where the pipeline is created.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_artifacts:
             description:
                 - ""
@@ -231,6 +201,44 @@ deploy_pipelines:
                                             returned: on success
                                             type: str
                                             sample: display_name_example
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        id:
+            description:
+                - Unique identifier that is immutable on creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - Optional description about the deployment pipeline.
+            returned: on success
+            type: str
+            sample: description_example
+        display_name:
+            description:
+                - Deployment pipeline display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        project_id:
+            description:
+                - The OCID of a project.
+            returned: on success
+            type: str
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The OCID of the compartment where the pipeline is created.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Time the deployment pipeline was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
@@ -249,14 +257,6 @@ deploy_pipelines:
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         deploy_pipeline_parameters:
             description:
                 - ""
@@ -310,11 +310,6 @@ deploy_pipelines:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "description": "description_example",
-        "display_name": "display_name_example",
-        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_pipeline_artifacts": {
             "items": [{
                 "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
@@ -339,10 +334,15 @@ deploy_pipelines:
                 }
             }]
         },
+        "lifecycle_details": "lifecycle_details_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "display_name": "display_name_example",
+        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
         "deploy_pipeline_parameters": {
             "items": [{
                 "name": "name_example",

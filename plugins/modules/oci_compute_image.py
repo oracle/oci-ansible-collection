@@ -566,7 +566,7 @@ class ImageHelperGen(OCIResourceHelperBase):
         return CreateImageDetails
 
     def get_exclude_attributes(self):
-        return ["image_source_details", "instance_id"]
+        return ["instance_id", "image_source_details"]
 
     def create_resource(self):
         create_details = self.get_create_model()

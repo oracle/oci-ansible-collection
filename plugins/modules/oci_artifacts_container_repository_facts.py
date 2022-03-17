@@ -114,12 +114,6 @@ container_repositories:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The OCID of the compartment in which the container repository exists.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The id of the user or principal that created the resource.
@@ -127,6 +121,45 @@ container_repositories:
             returned: on success
             type: str
             sample: created_by_example
+        is_immutable:
+            description:
+                - Whether the repository is immutable. Images cannot be overwritten in an immutable repository.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        readme:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                content:
+                    description:
+                        - Readme content. Avoid entering confidential information.
+                    returned: on success
+                    type: str
+                    sample: content_example
+                format:
+                    description:
+                        - Readme format. Supported formats are text/plain and text/markdown.
+                    returned: on success
+                    type: str
+                    sample: TEXT_MARKDOWN
+        time_last_pushed:
+            description:
+                - An RFC 3339 timestamp indicating when an image was last pushed to the repository.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        compartment_id:
+            description:
+                - The OCID of the compartment in which the container repository exists.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The container repository name.
@@ -146,13 +179,6 @@ container_repositories:
             returned: on success
             type: int
             sample: 56
-        is_immutable:
-            description:
-                - Whether the repository is immutable. Images cannot be overwritten in an immutable repository.
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
         is_public:
             description:
                 - Whether the repository is public. A public repository allows unauthenticated access.
@@ -177,35 +203,9 @@ container_repositories:
             returned: on success
             type: str
             sample: AVAILABLE
-        readme:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                content:
-                    description:
-                        - Readme content. Avoid entering confidential information.
-                    returned: on success
-                    type: str
-                    sample: content_example
-                format:
-                    description:
-                        - Readme format. Supported formats are text/plain and text/markdown.
-                    returned: on success
-                    type: str
-                    sample: TEXT_MARKDOWN
         time_created:
             description:
                 - An RFC 3339 timestamp indicating when the repository was created.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_last_pushed:
-            description:
-                - An RFC 3339 timestamp indicating when an image was last pushed to the repository.
-                - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -216,22 +216,22 @@ container_repositories:
             type: int
             sample: 56
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
-        "display_name": "display_name_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "image_count": 56,
         "is_immutable": true,
-        "is_public": true,
-        "layer_count": 56,
-        "layers_size_in_bytes": 56,
-        "lifecycle_state": "AVAILABLE",
         "readme": {
             "content": "content_example",
             "format": "TEXT_MARKDOWN"
         },
-        "time_created": "2013-10-20T19:20:30+01:00",
         "time_last_pushed": "2013-10-20T19:20:30+01:00",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "image_count": 56,
+        "is_public": true,
+        "layer_count": 56,
+        "layers_size_in_bytes": 56,
+        "lifecycle_state": "AVAILABLE",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "billable_size_in_gbs": 56
     }]
 """

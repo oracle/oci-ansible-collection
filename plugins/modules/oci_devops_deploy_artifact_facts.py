@@ -138,24 +138,12 @@ deploy_artifacts:
             returned: on success
             type: str
             sample: DEPLOYMENT_SPEC
-        argument_substitution_mode:
-            description:
-                - Mode for artifact parameter substitution.
-            returned: on success
-            type: str
-            sample: NONE
         deploy_artifact_source:
             description:
                 - ""
             returned: on success
             type: complex
             contains:
-                deploy_artifact_source_type:
-                    description:
-                        - Specifies types of artifact sources.
-                    returned: on success
-                    type: str
-                    sample: INLINE
                 repository_id:
                     description:
                         - The OCID of a repository
@@ -181,6 +169,12 @@ deploy_artifacts:
                     type: str
                     sample: "null"
 
+                deploy_artifact_source_type:
+                    description:
+                        - Specifies types of artifact sources.
+                    returned: on success
+                    type: str
+                    sample: INLINE
                 image_uri:
                     description:
                         - "Specifies OCIR Image Path - optionally include tag."
@@ -193,6 +187,12 @@ deploy_artifacts:
                     returned: on success
                     type: str
                     sample: image_digest_example
+        argument_substitution_mode:
+            description:
+                - Mode for artifact parameter substitution.
+            returned: on success
+            type: str
+            sample: NONE
         time_created:
             description:
                 - Time the deployment artifact was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
@@ -246,16 +246,16 @@ deploy_artifacts:
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_artifact_type": "DEPLOYMENT_SPEC",
-        "argument_substitution_mode": "NONE",
         "deploy_artifact_source": {
-            "deploy_artifact_source_type": "INLINE",
             "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "deploy_artifact_path": "deploy_artifact_path_example",
             "deploy_artifact_version": "deploy_artifact_version_example",
             "base64_encoded_content": null,
+            "deploy_artifact_source_type": "INLINE",
             "image_uri": "image_uri_example",
             "image_digest": "image_digest_example"
         },
+        "argument_substitution_mode": "NONE",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

@@ -401,12 +401,13 @@ class BudgetAlertRuleHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateAlertRuleDetails
 
-    def get_exclude_attributes(self):
-        return ["msg"]
+    def get_create_model(self):
+        create_model = super(BudgetAlertRuleHelperGen, self).get_create_model()
+        setattr(create_model, "message", self.module.params.get("msg"))
+        return create_model
 
     def create_resource(self):
         create_details = self.get_create_model()
-        setattr(create_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_alert_rule,
             call_fn_args=(),
@@ -426,9 +427,13 @@ class BudgetAlertRuleHelperGen(OCIResourceHelperBase):
     def get_update_model_class(self):
         return UpdateAlertRuleDetails
 
+    def get_update_model(self):
+        update_model = super(BudgetAlertRuleHelperGen, self).get_update_model()
+        setattr(update_model, "message", self.module.params.get("msg"))
+        return update_model
+
     def update_resource(self):
         update_details = self.get_update_model()
-        setattr(update_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.update_alert_rule,
             call_fn_args=(),

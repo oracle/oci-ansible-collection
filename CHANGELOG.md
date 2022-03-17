@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.46.0]
+
+## Added
+
+- Support for DRG route distribution statements to be specified with a new match type 'MATCH_ALL' for matching criteria in the Networking service
+- Support for VCN route types on DRG attachments for deciding whether to import VCN CIDRs or subnet CIDRs into route rules in the Networking service
+- Support for Autonomous Database Create with Auto Scaling Storage
+- Support for shrinking an Autonomous Database
+- Support for managed egress via a default networking option on jobs and notebooks in the Data Science service
+- Support Storage Management in Database Management service
+- Support for more types of saved search enums in the Management Dashboard service
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.60.1
+
 ## [2.45.0]
 
 ## Added

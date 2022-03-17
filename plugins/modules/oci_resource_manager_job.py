@@ -273,6 +273,21 @@ job:
             returned: on success
             type: complex
             contains:
+                execution_plan_job_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the plan job that contains the execution
+                          plan used for this job,
+                          or `null` if no execution plan was used.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
+                execution_plan_strategy:
+                    description:
+                        - Specifies the source of the execution plan to apply.
+                          Use `AUTO_APPROVED` to run the job without an execution plan.
+                    returned: on success
+                    type: str
+                    sample: FROM_PLAN_JOB_ID
                 operation:
                     description:
                         - Terraform-specific operation to execute.
@@ -310,21 +325,6 @@ job:
                             returned: on success
                             type: str
                             sample: ERROR
-                execution_plan_strategy:
-                    description:
-                        - Specifies the source of the execution plan to apply.
-                          Use `AUTO_APPROVED` to run the job without an execution plan.
-                    returned: on success
-                    type: str
-                    sample: FROM_PLAN_JOB_ID
-                execution_plan_job_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the plan job that contains the execution
-                          plan used for this job,
-                          or `null` if no execution plan was used.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         apply_job_plan_resolution:
             description:
                 - ""
@@ -442,12 +442,6 @@ job:
             returned: on success
             type: complex
             contains:
-                config_source_record_type:
-                    description:
-                        - The type of configuration source to use for the Terraform configuration.
-                    returned: on success
-                    type: str
-                    sample: ZIP_UPLOAD
                 configuration_source_provider_id:
                     description:
                         - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
@@ -492,6 +486,12 @@ job:
                     returned: on success
                     type: str
                     sample: bucket_name_example
+                config_source_record_type:
+                    description:
+                        - The type of configuration source to use for the Terraform configuration.
+                    returned: on success
+                    type: str
+                    sample: ZIP_UPLOAD
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -515,14 +515,14 @@ job:
         "display_name": "display_name_example",
         "operation": "PLAN",
         "job_operation_details": {
+            "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx",
+            "execution_plan_strategy": "FROM_PLAN_JOB_ID",
             "operation": "APPLY",
             "terraform_advanced_options": {
                 "is_refresh_required": true,
                 "parallelism": 56,
                 "detailed_log_level": "ERROR"
-            },
-            "execution_plan_strategy": "FROM_PLAN_JOB_ID",
-            "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
+            }
         },
         "apply_job_plan_resolution": {
             "plan_job_id": "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx",
@@ -543,14 +543,14 @@ job:
         "working_directory": "working_directory_example",
         "variables": {},
         "config_source": {
-            "config_source_record_type": "ZIP_UPLOAD",
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
             "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
-            "bucket_name": "bucket_name_example"
+            "bucket_name": "bucket_name_example",
+            "config_source_record_type": "ZIP_UPLOAD"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
@@ -638,6 +638,9 @@ class JobHelperGen(OCIResourceHelperBase):
 
     def get_create_model_class(self):
         return CreateJobDetails
+
+    def get_exclude_attributes(self):
+        return ["job_operation_details.tf_state_base64_encoded"]
 
     def create_resource(self):
         create_details = self.get_create_model()

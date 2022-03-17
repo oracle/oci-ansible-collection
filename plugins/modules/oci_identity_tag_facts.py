@@ -74,12 +74,6 @@ tags:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The OCID of the compartment that contains the tag definition.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_id:
             description:
                 - The OCID of the namespace that contains the tag definition.
@@ -94,6 +88,31 @@ tags:
             returned: on success
             type: str
             sample: tag_namespace_name_example
+        validator:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                validator_type:
+                    description:
+                        - "Specifies the type of validation: a static value (no validation) or a list."
+                    returned: on success
+                    type: str
+                    sample: ENUM
+                values:
+                    description:
+                        - The list of allowed values for a definedTag value.
+                    returned: on success
+                    type: list
+                    sample: []
+        compartment_id:
+            description:
+                - The OCID of the compartment that contains the tag definition.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the tag definition.
@@ -158,29 +177,14 @@ tags:
             returned: on success
             type: bool
             sample: true
-        validator:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                validator_type:
-                    description:
-                        - "Specifies the type of validation: a static value (no validation) or a list."
-                    returned: on success
-                    type: str
-                    sample: ENUM
-                values:
-                    description:
-                        - The list of allowed values for a definedTag value.
-                    returned: on success
-                    type: list
-                    sample: []
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "tag_namespace_id": "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx",
         "tag_namespace_name": "tag_namespace_name_example",
+        "validator": {
+            "validator_type": "ENUM",
+            "values": []
+        },
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
@@ -189,11 +193,7 @@ tags:
         "is_retired": true,
         "lifecycle_state": "ACTIVE",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "is_cost_tracking": true,
-        "validator": {
-            "validator_type": "ENUM",
-            "values": []
-        }
+        "is_cost_tracking": true
     }]
 """
 

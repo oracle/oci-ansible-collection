@@ -116,6 +116,101 @@ alarms:
     returned: on success
     type: complex
     contains:
+        metric_compartment_id_in_subtree:
+            description:
+                - When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can
+                  only be set to true when metricCompartmentId is the tenancy OCID (the tenancy is the root compartment).
+                  A true value requires the user to have tenancy-level permissions. If this requirement is not met,
+                  then the call is rejected. When false, the alarm evaluates metrics from only the compartment specified
+                  in metricCompartmentId. Default is false.
+                - "Example: `true`"
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        resource_group:
+            description:
+                - Resource group to match for metric data retrieved by the alarm. A resource group is a custom string that you can match when retrieving custom
+                  metrics. Only one resource group can be applied per metric.
+                  A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_),
+                  hyphens (-), and dollar signs ($).
+                - "Example: `frontend-fleet`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: resource_group_example
+        resolution:
+            description:
+                - "The time between calculated aggregation windows for the alarm. Supported value: `1m`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: resolution_example
+        pending_duration:
+            description:
+                - "The period of time that the condition defined in the alarm must persist before the alarm state
+                  changes from \\"OK\\" to \\"FIRING\\". For example, a value of 5 minutes means that the
+                  alarm must persist in breaching the condition for five minutes before the alarm updates its
+                  state to \\"FIRING\\"."
+                - "The duration is specified as a string in ISO 8601 format (`PT10M` for ten minutes or `PT1H`
+                  for one hour). Minimum: PT1M. Maximum: PT1H. Default: PT1M."
+                - "Under the default value of PT1M, the first evaluation that breaches the alarm updates the
+                  state to \\"FIRING\\"."
+                - "The alarm updates its status to \\"OK\\" when the breaching condition has been clear for
+                  the most recent minute."
+                - "Example: `PT5M`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: pending_duration_example
+        body:
+            description:
+                - The human-readable content of the notification delivered. Oracle recommends providing guidance
+                  to operators for resolving the alarm condition. Consider adding links to standard runbook
+                  practices.
+                - "Example: `High CPU usage alert. Follow runbook instructions for resolution.`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: body_example
+        message_format:
+            description:
+                - "The format to use for notification messages sent from this alarm. The formats are:
+                  * `RAW` - Raw JSON blob. Default value.
+                  * `PRETTY_JSON`: JSON with new lines and indents.
+                  * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Applies only to messages sent through the Notifications service to the following
+                  subscription types: Email."
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: RAW
+        repeat_notification_duration:
+            description:
+                - "The frequency at which notifications are re-submitted, if the alarm keeps firing without
+                  interruption. Format defined by ISO 8601. For example, `PT4H` indicates four hours.
+                  Minimum: PT1M. Maximum: P30D."
+                - "Default value: null (notifications are not re-submitted)."
+                - "Example: `PT2H`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: repeat_notification_duration_example
+        time_created:
+            description:
+                - The date and time the alarm was created. Format defined by RFC3339.
+                - "Example: `2019-02-01T01:02:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The date and time the alarm was last updated. Format defined by RFC3339.
+                - "Example: `2019-02-03T01:02:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm.
@@ -143,18 +238,6 @@ alarms:
             returned: on success
             type: str
             sample: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
-        metric_compartment_id_in_subtree:
-            description:
-                - When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can
-                  only be set to true when metricCompartmentId is the tenancy OCID (the tenancy is the root compartment).
-                  A true value requires the user to have tenancy-level permissions. If this requirement is not met,
-                  then the call is rejected. When false, the alarm evaluates metrics from only the compartment specified
-                  in metricCompartmentId. Default is false.
-                - "Example: `true`"
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
         namespace:
             description:
                 - The source service or application emitting the metric that is evaluated by the alarm.
@@ -162,17 +245,6 @@ alarms:
             returned: on success
             type: str
             sample: namespace_example
-        resource_group:
-            description:
-                - Resource group to match for metric data retrieved by the alarm. A resource group is a custom string that you can match when retrieving custom
-                  metrics. Only one resource group can be applied per metric.
-                  A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_),
-                  hyphens (-), and dollar signs ($).
-                - "Example: `frontend-fleet`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: resource_group_example
         query:
             description:
                 - "The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of
@@ -197,30 +269,6 @@ alarms:
             returned: on success
             type: str
             sample: query_example
-        resolution:
-            description:
-                - "The time between calculated aggregation windows for the alarm. Supported value: `1m`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: resolution_example
-        pending_duration:
-            description:
-                - "The period of time that the condition defined in the alarm must persist before the alarm state
-                  changes from \\"OK\\" to \\"FIRING\\". For example, a value of 5 minutes means that the
-                  alarm must persist in breaching the condition for five minutes before the alarm updates its
-                  state to \\"FIRING\\"."
-                - "The duration is specified as a string in ISO 8601 format (`PT10M` for ten minutes or `PT1H`
-                  for one hour). Minimum: PT1M. Maximum: PT1H. Default: PT1M."
-                - "Under the default value of PT1M, the first evaluation that breaches the alarm updates the
-                  state to \\"FIRING\\"."
-                - "The alarm updates its status to \\"OK\\" when the breaching condition has been clear for
-                  the most recent minute."
-                - "Example: `PT5M`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: pending_duration_example
         severity:
             description:
                 - "The perceived type of response required when the alarm is in the \\"FIRING\\" state."
@@ -228,27 +276,6 @@ alarms:
             returned: on success
             type: str
             sample: CRITICAL
-        body:
-            description:
-                - The human-readable content of the notification delivered. Oracle recommends providing guidance
-                  to operators for resolving the alarm condition. Consider adding links to standard runbook
-                  practices.
-                - "Example: `High CPU usage alert. Follow runbook instructions for resolution.`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: body_example
-        message_format:
-            description:
-                - "The format to use for notification messages sent from this alarm. The formats are:
-                  * `RAW` - Raw JSON blob. Default value.
-                  * `PRETTY_JSON`: JSON with new lines and indents.
-                  * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Applies only to messages sent through the Notifications service to the following
-                  subscription types: Email."
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: RAW
         destinations:
             description:
                 - "A list of destinations to which the notifications for this alarm will be delivered.
@@ -259,17 +286,6 @@ alarms:
             returned: on success
             type: list
             sample: []
-        repeat_notification_duration:
-            description:
-                - "The frequency at which notifications are re-submitted, if the alarm keeps firing without
-                  interruption. Format defined by ISO 8601. For example, `PT4H` indicates four hours.
-                  Minimum: PT1M. Maximum: P30D."
-                - "Default value: null (notifications are not re-submitted)."
-                - "Example: `PT2H`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: repeat_notification_duration_example
         suppression:
             description:
                 - The configuration details for suppressing an alarm.
@@ -329,38 +345,24 @@ alarms:
             returned: on success
             type: str
             sample: ACTIVE
-        time_created:
-            description:
-                - The date and time the alarm was created. Format defined by RFC3339.
-                - "Example: `2019-02-01T01:02:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The date and time the alarm was last updated. Format defined by RFC3339.
-                - "Example: `2019-02-03T01:02:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "metric_compartment_id_in_subtree": true,
+        "resource_group": "resource_group_example",
+        "resolution": "resolution_example",
+        "pending_duration": "pending_duration_example",
+        "body": "body_example",
+        "message_format": "RAW",
+        "repeat_notification_duration": "repeat_notification_duration_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "metric_compartment_id": "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "metric_compartment_id_in_subtree": true,
         "namespace": "namespace_example",
-        "resource_group": "resource_group_example",
         "query": "query_example",
-        "resolution": "resolution_example",
-        "pending_duration": "pending_duration_example",
         "severity": "CRITICAL",
-        "body": "body_example",
-        "message_format": "RAW",
         "destinations": [],
-        "repeat_notification_duration": "repeat_notification_duration_example",
         "suppression": {
             "description": "description_example",
             "time_suppress_from": "2013-10-20T19:20:30+01:00",
@@ -369,9 +371,7 @@ alarms:
         "is_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "lifecycle_state": "ACTIVE",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00"
+        "lifecycle_state": "ACTIVE"
     }]
 """
 

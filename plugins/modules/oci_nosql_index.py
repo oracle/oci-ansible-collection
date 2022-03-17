@@ -248,13 +248,6 @@ class IndexHelperGen(OCIResourceHelperBase):
     def get_get_fn(self):
         return self.client.get_index
 
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_index,
-            index_name=summary_model.name,
-            table_name_or_id=self.module.params.get("table_name_or_id"),
-        ).data
-
     def get_resource(self):
         optional_params = [
             "compartment_id",

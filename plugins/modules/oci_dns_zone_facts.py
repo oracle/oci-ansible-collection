@@ -159,6 +159,77 @@ zones:
     returned: on success
     type: complex
     contains:
+        external_masters:
+            description:
+                - External master servers for the zone. `externalMasters` becomes a
+                  required parameter when the `zoneType` value is `SECONDARY`.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                address:
+                    description:
+                        - The server's IP address (IPv4 or IPv6).
+                    returned: on success
+                    type: str
+                    sample: address_example
+                port:
+                    description:
+                        - The server's port. Port value must be a value of 53, otherwise omit
+                          the port value.
+                    returned: on success
+                    type: int
+                    sample: 56
+                tsig_key_id:
+                    description:
+                        - The OCID of the TSIG key.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+        nameservers:
+            description:
+                - The authoritative nameservers for the zone.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - The hostname of the nameserver.
+                    returned: on success
+                    type: str
+                    sample: hostname_example
+        zone_transfer_servers:
+            description:
+                - The OCI nameservers that transfer the zone data with external nameservers.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                address:
+                    description:
+                        - The server's IP address (IPv4 or IPv6).
+                    returned: on success
+                    type: str
+                    sample: address_example
+                port:
+                    description:
+                        - The server's port.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_transfer_source:
+                    description:
+                        - A Boolean flag indicating whether or not the server is a zone data transfer source.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_transfer_destination:
+                    description:
+                        - A Boolean flag indicating whether or not the server is a zone data transfer destination.
+                    returned: on success
+                    type: bool
+                    sample: true
         name:
             description:
                 - The name of the zone.
@@ -207,33 +278,6 @@ zones:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        external_masters:
-            description:
-                - External master servers for the zone. `externalMasters` becomes a
-                  required parameter when the `zoneType` value is `SECONDARY`.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                address:
-                    description:
-                        - The server's IP address (IPv4 or IPv6).
-                    returned: on success
-                    type: str
-                    sample: address_example
-                port:
-                    description:
-                        - The server's port. Port value must be a value of 53, otherwise omit
-                          the port value.
-                    returned: on success
-                    type: int
-                    sample: 56
-                tsig_key_id:
-                    description:
-                        - The OCID of the TSIG key.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         self_uri:
             description:
                 - The canonical absolute URL of the resource.
@@ -280,70 +324,12 @@ zones:
             returned: on success
             type: bool
             sample: true
-        nameservers:
-            description:
-                - The authoritative nameservers for the zone.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                hostname:
-                    description:
-                        - The hostname of the nameserver.
-                    returned: on success
-                    type: str
-                    sample: hostname_example
-        zone_transfer_servers:
-            description:
-                - The OCI nameservers that transfer the zone data with external nameservers.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                address:
-                    description:
-                        - The server's IP address (IPv4 or IPv6).
-                    returned: on success
-                    type: str
-                    sample: address_example
-                port:
-                    description:
-                        - The server's port.
-                    returned: on success
-                    type: int
-                    sample: 56
-                is_transfer_source:
-                    description:
-                        - A Boolean flag indicating whether or not the server is a zone data transfer source.
-                    returned: on success
-                    type: bool
-                    sample: true
-                is_transfer_destination:
-                    description:
-                        - A Boolean flag indicating whether or not the server is a zone data transfer destination.
-                    returned: on success
-                    type: bool
-                    sample: true
     sample: [{
-        "name": "name_example",
-        "zone_type": "PRIMARY",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "view_id": "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx",
-        "scope": "GLOBAL",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "external_masters": [{
             "address": "address_example",
             "port": 56,
             "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         }],
-        "self_uri": "_self_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "version": "version_example",
-        "serial": 56,
-        "lifecycle_state": "ACTIVE",
-        "is_protected": true,
         "nameservers": [{
             "hostname": "hostname_example"
         }],
@@ -352,7 +338,21 @@ zones:
             "port": 56,
             "is_transfer_source": true,
             "is_transfer_destination": true
-        }]
+        }],
+        "name": "name_example",
+        "zone_type": "PRIMARY",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "view_id": "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx",
+        "scope": "GLOBAL",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "self_uri": "_self_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "version": "version_example",
+        "serial": 56,
+        "lifecycle_state": "ACTIVE",
+        "is_protected": true
     }]
 """
 

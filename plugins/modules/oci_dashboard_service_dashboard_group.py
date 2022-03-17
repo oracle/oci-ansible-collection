@@ -284,11 +284,6 @@ class DashboardGroupHelperGen(OCIResourceHelperBase):
     def get_get_fn(self):
         return self.client.get_dashboard_group
 
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_dashboard_group, dashboard_group_id=summary_model.id,
-        ).data
-
     def get_resource(self):
         optional_params = [
             "opc_cross_region",

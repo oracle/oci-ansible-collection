@@ -159,16 +159,3 @@ class BdsAutoScaleConfigHelperCustom:
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
-
-
-class BdsMetastoreConfigurationHelperCustom:
-
-    # remove the bds_api_key_passphrase, cluster_admin_password parameters for the idempotence check,
-    # As get_resource doesn't return these parameters.
-    def get_update_model_dict_for_idempotence_check(self, update_model):
-        update_model_dict = super(
-            BdsMetastoreConfigurationHelperCustom, self
-        ).get_update_model_dict_for_idempotence_check(update_model)
-        update_model_dict.pop("bds_api_key_passphrase", None)
-        update_model_dict.pop("cluster_admin_password", None)
-        return update_model_dict

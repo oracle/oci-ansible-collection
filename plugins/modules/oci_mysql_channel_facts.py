@@ -113,6 +113,13 @@ channels:
     returned: on success
     type: complex
     contains:
+        description:
+            description:
+                - User provided description of the Channel.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: description_example
         id:
             description:
                 - The OCID of the Channel.
@@ -125,12 +132,6 @@ channels:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The user-friendly name for the Channel. It does not have to be unique.
-            returned: on success
-            type: str
-            sample: display_name_example
         is_enabled:
             description:
                 - Whether the Channel has been enabled by the user.
@@ -225,13 +226,6 @@ channels:
                     returned: on success
                     type: str
                     sample: applier_username_example
-        description:
-            description:
-                - User provided description of the Channel.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: description_example
         lifecycle_state:
             description:
                 - The state of the Channel.
@@ -244,6 +238,12 @@ channels:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        display_name:
+            description:
+                - The user-friendly name for the Channel. It does not have to be unique.
+            returned: on success
+            type: str
+            sample: display_name_example
         time_created:
             description:
                 - The date and time the Channel was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
@@ -271,9 +271,9 @@ channels:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "description": "description_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "is_enabled": true,
         "source": {
             "source_type": "MYSQL",
@@ -292,9 +292,9 @@ channels:
             "channel_name": "channel_name_example",
             "applier_username": "applier_username_example"
         },
-        "description": "description_example",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "display_name": "display_name_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},

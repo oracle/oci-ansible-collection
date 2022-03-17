@@ -506,18 +506,18 @@ class DataGuardAssociationHelperGen(OCIResourceHelperBase):
     def get_exclude_attributes(self):
         return [
             "database_software_image_id",
+            "shape",
+            "availability_domain",
+            "peer_vm_cluster_id",
+            "display_name",
+            "hostname",
             "database_admin_password",
-            "creation_type",
             "peer_db_unique_name",
             "peer_sid_prefix",
-            "display_name",
-            "availability_domain",
-            "shape",
-            "subnet_id",
+            "creation_type",
             "nsg_ids",
+            "subnet_id",
             "backup_network_nsg_ids",
-            "hostname",
-            "peer_vm_cluster_id",
         ]
 
     def create_resource(self):

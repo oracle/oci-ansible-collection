@@ -62,18 +62,6 @@ standard_tag_namespace_templates:
     returned: on success
     type: complex
     contains:
-        description:
-            description:
-                - The default description of the tag namespace that users can use to create the tag namespace
-            returned: on success
-            type: str
-            sample: description_example
-        standard_tag_namespace_name:
-            description:
-                - The reserved name of this standard tag namespace
-            returned: on success
-            type: str
-            sample: standard_tag_namespace_name_example
         tag_definition_templates:
             description:
                 - The template of the tag definition. This object includes necessary details to create the provided standard tag definition.
@@ -117,6 +105,18 @@ standard_tag_namespace_templates:
                     returned: on success
                     type: str
                     sample: IMMUTABLE
+        description:
+            description:
+                - The default description of the tag namespace that users can use to create the tag namespace
+            returned: on success
+            type: str
+            sample: description_example
+        standard_tag_namespace_name:
+            description:
+                - The reserved name of this standard tag namespace
+            returned: on success
+            type: str
+            sample: standard_tag_namespace_name_example
         status:
             description:
                 - The status of the standard tag namespace
@@ -124,8 +124,6 @@ standard_tag_namespace_templates:
             type: str
             sample: status_example
     sample: [{
-        "description": "description_example",
-        "standard_tag_namespace_name": "standard_tag_namespace_name_example",
         "tag_definition_templates": [{
             "description": "description_example",
             "tag_definition_name": "tag_definition_name_example",
@@ -134,6 +132,8 @@ standard_tag_namespace_templates:
             "is_cost_tracking": true,
             "enum_mutability": "IMMUTABLE"
         }],
+        "description": "description_example",
+        "standard_tag_namespace_name": "standard_tag_namespace_name_example",
         "status": "status_example"
     }]
 """

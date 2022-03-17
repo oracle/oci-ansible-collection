@@ -102,49 +102,6 @@ log_analytics_object_collection_rules:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this rule.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - A unique name to the rule. The name must be unique, within the tenancy, and cannot be changed.
-            returned: on success
-            type: str
-            sample: name_example
-        description:
-            description:
-                - A string that describes the details of the rule. It does not have to be unique, and can be changed.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: description_example
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        os_namespace:
-            description:
-                - Object Storage namespace.
-            returned: on success
-            type: str
-            sample: os_namespace_example
-        os_bucket_name:
-            description:
-                - Name of the Object Storage bucket.
-            returned: on success
-            type: str
-            sample: os_bucket_name_example
-        collection_type:
-            description:
-                - The type of log collection.
-            returned: on success
-            type: str
-            sample: LIVE
         poll_since:
             description:
                 - "The oldest time of the file in the bucket to consider for collection.
@@ -204,6 +161,49 @@ log_analytics_object_collection_rules:
             returned: on success
             type: dict
             sample: {}
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this rule.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - A unique name to the rule. The name must be unique, within the tenancy, and cannot be changed.
+            returned: on success
+            type: str
+            sample: name_example
+        description:
+            description:
+                - A string that describes the details of the rule. It does not have to be unique, and can be changed.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: description_example
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        os_namespace:
+            description:
+                - Object Storage namespace.
+            returned: on success
+            type: str
+            sample: os_namespace_example
+        os_bucket_name:
+            description:
+                - Name of the Object Storage bucket.
+            returned: on success
+            type: str
+            sample: os_bucket_name_example
+        collection_type:
+            description:
+                - The type of log collection.
+            returned: on success
+            type: str
+            sample: LIVE
         lifecycle_state:
             description:
                 - The current state of the rule.
@@ -257,13 +257,6 @@ log_analytics_object_collection_rules:
             type: dict
             sample: {'Department': 'Finance'}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
-        "description": "description_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "os_namespace": "os_namespace_example",
-        "os_bucket_name": "os_bucket_name_example",
-        "collection_type": "LIVE",
         "poll_since": "poll_since_example",
         "poll_till": "poll_till_example",
         "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
@@ -271,6 +264,13 @@ log_analytics_object_collection_rules:
         "entity_id": "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx",
         "char_encoding": "char_encoding_example",
         "overrides": {},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "description": "description_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "os_namespace": "os_namespace_example",
+        "os_bucket_name": "os_bucket_name_example",
+        "collection_type": "LIVE",
         "lifecycle_state": "ACTIVE",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",

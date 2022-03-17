@@ -86,38 +86,6 @@ service_catalogs:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The unique identifier for the Service catalog.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The Compartment id where the service catalog exists
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The name of the service catalog.
-            returned: on success
-            type: str
-            sample: display_name_example
-        lifecycle_state:
-            description:
-                - The lifecycle state of the service catalog.
-            returned: on success
-            type: str
-            sample: ACTIVE
-        time_created:
-            description:
-                - The date and time the service catalog was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                - "Example: `2021-05-26T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the service catalog was last modified, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -143,15 +111,47 @@ service_catalogs:
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
+        id:
+            description:
+                - The unique identifier for the Service catalog.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_state:
+            description:
+                - The lifecycle state of the service catalog.
+            returned: on success
+            type: str
+            sample: ACTIVE
+        compartment_id:
+            description:
+                - The Compartment id where the service catalog exists
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The name of the service catalog.
+            returned: on success
+            type: str
+            sample: display_name_example
+        time_created:
+            description:
+                - The date and time the service catalog was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                  timestamp format.
+                - "Example: `2021-05-26T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "lifecycle_state": "ACTIVE",
-        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "freeform_tags": {'Department': 'Finance'}
+        "freeform_tags": {'Department': 'Finance'},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "ACTIVE",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

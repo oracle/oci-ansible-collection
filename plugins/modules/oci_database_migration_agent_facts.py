@@ -100,6 +100,13 @@ agents:
     returned: on success
     type: complex
     contains:
+        public_key:
+            description:
+                - ODMS Agent public key.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         id:
             description:
                 - The OCID of the resource
@@ -124,13 +131,6 @@ agents:
             returned: on success
             type: str
             sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
-        public_key:
-            description:
-                - ODMS Agent public key.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         version:
             description:
                 - ODMS Agent version
@@ -184,11 +184,11 @@ agents:
             type: dict
             sample: {}
     sample: [{
+        "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx",
-        "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
         "version": "version_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

@@ -903,7 +903,7 @@ class DatabaseHelperGen(OCIResourceHelperBase):
         return CreateDatabaseBase
 
     def get_exclude_attributes(self):
-        return ["db_version", "source", "kms_key_version_id", "database"]
+        return ["db_version", "database", "kms_key_version_id", "source"]
 
     def create_resource(self):
         create_details = self.get_create_model()

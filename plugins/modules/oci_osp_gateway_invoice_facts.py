@@ -154,36 +154,6 @@ invoices:
     returned: on success
     type: complex
     contains:
-        invoice_id:
-            description:
-                - Invoice identifier which is generated on the on-premise sie. Pls note this is not an OCID
-            returned: on success
-            type: str
-            sample: "ocid1.invoice.oc1..xxxxxxEXAMPLExxxxxx"
-        invoice_number:
-            description:
-                - Invoice external reference
-            returned: on success
-            type: str
-            sample: invoice_number_example
-        internal_invoice_id:
-            description:
-                - Transaction identifier
-            returned: on success
-            type: str
-            sample: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
-        is_credit_card_payable:
-            description:
-                - Is credit card payment eligible
-            returned: on success
-            type: bool
-            sample: true
-        time_invoice:
-            description:
-                - Date of invoice
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         tax:
             description:
                 - Tax of invoice amount
@@ -191,102 +161,6 @@ invoices:
             returned: on success
             type: float
             sample: 10
-        invoice_amount:
-            description:
-                - Total amount of invoice
-            returned: on success
-            type: float
-            sample: 10
-        invoice_amount_due:
-            description:
-                - Balance of invoice
-            returned: on success
-            type: float
-            sample: 10
-        invoice_amount_credited:
-            description:
-                - Invoice amount credit
-            returned: on success
-            type: float
-            sample: 10
-        invoice_amount_adjusted:
-            description:
-                - Invoice amount adjust
-            returned: on success
-            type: float
-            sample: 10
-        invoice_amount_applied:
-            description:
-                - Invoice amount applied
-            returned: on success
-            type: float
-            sample: 10
-        currency:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                currency_code:
-                    description:
-                        - Currency code
-                    returned: on success
-                    type: str
-                    sample: currency_code_example
-                currency_symbol:
-                    description:
-                        - Currency symbol
-                    returned: on success
-                    type: str
-                    sample: currency_symbol_example
-                name:
-                    description:
-                        - Name of the currency
-                    returned: on success
-                    type: str
-                    sample: name_example
-                usd_conversion:
-                    description:
-                        - USD conversion rate of the currency
-                    returned: on success
-                    type: float
-                    sample: 10
-                round_decimal_point:
-                    description:
-                        - Round decimal point
-                    returned: on success
-                    type: float
-                    sample: 10
-        invoice_type:
-            description:
-                - Type of invoice
-            returned: on success
-            type: str
-            sample: HARDWARE
-        time_invoice_due:
-            description:
-                - Due date of invoice
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        invoice_ref_number:
-            description:
-                - Invoice reference number
-            returned: on success
-            type: str
-            sample: invoice_ref_number_example
-        invoice_po_number:
-            description:
-                - Invoice PO number
-            returned: on success
-            type: str
-            sample: invoice_po_number_example
-        invoice_status:
-            description:
-                - Invoice status
-            returned: on success
-            type: str
-            sample: OPEN
         preferred_email:
             description:
                 - Preferred Email on the invoice
@@ -294,24 +168,6 @@ invoices:
             returned: on success
             type: str
             sample: preferred_email_example
-        is_pdf_email_available:
-            description:
-                - Is emailing pdf allowed
-            returned: on success
-            type: bool
-            sample: true
-        is_display_download_pdf:
-            description:
-                - Is pdf download access allowed
-            returned: on success
-            type: bool
-            sample: true
-        is_payable:
-            description:
-                - Whether invoice can be payed
-            returned: on success
-            type: bool
-            sample: true
         payment_terms:
             description:
                 - Payment terms
@@ -319,36 +175,6 @@ invoices:
             returned: on success
             type: str
             sample: payment_terms_example
-        last_payment_detail:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                time_paid_on:
-                    description:
-                        - Paid the invoice on this day
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                paid_by:
-                    description:
-                        - example
-                    returned: on success
-                    type: str
-                    sample: paid_by_example
-                payment_method:
-                    description:
-                        - Payment method
-                    returned: on success
-                    type: str
-                    sample: CREDIT_CARD
-                amount_paid:
-                    description:
-                        - Amount that paid
-                    returned: on success
-                    type: float
-                    sample: 10
         bill_to_address:
             description:
                 - ""
@@ -470,12 +296,42 @@ invoices:
                     returned: on success
                     type: str
                     sample: province_example
-        subscription_ids:
+        invoice_id:
             description:
-                - List of subscription identifiers
+                - Invoice identifier which is generated on the on-premise sie. Pls note this is not an OCID
             returned: on success
-            type: list
-            sample: []
+            type: str
+            sample: "ocid1.invoice.oc1..xxxxxxEXAMPLExxxxxx"
+        invoice_number:
+            description:
+                - Invoice external reference
+            returned: on success
+            type: str
+            sample: invoice_number_example
+        internal_invoice_id:
+            description:
+                - Transaction identifier
+            returned: on success
+            type: str
+            sample: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
+        is_credit_card_payable:
+            description:
+                - Is credit card payment eligible
+            returned: on success
+            type: bool
+            sample: true
+        invoice_status:
+            description:
+                - Invoice status
+            returned: on success
+            type: str
+            sample: OPEN
+        invoice_type:
+            description:
+                - Type of invoice
+            returned: on success
+            type: str
+            sample: HARDWARE
         is_paid:
             description:
                 - Is the invoice has been already payed
@@ -483,6 +339,48 @@ invoices:
             returned: on success
             type: bool
             sample: true
+        is_payable:
+            description:
+                - Whether invoice can be payed
+            returned: on success
+            type: bool
+            sample: true
+        invoice_amount:
+            description:
+                - Total amount of invoice
+            returned: on success
+            type: float
+            sample: 10
+        invoice_amount_due:
+            description:
+                - Balance of invoice
+            returned: on success
+            type: float
+            sample: 10
+        invoice_amount_credited:
+            description:
+                - Invoice amount credit
+            returned: on success
+            type: float
+            sample: 10
+        invoice_amount_adjusted:
+            description:
+                - Invoice amount adjust
+            returned: on success
+            type: float
+            sample: 10
+        invoice_amount_applied:
+            description:
+                - Invoice amount applied
+            returned: on success
+            type: float
+            sample: 10
+        time_invoice_due:
+            description:
+                - Due date of invoice
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         is_payment_failed:
             description:
                 - Is the last payment failed
@@ -497,6 +395,66 @@ invoices:
             returned: on success
             type: float
             sample: 10
+        invoice_ref_number:
+            description:
+                - Invoice reference number
+            returned: on success
+            type: str
+            sample: invoice_ref_number_example
+        invoice_po_number:
+            description:
+                - Invoice PO number
+            returned: on success
+            type: str
+            sample: invoice_po_number_example
+        time_invoice:
+            description:
+                - Date of invoice
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        currency:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                currency_code:
+                    description:
+                        - Currency code
+                    returned: on success
+                    type: str
+                    sample: currency_code_example
+                currency_symbol:
+                    description:
+                        - Currency symbol
+                    returned: on success
+                    type: str
+                    sample: currency_symbol_example
+                name:
+                    description:
+                        - Name of the currency
+                    returned: on success
+                    type: str
+                    sample: name_example
+                usd_conversion:
+                    description:
+                        - USD conversion rate of the currency
+                    returned: on success
+                    type: float
+                    sample: 10
+                round_decimal_point:
+                    description:
+                        - Round decimal point
+                    returned: on success
+                    type: float
+                    sample: 10
+        is_pdf_email_available:
+            description:
+                - Is emailing pdf allowed
+            returned: on success
+            type: bool
+            sample: true
         is_display_view_pdf:
             description:
                 - Is view access allowed
@@ -504,6 +462,42 @@ invoices:
             returned: on success
             type: bool
             sample: true
+        is_display_download_pdf:
+            description:
+                - Is pdf download access allowed
+            returned: on success
+            type: bool
+            sample: true
+        last_payment_detail:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                time_paid_on:
+                    description:
+                        - Paid the invoice on this day
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                paid_by:
+                    description:
+                        - example
+                    returned: on success
+                    type: str
+                    sample: paid_by_example
+                payment_method:
+                    description:
+                        - Payment method
+                    returned: on success
+                    type: str
+                    sample: CREDIT_CARD
+                amount_paid:
+                    description:
+                        - Amount that paid
+                    returned: on success
+                    type: float
+                    sample: 10
         party_name:
             description:
                 - Name of the bill to customer
@@ -511,41 +505,16 @@ invoices:
             returned: on success
             type: str
             sample: party_name_example
+        subscription_ids:
+            description:
+                - List of subscription identifiers
+            returned: on success
+            type: list
+            sample: []
     sample: [{
-        "invoice_id": "ocid1.invoice.oc1..xxxxxxEXAMPLExxxxxx",
-        "invoice_number": "invoice_number_example",
-        "internal_invoice_id": "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_credit_card_payable": true,
-        "time_invoice": "2013-10-20T19:20:30+01:00",
         "tax": 10,
-        "invoice_amount": 10,
-        "invoice_amount_due": 10,
-        "invoice_amount_credited": 10,
-        "invoice_amount_adjusted": 10,
-        "invoice_amount_applied": 10,
-        "currency": {
-            "currency_code": "currency_code_example",
-            "currency_symbol": "currency_symbol_example",
-            "name": "name_example",
-            "usd_conversion": 10,
-            "round_decimal_point": 10
-        },
-        "invoice_type": "HARDWARE",
-        "time_invoice_due": "2013-10-20T19:20:30+01:00",
-        "invoice_ref_number": "invoice_ref_number_example",
-        "invoice_po_number": "invoice_po_number_example",
-        "invoice_status": "OPEN",
         "preferred_email": "preferred_email_example",
-        "is_pdf_email_available": true,
-        "is_display_download_pdf": true,
-        "is_payable": true,
         "payment_terms": "payment_terms_example",
-        "last_payment_detail": {
-            "time_paid_on": "2013-10-20T19:20:30+01:00",
-            "paid_by": "paid_by_example",
-            "payment_method": "CREDIT_CARD",
-            "amount_paid": 10
-        },
         "bill_to_address": {
             "contact_name": "contact_name_example",
             "company_name": "company_name_example",
@@ -568,12 +537,43 @@ invoices:
             "postal_code": "postal_code_example",
             "province": "province_example"
         },
-        "subscription_ids": [],
+        "invoice_id": "ocid1.invoice.oc1..xxxxxxEXAMPLExxxxxx",
+        "invoice_number": "invoice_number_example",
+        "internal_invoice_id": "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_credit_card_payable": true,
+        "invoice_status": "OPEN",
+        "invoice_type": "HARDWARE",
         "is_paid": true,
+        "is_payable": true,
+        "invoice_amount": 10,
+        "invoice_amount_due": 10,
+        "invoice_amount_credited": 10,
+        "invoice_amount_adjusted": 10,
+        "invoice_amount_applied": 10,
+        "time_invoice_due": "2013-10-20T19:20:30+01:00",
         "is_payment_failed": true,
         "invoice_amount_in_dispute": 10,
+        "invoice_ref_number": "invoice_ref_number_example",
+        "invoice_po_number": "invoice_po_number_example",
+        "time_invoice": "2013-10-20T19:20:30+01:00",
+        "currency": {
+            "currency_code": "currency_code_example",
+            "currency_symbol": "currency_symbol_example",
+            "name": "name_example",
+            "usd_conversion": 10,
+            "round_decimal_point": 10
+        },
+        "is_pdf_email_available": true,
         "is_display_view_pdf": true,
-        "party_name": "party_name_example"
+        "is_display_download_pdf": true,
+        "last_payment_detail": {
+            "time_paid_on": "2013-10-20T19:20:30+01:00",
+            "paid_by": "paid_by_example",
+            "payment_method": "CREDIT_CARD",
+            "amount_paid": 10
+        },
+        "party_name": "party_name_example",
+        "subscription_ids": []
     }]
 """
 

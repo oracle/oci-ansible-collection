@@ -97,6 +97,20 @@ networking_topology:
             returned: on success
             type: complex
             contains:
+                associated_with_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        via:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the entities via which the
+                                  relationship is created. For example an instance is associated with a network security group via the VNIC attachment and the
+                                  VNIC.
+                            returned: on success
+                            type: list
+                            sample: []
                 id1:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the first entity in the relationship.
@@ -115,20 +129,6 @@ networking_topology:
                     returned: on success
                     type: str
                     sample: CONTAINS
-                associated_with_details:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        via:
-                            description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the entities via which the
-                                  relationship is created. For example an instance is associated with a network security group via the VNIC attachment and the
-                                  VNIC.
-                            returned: on success
-                            type: list
-                            sample: []
                 route_rule_details:
                     description:
                         - ""
@@ -174,12 +174,12 @@ networking_topology:
         "type": "NETWORKING",
         "entities": [],
         "relationships": [{
-            "id1": "id1_example",
-            "id2": "id2_example",
-            "type": "CONTAINS",
             "associated_with_details": {
                 "via": []
             },
+            "id1": "id1_example",
+            "id2": "id2_example",
+            "type": "CONTAINS",
             "route_rule_details": {
                 "destination_type": "destination_type_example",
                 "destination": "destination_example",

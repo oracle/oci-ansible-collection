@@ -259,12 +259,6 @@ deploy_artifact:
             returned: on success
             type: complex
             contains:
-                deploy_artifact_source_type:
-                    description:
-                        - Specifies types of artifact sources.
-                    returned: on success
-                    type: str
-                    sample: INLINE
                 repository_id:
                     description:
                         - The OCID of a repository
@@ -290,6 +284,12 @@ deploy_artifact:
                     type: str
                     sample: "null"
 
+                deploy_artifact_source_type:
+                    description:
+                        - Specifies types of artifact sources.
+                    returned: on success
+                    type: str
+                    sample: INLINE
                 image_uri:
                     description:
                         - "Specifies OCIR Image Path - optionally include tag."
@@ -357,11 +357,11 @@ deploy_artifact:
         "deploy_artifact_type": "DEPLOYMENT_SPEC",
         "argument_substitution_mode": "NONE",
         "deploy_artifact_source": {
-            "deploy_artifact_source_type": "INLINE",
             "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "deploy_artifact_path": "deploy_artifact_path_example",
             "deploy_artifact_version": "deploy_artifact_version_example",
             "base64_encoded_content": null,
+            "deploy_artifact_source_type": "INLINE",
             "image_uri": "image_uri_example",
             "image_digest": "image_digest_example"
         },

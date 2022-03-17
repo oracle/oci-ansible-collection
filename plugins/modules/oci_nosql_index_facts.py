@@ -112,12 +112,6 @@ indexes:
     returned: on success
     type: complex
     contains:
-        name:
-            description:
-                - Index name.
-            returned: on success
-            type: str
-            sample: name_example
         compartment_id:
             description:
                 - Compartment Identifier.
@@ -139,6 +133,12 @@ indexes:
             returned: on success
             type: str
             sample: "ocid1.table.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - Index name.
+            returned: on success
+            type: str
+            sample: name_example
         keys:
             description:
                 - A set of keys for a secondary index.
@@ -179,10 +179,10 @@ indexes:
             type: str
             sample: lifecycle_details_example
     sample: [{
-        "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "table_name": "table_name_example",
         "table_id": "ocid1.table.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
         "keys": [{
             "column_name": "column_name_example",
             "json_path": "json_path_example",

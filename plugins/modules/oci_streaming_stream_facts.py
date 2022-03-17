@@ -104,6 +104,20 @@ streams:
     returned: on success
     type: complex
     contains:
+        retention_in_hours:
+            description:
+                - The retention period of the stream, in hours. This property is read-only.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        lifecycle_state_details:
+            description:
+                - Any additional details about the current state of the stream.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_state_details_example
         name:
             description:
                 - The name of the stream. Avoid entering confidential information.
@@ -120,13 +134,6 @@ streams:
         partitions:
             description:
                 - The number of partitions in the stream.
-            returned: on success
-            type: int
-            sample: 56
-        retention_in_hours:
-            description:
-                - The retention period of the stream, in hours. This property is read-only.
-                - Returned for get operation
             returned: on success
             type: int
             sample: 56
@@ -148,13 +155,6 @@ streams:
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_state_details:
-            description:
-                - Any additional details about the current state of the stream.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_state_details_example
         time_created:
             description:
                 - The date and time the stream was created, expressed in in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
@@ -188,14 +188,14 @@ streams:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "retention_in_hours": 56,
+        "lifecycle_state_details": "lifecycle_state_details_example",
         "name": "name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "partitions": 56,
-        "retention_in_hours": 56,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "stream_pool_id": "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "lifecycle_state_details": "lifecycle_state_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "messages_endpoint": "messages_endpoint_example",
         "freeform_tags": {'Department': 'Finance'},

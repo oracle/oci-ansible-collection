@@ -99,6 +99,13 @@ clusters:
     returned: on success
     type: complex
     contains:
+        kms_key_id:
+            description:
+                - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the cluster.
@@ -155,13 +162,6 @@ clusters:
             returned: on success
             type: str
             sample: kubernetes_version_example
-        kms_key_id:
-            description:
-                - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -417,6 +417,7 @@ clusters:
                             type: str
                             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -427,7 +428,6 @@ clusters:
         },
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "kubernetes_version": "kubernetes_version_example",
-        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},

@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_job -- Manage a Job resource in Oracle Cloud Infrast
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -467,7 +467,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>STANDALONE</li>
+                                                                                                                                                                <li>ME_STANDALONE</li>
+                                                                                                                                                                                                <li>STANDALONE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -498,12 +499,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-job_infrastructure_configuration_details/subnet_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The subnet to create a secondary vnic in to attach to the instance running the job</div>
+                                            <div>Required when job_infrastructure_type is &#x27;STANDALONE&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -751,9 +753,8 @@ Examples
           maximum_runtime_in_minutes: 56
         job_infrastructure_configuration_details:
           # required
-          job_infrastructure_type: STANDALONE
+          job_infrastructure_type: ME_STANDALONE
           shape_name: shape_name_example
-          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
           block_storage_size_in_gbs: 56
 
         # optional
@@ -778,9 +779,8 @@ Examples
         description: description_example
         job_infrastructure_configuration_details:
           # required
-          job_infrastructure_type: STANDALONE
+          job_infrastructure_type: ME_STANDALONE
           shape_name: shape_name_example
-          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
           block_storage_size_in_gbs: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -795,9 +795,8 @@ Examples
         description: description_example
         job_infrastructure_configuration_details:
           # required
-          job_infrastructure_type: STANDALONE
+          job_infrastructure_type: ME_STANDALONE
           shape_name: shape_name_example
-          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
           block_storage_size_in_gbs: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

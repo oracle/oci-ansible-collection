@@ -309,12 +309,6 @@ volume_group:
             returned: on success
             type: complex
             contains:
-                type:
-                    description:
-                        - ""
-                    returned: on success
-                    type: str
-                    sample: volumeGroupBackupId
                 volume_group_backup_id:
                     description:
                         - The OCID of the volume group backup to restore from.
@@ -333,6 +327,12 @@ volume_group:
                     returned: on success
                     type: str
                     sample: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
+                type:
+                    description:
+                        - ""
+                    returned: on success
+                    type: str
+                    sample: volumeGroupBackupId
                 volume_ids:
                     description:
                         - OCIDs for the volumes in this volume group.
@@ -395,10 +395,10 @@ volume_group:
         "size_in_mbs": 56,
         "size_in_gbs": 56,
         "source_details": {
-            "type": "volumeGroupBackupId",
             "volume_group_backup_id": "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx",
             "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
             "volume_group_replica_id": "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "type": "volumeGroupBackupId",
             "volume_ids": []
         },
         "time_created": "2013-10-20T19:20:30+01:00",

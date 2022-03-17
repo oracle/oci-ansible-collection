@@ -95,6 +95,33 @@ key_versions:
     returned: on success
     type: complex
     contains:
+        public_key:
+            description:
+                - The public key in PEM format. (This value pertains only to RSA and ECDSA keys.)
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        replica_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a key version operation
+                    returned: on success
+                    type: str
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         compartment_id:
             description:
                 - The OCID of the compartment that contains this key version.
@@ -113,13 +140,6 @@ key_versions:
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
-        public_key:
-            description:
-                - The public key in PEM format. (This value pertains only to RSA and ECDSA keys.)
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         lifecycle_state:
             description:
                 - The key version's current lifecycle state.
@@ -156,40 +176,20 @@ key_versions:
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        replica_details:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                replication_id:
-                    description:
-                        - ReplicationId associated with a key version operation
-                    returned: on success
-                    type: str
-                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
-        is_primary:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
     sample: [{
+        "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
-        "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
         "lifecycle_state": "CREATING",
         "origin": "INTERNAL",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_of_deletion": "2013-10-20T19:20:30+01:00",
-        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
-        "replica_details": {
-            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
-        },
-        "is_primary": true
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

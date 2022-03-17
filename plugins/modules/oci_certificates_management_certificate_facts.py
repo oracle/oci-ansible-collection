@@ -108,6 +108,174 @@ certificates:
     returned: on success
     type: complex
     contains:
+        lifecycle_details:
+            description:
+                - Additional information about the current lifecycle state of the certificate.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        current_version:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                certificate_id:
+                    description:
+                        - The OCID of the certificate.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+                serial_number:
+                    description:
+                        - "A unique certificate identifier used in certificate revocation tracking, formatted as octets.
+                          Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`"
+                    returned: on success
+                    type: str
+                    sample: serial_number_example
+                time_created:
+                    description:
+                        - "A optional property indicating the time when the certificate version was created, expressed in L(RFC
+                          3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                          Example: `2019-04-03T21:10:29.600Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                version_number:
+                    description:
+                        - The version number of the certificate.
+                    returned: on success
+                    type: int
+                    sample: 56
+                issuer_ca_version_number:
+                    description:
+                        - The version number of the issuing certificate authority (CA).
+                    returned: on success
+                    type: int
+                    sample: 56
+                version_name:
+                    description:
+                        - The name of the certificate version. When the value is not null, a name is unique across versions of a given certificate.
+                    returned: on success
+                    type: str
+                    sample: version_name_example
+                subject_alternative_names:
+                    description:
+                        - A list of subject alternative names.
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The subject alternative name type. Currently only DNS domain or host names and IP addresses are supported.
+                            returned: on success
+                            type: str
+                            sample: DNS
+                        value:
+                            description:
+                                - The subject alternative name.
+                            returned: on success
+                            type: str
+                            sample: value_example
+                time_of_deletion:
+                    description:
+                        - "An optional property indicating when to delete the certificate version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                          timestamp format.
+                          Example: `2019-04-03T21:10:29.600Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                validity:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        time_of_validity_not_before:
+                            description:
+                                - "The date on which the certificate validity period begins, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                                  timestamp format.
+                                  Example: `2019-04-03T21:10:29.600Z`"
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        time_of_validity_not_after:
+                            description:
+                                - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                                  timestamp format.
+                                  Example: `2019-04-03T21:10:29.600Z`"
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                stages:
+                    description:
+                        - A list of rotation states for this certificate version.
+                    returned: on success
+                    type: list
+                    sample: []
+                revocation_status:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        time_of_revocation:
+                            description:
+                                - "The time when the entity was revoked, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                                  Example: `2019-04-03T21:10:29.600Z`"
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        revocation_reason:
+                            description:
+                                - The reason the certificate or certificate authority (CA) was revoked.
+                            returned: on success
+                            type: str
+                            sample: UNSPECIFIED
+        certificate_revocation_list_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                object_storage_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        object_storage_namespace:
+                            description:
+                                - The tenancy of the bucket where the CRL is stored.
+                            returned: on success
+                            type: str
+                            sample: object_storage_namespace_example
+                        object_storage_bucket_name:
+                            description:
+                                - The name of the bucket where the CRL is stored.
+                            returned: on success
+                            type: str
+                            sample: object_storage_bucket_name_example
+                        object_storage_object_name_format:
+                            description:
+                                - The object name in the bucket where the CRL is stored, expressed using a format where the version number of the issuing CA is
+                                  inserted as part of the Object Storage object name wherever you include a pair of curly braces. This versioning scheme helps
+                                  avoid collisions when new CA versions are created. For example, myCrlFileIssuedFromCAVersion{}.crl becomes
+                                  myCrlFileIssuedFromCAVersion2.crl for CA version 2.
+                            returned: on success
+                            type: str
+                            sample: object_storage_object_name_format_example
+                custom_formatted_urls:
+                    description:
+                        - Optional CRL access points, expressed using a format where the version number of the issuing CA is inserted wherever you include a
+                          pair of curly braces. This versioning scheme helps avoid collisions when new CA versions are created. For example,
+                          myCrlFileIssuedFromCAVersion{}.crl becomes myCrlFileIssuedFromCAVersion2.crl for CA version 2.
+                    returned: on success
+                    type: list
+                    sample: []
         id:
             description:
                 - The OCID of the certificate.
@@ -133,6 +301,33 @@ certificates:
             returned: on success
             type: str
             sample: description_example
+        time_created:
+            description:
+                - "A property indicating when the certificate was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                  Example: `2019-04-03T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_of_deletion:
+            description:
+                - "An optional property indicating when to delete the certificate version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                  timestamp format.
+                  Example: `2019-04-03T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current lifecycle state of the certificate.
+            returned: on success
+            type: str
+            sample: CREATING
+        compartment_id:
+            description:
+                - The OCID of the compartment where you want to create the certificate.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         certificate_rules:
             description:
                 - A list of rules that control how the certificate is used and managed.
@@ -159,44 +354,10 @@ certificates:
                     returned: on success
                     type: str
                     sample: advance_renewal_period_example
-        time_created:
-            description:
-                - "A property indicating when the certificate was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                  Example: `2019-04-03T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_of_deletion:
-            description:
-                - "An optional property indicating when to delete the certificate version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                  Example: `2019-04-03T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current lifecycle state of the certificate.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - Additional information about the current lifecycle state of the certificate.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
-        compartment_id:
-            description:
-                - The OCID of the compartment where you want to create the certificate.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        current_version:
+        current_version_summary:
             description:
                 - ""
-                - Returned for get operation
+                - Returned for list operation
             returned: on success
             type: complex
             contains:
@@ -420,48 +581,6 @@ certificates:
                     returned: on success
                     type: str
                     sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-        certificate_revocation_list_details:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                object_storage_config:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        object_storage_namespace:
-                            description:
-                                - The tenancy of the bucket where the CRL is stored.
-                            returned: on success
-                            type: str
-                            sample: object_storage_namespace_example
-                        object_storage_bucket_name:
-                            description:
-                                - The name of the bucket where the CRL is stored.
-                            returned: on success
-                            type: str
-                            sample: object_storage_bucket_name_example
-                        object_storage_object_name_format:
-                            description:
-                                - The object name in the bucket where the CRL is stored, expressed using a format where the version number of the issuing CA is
-                                  inserted as part of the Object Storage object name wherever you include a pair of curly braces. This versioning scheme helps
-                                  avoid collisions when new CA versions are created. For example, myCrlFileIssuedFromCAVersion{}.crl becomes
-                                  myCrlFileIssuedFromCAVersion2.crl for CA version 2.
-                            returned: on success
-                            type: str
-                            sample: object_storage_object_name_format_example
-                custom_formatted_urls:
-                    description:
-                        - Optional CRL access points, expressed using a format where the version number of the issuing CA is inserted wherever you include a
-                          pair of curly braces. This versioning scheme helps avoid collisions when new CA versions are created. For example,
-                          myCrlFileIssuedFromCAVersion{}.crl becomes myCrlFileIssuedFromCAVersion2.crl for CA version 2.
-                    returned: on success
-                    type: list
-                    sample: []
         config_type:
             description:
                 - The origin of the certificate.
@@ -502,141 +621,52 @@ certificates:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        current_version_summary:
-            description:
-                - ""
-                - Returned for list operation
-            returned: on success
-            type: complex
-            contains:
-                certificate_id:
-                    description:
-                        - The OCID of the certificate.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
-                serial_number:
-                    description:
-                        - "A unique certificate identifier used in certificate revocation tracking, formatted as octets.
-                          Example: `03 AC FC FA CC B3 CB 02 B8 F8 DE F5 85 E7 7B FF`"
-                    returned: on success
-                    type: str
-                    sample: serial_number_example
-                time_created:
-                    description:
-                        - "A optional property indicating the time when the certificate version was created, expressed in L(RFC
-                          3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                          Example: `2019-04-03T21:10:29.600Z`"
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                version_number:
-                    description:
-                        - The version number of the certificate.
-                    returned: on success
-                    type: int
-                    sample: 56
-                issuer_ca_version_number:
-                    description:
-                        - The version number of the issuing certificate authority (CA).
-                    returned: on success
-                    type: int
-                    sample: 56
-                version_name:
-                    description:
-                        - The name of the certificate version. When the value is not null, a name is unique across versions of a given certificate.
-                    returned: on success
-                    type: str
-                    sample: version_name_example
-                subject_alternative_names:
-                    description:
-                        - A list of subject alternative names.
-                    returned: on success
-                    type: complex
-                    contains:
-                        type:
-                            description:
-                                - The subject alternative name type. Currently only DNS domain or host names and IP addresses are supported.
-                            returned: on success
-                            type: str
-                            sample: DNS
-                        value:
-                            description:
-                                - The subject alternative name.
-                            returned: on success
-                            type: str
-                            sample: value_example
-                time_of_deletion:
-                    description:
-                        - "An optional property indicating when to delete the certificate version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                          timestamp format.
-                          Example: `2019-04-03T21:10:29.600Z`"
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                validity:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        time_of_validity_not_before:
-                            description:
-                                - "The date on which the certificate validity period begins, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                                  timestamp format.
-                                  Example: `2019-04-03T21:10:29.600Z`"
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                        time_of_validity_not_after:
-                            description:
-                                - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                                  timestamp format.
-                                  Example: `2019-04-03T21:10:29.600Z`"
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                stages:
-                    description:
-                        - A list of rotation states for this certificate version.
-                    returned: on success
-                    type: list
-                    sample: []
-                revocation_status:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        time_of_revocation:
-                            description:
-                                - "The time when the entity was revoked, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                                  Example: `2019-04-03T21:10:29.600Z`"
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                        revocation_reason:
-                            description:
-                                - The reason the certificate or certificate authority (CA) was revoked.
-                            returned: on success
-                            type: str
-                            sample: UNSPECIFIED
     sample: [{
+        "lifecycle_details": "lifecycle_details_example",
+        "current_version": {
+            "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx",
+            "serial_number": "serial_number_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "version_number": 56,
+            "issuer_ca_version_number": 56,
+            "version_name": "version_name_example",
+            "subject_alternative_names": [{
+                "type": "DNS",
+                "value": "value_example"
+            }],
+            "time_of_deletion": "2013-10-20T19:20:30+01:00",
+            "validity": {
+                "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",
+                "time_of_validity_not_after": "2013-10-20T19:20:30+01:00"
+            },
+            "stages": [],
+            "revocation_status": {
+                "time_of_revocation": "2013-10-20T19:20:30+01:00",
+                "revocation_reason": "UNSPECIFIED"
+            }
+        },
+        "certificate_revocation_list_details": {
+            "object_storage_config": {
+                "object_storage_namespace": "object_storage_namespace_example",
+                "object_storage_bucket_name": "object_storage_bucket_name_example",
+                "object_storage_object_name_format": "object_storage_object_name_format_example"
+            },
+            "custom_formatted_urls": []
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "issuer_certificate_authority_id": "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_of_deletion": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "certificate_rules": [{
             "rule_type": "CERTIFICATE_RENEWAL_RULE",
             "renewal_interval": "renewal_interval_example",
             "advance_renewal_period": "advance_renewal_period_example"
         }],
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_of_deletion": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "current_version": {
+        "current_version_summary": {
             "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx",
             "serial_number": "serial_number_example",
             "time_created": "2013-10-20T19:20:30+01:00",
@@ -677,42 +707,12 @@ certificates:
             "title": "title_example",
             "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         },
-        "certificate_revocation_list_details": {
-            "object_storage_config": {
-                "object_storage_namespace": "object_storage_namespace_example",
-                "object_storage_bucket_name": "object_storage_bucket_name_example",
-                "object_storage_object_name_format": "object_storage_object_name_format_example"
-            },
-            "custom_formatted_urls": []
-        },
         "config_type": "ISSUED_BY_INTERNAL_CA",
         "key_algorithm": "RSA2048",
         "signature_algorithm": "SHA256_WITH_RSA",
         "certificate_profile_type": "TLS_SERVER_OR_CLIENT",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "current_version_summary": {
-            "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx",
-            "serial_number": "serial_number_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "version_number": 56,
-            "issuer_ca_version_number": 56,
-            "version_name": "version_name_example",
-            "subject_alternative_names": [{
-                "type": "DNS",
-                "value": "value_example"
-            }],
-            "time_of_deletion": "2013-10-20T19:20:30+01:00",
-            "validity": {
-                "time_of_validity_not_before": "2013-10-20T19:20:30+01:00",
-                "time_of_validity_not_after": "2013-10-20T19:20:30+01:00"
-            },
-            "stages": [],
-            "revocation_status": {
-                "time_of_revocation": "2013-10-20T19:20:30+01:00",
-                "revocation_reason": "UNSPECIFIED"
-            }
-        }
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

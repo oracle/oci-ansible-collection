@@ -118,12 +118,6 @@ logs:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the resource.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         tenancy_id:
             description:
                 - The OCID of the tenancy.
@@ -131,6 +125,12 @@ logs:
             returned: on success
             type: str
             sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The OCID of the resource.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         log_group_id:
             description:
                 - Log group OCID.
@@ -144,35 +144,24 @@ logs:
             returned: on success
             type: str
             sample: display_name_example
-        log_type:
-            description:
-                - The logType that the log object is for, whether custom or service.
-            returned: on success
-            type: str
-            sample: CUSTOM
         is_enabled:
             description:
                 - Whether or not this resource is currently enabled.
             returned: on success
             type: bool
             sample: true
-        defined_tags:
+        lifecycle_state:
             description:
-                - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - The pipeline state.
             returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        freeform_tags:
+            type: str
+            sample: CREATING
+        log_type:
             description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                - The logType that the log object is for, whether custom or service.
             returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
+            type: str
+            sample: CUSTOM
         configuration:
             description:
                 - ""
@@ -234,12 +223,23 @@ logs:
                             returned: on success
                             type: bool
                             sample: true
-        lifecycle_state:
+        defined_tags:
             description:
-                - The pipeline state.
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
-            type: str
-            sample: CREATING
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
         time_created:
             description:
                 - Time the resource was created.
@@ -265,14 +265,13 @@ logs:
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "log_type": "CUSTOM",
         "is_enabled": true,
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "freeform_tags": {'Department': 'Finance'},
+        "lifecycle_state": "CREATING",
+        "log_type": "CUSTOM",
         "configuration": {
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "source": {
@@ -286,7 +285,8 @@ logs:
                 "is_enabled": true
             }
         },
-        "lifecycle_state": "CREATING",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_last_modified": "2013-10-20T19:20:30+01:00",
         "retention_duration": 56,

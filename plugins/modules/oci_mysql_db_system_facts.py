@@ -128,30 +128,6 @@ db_systems:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the DB System.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The user-friendly name for the DB System. It does not have to be unique.
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - User-provided data about the DB System.
-            returned: on success
-            type: str
-            sample: description_example
-        compartment_id:
-            description:
-                - The OCID of the compartment the DB System belongs in.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet the DB System is associated with.
@@ -159,142 +135,6 @@ db_systems:
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        is_highly_available:
-            description:
-                - If the policy is to enable high availability of the instance, by
-                  maintaining secondary/failover capacity as necessary.
-            returned: on success
-            type: bool
-            sample: true
-        current_placement:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                availability_domain:
-                    description:
-                        - The availability domain in which the DB System is placed.
-                    returned: on success
-                    type: str
-                    sample: Uocm:PHX-AD-1
-                fault_domain:
-                    description:
-                        - The fault domain in which the DB System is placed.
-                    returned: on success
-                    type: str
-                    sample: FAULT-DOMAIN-1
-        is_analytics_cluster_attached:
-            description:
-                - "DEPRECATED -- please use `isHeatWaveClusterAttached` instead.
-                  If the DB System has an Analytics Cluster attached."
-            returned: on success
-            type: bool
-            sample: true
-        analytics_cluster:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                shape_name:
-                    description:
-                        - "The shape determines resources to allocate to the Analytics
-                          Cluster nodes - CPU cores, memory."
-                    returned: on success
-                    type: str
-                    sample: shape_name_example
-                cluster_size:
-                    description:
-                        - The number of analytics-processing compute instances, of the
-                          specified shape, in the Analytics Cluster.
-                    returned: on success
-                    type: int
-                    sample: 56
-                lifecycle_state:
-                    description:
-                        - The current state of the MySQL Analytics Cluster.
-                    returned: on success
-                    type: str
-                    sample: lifecycle_state_example
-                time_created:
-                    description:
-                        - The date and time the Analytics Cluster was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                time_updated:
-                    description:
-                        - The time the Analytics Cluster was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-        is_heat_wave_cluster_attached:
-            description:
-                - If the DB System has a HeatWave Cluster attached.
-            returned: on success
-            type: bool
-            sample: true
-        heat_wave_cluster:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                shape_name:
-                    description:
-                        - "The shape determines resources to allocate to the HeatWave
-                          nodes - CPU cores, memory."
-                    returned: on success
-                    type: str
-                    sample: shape_name_example
-                cluster_size:
-                    description:
-                        - The number of analytics-processing compute instances, of the
-                          specified shape, in the HeatWave cluster.
-                    returned: on success
-                    type: int
-                    sample: 56
-                lifecycle_state:
-                    description:
-                        - The current state of the MySQL HeatWave cluster.
-                    returned: on success
-                    type: str
-                    sample: lifecycle_state_example
-                time_created:
-                    description:
-                        - The date and time the HeatWave cluster was created,
-                          as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                time_updated:
-                    description:
-                        - The time the HeatWave cluster was last updated,
-                          as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-        availability_domain:
-            description:
-                - The availability domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
-                - In a failover scenario, the Read/Write endpoint is redirected to one of the other availability domains
-                  and the MySQL instance in that domain is promoted to the primary instance.
-                  This redirection does not affect the IP address of the DB System in any way.
-                - For a standalone DB System, this defines the availability domain in which the DB System is placed.
-            returned: on success
-            type: str
-            sample: Uocm:PHX-AD-1
-        fault_domain:
-            description:
-                - The fault domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
-                - In a failover scenario, the Read/Write endpoint is redirected to one of the other fault domains
-                  and the MySQL instance in that domain is promoted to the primary instance.
-                  This redirection does not affect the IP address of the DB System in any way.
-                - For a standalone DB System, this defines the fault domain in which the DB System is placed.
-            returned: on success
-            type: str
-            sample: FAULT-DOMAIN-1
         shape_name:
             description:
                 - "The shape of the primary instances of the DB System. The shape
@@ -306,12 +146,6 @@ db_systems:
             returned: on success
             type: str
             sample: shape_name_example
-        mysql_version:
-            description:
-                - Name of the MySQL Version in use for the DB System.
-            returned: on success
-            type: str
-            sample: mysql_version_example
         backup_policy:
             description:
                 - ""
@@ -369,18 +203,18 @@ db_systems:
             returned: on success
             type: complex
             contains:
-                source_type:
-                    description:
-                        - The specific source identifier.
-                    returned: on success
-                    type: str
-                    sample: NONE
                 backup_id:
                     description:
                         - The OCID of the backup to be used as the source for the new DB System.
                     returned: on success
                     type: str
                     sample: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+                source_type:
+                    description:
+                        - The specific source identifier.
+                    returned: on success
+                    type: str
+                    sample: NONE
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
@@ -429,55 +263,6 @@ db_systems:
             returned: on success
             type: int
             sample: 56
-        endpoints:
-            description:
-                - The network endpoints available for this DB System.
-            returned: on success
-            type: complex
-            contains:
-                hostname:
-                    description:
-                        - The network address of the DB System.
-                    returned: on success
-                    type: str
-                    sample: hostname_example
-                ip_address:
-                    description:
-                        - The IP address the DB System is configured to listen on.
-                    returned: on success
-                    type: str
-                    sample: ip_address_example
-                port:
-                    description:
-                        - The port the MySQL instance listens on.
-                    returned: on success
-                    type: int
-                    sample: 56
-                port_x:
-                    description:
-                        - The network port where to connect to use this endpoint using the X protocol.
-                    returned: on success
-                    type: int
-                    sample: 56
-                modes:
-                    description:
-                        - The access modes from the client that this endpoint supports.
-                    returned: on success
-                    type: list
-                    sample: []
-                status:
-                    description:
-                        - The state of the endpoints, as far as it can seen from the DB System.
-                          There may be some inconsistency with the actual state of the MySQL service.
-                    returned: on success
-                    type: str
-                    sample: ACTIVE
-                status_details:
-                    description:
-                        - Additional information about the current endpoint status.
-                    returned: on success
-                    type: str
-                    sample: status_details_example
         channels:
             description:
                 - A list with a summary of all the Channels attached to the DB System.
@@ -635,12 +420,6 @@ db_systems:
                     returned: on success
                     type: dict
                     sample: {'Operations': {'CostCenter': 'US'}}
-        lifecycle_state:
-            description:
-                - The current state of the DB System.
-            returned: on success
-            type: str
-            sample: CREATING
         lifecycle_details:
             description:
                 - Additional information about the current lifecycleState.
@@ -665,6 +444,227 @@ db_systems:
                     returned: on success
                     type: str
                     sample: window_start_time_example
+        id:
+            description:
+                - The OCID of the DB System.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The user-friendly name for the DB System. It does not have to be unique.
+            returned: on success
+            type: str
+            sample: display_name_example
+        description:
+            description:
+                - User-provided data about the DB System.
+            returned: on success
+            type: str
+            sample: description_example
+        compartment_id:
+            description:
+                - The OCID of the compartment the DB System belongs in.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        is_highly_available:
+            description:
+                - If the policy is to enable high availability of the instance, by
+                  maintaining secondary/failover capacity as necessary.
+            returned: on success
+            type: bool
+            sample: true
+        current_placement:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                availability_domain:
+                    description:
+                        - The availability domain in which the DB System is placed.
+                    returned: on success
+                    type: str
+                    sample: Uocm:PHX-AD-1
+                fault_domain:
+                    description:
+                        - The fault domain in which the DB System is placed.
+                    returned: on success
+                    type: str
+                    sample: FAULT-DOMAIN-1
+        is_analytics_cluster_attached:
+            description:
+                - "DEPRECATED -- please use `isHeatWaveClusterAttached` instead.
+                  If the DB System has an Analytics Cluster attached."
+            returned: on success
+            type: bool
+            sample: true
+        analytics_cluster:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                shape_name:
+                    description:
+                        - "The shape determines resources to allocate to the Analytics
+                          Cluster nodes - CPU cores, memory."
+                    returned: on success
+                    type: str
+                    sample: shape_name_example
+                cluster_size:
+                    description:
+                        - The number of analytics-processing compute instances, of the
+                          specified shape, in the Analytics Cluster.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the MySQL Analytics Cluster.
+                    returned: on success
+                    type: str
+                    sample: lifecycle_state_example
+                time_created:
+                    description:
+                        - The date and time the Analytics Cluster was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_updated:
+                    description:
+                        - The time the Analytics Cluster was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+        is_heat_wave_cluster_attached:
+            description:
+                - If the DB System has a HeatWave Cluster attached.
+            returned: on success
+            type: bool
+            sample: true
+        heat_wave_cluster:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                shape_name:
+                    description:
+                        - "The shape determines resources to allocate to the HeatWave
+                          nodes - CPU cores, memory."
+                    returned: on success
+                    type: str
+                    sample: shape_name_example
+                cluster_size:
+                    description:
+                        - The number of analytics-processing compute instances, of the
+                          specified shape, in the HeatWave cluster.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the MySQL HeatWave cluster.
+                    returned: on success
+                    type: str
+                    sample: lifecycle_state_example
+                time_created:
+                    description:
+                        - The date and time the HeatWave cluster was created,
+                          as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_updated:
+                    description:
+                        - The time the HeatWave cluster was last updated,
+                          as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+        availability_domain:
+            description:
+                - The availability domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
+                - In a failover scenario, the Read/Write endpoint is redirected to one of the other availability domains
+                  and the MySQL instance in that domain is promoted to the primary instance.
+                  This redirection does not affect the IP address of the DB System in any way.
+                - For a standalone DB System, this defines the availability domain in which the DB System is placed.
+            returned: on success
+            type: str
+            sample: Uocm:PHX-AD-1
+        fault_domain:
+            description:
+                - The fault domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
+                - In a failover scenario, the Read/Write endpoint is redirected to one of the other fault domains
+                  and the MySQL instance in that domain is promoted to the primary instance.
+                  This redirection does not affect the IP address of the DB System in any way.
+                - For a standalone DB System, this defines the fault domain in which the DB System is placed.
+            returned: on success
+            type: str
+            sample: FAULT-DOMAIN-1
+        endpoints:
+            description:
+                - The network endpoints available for this DB System.
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - The network address of the DB System.
+                    returned: on success
+                    type: str
+                    sample: hostname_example
+                ip_address:
+                    description:
+                        - The IP address the DB System is configured to listen on.
+                    returned: on success
+                    type: str
+                    sample: ip_address_example
+                port:
+                    description:
+                        - The port the MySQL instance listens on.
+                    returned: on success
+                    type: int
+                    sample: 56
+                port_x:
+                    description:
+                        - The network port where to connect to use this endpoint using the X protocol.
+                    returned: on success
+                    type: int
+                    sample: 56
+                modes:
+                    description:
+                        - The access modes from the client that this endpoint supports.
+                    returned: on success
+                    type: list
+                    sample: []
+                status:
+                    description:
+                        - The state of the endpoints, as far as it can seen from the DB System.
+                          There may be some inconsistency with the actual state of the MySQL service.
+                    returned: on success
+                    type: str
+                    sample: ACTIVE
+                status_details:
+                    description:
+                        - Additional information about the current endpoint status.
+                    returned: on success
+                    type: str
+                    sample: status_details_example
+        lifecycle_state:
+            description:
+                - The current state of the DB System.
+            returned: on success
+            type: str
+            sample: CREATING
+        mysql_version:
+            description:
+                - Name of the MySQL Version in use for the DB System.
+            returned: on success
+            type: str
+            sample: mysql_version_example
         time_created:
             description:
                 - The date and time the DB System was created.
@@ -699,36 +699,8 @@ db_systems:
             type: str
             sample: ENABLED
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_highly_available": true,
-        "current_placement": {
-            "availability_domain": "Uocm:PHX-AD-1",
-            "fault_domain": "FAULT-DOMAIN-1"
-        },
-        "is_analytics_cluster_attached": true,
-        "analytics_cluster": {
-            "shape_name": "shape_name_example",
-            "cluster_size": 56,
-            "lifecycle_state": "lifecycle_state_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00"
-        },
-        "is_heat_wave_cluster_attached": true,
-        "heat_wave_cluster": {
-            "shape_name": "shape_name_example",
-            "cluster_size": 56,
-            "lifecycle_state": "lifecycle_state_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00"
-        },
-        "availability_domain": "Uocm:PHX-AD-1",
-        "fault_domain": "FAULT-DOMAIN-1",
         "shape_name": "shape_name_example",
-        "mysql_version": "mysql_version_example",
         "backup_policy": {
             "is_enabled": true,
             "window_start_time": "window_start_time_example",
@@ -737,8 +709,8 @@ db_systems:
             "defined_tags": {'Operations': {'CostCenter': 'US'}}
         },
         "source": {
-            "source_type": "NONE",
-            "backup_id": "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+            "backup_id": "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx",
+            "source_type": "NONE"
         },
         "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx",
         "data_storage_size_in_gbs": 56,
@@ -746,15 +718,6 @@ db_systems:
         "ip_address": "ip_address_example",
         "port": 56,
         "port_x": 56,
-        "endpoints": [{
-            "hostname": "hostname_example",
-            "ip_address": "ip_address_example",
-            "port": 56,
-            "port_x": 56,
-            "modes": [],
-            "status": "ACTIVE",
-            "status_details": "status_details_example"
-        }],
         "channels": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -784,11 +747,48 @@ db_systems:
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}}
         }],
-        "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "maintenance": {
             "window_start_time": "window_start_time_example"
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_highly_available": true,
+        "current_placement": {
+            "availability_domain": "Uocm:PHX-AD-1",
+            "fault_domain": "FAULT-DOMAIN-1"
+        },
+        "is_analytics_cluster_attached": true,
+        "analytics_cluster": {
+            "shape_name": "shape_name_example",
+            "cluster_size": 56,
+            "lifecycle_state": "lifecycle_state_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00"
+        },
+        "is_heat_wave_cluster_attached": true,
+        "heat_wave_cluster": {
+            "shape_name": "shape_name_example",
+            "cluster_size": 56,
+            "lifecycle_state": "lifecycle_state_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00"
+        },
+        "availability_domain": "Uocm:PHX-AD-1",
+        "fault_domain": "FAULT-DOMAIN-1",
+        "endpoints": [{
+            "hostname": "hostname_example",
+            "ip_address": "ip_address_example",
+            "port": 56,
+            "port_x": 56,
+            "modes": [],
+            "status": "ACTIVE",
+            "status_details": "status_details_example"
+        }],
+        "lifecycle_state": "CREATING",
+        "mysql_version": "mysql_version_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},

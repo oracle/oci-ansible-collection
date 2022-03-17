@@ -293,6 +293,42 @@ host_insight_resource_statistics:
                             returned: on success
                             type: str
                             sample: HOST_CPU_STATISTICS
+                        free_memory:
+                            description:
+                                - ""
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        available_memory:
+                            description:
+                                - ""
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        huge_pages_total:
+                            description:
+                                - Total number of huge pages.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        huge_page_size_in_mb:
+                            description:
+                                - Size of huge pages in megabytes.
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        huge_pages_free:
+                            description:
+                                - Total number of available huge pages.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        huge_pages_reserved:
+                            description:
+                                - Total number of huge pages which are used or reserved.
+                            returned: on success
+                            type: int
+                            sample: 56
                         load:
                             description:
                                 - ""
@@ -335,42 +371,6 @@ host_insight_resource_statistics:
                                     returned: on success
                                     type: float
                                     sample: 1.2
-                        free_memory:
-                            description:
-                                - ""
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        available_memory:
-                            description:
-                                - ""
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        huge_pages_total:
-                            description:
-                                - Total number of huge pages.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        huge_page_size_in_mb:
-                            description:
-                                - Size of huge pages in megabytes.
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        huge_pages_free:
-                            description:
-                                - Total number of available huge pages.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        huge_pages_reserved:
-                            description:
-                                - Total number of huge pages which are used or reserved.
-                            returned: on success
-                            type: int
-                            sample: 56
     sample: {
         "time_interval_start": "2013-10-20T19:20:30+01:00",
         "time_interval_end": "2013-10-20T19:20:30+01:00",
@@ -391,6 +391,12 @@ host_insight_resource_statistics:
                 "utilization_percent": 1.2,
                 "usage_change_percent": 1.2,
                 "resource_name": "HOST_CPU_STATISTICS",
+                "free_memory": 1.2,
+                "available_memory": 1.2,
+                "huge_pages_total": 56,
+                "huge_page_size_in_mb": 1.2,
+                "huge_pages_free": 56,
+                "huge_pages_reserved": 56,
                 "load": {
                     "minimum": 1.2,
                     "maximum": 1.2,
@@ -398,13 +404,7 @@ host_insight_resource_statistics:
                     "median": 1.2,
                     "lower_quartile": 1.2,
                     "upper_quartile": 1.2
-                },
-                "free_memory": 1.2,
-                "available_memory": 1.2,
-                "huge_pages_total": 56,
-                "huge_page_size_in_mb": 1.2,
-                "huge_pages_free": 56,
-                "huge_pages_reserved": 56
+                }
             }
         }]
     }

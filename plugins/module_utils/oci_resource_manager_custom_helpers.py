@@ -34,6 +34,23 @@ def get_base64_encoded_template_tf_config(client, template_id):
 
 
 class StackHelperCustom:
+    def get_exclude_attributes(self):
+        """
+        config_source.template_id, config_source.zip_file_base64_encoded are not present in the
+        GET return model so these properties are added as exclude_attributes in the generated module. but we are setting
+        these properties  in the get_existing_resource_dict_for_idempotence_check() to the existing resource dict
+        so these properties can be compared during idempotence check
+        """
+        exclude_attributes = super(StackHelperCustom, self).get_exclude_attributes()
+        remove_exclude_attributes = [
+            "config_source.template_id",
+            "config_source.zip_file_base64_encoded",
+        ]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+        return exclude_attributes
+
     def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
         existing_resource_dict = super(
             StackHelperCustom, self
@@ -255,7 +272,10 @@ class TemplateHelperCustom:
         """
         exclude_attributes = super(TemplateHelperCustom, self).get_exclude_attributes()
 
-        remove_exclude_attributes = ["logo_file_base64_encoded"]
+        remove_exclude_attributes = [
+            "logo_file_base64_encoded",
+            "template_config_source.zip_file_base64_encoded",
+        ]
         exclude_attributes = [
             x for x in exclude_attributes if x not in remove_exclude_attributes
         ]

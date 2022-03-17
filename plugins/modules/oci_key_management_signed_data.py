@@ -197,9 +197,13 @@ class SignedDataHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return SignDataDetails
 
+    def get_create_model(self):
+        create_model = super(SignedDataHelperGen, self).get_create_model()
+        setattr(create_model, "message", self.module.params.get("msg"))
+        return create_model
+
     def create_resource(self):
         create_details = self.get_create_model()
-        setattr(create_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.sign,
             call_fn_args=(),

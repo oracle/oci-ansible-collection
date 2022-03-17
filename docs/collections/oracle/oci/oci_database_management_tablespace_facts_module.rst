@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_tablespace_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - Fetches details about one or multiple Tablespace resources in Oracle Cloud Infrastructure
 - Gets the list of tablespaces for the specified managedDatabaseId.
+- If *tablespace_name* is specified, the details of a single Tablespace will be returned.
 
 
 .. Aliases
@@ -282,6 +283,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tablespace_name"></div>
+                    <b>tablespace_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-tablespace_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the tablespace.</div>
+                                            <div>Required to get a specific tablespace.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -320,6 +337,12 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Get a specific tablespace
+      oci_database_management_tablespace_facts:
+        # required
+        managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        tablespace_name: tablespace_name_example
+
     - name: List tablespaces
       oci_database_management_tablespace_facts:
         # required

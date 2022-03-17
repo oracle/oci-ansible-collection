@@ -160,14 +160,6 @@ dhcp_options:
             returned: on success
             type: complex
             contains:
-                type:
-                    description:
-                        - The specific DHCP option. Either `DomainNameServer`
-                          (for L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/)) or
-                          `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpSearchDomainOption/)).
-                    returned: on success
-                    type: str
-                    sample: DomainNameServer
                 custom_dns_servers:
                     description:
                         - If you set `serverType` to `CustomDnsServer`, specify the
@@ -193,6 +185,14 @@ dhcp_options:
                     returned: on success
                     type: str
                     sample: VcnLocal
+                type:
+                    description:
+                        - The specific DHCP option. Either `DomainNameServer`
+                          (for L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/)) or
+                          `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpSearchDomainOption/)).
+                    returned: on success
+                    type: str
+                    sample: DomainNameServer
                 search_domain_names:
                     description:
                         - A single search domain name according to L(RFC 952,https://tools.ietf.org/html/rfc952)
@@ -236,9 +236,9 @@ dhcp_options:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "options": [{
-            "type": "DomainNameServer",
             "custom_dns_servers": [],
             "server_type": "VcnLocal",
+            "type": "DomainNameServer",
             "search_domain_names": []
         }],
         "time_created": "2013-10-20T19:20:30+01:00",

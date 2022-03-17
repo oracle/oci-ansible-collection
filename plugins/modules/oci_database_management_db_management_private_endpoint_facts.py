@@ -110,6 +110,27 @@ db_management_private_endpoints:
     returned: on success
     type: complex
     contains:
+        is_cluster:
+            description:
+                - Specifies whether the Database Management private endpoint can be used for Oracle Databases in a cluster.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        private_ip:
+            description:
+                - The IP addresses assigned to the Database Management private endpoint.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: private_ip_example
+        nsg_ids:
+            description:
+                - The OCIDs of the Network Security Groups to which the Database Management private endpoint belongs.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Management private endpoint.
@@ -128,13 +149,6 @@ db_management_private_endpoints:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        is_cluster:
-            description:
-                - Specifies whether the Database Management private endpoint can be used for Oracle Databases in a cluster.
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
@@ -147,13 +161,6 @@ db_management_private_endpoints:
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        private_ip:
-            description:
-                - The IP addresses assigned to the Database Management private endpoint.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: private_ip_example
         description:
             description:
                 - The description of the Database Management private endpoint.
@@ -173,25 +180,18 @@ db_management_private_endpoints:
             returned: on success
             type: str
             sample: CREATING
-        nsg_ids:
-            description:
-                - The OCIDs of the Network Security Groups to which the Database Management private endpoint belongs.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
     sample: [{
+        "is_cluster": true,
+        "private_ip": "private_ip_example",
+        "nsg_ids": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_cluster": true,
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "private_ip": "private_ip_example",
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "nsg_ids": []
+        "lifecycle_state": "CREATING"
     }]
 """
 

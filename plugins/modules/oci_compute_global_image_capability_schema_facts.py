@@ -109,6 +109,21 @@ compute_global_image_capability_schemas:
             returned: on success
             type: str
             sample: current_version_name_example
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        time_created:
+            description:
+                - The date and time the compute global image capability schema was created, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -117,13 +132,6 @@ compute_global_image_capability_schemas:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -133,22 +141,14 @@ compute_global_image_capability_schemas:
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
-        time_created:
-            description:
-                - The date and time the compute global image capability schema was created, in the format defined by
-                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                - "Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "current_version_name": "current_version_name_example",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'}
     }]
 """
 

@@ -101,6 +101,20 @@ catalogs:
     returned: on success
     type: complex
     contains:
+        service_api_url:
+            description:
+                - The REST front endpoint URL to the data catalog instance.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: service_api_url_example
+        service_console_url:
+            description:
+                - The console front endpoint URL to the data catalog instance.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: service_console_url_example
         id:
             description:
                 - OCID of the data catalog instance.
@@ -131,20 +145,6 @@ catalogs:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        service_api_url:
-            description:
-                - The REST front endpoint URL to the data catalog instance.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: service_api_url_example
-        service_console_url:
-            description:
-                - The console front endpoint URL to the data catalog instance.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: service_console_url_example
         number_of_objects:
             description:
                 - The number of data objects added to the data catalog.
@@ -186,13 +186,13 @@ catalogs:
             type: list
             sample: []
     sample: [{
+        "service_api_url": "service_api_url_example",
+        "service_console_url": "service_console_url_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "service_api_url": "service_api_url_example",
-        "service_console_url": "service_console_url_example",
         "number_of_objects": 56,
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",

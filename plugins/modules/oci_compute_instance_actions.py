@@ -496,6 +496,12 @@ instance:
             returned: on success
             type: complex
             contains:
+                boot_volume_id:
+                    description:
+                        - The OCID of the boot volume used to boot the instance.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                 source_type:
                     description:
                         - The source type for the instance.
@@ -504,12 +510,6 @@ instance:
                     returned: on success
                     type: str
                     sample: bootVolume
-                boot_volume_id:
-                    description:
-                        - The OCID of the boot volume used to boot the instance.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_size_in_gbs:
                     description:
                         - The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 32,768 GB (32 TB).
@@ -627,6 +627,12 @@ instance:
             returned: on success
             type: complex
             contains:
+                numa_nodes_per_socket:
+                    description:
+                        - The number of NUMA nodes per socket (NPS).
+                    returned: on success
+                    type: str
+                    sample: NPS0
                 type:
                     description:
                         - The type of platform being configured.
@@ -651,12 +657,6 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
-                numa_nodes_per_socket:
-                    description:
-                        - The number of NUMA nodes per socket (NPS).
-                    returned: on success
-                    type: str
-                    sample: NPS0
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
@@ -710,8 +710,8 @@ instance:
             "local_disk_description": "local_disk_description_example"
         },
         "source_details": {
-            "source_type": "bootVolume",
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
+            "source_type": "bootVolume",
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -729,11 +729,11 @@ instance:
         },
         "time_maintenance_reboot_due": "2013-10-20T19:20:30+01:00",
         "platform_config": {
+            "numa_nodes_per_socket": "NPS0",
             "type": "AMD_MILAN_BM",
             "is_secure_boot_enabled": true,
             "is_trusted_platform_module_enabled": true,
-            "is_measured_boot_enabled": true,
-            "numa_nodes_per_socket": "NPS0"
+            "is_measured_boot_enabled": true
         }
     }
 """

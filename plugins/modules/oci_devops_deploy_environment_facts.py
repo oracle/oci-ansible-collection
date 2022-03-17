@@ -102,6 +102,59 @@ deploy_environments:
     returned: on success
     type: complex
     contains:
+        compute_instance_group_selectors:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.
+                    returned: on success
+                    type: complex
+                    contains:
+                        compute_instance_ids:
+                            description:
+                                - Compute instance OCID identifiers that are members of this group.
+                            returned: on success
+                            type: list
+                            sample: []
+                        selector_type:
+                            description:
+                                - Defines the type of the instance selector for the group.
+                            returned: on success
+                            type: str
+                            sample: INSTANCE_IDS
+                        region:
+                            description:
+                                - Region identifier referred by the deployment environment. Region identifiers are listed at https://docs.oracle.com/en-
+                                  us/iaas/Content/General/Concepts/regions.htm
+                            returned: on success
+                            type: str
+                            sample: us-phoenix-1
+                        query:
+                            description:
+                                - Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is
+                                  documented at https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/querysyntax.htm
+                            returned: on success
+                            type: str
+                            sample: query_example
+        function_id:
+            description:
+                - The OCID of the Function.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_id:
+            description:
+                - The OCID of the Kubernetes cluster.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -185,60 +238,17 @@ deploy_environments:
             returned: on success
             type: dict
             sample: {}
-        compute_instance_group_selectors:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                items:
-                    description:
-                        - A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.
-                    returned: on success
-                    type: complex
-                    contains:
-                        selector_type:
-                            description:
-                                - Defines the type of the instance selector for the group.
-                            returned: on success
-                            type: str
-                            sample: INSTANCE_IDS
-                        compute_instance_ids:
-                            description:
-                                - Compute instance OCID identifiers that are members of this group.
-                            returned: on success
-                            type: list
-                            sample: []
-                        region:
-                            description:
-                                - Region identifier referred by the deployment environment. Region identifiers are listed at https://docs.oracle.com/en-
-                                  us/iaas/Content/General/Concepts/regions.htm
-                            returned: on success
-                            type: str
-                            sample: us-phoenix-1
-                        query:
-                            description:
-                                - Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is
-                                  documented at https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/querysyntax.htm
-                            returned: on success
-                            type: str
-                            sample: query_example
-        function_id:
-            description:
-                - The OCID of the Function.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
-        cluster_id:
-            description:
-                - The OCID of the Kubernetes cluster.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "compute_instance_group_selectors": {
+            "items": [{
+                "compute_instance_ids": [],
+                "selector_type": "INSTANCE_IDS",
+                "region": "us-phoenix-1",
+                "query": "query_example"
+            }]
+        },
+        "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+        "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "display_name": "display_name_example",
@@ -251,17 +261,7 @@ deploy_environments:
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "compute_instance_group_selectors": {
-            "items": [{
-                "selector_type": "INSTANCE_IDS",
-                "compute_instance_ids": [],
-                "region": "us-phoenix-1",
-                "query": "query_example"
-            }]
-        },
-        "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
-        "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+        "system_tags": {}
     }]
 """
 

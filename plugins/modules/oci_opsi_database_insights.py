@@ -174,6 +174,48 @@ database_insights:
     returned: on success
     type: complex
     contains:
+        enterprise_manager_identifier:
+            description:
+                - Enterprise Manager Unique Identifier
+            returned: on success
+            type: str
+            sample: enterprise_manager_identifier_example
+        enterprise_manager_entity_name:
+            description:
+                - Enterprise Manager Entity Name
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_name_example
+        enterprise_manager_entity_type:
+            description:
+                - Enterprise Manager Entity Type
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_type_example
+        enterprise_manager_entity_identifier:
+            description:
+                - Enterprise Manager Entity Unique Identifier
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_identifier_example
+        enterprise_manager_entity_display_name:
+            description:
+                - Enterprise Manager Entity Display Name
+            returned: on success
+            type: str
+            sample: enterprise_manager_entity_display_name_example
+        enterprise_manager_bridge_id:
+            description:
+                - OPSI Enterprise Manager Bridge OCID
+            returned: on success
+            type: str
+            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_insight_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
+            returned: on success
+            type: str
+            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
         entity_source:
             description:
                 - Source of the database entity.
@@ -262,80 +304,6 @@ database_insights:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        database_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
-            returned: on success
-            type: str
-            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        database_name:
-            description:
-                - Name of database
-            returned: on success
-            type: str
-            sample: database_name_example
-        database_display_name:
-            description:
-                - Display name of database
-            returned: on success
-            type: str
-            sample: database_display_name_example
-        database_resource_type:
-            description:
-                - OCI database resource type
-            returned: on success
-            type: str
-            sample: database_resource_type_example
-        db_additional_details:
-            description:
-                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
-                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
-                  string. Note that this string needs to be escaped when specified in the curl command.
-            returned: on success
-            type: dict
-            sample: {}
-        enterprise_manager_identifier:
-            description:
-                - Enterprise Manager Unique Identifier
-            returned: on success
-            type: str
-            sample: enterprise_manager_identifier_example
-        enterprise_manager_entity_name:
-            description:
-                - Enterprise Manager Entity Name
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_name_example
-        enterprise_manager_entity_type:
-            description:
-                - Enterprise Manager Entity Type
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_type_example
-        enterprise_manager_entity_identifier:
-            description:
-                - Enterprise Manager Entity Unique Identifier
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_identifier_example
-        enterprise_manager_entity_display_name:
-            description:
-                - Enterprise Manager Entity Display Name
-            returned: on success
-            type: str
-            sample: enterprise_manager_entity_display_name_example
-        enterprise_manager_bridge_id:
-            description:
-                - OPSI Enterprise Manager Bridge OCID
-            returned: on success
-            type: str
-            sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
-        exadata_insight_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
-            returned: on success
-            type: str
-            sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
@@ -396,7 +364,46 @@ database_insights:
                     returned: on success
                     type: str
                     sample: CREDENTIALS_BY_SOURCE
+        database_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
+            returned: on success
+            type: str
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name:
+            description:
+                - Name of database
+            returned: on success
+            type: str
+            sample: database_name_example
+        database_display_name:
+            description:
+                - Display name of database
+            returned: on success
+            type: str
+            sample: database_display_name_example
+        database_resource_type:
+            description:
+                - OCI database resource type
+            returned: on success
+            type: str
+            sample: database_resource_type_example
+        db_additional_details:
+            description:
+                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
+                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
+                  string. Note that this string needs to be escaped when specified in the curl command.
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
+        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
+        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
+        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
+        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
+        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
+        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "entity_source": "AUTONOMOUS_DATABASE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -411,18 +418,6 @@ database_insights:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "database_name": "database_name_example",
-        "database_display_name": "database_display_name_example",
-        "database_resource_type": "database_resource_type_example",
-        "db_additional_details": {},
-        "enterprise_manager_identifier": "enterprise_manager_identifier_example",
-        "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
-        "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
-        "enterprise_manager_entity_identifier": "enterprise_manager_entity_identifier_example",
-        "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
-        "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
-        "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_details": {
@@ -434,7 +429,12 @@ database_insights:
         "connection_credential_details": {
             "credential_source_name": "credential_source_name_example",
             "credential_type": "CREDENTIALS_BY_SOURCE"
-        }
+        },
+        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_name": "database_name_example",
+        "database_display_name": "database_display_name_example",
+        "database_resource_type": "database_resource_type_example",
+        "db_additional_details": {}
     }
 """
 

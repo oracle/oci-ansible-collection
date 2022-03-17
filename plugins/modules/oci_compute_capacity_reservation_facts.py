@@ -113,57 +113,6 @@ compute_capacity_reservations:
     returned: on success
     type: complex
     contains:
-        availability_domain:
-            description:
-                - The availability domain of the compute capacity reservation.
-                - "Example: `Uocm:PHX-AD-1`"
-            returned: on success
-            type: str
-            sample: Uocm:PHX-AD-1
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
-                  containing the compute capacity reservation.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute capacity reservation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        is_default_reservation:
-            description:
-                - Whether this capacity reservation is the default.
-                  For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
-            returned: on success
-            type: bool
-            sample: true
         instance_reservation_configs:
             description:
                 - The capacity configurations for the capacity reservation.
@@ -221,12 +170,64 @@ compute_capacity_reservations:
                     returned: on success
                     type: int
                     sample: 56
+        time_updated:
+            description:
+                - The date and time the compute capacity reservation was updated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute capacity reservation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
+                  containing the compute capacity reservation.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
         lifecycle_state:
             description:
                 - The current state of the compute capacity reservation.
             returned: on success
             type: str
             sample: ACTIVE
+        availability_domain:
+            description:
+                - The availability domain of the compute capacity reservation.
+                - "Example: `Uocm:PHX-AD-1`"
+            returned: on success
+            type: str
+            sample: Uocm:PHX-AD-1
         reserved_instance_count:
             description:
                 - The number of instances for which capacity will be held with this
@@ -236,21 +237,6 @@ compute_capacity_reservations:
             returned: on success
             type: int
             sample: 56
-        time_updated:
-            description:
-                - The date and time the compute capacity reservation was updated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                - "Example: `2016-08-25T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_created:
-            description:
-                - The date and time the compute capacity reservation was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                - "Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         used_instance_count:
             description:
                 - The total number of instances currently consuming space in
@@ -260,14 +246,21 @@ compute_capacity_reservations:
             returned: on success
             type: int
             sample: 56
+        is_default_reservation:
+            description:
+                - Whether this capacity reservation is the default.
+                  For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
+            returned: on success
+            type: bool
+            sample: true
+        time_created:
+            description:
+                - The date and time the compute capacity reservation was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "availability_domain": "Uocm:PHX-AD-1",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "display_name_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_default_reservation": true,
         "instance_reservation_configs": [{
             "fault_domain": "FAULT-DOMAIN-1",
             "instance_shape": "instance_shape_example",
@@ -278,11 +271,18 @@ compute_capacity_reservations:
             "reserved_count": 56,
             "used_count": 56
         }],
-        "lifecycle_state": "ACTIVE",
-        "reserved_instance_count": 56,
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "used_instance_count": 56
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
+        "lifecycle_state": "ACTIVE",
+        "availability_domain": "Uocm:PHX-AD-1",
+        "reserved_instance_count": 56,
+        "used_instance_count": 56,
+        "is_default_reservation": true,
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

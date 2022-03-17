@@ -547,6 +547,118 @@ build_pipeline_stage:
     returned: on success
     type: complex
     contains:
+        image:
+            description:
+                - Image name for the build environment.
+            returned: on success
+            type: str
+            sample: OL7_X86_64_STANDARD_10
+        build_spec_file:
+            description:
+                - The path to the build specification file for this environment. The default location of the file if not specified is build_spec.yaml.
+            returned: on success
+            type: str
+            sample: build_spec_file_example
+        stage_execution_timeout_in_seconds:
+            description:
+                - Timeout for the build stage execution. Specify value in seconds.
+            returned: on success
+            type: int
+            sample: 56
+        build_source_collection:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - Collection of build sources. In case of UPDATE operation, replaces existing build sources list. Merging with existing build sources is
+                          not supported.
+                    returned: on success
+                    type: complex
+                    contains:
+                        repository_id:
+                            description:
+                                - The DevOps code repository ID.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+                        name:
+                            description:
+                                - Name of the build source. This must be unique within a build source collection. The name can be used by customers to locate
+                                  the working directory pertinent to this repository.
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        connection_type:
+                            description:
+                                - The type of source provider.
+                            returned: on success
+                            type: str
+                            sample: GITHUB
+                        repository_url:
+                            description:
+                                - URL for the repository.
+                            returned: on success
+                            type: str
+                            sample: repository_url_example
+                        branch:
+                            description:
+                                - Branch name.
+                            returned: on success
+                            type: str
+                            sample: branch_example
+                        connection_id:
+                            description:
+                                - Connection identifier pertinent to GitHub source provider.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+        primary_build_source:
+            description:
+                - Name of the build source where the build_spec.yml file is located. If not specified, then the first entry in the build source collection is
+                  chosen as primary build source.
+            returned: on success
+            type: str
+            sample: primary_build_source_example
+        deliver_artifact_collection:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - Collection of artifacts that were generated in the Build stage and need to be pushed to the artifactory stores. In case of UPDATE
+                          operation, replaces existing artifacts list. Merging with existing artifacts is not supported.
+                    returned: on success
+                    type: complex
+                    contains:
+                        artifact_name:
+                            description:
+                                - Name of the artifact specified in the build_spec.yaml file.
+                            returned: on success
+                            type: str
+                            sample: artifact_name_example
+                        artifact_id:
+                            description:
+                                - Artifact identifier that contains the artifact definition.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_pipeline_id:
+            description:
+                - A target deployment pipeline OCID that will run in this stage.
+            returned: on success
+            type: str
+            sample: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        is_pass_all_parameters_enabled:
+            description:
+                - A boolean flag that specifies whether all the parameters must be passed when the deployment is triggered.
+            returned: on success
+            type: bool
+            sample: true
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -654,118 +766,6 @@ build_pipeline_stage:
             returned: on success
             type: dict
             sample: {}
-        image:
-            description:
-                - Image name for the build environment.
-            returned: on success
-            type: str
-            sample: OL7_X86_64_STANDARD_10
-        build_spec_file:
-            description:
-                - The path to the build specification file for this environment. The default location of the file if not specified is build_spec.yaml.
-            returned: on success
-            type: str
-            sample: build_spec_file_example
-        stage_execution_timeout_in_seconds:
-            description:
-                - Timeout for the build stage execution. Specify value in seconds.
-            returned: on success
-            type: int
-            sample: 56
-        build_source_collection:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                items:
-                    description:
-                        - Collection of build sources. In case of UPDATE operation, replaces existing build sources list. Merging with existing build sources is
-                          not supported.
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - Name of the build source. This must be unique within a build source collection. The name can be used by customers to locate
-                                  the working directory pertinent to this repository.
-                            returned: on success
-                            type: str
-                            sample: name_example
-                        connection_type:
-                            description:
-                                - The type of source provider.
-                            returned: on success
-                            type: str
-                            sample: GITHUB
-                        repository_url:
-                            description:
-                                - URL for the repository.
-                            returned: on success
-                            type: str
-                            sample: repository_url_example
-                        branch:
-                            description:
-                                - Branch name.
-                            returned: on success
-                            type: str
-                            sample: branch_example
-                        repository_id:
-                            description:
-                                - The DevOps code repository ID.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-                        connection_id:
-                            description:
-                                - Connection identifier pertinent to GitHub source provider.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
-        primary_build_source:
-            description:
-                - Name of the build source where the build_spec.yml file is located. If not specified, then the first entry in the build source collection is
-                  chosen as primary build source.
-            returned: on success
-            type: str
-            sample: primary_build_source_example
-        deliver_artifact_collection:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                items:
-                    description:
-                        - Collection of artifacts that were generated in the Build stage and need to be pushed to the artifactory stores. In case of UPDATE
-                          operation, replaces existing artifacts list. Merging with existing artifacts is not supported.
-                    returned: on success
-                    type: complex
-                    contains:
-                        artifact_name:
-                            description:
-                                - Name of the artifact specified in the build_spec.yaml file.
-                            returned: on success
-                            type: str
-                            sample: artifact_name_example
-                        artifact_id:
-                            description:
-                                - Artifact identifier that contains the artifact definition.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_pipeline_id:
-            description:
-                - A target deployment pipeline OCID that will run in this stage.
-            returned: on success
-            type: str
-            sample: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-        is_pass_all_parameters_enabled:
-            description:
-                - A boolean flag that specifies whether all the parameters must be passed when the deployment is triggered.
-            returned: on success
-            type: bool
-            sample: true
         wait_criteria:
             description:
                 - ""
@@ -786,6 +786,28 @@ build_pipeline_stage:
                     type: str
                     sample: wait_duration_example
     sample: {
+        "image": "OL7_X86_64_STANDARD_10",
+        "build_spec_file": "build_spec_file_example",
+        "stage_execution_timeout_in_seconds": 56,
+        "build_source_collection": {
+            "items": [{
+                "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
+                "name": "name_example",
+                "connection_type": "GITHUB",
+                "repository_url": "repository_url_example",
+                "branch": "branch_example",
+                "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
+        },
+        "primary_build_source": "primary_build_source_example",
+        "deliver_artifact_collection": {
+            "items": [{
+                "artifact_name": "artifact_name_example",
+                "artifact_id": "ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
+        },
+        "deploy_pipeline_id": "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_pass_all_parameters_enabled": true,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -805,28 +827,6 @@ build_pipeline_stage:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "image": "OL7_X86_64_STANDARD_10",
-        "build_spec_file": "build_spec_file_example",
-        "stage_execution_timeout_in_seconds": 56,
-        "build_source_collection": {
-            "items": [{
-                "name": "name_example",
-                "connection_type": "GITHUB",
-                "repository_url": "repository_url_example",
-                "branch": "branch_example",
-                "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-                "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
-            }]
-        },
-        "primary_build_source": "primary_build_source_example",
-        "deliver_artifact_collection": {
-            "items": [{
-                "artifact_name": "artifact_name_example",
-                "artifact_id": "ocid1.artifact.oc1..xxxxxxEXAMPLExxxxxx"
-            }]
-        },
-        "deploy_pipeline_id": "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_pass_all_parameters_enabled": true,
         "wait_criteria": {
             "wait_type": "ABSOLUTE_WAIT",
             "wait_duration": "wait_duration_example"

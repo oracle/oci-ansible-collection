@@ -107,24 +107,486 @@ build_runs:
     returned: on success
     type: complex
     contains:
+        build_run_progress:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                time_started:
+                    description:
+                        - The time the build run started. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_finished:
+                    description:
+                        - The time the build run finished. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                build_pipeline_stage_run_progress:
+                    description:
+                        - Map of stage OCIDs to build pipeline stage run progress model.
+                    returned: on success
+                    type: complex
+                    contains:
+                        actual_build_runner_shape:
+                            description:
+                                - Name of Build Runner shape where this Build Stage is running.
+                            returned: on success
+                            type: str
+                            sample: actual_build_runner_shape_example
+                        actual_build_runner_shape_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                ocpus:
+                                    description:
+                                        - The total number of OCPUs set for the instance.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                memory_in_gbs:
+                                    description:
+                                        - The total amount of memory set for the instance in gigabytes.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                        image:
+                            description:
+                                - Image name for the Build Environment
+                            returned: on success
+                            type: str
+                            sample: OL7_X86_64_STANDARD_10
+                        build_spec_file:
+                            description:
+                                - The path to the build specification file for this Environment. The default location if not specified is build_spec.yaml
+                            returned: on success
+                            type: str
+                            sample: build_spec_file_example
+                        stage_execution_timeout_in_seconds:
+                            description:
+                                - Timeout for the Build Stage Execution. Value in seconds.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        build_source_collection:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                items:
+                                    description:
+                                        - Collection of build sources. In case of UPDATE operation, replaces existing build sources list. Merging with existing
+                                          build sources is not supported.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        repository_id:
+                                            description:
+                                                - The DevOps code repository ID.
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+                                        name:
+                                            description:
+                                                - Name of the build source. This must be unique within a build source collection. The name can be used by
+                                                  customers to locate the working directory pertinent to this repository.
+                                            returned: on success
+                                            type: str
+                                            sample: name_example
+                                        connection_type:
+                                            description:
+                                                - The type of source provider.
+                                            returned: on success
+                                            type: str
+                                            sample: GITHUB
+                                        repository_url:
+                                            description:
+                                                - URL for the repository.
+                                            returned: on success
+                                            type: str
+                                            sample: repository_url_example
+                                        branch:
+                                            description:
+                                                - Branch name.
+                                            returned: on success
+                                            type: str
+                                            sample: branch_example
+                                        connection_id:
+                                            description:
+                                                - Connection identifier pertinent to GitHub source provider.
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+                        primary_build_source:
+                            description:
+                                - Name of the BuildSource in which the build_spec.yml file need to be located. If not specified, the 1st entry in the
+                                  BuildSource collection will be chosen as Primary.
+                            returned: on success
+                            type: str
+                            sample: primary_build_source_example
+                        steps:
+                            description:
+                                - The details about all the steps in a Build stage
+                            returned: on success
+                            type: complex
+                            contains:
+                                name:
+                                    description:
+                                        - Name of the step.
+                                    returned: on success
+                                    type: str
+                                    sample: name_example
+                                state:
+                                    description:
+                                        - State of the step.
+                                    returned: on success
+                                    type: str
+                                    sample: WAITING
+                                time_started:
+                                    description:
+                                        - Time when the step started.
+                                    returned: on success
+                                    type: str
+                                    sample: "2013-10-20T19:20:30+01:00"
+                                time_finished:
+                                    description:
+                                        - Time when the step finished.
+                                    returned: on success
+                                    type: str
+                                    sample: "2013-10-20T19:20:30+01:00"
+                        delivered_artifacts:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                items:
+                                    description:
+                                        - List of artifacts delivered through the Deliver Artifacts stage.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        artifact_repository_id:
+                                            description:
+                                                - The OCID of the artifact registry repository used by the DeliverArtifactStage
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx"
+                                        delivered_artifact_id:
+                                            description:
+                                                - The OCID of the artifact pushed by the Deliver Artifacts stage.
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx"
+                                        path:
+                                            description:
+                                                - Path of the repository where artifact was pushed
+                                            returned: on success
+                                            type: str
+                                            sample: path_example
+                                        version:
+                                            description:
+                                                - Version of the artifact pushed
+                                            returned: on success
+                                            type: str
+                                            sample: version_example
+                                        deploy_artifact_id:
+                                            description:
+                                                - The OCID of the deployment artifact definition.
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+                                        output_artifact_name:
+                                            description:
+                                                - Name of the output artifact defined in the build specification file.
+                                            returned: on success
+                                            type: str
+                                            sample: output_artifact_name_example
+                                        artifact_type:
+                                            description:
+                                                - Type of artifact delivered.
+                                            returned: on success
+                                            type: str
+                                            sample: GENERIC_ARTIFACT
+                                        delivered_artifact_hash:
+                                            description:
+                                                - The hash of the container registry artifact pushed by the Deliver Artifacts stage.
+                                            returned: on success
+                                            type: str
+                                            sample: delivered_artifact_hash_example
+                                        image_uri:
+                                            description:
+                                                - The imageUri of the OCIR artifact pushed by the DeliverArtifactStage
+                                            returned: on success
+                                            type: str
+                                            sample: image_uri_example
+                        exported_variables:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                items:
+                                    description:
+                                        - List of exported variables.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        name:
+                                            description:
+                                                - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$."
+                                            returned: on success
+                                            type: str
+                                            sample: name_example
+                                        value:
+                                            description:
+                                                - Value of the argument.
+                                            returned: on success
+                                            type: str
+                                            sample: value_example
+                        artifact_override_parameters:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                items:
+                                    description:
+                                        - List of artifact override arguments at the time of deployment.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        deploy_artifact_id:
+                                            description:
+                                                - The OCID of the artifact to which this parameter applies.
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+                                        name:
+                                            description:
+                                                - Name of the parameter (case-sensitive).
+                                            returned: on success
+                                            type: str
+                                            sample: name_example
+                                        value:
+                                            description:
+                                                - Value of the parameter.
+                                            returned: on success
+                                            type: str
+                                            sample: value_example
+                        deployment_id:
+                            description:
+                                - Identifier of the deployment triggered.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+                        stage_display_name:
+                            description:
+                                - Build Run display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
+                            returned: on success
+                            type: str
+                            sample: stage_display_name_example
+                        build_pipeline_stage_type:
+                            description:
+                                - Stage types.
+                            returned: on success
+                            type: str
+                            sample: BUILD
+                        build_pipeline_stage_id:
+                            description:
+                                - The stage OCID.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx"
+                        time_started:
+                            description:
+                                - The time the stage started executing. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        time_finished:
+                            description:
+                                - The time the stage finished executing. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        status:
+                            description:
+                                - The current status of the stage.
+                            returned: on success
+                            type: str
+                            sample: ACCEPTED
+                        build_pipeline_stage_predecessors:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                items:
+                                    description:
+                                        - A list of build pipeline stage predecessors for a stage.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        id:
+                                            description:
+                                                - The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's
+                                                  ID.
+                                            returned: on success
+                                            type: str
+                                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        build_outputs:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                exported_variables:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        items:
+                            description:
+                                - List of exported variables.
+                            returned: on success
+                            type: complex
+                            contains:
+                                name:
+                                    description:
+                                        - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$."
+                                    returned: on success
+                                    type: str
+                                    sample: name_example
+                                value:
+                                    description:
+                                        - Value of the argument.
+                                    returned: on success
+                                    type: str
+                                    sample: value_example
+                delivered_artifacts:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        items:
+                            description:
+                                - List of artifacts delivered through the Deliver Artifacts stage.
+                            returned: on success
+                            type: complex
+                            contains:
+                                artifact_repository_id:
+                                    description:
+                                        - The OCID of the artifact registry repository used by the DeliverArtifactStage
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx"
+                                delivered_artifact_id:
+                                    description:
+                                        - The OCID of the artifact pushed by the Deliver Artifacts stage.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx"
+                                path:
+                                    description:
+                                        - Path of the repository where artifact was pushed
+                                    returned: on success
+                                    type: str
+                                    sample: path_example
+                                version:
+                                    description:
+                                        - Version of the artifact pushed
+                                    returned: on success
+                                    type: str
+                                    sample: version_example
+                                deploy_artifact_id:
+                                    description:
+                                        - The OCID of the deployment artifact definition.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+                                output_artifact_name:
+                                    description:
+                                        - Name of the output artifact defined in the build specification file.
+                                    returned: on success
+                                    type: str
+                                    sample: output_artifact_name_example
+                                artifact_type:
+                                    description:
+                                        - Type of artifact delivered.
+                                    returned: on success
+                                    type: str
+                                    sample: GENERIC_ARTIFACT
+                                delivered_artifact_hash:
+                                    description:
+                                        - The hash of the container registry artifact pushed by the Deliver Artifacts stage.
+                                    returned: on success
+                                    type: str
+                                    sample: delivered_artifact_hash_example
+                                image_uri:
+                                    description:
+                                        - The imageUri of the OCIR artifact pushed by the DeliverArtifactStage
+                                    returned: on success
+                                    type: str
+                                    sample: image_uri_example
+                artifact_override_parameters:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        items:
+                            description:
+                                - List of artifact override arguments at the time of deployment.
+                            returned: on success
+                            type: complex
+                            contains:
+                                deploy_artifact_id:
+                                    description:
+                                        - The OCID of the artifact to which this parameter applies.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+                                name:
+                                    description:
+                                        - Name of the parameter (case-sensitive).
+                                    returned: on success
+                                    type: str
+                                    sample: name_example
+                                value:
+                                    description:
+                                        - Value of the parameter.
+                                    returned: on success
+                                    type: str
+                                    sample: value_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Build run display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
         compartment_id:
             description:
                 - The OCID of the compartment where the build is running.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Build run display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
         project_id:
             description:
                 - The OCID of the DevOps project.
@@ -143,12 +605,12 @@ build_runs:
             returned: on success
             type: complex
             contains:
-                source_type:
+                repository_id:
                     description:
-                        - The source from which the build run is triggered.
+                        - The DevOps code repository identifier that invoked the build run.
                     returned: on success
                     type: str
-                    sample: MANUAL
+                    sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                 trigger_id:
                     description:
                         - The trigger that invoked the build run.
@@ -221,12 +683,12 @@ build_runs:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
-                repository_id:
+                source_type:
                     description:
-                        - The DevOps code repository identifier that invoked the build run.
+                        - The source from which the build run is triggered.
                     returned: on success
                     type: str
-                    sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+                    sample: MANUAL
         build_run_arguments:
             description:
                 - ""
@@ -252,6 +714,25 @@ build_runs:
                             returned: on success
                             type: str
                             sample: value_example
+        build_run_progress_summary:
+            description:
+                - ""
+                - Returned for list operation
+            returned: on success
+            type: complex
+            contains:
+                time_started:
+                    description:
+                        - The time the build run started. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_finished:
+                    description:
+                        - The time the build run finished. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - The time the build run was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
@@ -277,341 +758,6 @@ build_runs:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        build_run_progress:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                time_started:
-                    description:
-                        - The time the build run started. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                time_finished:
-                    description:
-                        - The time the build run finished. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                build_pipeline_stage_run_progress:
-                    description:
-                        - Map of stage OCIDs to build pipeline stage run progress model.
-                    returned: on success
-                    type: complex
-                    contains:
-                        stage_display_name:
-                            description:
-                                - Build Run display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
-                            returned: on success
-                            type: str
-                            sample: stage_display_name_example
-                        build_pipeline_stage_type:
-                            description:
-                                - Stage types.
-                            returned: on success
-                            type: str
-                            sample: BUILD
-                        build_pipeline_stage_id:
-                            description:
-                                - The stage OCID.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx"
-                        time_started:
-                            description:
-                                - The time the stage started executing. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                        time_finished:
-                            description:
-                                - The time the stage finished executing. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                        status:
-                            description:
-                                - The current status of the stage.
-                            returned: on success
-                            type: str
-                            sample: ACCEPTED
-                        build_pipeline_stage_predecessors:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                items:
-                                    description:
-                                        - A list of build pipeline stage predecessors for a stage.
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        id:
-                                            description:
-                                                - The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's
-                                                  ID.
-                                            returned: on success
-                                            type: str
-                                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                        actual_build_runner_shape:
-                            description:
-                                - Name of Build Runner shape where this Build Stage is running.
-                            returned: on success
-                            type: str
-                            sample: actual_build_runner_shape_example
-                        actual_build_runner_shape_config:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                ocpus:
-                                    description:
-                                        - The total number of OCPUs set for the instance.
-                                    returned: on success
-                                    type: float
-                                    sample: 1.2
-                                memory_in_gbs:
-                                    description:
-                                        - The total amount of memory set for the instance in gigabytes.
-                                    returned: on success
-                                    type: float
-                                    sample: 1.2
-                        image:
-                            description:
-                                - Image name for the Build Environment
-                            returned: on success
-                            type: str
-                            sample: OL7_X86_64_STANDARD_10
-                        build_spec_file:
-                            description:
-                                - The path to the build specification file for this Environment. The default location if not specified is build_spec.yaml
-                            returned: on success
-                            type: str
-                            sample: build_spec_file_example
-                        stage_execution_timeout_in_seconds:
-                            description:
-                                - Timeout for the Build Stage Execution. Value in seconds.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        build_source_collection:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                items:
-                                    description:
-                                        - Collection of build sources. In case of UPDATE operation, replaces existing build sources list. Merging with existing
-                                          build sources is not supported.
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        name:
-                                            description:
-                                                - Name of the build source. This must be unique within a build source collection. The name can be used by
-                                                  customers to locate the working directory pertinent to this repository.
-                                            returned: on success
-                                            type: str
-                                            sample: name_example
-                                        connection_type:
-                                            description:
-                                                - The type of source provider.
-                                            returned: on success
-                                            type: str
-                                            sample: GITHUB
-                                        repository_url:
-                                            description:
-                                                - URL for the repository.
-                                            returned: on success
-                                            type: str
-                                            sample: repository_url_example
-                                        branch:
-                                            description:
-                                                - Branch name.
-                                            returned: on success
-                                            type: str
-                                            sample: branch_example
-                                        repository_id:
-                                            description:
-                                                - The DevOps code repository ID.
-                                            returned: on success
-                                            type: str
-                                            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-                                        connection_id:
-                                            description:
-                                                - Connection identifier pertinent to GitHub source provider.
-                                            returned: on success
-                                            type: str
-                                            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
-                        primary_build_source:
-                            description:
-                                - Name of the BuildSource in which the build_spec.yml file need to be located. If not specified, the 1st entry in the
-                                  BuildSource collection will be chosen as Primary.
-                            returned: on success
-                            type: str
-                            sample: primary_build_source_example
-                        steps:
-                            description:
-                                - The details about all the steps in a Build stage
-                            returned: on success
-                            type: complex
-                            contains:
-                                name:
-                                    description:
-                                        - Name of the step.
-                                    returned: on success
-                                    type: str
-                                    sample: name_example
-                                state:
-                                    description:
-                                        - State of the step.
-                                    returned: on success
-                                    type: str
-                                    sample: WAITING
-                                time_started:
-                                    description:
-                                        - Time when the step started.
-                                    returned: on success
-                                    type: str
-                                    sample: "2013-10-20T19:20:30+01:00"
-                                time_finished:
-                                    description:
-                                        - Time when the step finished.
-                                    returned: on success
-                                    type: str
-                                    sample: "2013-10-20T19:20:30+01:00"
-                        exported_variables:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                items:
-                                    description:
-                                        - List of exported variables.
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        name:
-                                            description:
-                                                - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$."
-                                            returned: on success
-                                            type: str
-                                            sample: name_example
-                                        value:
-                                            description:
-                                                - Value of the argument.
-                                            returned: on success
-                                            type: str
-                                            sample: value_example
-                        delivered_artifacts:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                items:
-                                    description:
-                                        - List of artifacts delivered through the Deliver Artifacts stage.
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        deploy_artifact_id:
-                                            description:
-                                                - The OCID of the deployment artifact definition.
-                                            returned: on success
-                                            type: str
-                                            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                                        output_artifact_name:
-                                            description:
-                                                - Name of the output artifact defined in the build specification file.
-                                            returned: on success
-                                            type: str
-                                            sample: output_artifact_name_example
-                                        artifact_type:
-                                            description:
-                                                - Type of artifact delivered.
-                                            returned: on success
-                                            type: str
-                                            sample: GENERIC_ARTIFACT
-                                        artifact_repository_id:
-                                            description:
-                                                - The OCID of the artifact registry repository used by the DeliverArtifactStage
-                                            returned: on success
-                                            type: str
-                                            sample: "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx"
-                                        delivered_artifact_id:
-                                            description:
-                                                - The OCID of the artifact pushed by the Deliver Artifacts stage.
-                                            returned: on success
-                                            type: str
-                                            sample: "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                                        path:
-                                            description:
-                                                - Path of the repository where artifact was pushed
-                                            returned: on success
-                                            type: str
-                                            sample: path_example
-                                        version:
-                                            description:
-                                                - Version of the artifact pushed
-                                            returned: on success
-                                            type: str
-                                            sample: version_example
-                                        delivered_artifact_hash:
-                                            description:
-                                                - The hash of the container registry artifact pushed by the Deliver Artifacts stage.
-                                            returned: on success
-                                            type: str
-                                            sample: delivered_artifact_hash_example
-                                        image_uri:
-                                            description:
-                                                - The imageUri of the OCIR artifact pushed by the DeliverArtifactStage
-                                            returned: on success
-                                            type: str
-                                            sample: image_uri_example
-                        artifact_override_parameters:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                items:
-                                    description:
-                                        - List of artifact override arguments at the time of deployment.
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        deploy_artifact_id:
-                                            description:
-                                                - The OCID of the artifact to which this parameter applies.
-                                            returned: on success
-                                            type: str
-                                            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                                        name:
-                                            description:
-                                                - Name of the parameter (case-sensitive).
-                                            returned: on success
-                                            type: str
-                                            sample: name_example
-                                        value:
-                                            description:
-                                                - Value of the parameter.
-                                            returned: on success
-                                            type: str
-                                            sample: value_example
-                        deployment_id:
-                            description:
-                                - Identifier of the deployment triggered.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
         commit_info:
             description:
                 - ""
@@ -636,133 +782,6 @@ build_runs:
                     returned: on success
                     type: str
                     sample: commit_hash_example
-        build_outputs:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                exported_variables:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        items:
-                            description:
-                                - List of exported variables.
-                            returned: on success
-                            type: complex
-                            contains:
-                                name:
-                                    description:
-                                        - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$."
-                                    returned: on success
-                                    type: str
-                                    sample: name_example
-                                value:
-                                    description:
-                                        - Value of the argument.
-                                    returned: on success
-                                    type: str
-                                    sample: value_example
-                delivered_artifacts:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        items:
-                            description:
-                                - List of artifacts delivered through the Deliver Artifacts stage.
-                            returned: on success
-                            type: complex
-                            contains:
-                                deploy_artifact_id:
-                                    description:
-                                        - The OCID of the deployment artifact definition.
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                                output_artifact_name:
-                                    description:
-                                        - Name of the output artifact defined in the build specification file.
-                                    returned: on success
-                                    type: str
-                                    sample: output_artifact_name_example
-                                artifact_type:
-                                    description:
-                                        - Type of artifact delivered.
-                                    returned: on success
-                                    type: str
-                                    sample: GENERIC_ARTIFACT
-                                artifact_repository_id:
-                                    description:
-                                        - The OCID of the artifact registry repository used by the DeliverArtifactStage
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx"
-                                delivered_artifact_id:
-                                    description:
-                                        - The OCID of the artifact pushed by the Deliver Artifacts stage.
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                                path:
-                                    description:
-                                        - Path of the repository where artifact was pushed
-                                    returned: on success
-                                    type: str
-                                    sample: path_example
-                                version:
-                                    description:
-                                        - Version of the artifact pushed
-                                    returned: on success
-                                    type: str
-                                    sample: version_example
-                                delivered_artifact_hash:
-                                    description:
-                                        - The hash of the container registry artifact pushed by the Deliver Artifacts stage.
-                                    returned: on success
-                                    type: str
-                                    sample: delivered_artifact_hash_example
-                                image_uri:
-                                    description:
-                                        - The imageUri of the OCIR artifact pushed by the DeliverArtifactStage
-                                    returned: on success
-                                    type: str
-                                    sample: image_uri_example
-                artifact_override_parameters:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        items:
-                            description:
-                                - List of artifact override arguments at the time of deployment.
-                            returned: on success
-                            type: complex
-                            contains:
-                                deploy_artifact_id:
-                                    description:
-                                        - The OCID of the artifact to which this parameter applies.
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                                name:
-                                    description:
-                                        - Name of the parameter (case-sensitive).
-                                    returned: on success
-                                    type: str
-                                    sample: name_example
-                                value:
-                                    description:
-                                        - Value of the parameter.
-                                    returned: on success
-                                    type: str
-                                    sample: value_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -785,33 +804,111 @@ build_runs:
             returned: on success
             type: dict
             sample: {}
-        build_run_progress_summary:
-            description:
-                - ""
-                - Returned for list operation
-            returned: on success
-            type: complex
-            contains:
-                time_started:
-                    description:
-                        - The time the build run started. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
-                time_finished:
-                    description:
-                        - The time the build run finished. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-                    returned: on success
-                    type: str
-                    sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "build_run_progress": {
+            "time_started": "2013-10-20T19:20:30+01:00",
+            "time_finished": "2013-10-20T19:20:30+01:00",
+            "build_pipeline_stage_run_progress": {
+                "actual_build_runner_shape": "actual_build_runner_shape_example",
+                "actual_build_runner_shape_config": {
+                    "ocpus": 1.2,
+                    "memory_in_gbs": 1.2
+                },
+                "image": "OL7_X86_64_STANDARD_10",
+                "build_spec_file": "build_spec_file_example",
+                "stage_execution_timeout_in_seconds": 56,
+                "build_source_collection": {
+                    "items": [{
+                        "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
+                        "name": "name_example",
+                        "connection_type": "GITHUB",
+                        "repository_url": "repository_url_example",
+                        "branch": "branch_example",
+                        "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+                    }]
+                },
+                "primary_build_source": "primary_build_source_example",
+                "steps": [{
+                    "name": "name_example",
+                    "state": "WAITING",
+                    "time_started": "2013-10-20T19:20:30+01:00",
+                    "time_finished": "2013-10-20T19:20:30+01:00"
+                }],
+                "delivered_artifacts": {
+                    "items": [{
+                        "artifact_repository_id": "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx",
+                        "delivered_artifact_id": "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                        "path": "path_example",
+                        "version": "version_example",
+                        "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                        "output_artifact_name": "output_artifact_name_example",
+                        "artifact_type": "GENERIC_ARTIFACT",
+                        "delivered_artifact_hash": "delivered_artifact_hash_example",
+                        "image_uri": "image_uri_example"
+                    }]
+                },
+                "exported_variables": {
+                    "items": [{
+                        "name": "name_example",
+                        "value": "value_example"
+                    }]
+                },
+                "artifact_override_parameters": {
+                    "items": [{
+                        "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                        "name": "name_example",
+                        "value": "value_example"
+                    }]
+                },
+                "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
+                "stage_display_name": "stage_display_name_example",
+                "build_pipeline_stage_type": "BUILD",
+                "build_pipeline_stage_id": "ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx",
+                "time_started": "2013-10-20T19:20:30+01:00",
+                "time_finished": "2013-10-20T19:20:30+01:00",
+                "status": "ACCEPTED",
+                "build_pipeline_stage_predecessors": {
+                    "items": [{
+                        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                    }]
+                }
+            }
+        },
+        "build_outputs": {
+            "exported_variables": {
+                "items": [{
+                    "name": "name_example",
+                    "value": "value_example"
+                }]
+            },
+            "delivered_artifacts": {
+                "items": [{
+                    "artifact_repository_id": "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx",
+                    "delivered_artifact_id": "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                    "path": "path_example",
+                    "version": "version_example",
+                    "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                    "output_artifact_name": "output_artifact_name_example",
+                    "artifact_type": "GENERIC_ARTIFACT",
+                    "delivered_artifact_hash": "delivered_artifact_hash_example",
+                    "image_uri": "image_uri_example"
+                }]
+            },
+            "artifact_override_parameters": {
+                "items": [{
+                    "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                    "name": "name_example",
+                    "value": "value_example"
+                }]
+            }
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx",
         "build_run_source": {
-            "source_type": "MANUAL",
+            "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "trigger_id": "ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx",
             "trigger_info": {
                 "display_name": "display_name_example",
@@ -828,7 +925,7 @@ build_runs:
                     "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
                 }]
             },
-            "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+            "source_type": "MANUAL"
         },
         "build_run_arguments": {
             "items": [{
@@ -836,119 +933,22 @@ build_runs:
                 "value": "value_example"
             }]
         },
+        "build_run_progress_summary": {
+            "time_started": "2013-10-20T19:20:30+01:00",
+            "time_finished": "2013-10-20T19:20:30+01:00"
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACCEPTED",
         "lifecycle_details": "lifecycle_details_example",
-        "build_run_progress": {
-            "time_started": "2013-10-20T19:20:30+01:00",
-            "time_finished": "2013-10-20T19:20:30+01:00",
-            "build_pipeline_stage_run_progress": {
-                "stage_display_name": "stage_display_name_example",
-                "build_pipeline_stage_type": "BUILD",
-                "build_pipeline_stage_id": "ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx",
-                "time_started": "2013-10-20T19:20:30+01:00",
-                "time_finished": "2013-10-20T19:20:30+01:00",
-                "status": "ACCEPTED",
-                "build_pipeline_stage_predecessors": {
-                    "items": [{
-                        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                    }]
-                },
-                "actual_build_runner_shape": "actual_build_runner_shape_example",
-                "actual_build_runner_shape_config": {
-                    "ocpus": 1.2,
-                    "memory_in_gbs": 1.2
-                },
-                "image": "OL7_X86_64_STANDARD_10",
-                "build_spec_file": "build_spec_file_example",
-                "stage_execution_timeout_in_seconds": 56,
-                "build_source_collection": {
-                    "items": [{
-                        "name": "name_example",
-                        "connection_type": "GITHUB",
-                        "repository_url": "repository_url_example",
-                        "branch": "branch_example",
-                        "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-                        "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
-                    }]
-                },
-                "primary_build_source": "primary_build_source_example",
-                "steps": [{
-                    "name": "name_example",
-                    "state": "WAITING",
-                    "time_started": "2013-10-20T19:20:30+01:00",
-                    "time_finished": "2013-10-20T19:20:30+01:00"
-                }],
-                "exported_variables": {
-                    "items": [{
-                        "name": "name_example",
-                        "value": "value_example"
-                    }]
-                },
-                "delivered_artifacts": {
-                    "items": [{
-                        "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-                        "output_artifact_name": "output_artifact_name_example",
-                        "artifact_type": "GENERIC_ARTIFACT",
-                        "artifact_repository_id": "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx",
-                        "delivered_artifact_id": "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx",
-                        "path": "path_example",
-                        "version": "version_example",
-                        "delivered_artifact_hash": "delivered_artifact_hash_example",
-                        "image_uri": "image_uri_example"
-                    }]
-                },
-                "artifact_override_parameters": {
-                    "items": [{
-                        "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-                        "name": "name_example",
-                        "value": "value_example"
-                    }]
-                },
-                "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-            }
-        },
         "commit_info": {
             "repository_url": "repository_url_example",
             "repository_branch": "repository_branch_example",
             "commit_hash": "commit_hash_example"
         },
-        "build_outputs": {
-            "exported_variables": {
-                "items": [{
-                    "name": "name_example",
-                    "value": "value_example"
-                }]
-            },
-            "delivered_artifacts": {
-                "items": [{
-                    "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-                    "output_artifact_name": "output_artifact_name_example",
-                    "artifact_type": "GENERIC_ARTIFACT",
-                    "artifact_repository_id": "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx",
-                    "delivered_artifact_id": "ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx",
-                    "path": "path_example",
-                    "version": "version_example",
-                    "delivered_artifact_hash": "delivered_artifact_hash_example",
-                    "image_uri": "image_uri_example"
-                }]
-            },
-            "artifact_override_parameters": {
-                "items": [{
-                    "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-                    "name": "name_example",
-                    "value": "value_example"
-                }]
-            }
-        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "build_run_progress_summary": {
-            "time_started": "2013-10-20T19:20:30+01:00",
-            "time_finished": "2013-10-20T19:20:30+01:00"
-        }
+        "system_tags": {}
     }]
 """
 

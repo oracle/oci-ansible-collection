@@ -449,12 +449,12 @@ class DomainHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
-            "admin_first_name",
-            "admin_last_name",
             "admin_user_name",
-            "admin_email",
+            "admin_last_name",
+            "admin_first_name",
             "is_notification_bypassed",
             "is_primary_email_required",
+            "admin_email",
         ]
 
     def create_resource(self):

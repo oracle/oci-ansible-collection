@@ -98,30 +98,6 @@ stream_pools:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the stream pool.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - Compartment OCID that the pool belongs to.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - The name of the stream pool.
-            returned: on success
-            type: str
-            sample: name_example
-        lifecycle_state:
-            description:
-                - The current state of the stream pool.
-            returned: on success
-            type: str
-            sample: CREATING
         lifecycle_state_details:
             description:
                 - Any additional details about the current state of the stream.
@@ -129,13 +105,6 @@ stream_pools:
             returned: on success
             type: str
             sample: lifecycle_state_details_example
-        time_created:
-            description:
-                - The date and time the stream pool was created, expressed in in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
-                - "Example: `2018-04-20T00:00:07.405Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         kafka_settings:
             description:
                 - ""
@@ -186,13 +155,6 @@ stream_pools:
                     returned: on success
                     type: str
                     sample: ACTIVE
-        is_private:
-            description:
-                - True if the stream pool is private, false otherwise.
-                  If the stream pool is private, the streams inside the stream pool can only be accessed from inside the associated subnetId.
-            returned: on success
-            type: bool
-            sample: true
         endpoint_fqdn:
             description:
                 - The FQDN used to access the streams inside the stream pool (same FQDN as the messagesEndpoint attribute of a
@@ -231,6 +193,44 @@ stream_pools:
                     returned: on success
                     type: list
                     sample: []
+        id:
+            description:
+                - The OCID of the stream pool.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - Compartment OCID that the pool belongs to.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The name of the stream pool.
+            returned: on success
+            type: str
+            sample: name_example
+        lifecycle_state:
+            description:
+                - The current state of the stream pool.
+            returned: on success
+            type: str
+            sample: CREATING
+        time_created:
+            description:
+                - The date and time the stream pool was created, expressed in in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
+                - "Example: `2018-04-20T00:00:07.405Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        is_private:
+            description:
+                - True if the stream pool is private, false otherwise.
+                  If the stream pool is private, the streams inside the stream pool can only be accessed from inside the associated subnetId.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. Exists for cross-
@@ -249,12 +249,7 @@ stream_pools:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
-        "lifecycle_state": "CREATING",
         "lifecycle_state_details": "lifecycle_state_details_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
         "kafka_settings": {
             "bootstrap_servers": "bootstrap_servers_example",
             "auto_create_topics_enable": true,
@@ -265,13 +260,18 @@ stream_pools:
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
             "key_state": "ACTIVE"
         },
-        "is_private": true,
         "endpoint_fqdn": "endpoint_fqdn_example",
         "private_endpoint_settings": {
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
             "private_endpoint_ip": "private_endpoint_ip_example",
             "nsg_ids": []
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "lifecycle_state": "CREATING",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "is_private": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

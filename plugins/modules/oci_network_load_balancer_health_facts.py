@@ -82,22 +82,6 @@ network_load_balancer_healths:
     returned: on success
     type: complex
     contains:
-        status:
-            description:
-                - The overall health status of the network load balancer.
-                - "*  **OK:** All backend sets associated with the network load balancer return a status of `OK`."
-                - "*  **WARNING:** At least one of the backend sets associated with the network load balancer returns a status of `WARNING`,
-                  no backend sets return a status of `CRITICAL`, and the network load balancer life cycle state is `ACTIVE`."
-                - "*  **CRITICAL:** One or more of the backend sets associated with the network load balancer return a status of `CRITICAL`."
-                - "*  **UNKNOWN:** If any one of the following conditions is true:"
-                - "   *  The network load balancer life cycle state is not `ACTIVE`."
-                - "   *  No backend sets are defined for the network load balancer."
-                - "   *  More than half of the backend sets associated with the network load balancer return a status of `UNKNOWN`, none of the backend
-                         sets return a status of `WARNING` or `CRITICAL`, and the network load balancer life cycle state is `ACTIVE`."
-                - "   *  The system could not retrieve metrics for any reason."
-            returned: on success
-            type: str
-            sample: OK
         warning_state_backend_set_names:
             description:
                 - A list of backend sets that are currently in the `WARNING` health state. The list identifies each backend set by the
@@ -141,13 +125,29 @@ network_load_balancer_healths:
             returned: on success
             type: str
             sample: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        status:
+            description:
+                - The overall health status of the network load balancer.
+                - "*  **OK:** All backend sets associated with the network load balancer return a status of `OK`."
+                - "*  **WARNING:** At least one of the backend sets associated with the network load balancer returns a status of `WARNING`,
+                  no backend sets return a status of `CRITICAL`, and the network load balancer life cycle state is `ACTIVE`."
+                - "*  **CRITICAL:** One or more of the backend sets associated with the network load balancer return a status of `CRITICAL`."
+                - "*  **UNKNOWN:** If any one of the following conditions is true:"
+                - "   *  The network load balancer life cycle state is not `ACTIVE`."
+                - "   *  No backend sets are defined for the network load balancer."
+                - "   *  More than half of the backend sets associated with the network load balancer return a status of `UNKNOWN`, none of the backend
+                         sets return a status of `WARNING` or `CRITICAL`, and the network load balancer life cycle state is `ACTIVE`."
+                - "   *  The system could not retrieve metrics for any reason."
+            returned: on success
+            type: str
+            sample: OK
     sample: [{
-        "status": "OK",
         "warning_state_backend_set_names": [],
         "critical_state_backend_set_names": [],
         "unknown_state_backend_set_names": [],
         "total_backend_set_count": 56,
-        "network_load_balancer_id": "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        "network_load_balancer_id": "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
+        "status": "OK"
     }]
 """
 
