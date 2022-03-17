@@ -95,49 +95,6 @@ web_app_firewall_policies:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WebAppFirewallPolicy.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - WebAppFirewallPolicy display name, can be renamed.
-            returned: on success
-            type: str
-            sample: display_name_example
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - The time the WebAppFirewallPolicy was created. An RFC3339 formatted datetime string.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the WebAppFirewallPolicy was updated. An RFC3339 formatted datetime string.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current state of the WebAppFirewallPolicy.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail.
-                  For example, can be used to provide actionable information for a resource in FAILED state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         actions:
             description:
                 - Predefined actions for use in multiple different rules. Not all actions are supported in every module.
@@ -750,6 +707,49 @@ web_app_firewall_policies:
                                     returned: on success
                                     type: list
                                     sample: []
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WebAppFirewallPolicy.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - WebAppFirewallPolicy display name, can be renamed.
+            returned: on success
+            type: str
+            sample: display_name_example
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        time_created:
+            description:
+                - The time the WebAppFirewallPolicy was created. An RFC3339 formatted datetime string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the WebAppFirewallPolicy was updated. An RFC3339 formatted datetime string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the WebAppFirewallPolicy.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail.
+                  For example, can be used to provide actionable information for a resource in FAILED state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -772,13 +772,6 @@ web_app_firewall_policies:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
         "actions": [{
             "type": "CHECK",
             "name": "name_example",
@@ -887,6 +880,13 @@ web_app_firewall_policies:
                 }
             }]
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

@@ -591,7 +591,7 @@ class VmClusterHelperGen(OCIResourceHelperBase):
         return CreateVmClusterDetails
 
     def get_exclude_attributes(self):
-        return ["cpu_core_count", "ocpu_count"]
+        return ["ocpu_count", "cpu_core_count"]
 
     def create_resource(self):
         create_details = self.get_create_model()

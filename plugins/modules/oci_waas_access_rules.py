@@ -530,6 +530,13 @@ access_rules:
             returned: on success
             type: complex
             contains:
+                value:
+                    description:
+                        - A header field value that conforms to RFC 7230.
+                        - "Example: `example_value`"
+                    returned: on success
+                    type: str
+                    sample: value_example
                 action:
                     description:
                         - ""
@@ -543,13 +550,6 @@ access_rules:
                     returned: on success
                     type: str
                     sample: header_example
-                value:
-                    description:
-                        - A header field value that conforms to RFC 7230.
-                        - "Example: `example_value`"
-                    returned: on success
-                    type: str
-                    sample: value_example
     sample: {
         "name": "name_example",
         "criteria": [{
@@ -571,9 +571,9 @@ access_rules:
         "captcha_footer": "captcha_footer_example",
         "captcha_submit_label": "captcha_submit_label_example",
         "response_header_manipulation": [{
+            "value": "value_example",
             "action": "EXTEND_HTTP_RESPONSE_HEADER",
-            "header": "header_example",
-            "value": "value_example"
+            "header": "header_example"
         }]
     }
 """

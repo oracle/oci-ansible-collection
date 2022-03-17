@@ -145,30 +145,6 @@ target_databases:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The OCID of the compartment which contains the Data Safe target database.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        id:
-            description:
-                - The OCID of the Data Safe target database.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The display name of the target database in Data Safe.
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - The description of the target database in Data Safe.
-            returned: on success
-            type: str
-            sample: description_example
         database_details:
             description:
                 - ""
@@ -176,18 +152,6 @@ target_databases:
             returned: on success
             type: complex
             contains:
-                database_type:
-                    description:
-                        - The database type.
-                    returned: on success
-                    type: str
-                    sample: DATABASE_CLOUD_SERVICE
-                infrastructure_type:
-                    description:
-                        - The infrastructure type the database is running on.
-                    returned: on success
-                    type: str
-                    sample: ORACLE_CLOUD
                 autonomous_database_id:
                     description:
                         - The OCID of the autonomous database registered as a target database in Data Safe.
@@ -206,12 +170,18 @@ target_databases:
                     returned: on success
                     type: str
                     sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
-                service_name:
+                database_type:
                     description:
-                        - The database service name.
+                        - The database type.
                     returned: on success
                     type: str
-                    sample: service_name_example
+                    sample: DATABASE_CLOUD_SERVICE
+                infrastructure_type:
+                    description:
+                        - The infrastructure type the database is running on.
+                    returned: on success
+                    type: str
+                    sample: ORACLE_CLOUD
                 instance_id:
                     description:
                         - The OCID of the compute instance on which the database is running.
@@ -230,6 +200,12 @@ target_databases:
                     returned: on success
                     type: int
                     sample: 56
+                service_name:
+                    description:
+                        - The database service name.
+                    returned: on success
+                    type: str
+                    sample: service_name_example
         credentials:
             description:
                 - ""
@@ -293,6 +269,12 @@ target_databases:
             returned: on success
             type: complex
             contains:
+                on_prem_connector_id:
+                    description:
+                        - The OCID of the on-premises connector.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
                 connection_type:
                     description:
                         - "The connection type used to connect to the database. Allowed values:
@@ -301,18 +283,65 @@ target_databases:
                     returned: on success
                     type: str
                     sample: PRIVATE_ENDPOINT
-                on_prem_connector_id:
-                    description:
-                        - The OCID of the on-premises connector.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
                 datasafe_private_endpoint_id:
                     description:
                         - The OCID of the Data Safe private endpoint.
                     returned: on success
                     type: str
                     sample: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        time_updated:
+            description:
+                - The date and time of the target database update in Data Safe.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        compartment_id:
+            description:
+                - The OCID of the compartment which contains the Data Safe target database.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The OCID of the Data Safe target database.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The display name of the target database in Data Safe.
+            returned: on success
+            type: str
+            sample: display_name_example
+        description:
+            description:
+                - The description of the target database in Data Safe.
+            returned: on success
+            type: str
+            sample: description_example
+        infrastructure_type:
+            description:
+                - The infrastructure type the database is running on.
+                - Returned for list operation
+            returned: on success
+            type: str
+            sample: ORACLE_CLOUD
+        database_type:
+            description:
+                - The database type.
+                - Returned for list operation
+            returned: on success
+            type: str
+            sample: DATABASE_CLOUD_SERVICE
         associated_resource_ids:
             description:
                 - The OCIDs of associated resources like Database, Data Safe private endpoint etc.
@@ -337,13 +366,6 @@ target_databases:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The date and time of the target database update in Data Safe.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
@@ -360,43 +382,17 @@ target_databases:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        system_tags:
-            description:
-                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
-        infrastructure_type:
-            description:
-                - The infrastructure type the database is running on.
-                - Returned for list operation
-            returned: on success
-            type: str
-            sample: ORACLE_CLOUD
-        database_type:
-            description:
-                - The database type.
-                - Returned for list operation
-            returned: on success
-            type: str
-            sample: DATABASE_CLOUD_SERVICE
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
         "database_details": {
-            "database_type": "DATABASE_CLOUD_SERVICE",
-            "infrastructure_type": "ORACLE_CLOUD",
             "autonomous_database_id": "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx",
             "vm_cluster_id": "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx",
             "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
-            "service_name": "service_name_example",
+            "database_type": "DATABASE_CLOUD_SERVICE",
+            "infrastructure_type": "ORACLE_CLOUD",
             "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
             "ip_addresses": [],
-            "listener_port": 56
+            "listener_port": 56,
+            "service_name": "service_name_example"
         },
         "credentials": {
             "user_name": "user_name_example",
@@ -410,20 +406,24 @@ target_databases:
             "key_store_content": "key_store_content_example"
         },
         "connection_option": {
-            "connection_type": "PRIVATE_ENDPOINT",
             "on_prem_connector_id": "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx",
+            "connection_type": "PRIVATE_ENDPOINT",
             "datasafe_private_endpoint_id": "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "system_tags": {},
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "infrastructure_type": "ORACLE_CLOUD",
+        "database_type": "DATABASE_CLOUD_SERVICE",
         "associated_resource_ids": [],
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "infrastructure_type": "ORACLE_CLOUD",
-        "database_type": "DATABASE_CLOUD_SERVICE"
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

@@ -190,18 +190,18 @@ http_redirects:
             returned: on success
             type: int
             sample: 56
-        time_created:
-            description:
-                - The date and time the policy was created, expressed in RFC 3339 timestamp format.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the HTTP Redirect.
             returned: on success
             type: str
             sample: CREATING
+        time_created:
+            description:
+                - The date and time the policy was created, expressed in RFC 3339 timestamp format.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -231,8 +231,8 @@ http_redirects:
             "query": "query_example"
         },
         "response_code": 56,
-        "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

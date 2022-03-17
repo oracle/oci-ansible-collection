@@ -92,36 +92,6 @@ http_monitors:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the resource.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        results_url:
-            description:
-                - A URL for fetching the probe results.
-            returned: on success
-            type: str
-            sample: results_url_example
-        home_region:
-            description:
-                - The region where updates must be made and where results must be fetched from.
-            returned: on success
-            type: str
-            sample: us-phoenix-1
-        time_created:
-            description:
-                - The RFC 3339-formatted creation date and time of the probe.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        compartment_id:
-            description:
-                - The OCID of the compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         targets:
             description:
                 - A list of targets (hostnames or IP addresses) of the probe.
@@ -152,12 +122,6 @@ http_monitors:
             returned: on success
             type: int
             sample: 56
-        protocol:
-            description:
-                - ""
-            returned: on success
-            type: str
-            sample: HTTP
         method:
             description:
                 - ""
@@ -180,6 +144,36 @@ http_monitors:
             returned: on success
             type: dict
             sample: {}
+        id:
+            description:
+                - The OCID of the resource.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        results_url:
+            description:
+                - A URL for fetching the probe results.
+            returned: on success
+            type: str
+            sample: results_url_example
+        home_region:
+            description:
+                - The region where updates must be made and where results must be fetched from.
+            returned: on success
+            type: str
+            sample: us-phoenix-1
+        time_created:
+            description:
+                - The RFC 3339-formatted creation date and time of the probe.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        compartment_id:
+            description:
+                - The OCID of the compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly and mutable name suitable for display in a user interface.
@@ -215,25 +209,31 @@ http_monitors:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        protocol:
+            description:
+                - ""
+            returned: on success
+            type: str
+            sample: HTTP
     sample: [{
+        "targets": [],
+        "vantage_point_names": [],
+        "port": 56,
+        "timeout_in_seconds": 56,
+        "method": "GET",
+        "path": "path_example",
+        "headers": {},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "results_url": "results_url_example",
         "home_region": "us-phoenix-1",
         "time_created": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "targets": [],
-        "vantage_point_names": [],
-        "port": 56,
-        "timeout_in_seconds": 56,
-        "protocol": "HTTP",
-        "method": "GET",
-        "path": "path_example",
-        "headers": {},
         "display_name": "display_name_example",
         "interval_in_seconds": 56,
         "is_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "protocol": "HTTP"
     }]
 """
 

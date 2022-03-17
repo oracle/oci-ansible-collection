@@ -107,76 +107,6 @@ database_tools_connections:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsConnection.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state:
-            description:
-                - The current state of the DatabaseToolsConnection.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
-        time_created:
-            description:
-                - The time the DatabaseToolsConnection was created. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the DatabaseToolsConnection was updated. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        system_tags:
-            description:
-                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-            returned: on success
-            type: dict
-            sample: {}
-        type:
-            description:
-                - The DatabaseToolsConnection type.
-            returned: on success
-            type: str
-            sample: ORACLE_DATABASE
         related_resource:
             description:
                 - ""
@@ -295,18 +225,77 @@ database_tools_connections:
             returned: on success
             type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsConnection.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_state:
+            description:
+                - The current state of the DatabaseToolsConnection.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        time_created:
+            description:
+                - The time the DatabaseToolsConnection was created. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the DatabaseToolsConnection was updated. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
+        type:
+            description:
+                - The DatabaseToolsConnection type.
+            returned: on success
+            type: str
+            sample: ORACLE_DATABASE
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "freeform_tags": {'Department': 'Finance'},
-        "system_tags": {},
-        "type": "ORACLE_DATABASE",
         "related_resource": {
             "entity_type": "AUTONOMOUSDATABASE",
             "identifier": "identifier_example"
@@ -329,7 +318,18 @@ database_tools_connections:
                 "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
             }
         }],
-        "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
+        "system_tags": {},
+        "type": "ORACLE_DATABASE"
     }]
 """
 

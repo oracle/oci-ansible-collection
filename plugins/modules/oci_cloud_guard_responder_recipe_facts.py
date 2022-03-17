@@ -138,33 +138,10 @@ responder_recipes:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - Identifier for ResponderRecipe.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - ResponderRecipe display name.
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - ResponderRecipe description.
-            returned: on success
-            type: str
-            sample: description_example
-        owner:
-            description:
-                - Owner of ResponderRecipe
-            returned: on success
-            type: str
-            sample: CUSTOMER
-        responder_rules:
+        effective_responder_rules:
             description:
                 - List of responder rules associated with the recipe
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -216,12 +193,6 @@ responder_recipes:
                             returned: on success
                             type: complex
                             contains:
-                                kind:
-                                    description:
-                                        - Type of condition object
-                                    returned: on success
-                                    type: str
-                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -252,6 +223,12 @@ responder_recipes:
                                             returned: on success
                                             type: str
                                             sample: COMPOSITE
+                                kind:
+                                    description:
+                                        - Type of condition object
+                                    returned: on success
+                                    type: str
+                                    sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
@@ -343,10 +320,33 @@ responder_recipes:
                     returned: on success
                     type: str
                     sample: lifecycle_details_example
-        effective_responder_rules:
+        id:
+            description:
+                - Identifier for ResponderRecipe.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - ResponderRecipe display name.
+            returned: on success
+            type: str
+            sample: display_name_example
+        description:
+            description:
+                - ResponderRecipe description.
+            returned: on success
+            type: str
+            sample: description_example
+        owner:
+            description:
+                - Owner of ResponderRecipe
+            returned: on success
+            type: str
+            sample: CUSTOMER
+        responder_rules:
             description:
                 - List of responder rules associated with the recipe
-                - Returned for get operation
             returned: on success
             type: complex
             contains:
@@ -398,12 +398,6 @@ responder_recipes:
                             returned: on success
                             type: complex
                             contains:
-                                kind:
-                                    description:
-                                        - Type of condition object
-                                    returned: on success
-                                    type: str
-                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -434,6 +428,12 @@ responder_recipes:
                                             returned: on success
                                             type: str
                                             sample: COMPOSITE
+                                kind:
+                                    description:
+                                        - Type of condition object
+                                    returned: on success
+                                    type: str
+                                    sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
@@ -587,11 +587,7 @@ responder_recipes:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
-        "owner": "CUSTOMER",
-        "responder_rules": [{
+        "effective_responder_rules": [{
             "responder_rule_id": "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example",
             "description": "description_example",
@@ -600,7 +596,6 @@ responder_recipes:
             "supported_modes": [],
             "details": {
                 "condition": {
-                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
@@ -608,6 +603,7 @@ responder_recipes:
                     "right_operand": {
                         "kind": "COMPOSITE"
                     },
+                    "kind": "COMPOSITE",
                     "parameter": "parameter_example",
                     "operator": "IN",
                     "value": "value_example",
@@ -627,7 +623,11 @@ responder_recipes:
             "lifecycle_state": "CREATING",
             "lifecycle_details": "lifecycle_details_example"
         }],
-        "effective_responder_rules": [{
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "owner": "CUSTOMER",
+        "responder_rules": [{
             "responder_rule_id": "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example",
             "description": "description_example",
@@ -636,7 +636,6 @@ responder_recipes:
             "supported_modes": [],
             "details": {
                 "condition": {
-                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
@@ -644,6 +643,7 @@ responder_recipes:
                     "right_operand": {
                         "kind": "COMPOSITE"
                     },
+                    "kind": "COMPOSITE",
                     "parameter": "parameter_example",
                     "operator": "IN",
                     "value": "value_example",

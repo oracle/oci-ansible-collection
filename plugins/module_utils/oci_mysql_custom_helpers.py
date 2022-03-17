@@ -243,18 +243,6 @@ class MysqlAnalyticsClusterMemoryEstimateActionsHelperCustom:
 
 
 class MysqlChannelHelperCustom:
-    # the password attribute is not returned in the list or get_model(),
-    # that causes a discrepancy while checking for macthed_resource()
-    def get_create_model_dict_for_idempotence_check(self, create_model):
-        model_dict = super(
-            MysqlChannelHelperCustom, self
-        ).get_create_model_dict_for_idempotence_check(create_model)
-
-        if model_dict["source"]["password"]:
-            del model_dict["source"]["password"]
-
-        return model_dict
-
     def update_resource(self):
         wait_states = oci_common_utils.DEFAULT_READY_STATES
 

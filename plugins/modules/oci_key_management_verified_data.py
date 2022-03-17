@@ -178,9 +178,13 @@ class VerifiedDataHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return VerifyDataDetails
 
+    def get_create_model(self):
+        create_model = super(VerifiedDataHelperGen, self).get_create_model()
+        setattr(create_model, "message", self.module.params.get("msg"))
+        return create_model
+
     def create_resource(self):
         create_details = self.get_create_model()
-        setattr(create_details, "message", self.module.params.get("msg"))
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.verify,
             call_fn_args=(),

@@ -116,6 +116,13 @@ mount_targets:
     returned: on success
     type: complex
     contains:
+        lifecycle_details:
+            description:
+                - Additional information about the current 'lifecycleState'.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         availability_domain:
             description:
                 - The availability domain the mount target is in. May be unset
@@ -152,13 +159,6 @@ mount_targets:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_details:
-            description:
-                - Additional information about the current 'lifecycleState'.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the mount target.
@@ -213,12 +213,12 @@ mount_targets:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "lifecycle_details": "lifecycle_details_example",
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "export_set_id": "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "CREATING",
         "private_ip_ids": [],
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",

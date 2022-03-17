@@ -390,18 +390,6 @@ target_database:
             returned: on success
             type: complex
             contains:
-                database_type:
-                    description:
-                        - The database type.
-                    returned: on success
-                    type: str
-                    sample: DATABASE_CLOUD_SERVICE
-                infrastructure_type:
-                    description:
-                        - The infrastructure type the database is running on.
-                    returned: on success
-                    type: str
-                    sample: ORACLE_CLOUD
                 autonomous_database_id:
                     description:
                         - The OCID of the autonomous database registered as a target database in Data Safe.
@@ -420,12 +408,18 @@ target_database:
                     returned: on success
                     type: str
                     sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
-                service_name:
+                database_type:
                     description:
-                        - The database service name.
+                        - The database type.
                     returned: on success
                     type: str
-                    sample: service_name_example
+                    sample: DATABASE_CLOUD_SERVICE
+                infrastructure_type:
+                    description:
+                        - The infrastructure type the database is running on.
+                    returned: on success
+                    type: str
+                    sample: ORACLE_CLOUD
                 instance_id:
                     description:
                         - The OCID of the compute instance on which the database is running.
@@ -444,6 +438,12 @@ target_database:
                     returned: on success
                     type: int
                     sample: 56
+                service_name:
+                    description:
+                        - The database service name.
+                    returned: on success
+                    type: str
+                    sample: service_name_example
         credentials:
             description:
                 - ""
@@ -504,6 +504,12 @@ target_database:
             returned: on success
             type: complex
             contains:
+                on_prem_connector_id:
+                    description:
+                        - The OCID of the on-premises connector.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
                 connection_type:
                     description:
                         - "The connection type used to connect to the database. Allowed values:
@@ -512,12 +518,6 @@ target_database:
                     returned: on success
                     type: str
                     sample: PRIVATE_ENDPOINT
-                on_prem_connector_id:
-                    description:
-                        - The OCID of the on-premises connector.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
                 datasafe_private_endpoint_id:
                     description:
                         - The OCID of the Data Safe private endpoint.
@@ -583,15 +583,15 @@ target_database:
         "display_name": "display_name_example",
         "description": "description_example",
         "database_details": {
-            "database_type": "DATABASE_CLOUD_SERVICE",
-            "infrastructure_type": "ORACLE_CLOUD",
             "autonomous_database_id": "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx",
             "vm_cluster_id": "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx",
             "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
-            "service_name": "service_name_example",
+            "database_type": "DATABASE_CLOUD_SERVICE",
+            "infrastructure_type": "ORACLE_CLOUD",
             "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
             "ip_addresses": [],
-            "listener_port": 56
+            "listener_port": 56,
+            "service_name": "service_name_example"
         },
         "credentials": {
             "user_name": "user_name_example",
@@ -605,8 +605,8 @@ target_database:
             "key_store_content": "key_store_content_example"
         },
         "connection_option": {
-            "connection_type": "PRIVATE_ENDPOINT",
             "on_prem_connector_id": "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx",
+            "connection_type": "PRIVATE_ENDPOINT",
             "datasafe_private_endpoint_id": "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "associated_resource_ids": [],

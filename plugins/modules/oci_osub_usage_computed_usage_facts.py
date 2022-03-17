@@ -128,6 +128,13 @@ computed_usages:
     returned: on success
     type: complex
     contains:
+        id:
+            description:
+                - SPM Internal computed usage Id , 32 character string
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Computed Usage created time, expressed in RFC 3339 timestamp format.
@@ -237,13 +244,13 @@ computed_usages:
             returned: on success
             type: str
             sample: "ocid1.mqsmessage.oc1..xxxxxxEXAMPLExxxxxx"
-        id:
+        computed_usage_id:
             description:
                 - SPM Internal computed usage Id , 32 character string
-                - Returned for get operation
+                - Returned for list operation
             returned: on success
             type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            sample: "ocid1.computedusage.oc1..xxxxxxEXAMPLExxxxxx"
         quantity:
             description:
                 - Total Quantity that was used for computation
@@ -364,14 +371,8 @@ computed_usages:
             returned: on success
             type: str
             sample: unit_of_measure_example
-        computed_usage_id:
-            description:
-                - SPM Internal computed usage Id , 32 character string
-                - Returned for list operation
-            returned: on success
-            type: str
-            sample: "ocid1.computedusage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "parent_subscribed_service_id": "ocid1.parentsubscribedservice.oc1..xxxxxxEXAMPLExxxxxx",
@@ -391,7 +392,7 @@ computed_usages:
         "compute_source": "compute_source_example",
         "data_center": "data_center_example",
         "mqs_message_id": "ocid1.mqsmessage.oc1..xxxxxxEXAMPLExxxxxx",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "computed_usage_id": "ocid1.computedusage.oc1..xxxxxxEXAMPLExxxxxx",
         "quantity": "quantity_example",
         "usage_number": "usage_number_example",
         "original_usage_number": "original_usage_number_example",
@@ -412,8 +413,7 @@ computed_usages:
             "product_category": "product_category_example",
             "ucm_rate_card_part_type": "ucm_rate_card_part_type_example"
         },
-        "unit_of_measure": "unit_of_measure_example",
-        "computed_usage_id": "ocid1.computedusage.oc1..xxxxxxEXAMPLExxxxxx"
+        "unit_of_measure": "unit_of_measure_example"
     }]
 """
 

@@ -9,17 +9,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-class DeploymentHelperCustom:
-    def get_create_model_dict_for_idempotence_check(self, create_model):
-        create_model_dict = super(
-            DeploymentHelperCustom, self
-        ).get_create_model_dict_for_idempotence_check(create_model)
-        if create_model_dict.get("ogg_data"):
-            create_model_dict.get("ogg_data").pop("admin_password", None)
-            create_model_dict.get("ogg_data").pop("key", None)
-        return create_model_dict
-
-
 class DeploymentActionsHelperCustom:
     def get_action_idempotent_states(self, action):
         if action.upper() == "START":

@@ -145,27 +145,6 @@ vb_instances:
             returned: on success
             type: str
             sample: state_message_example
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        system_tags:
-            description:
-                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-            returned: on success
-            type: dict
-            sample: {}
         instance_url:
             description:
                 - The Vb Instance URL.
@@ -238,6 +217,27 @@ vb_instances:
             returned: on success
             type: str
             sample: UCM
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -246,9 +246,6 @@ vb_instances:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "state_message": "state_message_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
         "instance_url": "instance_url_example",
         "node_count": 56,
         "is_visual_builder_enabled": true,
@@ -262,7 +259,10 @@ vb_instances:
             "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
             "certificate_secret_version": 56
         }],
-        "consumption_model": "UCM"
+        "consumption_model": "UCM",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }]
 """
 

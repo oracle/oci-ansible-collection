@@ -421,6 +421,12 @@ trigger:
     returned: on success
     type: complex
     contains:
+        repository_id:
+            description:
+                - The OCID of the DevOps code repository.
+            returned: on success
+            type: str
+            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -558,12 +564,6 @@ trigger:
             returned: on success
             type: dict
             sample: {}
-        repository_id:
-            description:
-                - The OCID of the DevOps code repository.
-            returned: on success
-            type: str
-            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         trigger_url:
             description:
                 - The endpoint that listens to trigger events.
@@ -571,6 +571,7 @@ trigger:
             type: str
             sample: trigger_url_example
     sample: {
+        "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -596,7 +597,6 @@ trigger:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
         "trigger_url": "trigger_url_example"
     }
 """

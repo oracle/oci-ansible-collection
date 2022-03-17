@@ -1809,6 +1809,13 @@ deployment:
                             returned: on success
                             type: complex
                             contains:
+                                function_id:
+                                    description:
+                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function
+                                          resource.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                                 is_anonymous_access_allowed:
                                     description:
                                         - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
@@ -1822,13 +1829,6 @@ deployment:
                                     returned: on success
                                     type: str
                                     sample: CUSTOM_AUTHENTICATION
-                                function_id:
-                                    description:
-                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function
-                                          resource.
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                                 token_header:
                                     description:
                                         - The name of the header containing the authentication token.
@@ -1901,12 +1901,6 @@ deployment:
                                     returned: on success
                                     type: complex
                                     contains:
-                                        type:
-                                            description:
-                                                - Type of the public key set.
-                                            returned: on success
-                                            type: str
-                                            sample: STATIC_KEYS
                                         uri:
                                             description:
                                                 - The uri from which to retrieve the key. It must be accessible
@@ -1927,25 +1921,18 @@ deployment:
                                             returned: on success
                                             type: int
                                             sample: 56
+                                        type:
+                                            description:
+                                                - Type of the public key set.
+                                            returned: on success
+                                            type: str
+                                            sample: STATIC_KEYS
                                         keys:
                                             description:
                                                 - The set of static public keys.
                                             returned: on success
                                             type: complex
                                             contains:
-                                                kid:
-                                                    description:
-                                                        - "A unique key ID. This key will be used to verify the signature of a
-                                                          JWT with matching \\"kid\\"."
-                                                    returned: on success
-                                                    type: str
-                                                    sample: kid_example
-                                                format:
-                                                    description:
-                                                        - The format of the public key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: JSON_WEB_KEY
                                                 kty:
                                                     description:
                                                         - The key type.
@@ -1984,6 +1971,19 @@ deployment:
                                                     returned: on success
                                                     type: str
                                                     sample: e_example
+                                                kid:
+                                                    description:
+                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                          JWT with matching \\"kid\\"."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: kid_example
+                                                format:
+                                                    description:
+                                                        - The format of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: JSON_WEB_KEY
                                                 key:
                                                     description:
                                                         - The content of the PEM-encoded public key.
@@ -2155,6 +2155,13 @@ deployment:
                                     returned: on success
                                     type: complex
                                     contains:
+                                        allowed_scope:
+                                            description:
+                                                - A user whose scope includes any of these access ranges is allowed on
+                                                  this route. Access ranges are case-sensitive.
+                                            returned: on success
+                                            type: list
+                                            sample: []
                                         type:
                                             description:
                                                 - "Indicates how authorization should be applied. For a type of ANY_OF, an \\"allowedScope\\"
@@ -2165,13 +2172,6 @@ deployment:
                                             returned: on success
                                             type: str
                                             sample: ANONYMOUS
-                                        allowed_scope:
-                                            description:
-                                                - A user whose scope includes any of these access ranges is allowed on
-                                                  this route. Access ranges are case-sensitive.
-                                            returned: on success
-                                            type: list
-                                            sample: []
                                 cors:
                                     description:
                                         - ""
@@ -2728,12 +2728,6 @@ deployment:
                             returned: on success
                             type: complex
                             contains:
-                                type:
-                                    description:
-                                        - Type of the API backend.
-                                    returned: on success
-                                    type: str
-                                    sample: ORACLE_FUNCTIONS_BACKEND
                                 url:
                                     description:
                                         - ""
@@ -2771,6 +2765,12 @@ deployment:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                                type:
+                                    description:
+                                        - Type of the API backend.
+                                    returned: on success
+                                    type: str
+                                    sample: ORACLE_FUNCTIONS_BACKEND
                                 body:
                                     description:
                                         - The body of the stock response from the mock backend.
@@ -2855,9 +2855,9 @@ deployment:
         "specification": {
             "request_policies": {
                 "authentication": {
+                    "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                     "is_anonymous_access_allowed": true,
                     "type": "CUSTOM_AUTHENTICATION",
-                    "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                     "token_header": "token_header_example",
                     "token_query_param": "token_query_param_example",
                     "token_auth_scheme": "token_auth_scheme_example",
@@ -2870,19 +2870,19 @@ deployment:
                     }],
                     "max_clock_skew_in_seconds": 3.4,
                     "public_keys": {
-                        "type": "STATIC_KEYS",
                         "uri": "uri_example",
                         "is_ssl_verify_disabled": true,
                         "max_cache_duration_in_hours": 56,
+                        "type": "STATIC_KEYS",
                         "keys": [{
-                            "kid": "kid_example",
-                            "format": "JSON_WEB_KEY",
                             "kty": "RSA",
                             "use": "sig",
                             "key_ops": [],
                             "alg": "alg_example",
                             "n": "n_example",
                             "e": "e_example",
+                            "kid": "kid_example",
+                            "format": "JSON_WEB_KEY",
                             "key": "key_example"
                         }]
                     }
@@ -2918,8 +2918,8 @@ deployment:
                 "methods": [],
                 "request_policies": {
                     "authorization": {
-                        "type": "ANONYMOUS",
-                        "allowed_scope": []
+                        "allowed_scope": [],
+                        "type": "ANONYMOUS"
                     },
                     "cors": {
                         "allowed_origins": [],
@@ -3036,13 +3036,13 @@ deployment:
                     }
                 },
                 "backend": {
-                    "type": "ORACLE_FUNCTIONS_BACKEND",
                     "url": "url_example",
                     "connect_timeout_in_seconds": 3.4,
                     "read_timeout_in_seconds": 3.4,
                     "send_timeout_in_seconds": 3.4,
                     "is_ssl_verify_disabled": true,
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+                    "type": "ORACLE_FUNCTIONS_BACKEND",
                     "body": "body_example",
                     "status": 56,
                     "headers": [{

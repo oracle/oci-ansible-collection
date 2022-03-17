@@ -630,24 +630,6 @@ monitor:
             returned: on success
             type: complex
             contains:
-                config_type:
-                    description:
-                        - Type of configuration.
-                    returned: on success
-                    type: str
-                    sample: BROWSER_CONFIG
-                is_failure_retried:
-                    description:
-                        - If isFailureRetried is enabled, then a failed call will be retried.
-                    returned: on success
-                    type: bool
-                    sample: true
-                is_certificate_validation_enabled:
-                    description:
-                        - If certificate validation is enabled, then the call will fail in case of certification errors.
-                    returned: on success
-                    type: bool
-                    sample: true
                 verify_texts:
                     description:
                         - Verify all the search strings present in response.
@@ -661,42 +643,6 @@ monitor:
                             returned: on success
                             type: str
                             sample: text_example
-                network_configuration:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        number_of_hops:
-                            description:
-                                - Number of hops.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        probe_per_hop:
-                            description:
-                                - Number of probes per hop.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        transmission_rate:
-                            description:
-                                - Number of probe packets sent out simultaneously.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        protocol:
-                            description:
-                                - Type of protocol.
-                            returned: on success
-                            type: str
-                            sample: ICMP
-                        probe_mode:
-                            description:
-                                - Type of probe mode when TCP protocol is selected.
-                            returned: on success
-                            type: str
-                            sample: SACK
                 is_redirection_enabled:
                     description:
                         - If redirection enabled, then redirects will be allowed while accessing target URL.
@@ -836,6 +782,60 @@ monitor:
                     returned: on success
                     type: list
                     sample: []
+                is_certificate_validation_enabled:
+                    description:
+                        - If certificate validation is enabled, then the call will fail in case of certification errors.
+                    returned: on success
+                    type: bool
+                    sample: true
+                config_type:
+                    description:
+                        - Type of configuration.
+                    returned: on success
+                    type: str
+                    sample: BROWSER_CONFIG
+                is_failure_retried:
+                    description:
+                        - If isFailureRetried is enabled, then a failed call will be retried.
+                    returned: on success
+                    type: bool
+                    sample: true
+                network_configuration:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        number_of_hops:
+                            description:
+                                - Number of hops.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        probe_per_hop:
+                            description:
+                                - Number of probes per hop.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        transmission_rate:
+                            description:
+                                - Number of probe packets sent out simultaneously.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        protocol:
+                            description:
+                                - Type of protocol.
+                            returned: on success
+                            type: str
+                            sample: ICMP
+                        probe_mode:
+                            description:
+                                - Type of probe mode when TCP protocol is selected.
+                            returned: on success
+                            type: str
+                            sample: SACK
         time_created:
             description:
                 - "The time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -891,19 +891,9 @@ monitor:
             "is_overwritten": true
         }],
         "configuration": {
-            "config_type": "BROWSER_CONFIG",
-            "is_failure_retried": true,
-            "is_certificate_validation_enabled": true,
             "verify_texts": [{
                 "text": "text_example"
             }],
-            "network_configuration": {
-                "number_of_hops": 56,
-                "probe_per_hop": 56,
-                "transmission_rate": 56,
-                "protocol": "ICMP",
-                "probe_mode": "SACK"
-            },
             "is_redirection_enabled": true,
             "request_method": "GET",
             "req_authentication_scheme": "OAUTH",
@@ -930,7 +920,17 @@ monitor:
             }],
             "request_post_body": "request_post_body_example",
             "verify_response_content": "verify_response_content_example",
-            "verify_response_codes": []
+            "verify_response_codes": [],
+            "is_certificate_validation_enabled": true,
+            "config_type": "BROWSER_CONFIG",
+            "is_failure_retried": true,
+            "network_configuration": {
+                "number_of_hops": 56,
+                "probe_per_hop": 56,
+                "transmission_rate": 56,
+                "protocol": "ICMP",
+                "probe_mode": "SACK"
+            }
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
@@ -982,11 +982,6 @@ class MonitorHelperGen(OCIResourceHelperBase):
     def get_get_fn(self):
         return self.client.get_monitor
 
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_monitor, monitor_id=summary_model.id,
-        ).data
-
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_monitor,
@@ -1032,6 +1027,9 @@ class MonitorHelperGen(OCIResourceHelperBase):
 
     def get_create_model_class(self):
         return CreateMonitorDetails
+
+    def get_exclude_attributes(self):
+        return ["script_parameters.param_value", "script_parameters.param_name"]
 
     def create_resource(self):
         create_details = self.get_create_model()

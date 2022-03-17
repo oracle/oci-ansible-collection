@@ -1124,6 +1124,12 @@ instance_configuration:
                             returned: on success
                             type: complex
                             contains:
+                                use_chap:
+                                    description:
+                                        - Whether to use CHAP authentication for the volume attachment. Defaults to false.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 display_name:
                                     description:
                                         - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -1158,12 +1164,6 @@ instance_configuration:
                                     returned: on success
                                     type: str
                                     sample: iscsi
-                                use_chap:
-                                    description:
-                                        - Whether to use CHAP authentication for the volume attachment. Defaults to false.
-                                    returned: on success
-                                    type: bool
-                                    sample: true
                                 is_pv_encryption_in_transit_enabled:
                                     description:
                                         - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
@@ -1531,6 +1531,12 @@ instance_configuration:
                             returned: on success
                             type: complex
                             contains:
+                                numa_nodes_per_socket:
+                                    description:
+                                        - The number of NUMA nodes per socket (NPS).
+                                    returned: on success
+                                    type: str
+                                    sample: NPS0
                                 type:
                                     description:
                                         - The type of platform being configured.
@@ -1555,18 +1561,18 @@ instance_configuration:
                                     returned: on success
                                     type: bool
                                     sample: true
-                                numa_nodes_per_socket:
-                                    description:
-                                        - The number of NUMA nodes per socket (NPS).
-                                    returned: on success
-                                    type: str
-                                    sample: NPS0
                         source_details:
                             description:
                                 - ""
                             returned: on success
                             type: complex
                             contains:
+                                boot_volume_id:
+                                    description:
+                                        - The OCID of the boot volume used to boot the instance.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                                 source_type:
                                     description:
                                         - The source type for the instance.
@@ -1575,12 +1581,6 @@ instance_configuration:
                                     returned: on success
                                     type: str
                                     sample: bootVolume
-                                boot_volume_id:
-                                    description:
-                                        - The OCID of the boot volume used to boot the instance.
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                                 boot_volume_size_in_gbs:
                                     description:
                                         - The size of the boot volume in GBs. The minimum value is 50 GB and the maximum
@@ -1973,12 +1973,12 @@ instance_configuration:
             "instance_type": "compute",
             "block_volumes": [{
                 "attach_details": {
+                    "use_chap": true,
                     "display_name": "display_name_example",
                     "is_read_only": true,
                     "device": "device_example",
                     "is_shareable": true,
                     "type": "iscsi",
-                    "use_chap": true,
                     "is_pv_encryption_in_transit_enabled": true
                 },
                 "create_details": {
@@ -2027,15 +2027,15 @@ instance_configuration:
                     "baseline_ocpu_utilization": "BASELINE_1_8"
                 },
                 "platform_config": {
+                    "numa_nodes_per_socket": "NPS0",
                     "type": "AMD_MILAN_BM",
                     "is_secure_boot_enabled": true,
                     "is_trusted_platform_module_enabled": true,
-                    "is_measured_boot_enabled": true,
-                    "numa_nodes_per_socket": "NPS0"
+                    "is_measured_boot_enabled": true
                 },
                 "source_details": {
-                    "source_type": "bootVolume",
                     "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
+                    "source_type": "bootVolume",
                     "boot_volume_size_in_gbs": 56,
                     "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 },
@@ -2180,7 +2180,7 @@ class InstanceConfigurationHelperGen(OCIResourceHelperBase):
         return CreateInstanceConfigurationBase
 
     def get_exclude_attributes(self):
-        return ["source", "instance_id"]
+        return ["instance_id", "source"]
 
     def create_resource(self):
         create_details = self.get_create_model()

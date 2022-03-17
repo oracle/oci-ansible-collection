@@ -108,6 +108,20 @@ private_endpoints:
     returned: on success
     type: complex
     contains:
+        description:
+            description:
+                - A user-friendly description. Avoid entering confidential information.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: description_example
+        lifecycle_details:
+            description:
+                - The detailed messages about the lifecycle state.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         compartment_id:
             description:
                 - The OCID of a compartment.
@@ -122,13 +136,6 @@ private_endpoints:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        description:
-            description:
-                - A user-friendly description. Avoid entering confidential information.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: description_example
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique. Avoid entering confidential information.
@@ -156,13 +163,6 @@ private_endpoints:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_details:
-            description:
-                - The detailed messages about the lifecycle state.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of this private endpoint.
@@ -218,14 +218,14 @@ private_endpoints:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "description": "description_example",
+        "lifecycle_details": "lifecycle_details_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "description": "description_example",
         "display_name": "display_name_example",
         "dns_zones": [],
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "CREATING",
         "max_host_count": 56,
         "nsg_ids": [],

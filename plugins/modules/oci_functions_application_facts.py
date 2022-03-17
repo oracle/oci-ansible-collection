@@ -107,6 +107,29 @@ applications:
     returned: on success
     type: complex
     contains:
+        config:
+            description:
+                - Application configuration for functions in this application (passed as environment variables). Can be overridden by function configuration.
+                  Keys must be ASCII strings consisting solely of letters, digits, and the '_' (underscore) character, and must not begin with a digit. Values
+                  should be limited to printable unicode characters.
+                - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
+                - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each
+                  key and value in UTF-8.
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        syslog_url:
+            description:
+                - "A syslog URL to which to send all function logs. Supports tcp, udp, and tcp+tls.
+                  The syslog URL must be reachable from all of the subnets configured for the application.
+                  Note: If you enable the OCI Logging service for this application, the syslogUrl value is ignored. Function logs are sent to the OCI Logging
+                  service, and not to the syslog URL."
+                - "Example: `tcp://logserver.myserver:1234`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: syslog_url_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the application.
@@ -131,18 +154,6 @@ applications:
             returned: on success
             type: str
             sample: CREATING
-        config:
-            description:
-                - Application configuration for functions in this application (passed as environment variables). Can be overridden by function configuration.
-                  Keys must be ASCII strings consisting solely of letters, digits, and the '_' (underscore) character, and must not begin with a digit. Values
-                  should be limited to printable unicode characters.
-                - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
-                - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each
-                  key and value in UTF-8.
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
         subnet_ids:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)s of the subnets in which to run functions in the
@@ -157,17 +168,6 @@ applications:
             returned: on success
             type: list
             sample: []
-        syslog_url:
-            description:
-                - "A syslog URL to which to send all function logs. Supports tcp, udp, and tcp+tls.
-                  The syslog URL must be reachable from all of the subnets configured for the application.
-                  Note: If you enable the OCI Logging service for this application, the syslogUrl value is ignored. Function logs are sent to the OCI Logging
-                  service, and not to the syslog URL."
-                - "Example: `tcp://logserver.myserver:1234`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: syslog_url_example
         trace_config:
             description:
                 - ""
@@ -244,14 +244,14 @@ applications:
                             type: str
                             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "config": {},
+        "syslog_url": "syslog_url_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "lifecycle_state": "CREATING",
-        "config": {},
         "subnet_ids": [],
         "network_security_group_ids": [],
-        "syslog_url": "syslog_url_example",
         "trace_config": {
             "is_enabled": true,
             "domain_id": "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"

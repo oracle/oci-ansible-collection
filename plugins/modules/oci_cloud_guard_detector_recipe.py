@@ -571,12 +571,6 @@ detector_recipe:
                             returned: on success
                             type: complex
                             contains:
-                                kind:
-                                    description:
-                                        - Type of condition object
-                                    returned: on success
-                                    type: str
-                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -607,6 +601,12 @@ detector_recipe:
                                             returned: on success
                                             type: str
                                             sample: COMPOSITE
+                                kind:
+                                    description:
+                                        - Type of condition object
+                                    returned: on success
+                                    type: str
+                                    sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
@@ -878,12 +878,6 @@ detector_recipe:
                             returned: on success
                             type: complex
                             contains:
-                                kind:
-                                    description:
-                                        - Type of condition object
-                                    returned: on success
-                                    type: str
-                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -914,6 +908,12 @@ detector_recipe:
                                             returned: on success
                                             type: str
                                             sample: COMPOSITE
+                                kind:
+                                    description:
+                                        - Type of condition object
+                                    returned: on success
+                                    type: str
+                                    sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
@@ -1138,7 +1138,6 @@ detector_recipe:
                     }]
                 }],
                 "condition": {
-                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
@@ -1146,6 +1145,7 @@ detector_recipe:
                     "right_operand": {
                         "kind": "COMPOSITE"
                     },
+                    "kind": "COMPOSITE",
                     "parameter": "parameter_example",
                     "operator": "IN",
                     "value": "value_example",
@@ -1198,7 +1198,6 @@ detector_recipe:
                     }]
                 }],
                 "condition": {
-                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
@@ -1206,6 +1205,7 @@ detector_recipe:
                     "right_operand": {
                         "kind": "COMPOSITE"
                     },
+                    "kind": "COMPOSITE",
                     "parameter": "parameter_example",
                     "operator": "IN",
                     "value": "value_example",

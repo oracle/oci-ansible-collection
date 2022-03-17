@@ -147,30 +147,6 @@ types:
     returned: on success
     type: complex
     contains:
-        key:
-            description:
-                - Unique type key that is immutable.
-            returned: on success
-            type: str
-            sample: key_example
-        name:
-            description:
-                - The immutable name of the type.
-            returned: on success
-            type: str
-            sample: name_example
-        description:
-            description:
-                - Detailed description of the type.
-            returned: on success
-            type: str
-            sample: description_example
-        catalog_id:
-            description:
-                - The data catalog's OCID.
-            returned: on success
-            type: str
-            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         properties:
             description:
                 - |
@@ -197,12 +173,6 @@ types:
             returned: on success
             type: dict
             sample: {}
-        lifecycle_state:
-            description:
-                - The current state of the type.
-            returned: on success
-            type: str
-            sample: CREATING
         is_internal:
             description:
                 - Indicates whether the type is internal, making it unavailable for use by metadata elements.
@@ -224,12 +194,6 @@ types:
             returned: on success
             type: bool
             sample: true
-        type_category:
-            description:
-                - Indicates the category this type belongs to. For instance, data assets, connections.
-            returned: on success
-            type: str
-            sample: type_category_example
         external_type_name:
             description:
                 - Mapping type equivalence in the external system.
@@ -237,12 +201,6 @@ types:
             returned: on success
             type: str
             sample: external_type_name_example
-        uri:
-            description:
-                - URI to the type instance in the API.
-            returned: on success
-            type: str
-            sample: uri_example
         custom_properties:
             description:
                 - Custom properties associated with this Type.
@@ -470,6 +428,48 @@ types:
                             returned: on success
                             type: str
                             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+        key:
+            description:
+                - Unique type key that is immutable.
+            returned: on success
+            type: str
+            sample: key_example
+        name:
+            description:
+                - The immutable name of the type.
+            returned: on success
+            type: str
+            sample: name_example
+        description:
+            description:
+                - Detailed description of the type.
+            returned: on success
+            type: str
+            sample: description_example
+        catalog_id:
+            description:
+                - The data catalog's OCID.
+            returned: on success
+            type: str
+            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        type_category:
+            description:
+                - Indicates the category this type belongs to. For instance, data assets, connections.
+            returned: on success
+            type: str
+            sample: type_category_example
+        uri:
+            description:
+                - URI to the type instance in the API.
+            returned: on success
+            type: str
+            sample: uri_example
+        lifecycle_state:
+            description:
+                - The current state of the type.
+            returned: on success
+            type: str
+            sample: CREATING
         parent_type_key:
             description:
                 - Unique key of the parent type.
@@ -483,18 +483,11 @@ types:
             type: str
             sample: parent_type_name_example
     sample: [{
-        "key": "key_example",
-        "name": "name_example",
-        "description": "description_example",
-        "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
         "properties": {},
-        "lifecycle_state": "CREATING",
         "is_internal": true,
         "is_tag": true,
         "is_approved": true,
-        "type_category": "type_category_example",
         "external_type_name": "external_type_name_example",
-        "uri": "uri_example",
         "custom_properties": [{
             "key": "key_example",
             "display_name": "display_name_example",
@@ -535,6 +528,13 @@ types:
                 "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
             }]
         }],
+        "key": "key_example",
+        "name": "name_example",
+        "description": "description_example",
+        "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
+        "type_category": "type_category_example",
+        "uri": "uri_example",
+        "lifecycle_state": "CREATING",
         "parent_type_key": "parent_type_key_example",
         "parent_type_name": "parent_type_name_example"
     }]

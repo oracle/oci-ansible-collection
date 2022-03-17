@@ -714,7 +714,11 @@ class BdsInstanceHelperGen(OCIResourceHelperBase):
         return CreateBdsInstanceDetails
 
     def get_exclude_attributes(self):
-        return ["cluster_public_key", "cluster_admin_password"]
+        return [
+            "nodes.block_volume_size_in_gbs",
+            "cluster_admin_password",
+            "cluster_public_key",
+        ]
 
     def create_resource(self):
         create_details = self.get_create_model()

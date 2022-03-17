@@ -143,12 +143,6 @@ responder_recipe:
                             returned: on success
                             type: complex
                             contains:
-                                kind:
-                                    description:
-                                        - Type of condition object
-                                    returned: on success
-                                    type: str
-                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -179,6 +173,12 @@ responder_recipe:
                                             returned: on success
                                             type: str
                                             sample: COMPOSITE
+                                kind:
+                                    description:
+                                        - Type of condition object
+                                    returned: on success
+                                    type: str
+                                    sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
@@ -324,12 +324,6 @@ responder_recipe:
                             returned: on success
                             type: complex
                             contains:
-                                kind:
-                                    description:
-                                        - Type of condition object
-                                    returned: on success
-                                    type: str
-                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -360,6 +354,12 @@ responder_recipe:
                                             returned: on success
                                             type: str
                                             sample: COMPOSITE
+                                kind:
+                                    description:
+                                        - Type of condition object
+                                    returned: on success
+                                    type: str
+                                    sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
@@ -526,7 +526,6 @@ responder_recipe:
             "supported_modes": [],
             "details": {
                 "condition": {
-                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
@@ -534,6 +533,7 @@ responder_recipe:
                     "right_operand": {
                         "kind": "COMPOSITE"
                     },
+                    "kind": "COMPOSITE",
                     "parameter": "parameter_example",
                     "operator": "IN",
                     "value": "value_example",
@@ -562,7 +562,6 @@ responder_recipe:
             "supported_modes": [],
             "details": {
                 "condition": {
-                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
@@ -570,6 +569,7 @@ responder_recipe:
                     "right_operand": {
                         "kind": "COMPOSITE"
                     },
+                    "kind": "COMPOSITE",
                     "parameter": "parameter_example",
                     "operator": "IN",
                     "value": "value_example",

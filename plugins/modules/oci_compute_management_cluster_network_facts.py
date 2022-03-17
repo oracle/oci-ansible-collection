@@ -108,6 +108,46 @@ cluster_networks:
     returned: on success
     type: complex
     contains:
+        placement_configuration:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                availability_domain:
+                    description:
+                        - The availability domain to place instances.
+                        - "Example: `Uocm:PHX-AD-1`"
+                    returned: on success
+                    type: str
+                    sample: Uocm:PHX-AD-1
+                primary_subnet_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
+                          instances.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
+                secondary_vnic_subnets:
+                    description:
+                        - The set of secondary VNIC data for instances in the pool.
+                    returned: on success
+                    type: complex
+                    contains:
+                        display_name:
+                            description:
+                                - The display name of the VNIC. This is also use to match against the instance configuration defined
+                                  secondary VNIC.
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        subnet_id:
+                            description:
+                                - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cluster network.
@@ -326,46 +366,6 @@ cluster_networks:
                     returned: on success
                     type: list
                     sample: []
-        placement_configuration:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                availability_domain:
-                    description:
-                        - The availability domain to place instances.
-                        - "Example: `Uocm:PHX-AD-1`"
-                    returned: on success
-                    type: str
-                    sample: Uocm:PHX-AD-1
-                primary_subnet_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
-                          instances.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
-                secondary_vnic_subnets:
-                    description:
-                        - The set of secondary VNIC data for instances in the pool.
-                    returned: on success
-                    type: complex
-                    contains:
-                        display_name:
-                            description:
-                                - The display name of the VNIC. This is also use to match against the instance configuration defined
-                                  secondary VNIC.
-                            returned: on success
-                            type: str
-                            sample: display_name_example
-                        subnet_id:
-                            description:
-                                - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the cluster network.
@@ -387,6 +387,14 @@ cluster_networks:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "placement_configuration": {
+            "availability_domain": "Uocm:PHX-AD-1",
+            "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "secondary_vnic_subnets": [{
+                "display_name": "display_name_example",
+                "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -422,14 +430,6 @@ cluster_networks:
             }],
             "availability_domains": []
         }],
-        "placement_configuration": {
-            "availability_domain": "Uocm:PHX-AD-1",
-            "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "secondary_vnic_subnets": [{
-                "display_name": "display_name_example",
-                "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-            }]
-        },
         "lifecycle_state": "PROVISIONING",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"

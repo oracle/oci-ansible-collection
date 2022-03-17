@@ -658,7 +658,7 @@ class BlockchainPlatformHelperGen(OCIResourceHelperBase):
         return CreateBlockchainPlatformDetails
 
     def get_exclude_attributes(self):
-        return ["idcs_access_token", "federated_user_id", "ca_cert_archive_text"]
+        return ["idcs_access_token", "ca_cert_archive_text", "federated_user_id"]
 
     def create_resource(self):
         create_details = self.get_create_model()

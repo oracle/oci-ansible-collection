@@ -359,6 +359,52 @@ auto_scaling_configuration_policy:
     returned: on success
     type: complex
     contains:
+        execution_schedule:
+            description:
+                - The schedule for executing the autoscaling policy.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of execution schedule.
+                    returned: on success
+                    type: str
+                    sample: cron
+                timezone:
+                    description:
+                        - The time zone for the execution schedule.
+                    returned: on success
+                    type: str
+                    sample: UTC
+                expression:
+                    description:
+                        - A cron expression that represents the time at which to execute the autoscaling policy.
+                        - "Cron expressions have this format: `<second> <minute> <hour> <day of month> <month> <day of week> <year>`"
+                        - You can use special characters that are supported with the Quartz cron implementation.
+                        - You must specify `0` as the value for seconds.
+                        - "Example: `0 15 10 ? * *`"
+                    returned: on success
+                    type: str
+                    sample: expression_example
+        resource_action:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                action_type:
+                    description:
+                        - The type of resource action.
+                    returned: on success
+                    type: str
+                    sample: power
+                action:
+                    description:
+                        - ""
+                    returned: on success
+                    type: str
+                    sample: STOP
         capacity:
             description:
                 - The capacity requirements of the autoscaling policy.
@@ -423,52 +469,6 @@ auto_scaling_configuration_policy:
             returned: on success
             type: bool
             sample: true
-        execution_schedule:
-            description:
-                - The schedule for executing the autoscaling policy.
-            returned: on success
-            type: complex
-            contains:
-                type:
-                    description:
-                        - The type of execution schedule.
-                    returned: on success
-                    type: str
-                    sample: cron
-                timezone:
-                    description:
-                        - The time zone for the execution schedule.
-                    returned: on success
-                    type: str
-                    sample: UTC
-                expression:
-                    description:
-                        - A cron expression that represents the time at which to execute the autoscaling policy.
-                        - "Cron expressions have this format: `<second> <minute> <hour> <day of month> <month> <day of week> <year>`"
-                        - You can use special characters that are supported with the Quartz cron implementation.
-                        - You must specify `0` as the value for seconds.
-                        - "Example: `0 15 10 ? * *`"
-                    returned: on success
-                    type: str
-                    sample: expression_example
-        resource_action:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                action_type:
-                    description:
-                        - The type of resource action.
-                    returned: on success
-                    type: str
-                    sample: power
-                action:
-                    description:
-                        - ""
-                    returned: on success
-                    type: str
-                    sample: STOP
         rules:
             description:
                 - ""
@@ -538,6 +538,15 @@ auto_scaling_configuration_policy:
                                     type: int
                                     sample: 56
     sample: {
+        "execution_schedule": {
+            "type": "cron",
+            "timezone": "UTC",
+            "expression": "expression_example"
+        },
+        "resource_action": {
+            "action_type": "power",
+            "action": "STOP"
+        },
         "capacity": {
             "max": 56,
             "min": 56,
@@ -548,15 +557,6 @@ auto_scaling_configuration_policy:
         "policy_type": "scheduled",
         "time_created": "2013-10-20T19:20:30+01:00",
         "is_enabled": true,
-        "execution_schedule": {
-            "type": "cron",
-            "timezone": "UTC",
-            "expression": "expression_example"
-        },
-        "resource_action": {
-            "action_type": "power",
-            "action": "STOP"
-        },
         "rules": [{
             "action": {
                 "type": "CHANGE_COUNT_BY",

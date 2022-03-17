@@ -422,11 +422,6 @@ class ScriptHelperGen(OCIResourceHelperBase):
     def get_get_fn(self):
         return self.client.get_script
 
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_script, script_id=summary_model.id,
-        ).data
-
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_script,
@@ -472,6 +467,13 @@ class ScriptHelperGen(OCIResourceHelperBase):
 
     def get_create_model_class(self):
         return CreateScriptDetails
+
+    def get_exclude_attributes(self):
+        return [
+            "parameters.param_value",
+            "parameters.is_secret",
+            "parameters.param_name",
+        ]
 
     def create_resource(self):
         create_details = self.get_create_model()

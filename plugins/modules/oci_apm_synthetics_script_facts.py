@@ -97,25 +97,6 @@ scripts:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
-                  scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Unique name that can be edited. The name should not contain any confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        content_type:
-            description:
-                - Content type of the script.
-            returned: on success
-            type: str
-            sample: SIDE
         content:
             description:
                 - "The content of the script. It may contain custom-defined tags that can be used for setting dynamic parameters.
@@ -189,6 +170,25 @@ scripts:
                     returned: on success
                     type: bool
                     sample: true
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
+                  scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Unique name that can be edited. The name should not contain any confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        content_type:
+            description:
+                - Content type of the script.
+            returned: on success
+            type: str
+            sample: SIDE
         monitor_status_count_map:
             description:
                 - ""
@@ -250,9 +250,6 @@ scripts:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "content_type": "SIDE",
         "content": "sample_content",
         "time_uploaded": "2013-10-20T19:20:30+01:00",
         "content_size_in_bytes": 56,
@@ -265,6 +262,9 @@ scripts:
             },
             "is_overwritten": true
         }],
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "content_type": "SIDE",
         "monitor_status_count_map": {
             "total": 56,
             "enabled": 56,

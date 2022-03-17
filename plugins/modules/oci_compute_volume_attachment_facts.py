@@ -84,6 +84,79 @@ volume_attachments:
     returned: on success
     type: complex
     contains:
+        chap_secret:
+            description:
+                - "The Challenge-Handshake-Authentication-Protocol (CHAP) secret
+                  valid for the associated CHAP user name.
+                  (Also called the \\"CHAP password\\".)"
+            returned: on success
+            type: str
+            sample: chap_secret_example
+        chap_username:
+            description:
+                - The volume's system-generated Challenge-Handshake-Authentication-Protocol
+                  (CHAP) user name. See L(RFC 1994,https://tools.ietf.org/html/rfc1994) for more on CHAP.
+                - "Example: `ocid1.volume.oc1.phx.<unique_ID>`"
+            returned: on success
+            type: str
+            sample: chap_username_example
+        ipv4:
+            description:
+                - The volume's iSCSI IP address.
+                - "Example: `169.254.0.2`"
+            returned: on success
+            type: str
+            sample: ipv4_example
+        iqn:
+            description:
+                - The target volume's iSCSI Qualified Name in the format defined
+                  by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
+                - "Example: `iqn.2015-12.us.oracle.com:<CHAP_username>`"
+            returned: on success
+            type: str
+            sample: iqn_example
+        port:
+            description:
+                - The volume's iSCSI port, usually port 860 or 3260.
+                - "Example: `3260`"
+            returned: on success
+            type: int
+            sample: 56
+        multipath_devices:
+            description:
+                - A list of secondary multipath devices
+            returned: on success
+            type: complex
+            contains:
+                ipv4:
+                    description:
+                        - The volume's iSCSI IP address.
+                        - "Example: `169.254.2.2`"
+                    returned: on success
+                    type: str
+                    sample: ipv4_example
+                iqn:
+                    description:
+                        - The target volume's iSCSI Qualified Name in the format defined
+                          by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
+                        - "Example: `iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195`"
+                    returned: on success
+                    type: str
+                    sample: iqn_example
+                port:
+                    description:
+                        - The volume's iSCSI port, usually port 860 or 3260.
+                        - "Example: `3260`"
+                    returned: on success
+                    type: int
+                    sample: 56
+        encryption_in_transit_type:
+            description:
+                - Refer the top-level definition of encryptionInTransitType.
+                  The default value is NONE.
+            returned: on success
+            type: str
+            sample: NONE
         attachment_type:
             description:
                 - The type of volume attachment.
@@ -181,79 +254,6 @@ volume_attachments:
             returned: on success
             type: str
             sample: UNKNOWN
-        chap_secret:
-            description:
-                - "The Challenge-Handshake-Authentication-Protocol (CHAP) secret
-                  valid for the associated CHAP user name.
-                  (Also called the \\"CHAP password\\".)"
-            returned: on success
-            type: str
-            sample: chap_secret_example
-        chap_username:
-            description:
-                - The volume's system-generated Challenge-Handshake-Authentication-Protocol
-                  (CHAP) user name. See L(RFC 1994,https://tools.ietf.org/html/rfc1994) for more on CHAP.
-                - "Example: `ocid1.volume.oc1.phx.<unique_ID>`"
-            returned: on success
-            type: str
-            sample: chap_username_example
-        ipv4:
-            description:
-                - The volume's iSCSI IP address.
-                - "Example: `169.254.0.2`"
-            returned: on success
-            type: str
-            sample: ipv4_example
-        iqn:
-            description:
-                - The target volume's iSCSI Qualified Name in the format defined
-                  by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
-                - "Example: `iqn.2015-12.us.oracle.com:<CHAP_username>`"
-            returned: on success
-            type: str
-            sample: iqn_example
-        port:
-            description:
-                - The volume's iSCSI port, usually port 860 or 3260.
-                - "Example: `3260`"
-            returned: on success
-            type: int
-            sample: 56
-        multipath_devices:
-            description:
-                - A list of secondary multipath devices
-            returned: on success
-            type: complex
-            contains:
-                ipv4:
-                    description:
-                        - The volume's iSCSI IP address.
-                        - "Example: `169.254.2.2`"
-                    returned: on success
-                    type: str
-                    sample: ipv4_example
-                iqn:
-                    description:
-                        - The target volume's iSCSI Qualified Name in the format defined
-                          by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
-                        - "Example: `iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195`"
-                    returned: on success
-                    type: str
-                    sample: iqn_example
-                port:
-                    description:
-                        - The volume's iSCSI port, usually port 860 or 3260.
-                        - "Example: `3260`"
-                    returned: on success
-                    type: int
-                    sample: 56
-        encryption_in_transit_type:
-            description:
-                - Refer the top-level definition of encryptionInTransitType.
-                  The default value is NONE.
-            returned: on success
-            type: str
-            sample: NONE
         iscsi_attach_commands:
             description:
                 - Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
@@ -267,6 +267,17 @@ volume_attachments:
             type: list
             sample: [  "sudo iscsiadm -m node -T IQN -p IP:PORT -u", "sudo iscsiadm -m node -o delete -T IQN"  ]
     sample: [{
+        "chap_secret": "chap_secret_example",
+        "chap_username": "chap_username_example",
+        "ipv4": "ipv4_example",
+        "iqn": "iqn_example",
+        "port": 56,
+        "multipath_devices": [{
+            "ipv4": "ipv4_example",
+            "iqn": "iqn_example",
+            "port": 56
+        }],
+        "encryption_in_transit_type": "NONE",
         "attachment_type": "emulated",
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -282,17 +293,6 @@ volume_attachments:
         "is_pv_encryption_in_transit_enabled": true,
         "is_multipath": true,
         "iscsi_login_state": "UNKNOWN",
-        "chap_secret": "chap_secret_example",
-        "chap_username": "chap_username_example",
-        "ipv4": "ipv4_example",
-        "iqn": "iqn_example",
-        "port": 56,
-        "multipath_devices": [{
-            "ipv4": "ipv4_example",
-            "iqn": "iqn_example",
-            "port": 56
-        }],
-        "encryption_in_transit_type": "NONE",
         "iscsi_attach_commands": [  "sudo iscsiadm -m node -o new -T IQN -p IP:PORT", "sudo iscsiadm -m node -o update ..."  ],
         "iscsi_detach_commands": [  "sudo iscsiadm -m node -T IQN -p IP:PORT -u", "sudo iscsiadm -m node -o delete -T IQN"  ]
     }]

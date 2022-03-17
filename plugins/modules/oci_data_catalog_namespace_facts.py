@@ -148,6 +148,27 @@ namespaces:
     returned: on success
     type: complex
     contains:
+        time_updated:
+            description:
+                - The last time that any change was made to the namespace. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        created_by_id:
+            description:
+                - OCID of the user who created the namespace.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+        updated_by_id:
+            description:
+                - OCID of the user who last modified the namespace.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         key:
             description:
                 - Unique namespace key that is immutable.
@@ -185,37 +206,16 @@ namespaces:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The last time that any change was made to the namespace. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        created_by_id:
-            description:
-                - OCID of the user who created the namespace.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
-        updated_by_id:
-            description:
-                - OCID of the user who last modified the namespace.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
+        "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
         "key": "key_example",
         "display_name": "display_name_example",
         "description": "description_example",
         "is_service_defined": true,
         "lifecycle_state": "CREATING",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
-        "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

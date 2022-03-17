@@ -71,6 +71,13 @@ subscriptions:
     returned: on success
     type: complex
     contains:
+        deliver_policy:
+            description:
+                - The delivery policy of the subscription. Stored as a JSON string.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: deliver_policy_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
@@ -125,35 +132,6 @@ subscriptions:
             returned: on success
             type: int
             sample: 56
-        deliver_policy:
-            description:
-                - The delivery policy of the subscription. Stored as a JSON string.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: deliver_policy_example
-        etag:
-            description:
-                - For optimistic concurrency control. See `if-match`.
-            returned: on success
-            type: str
-            sample: etag_example
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
-                  L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
         delivery_policy:
             description:
                 - ""
@@ -179,7 +157,30 @@ subscriptions:
                             returned: on success
                             type: str
                             sample: EXPONENTIAL
+        etag:
+            description:
+                - For optimistic concurrency control. See `if-match`.
+            returned: on success
+            type: str
+            sample: etag_example
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
+                  L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "deliver_policy": "deliver_policy_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
         "protocol": "protocol_example",
@@ -187,16 +188,15 @@ subscriptions:
         "lifecycle_state": "PENDING",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_time": 56,
-        "deliver_policy": "deliver_policy_example",
-        "etag": "etag_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "delivery_policy": {
             "backoff_retry_policy": {
                 "max_retry_duration": 56,
                 "policy_type": "EXPONENTIAL"
             }
-        }
+        },
+        "etag": "etag_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

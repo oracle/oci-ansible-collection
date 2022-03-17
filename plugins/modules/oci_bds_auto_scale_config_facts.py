@@ -118,18 +118,18 @@ bds_auto_scale_configs:
             returned: on success
             type: str
             sample: display_name_example
-        node_type:
-            description:
-                - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
-            returned: on success
-            type: str
-            sample: node_type_example
         lifecycle_state:
             description:
                 - The state of the autoscale configuration.
             returned: on success
             type: str
             sample: CREATING
+        node_type:
+            description:
+                - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
+            returned: on success
+            type: str
+            sample: node_type_example
         time_created:
             description:
                 - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
@@ -206,8 +206,8 @@ bds_auto_scale_configs:
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "node_type": "node_type_example",
         "lifecycle_state": "CREATING",
+        "node_type": "node_type_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "policy": {

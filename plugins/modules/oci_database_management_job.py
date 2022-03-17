@@ -662,7 +662,7 @@ class JobHelperGen(OCIResourceHelperBase):
         return CreateJobDetails
 
     def get_exclude_attributes(self):
-        return ["password", "secret_id"]
+        return ["secret_id", "password"]
 
     def create_resource(self):
         create_details = self.get_create_model()

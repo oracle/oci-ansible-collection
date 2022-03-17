@@ -90,72 +90,6 @@ auto_scaling_configuration_policies:
     returned: on success
     type: complex
     contains:
-        capacity:
-            description:
-                - The capacity requirements of the autoscaling policy.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                max:
-                    description:
-                        - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
-                          to increase to (scale out).
-                        - For a schedule-based autoscaling policy, this value is not used.
-                    returned: on success
-                    type: int
-                    sample: 56
-                min:
-                    description:
-                        - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
-                          to decrease to (scale in).
-                        - For a schedule-based autoscaling policy, this value is not used.
-                    returned: on success
-                    type: int
-                    sample: 56
-                initial:
-                    description:
-                        - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
-                          immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
-                          instances is automatically adjusted from this initial number to a number that is based on the limits that
-                          you set.
-                        - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
-                          that's defined in the autoscaling policy.
-                    returned: on success
-                    type: int
-                    sample: 56
-        id:
-            description:
-                - The ID of the autoscaling policy that is assigned after creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        policy_type:
-            description:
-                - The type of autoscaling policy.
-            returned: on success
-            type: str
-            sample: scheduled
-        time_created:
-            description:
-                - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
-                - "Example: `2016-08-25T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        is_enabled:
-            description:
-                - Whether the autoscaling policy is enabled.
-            returned: on success
-            type: bool
-            sample: true
         execution_schedule:
             description:
                 - The schedule for executing the autoscaling policy.
@@ -204,6 +138,48 @@ auto_scaling_configuration_policies:
                     returned: on success
                     type: str
                     sample: STOP
+        capacity:
+            description:
+                - The capacity requirements of the autoscaling policy.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                max:
+                    description:
+                        - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
+                          to increase to (scale out).
+                        - For a schedule-based autoscaling policy, this value is not used.
+                    returned: on success
+                    type: int
+                    sample: 56
+                min:
+                    description:
+                        - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
+                          to decrease to (scale in).
+                        - For a schedule-based autoscaling policy, this value is not used.
+                    returned: on success
+                    type: int
+                    sample: 56
+                initial:
+                    description:
+                        - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
+                          immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
+                          instances is automatically adjusted from this initial number to a number that is based on the limits that
+                          you set.
+                        - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
+                          that's defined in the autoscaling policy.
+                    returned: on success
+                    type: int
+                    sample: 56
+        time_created:
+            description:
+                - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
+                - "Example: `2016-08-25T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         rules:
             description:
                 - ""
@@ -273,17 +249,31 @@ auto_scaling_configuration_policies:
                                     returned: on success
                                     type: int
                                     sample: 56
+        id:
+            description:
+                - The ID of the autoscaling policy that is assigned after creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        policy_type:
+            description:
+                - The type of autoscaling policy.
+            returned: on success
+            type: str
+            sample: scheduled
+        is_enabled:
+            description:
+                - Whether the autoscaling policy is enabled.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
-        "capacity": {
-            "max": 56,
-            "min": 56,
-            "initial": 56
-        },
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "policy_type": "scheduled",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "is_enabled": true,
         "execution_schedule": {
             "type": "cron",
             "timezone": "UTC",
@@ -293,6 +283,12 @@ auto_scaling_configuration_policies:
             "action_type": "power",
             "action": "STOP"
         },
+        "capacity": {
+            "max": 56,
+            "min": 56,
+            "initial": 56
+        },
+        "time_created": "2013-10-20T19:20:30+01:00",
         "rules": [{
             "action": {
                 "type": "CHANGE_COUNT_BY",
@@ -307,7 +303,11 @@ auto_scaling_configuration_policies:
                     "value": 56
                 }
             }
-        }]
+        }],
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "policy_type": "scheduled",
+        "is_enabled": true
     }]
 """
 

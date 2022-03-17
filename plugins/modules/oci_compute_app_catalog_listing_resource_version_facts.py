@@ -74,31 +74,6 @@ app_catalog_listing_resource_versions:
     returned: on success
     type: complex
     contains:
-        listing_id:
-            description:
-                - The OCID of the listing this resource version belongs to.
-            returned: on success
-            type: str
-            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-        time_published:
-            description:
-                - "Date and time the listing resource version was published, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
-                  Example: `2018-03-20T12:32:53.532Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        listing_resource_id:
-            description:
-                - OCID of the listing resource.
-            returned: on success
-            type: str
-            sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
-        listing_resource_version:
-            description:
-                - Resource Version.
-            returned: on success
-            type: str
-            sample: listing_resource_version_example
         available_regions:
             description:
                 - List of regions that this listing resource version is available.
@@ -132,15 +107,40 @@ app_catalog_listing_resource_versions:
             returned: on success
             type: list
             sample: []
+        listing_id:
+            description:
+                - The OCID of the listing this resource version belongs to.
+            returned: on success
+            type: str
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+        time_published:
+            description:
+                - "Date and time the listing resource version was published, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
+                  Example: `2018-03-20T12:32:53.532Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        listing_resource_id:
+            description:
+                - OCID of the listing resource.
+            returned: on success
+            type: str
+            sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
+        listing_resource_version:
+            description:
+                - Resource Version.
+            returned: on success
+            type: str
+            sample: listing_resource_version_example
     sample: [{
-        "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_published": "2013-10-20T19:20:30+01:00",
-        "listing_resource_id": "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx",
-        "listing_resource_version": "listing_resource_version_example",
         "available_regions": [],
         "compatible_shapes": [],
         "accessible_ports": [],
-        "allowed_actions": []
+        "allowed_actions": [],
+        "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_published": "2013-10-20T19:20:30+01:00",
+        "listing_resource_id": "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx",
+        "listing_resource_version": "listing_resource_version_example"
     }]
 """
 

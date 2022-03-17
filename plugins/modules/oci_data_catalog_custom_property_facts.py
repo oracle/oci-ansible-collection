@@ -217,6 +217,24 @@ custom_properties:
     returned: on success
     type: complex
     contains:
+        is_list_type:
+            description:
+                - Is this property allowed to have list of values
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        properties:
+            description:
+                - "A map of maps that contains the properties which are specific to the asset type. Each data asset type
+                  definition defines it's set of required and optional properties. The map keys are category names and the
+                  values are maps of property name to property value. Every property is contained inside of a category. Most
+                  data assets have required properties within the \\"default\\" category.
+                  Example: `{\\"properties\\": { \\"default\\": { \\"host\\": \\"host1\\", \\"port\\": \\"1521\\", \\"database\\": \\"orcl\\"}}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
         key:
             description:
                 - Unique data asset key that is immutable.
@@ -229,31 +247,24 @@ custom_properties:
             returned: on success
             type: str
             sample: display_name_example
-        data_type:
-            description:
-                - Data type of the custom property
-            returned: on success
-            type: str
-            sample: TEXT
         description:
             description:
                 - Description for the custom property
             returned: on success
             type: str
             sample: description_example
+        data_type:
+            description:
+                - Data type of the custom property
+            returned: on success
+            type: str
+            sample: TEXT
         namespace_name:
             description:
                 - Namespace name of the custom property
             returned: on success
             type: str
             sample: namespace_name_example
-        is_list_type:
-            description:
-                - Is this property allowed to have list of values
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
         is_sortable:
             description:
                 - If this field allows to sort from UI
@@ -302,12 +313,6 @@ custom_properties:
             returned: on success
             type: bool
             sample: true
-        lifecycle_state:
-            description:
-                - The current state of the custom property.
-            returned: on success
-            type: str
-            sample: CREATING
         time_created:
             description:
                 - "The date and time the custom property was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -315,36 +320,18 @@ custom_properties:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
+        lifecycle_state:
             description:
-                - The last time that any change was made to the custom property. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+                - The current state of the custom property.
             returned: on success
             type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        created_by_id:
-            description:
-                - OCID of the user who created the custom property.
-            returned: on success
-            type: str
-            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
-        updated_by_id:
-            description:
-                - OCID of the user who last modified the custom property.
-            returned: on success
-            type: str
-            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+            sample: CREATING
         usage_count:
             description:
                 - Total number of first class objects using this custom property
             returned: on success
             type: int
             sample: 56
-        is_event_enabled:
-            description:
-                - If an OCI Event will be emitted when the custom property is modified.
-            returned: on success
-            type: bool
-            sample: true
         scope:
             description:
                 - The set of object types to which the custom property applies.
@@ -381,6 +368,30 @@ custom_properties:
             returned: on success
             type: list
             sample: []
+        time_updated:
+            description:
+                - The last time that any change was made to the custom property. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        created_by_id:
+            description:
+                - OCID of the user who created the custom property.
+            returned: on success
+            type: str
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+        updated_by_id:
+            description:
+                - OCID of the user who last modified the custom property.
+            returned: on success
+            type: str
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+        is_event_enabled:
+            description:
+                - If an OCI Event will be emitted when the custom property is modified.
+            returned: on success
+            type: bool
+            sample: true
         events:
             description:
                 - Event configuration for this custom property, against the desired subset of object types to which the property applies.
@@ -443,24 +454,14 @@ custom_properties:
                     returned: on success
                     type: str
                     sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
-        properties:
-            description:
-                - "A map of maps that contains the properties which are specific to the asset type. Each data asset type
-                  definition defines it's set of required and optional properties. The map keys are category names and the
-                  values are maps of property name to property value. Every property is contained inside of a category. Most
-                  data assets have required properties within the \\"default\\" category.
-                  Example: `{\\"properties\\": { \\"default\\": { \\"host\\": \\"host1\\", \\"port\\": \\"1521\\", \\"database\\": \\"orcl\\"}}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
     sample: [{
+        "is_list_type": true,
+        "properties": {},
         "key": "key_example",
         "display_name": "display_name_example",
-        "data_type": "TEXT",
         "description": "description_example",
+        "data_type": "TEXT",
         "namespace_name": "namespace_name_example",
-        "is_list_type": true,
         "is_sortable": true,
         "is_filterable": true,
         "is_multi_valued": true,
@@ -469,13 +470,9 @@ custom_properties:
         "is_shown_in_list": true,
         "is_service_defined": true,
         "is_hidden_in_search": true,
-        "lifecycle_state": "CREATING",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
-        "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "CREATING",
         "usage_count": 56,
-        "is_event_enabled": true,
         "scope": [{
             "type_id": "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx",
             "type_name": "type_name_example",
@@ -483,6 +480,10 @@ custom_properties:
             "is_event_enabled": true
         }],
         "allowed_values": [],
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
+        "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_event_enabled": true,
         "events": [{
             "type_id": "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx",
             "type_name": "type_name_example",
@@ -493,8 +494,7 @@ custom_properties:
             "time_updated": "2013-10-20T19:20:30+01:00",
             "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
             "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
-        }],
-        "properties": {}
+        }]
     }]
 """
 

@@ -268,12 +268,6 @@ analytics_instance:
             returned: on success
             type: complex
             contains:
-                network_endpoint_type:
-                    description:
-                        - The type of network endpoint.
-                    returned: on success
-                    type: str
-                    sample: PUBLIC
                 vcn_id:
                     description:
                         - The VCN OCID for the private endpoint.
@@ -286,6 +280,12 @@ analytics_instance:
                     returned: on success
                     type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                network_endpoint_type:
+                    description:
+                        - The type of network endpoint.
+                    returned: on success
+                    type: str
+                    sample: PUBLIC
                 whitelisted_ips:
                     description:
                         - Source IP addresses or IP address ranges igress rules.
@@ -468,9 +468,9 @@ analytics_instance:
         "license_type": "LICENSE_INCLUDED",
         "email_notification": "email_notification_example",
         "network_endpoint_details": {
-            "network_endpoint_type": "PUBLIC",
             "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "network_endpoint_type": "PUBLIC",
             "whitelisted_ips": [],
             "whitelisted_vcns": [{
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

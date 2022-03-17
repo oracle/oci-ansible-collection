@@ -148,6 +148,12 @@ profiles:
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
+        lifecycle_state:
+            description:
+                - The profile's current state.
+            returned: on success
+            type: str
+            sample: ACTIVE
         levels_configuration:
             description:
                 - ""
@@ -224,12 +230,6 @@ profiles:
                             returned: on success
                             type: list
                             sample: []
-        lifecycle_state:
-            description:
-                - The profile's current state.
-            returned: on success
-            type: str
-            sample: ACTIVE
         time_created:
             description:
                 - The date and time the profile was created, in the format defined by RFC3339.
@@ -250,6 +250,7 @@ profiles:
         "aggregation_interval_in_days": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
+        "lifecycle_state": "ACTIVE",
         "levels_configuration": {
             "items": [{
                 "recommendation_id": "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx",
@@ -267,7 +268,6 @@ profiles:
                 "tag_values": []
             }]
         },
-        "lifecycle_state": "ACTIVE",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"
     }]

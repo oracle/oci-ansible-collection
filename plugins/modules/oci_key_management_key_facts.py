@@ -128,12 +128,6 @@ keys:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The OCID of the compartment that contains this master encryption key.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_key_version:
             description:
                 - The OCID of the key version used in cryptographic operations. During key rotation, the service might be
@@ -143,6 +137,68 @@ keys:
             returned: on success
             type: str
             sample: current_key_version_example
+        key_shape:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                algorithm:
+                    description:
+                        - The algorithm used by a key's key versions to encrypt or decrypt.
+                    returned: on success
+                    type: str
+                    sample: AES
+                length:
+                    description:
+                        - "The length of the key in bytes, expressed as an integer. Supported values include the following:
+                            - AES: 16, 24, or 32
+                            - RSA: 256, 384, or 512
+                            - ECDSA: 32, 48, or 66"
+                    returned: on success
+                    type: int
+                    sample: 56
+                curve_id:
+                    description:
+                        - Supported curve IDs for ECDSA keys.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
+        time_of_deletion:
+            description:
+                - "An optional property indicating when to delete the key, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                  Example: `2019-04-03T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        replica_details:
+            description:
+                - The value to assign to the replica_details property of this Key.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a key operation
+                    returned: on success
+                    type: str
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - The value to assign to the is_primary property of this Key.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        compartment_id:
+            description:
+                - The OCID of the compartment that contains this master encryption key.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -172,45 +228,6 @@ keys:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        key_shape:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                algorithm:
-                    description:
-                        - The algorithm used by a key's key versions to encrypt or decrypt.
-                    returned: on success
-                    type: str
-                    sample: AES
-                length:
-                    description:
-                        - "The length of the key in bytes, expressed as an integer. Supported values include the following:
-                            - AES: 16, 24, or 32
-                            - RSA: 256, 384, or 512
-                            - ECDSA: 32, 48, or 66"
-                    returned: on success
-                    type: int
-                    sample: 56
-                curve_id:
-                    description:
-                        - Supported curve IDs for ECDSA keys.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
-        protection_mode:
-            description:
-                - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
-                  A protection mode of `HSM` means that the key persists on a hardware security module (HSM) and all cryptographic operations are performed
-                  inside
-                  the HSM. A protection mode of `SOFTWARE` means that the key persists on the server, protected by the vault's RSA wrapping key which persists
-                  on the HSM. All cryptographic operations that use a key with a protection mode of `SOFTWARE` are performed on the server. By default,
-                  a key's protection mode is set to `HSM`. You can't change a key's protection mode after the key is created or imported.
-            returned: on success
-            type: str
-            sample: HSM
         lifecycle_state:
             description:
                 - The key's current lifecycle state.
@@ -225,40 +242,23 @@ keys:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_of_deletion:
-            description:
-                - "An optional property indicating when to delete the key, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                  Example: `2019-04-03T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         vault_id:
             description:
                 - The OCID of the vault that contains this key.
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        replica_details:
+        protection_mode:
             description:
-                - The value to assign to the replica_details property of this Key.
-                - Returned for get operation
+                - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
+                  A protection mode of `HSM` means that the key persists on a hardware security module (HSM) and all cryptographic operations are performed
+                  inside
+                  the HSM. A protection mode of `SOFTWARE` means that the key persists on the server, protected by the vault's RSA wrapping key which persists
+                  on the HSM. All cryptographic operations that use a key with a protection mode of `SOFTWARE` are performed on the server. By default,
+                  a key's protection mode is set to `HSM`. You can't change a key's protection mode after the key is created or imported.
             returned: on success
-            type: complex
-            contains:
-                replication_id:
-                    description:
-                        - ReplicationId associated with a key operation
-                    returned: on success
-                    type: str
-                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
-        is_primary:
-            description:
-                - The value to assign to the is_primary property of this Key.
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
+            type: str
+            sample: HSM
         algorithm:
             description:
                 - The algorithm used by a key's key versions to encrypt or decrypt data.
@@ -267,26 +267,26 @@ keys:
             type: str
             sample: AES
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "current_key_version": "current_key_version_example",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "display_name_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "key_shape": {
             "algorithm": "AES",
             "length": 56,
             "curve_id": "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         },
-        "protection_mode": "HSM",
-        "lifecycle_state": "CREATING",
-        "time_created": "2013-10-20T19:20:30+01:00",
         "time_of_deletion": "2013-10-20T19:20:30+01:00",
-        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "replica_details": {
             "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "is_primary": true,
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "display_name": "display_name_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "CREATING",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "protection_mode": "HSM",
         "algorithm": "AES"
     }]
 """

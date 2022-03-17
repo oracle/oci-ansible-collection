@@ -79,12 +79,6 @@ queries:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The query OCID.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The compartment OCID.
@@ -92,6 +86,12 @@ queries:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The query OCID.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         query_definition:
             description:
                 - ""
@@ -337,8 +337,8 @@ queries:
                     type: float
                     sample: 10
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "query_definition": {
             "display_name": "display_name_example",
             "report_query": {

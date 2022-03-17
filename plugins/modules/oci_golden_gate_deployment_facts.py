@@ -123,6 +123,60 @@ deployments:
     returned: on success
     type: complex
     contains:
+        deployment_backup_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup being referenced.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+        is_healthy:
+            description:
+                - True if all of the aggregate resources are working correctly.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        nsg_ids:
+            description:
+                - An array of L(Network Security Group,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm) OCIDs used to define
+                  network access for a deployment.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
+        ogg_data:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                deployment_name:
+                    description:
+                        - The name given to the GoldenGate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric
+                          characters and must start with a letter.
+                    returned: on success
+                    type: str
+                    sample: deployment_name_example
+                admin_username:
+                    description:
+                        - The GoldenGate deployment console username.
+                    returned: on success
+                    type: str
+                    sample: admin_username_example
+                ogg_version:
+                    description:
+                        - Version of OGG
+                    returned: on success
+                    type: str
+                    sample: ogg_version_example
+                certificate:
+                    description:
+                        - A PEM-encoded SSL certificate.
+                    returned: on success
+                    type: str
+                    sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
@@ -147,13 +201,6 @@ deployments:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        deployment_backup_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup being referenced.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
@@ -201,31 +248,24 @@ deployments:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        is_healthy:
-            description:
-                - True if all of the aggregate resources are working correctly.
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
         subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        fqdn:
-            description:
-                - A three-label Fully Qualified Domain Name (FQDN) for a resource.
-            returned: on success
-            type: str
-            sample: fqdn_example
         license_model:
             description:
                 - The Oracle license model that applies to a Deployment.
             returned: on success
             type: str
             sample: LICENSE_INCLUDED
+        fqdn:
+            description:
+                - A three-label Fully Qualified Domain Name (FQDN) for a resource.
+            returned: on success
+            type: str
+            sample: fqdn_example
         cpu_core_count:
             description:
                 - The Minimum number of OCPUs to be made available for this Deployment.
@@ -238,14 +278,6 @@ deployments:
             returned: on success
             type: bool
             sample: true
-        nsg_ids:
-            description:
-                - An array of L(Network Security Group,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm) OCIDs used to define
-                  network access for a deployment.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
         is_public:
             description:
                 - True if this object is publicly available.
@@ -301,44 +333,20 @@ deployments:
             returned: on success
             type: str
             sample: OGG
-        ogg_data:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                deployment_name:
-                    description:
-                        - The name given to the GoldenGate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric
-                          characters and must start with a letter.
-                    returned: on success
-                    type: str
-                    sample: deployment_name_example
-                admin_username:
-                    description:
-                        - The GoldenGate deployment console username.
-                    returned: on success
-                    type: str
-                    sample: admin_username_example
-                ogg_version:
-                    description:
-                        - Version of OGG
-                    returned: on success
-                    type: str
-                    sample: ogg_version_example
-                certificate:
-                    description:
-                        - A PEM-encoded SSL certificate.
-                    returned: on success
-                    type: str
-                    sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     sample: [{
+        "deployment_backup_id": "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_healthy": true,
+        "nsg_ids": [],
+        "ogg_data": {
+            "deployment_name": "deployment_name_example",
+            "admin_username": "admin_username_example",
+            "ogg_version": "ogg_version_example",
+            "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "deployment_backup_id": "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -346,13 +354,11 @@ deployments:
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "is_healthy": true,
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "fqdn": "fqdn_example",
         "license_model": "LICENSE_INCLUDED",
+        "fqdn": "fqdn_example",
         "cpu_core_count": 56,
         "is_auto_scaling_enabled": true,
-        "nsg_ids": [],
         "is_public": true,
         "public_ip_address": "public_ip_address_example",
         "private_ip_address": "private_ip_address_example",
@@ -360,13 +366,7 @@ deployments:
         "system_tags": {},
         "is_latest_version": true,
         "time_upgrade_required": "2013-10-20T19:20:30+01:00",
-        "deployment_type": "OGG",
-        "ogg_data": {
-            "deployment_name": "deployment_name_example",
-            "admin_username": "admin_username_example",
-            "ogg_version": "ogg_version_example",
-            "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
-        }
+        "deployment_type": "OGG"
     }]
 """
 

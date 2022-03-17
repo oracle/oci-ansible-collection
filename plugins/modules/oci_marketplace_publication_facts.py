@@ -104,36 +104,6 @@ publications:
     returned: on success
     type: complex
     contains:
-        lifecycle_state:
-            description:
-                - The lifecycle state of the publication.
-            returned: on success
-            type: str
-            sample: CREATING
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the publication exists.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        id:
-            description:
-                - The unique identifier for the publication in Marketplace.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - The name of the publication, which is also used in the listing.
-            returned: on success
-            type: str
-            sample: name_example
-        short_description:
-            description:
-                - A short description of the publication to use in the listing.
-            returned: on success
-            type: str
-            sample: short_description_example
         long_description:
             description:
                 - A long description of the publication to use in the listing.
@@ -172,6 +142,55 @@ publications:
                     returned: on success
                     type: str
                     sample: subject_example
+        defined_tags:
+            description:
+                - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - "The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        lifecycle_state:
+            description:
+                - The lifecycle state of the publication.
+            returned: on success
+            type: str
+            sample: CREATING
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the publication exists.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The unique identifier for the publication in Marketplace.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The name of the publication, which is also used in the listing.
+            returned: on success
+            type: str
+            sample: name_example
+        short_description:
+            description:
+                - A short description of the publication to use in the listing.
+            returned: on success
+            type: str
+            sample: short_description_example
         icon:
             description:
                 - ""
@@ -208,12 +227,6 @@ publications:
             returned: on success
             type: str
             sample: ORCHESTRATION
-        listing_type:
-            description:
-                - The publisher category to which the publication belongs. The publisher category informs where the listing appears for use.
-            returned: on success
-            type: str
-            sample: COMMUNITY
         supported_operating_systems:
             description:
                 - The list of operating systems supprted by the listing.
@@ -226,6 +239,12 @@ publications:
                     returned: on success
                     type: str
                     sample: name_example
+        listing_type:
+            description:
+                - The publisher category to which the publication belongs. The publisher category informs where the listing appears for use.
+            returned: on success
+            type: str
+            sample: COMMUNITY
         time_created:
             description:
                 - The date and time the publication was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -234,31 +253,7 @@ publications:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        defined_tags:
-            description:
-                - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        freeform_tags:
-            description:
-                - "The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
     sample: [{
-        "lifecycle_state": "CREATING",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
-        "short_description": "short_description_example",
         "long_description": "long_description_example",
         "support_contacts": [{
             "name": "name_example",
@@ -266,6 +261,13 @@ publications:
             "email": "email_example",
             "subject": "subject_example"
         }],
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
+        "lifecycle_state": "CREATING",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "short_description": "short_description_example",
         "icon": {
             "name": "name_example",
             "content_url": "content_url_example",
@@ -273,13 +275,11 @@ publications:
             "file_extension": "file_extension_example"
         },
         "package_type": "ORCHESTRATION",
-        "listing_type": "COMMUNITY",
         "supported_operating_systems": [{
             "name": "name_example"
         }],
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "freeform_tags": {'Department': 'Finance'}
+        "listing_type": "COMMUNITY",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

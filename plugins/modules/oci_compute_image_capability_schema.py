@@ -273,18 +273,6 @@ compute_image_capability_schema:
             returned: on success
             type: complex
             contains:
-                descriptor_type:
-                    description:
-                        - The image capability schema descriptor type for the capability
-                    returned: on success
-                    type: str
-                    sample: boolean
-                source:
-                    description:
-                        - ""
-                    returned: on success
-                    type: str
-                    sample: GLOBAL
                 boolean_default_value:
                     description:
                         - the default value
@@ -303,6 +291,18 @@ compute_image_capability_schema:
                     returned: on success
                     type: int
                     sample: 56
+                descriptor_type:
+                    description:
+                        - The image capability schema descriptor type for the capability
+                    returned: on success
+                    type: str
+                    sample: boolean
+                source:
+                    description:
+                        - ""
+                    returned: on success
+                    type: str
+                    sample: GLOBAL
                 enum_string_values:
                     description:
                         - the list of values for the enum
@@ -333,11 +333,11 @@ compute_image_capability_schema:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "schema_data": {
-            "descriptor_type": "boolean",
-            "source": "GLOBAL",
             "boolean_default_value": true,
             "enum_integer_values": [],
             "enum_integer_default_value": 56,
+            "descriptor_type": "boolean",
+            "source": "GLOBAL",
             "enum_string_values": [],
             "enum_string_default_value": "default_value_example"
         },
@@ -389,12 +389,6 @@ class ComputeImageCapabilitySchemaHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_compute_image_capability_schema
-
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_compute_image_capability_schema,
-            compute_image_capability_schema_id=summary_model.id,
-        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

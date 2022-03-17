@@ -92,36 +92,6 @@ software_packages:
     returned: on success
     type: complex
     contains:
-        display_name:
-            description:
-                - Package name
-            returned: on success
-            type: str
-            sample: display_name_example
-        name:
-            description:
-                - "Unique identifier for the package. NOTE - This is not an OCID"
-            returned: on success
-            type: str
-            sample: name_example
-        type:
-            description:
-                - Type of the package
-            returned: on success
-            type: str
-            sample: type_example
-        version:
-            description:
-                - Version of the package
-            returned: on success
-            type: str
-            sample: version_example
-        architecture:
-            description:
-                - the architecture for which this software was built
-            returned: on success
-            type: str
-            sample: architecture_example
         last_modified_date:
             description:
                 - date of the last update to the package
@@ -129,18 +99,6 @@ software_packages:
             returned: on success
             type: str
             sample: last_modified_date_example
-        checksum:
-            description:
-                - checksum of the package
-            returned: on success
-            type: str
-            sample: checksum_example
-        checksum_type:
-            description:
-                - type of the checksum
-            returned: on success
-            type: str
-            sample: checksum_type_example
         description:
             description:
                 - description of the package
@@ -243,15 +201,50 @@ software_packages:
                     returned: on success
                     type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Package name
+            returned: on success
+            type: str
+            sample: display_name_example
+        name:
+            description:
+                - "Unique identifier for the package. NOTE - This is not an OCID"
+            returned: on success
+            type: str
+            sample: name_example
+        type:
+            description:
+                - Type of the package
+            returned: on success
+            type: str
+            sample: type_example
+        version:
+            description:
+                - Version of the package
+            returned: on success
+            type: str
+            sample: version_example
+        architecture:
+            description:
+                - the architecture for which this software was built
+            returned: on success
+            type: str
+            sample: architecture_example
+        checksum:
+            description:
+                - checksum of the package
+            returned: on success
+            type: str
+            sample: checksum_example
+        checksum_type:
+            description:
+                - type of the checksum
+            returned: on success
+            type: str
+            sample: checksum_type_example
     sample: [{
-        "display_name": "display_name_example",
-        "name": "name_example",
-        "type": "type_example",
-        "version": "version_example",
-        "architecture": "architecture_example",
         "last_modified_date": "last_modified_date_example",
-        "checksum": "checksum_example",
-        "checksum_type": "checksum_type_example",
         "description": "description_example",
         "size_in_bytes": 56,
         "dependencies": [{
@@ -270,7 +263,14 @@ software_packages:
         "software_sources": [{
             "name": "name_example",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        }]
+        }],
+        "display_name": "display_name_example",
+        "name": "name_example",
+        "type": "type_example",
+        "version": "version_example",
+        "architecture": "architecture_example",
+        "checksum": "checksum_example",
+        "checksum_type": "checksum_type_example"
     }]
 """
 

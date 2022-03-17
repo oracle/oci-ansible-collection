@@ -30,7 +30,7 @@ oracle.oci.oci_management_dashboard_actions -- Perform actions on a ManagementDa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.45.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,8 +57,8 @@ Synopsis
 .. Description
 
 - Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
-- For *action=export_dashboard*, exports an array of dashboards and their saved searches. Export is designed to work with importDashboard. Here's an example of how you can use CLI to export a dashboard. $oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > dashboards.json
-- For *action=import_dashboard*, imports an array of dashboards and their saved searches. Here's an example of how you can use CLI to import a dashboard. For information on the details that must be passed to IMPORT, you can use the EXPORT API to obtain the Import.json file: oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > Import.json. Note that import API updates the resource if it already exist, and creates a new resource if it does not exist. To import to a different compartment, edit and change the compartmentId to the desired compartment OCID. Here is an example of how you can use CLI to do import: oci management-dashboard dashboard import --from-json file://Import.json
+- For *action=export_dashboard*, exports an array of dashboards and their saved searches. Export is designed to work with importDashboard. Here's an example of how you can use CLI to export a dashboard: `$oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > dashboards.json`
+- For *action=import_dashboard*, imports an array of dashboards and their saved searches. Here's an example of how you can use CLI to import a dashboard. For information on the details that must be passed to IMPORT, you can use the EXPORT API to obtain the Import.json file: `oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > Import.json`. Note that import API updates the resource if it already exists, and creates a new resource if it does not exist. To import to a different compartment, edit and change the compartmentId to the desired compartment OCID. Here's an example of how you can use CLI to import: `oci management-dashboard dashboard import --from-json file://Import.json`
 
 
 .. Aliases
@@ -848,6 +848,8 @@ Parameters
                                                                                                                                                                                                 <li>SEARCH_DONT_SHOW_IN_DASHBOARD</li>
                                                                                                                                                                                                 <li>WIDGET_SHOW_IN_DASHBOARD</li>
                                                                                                                                                                                                 <li>WIDGET_DONT_SHOW_IN_DASHBOARD</li>
+                                                                                                                                                                                                <li>FILTER_SHOW_IN_DASHBOARD</li>
+                                                                                                                                                                                                <li>FILTER_DONT_SHOW_IN_DASHBOARD</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

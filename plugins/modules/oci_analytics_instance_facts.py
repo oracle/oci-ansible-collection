@@ -122,121 +122,6 @@ analytics_instances:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The resource OCID.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - The name of the Analytics instance. This name must be unique in the tenancy and cannot be changed.
-            returned: on success
-            type: str
-            sample: name_example
-        description:
-            description:
-                - Optional description.
-            returned: on success
-            type: str
-            sample: description_example
-        compartment_id:
-            description:
-                - The OCID of the compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state:
-            description:
-                - The current state of an instance.
-            returned: on success
-            type: str
-            sample: ACTIVE
-        feature_set:
-            description:
-                - Analytics feature set.
-            returned: on success
-            type: str
-            sample: SELF_SERVICE_ANALYTICS
-        capacity:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                capacity_type:
-                    description:
-                        - The capacity model to use.
-                    returned: on success
-                    type: str
-                    sample: OLPU_COUNT
-                capacity_value:
-                    description:
-                        - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
-                          number of CPUs, amount of memory or other resources allocated to the instance."
-                    returned: on success
-                    type: int
-                    sample: 56
-        license_type:
-            description:
-                - The license used for the service.
-            returned: on success
-            type: str
-            sample: LICENSE_INCLUDED
-        email_notification:
-            description:
-                - Email address receiving notifications.
-            returned: on success
-            type: str
-            sample: email_notification_example
-        network_endpoint_details:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                network_endpoint_type:
-                    description:
-                        - The type of network endpoint.
-                    returned: on success
-                    type: str
-                    sample: PUBLIC
-                vcn_id:
-                    description:
-                        - The VCN OCID for the private endpoint.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
-                subnet_id:
-                    description:
-                        - The subnet OCID for the private endpoint.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-                whitelisted_ips:
-                    description:
-                        - Source IP addresses or IP address ranges igress rules.
-                    returned: on success
-                    type: list
-                    sample: []
-                whitelisted_vcns:
-                    description:
-                        - Virtual Cloud Networks allowed to access this network endpoint.
-                    returned: on success
-                    type: complex
-                    contains:
-                        id:
-                            description:
-                                - The Virtual Cloud Network OCID.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                        whitelisted_ips:
-                            description:
-                                - Source IP addresses or IP address ranges igress rules.
-                            returned: on success
-                            type: list
-                            sample: []
         private_access_channels:
             description:
                 - Map of PrivateAccessChannel unique identifier key as KEY and PrivateAccessChannel Object as VALUE.
@@ -338,12 +223,6 @@ analytics_instances:
                     returned: on success
                     type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
-        service_url:
-            description:
-                - URL of the Analytics service.
-            returned: on success
-            type: str
-            sample: service_url_example
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -371,6 +250,127 @@ analytics_instances:
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The resource OCID.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The name of the Analytics instance. This name must be unique in the tenancy and cannot be changed.
+            returned: on success
+            type: str
+            sample: name_example
+        description:
+            description:
+                - Optional description.
+            returned: on success
+            type: str
+            sample: description_example
+        compartment_id:
+            description:
+                - The OCID of the compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_state:
+            description:
+                - The current state of an instance.
+            returned: on success
+            type: str
+            sample: ACTIVE
+        feature_set:
+            description:
+                - Analytics feature set.
+            returned: on success
+            type: str
+            sample: SELF_SERVICE_ANALYTICS
+        capacity:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                capacity_type:
+                    description:
+                        - The capacity model to use.
+                    returned: on success
+                    type: str
+                    sample: OLPU_COUNT
+                capacity_value:
+                    description:
+                        - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
+                          number of CPUs, amount of memory or other resources allocated to the instance."
+                    returned: on success
+                    type: int
+                    sample: 56
+        license_type:
+            description:
+                - The license used for the service.
+            returned: on success
+            type: str
+            sample: LICENSE_INCLUDED
+        email_notification:
+            description:
+                - Email address receiving notifications.
+            returned: on success
+            type: str
+            sample: email_notification_example
+        network_endpoint_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                vcn_id:
+                    description:
+                        - The VCN OCID for the private endpoint.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+                subnet_id:
+                    description:
+                        - The subnet OCID for the private endpoint.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                network_endpoint_type:
+                    description:
+                        - The type of network endpoint.
+                    returned: on success
+                    type: str
+                    sample: PUBLIC
+                whitelisted_ips:
+                    description:
+                        - Source IP addresses or IP address ranges igress rules.
+                    returned: on success
+                    type: list
+                    sample: []
+                whitelisted_vcns:
+                    description:
+                        - Virtual Cloud Networks allowed to access this network endpoint.
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - The Virtual Cloud Network OCID.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                        whitelisted_ips:
+                            description:
+                                - Source IP addresses or IP address ranges igress rules.
+                            returned: on success
+                            type: list
+                            sample: []
+        service_url:
+            description:
+                - URL of the Analytics service.
+            returned: on success
+            type: str
+            sample: service_url_example
         time_created:
             description:
                 - The date and time the instance was created, in the format defined by RFC3339.
@@ -387,28 +387,6 @@ analytics_instances:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
-        "description": "description_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "ACTIVE",
-        "feature_set": "SELF_SERVICE_ANALYTICS",
-        "capacity": {
-            "capacity_type": "OLPU_COUNT",
-            "capacity_value": 56
-        },
-        "license_type": "LICENSE_INCLUDED",
-        "email_notification": "email_notification_example",
-        "network_endpoint_details": {
-            "network_endpoint_type": "PUBLIC",
-            "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "whitelisted_ips": [],
-            "whitelisted_vcns": [{
-                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-                "whitelisted_ips": []
-            }]
-        },
         "private_access_channels": {
             "key": "key_example",
             "display_name": "display_name_example",
@@ -428,10 +406,32 @@ analytics_instances:
             "hosts": [],
             "public_certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         },
-        "service_url": "service_url_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "description": "description_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "ACTIVE",
+        "feature_set": "SELF_SERVICE_ANALYTICS",
+        "capacity": {
+            "capacity_type": "OLPU_COUNT",
+            "capacity_value": 56
+        },
+        "license_type": "LICENSE_INCLUDED",
+        "email_notification": "email_notification_example",
+        "network_endpoint_details": {
+            "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "network_endpoint_type": "PUBLIC",
+            "whitelisted_ips": [],
+            "whitelisted_vcns": [{
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "whitelisted_ips": []
+            }]
+        },
+        "service_url": "service_url_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"
     }]

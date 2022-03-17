@@ -103,6 +103,20 @@ certificates:
     returned: on success
     type: complex
     contains:
+        certificate:
+            description:
+                - The data of the leaf certificate in pem format.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        intermediate_certificates:
+            description:
+                - The intermediate certificate data associated with the certificate in pem format.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: intermediate_certificates_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
@@ -136,20 +150,6 @@ certificates:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        certificate:
-            description:
-                - The data of the leaf certificate in pem format.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
-        intermediate_certificates:
-            description:
-                - The intermediate certificate data associated with the certificate in pem format.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: intermediate_certificates_example
         time_created:
             description:
                 - The time this resource was created. An RFC3339 formatted datetime string.
@@ -195,13 +195,13 @@ certificates:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----",
+        "intermediate_certificates": "intermediate_certificates_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subject_names": [],
         "time_not_valid_after": "2013-10-20T19:20:30+01:00",
-        "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----",
-        "intermediate_certificates": "intermediate_certificates_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

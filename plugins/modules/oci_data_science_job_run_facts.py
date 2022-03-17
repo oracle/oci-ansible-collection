@@ -115,60 +115,6 @@ job_runs:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job run.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        time_accepted:
-            description:
-                - The date and time the job run was accepted in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_started:
-            description:
-                - The date and time the job run request was started in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_finished:
-            description:
-                - The date and time the job run request was finished in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        created_by:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the job run.
-            returned: on success
-            type: str
-            sample: created_by_example
-        project_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate the job with.
-            returned: on success
-            type: str
-            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where you want to create the job.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        job_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job run.
-            returned: on success
-            type: str
-            sample: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - A user-friendly display name for the resource.
-            returned: on success
-            type: str
-            sample: display_name_example
         job_configuration_override_details:
             description:
                 - ""
@@ -281,6 +227,60 @@ job_runs:
                     returned: on success
                     type: str
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job run.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        time_accepted:
+            description:
+                - The date and time the job run was accepted in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_started:
+            description:
+                - The date and time the job run request was started in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_finished:
+            description:
+                - The date and time the job run request was finished in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        created_by:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the job run.
+            returned: on success
+            type: str
+            sample: created_by_example
+        project_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate the job with.
+            returned: on success
+            type: str
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where you want to create the job.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        job_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job run.
+            returned: on success
+            type: str
+            sample: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly display name for the resource.
+            returned: on success
+            type: str
+            sample: display_name_example
         lifecycle_state:
             description:
                 - The state of the job run.
@@ -310,15 +310,6 @@ job_runs:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_accepted": "2013-10-20T19:20:30+01:00",
-        "time_started": "2013-10-20T19:20:30+01:00",
-        "time_finished": "2013-10-20T19:20:30+01:00",
-        "created_by": "created_by_example",
-        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "job_id": "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "job_configuration_override_details": {
             "job_type": "DEFAULT",
             "environment_variables": {},
@@ -341,6 +332,15 @@ job_runs:
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_accepted": "2013-10-20T19:20:30+01:00",
+        "time_started": "2013-10-20T19:20:30+01:00",
+        "time_finished": "2013-10-20T19:20:30+01:00",
+        "created_by": "created_by_example",
+        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "job_id": "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
         "lifecycle_state": "ACCEPTED",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},

@@ -28,7 +28,7 @@ description:
       autonomous_database_manual_refresh, change_compartment, configure_autonomous_database_vault_key, deregister_autonomous_database_data_safe,
       disable_autonomous_database_management, disable_autonomous_database_operations_insights, enable_autonomous_database_management,
       enable_autonomous_database_operations_insights, fail_over, generate_autonomous_database_wallet, register_autonomous_database_data_safe, restart, restore,
-      rotate_autonomous_database_encryption_key, start, stop, switchover."
+      rotate_autonomous_database_encryption_key, shrink, start, stop, switchover."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -359,6 +359,11 @@ options:
                     - "auto stop time. value must be of ISO-8601 format \\"HH:mm\\""
                     - Applicable when source is 'DATABASE'
                 type: str
+    is_auto_scaling_for_storage_enabled:
+        description:
+            - Indicates if auto scaling is enabled for the Autonomous Database storage. The default value is `FALSE`.
+            - This parameter is updatable.
+        type: bool
     source_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
@@ -493,6 +498,7 @@ EXAMPLES = """
       # optional
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
 
 - name: Create autonomous_database with source = CLONE_TO_REFRESHABLE
   oci_database_autonomous_database:
@@ -543,6 +549,7 @@ EXAMPLES = """
       # optional
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
     refreshable_mode: AUTOMATIC
 
 - name: Create autonomous_database with source = BACKUP_FROM_ID
@@ -595,6 +602,7 @@ EXAMPLES = """
       # optional
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
 
 - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
   oci_database_autonomous_database:
@@ -647,6 +655,7 @@ EXAMPLES = """
       # optional
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
 
 - name: Create autonomous_database with source = CROSS_REGION_DATAGUARD
   oci_database_autonomous_database:
@@ -697,6 +706,7 @@ EXAMPLES = """
       # optional
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
 
 - name: Create autonomous_database with source = NONE
   oci_database_autonomous_database:
@@ -746,6 +756,7 @@ EXAMPLES = """
       # optional
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
 
 - name: Update autonomous_database
   oci_database_autonomous_database:
@@ -788,6 +799,7 @@ EXAMPLES = """
       # optional
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
     refreshable_mode: AUTOMATIC
     is_refreshable_clone: true
     peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
@@ -835,6 +847,7 @@ EXAMPLES = """
       # optional
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
+    is_auto_scaling_for_storage_enabled: true
     refreshable_mode: AUTOMATIC
     is_refreshable_clone: true
     peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1659,6 +1672,27 @@ autonomous_database:
                     returned: on success
                     type: str
                     sample: scheduled_stop_time_example
+        is_auto_scaling_for_storage_enabled:
+            description:
+                - Indicates if auto scaling is enabled for the Autonomous Database storage. The default value is `FALSE`.
+            returned: on success
+            type: bool
+            sample: true
+        allocated_storage_size_in_tbs:
+            description:
+                - The amount of storage currently allocated for the database tables and billed for, rounded up. When auto-scaling is not enabled, this value is
+                  equal to the `dataStorageSizeInTBs` value. You can compare this value to the `actualUsedDataStorageSizeInTBs` value to determine if a manual
+                  shrink operation is appropriate for your allocated storage.
+                - "**Note:** Auto-scaling does not automatically decrease allocated storage when data is deleted from the database."
+            returned: on success
+            type: float
+            sample: 1.2
+        actual_used_data_storage_size_in_tbs:
+            description:
+                - The current amount of storage in use for user and system data, in terabytes (TB).
+            returned: on success
+            type: float
+            sample: 1.2
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1783,7 +1817,10 @@ autonomous_database:
             },
             "scheduled_start_time": "scheduled_start_time_example",
             "scheduled_stop_time": "scheduled_stop_time_example"
-        }]
+        }],
+        "is_auto_scaling_for_storage_enabled": true,
+        "allocated_storage_size_in_tbs": 1.2,
+        "actual_used_data_storage_size_in_tbs": 1.2
     }
 """
 
@@ -1900,11 +1937,11 @@ class AutonomousDatabaseHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
-            "admin_password",
-            "is_preview_version_with_service_terms_accepted",
+            "autonomous_database_backup_id",
             "source",
             "clone_type",
-            "autonomous_database_backup_id",
+            "admin_password",
+            "is_preview_version_with_service_terms_accepted",
             "autonomous_database_id",
             "timestamp",
         ]
@@ -2046,6 +2083,7 @@ def main():
                     scheduled_stop_time=dict(type="str"),
                 ),
             ),
+            is_auto_scaling_for_storage_enabled=dict(type="bool"),
             source_id=dict(type="str"),
             clone_type=dict(type="str", choices=["FULL", "METADATA"]),
             refreshable_mode=dict(type="str", choices=["AUTOMATIC", "MANUAL"]),

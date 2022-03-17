@@ -114,6 +114,13 @@ notebook_sessions:
     returned: on success
     type: complex
     contains:
+        lifecycle_details:
+            description:
+                - Details about the state of the notebook session.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session.
@@ -198,6 +205,52 @@ notebook_sessions:
                             returned: on success
                             type: float
                             sample: 3.4
+        notebook_session_config_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                shape:
+                    description:
+                        - The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved
+                          using the `ListNotebookSessionShapes` endpoint.
+                    returned: on success
+                    type: str
+                    sample: shape_example
+                block_storage_size_in_gbs:
+                    description:
+                        - A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.
+                    returned: on success
+                    type: int
+                    sample: 56
+                subnet_id:
+                    description:
+                        - A notebook session instance is provided with a VNIC for network access.  This specifies the
+                          L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet
+                          should be in a VCN with a NAT gateway for egress to the internet.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                notebook_session_shape_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            returned: on success
+                            type: float
+                            sample: 3.4
+                        memory_in_gbs:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory
+                                  in GBs.
+                            returned: on success
+                            type: float
+                            sample: 3.4
         notebook_session_url:
             description:
                 - The URL to interact with the notebook session.
@@ -210,13 +263,6 @@ notebook_sessions:
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_details:
-            description:
-                - Details about the state of the notebook session.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -234,6 +280,7 @@ notebook_sessions:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "lifecycle_details": "lifecycle_details_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "display_name": "display_name_example",
@@ -249,9 +296,17 @@ notebook_sessions:
                 "memory_in_gbs": 3.4
             }
         },
+        "notebook_session_config_details": {
+            "shape": "shape_example",
+            "block_storage_size_in_gbs": 56,
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "notebook_session_shape_config_details": {
+                "ocpus": 3.4,
+                "memory_in_gbs": 3.4
+            }
+        },
         "notebook_session_url": "notebook_session_url_example",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

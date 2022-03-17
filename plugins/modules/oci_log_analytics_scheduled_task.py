@@ -457,6 +457,18 @@ scheduled_task:
             returned: on success
             type: complex
             contains:
+                expression:
+                    description:
+                        - Value in cron format.
+                    returned: on success
+                    type: str
+                    sample: expression_example
+                time_zone:
+                    description:
+                        - Time zone, by default UTC.
+                    returned: on success
+                    type: str
+                    sample: time_zone_example
                 type:
                     description:
                         - Schedule type discriminator.
@@ -476,18 +488,6 @@ scheduled_task:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
-                expression:
-                    description:
-                        - Value in cron format.
-                    returned: on success
-                    type: str
-                    sample: expression_example
-                time_zone:
-                    description:
-                        - Time zone, by default UTC.
-                    returned: on success
-                    type: str
-                    sample: time_zone_example
                 recurring_interval:
                     description:
                         - Recurring interval in ISO 8601 extended format as described in
@@ -511,12 +511,6 @@ scheduled_task:
             returned: on success
             type: complex
             contains:
-                type:
-                    description:
-                        - Action type discriminator.
-                    returned: on success
-                    type: str
-                    sample: STREAM
                 query_string:
                     description:
                         - Purge query string.
@@ -552,6 +546,12 @@ scheduled_task:
                     returned: on success
                     type: bool
                     sample: true
+                type:
+                    description:
+                        - Action type discriminator.
+                    returned: on success
+                    type: str
+                    sample: STREAM
                 saved_search_id:
                     description:
                         - The ManagementSavedSearch id [OCID] utilized in the action.
@@ -706,21 +706,21 @@ scheduled_task:
         "display_name": "display_name_example",
         "task_type": "SAVED_SEARCH",
         "schedules": [{
+            "expression": "expression_example",
+            "time_zone": "time_zone_example",
             "type": "FIXED_FREQUENCY",
             "misfire_policy": "RETRY_ONCE",
             "time_of_first_execution": "2013-10-20T19:20:30+01:00",
-            "expression": "expression_example",
-            "time_zone": "time_zone_example",
             "recurring_interval": "recurring_interval_example",
             "repeat_count": 56
         }],
         "action": {
-            "type": "STREAM",
             "query_string": "query_string_example",
             "data_type": "LOG",
             "purge_duration": "purge_duration_example",
             "purge_compartment_id": "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx",
             "compartment_id_in_subtree": true,
+            "type": "STREAM",
             "saved_search_id": "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx",
             "metric_extraction": {
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

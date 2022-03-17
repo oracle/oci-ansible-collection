@@ -111,6 +111,44 @@ repositories:
     returned: on success
     type: complex
     contains:
+        lifecyle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecyle_details_example
+        branch_count:
+            description:
+                - The count of the branches present in the repository.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        commit_count:
+            description:
+                - The count of the commits present in the repository.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        size_in_bytes:
+            description:
+                - The size of the repository in bytes.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        trigger_build_events:
+            description:
+                - "Trigger build events supported for this repository:
+                  Push - Build is triggered when a push event occurs.
+                  Commit updates - Build is triggered when new commits are mirrored into a repository."
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - The OCID of the repository. This value is unique and immutable.
@@ -129,36 +167,24 @@ repositories:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        namespace:
-            description:
-                - Tenancy unique namespace.
-            returned: on success
-            type: str
-            sample: namespace_example
         project_id:
             description:
                 - The OCID of the DevOps project containing the repository.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace:
+            description:
+                - Tenancy unique namespace.
+            returned: on success
+            type: str
+            sample: namespace_example
         project_name:
             description:
                 - Unique project name in a namespace.
             returned: on success
             type: str
             sample: project_name_example
-        ssh_url:
-            description:
-                - SSH URL that you use to git clone, pull and push.
-            returned: on success
-            type: str
-            sample: ssh_url_example
-        http_url:
-            description:
-                - HTTP URL that you use to git clone, pull and push.
-            returned: on success
-            type: str
-            sample: http_url_example
         description:
             description:
                 - Details of the repository. Avoid entering confidential information.
@@ -179,6 +205,18 @@ repositories:
             returned: on success
             type: str
             sample: MIRRORED
+        ssh_url:
+            description:
+                - SSH URL that you use to git clone, pull and push.
+            returned: on success
+            type: str
+            sample: ssh_url_example
+        http_url:
+            description:
+                - HTTP URL that you use to git clone, pull and push.
+            returned: on success
+            type: str
+            sample: http_url_example
         mirror_repository_config:
             description:
                 - ""
@@ -240,44 +278,14 @@ repositories:
             returned: on success
             type: str
             sample: ACTIVE
-        lifecyle_details:
+        lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
-                - Returned for get operation
+                - Returned for list operation
             returned: on success
             type: str
-            sample: lifecyle_details_example
-        branch_count:
-            description:
-                - The count of the branches present in the repository.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
-        commit_count:
-            description:
-                - The count of the commits present in the repository.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
-        size_in_bytes:
-            description:
-                - The size of the repository in bytes.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
-        trigger_build_events:
-            description:
-                - "Trigger build events supported for this repository:
-                  Push - Build is triggered when a push event occurs.
-                  Commit updates - Build is triggered when new commits are mirrored into a repository."
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -300,26 +308,23 @@ repositories:
             returned: on success
             type: dict
             sample: {}
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-                - Returned for list operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
     sample: [{
+        "lifecyle_details": "lifecyle_details_example",
+        "branch_count": 56,
+        "commit_count": 56,
+        "size_in_bytes": 56,
+        "trigger_build_events": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "namespace": "namespace_example",
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+        "namespace": "namespace_example",
         "project_name": "project_name_example",
-        "ssh_url": "ssh_url_example",
-        "http_url": "http_url_example",
         "description": "description_example",
         "default_branch": "default_branch_example",
         "repository_type": "MIRRORED",
+        "ssh_url": "ssh_url_example",
+        "http_url": "http_url_example",
         "mirror_repository_config": {
             "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
@@ -331,15 +336,10 @@ repositories:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
-        "lifecyle_details": "lifecyle_details_example",
-        "branch_count": 56,
-        "commit_count": 56,
-        "size_in_bytes": 56,
-        "trigger_build_events": [],
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "lifecycle_details": "lifecycle_details_example"
+        "system_tags": {}
     }]
 """
 

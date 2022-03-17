@@ -292,17 +292,6 @@ instance_agent_command:
                     returned: on success
                     type: complex
                     contains:
-                        source_type:
-                            description:
-                                - "The source type for the command. The following values are supported:"
-                                - "- `TEXT` - uses a plain text command that is specified inline with the request.
-                                  - `OBJECT_STORAGE_URI` - imports a command from an Object Storage URL.
-                                  - `OBJECT_STORAGE_TUPLE` - imports a command from an Object Storage bucket."
-                                - For background information about Object Storage buckets and URLs, see
-                                  L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
-                            returned: on success
-                            type: str
-                            sample: TEXT
                         bucket_name:
                             description:
                                 - The Object Storage bucket for the command.
@@ -327,6 +316,17 @@ instance_agent_command:
                             returned: on success
                             type: str
                             sample: source_uri_example
+                        source_type:
+                            description:
+                                - "The source type for the command. The following values are supported:"
+                                - "- `TEXT` - uses a plain text command that is specified inline with the request.
+                                  - `OBJECT_STORAGE_URI` - imports a command from an Object Storage URL.
+                                  - `OBJECT_STORAGE_TUPLE` - imports a command from an Object Storage bucket."
+                                - For background information about Object Storage buckets and URLs, see
+                                  L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
+                            returned: on success
+                            type: str
+                            sample: TEXT
                         text:
                             description:
                                 - The plain text command.
@@ -345,17 +345,6 @@ instance_agent_command:
                     returned: on success
                     type: complex
                     contains:
-                        output_type:
-                            description:
-                                - "The output type for the command. The following values are supported:"
-                                - "- `TEXT` - the command output is returned as plain text.
-                                  - `OBJECT_STORAGE_URI` - the command output is saved to an Object Storage URL.
-                                  - `OBJECT_STORAGE_TUPLE` - the command output is saved to an Object Storage bucket."
-                                - For background information about Object Storage buckets and URLs, see
-                                  L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
-                            returned: on success
-                            type: str
-                            sample: TEXT
                         bucket_name:
                             description:
                                 - The Object Storage bucket for the command output.
@@ -380,6 +369,17 @@ instance_agent_command:
                             returned: on success
                             type: str
                             sample: output_uri_example
+                        output_type:
+                            description:
+                                - "The output type for the command. The following values are supported:"
+                                - "- `TEXT` - the command output is returned as plain text.
+                                  - `OBJECT_STORAGE_URI` - the command output is saved to an Object Storage URL.
+                                  - `OBJECT_STORAGE_TUPLE` - the command output is saved to an Object Storage bucket."
+                                - For background information about Object Storage buckets and URLs, see
+                                  L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
+                            returned: on success
+                            type: str
+                            sample: TEXT
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -393,20 +393,20 @@ instance_agent_command:
         },
         "content": {
             "source": {
-                "source_type": "TEXT",
                 "bucket_name": "bucket_name_example",
                 "namespace_name": "namespace_name_example",
                 "object_name": "object_name_example",
                 "source_uri": "source_uri_example",
+                "source_type": "TEXT",
                 "text": "text_example",
                 "text_sha256": "text_sha256_example"
             },
             "output": {
-                "output_type": "TEXT",
                 "bucket_name": "bucket_name_example",
                 "namespace_name": "namespace_name_example",
                 "object_name": "object_name_example",
-                "output_uri": "output_uri_example"
+                "output_uri": "output_uri_example",
+                "output_type": "TEXT"
             }
         }
     }

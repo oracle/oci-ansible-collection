@@ -115,24 +115,6 @@ waas_certificates:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the certificate.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the certificate's compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The user-friendly name of the certificate.
-            returned: on success
-            type: str
-            sample: display_name_example
         issued_by:
             description:
                 - ""
@@ -268,12 +250,6 @@ waas_certificates:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_not_valid_after:
-            description:
-                - The date and time the certificate will expire, expressed in RFC 3339 timestamp format.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         public_key_info:
             description:
                 - ""
@@ -324,6 +300,45 @@ waas_certificates:
                     returned: on success
                     type: str
                     sample: value_example
+        is_trust_verification_disabled:
+            description:
+                - This indicates whether trust verification was disabled during the creation of SSL certificate.
+                  If `true` SSL certificate trust verification was disabled and this SSL certificate is most likely self-signed.
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        certificate_data:
+            description:
+                - The data of the SSL certificate.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: this-is-not-the-secret
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the certificate.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the certificate's compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The user-friendly name of the certificate.
+            returned: on success
+            type: str
+            sample: display_name_example
+        time_not_valid_after:
+            description:
+                - The date and time the certificate will expire, expressed in RFC 3339 timestamp format.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -352,25 +367,7 @@ waas_certificates:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        is_trust_verification_disabled:
-            description:
-                - This indicates whether trust verification was disabled during the creation of SSL certificate.
-                  If `true` SSL certificate trust verification was disabled and this SSL certificate is most likely self-signed.
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
-        certificate_data:
-            description:
-                - The data of the SSL certificate.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: this-is-not-the-secret
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "issued_by": "issued_by_example",
         "subject_name": {
             "country": "country_example",
@@ -394,7 +391,6 @@ waas_certificates:
         "version": 56,
         "signature_algorithm": "signature_algorithm_example",
         "time_not_valid_before": "2013-10-20T19:20:30+01:00",
-        "time_not_valid_after": "2013-10-20T19:20:30+01:00",
         "public_key_info": {
             "algorithm": "algorithm_example",
             "exponent": 56,
@@ -405,12 +401,16 @@ waas_certificates:
             "is_critical": true,
             "value": "value_example"
         }],
+        "is_trust_verification_disabled": true,
+        "certificate_data": "this-is-not-the-secret",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "time_not_valid_after": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "is_trust_verification_disabled": true,
-        "certificate_data": "this-is-not-the-secret"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

@@ -121,6 +121,13 @@ deployments:
     returned: on success
     type: complex
     contains:
+        previous_deployment_id:
+            description:
+                - Specifies the OCID of the previous deployment to be redeployed.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_artifacts:
             description:
                 - ""
@@ -219,121 +226,6 @@ deployments:
                                             returned: on success
                                             type: str
                                             sample: display_name_example
-        deployment_type:
-            description:
-                - Specifies type of Deployment
-            returned: on success
-            type: str
-            sample: PIPELINE_DEPLOYMENT
-        id:
-            description:
-                - Unique identifier that is immutable on creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Deployment identifier which can be renamed and is not necessarily unique. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        project_id:
-            description:
-                - The OCID of a project.
-            returned: on success
-            type: str
-            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_pipeline_id:
-            description:
-                - The OCID of a pipeline.
-            returned: on success
-            type: str
-            sample: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The OCID of a compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - Time the deployment was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - Time the deployment was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current state of the deployment.
-            returned: on success
-            type: str
-            sample: ACCEPTED
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
-        deployment_arguments:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                items:
-                    description:
-                        - List of arguments provided at the time of deployment.
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - Name of the parameter (case-sensitive).
-                            returned: on success
-                            type: str
-                            sample: name_example
-                        value:
-                            description:
-                                - value of the argument.
-                            returned: on success
-                            type: str
-                            sample: value_example
-        deploy_artifact_override_arguments:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                items:
-                    description:
-                        - List of artifact override arguments at the time of deployment.
-                    returned: on success
-                    type: complex
-                    contains:
-                        deploy_artifact_id:
-                            description:
-                                - The OCID of the artifact to which this parameter applies.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                        name:
-                            description:
-                                - Name of the parameter (case-sensitive).
-                            returned: on success
-                            type: str
-                            sample: name_example
-                        value:
-                            description:
-                                - Value of the parameter.
-                            returned: on success
-                            type: str
-                            sample: value_example
         deployment_execution_progress:
             description:
                 - ""
@@ -359,6 +251,24 @@ deployments:
                     returned: on success
                     type: complex
                     contains:
+                        approval_actions:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                subject_id:
+                                    description:
+                                        - The subject ID of the user who approves or disapproves a DevOps deployment stage.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx"
+                                action:
+                                    description:
+                                        - The action of the user on the DevOps deployment stage.
+                                    returned: on success
+                                    type: str
+                                    sample: APPROVE
                         deploy_stage_display_name:
                             description:
                                 - Stage display name. Avoid entering confidential information.
@@ -492,24 +402,128 @@ deployments:
                                             returned: on success
                                             type: str
                                             sample: "2013-10-20T19:20:30+01:00"
-                        approval_actions:
+        deploy_stage_id:
+            description:
+                - Specifies the OCID of the stage to be deployed.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_type:
+            description:
+                - Specifies type of Deployment
+            returned: on success
+            type: str
+            sample: PIPELINE_DEPLOYMENT
+        id:
+            description:
+                - Unique identifier that is immutable on creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Deployment identifier which can be renamed and is not necessarily unique. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        project_id:
+            description:
+                - The OCID of a project.
+            returned: on success
+            type: str
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_pipeline_id:
+            description:
+                - The OCID of a pipeline.
+            returned: on success
+            type: str
+            sample: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The OCID of a compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        time_created:
+            description:
+                - Time the deployment was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - Time the deployment was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the deployment.
+            returned: on success
+            type: str
+            sample: ACCEPTED
+        deployment_arguments:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - List of arguments provided at the time of deployment.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
                             description:
-                                - ""
+                                - Name of the parameter (case-sensitive).
                             returned: on success
-                            type: complex
-                            contains:
-                                subject_id:
-                                    description:
-                                        - The subject ID of the user who approves or disapproves a DevOps deployment stage.
-                                    returned: on success
-                                    type: str
-                                    sample: "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx"
-                                action:
-                                    description:
-                                        - The action of the user on the DevOps deployment stage.
-                                    returned: on success
-                                    type: str
-                                    sample: APPROVE
+                            type: str
+                            sample: name_example
+                        value:
+                            description:
+                                - value of the argument.
+                            returned: on success
+                            type: str
+                            sample: value_example
+        deploy_artifact_override_arguments:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - List of artifact override arguments at the time of deployment.
+                    returned: on success
+                    type: complex
+                    contains:
+                        deploy_artifact_id:
+                            description:
+                                - The OCID of the artifact to which this parameter applies.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+                        name:
+                            description:
+                                - Name of the parameter (case-sensitive).
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        value:
+                            description:
+                                - Value of the parameter.
+                            returned: on success
+                            type: str
+                            sample: value_example
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -532,21 +546,8 @@ deployments:
             returned: on success
             type: dict
             sample: {}
-        previous_deployment_id:
-            description:
-                - Specifies the OCID of the previous deployment to be redeployed.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_stage_id:
-            description:
-                - Specifies the OCID of the stage to be deployed.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "previous_deployment_id": "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_pipeline_artifacts": {
             "items": [{
                 "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
@@ -571,33 +572,14 @@ deployments:
                 }
             }]
         },
-        "deployment_type": "PIPELINE_DEPLOYMENT",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
-        "deploy_pipeline_id": "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACCEPTED",
-        "lifecycle_details": "lifecycle_details_example",
-        "deployment_arguments": {
-            "items": [{
-                "name": "name_example",
-                "value": "value_example"
-            }]
-        },
-        "deploy_artifact_override_arguments": {
-            "items": [{
-                "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-                "name": "name_example",
-                "value": "value_example"
-            }]
-        },
         "deployment_execution_progress": {
             "time_started": "2013-10-20T19:20:30+01:00",
             "time_finished": "2013-10-20T19:20:30+01:00",
             "deploy_stage_execution_progress": {
+                "approval_actions": [{
+                    "subject_id": "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx",
+                    "action": "APPROVE"
+                }],
                 "deploy_stage_display_name": "deploy_stage_display_name_example",
                 "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT",
                 "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
@@ -624,18 +606,36 @@ deployments:
                         "time_started": "2013-10-20T19:20:30+01:00",
                         "time_finished": "2013-10-20T19:20:30+01:00"
                     }]
-                }],
-                "approval_actions": [{
-                    "subject_id": "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx",
-                    "action": "APPROVE"
                 }]
             }
         },
+        "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "deployment_type": "PIPELINE_DEPLOYMENT",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+        "deploy_pipeline_id": "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "ACCEPTED",
+        "deployment_arguments": {
+            "items": [{
+                "name": "name_example",
+                "value": "value_example"
+            }]
+        },
+        "deploy_artifact_override_arguments": {
+            "items": [{
+                "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                "name": "name_example",
+                "value": "value_example"
+            }]
+        },
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "previous_deployment_id": "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx",
-        "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        "system_tags": {}
     }]
 """
 

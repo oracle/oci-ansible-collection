@@ -154,6 +154,20 @@ rule:
                     returned: on success
                     type: complex
                     contains:
+                        function_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a Function hosted by Oracle
+                                  Functions Service.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                        topic_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to which messages are
+                                  delivered.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
                         action_type:
                             description:
                                 - The action to perform if the condition in the rule matches an event.
@@ -195,20 +209,6 @@ rule:
                             returned: on success
                             type: str
                             sample: description_example
-                        function_id:
-                            description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a Function hosted by Oracle
-                                  Functions Service.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
-                        topic_id:
-                            description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to which messages are
-                                  delivered.
-                            returned: on success
-                            type: str
-                            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
                         stream_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream to which messages are
@@ -247,14 +247,14 @@ rule:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "actions": {
             "actions": [{
+                "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+                "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
                 "action_type": "ONS",
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "lifecycle_message": "lifecycle_message_example",
                 "lifecycle_state": "CREATING",
                 "is_enabled": true,
                 "description": "description_example",
-                "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
-                "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
                 "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
             }]
         },

@@ -94,25 +94,6 @@ buckets:
     returned: on success
     type: complex
     contains:
-        namespace:
-            description:
-                - The Object Storage namespace in which the bucket resides.
-            returned: on success
-            type: str
-            sample: namespace_example
-        name:
-            description:
-                - "The name of the bucket. Avoid entering confidential information.
-                  Example: my-new-bucket1"
-            returned: on success
-            type: str
-            sample: name_example
-        compartment_id:
-            description:
-                - The compartment ID in which the bucket is authorized.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         metadata:
             description:
                 - Arbitrary string keys and values for user-defined metadata.
@@ -120,24 +101,6 @@ buckets:
             returned: on success
             type: dict
             sample: {}
-        created_by:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the user who created the bucket.
-            returned: on success
-            type: str
-            sample: created_by_example
-        time_created:
-            description:
-                - The date and time the bucket was created, as described in L(RFC 2616,https://tools.ietf.org/html/rfc2616#section-14.29).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        etag:
-            description:
-                - The entity tag (ETag) for the bucket.
-            returned: on success
-            type: str
-            sample: etag_example
         public_access_type:
             description:
                 - The type of public access enabled on this bucket.
@@ -168,22 +131,6 @@ buckets:
             returned: on success
             type: bool
             sample: true
-        freeform_tags:
-            description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
         kms_key_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key Management
@@ -256,19 +203,64 @@ buckets:
             returned: on success
             type: str
             sample: Disabled
+        namespace:
+            description:
+                - The Object Storage namespace in which the bucket resides.
+            returned: on success
+            type: str
+            sample: namespace_example
+        name:
+            description:
+                - "The name of the bucket. Avoid entering confidential information.
+                  Example: my-new-bucket1"
+            returned: on success
+            type: str
+            sample: name_example
+        compartment_id:
+            description:
+                - The compartment ID in which the bucket is authorized.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        created_by:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the user who created the bucket.
+            returned: on success
+            type: str
+            sample: created_by_example
+        time_created:
+            description:
+                - The date and time the bucket was created, as described in L(RFC 2616,https://tools.ietf.org/html/rfc2616#section-14.29).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        etag:
+            description:
+                - The entity tag (ETag) for the bucket.
+            returned: on success
+            type: str
+            sample: etag_example
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "namespace": "namespace_example",
-        "name": "name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "metadata": {},
-        "created_by": "created_by_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "etag": "etag_example",
         "public_access_type": "NoPublicAccess",
         "storage_tier": "Standard",
         "object_events_enabled": true,
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "object_lifecycle_policy_etag": "object_lifecycle_policy_etag_example",
         "approximate_count": 56,
@@ -277,7 +269,15 @@ buckets:
         "is_read_only": true,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "versioning": "Enabled",
-        "auto_tiering": "Disabled"
+        "auto_tiering": "Disabled",
+        "namespace": "namespace_example",
+        "name": "name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "created_by": "created_by_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "etag": "etag_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

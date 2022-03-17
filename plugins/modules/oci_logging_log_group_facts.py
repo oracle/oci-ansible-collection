@@ -118,12 +118,6 @@ log_groups:
             returned: on success
             type: str
             sample: description_example
-        lifecycle_state:
-            description:
-                - The log group object state.
-            returned: on success
-            type: str
-            sample: CREATING
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -153,16 +147,22 @@ log_groups:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The log group object state.
+            returned: on success
+            type: str
+            sample: CREATING
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
-        "lifecycle_state": "CREATING",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_last_modified": "2013-10-20T19:20:30+01:00"
+        "time_last_modified": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING"
     }]
 """
 

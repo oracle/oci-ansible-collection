@@ -91,36 +91,6 @@ node_pools:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the node pool.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The OCID of the compartment in which the node pool exists.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        cluster_id:
-            description:
-                - The OCID of the cluster to which this node pool is attached.
-            returned: on success
-            type: str
-            sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - The name of the node pool.
-            returned: on success
-            type: str
-            sample: name_example
-        kubernetes_version:
-            description:
-                - The version of Kubernetes running on the nodes in the node pool.
-            returned: on success
-            type: str
-            sample: kubernetes_version_example
         node_metadata:
             description:
                 - A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
@@ -128,130 +98,6 @@ node_pools:
             returned: on success
             type: dict
             sample: {}
-        node_image_id:
-            description:
-                - Deprecated. see `nodeSource`. The OCID of the image running on the nodes in the node pool.
-            returned: on success
-            type: str
-            sample: "ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx"
-        node_image_name:
-            description:
-                - Deprecated. see `nodeSource`. The name of the image running on the nodes in the node pool.
-            returned: on success
-            type: str
-            sample: node_image_name_example
-        node_shape_config:
-            description:
-                - The shape configuration of the nodes.
-            returned: on success
-            type: complex
-            contains:
-                ocpus:
-                    description:
-                        - The total number of OCPUs available to each node in the node pool.
-                          See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
-                    returned: on success
-                    type: float
-                    sample: 3.4
-                memory_in_gbs:
-                    description:
-                        - The total amount of memory available to each node, in gigabytes.
-                    returned: on success
-                    type: float
-                    sample: 3.4
-        node_source:
-            description:
-                - Deprecated. see `nodeSourceDetails`. Source running on the nodes in the node pool.
-            returned: on success
-            type: complex
-            contains:
-                source_type:
-                    description:
-                        - The source type of this option.
-                          `IMAGE` means the OCID is of an image.
-                    returned: on success
-                    type: str
-                    sample: IMAGE
-                source_name:
-                    description:
-                        - The user-friendly name of the entity corresponding to the OCID.
-                    returned: on success
-                    type: str
-                    sample: source_name_example
-                image_id:
-                    description:
-                        - The OCID of the image.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-        node_source_details:
-            description:
-                - Source running on the nodes in the node pool.
-            returned: on success
-            type: complex
-            contains:
-                source_type:
-                    description:
-                        - The source type for the node.
-                          Use `IMAGE` when specifying an OCID of an image.
-                    returned: on success
-                    type: str
-                    sample: IMAGE
-                image_id:
-                    description:
-                        - The OCID of the image used to boot the node.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-                boot_volume_size_in_gbs:
-                    description:
-                        - The size of the boot volume in GBs. Minimum value is 50 GB. See L(here,https://docs.cloud.oracle.com/en-
-                          us/iaas/Content/Block/Concepts/bootvolumes.htm) for max custom boot volume sizing and OS-specific requirements.
-                    returned: on success
-                    type: int
-                    sample: 56
-        node_shape:
-            description:
-                - The name of the node shape of the nodes in the node pool.
-            returned: on success
-            type: str
-            sample: node_shape_example
-        initial_node_labels:
-            description:
-                - A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
-            returned: on success
-            type: complex
-            contains:
-                key:
-                    description:
-                        - The key of the pair.
-                    returned: on success
-                    type: str
-                    sample: key_example
-                value:
-                    description:
-                        - The value of the pair.
-                    returned: on success
-                    type: str
-                    sample: value_example
-        ssh_public_key:
-            description:
-                - The SSH public key on each node in the node pool on launch.
-            returned: on success
-            type: str
-            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
-        quantity_per_subnet:
-            description:
-                - The number of nodes in each subnet.
-            returned: on success
-            type: int
-            sample: 56
-        subnet_ids:
-            description:
-                - The OCIDs of the subnets in which to place nodes for this node pool.
-            returned: on success
-            type: list
-            sample: []
         nodes:
             description:
                 - The nodes in the node pool.
@@ -380,6 +226,160 @@ node_pools:
                     returned: on success
                     type: str
                     sample: lifecycle_details_example
+        id:
+            description:
+                - The OCID of the node pool.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The OCID of the compartment in which the node pool exists.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_id:
+            description:
+                - The OCID of the cluster to which this node pool is attached.
+            returned: on success
+            type: str
+            sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The name of the node pool.
+            returned: on success
+            type: str
+            sample: name_example
+        kubernetes_version:
+            description:
+                - The version of Kubernetes running on the nodes in the node pool.
+            returned: on success
+            type: str
+            sample: kubernetes_version_example
+        node_image_id:
+            description:
+                - Deprecated. see `nodeSource`. The OCID of the image running on the nodes in the node pool.
+            returned: on success
+            type: str
+            sample: "ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx"
+        node_image_name:
+            description:
+                - Deprecated. see `nodeSource`. The name of the image running on the nodes in the node pool.
+            returned: on success
+            type: str
+            sample: node_image_name_example
+        node_shape_config:
+            description:
+                - The shape configuration of the nodes.
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs available to each node in the node pool.
+                          See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory available to each node, in gigabytes.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+        node_source:
+            description:
+                - Deprecated. see `nodeSourceDetails`. Source running on the nodes in the node pool.
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - The source type of this option.
+                          `IMAGE` means the OCID is of an image.
+                    returned: on success
+                    type: str
+                    sample: IMAGE
+                source_name:
+                    description:
+                        - The user-friendly name of the entity corresponding to the OCID.
+                    returned: on success
+                    type: str
+                    sample: source_name_example
+                image_id:
+                    description:
+                        - The OCID of the image.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        node_source_details:
+            description:
+                - Source running on the nodes in the node pool.
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - The source type for the node.
+                          Use `IMAGE` when specifying an OCID of an image.
+                    returned: on success
+                    type: str
+                    sample: IMAGE
+                image_id:
+                    description:
+                        - The OCID of the image used to boot the node.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+                boot_volume_size_in_gbs:
+                    description:
+                        - The size of the boot volume in GBs. Minimum value is 50 GB. See L(here,https://docs.cloud.oracle.com/en-
+                          us/iaas/Content/Block/Concepts/bootvolumes.htm) for max custom boot volume sizing and OS-specific requirements.
+                    returned: on success
+                    type: int
+                    sample: 56
+        node_shape:
+            description:
+                - The name of the node shape of the nodes in the node pool.
+            returned: on success
+            type: str
+            sample: node_shape_example
+        initial_node_labels:
+            description:
+                - A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - The key of the pair.
+                    returned: on success
+                    type: str
+                    sample: key_example
+                value:
+                    description:
+                        - The value of the pair.
+                    returned: on success
+                    type: str
+                    sample: value_example
+        ssh_public_key:
+            description:
+                - The SSH public key on each node in the node pool on launch.
+            returned: on success
+            type: str
+            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        quantity_per_subnet:
+            description:
+                - The number of nodes in each subnet.
+            returned: on success
+            type: int
+            sample: 56
+        subnet_ids:
+            description:
+                - The OCIDs of the subnets in which to place nodes for this node pool.
+            returned: on success
+            type: list
+            sample: []
         node_config_details:
             description:
                 - The configuration of nodes in the node pool.
@@ -481,12 +481,34 @@ node_pools:
             type: dict
             sample: {}
     sample: [{
+        "node_metadata": {},
+        "nodes": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "name": "name_example",
+            "kubernetes_version": "kubernetes_version_example",
+            "availability_domain": "Uocm:PHX-AD-1",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "node_pool_id": "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx",
+            "fault_domain": "FAULT-DOMAIN-1",
+            "private_ip": "private_ip_example",
+            "public_ip": "public_ip_example",
+            "node_error": {
+                "code": "code_example",
+                "message": "message_example",
+                "status": "status_example",
+                "opc_request_id": "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
+            },
+            "freeform_tags": {'Department': 'Finance'},
+            "defined_tags": {'Operations': {'CostCenter': 'US'}},
+            "system_tags": {},
+            "lifecycle_state": "CREATING",
+            "lifecycle_details": "lifecycle_details_example"
+        }],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "kubernetes_version": "kubernetes_version_example",
-        "node_metadata": {},
         "node_image_id": "ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx",
         "node_image_name": "node_image_name_example",
         "node_shape_config": {
@@ -511,28 +533,6 @@ node_pools:
         "ssh_public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
         "quantity_per_subnet": 56,
         "subnet_ids": [],
-        "nodes": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "name": "name_example",
-            "kubernetes_version": "kubernetes_version_example",
-            "availability_domain": "Uocm:PHX-AD-1",
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "node_pool_id": "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx",
-            "fault_domain": "FAULT-DOMAIN-1",
-            "private_ip": "private_ip_example",
-            "public_ip": "public_ip_example",
-            "node_error": {
-                "code": "code_example",
-                "message": "message_example",
-                "status": "status_example",
-                "opc_request_id": "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
-            },
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "system_tags": {},
-            "lifecycle_state": "CREATING",
-            "lifecycle_details": "lifecycle_details_example"
-        }],
         "node_config_details": {
             "size": 56,
             "nsg_ids": [],

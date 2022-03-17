@@ -108,6 +108,13 @@ plugins:
     returned: on success
     type: complex
     contains:
+        message:
+            description:
+                - The optional message from the agent plugin
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: message_example
         name:
             description:
                 - The plugin name
@@ -128,18 +135,11 @@ plugins:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        message:
-            description:
-                - The optional message from the agent plugin
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: message_example
     sample: [{
+        "message": "message_example",
         "name": "name_example",
         "status": "RUNNING",
-        "time_last_updated_utc": "2013-10-20T19:20:30+01:00",
-        "message": "message_example"
+        "time_last_updated_utc": "2013-10-20T19:20:30+01:00"
     }]
 """
 

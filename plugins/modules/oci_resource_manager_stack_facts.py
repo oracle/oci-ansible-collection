@@ -112,6 +112,111 @@ stacks:
     returned: on success
     type: complex
     contains:
+        config_source:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                compartment_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
+                          for creating the stack. The new stack will include definitions for supported
+                          resource types in this compartment.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                services_to_discover:
+                    description:
+                        - "Filter for L(services to use with Resource
+                          Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
+                          For example, \\"database\\" limits resource discovery to resource types within the Database service.
+                          The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level
+                          otherwise).
+                          If not specified, then all services at the scope of the given compartment OCID are used."
+                    returned: on success
+                    type: list
+                    sample: []
+                configuration_source_provider_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
+                repository_url:
+                    description:
+                        - The URL of the Git repository for the configuration source.
+                    returned: on success
+                    type: str
+                    sample: repository_url_example
+                branch_name:
+                    description:
+                        - The name of the branch in the Git repository for the configuration source.
+                    returned: on success
+                    type: str
+                    sample: branch_name_example
+                region:
+                    description:
+                        - The region to use for creating the stack. The new stack will include definitions for
+                          supported resource types in this region.
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket.
+                    returned: on success
+                    type: str
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - "The name of the bucket that contains the Terraform configuration files.
+                          Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)"
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+                config_source_type:
+                    description:
+                        - The type of configuration source to use for the Terraform configuration.
+                    returned: on success
+                    type: str
+                    sample: ZIP_UPLOAD
+                working_directory:
+                    description:
+                        - File path to the directory to use for running Terraform.
+                          If not specified, the root directory is used.
+                          This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                    returned: on success
+                    type: str
+                    sample: working_directory_example
+        variables:
+            description:
+                - "Terraform variables associated with this resource.
+                  Maximum number of variables supported is 250.
+                  The maximum size of each variable, including both name and value, is 8192 bytes.
+                  Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        stack_drift_status:
+            description:
+                - Drift status of the stack.
+                  Drift refers to differences between the actual (current) state of the stack and the expected (defined) state of the stack.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: NOT_CHECKED
+        time_drift_last_checked:
+            description:
+                - "The date and time when the drift detection was last executed.
+                  Format is defined by RFC3339.
+                  Example: `2020-01-25T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         id:
             description:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the stack.
@@ -153,117 +258,12 @@ stacks:
             returned: on success
             type: str
             sample: CREATING
-        config_source:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                config_source_type:
-                    description:
-                        - The type of configuration source to use for the Terraform configuration.
-                    returned: on success
-                    type: str
-                    sample: ZIP_UPLOAD
-                working_directory:
-                    description:
-                        - File path to the directory to use for running Terraform.
-                          If not specified, the root directory is used.
-                          This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
-                    returned: on success
-                    type: str
-                    sample: working_directory_example
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
-                          for creating the stack. The new stack will include definitions for supported
-                          resource types in this compartment.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                region:
-                    description:
-                        - The region to use for creating the stack. The new stack will include definitions for
-                          supported resource types in this region.
-                    returned: on success
-                    type: str
-                    sample: us-phoenix-1
-                services_to_discover:
-                    description:
-                        - "Filter for L(services to use with Resource
-                          Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
-                          For example, \\"database\\" limits resource discovery to resource types within the Database service.
-                          The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level
-                          otherwise).
-                          If not specified, then all services at the scope of the given compartment OCID are used."
-                    returned: on success
-                    type: list
-                    sample: []
-                configuration_source_provider_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
-                repository_url:
-                    description:
-                        - The URL of the Git repository for the configuration source.
-                    returned: on success
-                    type: str
-                    sample: repository_url_example
-                branch_name:
-                    description:
-                        - The name of the branch in the Git repository for the configuration source.
-                    returned: on success
-                    type: str
-                    sample: branch_name_example
-                namespace:
-                    description:
-                        - The Object Storage namespace that contains the bucket.
-                    returned: on success
-                    type: str
-                    sample: namespace_example
-                bucket_name:
-                    description:
-                        - "The name of the bucket that contains the Terraform configuration files.
-                          Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)"
-                    returned: on success
-                    type: str
-                    sample: bucket_name_example
-        variables:
-            description:
-                - "Terraform variables associated with this resource.
-                  Maximum number of variables supported is 250.
-                  The maximum size of each variable, including both name and value, is 8192 bytes.
-                  Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
         terraform_version:
             description:
                 - "The version of Terraform specified for the stack. Example: `0.12.x`"
             returned: on success
             type: str
             sample: terraform_version_example
-        stack_drift_status:
-            description:
-                - Drift status of the stack.
-                  Drift refers to differences between the actual (current) state of the stack and the expected (defined) state of the stack.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: NOT_CHECKED
-        time_drift_last_checked:
-            description:
-                - "The date and time when the drift detection was last executed.
-                  Format is defined by RFC3339.
-                  Example: `2020-01-25T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -281,28 +281,28 @@ stacks:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "config_source": {
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "services_to_discover": [],
+            "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
+            "repository_url": "repository_url_example",
+            "branch_name": "branch_name_example",
+            "region": "us-phoenix-1",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example",
+            "config_source_type": "ZIP_UPLOAD",
+            "working_directory": "working_directory_example"
+        },
+        "variables": {},
+        "stack_drift_status": "NOT_CHECKED",
+        "time_drift_last_checked": "2013-10-20T19:20:30+01:00",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "config_source": {
-            "config_source_type": "ZIP_UPLOAD",
-            "working_directory": "working_directory_example",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "us-phoenix-1",
-            "services_to_discover": [],
-            "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
-            "repository_url": "repository_url_example",
-            "branch_name": "branch_name_example",
-            "namespace": "namespace_example",
-            "bucket_name": "bucket_name_example"
-        },
-        "variables": {},
         "terraform_version": "terraform_version_example",
-        "stack_drift_status": "NOT_CHECKED",
-        "time_drift_last_checked": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

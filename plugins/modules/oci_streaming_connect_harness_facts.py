@@ -98,6 +98,13 @@ connect_harness:
     returned: on success
     type: complex
     contains:
+        lifecycle_state_details:
+            description:
+                - Any additional details about the current state of the connect harness.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_state_details_example
         name:
             description:
                 - The name of the connect harness. Avoid entering confidential information.
@@ -123,13 +130,6 @@ connect_harness:
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_state_details:
-            description:
-                - Any additional details about the current state of the connect harness.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_state_details_example
         time_created:
             description:
                 - The date and time the connect harness was created, expressed in in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
@@ -155,11 +155,11 @@ connect_harness:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "lifecycle_state_details": "lifecycle_state_details_example",
         "name": "name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "lifecycle_state_details": "lifecycle_state_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

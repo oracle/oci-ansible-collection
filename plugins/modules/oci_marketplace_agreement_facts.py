@@ -80,18 +80,6 @@ agreements:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The unique identifier for the agreement.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        content_url:
-            description:
-                - The content URL of the agreement.
-            returned: on success
-            type: str
-            sample: content_url_example
         signature:
             description:
                 - A time-based signature that can be used to accept an agreement or remove a
@@ -107,6 +95,18 @@ agreements:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The unique identifier for the agreement.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        content_url:
+            description:
+                - The content URL of the agreement.
+            returned: on success
+            type: str
+            sample: content_url_example
         author:
             description:
                 - Who authored the agreement.
@@ -120,10 +120,10 @@ agreements:
             type: str
             sample: prompt_example
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "content_url": "content_url_example",
         "signature": "signature_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "content_url": "content_url_example",
         "author": "ORACLE",
         "prompt": "prompt_example"
     }]

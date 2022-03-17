@@ -166,6 +166,36 @@ log_analytics_entities:
     returned: on success
     type: complex
     contains:
+        management_agent_display_name:
+            description:
+                - Management agent (management-agents resource kind) display name
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: management_agent_display_name_example
+        management_agent_compartment_id:
+            description:
+                - Management agent (management-agents resource kind) compartment OCID
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+        properties:
+            description:
+                - The name/value pairs for parameter values to be used in file patterns specified in log sources.
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        hostname:
+            description:
+                - The hostname where the entity represented here is actually present. This would be the output one would get if
+                  they run `echo $HOSTNAME` on Linux or an equivalent OS command. This may be different from
+                  management agents host since logs may be collected remotely.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: hostname_example
         id:
             description:
                 - The log analytics entity OCID. This ID is a reference used by log analytics features and it represents
@@ -215,33 +245,43 @@ log_analytics_entities:
             returned: on success
             type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-        management_agent_display_name:
+        cloud_resource_id:
             description:
-                - Management agent (management-agents resource kind) display name
-                - Returned for get operation
+                - The OCID of the Cloud resource which this entity is a representation of. This may be blank when the entity
+                  represents a non-cloud resource that the customer may have on their premises.
             returned: on success
             type: str
-            sample: management_agent_display_name_example
-        management_agent_compartment_id:
-            description:
-                - Management agent (management-agents resource kind) compartment OCID
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+            sample: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
         timezone_region:
             description:
                 - The timezone region of the log analytics entity.
             returned: on success
             type: str
             sample: Asia/Kolkata
-        properties:
+        time_created:
             description:
-                - The name/value pairs for parameter values to be used in file patterns specified in log sources.
-                - Returned for get operation
+                - The date and time the resource was created, in the format defined by RFC3339.
             returned: on success
-            type: dict
-            sample: {}
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The date and time the resource was last updated, in the format defined by RFC3339.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        are_logs_collected:
+            description:
+                - The Boolean flag to indicate if logs are collected for an entity for log analytics usage.
+            returned: on success
+            type: bool
+            sample: true
+        source_id:
+            description:
+                - This indicates the type of source. It is primarily for Enterprise Manager Repository ID.
+            returned: on success
+            type: str
+            sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         creation_source:
             description:
                 - ""
@@ -262,46 +302,6 @@ log_analytics_entities:
                     returned: on success
                     type: str
                     sample: details_example
-        time_created:
-            description:
-                - The date and time the resource was created, in the format defined by RFC3339.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The date and time the resource was last updated, in the format defined by RFC3339.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        are_logs_collected:
-            description:
-                - The Boolean flag to indicate if logs are collected for an entity for log analytics usage.
-            returned: on success
-            type: bool
-            sample: true
-        cloud_resource_id:
-            description:
-                - The OCID of the Cloud resource which this entity is a representation of. This may be blank when the entity
-                  represents a non-cloud resource that the customer may have on their premises.
-            returned: on success
-            type: str
-            sample: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
-        hostname:
-            description:
-                - The hostname where the entity represented here is actually present. This would be the output one would get if
-                  they run `echo $HOSTNAME` on Linux or an equivalent OS command. This may be different from
-                  management agents host since logs may be collected remotely.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: hostname_example
-        source_id:
-            description:
-                - This indicates the type of source. It is primarily for Enterprise Manager Repository ID.
-            returned: on success
-            type: str
-            sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -317,6 +317,10 @@ log_analytics_entities:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "management_agent_display_name": "management_agent_display_name_example",
+        "management_agent_compartment_id": "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "properties": {},
+        "hostname": "hostname_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -325,20 +329,16 @@ log_analytics_entities:
         "lifecycle_state": "ACTIVE",
         "lifecycle_details": "lifecycle_details_example",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
-        "management_agent_display_name": "management_agent_display_name_example",
-        "management_agent_compartment_id": "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "cloud_resource_id": "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx",
         "timezone_region": "Asia/Kolkata",
-        "properties": {},
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "are_logs_collected": true,
+        "source_id": "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx",
         "creation_source": {
             "type": "EM_BRIDGE",
             "details": "details_example"
         },
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "are_logs_collected": true,
-        "cloud_resource_id": "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx",
-        "hostname": "hostname_example",
-        "source_id": "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

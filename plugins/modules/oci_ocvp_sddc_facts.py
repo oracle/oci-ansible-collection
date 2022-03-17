@@ -112,27 +112,6 @@ sddcs:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compute_availability_domain:
-            description:
-                - The availability domain the ESXi hosts are running in. For Multi-AD SDDC, it is `multi-AD`.
-                - "Example: `Uocm:PHX-AD-1`, `multi-AD`"
-            returned: on success
-            type: str
-            sample: Uocm:PHX-AD-1
-        display_name:
-            description:
-                - A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits,
-                  whitespaces, dashes and underscores.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
         instance_display_name_prefix:
             description:
                 - A prefix used in the name of each ESXi host and Compute instance in the SDDC.
@@ -143,37 +122,6 @@ sddcs:
             returned: on success
             type: str
             sample: instance_display_name_prefix_example
-        vmware_software_version:
-            description:
-                - In general, this is a specific version of bundled VMware software supported by
-                  Oracle Cloud VMware Solution (see
-                  L(ListSupportedVmwareSoftwareVersions,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/vmware/20200501/SupportedVmwareSoftwareVersionSummary/ListSupportedVmwareSoftwareVersions)).
-                - "This attribute is not guaranteed to reflect the version of
-                  software currently installed on the ESXi hosts in the SDDC. The purpose
-                  of this attribute is to show the version of software that the Oracle
-                  Cloud VMware Solution will install on any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
-                - Therefore, if you upgrade the existing ESXi hosts in the SDDC to use a newer
-                  version of bundled VMware software supported by the Oracle Cloud VMware Solution, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
-                  `vmwareSoftwareVersion` with that new version.
-            returned: on success
-            type: str
-            sample: vmware_software_version_example
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
-                  contains the SDDC.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        esxi_hosts_count:
-            description:
-                - The number of ESXi hosts in the SDDC.
-            returned: on success
-            type: int
-            sample: 56
         initial_sku:
             description:
                 - The billing option selected during SDDC creation.
@@ -182,20 +130,6 @@ sddcs:
             returned: on success
             type: str
             sample: HOUR
-        vcenter_fqdn:
-            description:
-                - The FQDN for vCenter.
-                - "Example: `vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
-            returned: on success
-            type: str
-            sample: vcenter_fqdn_example
-        nsx_manager_fqdn:
-            description:
-                - The FQDN for NSX Manager.
-                - "Example: `nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
-            returned: on success
-            type: str
-            sample: nsx_manager_fqdn_example
         vcenter_private_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `PrivateIp` object that is
@@ -441,13 +375,6 @@ sddcs:
             returned: on success
             type: str
             sample: "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx"
-        hcx_fqdn:
-            description:
-                - The FQDN for HCX Manager.
-                - "Example: `hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
-            returned: on success
-            type: str
-            sample: hcx_fqdn_example
         hcx_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for HCX Manager. Make sure
@@ -473,12 +400,6 @@ sddcs:
             returned: on success
             type: str
             sample: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
-        is_hcx_enabled:
-            description:
-                - Indicates whether HCX is enabled for this SDDC.
-            returned: on success
-            type: bool
-            sample: true
         hcx_on_prem_key:
             description:
                 - The activation keys to use on the on-premises HCX Enterprise appliances you site pair with HCX Manager in your VMware Solution.
@@ -544,6 +465,85 @@ sddcs:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compute_availability_domain:
+            description:
+                - The availability domain the ESXi hosts are running in. For Multi-AD SDDC, it is `multi-AD`.
+                - "Example: `Uocm:PHX-AD-1`, `multi-AD`"
+            returned: on success
+            type: str
+            sample: Uocm:PHX-AD-1
+        display_name:
+            description:
+                - A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits,
+                  whitespaces, dashes and underscores.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        vmware_software_version:
+            description:
+                - In general, this is a specific version of bundled VMware software supported by
+                  Oracle Cloud VMware Solution (see
+                  L(ListSupportedVmwareSoftwareVersions,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/vmware/20200501/SupportedVmwareSoftwareVersionSummary/ListSupportedVmwareSoftwareVersions)).
+                - "This attribute is not guaranteed to reflect the version of
+                  software currently installed on the ESXi hosts in the SDDC. The purpose
+                  of this attribute is to show the version of software that the Oracle
+                  Cloud VMware Solution will install on any new ESXi hosts that you *add to this
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
+                - Therefore, if you upgrade the existing ESXi hosts in the SDDC to use a newer
+                  version of bundled VMware software supported by the Oracle Cloud VMware Solution, you
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  `vmwareSoftwareVersion` with that new version.
+            returned: on success
+            type: str
+            sample: vmware_software_version_example
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
+                  contains the SDDC.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        esxi_hosts_count:
+            description:
+                - The number of ESXi hosts in the SDDC.
+            returned: on success
+            type: int
+            sample: 56
+        hcx_fqdn:
+            description:
+                - The FQDN for HCX Manager.
+                - "Example: `hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
+            returned: on success
+            type: str
+            sample: hcx_fqdn_example
+        is_hcx_enabled:
+            description:
+                - Indicates whether HCX is enabled for this SDDC.
+            returned: on success
+            type: bool
+            sample: true
+        vcenter_fqdn:
+            description:
+                - The FQDN for vCenter.
+                - "Example: `vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
+            returned: on success
+            type: str
+            sample: vcenter_fqdn_example
+        nsx_manager_fqdn:
+            description:
+                - The FQDN for NSX Manager.
+                - "Example: `nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
+            returned: on success
+            type: str
+            sample: nsx_manager_fqdn_example
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
@@ -583,16 +583,8 @@ sddcs:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compute_availability_domain": "Uocm:PHX-AD-1",
-        "display_name": "display_name_example",
         "instance_display_name_prefix": "instance_display_name_prefix_example",
-        "vmware_software_version": "vmware_software_version_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "esxi_hosts_count": 56,
         "initial_sku": "HOUR",
-        "vcenter_fqdn": "vcenter_fqdn_example",
-        "nsx_manager_fqdn": "nsx_manager_fqdn_example",
         "vcenter_private_ip_id": "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_manager_private_ip_id": "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx",
         "vcenter_initial_password": "example-password",
@@ -614,10 +606,8 @@ sddcs:
         "replication_vlan_id": "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "provisioning_vlan_id": "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_private_ip_id": "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx",
-        "hcx_fqdn": "hcx_fqdn_example",
         "hcx_initial_password": "example-password",
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_hcx_enabled": true,
         "hcx_on_prem_key": "hcx_on_prem_key_example",
         "is_hcx_enterprise_enabled": true,
         "is_hcx_pending_downgrade": true,
@@ -628,6 +618,16 @@ sddcs:
         }],
         "time_hcx_billing_cycle_end": "2013-10-20T19:20:30+01:00",
         "time_hcx_license_status_updated": "2013-10-20T19:20:30+01:00",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compute_availability_domain": "Uocm:PHX-AD-1",
+        "display_name": "display_name_example",
+        "vmware_software_version": "vmware_software_version_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "esxi_hosts_count": 56,
+        "hcx_fqdn": "hcx_fqdn_example",
+        "is_hcx_enabled": true,
+        "vcenter_fqdn": "vcenter_fqdn_example",
+        "nsx_manager_fqdn": "nsx_manager_fqdn_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

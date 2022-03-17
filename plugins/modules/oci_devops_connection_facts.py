@@ -105,24 +105,31 @@ connections:
     returned: on success
     type: complex
     contains:
+        access_token:
+            description:
+                - The OCID of personal access token saved in secret store.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: access_token_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - Optional description about the connection.
-            returned: on success
-            type: str
-            sample: description_example
         display_name:
             description:
                 - Connection display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
+        description:
+            description:
+                - Optional description about the connection.
+            returned: on success
+            type: str
+            sample: description_example
         compartment_id:
             description:
                 - The OCID of the compartment containing the connection.
@@ -181,17 +188,11 @@ connections:
             returned: on success
             type: dict
             sample: {}
-        access_token:
-            description:
-                - The OCID of personal access token saved in secret store.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: access_token_example
     sample: [{
+        "access_token": "access_token_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "description": "description_example",
         "display_name": "display_name_example",
+        "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_type": "GITHUB_ACCESS_TOKEN",
@@ -200,8 +201,7 @@ connections:
         "lifecycle_state": "ACTIVE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "access_token": "access_token_example"
+        "system_tags": {}
     }]
 """
 

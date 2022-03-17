@@ -15,16 +15,6 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ApigatewayApiHelperCustom:
-    # remove the content parameter for the idempotence check
-    def get_update_model_dict_for_idempotence_check(self, update_model):
-        update_model_dict = super(
-            ApigatewayApiHelperCustom, self
-        ).get_update_model_dict_for_idempotence_check(update_model)
-        update_model_dict.pop("content", None)
-        return update_model_dict
-
-
 class ApigatewaySdkHelperCustom:
     # update_resource has NoneWaiter but the sdk returns None response in that case
     # so explicitly calling get_resource method

@@ -103,6 +103,21 @@ senders:
     returned: on success
     type: complex
     contains:
+        is_spf:
+            description:
+                - Value of the SPF field. For more information about SPF, please see
+                  L(SPF Authentication,https://docs.us-phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm#components).
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        email_domain_id:
+            description:
+                - The email domain used to assert responsibility for emails sent from this sender.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID for the compartment.
@@ -121,14 +136,6 @@ senders:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        is_spf:
-            description:
-                - Value of the SPF field. For more information about SPF, please see
-                  L(SPF Authentication,https://docs.us-phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm#components).
-                - Returned for get operation
-            returned: on success
-            type: bool
-            sample: true
         lifecycle_state:
             description:
                 - The sender's current lifecycle state.
@@ -142,13 +149,6 @@ senders:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        email_domain_id:
-            description:
-                - The email domain used to assert responsibility for emails sent from this sender.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -166,13 +166,13 @@ senders:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "is_spf": true,
+        "email_domain_id": "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "email_address": "email_address_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_spf": true,
         "lifecycle_state": "CREATING",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "email_domain_id": "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

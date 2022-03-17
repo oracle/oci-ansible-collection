@@ -175,32 +175,6 @@ connections:
     returned: on success
     type: complex
     contains:
-        key:
-            description:
-                - Unique connection key that is immutable.
-            returned: on success
-            type: str
-            sample: key_example
-        description:
-            description:
-                - A description of the connection.
-            returned: on success
-            type: str
-            sample: description_example
-        display_name:
-            description:
-                - A user-friendly display name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        time_created:
-            description:
-                - "The date and time the connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                  Example: `2019-03-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The last time that any change was made to the connection. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
@@ -324,12 +298,6 @@ connections:
             returned: on success
             type: dict
             sample: {}
-        external_key:
-            description:
-                - Unique external key of this object from the source system.
-            returned: on success
-            type: str
-            sample: external_key_example
         time_status_updated:
             description:
                 - Time that the connections status was last updated. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
@@ -337,18 +305,25 @@ connections:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
+        key:
             description:
-                - The current state of the connection.
+                - Unique connection key that is immutable.
             returned: on success
             type: str
-            sample: CREATING
-        is_default:
+            sample: key_example
+        description:
             description:
-                - Indicates whether this connection is the default connection.
+                - A description of the connection.
             returned: on success
-            type: bool
-            sample: true
+            type: str
+            sample: description_example
+        display_name:
+            description:
+                - A user-friendly display name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
         data_asset_key:
             description:
                 - Unique key of the parent data asset.
@@ -367,11 +342,32 @@ connections:
             returned: on success
             type: str
             sample: uri_example
+        external_key:
+            description:
+                - Unique external key of this object from the source system.
+            returned: on success
+            type: str
+            sample: external_key_example
+        lifecycle_state:
+            description:
+                - The current state of the connection.
+            returned: on success
+            type: str
+            sample: CREATING
+        is_default:
+            description:
+                - Indicates whether this connection is the default connection.
+            returned: on success
+            type: bool
+            sample: true
+        time_created:
+            description:
+                - "The date and time the connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                  Example: `2019-03-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "key": "key_example",
-        "description": "description_example",
-        "display_name": "display_name_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
@@ -392,13 +388,17 @@ connections:
             "allowed_values": []
         }],
         "properties": {},
-        "external_key": "external_key_example",
         "time_status_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
-        "is_default": true,
+        "key": "key_example",
+        "description": "description_example",
+        "display_name": "display_name_example",
         "data_asset_key": "data_asset_key_example",
         "type_key": "type_key_example",
-        "uri": "uri_example"
+        "uri": "uri_example",
+        "external_key": "external_key_example",
+        "lifecycle_state": "CREATING",
+        "is_default": true,
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

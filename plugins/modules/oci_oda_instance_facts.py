@@ -105,6 +105,20 @@ oda_instances:
     returned: on success
     type: complex
     contains:
+        web_app_url:
+            description:
+                - URL for the Digital Assistant web application that's associated with the instance.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: web_app_url_example
+        connector_url:
+            description:
+                - URL for the connector's endpoint.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: connector_url_example
         id:
             description:
                 - Unique immutable identifier that was assigned when the instance was created.
@@ -136,20 +150,6 @@ oda_instances:
             returned: on success
             type: str
             sample: DEVELOPMENT
-        web_app_url:
-            description:
-                - URL for the Digital Assistant web application that's associated with the instance.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: web_app_url_example
-        connector_url:
-            description:
-                - URL for the connector's endpoint.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: connector_url_example
         time_created:
             description:
                 - When the Digital Assistant instance was created. A date-time string as described in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339), section
@@ -198,13 +198,13 @@ oda_instances:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "web_app_url": "web_app_url_example",
+        "connector_url": "connector_url_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "shape_name": "DEVELOPMENT",
-        "web_app_url": "web_app_url_example",
-        "connector_url": "connector_url_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

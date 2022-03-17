@@ -122,86 +122,6 @@ resolvers:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The OCID of the owning compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        attached_vcn_id:
-            description:
-                - The OCID of the attached VCN.
-            returned: on success
-            type: str
-            sample: "ocid1.attachedvcn.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The display name of the resolver.
-            returned: on success
-            type: str
-            sample: display_name_example
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "**Example:** `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        id:
-            description:
-                - The OCID of the resolver.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format
-                  with a Z offset, as defined by RFC 3339."
-                - "**Example:** `2016-07-22T17:23:59:60Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - "The date and time the resource was last updated in \\"YYYY-MM-ddThh:mm:ssZ\\"
-                  format with a Z offset, as defined by RFC 3339."
-                - "**Example:** `2016-07-22T17:23:59:60Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current state of the resource.
-            returned: on success
-            type: str
-            sample: ACTIVE
-        _self:
-            description:
-                - The canonical absolute URL of the resource.
-            returned: on success
-            type: str
-            sample: _self_example
-        default_view_id:
-            description:
-                - The OCID of the default view.
-            returned: on success
-            type: str
-            sample: "ocid1.defaultview.oc1..xxxxxxEXAMPLExxxxxx"
-        is_protected:
-            description:
-                - A Boolean flag indicating whether or not parts of the resource are unable to be explicitly managed.
-            returned: on success
-            type: bool
-            sample: true
         endpoints:
             description:
                 - Read-only array of endpoints for the resolver.
@@ -342,19 +262,87 @@ resolvers:
                     returned: on success
                     type: str
                     sample: source_endpoint_name_example
+        compartment_id:
+            description:
+                - The OCID of the owning compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        attached_vcn_id:
+            description:
+                - The OCID of the attached VCN.
+            returned: on success
+            type: str
+            sample: "ocid1.attachedvcn.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The display name of the resolver.
+            returned: on success
+            type: str
+            sample: display_name_example
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "**Example:** `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        id:
+            description:
+                - The OCID of the resolver.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        time_created:
+            description:
+                - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format
+                  with a Z offset, as defined by RFC 3339."
+                - "**Example:** `2016-07-22T17:23:59:60Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - "The date and time the resource was last updated in \\"YYYY-MM-ddThh:mm:ssZ\\"
+                  format with a Z offset, as defined by RFC 3339."
+                - "**Example:** `2016-07-22T17:23:59:60Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the resource.
+            returned: on success
+            type: str
+            sample: ACTIVE
+        _self:
+            description:
+                - The canonical absolute URL of the resource.
+            returned: on success
+            type: str
+            sample: _self_example
+        default_view_id:
+            description:
+                - The OCID of the default view.
+            returned: on success
+            type: str
+            sample: "ocid1.defaultview.oc1..xxxxxxEXAMPLExxxxxx"
+        is_protected:
+            description:
+                - A Boolean flag indicating whether or not parts of the resource are unable to be explicitly managed.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "attached_vcn_id": "ocid1.attachedvcn.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACTIVE",
-        "_self": "_self_example",
-        "default_view_id": "ocid1.defaultview.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_protected": true,
         "endpoints": [{
             "name": "name_example",
             "endpoint_type": "VNIC",
@@ -378,7 +366,19 @@ resolvers:
             "action": "FORWARD",
             "destination_addresses": [],
             "source_endpoint_name": "source_endpoint_name_example"
-        }]
+        }],
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "attached_vcn_id": "ocid1.attachedvcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "ACTIVE",
+        "_self": "_self_example",
+        "default_view_id": "ocid1.defaultview.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_protected": true
     }]
 """
 

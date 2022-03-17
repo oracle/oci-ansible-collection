@@ -1051,19 +1051,6 @@ load_balancer:
                     returned: on success
                     type: complex
                     contains:
-                        action:
-                            description:
-                                - ""
-                            returned: on success
-                            type: str
-                            sample: ADD_HTTP_REQUEST_HEADER
-                        header:
-                            description:
-                                - A header name that conforms to RFC 7230.
-                                - "Example: `example_header_name`"
-                            returned: on success
-                            type: str
-                            sample: header_example
                         value:
                             description:
                                 - "A header value that conforms to RFC 7230. With the following exceptions:
@@ -1074,39 +1061,6 @@ load_balancer:
                             returned: on success
                             type: str
                             sample: value_example
-                        conditions:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                attribute_name:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: str
-                                    sample: SOURCE_IP_ADDRESS
-                                attribute_value:
-                                    description:
-                                        - The path string that the redirection rule applies to.
-                                        - "Example: `/example`"
-                                    returned: on success
-                                    type: str
-                                    sample: attribute_value_example
-                                operator:
-                                    description:
-                                        - A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
-                                          incoming URI.
-                                        - "*  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string."
-                                        - "*  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best,
-                                             longest match of the beginning portion of the incoming URI path."
-                                        - "*  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the
-                                             `attributeValue` string."
-                                        - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
-                                             string."
-                                    returned: on success
-                                    type: str
-                                    sample: EXACT_MATCH
                         description:
                             description:
                                 - A brief description of the access control rule. Avoid entering confidential information.
@@ -1191,6 +1145,39 @@ load_balancer:
                             returned: on success
                             type: int
                             sample: 56
+                        conditions:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                operator:
+                                    description:
+                                        - A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
+                                          incoming URI.
+                                        - "*  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string."
+                                        - "*  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best,
+                                             longest match of the beginning portion of the incoming URI path."
+                                        - "*  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the
+                                             `attributeValue` string."
+                                        - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
+                                             string."
+                                    returned: on success
+                                    type: str
+                                    sample: EXACT_MATCH
+                                attribute_name:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: str
+                                    sample: SOURCE_IP_ADDRESS
+                                attribute_value:
+                                    description:
+                                        - The path string that the redirection rule applies to.
+                                        - "Example: `/example`"
+                                    returned: on success
+                                    type: str
+                                    sample: attribute_value_example
                         redirect_uri:
                             description:
                                 - ""
@@ -1288,6 +1275,19 @@ load_balancer:
                                     returned: on success
                                     type: str
                                     sample: query_example
+                        action:
+                            description:
+                                - ""
+                            returned: on success
+                            type: str
+                            sample: ADD_HTTP_REQUEST_HEADER
+                        header:
+                            description:
+                                - A header name that conforms to RFC 7230.
+                                - "Example: `example_header_name`"
+                            returned: on success
+                            type: str
+                            sample: header_example
         routing_policies:
             description:
                 - ""
@@ -1464,14 +1464,7 @@ load_balancer:
         "rule_sets": {
             "name": "name_example",
             "items": [{
-                "action": "ADD_HTTP_REQUEST_HEADER",
-                "header": "header_example",
                 "value": "value_example",
-                "conditions": [{
-                    "attribute_name": "SOURCE_IP_ADDRESS",
-                    "attribute_value": "attribute_value_example",
-                    "operator": "EXACT_MATCH"
-                }],
                 "description": "description_example",
                 "allowed_methods": [],
                 "status_code": 56,
@@ -1480,13 +1473,20 @@ load_balancer:
                 "are_invalid_characters_allowed": true,
                 "http_large_header_size_in_kb": 56,
                 "response_code": 56,
+                "conditions": [{
+                    "operator": "EXACT_MATCH",
+                    "attribute_name": "SOURCE_IP_ADDRESS",
+                    "attribute_value": "attribute_value_example"
+                }],
                 "redirect_uri": {
                     "protocol": "protocol_example",
                     "host": "host_example",
                     "port": 56,
                     "path": "path_example",
                     "query": "query_example"
-                }
+                },
+                "action": "ADD_HTTP_REQUEST_HEADER",
+                "header": "header_example"
             }]
         },
         "routing_policies": {

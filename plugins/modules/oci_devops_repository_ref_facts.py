@@ -95,6 +95,20 @@ repository_reves:
     returned: on success
     type: complex
     contains:
+        commit_id:
+            description:
+                - Commit ID pointed to by the new branch.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+        object_id:
+            description:
+                - SHA-1 hash value of the object pointed to by the tag.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
         ref_name:
             description:
                 - Unique reference name inside a repository.
@@ -119,20 +133,6 @@ repository_reves:
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-        commit_id:
-            description:
-                - Commit ID pointed to by the new branch.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
-        object_id:
-            description:
-                - SHA-1 hash value of the object pointed to by the tag.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -150,12 +150,12 @@ repository_reves:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
+        "object_id": "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx",
         "ref_name": "ref_name_example",
         "ref_type": "BRANCH",
         "full_ref_name": "full_ref_name_example",
         "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-        "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
-        "object_id": "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

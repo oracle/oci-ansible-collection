@@ -308,7 +308,7 @@ class BdsMetastoreConfigurationHelperGen(OCIResourceHelperBase):
         return CreateBdsMetastoreConfigurationDetails
 
     def get_exclude_attributes(self):
-        return ["bds_api_key_passphrase", "cluster_admin_password"]
+        return ["cluster_admin_password", "bds_api_key_passphrase"]
 
     def create_resource(self):
         create_details = self.get_create_model()

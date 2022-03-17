@@ -87,18 +87,6 @@ users:
     returned: on success
     type: complex
     contains:
-        name:
-            description:
-                - The name of the User.
-            returned: on success
-            type: str
-            sample: name_example
-        status:
-            description:
-                - The status of the user account.
-            returned: on success
-            type: str
-            sample: OPEN
         time_locked:
             description:
                 - The date the account was locked if account status was LOCKED.
@@ -106,24 +94,6 @@ users:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_expiring:
-            description:
-                - The date and time of the expiration of the user account.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        default_tablespace:
-            description:
-                - The default tablespace for data.
-            returned: on success
-            type: str
-            sample: default_tablespace_example
-        temp_tablespace:
-            description:
-                - The name of the default tablespace for temporary tables or the name of a tablespace group.
-            returned: on success
-            type: str
-            sample: temp_tablespace_example
         local_temp_tablespace:
             description:
                 - The default local temporary tablespace for the user.
@@ -131,18 +101,6 @@ users:
             returned: on success
             type: str
             sample: local_temp_tablespace_example
-        time_created:
-            description:
-                - The date and time the user was created.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        profile:
-            description:
-                - The User resource profile name.
-            returned: on success
-            type: str
-            sample: profile_example
         consumer_group:
             description:
                 - The initial resource consumer group for the User.
@@ -252,16 +210,51 @@ users:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        name:
+            description:
+                - The name of the User.
+            returned: on success
+            type: str
+            sample: name_example
+        status:
+            description:
+                - The status of the user account.
+            returned: on success
+            type: str
+            sample: OPEN
+        time_expiring:
+            description:
+                - The date and time of the expiration of the user account.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        default_tablespace:
+            description:
+                - The default tablespace for data.
+            returned: on success
+            type: str
+            sample: default_tablespace_example
+        temp_tablespace:
+            description:
+                - The name of the default tablespace for temporary tables or the name of a tablespace group.
+            returned: on success
+            type: str
+            sample: temp_tablespace_example
+        time_created:
+            description:
+                - The date and time the user was created.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        profile:
+            description:
+                - The User resource profile name.
+            returned: on success
+            type: str
+            sample: profile_example
     sample: [{
-        "name": "name_example",
-        "status": "OPEN",
         "time_locked": "2013-10-20T19:20:30+01:00",
-        "time_expiring": "2013-10-20T19:20:30+01:00",
-        "default_tablespace": "default_tablespace_example",
-        "temp_tablespace": "temp_tablespace_example",
         "local_temp_tablespace": "local_temp_tablespace_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "profile": "profile_example",
         "consumer_group": "consumer_group_example",
         "external_name": "external_name_example",
         "password_versions": "password_versions_example",
@@ -276,7 +269,14 @@ users:
         "implicit": "YES",
         "all_shared": "YES",
         "external_shared": "YES",
-        "time_password_changed": "2013-10-20T19:20:30+01:00"
+        "time_password_changed": "2013-10-20T19:20:30+01:00",
+        "name": "name_example",
+        "status": "OPEN",
+        "time_expiring": "2013-10-20T19:20:30+01:00",
+        "default_tablespace": "default_tablespace_example",
+        "temp_tablespace": "temp_tablespace_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "profile": "profile_example"
     }]
 """
 

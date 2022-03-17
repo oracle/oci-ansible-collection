@@ -111,6 +111,36 @@ export_sets:
     returned: on success
     type: complex
     contains:
+        max_fs_stat_bytes:
+            description:
+                - Controls the maximum `tbytes`, `fbytes`, and `abytes`,
+                  values reported by `NFS FSSTAT` calls through any associated
+                  mount targets. This is an advanced feature. For most
+                  applications, use the default value. The
+                  `tbytes` value reported by `FSSTAT` will be
+                  `maxFsStatBytes`. The value of `fbytes` and `abytes` will be
+                  `maxFsStatBytes` minus the metered size of the file
+                  system. If the metered size is larger than `maxFsStatBytes`,
+                  then `fbytes` and `abytes` will both be '0'.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        max_fs_stat_files:
+            description:
+                - Controls the maximum `tfiles`, `ffiles`, and `afiles`
+                  values reported by `NFS FSSTAT` calls through any associated
+                  mount targets. This is an advanced feature. For most
+                  applications, use the default value. The
+                  `tfiles` value reported by `FSSTAT` will be
+                  `maxFsStatFiles`. The value of `ffiles` and `afiles` will be
+                  `maxFsStatFiles` minus the metered size of the file
+                  system. If the metered size is larger than `maxFsStatFiles`,
+                  then `ffiles` and `afiles` will both be '0'.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
         availability_domain:
             description:
                 - The availability domain the export set is in. May be unset
@@ -145,36 +175,6 @@ export_sets:
             returned: on success
             type: str
             sample: CREATING
-        max_fs_stat_bytes:
-            description:
-                - Controls the maximum `tbytes`, `fbytes`, and `abytes`,
-                  values reported by `NFS FSSTAT` calls through any associated
-                  mount targets. This is an advanced feature. For most
-                  applications, use the default value. The
-                  `tbytes` value reported by `FSSTAT` will be
-                  `maxFsStatBytes`. The value of `fbytes` and `abytes` will be
-                  `maxFsStatBytes` minus the metered size of the file
-                  system. If the metered size is larger than `maxFsStatBytes`,
-                  then `fbytes` and `abytes` will both be '0'.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
-        max_fs_stat_files:
-            description:
-                - Controls the maximum `tfiles`, `ffiles`, and `afiles`
-                  values reported by `NFS FSSTAT` calls through any associated
-                  mount targets. This is an advanced feature. For most
-                  applications, use the default value. The
-                  `tfiles` value reported by `FSSTAT` will be
-                  `maxFsStatFiles`. The value of `ffiles` and `afiles` will be
-                  `maxFsStatFiles` minus the metered size of the file
-                  system. If the metered size is larger than `maxFsStatFiles`,
-                  then `ffiles` and `afiles` will both be '0'.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
         time_created:
             description:
                 - The date and time the export set was created, expressed
@@ -190,13 +190,13 @@ export_sets:
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "max_fs_stat_bytes": 56,
+        "max_fs_stat_files": 56,
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
-        "max_fs_stat_bytes": 56,
-        "max_fs_stat_files": 56,
         "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }]

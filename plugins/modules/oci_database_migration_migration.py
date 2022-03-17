@@ -1718,6 +1718,14 @@ class MigrationHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateMigrationDetails
 
+    def get_exclude_attributes(self):
+        return [
+            "golden_gate_details.hub.source_container_db_admin_credentials.password",
+            "golden_gate_details.hub.target_db_admin_credentials.password",
+            "golden_gate_details.hub.source_db_admin_credentials.password",
+            "golden_gate_details.hub.rest_admin_credentials.password",
+        ]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

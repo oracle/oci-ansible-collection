@@ -125,27 +125,6 @@ scheduled_tasks:
             returned: on success
             type: str
             sample: ACCELERATION
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the data plane resource.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - "A user-friendly name that is changeable and that does not have to be unique.
-                  Format: a leading alphanumeric, followed by zero or more
-                  alphanumerics, underscores, spaces, backslashes, or hyphens in any order).
-                  No trailing spaces allowed."
-            returned: on success
-            type: str
-            sample: display_name_example
-        task_type:
-            description:
-                - Task type.
-            returned: on success
-            type: str
-            sample: SAVED_SEARCH
         schedules:
             description:
                 - Schedules.
@@ -153,6 +132,18 @@ scheduled_tasks:
             returned: on success
             type: complex
             contains:
+                expression:
+                    description:
+                        - Value in cron format.
+                    returned: on success
+                    type: str
+                    sample: expression_example
+                time_zone:
+                    description:
+                        - Time zone, by default UTC.
+                    returned: on success
+                    type: str
+                    sample: time_zone_example
                 type:
                     description:
                         - Schedule type discriminator.
@@ -172,18 +163,6 @@ scheduled_tasks:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
-                expression:
-                    description:
-                        - Value in cron format.
-                    returned: on success
-                    type: str
-                    sample: expression_example
-                time_zone:
-                    description:
-                        - Time zone, by default UTC.
-                    returned: on success
-                    type: str
-                    sample: time_zone_example
                 recurring_interval:
                     description:
                         - Recurring interval in ISO 8601 extended format as described in
@@ -208,12 +187,6 @@ scheduled_tasks:
             returned: on success
             type: complex
             contains:
-                type:
-                    description:
-                        - Action type discriminator.
-                    returned: on success
-                    type: str
-                    sample: STREAM
                 query_string:
                     description:
                         - Purge query string.
@@ -249,6 +222,12 @@ scheduled_tasks:
                     returned: on success
                     type: bool
                     sample: true
+                type:
+                    description:
+                        - Action type discriminator.
+                    returned: on success
+                    type: str
+                    sample: STREAM
                 saved_search_id:
                     description:
                         - The ManagementSavedSearch id [OCID] utilized in the action.
@@ -315,6 +294,57 @@ scheduled_tasks:
                     returned: on success
                     type: str
                     sample: saved_search_duration_example
+        num_occurrences:
+            description:
+                - Number of execution occurrences.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        time_of_next_execution:
+            description:
+                - The date and time the scheduled task will execute next,
+                  in the format defined by RFC3339.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the data plane resource.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        task_type:
+            description:
+                - Task type.
+            returned: on success
+            type: str
+            sample: SAVED_SEARCH
+        compartment_id:
+            description:
+                - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        time_created:
+            description:
+                - The date and time the scheduled task was created, in the format defined by RFC3339.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The date and time the scheduled task was last updated, in the format defined by RFC3339.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The current state of the scheduled task.
+            returned: on success
+            type: str
+            sample: ACTIVE
         task_status:
             description:
                 - Status of the scheduled task.
@@ -334,45 +364,15 @@ scheduled_tasks:
             returned: on success
             type: str
             sample: "ocid1.workrequest.oc1..xxxxxxEXAMPLExxxxxx"
-        num_occurrences:
+        display_name:
             description:
-                - Number of execution occurrences.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
-        compartment_id:
-            description:
-                - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+                - "A user-friendly name that is changeable and that does not have to be unique.
+                  Format: a leading alphanumeric, followed by zero or more
+                  alphanumerics, underscores, spaces, backslashes, or hyphens in any order).
+                  No trailing spaces allowed."
             returned: on success
             type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - The date and time the scheduled task was created, in the format defined by RFC3339.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The date and time the scheduled task was last updated, in the format defined by RFC3339.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_of_next_execution:
-            description:
-                - The date and time the scheduled task will execute next,
-                  in the format defined by RFC3339.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current state of the scheduled task.
-            returned: on success
-            type: str
-            sample: ACTIVE
+            sample: display_name_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -401,25 +401,22 @@ scheduled_tasks:
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "kind": "ACCELERATION",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "task_type": "SAVED_SEARCH",
         "schedules": [{
+            "expression": "expression_example",
+            "time_zone": "time_zone_example",
             "type": "FIXED_FREQUENCY",
             "misfire_policy": "RETRY_ONCE",
             "time_of_first_execution": "2013-10-20T19:20:30+01:00",
-            "expression": "expression_example",
-            "time_zone": "time_zone_example",
             "recurring_interval": "recurring_interval_example",
             "repeat_count": 56
         }],
         "action": {
-            "type": "STREAM",
             "query_string": "query_string_example",
             "data_type": "LOG",
             "purge_duration": "purge_duration_example",
             "purge_compartment_id": "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx",
             "compartment_id_in_subtree": true,
+            "type": "STREAM",
             "saved_search_id": "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx",
             "metric_extraction": {
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -429,15 +426,18 @@ scheduled_tasks:
             },
             "saved_search_duration": "saved_search_duration_example"
         },
-        "task_status": "READY",
-        "pause_reason": "METRIC_EXTRACTION_NOT_VALID",
-        "work_request_id": "ocid1.workrequest.oc1..xxxxxxEXAMPLExxxxxx",
         "num_occurrences": 56,
+        "time_of_next_execution": "2013-10-20T19:20:30+01:00",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "task_type": "SAVED_SEARCH",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "time_of_next_execution": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
+        "task_status": "READY",
+        "pause_reason": "METRIC_EXTRACTION_NOT_VALID",
+        "work_request_id": "ocid1.workrequest.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "last_execution_status": "FAILED",

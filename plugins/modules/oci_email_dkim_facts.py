@@ -104,6 +104,39 @@ dkims:
     returned: on success
     type: complex
     contains:
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail.
+                  For example, can be used to provide actionable information for a resource.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        dns_subdomain_name:
+            description:
+                - The name of the DNS subdomain that must be provisioned to enable email recipients to verify DKIM signatures.
+                  It is usually created with a CNAME record set to the cnameRecordValue
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: dns_subdomain_name_example
+        cname_record_value:
+            description:
+                - The DNS CNAME record value to provision to the DKIM DNS subdomain, when using the CNAME method for DKIM setup (preferred).
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: cname_record_value_example
+        txt_record_value:
+            description:
+                - The DNS TXT record value to provision to the DKIM DNS subdomain in place of using a CNAME record.
+                  This is used in cases where a CNAME can not be used, such as when the cnameRecordValue would exceed the maximum length for a DNS entry.
+                  This can also be used by customers who have an existing procedure to directly provision TXT records for DKIM.
+                  Be aware that many DNS APIs will require you to break this string into segments of less than 255 characters.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: txt_record_value_example
         name:
             description:
                 - The DKIM selector.
@@ -136,14 +169,6 @@ dkims:
             returned: on success
             type: str
             sample: ACTIVE
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail.
-                  For example, can be used to provide actionable information for a resource.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         description:
             description:
                 - The description of the DKIM. Avoid entering confidential information.
@@ -168,31 +193,6 @@ dkims:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        dns_subdomain_name:
-            description:
-                - The name of the DNS subdomain that must be provisioned to enable email recipients to verify DKIM signatures.
-                  It is usually created with a CNAME record set to the cnameRecordValue
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: dns_subdomain_name_example
-        cname_record_value:
-            description:
-                - The DNS CNAME record value to provision to the DKIM DNS subdomain, when using the CNAME method for DKIM setup (preferred).
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: cname_record_value_example
-        txt_record_value:
-            description:
-                - The DNS TXT record value to provision to the DKIM DNS subdomain in place of using a CNAME record.
-                  This is used in cases where a CNAME can not be used, such as when the cnameRecordValue would exceed the maximum length for a DNS entry.
-                  This can also be used by customers who have an existing procedure to directly provision TXT records for DKIM.
-                  Be aware that many DNS APIs will require you to break this string into segments of less than 255 characters.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: txt_record_value_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -217,18 +217,18 @@ dkims:
             type: dict
             sample: {}
     sample: [{
+        "lifecycle_details": "lifecycle_details_example",
+        "dns_subdomain_name": "dns_subdomain_name_example",
+        "cname_record_value": "cname_record_value_example",
+        "txt_record_value": "txt_record_value_example",
         "name": "name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "email_domain_id": "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ACTIVE",
-        "lifecycle_details": "lifecycle_details_example",
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "dns_subdomain_name": "dns_subdomain_name_example",
-        "cname_record_value": "cname_record_value_example",
-        "txt_record_value": "txt_record_value_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

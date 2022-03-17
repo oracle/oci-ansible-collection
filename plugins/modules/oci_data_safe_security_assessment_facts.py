@@ -182,12 +182,53 @@ security_assessments:
     returned: on success
     type: complex
     contains:
+        ignored_targets:
+            description:
+                - "List containing maps as values.
+                  Example: `{\\"Operations\\": [ {\\"CostCenter\\": \\"42\\"} ] }`"
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
+        target_version:
+            description:
+                - The version of the target database.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: target_version_example
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
         id:
             description:
                 - The OCID of the security assessment.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - The description of the security assessment.
+            returned: on success
+            type: str
+            sample: description_example
+        lifecycle_state:
+            description:
+                - The current state of the security assessment.
+            returned: on success
+            type: str
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - Details about the current state of the security assessment.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time when the security assessment was created. Conforms to the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -219,11 +260,11 @@ security_assessments:
             returned: on success
             type: list
             sample: []
-        ignored_targets:
+        ignored_target_ids:
             description:
                 - "List containing maps as values.
                   Example: `{\\"Operations\\": [ {\\"CostCenter\\": \\"42\\"} ] }`"
-                - Returned for get operation
+                - Returned for list operation
             returned: on success
             type: list
             sample: []
@@ -234,13 +275,6 @@ security_assessments:
             returned: on success
             type: list
             sample: []
-        target_version:
-            description:
-                - The version of the target database.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: target_version_example
         is_baseline:
             description:
                 - Indicates whether or not the security assessment is set as a baseline. This is applicable only for saved security assessments.
@@ -259,36 +293,12 @@ security_assessments:
             returned: on success
             type: str
             sample: "ocid1.lastcomparedbaseline.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state:
-            description:
-                - The current state of the security assessment.
-            returned: on success
-            type: str
-            sample: CREATING
-        lifecycle_details:
-            description:
-                - Details about the current state of the security assessment.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         schedule_security_assessment_id:
             description:
                 - The OCID of the security assessment that is responsible for creating this scheduled save assessment.
             returned: on success
             type: str
             sample: "ocid1.schedulesecurityassessment.oc1..xxxxxxEXAMPLExxxxxx"
-        triggered_by:
-            description:
-                - Indicates whether the security assessment was created by system or by a user.
-            returned: on success
-            type: str
-            sample: USER
-        description:
-            description:
-                - The description of the security assessment.
-            returned: on success
-            type: str
-            sample: description_example
         schedule:
             description:
                 - "Schedule to save the assessment periodically in the specified format:
@@ -307,6 +317,12 @@ security_assessments:
             returned: on success
             type: str
             sample: schedule_example
+        triggered_by:
+            description:
+                - Indicates whether the security assessment was created by system or by a user.
+            returned: on success
+            type: str
+            sample: USER
         link:
             description:
                 - The summary of findings for the security assessment
@@ -679,41 +695,27 @@ security_assessments:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        system_tags:
-            description:
-                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
-        ignored_target_ids:
-            description:
-                - "List containing maps as values.
-                  Example: `{\\"Operations\\": [ {\\"CostCenter\\": \\"42\\"} ] }`"
-                - Returned for list operation
-            returned: on success
-            type: list
-            sample: []
     sample: [{
+        "ignored_targets": [],
+        "target_version": "target_version_example",
+        "system_tags": {},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "target_ids": [],
-        "ignored_targets": [],
+        "ignored_target_ids": [],
         "ignored_assessment_ids": [],
-        "target_version": "target_version_example",
         "is_baseline": true,
         "is_deviated_from_baseline": true,
         "last_compared_baseline_id": "ocid1.lastcomparedbaseline.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
         "schedule_security_assessment_id": "ocid1.schedulesecurityassessment.oc1..xxxxxxEXAMPLExxxxxx",
-        "triggered_by": "USER",
-        "description": "description_example",
         "schedule": "schedule_example",
+        "triggered_by": "USER",
         "link": "link_example",
         "type": "LATEST",
         "statistics": {
@@ -780,9 +782,7 @@ security_assessments:
             }
         },
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "ignored_target_ids": []
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

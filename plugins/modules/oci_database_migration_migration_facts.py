@@ -119,30 +119,6 @@ migrations:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the resource
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Migration Display Name
-            returned: on success
-            type: str
-            sample: display_name_example
-        compartment_id:
-            description:
-                - OCID of the compartment
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        type:
-            description:
-                - Migration type.
-            returned: on success
-            type: str
-            sample: ONLINE
         wait_after:
             description:
                 - Name of a migration phase. The Job will wait after executing this
@@ -151,12 +127,6 @@ migrations:
             returned: on success
             type: str
             sample: ODMS_VALIDATE_TGT
-        agent_id:
-            description:
-                - The OCID of the registered on-premises ODMS Agent. Only valid for Offline Migrations.
-            returned: on success
-            type: str
-            sample: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
         credentials_secret_id:
             description:
                 - OCID of the Secret in the OCI vault containing the Migration credentials. Used to store GoldenGate administrator user credentials.
@@ -164,30 +134,6 @@ migrations:
             returned: on success
             type: str
             sample: "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
-        source_database_connection_id:
-            description:
-                - The OCID of the Source Database Connection.
-            returned: on success
-            type: str
-            sample: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
-        source_container_database_connection_id:
-            description:
-                - The OCID of the Source Container Database Connection.
-            returned: on success
-            type: str
-            sample: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
-        target_database_connection_id:
-            description:
-                - The OCID of the Target Database Connection.
-            returned: on success
-            type: str
-            sample: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
-        executing_job_id:
-            description:
-                - OCID of the current ODMS Job in execution for the Migration, if any.
-            returned: on success
-            type: str
-            sample: "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx"
         data_transfer_medium_details:
             description:
                 - ""
@@ -622,6 +568,60 @@ migrations:
                             returned: on success
                             type: int
                             sample: 56
+        id:
+            description:
+                - The OCID of the resource
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Migration Display Name
+            returned: on success
+            type: str
+            sample: display_name_example
+        compartment_id:
+            description:
+                - OCID of the compartment
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        type:
+            description:
+                - Migration type.
+            returned: on success
+            type: str
+            sample: ONLINE
+        source_database_connection_id:
+            description:
+                - The OCID of the Source Database Connection.
+            returned: on success
+            type: str
+            sample: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+        source_container_database_connection_id:
+            description:
+                - The OCID of the Source Container Database Connection.
+            returned: on success
+            type: str
+            sample: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+        target_database_connection_id:
+            description:
+                - The OCID of the Target Database Connection.
+            returned: on success
+            type: str
+            sample: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
+        executing_job_id:
+            description:
+                - OCID of the current ODMS Job in execution for the Migration, if any.
+            returned: on success
+            type: str
+            sample: "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx"
+        agent_id:
+            description:
+                - The OCID of the registered on-premises ODMS Agent. Only valid for Offline Migrations.
+            returned: on success
+            type: str
+            sample: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
         vault_details:
             description:
                 - ""
@@ -698,17 +698,8 @@ migrations:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "type": "ONLINE",
         "wait_after": "ODMS_VALIDATE_TGT",
-        "agent_id": "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx",
         "credentials_secret_id": "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx",
-        "source_database_connection_id": "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
-        "source_container_database_connection_id": "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
-        "target_database_connection_id": "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
-        "executing_job_id": "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx",
         "data_transfer_medium_details": {
             "database_link_details": {
                 "name": "name_example",
@@ -802,6 +793,15 @@ migrations:
                 "acceptable_lag": 56
             }
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "type": "ONLINE",
+        "source_database_connection_id": "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
+        "source_container_database_connection_id": "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
+        "target_database_connection_id": "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx",
+        "executing_job_id": "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx",
+        "agent_id": "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx",
         "vault_details": {
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",

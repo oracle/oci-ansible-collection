@@ -824,7 +824,7 @@ class DbHomeHelperGen(OCIResourceHelperBase):
         return CreateDbHomeBase
 
     def get_exclude_attributes(self):
-        return ["kms_key_version_id", "source", "is_desupported_version", "database"]
+        return ["is_desupported_version", "database", "kms_key_version_id", "source"]
 
     def create_resource(self):
         create_details = self.get_create_model()

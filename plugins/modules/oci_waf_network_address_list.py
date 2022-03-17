@@ -224,6 +224,13 @@ network_address_list:
     returned: on success
     type: complex
     contains:
+        addresses:
+            description:
+                - "A list of IP address prefixes in CIDR notation.
+                  To specify all addresses, use \\"0.0.0.0/0\\" for IPv4 and \\"::/0\\" for IPv6."
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the NetworkAddressList.
@@ -294,13 +301,6 @@ network_address_list:
             returned: on success
             type: dict
             sample: {}
-        addresses:
-            description:
-                - "A list of IP address prefixes in CIDR notation.
-                  To specify all addresses, use \\"0.0.0.0/0\\" for IPv4 and \\"::/0\\" for IPv6."
-            returned: on success
-            type: list
-            sample: []
         vcn_addresses:
             description:
                 - "A list of private address prefixes, each associated with a particular VCN.
@@ -321,6 +321,7 @@ network_address_list:
                     type: str
                     sample: addresses_example
     sample: {
+        "addresses": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -332,7 +333,6 @@ network_address_list:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "addresses": [],
         "vcn_addresses": [{
             "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
             "addresses": "addresses_example"

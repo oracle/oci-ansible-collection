@@ -112,18 +112,6 @@ log_analytics_entity_types:
     returned: on success
     type: complex
     contains:
-        name:
-            description:
-                - Log analytics entity type name.
-            returned: on success
-            type: str
-            sample: name_example
-        internal_name:
-            description:
-                - Internal name for the log analytics entity type.
-            returned: on success
-            type: str
-            sample: internal_name_example
         compartment_id:
             description:
                 - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -131,18 +119,6 @@ log_analytics_entity_types:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        category:
-            description:
-                - Log analytics entity type category. Category will be used for grouping and filtering.
-            returned: on success
-            type: str
-            sample: category_example
-        cloud_type:
-            description:
-                - Log analytics entity type group. That can be CLOUD (OCI) or NON_CLOUD otherwise.
-            returned: on success
-            type: str
-            sample: CLOUD
         properties:
             description:
                 - The parameters used in file patterns specified in log sources for this log analytics entity type.
@@ -162,6 +138,30 @@ log_analytics_entity_types:
                     returned: on success
                     type: str
                     sample: description_example
+        name:
+            description:
+                - Log analytics entity type name.
+            returned: on success
+            type: str
+            sample: name_example
+        internal_name:
+            description:
+                - Internal name for the log analytics entity type.
+            returned: on success
+            type: str
+            sample: internal_name_example
+        category:
+            description:
+                - Log analytics entity type category. Category will be used for grouping and filtering.
+            returned: on success
+            type: str
+            sample: category_example
+        cloud_type:
+            description:
+                - Log analytics entity type group. That can be CLOUD (OCI) or NON_CLOUD otherwise.
+            returned: on success
+            type: str
+            sample: CLOUD
         lifecycle_state:
             description:
                 - The current lifecycle state of the log analytics entity.
@@ -187,15 +187,15 @@ log_analytics_entity_types:
             type: str
             sample: ELIGIBLE
     sample: [{
-        "name": "name_example",
-        "internal_name": "internal_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "category": "category_example",
-        "cloud_type": "CLOUD",
         "properties": [{
             "name": "name_example",
             "description": "description_example"
         }],
+        "name": "name_example",
+        "internal_name": "internal_name_example",
+        "category": "category_example",
+        "cloud_type": "CLOUD",
         "lifecycle_state": "ACTIVE",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

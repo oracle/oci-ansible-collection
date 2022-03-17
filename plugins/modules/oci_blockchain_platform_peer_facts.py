@@ -89,12 +89,6 @@ blockchain_platform_peers:
     returned: on success
     type: complex
     contains:
-        peer_key:
-            description:
-                - peer identifier
-            returned: on success
-            type: str
-            sample: peer_key_example
         role:
             description:
                 - Peer role
@@ -136,6 +130,12 @@ blockchain_platform_peers:
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
+        peer_key:
+            description:
+                - peer identifier
+            returned: on success
+            type: str
+            sample: peer_key_example
         lifecycle_state:
             description:
                 - The current state of the peer.
@@ -143,7 +143,6 @@ blockchain_platform_peers:
             type: str
             sample: ACTIVE
     sample: [{
-        "peer_key": "peer_key_example",
         "role": "role_example",
         "alias": "alias_example",
         "ocpu_allocation_param": {
@@ -151,6 +150,7 @@ blockchain_platform_peers:
         },
         "host": "host_example",
         "ad": "Uocm:PHX-AD-1",
+        "peer_key": "peer_key_example",
         "lifecycle_state": "ACTIVE"
     }]
 """

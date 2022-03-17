@@ -107,6 +107,18 @@ functions:
     returned: on success
     type: complex
     contains:
+        config:
+            description:
+                - Function configuration. Overrides application configuration.
+                  Keys must be ASCII strings consisting solely of letters, digits, and the '_' (underscore) character, and must not begin with a digit. Values
+                  should be limited to printable unicode characters.
+                - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
+                - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each
+                  key and value in UTF-8.
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
@@ -119,12 +131,6 @@ functions:
             returned: on success
             type: str
             sample: display_name_example
-        lifecycle_state:
-            description:
-                - The current state of the function.
-            returned: on success
-            type: str
-            sample: CREATING
         application_id:
             description:
                 - The OCID of the application the function belongs to.
@@ -137,6 +143,12 @@ functions:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_state:
+            description:
+                - The current state of the function.
+            returned: on success
+            type: str
+            sample: CREATING
         image:
             description:
                 - "The qualified name of the Docker image to use in the function, including the image tag.
@@ -159,18 +171,6 @@ functions:
             returned: on success
             type: int
             sample: 56
-        config:
-            description:
-                - Function configuration. Overrides application configuration.
-                  Keys must be ASCII strings consisting solely of letters, digits, and the '_' (underscore) character, and must not begin with a digit. Values
-                  should be limited to printable unicode characters.
-                - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
-                - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each
-                  key and value in UTF-8.
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
         timeout_in_seconds:
             description:
                 - Timeout for executions of the function. Value in seconds.
@@ -229,15 +229,15 @@ functions:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "config": {},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
-        "lifecycle_state": "CREATING",
         "application_id": "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "CREATING",
         "image": "image_example",
         "image_digest": "image_digest_example",
         "memory_in_mbs": 56,
-        "config": {},
         "timeout_in_seconds": 56,
         "trace_config": {
             "is_enabled": true

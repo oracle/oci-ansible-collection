@@ -100,42 +100,6 @@ bastions:
     returned: on success
     type: complex
     contains:
-        bastion_type:
-            description:
-                - The type of bastion.
-            returned: on success
-            type: str
-            sample: bastion_type_example
-        id:
-            description:
-                - The unique identifier (OCID) of the bastion, which can't be changed after creation.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - The name of the bastion, which can't be changed after creation.
-            returned: on success
-            type: str
-            sample: name_example
-        compartment_id:
-            description:
-                - The unique identifier (OCID) of the compartment where the bastion is located.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        target_vcn_id:
-            description:
-                - The unique identifier (OCID) of the virtual cloud network (VCN) that the bastion connects to.
-            returned: on success
-            type: str
-            sample: "ocid1.targetvcn.oc1..xxxxxxEXAMPLExxxxxx"
-        target_subnet_id:
-            description:
-                - The unique identifier (OCID) of the subnet that the bastion connects to.
-            returned: on success
-            type: str
-            sample: "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         phone_book_entry:
             description:
                 - The phonebook entry of the customer's team, which can't be changed after creation. Not applicable to `standard` bastions.
@@ -178,6 +142,42 @@ bastions:
             returned: on success
             type: int
             sample: 56
+        bastion_type:
+            description:
+                - The type of bastion.
+            returned: on success
+            type: str
+            sample: bastion_type_example
+        id:
+            description:
+                - The unique identifier (OCID) of the bastion, which can't be changed after creation.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The name of the bastion, which can't be changed after creation.
+            returned: on success
+            type: str
+            sample: name_example
+        compartment_id:
+            description:
+                - The unique identifier (OCID) of the compartment where the bastion is located.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        target_vcn_id:
+            description:
+                - The unique identifier (OCID) of the virtual cloud network (VCN) that the bastion connects to.
+            returned: on success
+            type: str
+            sample: "ocid1.targetvcn.oc1..xxxxxxEXAMPLExxxxxx"
+        target_subnet_id:
+            description:
+                - The unique identifier (OCID) of the subnet that the bastion connects to.
+            returned: on success
+            type: str
+            sample: "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The time the bastion was created. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -226,18 +226,18 @@ bastions:
             type: dict
             sample: {}
     sample: [{
-        "bastion_type": "bastion_type_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "target_vcn_id": "ocid1.targetvcn.oc1..xxxxxxEXAMPLExxxxxx",
-        "target_subnet_id": "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx",
         "phone_book_entry": "phone_book_entry_example",
         "client_cidr_block_allow_list": [],
         "static_jump_host_ip_addresses": [],
         "private_endpoint_ip_address": "private_endpoint_ip_address_example",
         "max_session_ttl_in_seconds": 56,
         "max_sessions_allowed": 56,
+        "bastion_type": "bastion_type_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "target_vcn_id": "ocid1.targetvcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "target_subnet_id": "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

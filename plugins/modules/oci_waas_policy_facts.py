@@ -112,30 +112,6 @@ waas_policies:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy's compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The user-friendly name of the WAAS policy. The name can be changed and does not need to be unique.
-            returned: on success
-            type: str
-            sample: display_name_example
-        domain:
-            description:
-                - The web application domain that the WAAS policy protects.
-            returned: on success
-            type: str
-            sample: domain_example
         additional_domains:
             description:
                 - An array of additional domains for this web application.
@@ -150,18 +126,6 @@ waas_policies:
             returned: on success
             type: str
             sample: cname_example
-        lifecycle_state:
-            description:
-                - The current lifecycle state of the WAAS policy.
-            returned: on success
-            type: str
-            sample: CREATING
-        time_created:
-            description:
-                - The date and time the policy was created, expressed in RFC 3339 timestamp format.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         origins:
             description:
                 - "A map of host servers (origins) and their keys for the web application. Origin keys are used to associate origins to specific protection
@@ -688,6 +652,13 @@ waas_policies:
                             returned: on success
                             type: complex
                             contains:
+                                value:
+                                    description:
+                                        - A header field value that conforms to RFC 7230.
+                                        - "Example: `example_value`"
+                                    returned: on success
+                                    type: str
+                                    sample: value_example
                                 action:
                                     description:
                                         - ""
@@ -701,13 +672,6 @@ waas_policies:
                                     returned: on success
                                     type: str
                                     sample: header_example
-                                value:
-                                    description:
-                                        - A header field value that conforms to RFC 7230.
-                                        - "Example: `example_value`"
-                                    returned: on success
-                                    type: str
-                                    sample: value_example
                 address_rate_limiting:
                     description:
                         - The IP address rate limiting settings used to limit the number of requests from an address.
@@ -1701,6 +1665,42 @@ waas_policies:
                             returned: on success
                             type: list
                             sample: []
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy's compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The user-friendly name of the WAAS policy. The name can be changed and does not need to be unique.
+            returned: on success
+            type: str
+            sample: display_name_example
+        domain:
+            description:
+                - The web application domain that the WAAS policy protects.
+            returned: on success
+            type: str
+            sample: domain_example
+        lifecycle_state:
+            description:
+                - The current lifecycle state of the WAAS policy.
+            returned: on success
+            type: str
+            sample: CREATING
+        time_created:
+            description:
+                - The date and time the policy was created, expressed in RFC 3339 timestamp format.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -1718,14 +1718,8 @@ waas_policies:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "domain": "domain_example",
         "additional_domains": [],
         "cname": "cname_example",
-        "lifecycle_state": "CREATING",
-        "time_created": "2013-10-20T19:20:30+01:00",
         "origins": {
             "uri": "uri_example",
             "http_port": 56,
@@ -1796,9 +1790,9 @@ waas_policies:
                 "captcha_footer": "captcha_footer_example",
                 "captcha_submit_label": "captcha_submit_label_example",
                 "response_header_manipulation": [{
+                    "value": "value_example",
                     "action": "EXTEND_HTTP_RESPONSE_HEADER",
-                    "header": "header_example",
-                    "value": "value_example"
+                    "header": "header_example"
                 }]
             }],
             "address_rate_limiting": {
@@ -1956,6 +1950,12 @@ waas_policies:
                 "address_lists": []
             }]
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "domain": "domain_example",
+        "lifecycle_state": "CREATING",
+        "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

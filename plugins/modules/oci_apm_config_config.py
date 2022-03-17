@@ -417,55 +417,6 @@ config:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item. An OCID is generated
-                  when the item is created.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        config_type:
-            description:
-                - The type of configuration item.
-            returned: on success
-            type: str
-            sample: SPAN_FILTER
-        time_created:
-            description:
-                - "The time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                  Example: `2020-02-12T22:47:12.613Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - "The time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                  Example: `2020-02-13T22:47:12.613Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        display_name:
-            description:
-                - The name by which the rule set is displayed to the end user.
-            returned: on success
-            type: str
-            sample: display_name_example
         rules:
             description:
                 - ""
@@ -583,6 +534,55 @@ config:
                     returned: on success
                     type: str
                     sample: description_example
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item. An OCID is generated
+                  when the item is created.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        config_type:
+            description:
+                - The type of configuration item.
+            returned: on success
+            type: str
+            sample: SPAN_FILTER
+        time_created:
+            description:
+                - "The time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                  timestamp format.
+                  Example: `2020-02-12T22:47:12.613Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - "The time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                  timestamp format.
+                  Example: `2020-02-13T22:47:12.613Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                  Example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        display_name:
+            description:
+                - The name by which the rule set is displayed to the end user.
+            returned: on success
+            type: str
+            sample: display_name_example
         filter_text:
             description:
                 - The string that defines the Span Filter expression.
@@ -596,13 +596,6 @@ config:
             type: str
             sample: description_example
     sample: {
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "config_type": "SPAN_FILTER",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "display_name_example",
         "rules": [{
             "filter_text": "filter_text_example",
             "priority": 56,
@@ -624,6 +617,13 @@ config:
             "unit": "unit_example",
             "description": "description_example"
         }],
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "config_type": "SPAN_FILTER",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "display_name": "display_name_example",
         "filter_text": "filter_text_example",
         "description": "description_example"
     }
@@ -671,11 +671,6 @@ class ConfigHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_config
-
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_config, config_id=summary_model.id,
-        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(

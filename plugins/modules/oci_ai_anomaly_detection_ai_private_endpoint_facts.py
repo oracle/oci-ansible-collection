@@ -100,30 +100,25 @@ ai_private_endpoints:
     returned: on success
     type: complex
     contains:
+        attached_data_assets:
+            description:
+                - The list of dataAssets using the private reverse connection endpoint.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - Unique identifier that is immutable.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - Compartment Identifier.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - Subnet Identifier
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Private Reverse Connection Endpoint display name.
-            returned: on success
-            type: str
-            sample: display_name_example
         dns_zones:
             description:
                 - "List of DNS zones to be used by the data assets.
@@ -131,6 +126,12 @@ ai_private_endpoints:
             returned: on success
             type: list
             sample: []
+        compartment_id:
+            description:
+                - Compartment Identifier.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the private endpoint was created. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
@@ -143,6 +144,19 @@ ai_private_endpoints:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        display_name:
+            description:
+                - Private Reverse Connection Endpoint display name.
+            returned: on success
+            type: str
+            sample: display_name_example
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in 'Failed'
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -170,34 +184,20 @@ ai_private_endpoints:
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in 'Failed'
-                  state.
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
-        attached_data_assets:
-            description:
-                - The list of dataAssets using the private reverse connection endpoint.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
     sample: [{
+        "attached_data_assets": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "dns_zones": [],
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "display_name": "display_name_example",
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "attached_data_assets": []
+        "lifecycle_state": "CREATING"
     }]
 """
 

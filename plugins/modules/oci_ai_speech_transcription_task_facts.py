@@ -99,36 +99,6 @@ transcription_tasks:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - Unique identifier that is immutable on creation
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Task name.
-            returned: on success
-            type: str
-            sample: display_name_example
-        time_started:
-            description:
-                - Task started time.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_finished:
-            description:
-                - Task finished time.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        percent_complete:
-            description:
-                - How much progress the operation has made, vs the total amount of work that must be performed.
-            returned: on success
-            type: int
-            sample: 56
         ttl_in_days:
             description:
                 - Time to live duration in days for tasks. Task will be available till max 90 days.
@@ -186,18 +156,6 @@ transcription_tasks:
                     returned: on success
                     type: int
                     sample: 56
-        file_size_in_bytes:
-            description:
-                - Size of input file in Bytes.
-            returned: on success
-            type: int
-            sample: 56
-        file_duration_in_seconds:
-            description:
-                - Duration of input file in Seconds.
-            returned: on success
-            type: int
-            sample: 56
         input_location:
             description:
                 - ""
@@ -248,6 +206,48 @@ transcription_tasks:
                     returned: on success
                     type: list
                     sample: []
+        id:
+            description:
+                - Unique identifier that is immutable on creation
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Task name.
+            returned: on success
+            type: str
+            sample: display_name_example
+        percent_complete:
+            description:
+                - How much progress the operation has made, vs the total amount of work that must be performed.
+            returned: on success
+            type: int
+            sample: 56
+        file_size_in_bytes:
+            description:
+                - Size of input file in Bytes.
+            returned: on success
+            type: int
+            sample: 56
+        file_duration_in_seconds:
+            description:
+                - Duration of input file in Seconds.
+            returned: on success
+            type: int
+            sample: 56
+        time_started:
+            description:
+                - Task started time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_finished:
+            description:
+                - Task finished time.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Task.
@@ -262,11 +262,6 @@ transcription_tasks:
             type: str
             sample: lifecycle_details_example
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "time_started": "2013-10-20T19:20:30+01:00",
-        "time_finished": "2013-10-20T19:20:30+01:00",
-        "percent_complete": 56,
         "ttl_in_days": 56,
         "model_details": {
             "domain": "GENERIC",
@@ -278,8 +273,6 @@ transcription_tasks:
             "encoding": "encoding_example",
             "sample_rate_in_hz": 56
         },
-        "file_size_in_bytes": 56,
-        "file_duration_in_seconds": 56,
         "input_location": {
             "namespace_name": "namespace_name_example",
             "bucket_name": "bucket_name_example",
@@ -290,6 +283,13 @@ transcription_tasks:
             "bucket_name": "bucket_name_example",
             "object_names": []
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "percent_complete": 56,
+        "file_size_in_bytes": 56,
+        "file_duration_in_seconds": 56,
+        "time_started": "2013-10-20T19:20:30+01:00",
+        "time_finished": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACCEPTED",
         "lifecycle_details": "lifecycle_details_example"
     }]

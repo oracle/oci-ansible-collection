@@ -110,89 +110,6 @@ listing_packages:
     returned: on success
     type: complex
     contains:
-        description:
-            description:
-                - Description of this package.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: description_example
-        listing_id:
-            description:
-                - The ID of the listing this package belongs to.
-            returned: on success
-            type: str
-            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-        version:
-            description:
-                - The package version.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: version_example
-        package_type:
-            description:
-                - The specified package's type.
-            returned: on success
-            type: str
-            sample: ORCHESTRATION
-        pricing:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                type:
-                    description:
-                        - The type of the pricing model.
-                    returned: on success
-                    type: str
-                    sample: FREE
-                pay_go_strategy:
-                    description:
-                        - The type of pricing for a PAYGO model, eg PER_OCPU_LINEAR, PER_OCPU_MIN_BILLING, PER_INSTANCE.  Null if type is not PAYGO.
-                    returned: on success
-                    type: str
-                    sample: PER_OCPU_LINEAR
-                currency:
-                    description:
-                        - The currency of the pricing model.
-                    returned: on success
-                    type: str
-                    sample: USD
-                rate:
-                    description:
-                        - The pricing rate.
-                    returned: on success
-                    type: float
-                    sample: 10
-        resource_id:
-            description:
-                - The unique identifier for the package resource.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - The date and time this listing package was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                - "Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        operating_system:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name of the operating system.
-                    returned: on success
-                    type: str
-                    sample: name_example
         app_catalog_listing_id:
             description:
                 - The ID of the listing resource associated with this listing package. For more information, see
@@ -215,43 +132,33 @@ listing_packages:
             returned: on success
             type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-        regions:
+        description:
             description:
-                - The regions where you can deploy the listing package. (Some packages have restrictions that limit their deployment to United States regions
-                  only.)
+                - Description of this package.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: description_example
+        version:
+            description:
+                - The package version.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: version_example
+        operating_system:
+            description:
+                - ""
+                - Returned for get operation
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - The name of the region.
+                        - The name of the operating system.
                     returned: on success
                     type: str
                     sample: name_example
-                code:
-                    description:
-                        - The code of the region.
-                    returned: on success
-                    type: str
-                    sample: code_example
-                countries:
-                    description:
-                        - Countries in the region.
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - The name of the item.
-                            returned: on success
-                            type: str
-                            sample: name_example
-                        code:
-                            description:
-                                - A code assigned to the item.
-                            returned: on success
-                            type: str
-                            sample: code_example
         resource_link:
             description:
                 - Link to the orchestration resource.
@@ -302,6 +209,12 @@ listing_packages:
                     returned: on success
                     type: str
                     sample: hint_message_example
+        listing_id:
+            description:
+                - The ID of the listing this package belongs to.
+            returned: on success
+            type: str
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         package_version:
             description:
                 - The version of the specified package.
@@ -309,33 +222,102 @@ listing_packages:
             returned: on success
             type: str
             sample: package_version_example
+        package_type:
+            description:
+                - The specified package's type.
+            returned: on success
+            type: str
+            sample: ORCHESTRATION
+        pricing:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of the pricing model.
+                    returned: on success
+                    type: str
+                    sample: FREE
+                pay_go_strategy:
+                    description:
+                        - The type of pricing for a PAYGO model, eg PER_OCPU_LINEAR, PER_OCPU_MIN_BILLING, PER_INSTANCE.  Null if type is not PAYGO.
+                    returned: on success
+                    type: str
+                    sample: PER_OCPU_LINEAR
+                currency:
+                    description:
+                        - The currency of the pricing model.
+                    returned: on success
+                    type: str
+                    sample: USD
+                rate:
+                    description:
+                        - The pricing rate.
+                    returned: on success
+                    type: float
+                    sample: 10
+        regions:
+            description:
+                - The regions where you can deploy the listing package. (Some packages have restrictions that limit their deployment to United States regions
+                  only.)
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the region.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                code:
+                    description:
+                        - The code of the region.
+                    returned: on success
+                    type: str
+                    sample: code_example
+                countries:
+                    description:
+                        - Countries in the region.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - The name of the item.
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        code:
+                            description:
+                                - A code assigned to the item.
+                            returned: on success
+                            type: str
+                            sample: code_example
+        resource_id:
+            description:
+                - The unique identifier for the package resource.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        time_created:
+            description:
+                - The date and time this listing package was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                  timestamp format.
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "description": "description_example",
-        "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
-        "version": "version_example",
-        "package_type": "ORCHESTRATION",
-        "pricing": {
-            "type": "FREE",
-            "pay_go_strategy": "PER_OCPU_LINEAR",
-            "currency": "USD",
-            "rate": 10
-        },
-        "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "operating_system": {
-            "name": "name_example"
-        },
         "app_catalog_listing_id": "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx",
         "app_catalog_listing_resource_version": "app_catalog_listing_resource_version_example",
         "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
-        "regions": [{
-            "name": "name_example",
-            "code": "code_example",
-            "countries": [{
-                "name": "name_example",
-                "code": "code_example"
-            }]
-        }],
+        "description": "description_example",
+        "version": "version_example",
+        "operating_system": {
+            "name": "name_example"
+        },
         "resource_link": "resource_link_example",
         "variables": [{
             "name": "name_example",
@@ -345,7 +327,25 @@ listing_packages:
             "is_mandatory": true,
             "hint_message": "hint_message_example"
         }],
-        "package_version": "package_version_example"
+        "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
+        "package_version": "package_version_example",
+        "package_type": "ORCHESTRATION",
+        "pricing": {
+            "type": "FREE",
+            "pay_go_strategy": "PER_OCPU_LINEAR",
+            "currency": "USD",
+            "rate": 10
+        },
+        "regions": [{
+            "name": "name_example",
+            "code": "code_example",
+            "countries": [{
+                "name": "name_example",
+                "code": "code_example"
+            }]
+        }],
+        "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

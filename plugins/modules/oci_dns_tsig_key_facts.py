@@ -116,6 +116,21 @@ tsig_keys:
     returned: on success
     type: complex
     contains:
+        secret:
+            description:
+                - A base64 string encoding the binary shared secret.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: secret_example
+        time_updated:
+            description:
+                - The date and time the resource was last updated, expressed in RFC 3339 timestamp format.
+                - "**Example:** `2016-07-22T17:23:59:60Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         algorithm:
             description:
                 - "TSIG key algorithms are encoded as domain names, but most consist of only one
@@ -137,13 +152,6 @@ tsig_keys:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        secret:
-            description:
-                - A base64 string encoding the binary shared secret.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: secret_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -185,26 +193,18 @@ tsig_keys:
             returned: on success
             type: str
             sample: ACTIVE
-        time_updated:
-            description:
-                - The date and time the resource was last updated, expressed in RFC 3339 timestamp format.
-                - "**Example:** `2016-07-22T17:23:59:60Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "secret": "secret_example",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "algorithm": "algorithm_example",
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "secret": "secret_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "_self": "_self_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACTIVE",
-        "time_updated": "2013-10-20T19:20:30+01:00"
+        "lifecycle_state": "ACTIVE"
     }]
 """
 

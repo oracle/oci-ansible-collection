@@ -101,6 +101,22 @@ metastores:
     returned: on success
     type: complex
     contains:
+        default_managed_table_location:
+            description:
+                - "Location under which managed tables will be created by default. This references Object Storage
+                  using an HDFS URI format. Example: oci://bucket@namespace/sub-dir/"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: default_managed_table_location_example
+        default_external_table_location:
+            description:
+                - "Location under which external tables will be created by default. This references Object Storage
+                  using an HDFS URI format. Example: oci://bucket@namespace/sub-dir/"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: default_external_table_location_example
         id:
             description:
                 - The metastore's OCID.
@@ -131,22 +147,6 @@ metastores:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        default_managed_table_location:
-            description:
-                - "Location under which managed tables will be created by default. This references Object Storage
-                  using an HDFS URI format. Example: oci://bucket@namespace/sub-dir/"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: default_managed_table_location_example
-        default_external_table_location:
-            description:
-                - "Location under which external tables will be created by default. This references Object Storage
-                  using an HDFS URI format. Example: oci://bucket@namespace/sub-dir/"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: default_external_table_location_example
         lifecycle_state:
             description:
                 - The current state of the metastore.
@@ -175,13 +175,13 @@ metastores:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "default_managed_table_location": "default_managed_table_location_example",
+        "default_external_table_location": "default_external_table_location_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "default_managed_table_location": "default_managed_table_location_example",
-        "default_external_table_location": "default_external_table_location_example",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},

@@ -344,8 +344,8 @@ class PluggableDatabaseHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
-            "pdb_admin_password",
             "tde_wallet_password",
+            "pdb_admin_password",
             "should_pdb_admin_account_be_locked",
         ]
 

@@ -415,7 +415,7 @@ class MountTargetHelperGen(OCIResourceHelperBase):
         return CreateMountTargetDetails
 
     def get_exclude_attributes(self):
-        return ["hostname_label", "ip_address"]
+        return ["ip_address", "hostname_label"]
 
     def create_resource(self):
         create_details = self.get_create_model()

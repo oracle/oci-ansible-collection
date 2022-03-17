@@ -99,6 +99,25 @@ accepted_agreements:
     returned: on success
     type: complex
     contains:
+        defined_tags:
+            description:
+                - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - "The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
         id:
             description:
                 - The unique identifier for the acceptance of the agreement within a specific compartment.
@@ -141,35 +160,16 @@ accepted_agreements:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        defined_tags:
-            description:
-                - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        freeform_tags:
-            description:
-                - "The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
     sample: [{
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",
         "package_version": "package_version_example",
         "agreement_id": "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_accepted": "2013-10-20T19:20:30+01:00",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "freeform_tags": {'Department': 'Finance'}
+        "time_accepted": "2013-10-20T19:20:30+01:00"
     }]
 """
 

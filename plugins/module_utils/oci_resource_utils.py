@@ -558,11 +558,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     )
                 )
             return key_by_params_list
-        return [
-            attr
-            for attr in create_model.attribute_map
-            if attr not in self.get_exclude_attributes()
-        ]
+        return create_model.attribute_map
 
     def get_create_model(self):
         return oci_common_utils.convert_input_data_to_model_class(
@@ -707,6 +703,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
                 ignore_attr_if_not_in_target=True,
+                exclude_attributes=self.get_exclude_attributes(),
             ):
                 prospective_matches.append(resource)
 
@@ -726,6 +723,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 source_dict=create_model_dict,
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
+                exclude_attributes=self.get_exclude_attributes(),
             ):
                 _debug("Resource with same attributes found.")
 

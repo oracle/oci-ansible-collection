@@ -113,98 +113,6 @@ monitors:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the monitor.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - Unique name that can be edited. The name should not contain any confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        monitor_type:
-            description:
-                - Type of the monitor.
-            returned: on success
-            type: str
-            sample: SCRIPTED_BROWSER
-        vantage_points:
-            description:
-                - List of vantage points from where monitor is running.
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - Name of the vantage point.
-                    returned: on success
-                    type: str
-                    sample: name_example
-                display_name:
-                    description:
-                        - Unique name that can be edited. The name should not contain any confidential information.
-                    returned: on success
-                    type: str
-                    sample: display_name_example
-        vantage_point_count:
-            description:
-                - Number of vantage points where monitor is running.
-            returned: on success
-            type: int
-            sample: 56
-        script_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
-                  scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
-            returned: on success
-            type: str
-            sample: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
-        script_name:
-            description:
-                - Name of the script.
-            returned: on success
-            type: str
-            sample: script_name_example
-        status:
-            description:
-                - Enables or disables the monitor.
-            returned: on success
-            type: str
-            sample: ENABLED
-        repeat_interval_in_seconds:
-            description:
-                - Interval in seconds after the start time when the job should be repeated.
-                  Minimum repeatIntervalInSeconds should be 300 seconds.
-            returned: on success
-            type: int
-            sample: 56
-        is_run_once:
-            description:
-                - If runOnce is enabled, then the monitor will run once.
-            returned: on success
-            type: bool
-            sample: true
-        timeout_in_seconds:
-            description:
-                - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
-                  Also, timeoutInSeconds should be a multiple of 60. Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after
-                  that.
-            returned: on success
-            type: int
-            sample: 56
-        target:
-            description:
-                - Specify the endpoint on which to run the monitor.
-                  For BROWSER and REST monitor types, target is mandatory.
-                  If target is specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script (specified by scriptId in monitor)
-                  against the specified target endpoint.
-                  If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.
-            returned: on success
-            type: str
-            sample: target_example
         script_parameters:
             description:
                 - "List of script parameters. Example: `[{\\"monitorScriptParameter\\": {\\"paramName\\": \\"userid\\", \\"paramValue\\":\\"testuser\\"},
@@ -251,24 +159,6 @@ monitors:
             returned: on success
             type: complex
             contains:
-                config_type:
-                    description:
-                        - Type of configuration.
-                    returned: on success
-                    type: str
-                    sample: BROWSER_CONFIG
-                is_failure_retried:
-                    description:
-                        - If isFailureRetried is enabled, then a failed call will be retried.
-                    returned: on success
-                    type: bool
-                    sample: true
-                is_certificate_validation_enabled:
-                    description:
-                        - If certificate validation is enabled, then the call will fail in case of certification errors.
-                    returned: on success
-                    type: bool
-                    sample: true
                 verify_texts:
                     description:
                         - Verify all the search strings present in response.
@@ -282,42 +172,6 @@ monitors:
                             returned: on success
                             type: str
                             sample: text_example
-                network_configuration:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        number_of_hops:
-                            description:
-                                - Number of hops.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        probe_per_hop:
-                            description:
-                                - Number of probes per hop.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        transmission_rate:
-                            description:
-                                - Number of probe packets sent out simultaneously.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        protocol:
-                            description:
-                                - Type of protocol.
-                            returned: on success
-                            type: str
-                            sample: ICMP
-                        probe_mode:
-                            description:
-                                - Type of probe mode when TCP protocol is selected.
-                            returned: on success
-                            type: str
-                            sample: SACK
                 is_redirection_enabled:
                     description:
                         - If redirection enabled, then redirects will be allowed while accessing target URL.
@@ -457,6 +311,152 @@ monitors:
                     returned: on success
                     type: list
                     sample: []
+                is_certificate_validation_enabled:
+                    description:
+                        - If certificate validation is enabled, then the call will fail in case of certification errors.
+                    returned: on success
+                    type: bool
+                    sample: true
+                config_type:
+                    description:
+                        - Type of configuration.
+                    returned: on success
+                    type: str
+                    sample: BROWSER_CONFIG
+                is_failure_retried:
+                    description:
+                        - If isFailureRetried is enabled, then a failed call will be retried.
+                    returned: on success
+                    type: bool
+                    sample: true
+                network_configuration:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        number_of_hops:
+                            description:
+                                - Number of hops.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        probe_per_hop:
+                            description:
+                                - Number of probes per hop.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        transmission_rate:
+                            description:
+                                - Number of probe packets sent out simultaneously.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        protocol:
+                            description:
+                                - Type of protocol.
+                            returned: on success
+                            type: str
+                            sample: ICMP
+                        probe_mode:
+                            description:
+                                - Type of probe mode when TCP protocol is selected.
+                            returned: on success
+                            type: str
+                            sample: SACK
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the monitor.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - Unique name that can be edited. The name should not contain any confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        monitor_type:
+            description:
+                - Type of the monitor.
+            returned: on success
+            type: str
+            sample: SCRIPTED_BROWSER
+        vantage_points:
+            description:
+                - List of vantage points from where monitor is running.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - Name of the vantage point.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                display_name:
+                    description:
+                        - Unique name that can be edited. The name should not contain any confidential information.
+                    returned: on success
+                    type: str
+                    sample: display_name_example
+        vantage_point_count:
+            description:
+                - Number of vantage points where monitor is running.
+            returned: on success
+            type: int
+            sample: 56
+        script_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
+                  scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
+            returned: on success
+            type: str
+            sample: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
+        script_name:
+            description:
+                - Name of the script.
+            returned: on success
+            type: str
+            sample: script_name_example
+        status:
+            description:
+                - Enables or disables the monitor.
+            returned: on success
+            type: str
+            sample: ENABLED
+        repeat_interval_in_seconds:
+            description:
+                - Interval in seconds after the start time when the job should be repeated.
+                  Minimum repeatIntervalInSeconds should be 300 seconds.
+            returned: on success
+            type: int
+            sample: 56
+        is_run_once:
+            description:
+                - If runOnce is enabled, then the monitor will run once.
+            returned: on success
+            type: bool
+            sample: true
+        timeout_in_seconds:
+            description:
+                - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
+                  Also, timeoutInSeconds should be a multiple of 60. Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after
+                  that.
+            returned: on success
+            type: int
+            sample: 56
+        target:
+            description:
+                - Specify the endpoint on which to run the monitor.
+                  For BROWSER and REST monitor types, target is mandatory.
+                  If target is specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script (specified by scriptId in monitor)
+                  against the specified target endpoint.
+                  If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.
+            returned: on success
+            type: str
+            sample: target_example
         time_created:
             description:
                 - "The time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -488,21 +488,6 @@ monitors:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "monitor_type": "SCRIPTED_BROWSER",
-        "vantage_points": [{
-            "name": "name_example",
-            "display_name": "display_name_example"
-        }],
-        "vantage_point_count": 56,
-        "script_id": "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx",
-        "script_name": "script_name_example",
-        "status": "ENABLED",
-        "repeat_interval_in_seconds": 56,
-        "is_run_once": true,
-        "timeout_in_seconds": 56,
-        "target": "target_example",
         "script_parameters": [{
             "monitor_script_parameter": {
                 "param_name": "param_name_example",
@@ -512,19 +497,9 @@ monitors:
             "is_overwritten": true
         }],
         "configuration": {
-            "config_type": "BROWSER_CONFIG",
-            "is_failure_retried": true,
-            "is_certificate_validation_enabled": true,
             "verify_texts": [{
                 "text": "text_example"
             }],
-            "network_configuration": {
-                "number_of_hops": 56,
-                "probe_per_hop": 56,
-                "transmission_rate": 56,
-                "protocol": "ICMP",
-                "probe_mode": "SACK"
-            },
             "is_redirection_enabled": true,
             "request_method": "GET",
             "req_authentication_scheme": "OAUTH",
@@ -551,8 +526,33 @@ monitors:
             }],
             "request_post_body": "request_post_body_example",
             "verify_response_content": "verify_response_content_example",
-            "verify_response_codes": []
+            "verify_response_codes": [],
+            "is_certificate_validation_enabled": true,
+            "config_type": "BROWSER_CONFIG",
+            "is_failure_retried": true,
+            "network_configuration": {
+                "number_of_hops": 56,
+                "probe_per_hop": 56,
+                "transmission_rate": 56,
+                "protocol": "ICMP",
+                "probe_mode": "SACK"
+            }
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "monitor_type": "SCRIPTED_BROWSER",
+        "vantage_points": [{
+            "name": "name_example",
+            "display_name": "display_name_example"
+        }],
+        "vantage_point_count": 56,
+        "script_id": "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx",
+        "script_name": "script_name_example",
+        "status": "ENABLED",
+        "repeat_interval_in_seconds": 56,
+        "is_run_once": true,
+        "timeout_in_seconds": 56,
+        "target": "target_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},

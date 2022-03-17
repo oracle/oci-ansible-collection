@@ -124,6 +124,27 @@ data_safe_private_endpoints:
     returned: on success
     type: complex
     contains:
+        private_endpoint_ip:
+            description:
+                - The private IP address of the private endpoint.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: private_endpoint_ip_example
+        endpoint_fqdn:
+            description:
+                - The three-label fully qualified domain name (FQDN) of the private endpoint. The customer VCN's DNS records are updated with this FQDN.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: endpoint_fqdn_example
+        nsg_ids:
+            description:
+                - The OCIDs of the network security groups that the private endpoint belongs to.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - The OCID of the Data Safe private endpoint.
@@ -160,20 +181,6 @@ data_safe_private_endpoints:
             returned: on success
             type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-        private_endpoint_ip:
-            description:
-                - The private IP address of the private endpoint.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: private_endpoint_ip_example
-        endpoint_fqdn:
-            description:
-                - The three-label fully qualified domain name (FQDN) of the private endpoint. The customer VCN's DNS records are updated with this FQDN.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: endpoint_fqdn_example
         description:
             description:
                 - The description of the private endpoint.
@@ -192,13 +199,6 @@ data_safe_private_endpoints:
             returned: on success
             type: str
             sample: CREATING
-        nsg_ids:
-            description:
-                - The OCIDs of the network security groups that the private endpoint belongs to.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
@@ -223,18 +223,18 @@ data_safe_private_endpoints:
             type: dict
             sample: {}
     sample: [{
+        "private_endpoint_ip": "private_endpoint_ip_example",
+        "endpoint_fqdn": "endpoint_fqdn_example",
+        "nsg_ids": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
-        "private_endpoint_ip": "private_endpoint_ip_example",
-        "endpoint_fqdn": "endpoint_fqdn_example",
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "nsg_ids": [],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

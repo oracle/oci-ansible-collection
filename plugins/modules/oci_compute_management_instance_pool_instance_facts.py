@@ -100,12 +100,6 @@ instance_pool_instances:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
@@ -113,12 +107,6 @@ instance_pool_instances:
             returned: on success
             type: str
             sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
-        availability_domain:
-            description:
-                - The availability domain the instance is running in.
-            returned: on success
-            type: str
-            sample: Uocm:PHX-AD-1
         lifecycle_state:
             description:
                 - The attachment state of the instance in relation to the instance pool.
@@ -126,6 +114,18 @@ instance_pool_instances:
             returned: on success
             type: str
             sample: ATTACHING
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        availability_domain:
+            description:
+                - The availability domain the instance is running in.
+            returned: on success
+            type: str
+            sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the
@@ -211,10 +211,10 @@ instance_pool_instances:
                     type: str
                     sample: OK
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_pool_id": "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx",
-        "availability_domain": "Uocm:PHX-AD-1",
         "lifecycle_state": "ATTACHING",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "fault_domain": "FAULT-DOMAIN-1",

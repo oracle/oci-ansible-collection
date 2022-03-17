@@ -43,6 +43,9 @@ description:
     - For I(action=restore), restores an Autonomous Database based on the provided request parameters.
     - For I(action=rotate_autonomous_database_encryption_key), rotate existing AutonomousDatabase L(Vault
       service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
+    - For I(action=shrink), this operation shrinks the current allocated storage down to the current actual used data storage (actualUsedDataStorageSizeInTBs).
+      The if the base storage value for the database (dataStorageSizeInTBs) is larger than the actualUsedDataStorageSizeInTBs value, you are billed for the base
+      storage value.
     - For I(action=start), starts the specified Autonomous Database.
     - For I(action=stop), stops the specified Autonomous Database.
     - For I(action=switchover), initiates a switchover of the specified Autonomous Database to the associated standby database. Applicable only to databases
@@ -163,6 +166,7 @@ options:
             - "restart"
             - "restore"
             - "rotate_autonomous_database_encryption_key"
+            - "shrink"
             - "start"
             - "stop"
             - "switchover"
@@ -278,6 +282,12 @@ EXAMPLES = """
     # required
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_autonomous_database_encryption_key
+
+- name: Perform action shrink on autonomous_database
+  oci_database_autonomous_database_actions:
+    # required
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: shrink
 
 - name: Perform action start on autonomous_database
   oci_database_autonomous_database_actions:
@@ -1105,6 +1115,27 @@ autonomous_database:
                     returned: on success
                     type: str
                     sample: scheduled_stop_time_example
+        is_auto_scaling_for_storage_enabled:
+            description:
+                - Indicates if auto scaling is enabled for the Autonomous Database storage. The default value is `FALSE`.
+            returned: on success
+            type: bool
+            sample: true
+        allocated_storage_size_in_tbs:
+            description:
+                - The amount of storage currently allocated for the database tables and billed for, rounded up. When auto-scaling is not enabled, this value is
+                  equal to the `dataStorageSizeInTBs` value. You can compare this value to the `actualUsedDataStorageSizeInTBs` value to determine if a manual
+                  shrink operation is appropriate for your allocated storage.
+                - "**Note:** Auto-scaling does not automatically decrease allocated storage when data is deleted from the database."
+            returned: on success
+            type: float
+            sample: 1.2
+        actual_used_data_storage_size_in_tbs:
+            description:
+                - The current amount of storage in use for user and system data, in terabytes (TB).
+            returned: on success
+            type: float
+            sample: 1.2
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1229,7 +1260,10 @@ autonomous_database:
             },
             "scheduled_start_time": "scheduled_start_time_example",
             "scheduled_stop_time": "scheduled_stop_time_example"
-        }]
+        }],
+        "is_auto_scaling_for_storage_enabled": true,
+        "allocated_storage_size_in_tbs": 1.2,
+        "actual_used_data_storage_size_in_tbs": 1.2
     }
 """
 
@@ -1277,6 +1311,7 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
         restart
         restore
         rotate_autonomous_database_encryption_key
+        shrink
         start
         stop
         switchover
@@ -1579,6 +1614,23 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def shrink(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.shrink_autonomous_database,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def start(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.start_autonomous_database,
@@ -1682,6 +1734,7 @@ def main():
                     "restart",
                     "restore",
                     "rotate_autonomous_database_encryption_key",
+                    "shrink",
                     "start",
                     "stop",
                     "switchover",

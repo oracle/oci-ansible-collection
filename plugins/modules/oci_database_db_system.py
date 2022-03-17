@@ -1666,12 +1666,12 @@ class DbSystemHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
-            "data_storage_size_in_gbs",
+            "maintenance_window_details",
             "kms_key_version_id",
+            "db_home",
+            "initial_data_storage_size_in_gb",
             "source",
             "private_ip",
-            "db_home",
-            "maintenance_window_details",
         ]
 
     def create_resource(self):

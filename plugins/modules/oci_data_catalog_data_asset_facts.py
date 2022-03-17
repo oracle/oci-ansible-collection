@@ -161,56 +161,6 @@ data_assets:
     returned: on success
     type: complex
     contains:
-        key:
-            description:
-                - Unique data asset key that is immutable.
-            returned: on success
-            type: str
-            sample: key_example
-        display_name:
-            description:
-                - A user-friendly display name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - Detailed description of the data asset.
-            returned: on success
-            type: str
-            sample: description_example
-        catalog_id:
-            description:
-                - The data catalog's OCID.
-            returned: on success
-            type: str
-            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-        external_key:
-            description:
-                - External URI that can be used to reference the object. Format will differ based on the type of object.
-            returned: on success
-            type: str
-            sample: external_key_example
-        type_key:
-            description:
-                - The key of the object type. Type key's can be found via the '/types' endpoint.
-            returned: on success
-            type: str
-            sample: type_key_example
-        lifecycle_state:
-            description:
-                - The current state of the data asset.
-            returned: on success
-            type: str
-            sample: CREATING
-        time_created:
-            description:
-                - "The date and time the data asset was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                  Example: `2019-03-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The last time that any change was made to the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
@@ -239,12 +189,6 @@ data_assets:
             returned: on success
             type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
-        uri:
-            description:
-                - URI to the data asset instance in the API.
-            returned: on success
-            type: str
-            sample: uri_example
         custom_property_members:
             description:
                 - The list of customized properties along with the values for this object
@@ -408,20 +352,67 @@ data_assets:
             returned: on success
             type: dict
             sample: {}
+        key:
+            description:
+                - Unique data asset key that is immutable.
+            returned: on success
+            type: str
+            sample: key_example
+        display_name:
+            description:
+                - A user-friendly display name. Does not have to be unique, and it's changeable.
+                  Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        description:
+            description:
+                - Detailed description of the data asset.
+            returned: on success
+            type: str
+            sample: description_example
+        catalog_id:
+            description:
+                - The data catalog's OCID.
+            returned: on success
+            type: str
+            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        external_key:
+            description:
+                - External URI that can be used to reference the object. Format will differ based on the type of object.
+            returned: on success
+            type: str
+            sample: external_key_example
+        uri:
+            description:
+                - URI to the data asset instance in the API.
+            returned: on success
+            type: str
+            sample: uri_example
+        time_created:
+            description:
+                - "The date and time the data asset was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                  Example: `2019-03-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        type_key:
+            description:
+                - The key of the object type. Type key's can be found via the '/types' endpoint.
+            returned: on success
+            type: str
+            sample: type_key_example
+        lifecycle_state:
+            description:
+                - The current state of the data asset.
+            returned: on success
+            type: str
+            sample: CREATING
     sample: [{
-        "key": "key_example",
-        "display_name": "display_name_example",
-        "description": "description_example",
-        "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
-        "external_key": "external_key_example",
-        "type_key": "type_key_example",
-        "lifecycle_state": "CREATING",
-        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "time_harvested": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
-        "uri": "uri_example",
         "custom_property_members": [{
             "key": "key_example",
             "display_name": "display_name_example",
@@ -448,7 +439,16 @@ data_assets:
             "file_path_prefix": "file_path_prefix_example",
             "lifecycle_state": "CREATING"
         }],
-        "properties": {}
+        "properties": {},
+        "key": "key_example",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
+        "external_key": "external_key_example",
+        "uri": "uri_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "type_key": "type_key_example",
+        "lifecycle_state": "CREATING"
     }]
 """
 

@@ -378,7 +378,10 @@ class TemplateHelperGen(OCIResourceHelperBase):
         return CreateTemplateDetails
 
     def get_exclude_attributes(self):
-        return ["logo_file_base64_encoded"]
+        return [
+            "logo_file_base64_encoded",
+            "template_config_source.zip_file_base64_encoded",
+        ]
 
     def create_resource(self):
         create_details = self.get_create_model()

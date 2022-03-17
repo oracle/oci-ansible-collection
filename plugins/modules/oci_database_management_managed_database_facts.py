@@ -112,68 +112,6 @@ managed_databases:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        name:
-            description:
-                - The name of the Managed Database.
-            returned: on success
-            type: str
-            sample: name_example
-        database_type:
-            description:
-                - The type of Oracle Database installation.
-            returned: on success
-            type: str
-            sample: EXTERNAL_SIDB
-        database_sub_type:
-            description:
-                - The subtype of the Oracle Database. Indicates whether the database is a Container Database,
-                  Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.
-            returned: on success
-            type: str
-            sample: CDB
-        deployment_type:
-            description:
-                - The infrastructure used to deploy the Oracle Database.
-            returned: on success
-            type: str
-            sample: ONPREMISE
-        management_option:
-            description:
-                - The management option used when enabling Database Management.
-            returned: on success
-            type: str
-            sample: BASIC
-        workload_type:
-            description:
-                - The workload type of the Autonomous Database.
-            returned: on success
-            type: str
-            sample: OLTP
-        is_cluster:
-            description:
-                - Indicates whether the Oracle Database is part of a cluster.
-            returned: on success
-            type: bool
-            sample: true
-        parent_container_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the parent Container Database
-                  if Managed Database is a Pluggable Database.
-            returned: on success
-            type: str
-            sample: "ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx"
         managed_database_groups:
             description:
                 - A list of Managed Database Groups that the Managed Database belongs to.
@@ -200,12 +138,6 @@ managed_databases:
                     returned: on success
                     type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - The date and time the Managed Database was created.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         database_status:
             description:
                 - The status of the Oracle Database. Indicates whether the status of the database
@@ -302,23 +234,80 @@ managed_databases:
             returned: on success
             type: dict
             sample: {}
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The name of the Managed Database.
+            returned: on success
+            type: str
+            sample: name_example
+        database_type:
+            description:
+                - The type of Oracle Database installation.
+            returned: on success
+            type: str
+            sample: EXTERNAL_SIDB
+        database_sub_type:
+            description:
+                - The subtype of the Oracle Database. Indicates whether the database is a Container Database,
+                  Pluggable Database, Non-container Database, Autonomous Database, or Autonomous Container Database.
+            returned: on success
+            type: str
+            sample: CDB
+        deployment_type:
+            description:
+                - The infrastructure used to deploy the Oracle Database.
+            returned: on success
+            type: str
+            sample: ONPREMISE
+        management_option:
+            description:
+                - The management option used when enabling Database Management.
+            returned: on success
+            type: str
+            sample: BASIC
+        workload_type:
+            description:
+                - The workload type of the Autonomous Database.
+            returned: on success
+            type: str
+            sample: OLTP
+        is_cluster:
+            description:
+                - Indicates whether the Oracle Database is part of a cluster.
+            returned: on success
+            type: bool
+            sample: true
+        parent_container_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the parent Container Database
+                  if Managed Database is a Pluggable Database.
+            returned: on success
+            type: str
+            sample: "ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx"
+        time_created:
+            description:
+                - The date and time the Managed Database was created.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "name": "name_example",
-        "database_type": "EXTERNAL_SIDB",
-        "database_sub_type": "CDB",
-        "deployment_type": "ONPREMISE",
-        "management_option": "BASIC",
-        "workload_type": "OLTP",
-        "is_cluster": true,
-        "parent_container_id": "ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx",
         "managed_database_groups": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "name": "name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         }],
-        "time_created": "2013-10-20T19:20:30+01:00",
         "database_status": "UP",
         "parent_container_name": "parent_container_name_example",
         "parent_container_compartment_id": "ocid1.parentcontainercompartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -334,7 +323,18 @@ managed_databases:
             "status": "UP",
             "count": 56
         }],
-        "additional_details": {}
+        "additional_details": {},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "database_type": "EXTERNAL_SIDB",
+        "database_sub_type": "CDB",
+        "deployment_type": "ONPREMISE",
+        "management_option": "BASIC",
+        "workload_type": "OLTP",
+        "is_cluster": true,
+        "parent_container_id": "ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

@@ -80,6 +80,15 @@ secret_versions:
     returned: on success
     type: complex
     contains:
+        time_of_current_version_expiry:
+            description:
+                - "An optional property indicating when the current secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                  timestamp format.
+                  Example: `2019-04-03T21:10:29.600Z`"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         content_type:
             description:
                 - The content type of the secret version's secret contents.
@@ -125,21 +134,6 @@ secret_versions:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_of_current_version_expiry:
-            description:
-                - "An optional property indicating when the current secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                  Example: `2019-04-03T21:10:29.600Z`"
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        version_number:
-            description:
-                - The version number of the secret.
-            returned: on success
-            type: int
-            sample: 56
         time_of_expiry:
             description:
                 - "An optional property indicating when the secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
@@ -149,16 +143,22 @@ secret_versions:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        version_number:
+            description:
+                - The version number of the secret.
+            returned: on success
+            type: int
+            sample: 56
     sample: [{
+        "time_of_current_version_expiry": "2013-10-20T19:20:30+01:00",
         "content_type": "BASE64",
         "name": "name_example",
         "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx",
         "stages": [],
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_of_deletion": "2013-10-20T19:20:30+01:00",
-        "time_of_current_version_expiry": "2013-10-20T19:20:30+01:00",
-        "version_number": 56,
-        "time_of_expiry": "2013-10-20T19:20:30+01:00"
+        "time_of_expiry": "2013-10-20T19:20:30+01:00",
+        "version_number": 56
     }]
 """
 

@@ -144,20 +144,6 @@ applications:
             returned: on success
             type: dict
             sample: {}
-        compartment_id:
-            description:
-                - The OCID of a compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
         description:
             description:
                 - A user-friendly description.
@@ -165,12 +151,6 @@ applications:
             returned: on success
             type: str
             sample: description_example
-        display_name:
-            description:
-                - A user-friendly name. This name is not necessarily unique.
-            returned: on success
-            type: str
-            sample: display_name_example
         driver_shape:
             description:
                 - The VM shape for the driver. Sets the driver cores and memory.
@@ -208,32 +188,6 @@ applications:
             returned: on success
             type: str
             sample: file_uri_example
-        freeform_tags:
-            description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        id:
-            description:
-                - The application ID.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        language:
-            description:
-                - The Spark language.
-            returned: on success
-            type: str
-            sample: SCALA
-        lifecycle_state:
-            description:
-                - The current state of this application.
-            returned: on success
-            type: str
-            sample: ACTIVE
         logs_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
@@ -256,19 +210,6 @@ applications:
             returned: on success
             type: int
             sample: 56
-        owner_principal_id:
-            description:
-                - The OCID of the user who created the resource.
-            returned: on success
-            type: str
-            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
-        owner_user_name:
-            description:
-                - The username of the user who created the resource.  If the username of the owner does not exist,
-                  `null` will be returned and the caller should refer to the ownerPrincipalId value instead.
-            returned: on success
-            type: str
-            sample: owner_user_name_example
         parameters:
             description:
                 - "An array of name/value pairs used to fill placeholders found in properties like
@@ -302,6 +243,74 @@ applications:
             returned: on success
             type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        warehouse_bucket_uri:
+            description:
+                - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
+                  for BATCH SQL runs.
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: warehouse_bucket_uri_example
+        compartment_id:
+            description:
+                - The OCID of a compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        display_name:
+            description:
+                - A user-friendly name. This name is not necessarily unique.
+            returned: on success
+            type: str
+            sample: display_name_example
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        id:
+            description:
+                - The application ID.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        language:
+            description:
+                - The Spark language.
+            returned: on success
+            type: str
+            sample: SCALA
+        lifecycle_state:
+            description:
+                - The current state of this application.
+            returned: on success
+            type: str
+            sample: ACTIVE
+        owner_principal_id:
+            description:
+                - The OCID of the user who created the resource.
+            returned: on success
+            type: str
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
+        owner_user_name:
+            description:
+                - The username of the user who created the resource.  If the username of the owner does not exist,
+                  `null` will be returned and the caller should refer to the ownerPrincipalId value instead.
+            returned: on success
+            type: str
+            sample: owner_user_name_example
         spark_version:
             description:
                 - The Spark version utilized to run the application.
@@ -328,47 +337,38 @@ applications:
             returned: on success
             type: str
             sample: BATCH
-        warehouse_bucket_uri:
-            description:
-                - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
-                  for BATCH SQL runs.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: warehouse_bucket_uri_example
     sample: [{
         "archive_uri": "archive_uri_example",
         "arguments": [],
         "class_name": "class_name_example",
         "configuration": {},
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "description": "description_example",
-        "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
         "execute": "execute_example",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "language": "SCALA",
-        "lifecycle_state": "ACTIVE",
         "logs_bucket_uri": "logs_bucket_uri_example",
         "metastore_id": "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx",
         "num_executors": 56,
-        "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
-        "owner_user_name": "owner_user_name_example",
         "parameters": [{
             "name": "name_example",
             "value": "value_example"
         }],
         "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
+        "warehouse_bucket_uri": "warehouse_bucket_uri_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "display_name": "display_name_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "language": "SCALA",
+        "lifecycle_state": "ACTIVE",
+        "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
+        "owner_user_name": "owner_user_name_example",
         "spark_version": "spark_version_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "type": "BATCH",
-        "warehouse_bucket_uri": "warehouse_bucket_uri_example"
+        "type": "BATCH"
     }]
 """
 

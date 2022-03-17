@@ -97,6 +97,75 @@ triggers:
     returned: on success
     type: complex
     contains:
+        repository_id:
+            description:
+                - The OCID of the DevOps code repository.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+        actions:
+            description:
+                - The list of actions that are to be performed for this trigger.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of action that will be taken. Allowed value is TRIGGER_BUILD_PIPELINE.
+                    returned: on success
+                    type: str
+                    sample: TRIGGER_BUILD_PIPELINE
+                filter:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        trigger_source:
+                            description:
+                                - Source of the trigger. Allowed values are, GITHUB and GITLAB.
+                            returned: on success
+                            type: str
+                            sample: DEVOPS_CODE_REPOSITORY
+                        events:
+                            description:
+                                - The events only support PUSH.
+                            returned: on success
+                            type: list
+                            sample: []
+                        include:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                head_ref:
+                                    description:
+                                        - Branch for push event.
+                                    returned: on success
+                                    type: str
+                                    sample: head_ref_example
+                                base_ref:
+                                    description:
+                                        - The target branch for pull requests; not applicable for push requests.
+                                    returned: on success
+                                    type: str
+                                    sample: base_ref_example
+                build_pipeline_id:
+                    description:
+                        - The OCID of the build pipeline to be triggered.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        trigger_url:
+            description:
+                - The endpoint that listens to trigger events.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: trigger_url_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -158,61 +227,6 @@ triggers:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        actions:
-            description:
-                - The list of actions that are to be performed for this trigger.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                type:
-                    description:
-                        - The type of action that will be taken. Allowed value is TRIGGER_BUILD_PIPELINE.
-                    returned: on success
-                    type: str
-                    sample: TRIGGER_BUILD_PIPELINE
-                filter:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        trigger_source:
-                            description:
-                                - Source of the trigger. Allowed values are, GITHUB and GITLAB.
-                            returned: on success
-                            type: str
-                            sample: DEVOPS_CODE_REPOSITORY
-                        events:
-                            description:
-                                - The events only support PUSH.
-                            returned: on success
-                            type: list
-                            sample: []
-                        include:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                head_ref:
-                                    description:
-                                        - Branch for push event.
-                                    returned: on success
-                                    type: str
-                                    sample: head_ref_example
-                                base_ref:
-                                    description:
-                                        - The target branch for pull requests; not applicable for push requests.
-                                    returned: on success
-                                    type: str
-                                    sample: base_ref_example
-                build_pipeline_id:
-                    description:
-                        - The OCID of the build pipeline to be triggered.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -235,31 +249,8 @@ triggers:
             returned: on success
             type: dict
             sample: {}
-        repository_id:
-            description:
-                - The OCID of the DevOps code repository.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-        trigger_url:
-            description:
-                - The endpoint that listens to trigger events.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: trigger_url_example
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
-        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "trigger_source": "GITHUB",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACTIVE",
-        "lifecycle_details": "lifecycle_details_example",
+        "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
         "actions": [{
             "type": "TRIGGER_BUILD_PIPELINE",
             "filter": {
@@ -272,11 +263,20 @@ triggers:
             },
             "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
         }],
+        "trigger_url": "trigger_url_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "trigger_source": "GITHUB",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "ACTIVE",
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-        "trigger_url": "trigger_url_example"
+        "system_tags": {}
     }]
 """
 

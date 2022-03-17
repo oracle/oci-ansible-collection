@@ -115,24 +115,6 @@ backups:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - OCID of the backup itself
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - A user-supplied display name for the backup.
-            returned: on success
-            type: str
-            sample: display_name_example
-        description:
-            description:
-                - A user-supplied description for the backup.
-            returned: on success
-            type: str
-            sample: description_example
         compartment_id:
             description:
                 - The OCID of the compartment.
@@ -140,12 +122,6 @@ backups:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        time_created:
-            description:
-                - The time the backup record was created.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time at which the backup was updated.
@@ -153,12 +129,6 @@ backups:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The state of the backup.
-            returned: on success
-            type: str
-            sample: CREATING
         lifecycle_details:
             description:
                 - Additional information about the current lifecycleState.
@@ -166,24 +136,6 @@ backups:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        backup_type:
-            description:
-                - The type of backup.
-            returned: on success
-            type: str
-            sample: FULL
-        creation_type:
-            description:
-                - "Indicates how the backup was created: manually, automatic, or by an Operator."
-            returned: on success
-            type: str
-            sample: MANUAL
-        db_system_id:
-            description:
-                - The OCID of the DB System the backup is associated with.
-            returned: on success
-            type: str
-            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_snapshot:
             description:
                 - ""
@@ -439,6 +391,60 @@ backups:
                     returned: on success
                     type: str
                     sample: ENABLED
+        id:
+            description:
+                - OCID of the backup itself
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-supplied display name for the backup.
+            returned: on success
+            type: str
+            sample: display_name_example
+        description:
+            description:
+                - A user-supplied description for the backup.
+            returned: on success
+            type: str
+            sample: description_example
+        time_created:
+            description:
+                - The time the backup record was created.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The state of the backup.
+            returned: on success
+            type: str
+            sample: CREATING
+        backup_type:
+            description:
+                - The type of backup.
+            returned: on success
+            type: str
+            sample: FULL
+        creation_type:
+            description:
+                - "Indicates how the backup was created: manually, automatic, or by an Operator."
+            returned: on success
+            type: str
+            sample: MANUAL
+        db_system_id:
+            description:
+                - The OCID of the DB System the backup is associated with.
+            returned: on success
+            type: str
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        data_storage_size_in_gbs:
+            description:
+                - Initial size of the data volume in GiBs.
+            returned: on success
+            type: int
+            sample: 56
         backup_size_in_gbs:
             description:
                 - The size of the backup in base-2 (IEC) gibibytes. (GiB).
@@ -448,12 +454,6 @@ backups:
         retention_in_days:
             description:
                 - Number of days to retain this backup.
-            returned: on success
-            type: int
-            sample: 56
-        data_storage_size_in_gbs:
-            description:
-                - Initial size of the data volume in GiBs.
             returned: on success
             type: int
             sample: 56
@@ -484,17 +484,9 @@ backups:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "backup_type": "FULL",
-        "creation_type": "MANUAL",
-        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "db_system_snapshot": {
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example",
@@ -536,9 +528,17 @@ backups:
             "defined_tags": {'Operations': {'CostCenter': 'US'}},
             "crash_recovery": "ENABLED"
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "description": "description_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "backup_type": "FULL",
+        "creation_type": "MANUAL",
+        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+        "data_storage_size_in_gbs": 56,
         "backup_size_in_gbs": 56,
         "retention_in_days": 56,
-        "data_storage_size_in_gbs": 56,
         "mysql_version": "mysql_version_example",
         "shape_name": "shape_name_example",
         "freeform_tags": {'Department': 'Finance'},

@@ -117,60 +117,6 @@ configurations:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the Configuration.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - OCID of the Compartment the Configuration exists in.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        description:
-            description:
-                - User-provided data about the Configuration.
-            returned: on success
-            type: str
-            sample: description_example
-        display_name:
-            description:
-                - The display name of the Configuration.
-            returned: on success
-            type: str
-            sample: display_name_example
-        shape_name:
-            description:
-                - The name of the associated Shape.
-            returned: on success
-            type: str
-            sample: shape_name_example
-        type:
-            description:
-                - The Configuration type, DEFAULT or CUSTOM.
-            returned: on success
-            type: str
-            sample: DEFAULT
-        time_created:
-            description:
-                - The date and time the Configuration was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The date and time the Configuration was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        lifecycle_state:
-            description:
-                - The current state of the Configuration.
-            returned: on success
-            type: str
-            sample: ACTIVE
         variables:
             description:
                 - ""
@@ -554,6 +500,60 @@ configurations:
             returned: on success
             type: str
             sample: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The OCID of the Configuration.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - OCID of the Compartment the Configuration exists in.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - User-provided data about the Configuration.
+            returned: on success
+            type: str
+            sample: description_example
+        display_name:
+            description:
+                - The display name of the Configuration.
+            returned: on success
+            type: str
+            sample: display_name_example
+        shape_name:
+            description:
+                - The name of the associated Shape.
+            returned: on success
+            type: str
+            sample: shape_name_example
+        type:
+            description:
+                - The Configuration type, DEFAULT or CUSTOM.
+            returned: on success
+            type: str
+            sample: DEFAULT
+        lifecycle_state:
+            description:
+                - The current state of the Configuration.
+            returned: on success
+            type: str
+            sample: ACTIVE
+        time_created:
+            description:
+                - The date and time the Configuration was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The date and time the Configuration was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -569,15 +569,6 @@ configurations:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "description": "description_example",
-        "display_name": "display_name_example",
-        "shape_name": "shape_name_example",
-        "type": "DEFAULT",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACTIVE",
         "variables": {
             "completion_type": "NO_CHAIN",
             "default_authentication_plugin": "mysql_native_password",
@@ -635,6 +626,15 @@ configurations:
             "mysql_zstd_default_compression_level": 56
         },
         "parent_configuration_id": "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "display_name": "display_name_example",
+        "shape_name": "shape_name_example",
+        "type": "DEFAULT",
+        "lifecycle_state": "ACTIVE",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

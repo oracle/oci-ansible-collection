@@ -100,36 +100,6 @@ connections:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The OCID of the resource
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - OCID of the compartment
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        database_type:
-            description:
-                - Database connection type.
-            returned: on success
-            type: str
-            sample: MANUAL
-        display_name:
-            description:
-                - Database Connection display name identifier.
-            returned: on success
-            type: str
-            sample: display_name_example
-        database_id:
-            description:
-                - The OCID of the cloud database.
-            returned: on success
-            type: str
-            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         connect_descriptor:
             description:
                 - ""
@@ -272,6 +242,48 @@ connections:
                     returned: on success
                     type: str
                     sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The OCID of the resource
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - OCID of the compartment
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        database_type:
+            description:
+                - Database connection type.
+            returned: on success
+            type: str
+            sample: MANUAL
+        display_name:
+            description:
+                - Database Connection display name identifier.
+            returned: on success
+            type: str
+            sample: display_name_example
+        database_id:
+            description:
+                - The OCID of the cloud database.
+            returned: on success
+            type: str
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        time_created:
+            description:
+                - The time the Connection resource was created. An RFC3339 formatted datetime string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time of the last Connection resource details update. An RFC3339 formatted datetime string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Connection resource.
@@ -285,18 +297,6 @@ connections:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        time_created:
-            description:
-                - The time the Connection resource was created. An RFC3339 formatted datetime string.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time of the last Connection resource details update. An RFC3339 formatted datetime string.
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -319,11 +319,6 @@ connections:
             type: dict
             sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "database_type": "MANUAL",
-        "display_name": "display_name_example",
-        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "connect_descriptor": {
             "host": "host_example",
             "port": 56,
@@ -351,10 +346,15 @@ connections:
             "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
             "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         },
-        "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_type": "MANUAL",
+        "display_name": "display_name_example",
+        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}

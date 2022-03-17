@@ -77,6 +77,13 @@ repository_mirror_records:
     returned: on success
     type: complex
     contains:
+        time_ended:
+            description:
+                - The time taken to complete a mirror operation. Value is null if not completed.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         mirror_status:
             description:
                 - "Mirror status of current mirror entry.
@@ -105,13 +112,6 @@ repository_mirror_records:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
-        time_ended:
-            description:
-                - The time taken to complete a mirror operation. Value is null if not completed.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         time_completed:
             description:
                 - The time to complete a mirror operation.
@@ -136,11 +136,11 @@ repository_mirror_records:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "time_ended": "2013-10-20T19:20:30+01:00",
         "mirror_status": "NONE",
         "work_request_id": "ocid1.workrequest.oc1..xxxxxxEXAMPLExxxxxx",
         "time_enqueued": "2013-10-20T19:20:30+01:00",
         "time_started": "2013-10-20T19:20:30+01:00",
-        "time_ended": "2013-10-20T19:20:30+01:00",
         "time_completed": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

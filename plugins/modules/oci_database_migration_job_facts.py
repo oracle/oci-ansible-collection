@@ -103,6 +103,31 @@ jobs:
     returned: on success
     type: complex
     contains:
+        unsupported_objects:
+            description:
+                - Database objects not supported.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of unsupported object
+                    returned: on success
+                    type: str
+                    sample: GOLDEN_GATE
+                owner:
+                    description:
+                        - Owner of the object (regular expression is allowed)
+                    returned: on success
+                    type: str
+                    sample: owner_example
+                object_name:
+                    description:
+                        - Name of the object (regular expression is allowed)
+                    returned: on success
+                    type: str
+                    sample: object_name_example
         id:
             description:
                 - The OCID of the Migration Job.
@@ -127,18 +152,6 @@ jobs:
             returned: on success
             type: str
             sample: EVALUATION
-        time_created:
-            description:
-                - The time the Migration Job was created. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        time_updated:
-            description:
-                - The time the Migration Job was last updated. An RFC3339 formatted datetime string
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         progress:
             description:
                 - ""
@@ -241,31 +254,18 @@ jobs:
                     returned: on success
                     type: int
                     sample: 56
-        unsupported_objects:
+        time_created:
             description:
-                - Database objects not supported.
-                - Returned for get operation
+                - The time the Migration Job was created. An RFC3339 formatted datetime string
             returned: on success
-            type: complex
-            contains:
-                type:
-                    description:
-                        - Type of unsupported object
-                    returned: on success
-                    type: str
-                    sample: GOLDEN_GATE
-                owner:
-                    description:
-                        - Owner of the object (regular expression is allowed)
-                    returned: on success
-                    type: str
-                    sample: owner_example
-                object_name:
-                    description:
-                        - Name of the object (regular expression is allowed)
-                    returned: on success
-                    type: str
-                    sample: object_name_example
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        time_updated:
+            description:
+                - The time the Migration Job was last updated. An RFC3339 formatted datetime string
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the migration job.
@@ -301,12 +301,15 @@ jobs:
             type: dict
             sample: {}
     sample: [{
+        "unsupported_objects": [{
+            "type": "GOLDEN_GATE",
+            "owner": "owner_example",
+            "object_name": "object_name_example"
+        }],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "migration_id": "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx",
         "type": "EVALUATION",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00",
         "progress": {
             "current_status": "PENDING",
             "current_phase": "ODMS_VALIDATE_TGT",
@@ -328,11 +331,8 @@ jobs:
             }],
             "job_progress": 56
         },
-        "unsupported_objects": [{
-            "type": "GOLDEN_GATE",
-            "owner": "owner_example",
-            "object_name": "object_name_example"
-        }],
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACCEPTED",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},

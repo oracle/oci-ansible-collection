@@ -12,6 +12,7 @@ try:
     import oci
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
     from oci.util import to_dict
+    from oci.database_management import DbManagementClient
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -20,6 +21,7 @@ except ImportError:
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
+    oci_config_utils,
 )
 
 logger = oci_common_utils.get_logger("oci_database_management_custom_helpers")
@@ -50,11 +52,35 @@ def compare_change_db_params(existing_params, new_param):
 
 
 class ManagedDatabaseActionsHelperCustom:
+    CLONE_SQL_TUNING_TASK = "clone_sql_tuning_task"
+    DROP_SQL_TUNING_TASK = "drop_sql_tuning_task"
+    START_SQL_TUNING_TASK = "start_sql_tuning_task"
+
+    def __init__(self, *args, **kwargs):
+        super(ManagedDatabaseActionsHelperCustom, self).__init__(*args, **kwargs)
+        self.db_mgmt_client = oci_config_utils.create_service_client(
+            self.module, DbManagementClient
+        )
+
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.db_mgmt_client.get_managed_database,
+            managed_database_id=self.module.params.get("managed_database_id"),
+        )
+
     def perform_action(self, action):
         """
         Overrides the base to invoke the actions for this
-        resource as they dont need an explicit get_resource call.
+        resource as they don't need an explicit get_resource call.
         """
+        if action.lower() not in [
+            self.CLONE_SQL_TUNING_TASK,
+            self.DROP_SQL_TUNING_TASK,
+            self.START_SQL_TUNING_TASK,
+        ]:
+            return super(ManagedDatabaseActionsHelperCustom, self).perform_action(
+                action
+            )
 
         action_fn = self.get_action_fn(action)
         if not action_fn:

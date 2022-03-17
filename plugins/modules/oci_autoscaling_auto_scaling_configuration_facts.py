@@ -91,76 +91,6 @@ auto_scaling_configurations:
     returned: on success
     type: complex
     contains:
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the autoscaling
-                  configuration.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        display_name:
-            description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                  predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        cool_down_in_seconds:
-            description:
-                - For threshold-based autoscaling policies, this value is the minimum period of time to wait between scaling actions.
-                  The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which
-                  is also the default. The cooldown period starts when the instance pool reaches the running state.
-                - For schedule-based autoscaling policies, this value is not used.
-            returned: on success
-            type: int
-            sample: 56
-        is_enabled:
-            description:
-                - Whether the autoscaling configuration is enabled.
-            returned: on success
-            type: bool
-            sample: true
-        resource:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                type:
-                    description:
-                        - The type of resource.
-                    returned: on success
-                    type: str
-                    sample: instancePool
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource that is managed by the autoscaling
-                          configuration.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         policies:
             description:
                 - Autoscaling policy definitions for the autoscaling configuration. An autoscaling policy defines the criteria that
@@ -169,6 +99,52 @@ auto_scaling_configurations:
             returned: on success
             type: complex
             contains:
+                execution_schedule:
+                    description:
+                        - The schedule for executing the autoscaling policy.
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The type of execution schedule.
+                            returned: on success
+                            type: str
+                            sample: cron
+                        timezone:
+                            description:
+                                - The time zone for the execution schedule.
+                            returned: on success
+                            type: str
+                            sample: UTC
+                        expression:
+                            description:
+                                - A cron expression that represents the time at which to execute the autoscaling policy.
+                                - "Cron expressions have this format: `<second> <minute> <hour> <day of month> <month> <day of week> <year>`"
+                                - You can use special characters that are supported with the Quartz cron implementation.
+                                - You must specify `0` as the value for seconds.
+                                - "Example: `0 15 10 ? * *`"
+                            returned: on success
+                            type: str
+                            sample: expression_example
+                resource_action:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        action_type:
+                            description:
+                                - The type of resource action.
+                            returned: on success
+                            type: str
+                            sample: power
+                        action:
+                            description:
+                                - ""
+                            returned: on success
+                            type: str
+                            sample: STOP
                 capacity:
                     description:
                         - The capacity requirements of the autoscaling policy.
@@ -233,52 +209,6 @@ auto_scaling_configurations:
                     returned: on success
                     type: bool
                     sample: true
-                execution_schedule:
-                    description:
-                        - The schedule for executing the autoscaling policy.
-                    returned: on success
-                    type: complex
-                    contains:
-                        type:
-                            description:
-                                - The type of execution schedule.
-                            returned: on success
-                            type: str
-                            sample: cron
-                        timezone:
-                            description:
-                                - The time zone for the execution schedule.
-                            returned: on success
-                            type: str
-                            sample: UTC
-                        expression:
-                            description:
-                                - A cron expression that represents the time at which to execute the autoscaling policy.
-                                - "Cron expressions have this format: `<second> <minute> <hour> <day of month> <month> <day of week> <year>`"
-                                - You can use special characters that are supported with the Quartz cron implementation.
-                                - You must specify `0` as the value for seconds.
-                                - "Example: `0 15 10 ? * *`"
-                            returned: on success
-                            type: str
-                            sample: expression_example
-                resource_action:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        action_type:
-                            description:
-                                - The type of resource action.
-                            returned: on success
-                            type: str
-                            sample: power
-                        action:
-                            description:
-                                - ""
-                            returned: on success
-                            type: str
-                            sample: STOP
                 rules:
                     description:
                         - ""
@@ -347,13 +277,6 @@ auto_scaling_configurations:
                                             returned: on success
                                             type: int
                                             sample: 56
-        time_created:
-            description:
-                - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
-                - "Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         max_resource_count:
             description:
                 - The maximum number of resources to scale out to.
@@ -368,19 +291,94 @@ auto_scaling_configurations:
             returned: on success
             type: int
             sample: 56
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the autoscaling
+                  configuration.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        cool_down_in_seconds:
+            description:
+                - For threshold-based autoscaling policies, this value is the minimum period of time to wait between scaling actions.
+                  The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which
+                  is also the default. The cooldown period starts when the instance pool reaches the running state.
+                - For schedule-based autoscaling policies, this value is not used.
+            returned: on success
+            type: int
+            sample: 56
+        is_enabled:
+            description:
+                - Whether the autoscaling configuration is enabled.
+            returned: on success
+            type: bool
+            sample: true
+        resource:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of resource.
+                    returned: on success
+                    type: str
+                    sample: instancePool
+                id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource that is managed by the autoscaling
+                          configuration.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        time_created:
+            description:
+                - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "display_name": "display_name_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "cool_down_in_seconds": 56,
-        "is_enabled": true,
-        "resource": {
-            "type": "instancePool",
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        },
         "policies": [{
+            "execution_schedule": {
+                "type": "cron",
+                "timezone": "UTC",
+                "expression": "expression_example"
+            },
+            "resource_action": {
+                "action_type": "power",
+                "action": "STOP"
+            },
             "capacity": {
                 "max": 56,
                 "min": 56,
@@ -391,15 +389,6 @@ auto_scaling_configurations:
             "policy_type": "scheduled",
             "time_created": "2013-10-20T19:20:30+01:00",
             "is_enabled": true,
-            "execution_schedule": {
-                "type": "cron",
-                "timezone": "UTC",
-                "expression": "expression_example"
-            },
-            "resource_action": {
-                "action_type": "power",
-                "action": "STOP"
-            },
             "rules": [{
                 "action": {
                     "type": "CHANGE_COUNT_BY",
@@ -416,9 +405,20 @@ auto_scaling_configurations:
                 }
             }]
         }],
-        "time_created": "2013-10-20T19:20:30+01:00",
         "max_resource_count": 56,
-        "min_resource_count": 56
+        "min_resource_count": 56,
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "cool_down_in_seconds": 56,
+        "is_enabled": true,
+        "resource": {
+            "type": "instancePool",
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 

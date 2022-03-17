@@ -101,6 +101,13 @@ web_app_firewalls:
     returned: on success
     type: complex
     contains:
+        load_balancer_id:
+            description:
+                - LoadBalancer L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) to which the WebAppFirewallPolicy is attached to.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WebAppFirewall.
@@ -177,14 +184,8 @@ web_app_firewalls:
             returned: on success
             type: dict
             sample: {}
-        load_balancer_id:
-            description:
-                - LoadBalancer L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) to which the WebAppFirewallPolicy is attached to.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
+        "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -196,8 +197,7 @@ web_app_firewalls:
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        "system_tags": {}
     }]
 """
 

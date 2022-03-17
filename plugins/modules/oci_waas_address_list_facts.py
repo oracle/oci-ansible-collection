@@ -112,6 +112,13 @@ address_lists:
     returned: on success
     type: complex
     contains:
+        addresses:
+            description:
+                - The list of IP addresses or CIDR notations.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the address list.
@@ -136,13 +143,6 @@ address_lists:
             returned: on success
             type: float
             sample: 10
-        addresses:
-            description:
-                - The list of IP addresses or CIDR notations.
-                - Returned for get operation
-            returned: on success
-            type: list
-            sample: []
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -172,11 +172,11 @@ address_lists:
             type: str
             sample: "2013-10-20T19:20:30+01:00"
     sample: [{
+        "addresses": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "address_count": 10,
-        "addresses": [],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",

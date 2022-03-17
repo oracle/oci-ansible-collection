@@ -101,12 +101,6 @@ sdks:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         api_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of API resource
@@ -114,6 +108,44 @@ sdks:
             returned: on success
             type: str
             sample: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
+        artifact_url:
+            description:
+                - File location for generated SDK.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: artifact_url_example
+        time_artifact_url_expires_at:
+            description:
+                - Expiry of artifact url.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail.
+                  For example, can be used to provide actionable information for a
+                  resource in a Failed state.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
+        parameters:
+            description:
+                - "Additional optional configurations passed.
+                  The applicable config keys are listed under \\"parameters\\" when \\"/sdkLanguageTypes\\" is called."
+                - "Example: `{\\"configName\\": \\"configValue\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -147,20 +179,6 @@ sdks:
             returned: on success
             type: str
             sample: target_language_example
-        artifact_url:
-            description:
-                - File location for generated SDK.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: artifact_url_example
-        time_artifact_url_expires_at:
-            description:
-                - Expiry of artifact url.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - "The current state of the SDK.
@@ -172,15 +190,6 @@ sdks:
             returned: on success
             type: str
             sample: CREATING
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail.
-                  For example, can be used to provide actionable information for a
-                  resource in a Failed state.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -199,30 +208,21 @@ sdks:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        parameters:
-            description:
-                - "Additional optional configurations passed.
-                  The applicable config keys are listed under \\"parameters\\" when \\"/sdkLanguageTypes\\" is called."
-                - "Example: `{\\"configName\\": \\"configValue\\"}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "api_id": "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx",
+        "artifact_url": "artifact_url_example",
+        "time_artifact_url_expires_at": "2013-10-20T19:20:30+01:00",
+        "lifecycle_details": "lifecycle_details_example",
+        "parameters": {},
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "display_name": "display_name_example",
         "target_language": "target_language_example",
-        "artifact_url": "artifact_url_example",
-        "time_artifact_url_expires_at": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "parameters": {}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

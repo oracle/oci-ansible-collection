@@ -789,12 +789,6 @@ target:
                                             returned: on success
                                             type: complex
                                             contains:
-                                                kind:
-                                                    description:
-                                                        - Type of condition object
-                                                    returned: on success
-                                                    type: str
-                                                    sample: COMPOSITE
                                                 left_operand:
                                                     description:
                                                         - ""
@@ -825,6 +819,12 @@ target:
                                                             returned: on success
                                                             type: str
                                                             sample: COMPOSITE
+                                                kind:
+                                                    description:
+                                                        - Type of condition object
+                                                    returned: on success
+                                                    type: str
+                                                    sample: COMPOSITE
                                                 parameter:
                                                     description:
                                                         - parameter Key
@@ -1084,12 +1084,6 @@ target:
                                             returned: on success
                                             type: complex
                                             contains:
-                                                kind:
-                                                    description:
-                                                        - Type of condition object
-                                                    returned: on success
-                                                    type: str
-                                                    sample: COMPOSITE
                                                 left_operand:
                                                     description:
                                                         - ""
@@ -1120,6 +1114,12 @@ target:
                                                             returned: on success
                                                             type: str
                                                             sample: COMPOSITE
+                                                kind:
+                                                    description:
+                                                        - Type of condition object
+                                                    returned: on success
+                                                    type: str
+                                                    sample: COMPOSITE
                                                 parameter:
                                                     description:
                                                         - parameter Key
@@ -1373,12 +1373,6 @@ target:
                                     returned: on success
                                     type: complex
                                     contains:
-                                        kind:
-                                            description:
-                                                - Type of condition object
-                                            returned: on success
-                                            type: str
-                                            sample: COMPOSITE
                                         left_operand:
                                             description:
                                                 - ""
@@ -1409,6 +1403,12 @@ target:
                                                     returned: on success
                                                     type: str
                                                     sample: COMPOSITE
+                                        kind:
+                                            description:
+                                                - Type of condition object
+                                            returned: on success
+                                            type: str
+                                            sample: COMPOSITE
                                         parameter:
                                             description:
                                                 - parameter Key
@@ -1554,12 +1554,6 @@ target:
                                     returned: on success
                                     type: complex
                                     contains:
-                                        kind:
-                                            description:
-                                                - Type of condition object
-                                            returned: on success
-                                            type: str
-                                            sample: COMPOSITE
                                         left_operand:
                                             description:
                                                 - ""
@@ -1590,6 +1584,12 @@ target:
                                                     returned: on success
                                                     type: str
                                                     sample: COMPOSITE
+                                        kind:
+                                            description:
+                                                - Type of condition object
+                                            returned: on success
+                                            type: str
+                                            sample: COMPOSITE
                                         parameter:
                                             description:
                                                 - parameter Key
@@ -1777,7 +1777,6 @@ target:
                     "condition_groups": [{
                         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                         "condition": {
-                            "kind": "COMPOSITE",
                             "left_operand": {
                                 "kind": "COMPOSITE"
                             },
@@ -1785,6 +1784,7 @@ target:
                             "right_operand": {
                                 "kind": "COMPOSITE"
                             },
+                            "kind": "COMPOSITE",
                             "parameter": "parameter_example",
                             "operator": "IN",
                             "value": "value_example",
@@ -1835,7 +1835,6 @@ target:
                     "condition_groups": [{
                         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                         "condition": {
-                            "kind": "COMPOSITE",
                             "left_operand": {
                                 "kind": "COMPOSITE"
                             },
@@ -1843,6 +1842,7 @@ target:
                             "right_operand": {
                                 "kind": "COMPOSITE"
                             },
+                            "kind": "COMPOSITE",
                             "parameter": "parameter_example",
                             "operator": "IN",
                             "value": "value_example",
@@ -1891,7 +1891,6 @@ target:
                 "supported_modes": [],
                 "details": {
                     "condition": {
-                        "kind": "COMPOSITE",
                         "left_operand": {
                             "kind": "COMPOSITE"
                         },
@@ -1899,6 +1898,7 @@ target:
                         "right_operand": {
                             "kind": "COMPOSITE"
                         },
+                        "kind": "COMPOSITE",
                         "parameter": "parameter_example",
                         "operator": "IN",
                         "value": "value_example",
@@ -1927,7 +1927,6 @@ target:
                 "supported_modes": [],
                 "details": {
                     "condition": {
-                        "kind": "COMPOSITE",
                         "left_operand": {
                             "kind": "COMPOSITE"
                         },
@@ -1935,6 +1934,7 @@ target:
                         "right_operand": {
                             "kind": "COMPOSITE"
                         },
+                        "kind": "COMPOSITE",
                         "parameter": "parameter_example",
                         "operator": "IN",
                         "value": "value_example",

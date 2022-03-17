@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.45.0
+Collection version 2.46.0
 
 .. toctree::
     :maxdepth: 1
@@ -462,6 +462,7 @@ Modules
 * :ref:`oci_database_key_store_facts <ansible_collections.oracle.oci.oci_database_key_store_facts_module>` -- Fetches details about one or multiple KeyStore resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run <ansible_collections.oracle.oci.oci_database_maintenance_run_module>` -- Manage a MaintenanceRun resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run_facts <ansible_collections.oracle.oci.oci_database_maintenance_run_facts_module>` -- Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_asm_property_facts <ansible_collections.oracle.oci.oci_database_management_asm_property_facts_module>` -- Fetches details about one or multiple AsmProperty resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_associated_database_facts <ansible_collections.oracle.oci.oci_database_management_associated_database_facts_module>` -- Fetches details about one or multiple AssociatedDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_cpu_usage_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_cpu_usage_facts_module>` -- Fetches details about a AwrDbCpuUsage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_facts_module>` -- Fetches details about one or multiple AwrDb resources in Oracle Cloud Infrastructure
@@ -509,6 +510,8 @@ Modules
 * :ref:`oci_database_management_sql_tuning_advisor_task_sql_execution_plan_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_advisor_task_sql_execution_plan_facts_module>` -- Fetches details about a SqlTuningAdvisorTaskSqlExecutionPlan resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_sql_tuning_advisor_task_summary_report_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_advisor_task_summary_report_facts_module>` -- Fetches details about a SqlTuningAdvisorTaskSummaryReport resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_system_privilege_facts <ansible_collections.oracle.oci.oci_database_management_system_privilege_facts_module>` -- Fetches details about one or multiple SystemPrivilege resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_tablespace <ansible_collections.oracle.oci.oci_database_management_tablespace_module>` -- Manage a Tablespace resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_tablespace_actions <ansible_collections.oracle.oci.oci_database_management_tablespace_actions_module>` -- Perform actions on a Tablespace resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_tablespace_facts <ansible_collections.oracle.oci.oci_database_management_tablespace_facts_module>` -- Fetches details about one or multiple Tablespace resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_user_facts <ansible_collections.oracle.oci.oci_database_management_user_facts_module>` -- Fetches details about one or multiple User resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_agent <ansible_collections.oracle.oci.oci_database_migration_agent_module>` -- Manage an Agent resource in Oracle Cloud Infrastructure
@@ -1796,6 +1799,7 @@ Modules
     oci_database_key_store_facts_module
     oci_database_maintenance_run_module
     oci_database_maintenance_run_facts_module
+    oci_database_management_asm_property_facts_module
     oci_database_management_associated_database_facts_module
     oci_database_management_awr_db_cpu_usage_facts_module
     oci_database_management_awr_db_facts_module
@@ -1843,6 +1847,8 @@ Modules
     oci_database_management_sql_tuning_advisor_task_sql_execution_plan_facts_module
     oci_database_management_sql_tuning_advisor_task_summary_report_facts_module
     oci_database_management_system_privilege_facts_module
+    oci_database_management_tablespace_module
+    oci_database_management_tablespace_actions_module
     oci_database_management_tablespace_facts_module
     oci_database_management_user_facts_module
     oci_database_migration_agent_module

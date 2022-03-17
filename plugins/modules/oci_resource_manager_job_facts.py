@@ -118,6 +118,116 @@ jobs:
     returned: on success
     type: complex
     contains:
+        failure_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                code:
+                    description:
+                        - Job failure reason.
+                    returned: on success
+                    type: str
+                    sample: INTERNAL_SERVICE_ERROR
+                message:
+                    description:
+                        - A human-readable error string.
+                    returned: on success
+                    type: str
+                    sample: message_example
+        cancellation_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                is_forced:
+                    description:
+                        - Indicates whether a forced cancellation was requested for the job while it was running.
+                          A forced cancellation can result in an incorrect state file.
+                          For example, the state file might not reflect the exact state of the provisioned resources.
+                    returned: on success
+                    type: bool
+                    sample: true
+        working_directory:
+            description:
+                - File path to the directory from which Terraform runs.
+                  If not specified, the root directory is used.
+                  This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: working_directory_example
+        variables:
+            description:
+                - "Terraform variables associated with this resource.
+                  Maximum number of variables supported is 250.
+                  The maximum size of each variable, including both name and value, is 8192 bytes.
+                  Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        config_source:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                configuration_source_provider_id:
+                    description:
+                        - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
+                          for the Git configuration source.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
+                repository_url:
+                    description:
+                        - The URL of the Git repository.
+                    returned: on success
+                    type: str
+                    sample: repository_url_example
+                branch_name:
+                    description:
+                        - The name of the branch within the Git repository.
+                    returned: on success
+                    type: str
+                    sample: branch_name_example
+                commit_id:
+                    description:
+                        - The unique identifier (SHA-1 hash) of the individual change to the Git repository.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+                region:
+                    description:
+                        - "The name of the bucket's region.
+                          Example: `PHX`"
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket.
+                    returned: on success
+                    type: str
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - The name of the bucket that contains the Terraform configuration files.
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+                config_source_record_type:
+                    description:
+                        - The type of configuration source to use for the Terraform configuration.
+                    returned: on success
+                    type: str
+                    sample: ZIP_UPLOAD
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job.
@@ -155,6 +265,21 @@ jobs:
             returned: on success
             type: complex
             contains:
+                execution_plan_job_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the plan job that contains the execution
+                          plan used for this job,
+                          or `null` if no execution plan was used.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
+                execution_plan_strategy:
+                    description:
+                        - Specifies the source of the execution plan to apply.
+                          Use `AUTO_APPROVED` to run the job without an execution plan.
+                    returned: on success
+                    type: str
+                    sample: FROM_PLAN_JOB_ID
                 operation:
                     description:
                         - Terraform-specific operation to execute.
@@ -192,21 +317,6 @@ jobs:
                             returned: on success
                             type: str
                             sample: ERROR
-                execution_plan_strategy:
-                    description:
-                        - Specifies the source of the execution plan to apply.
-                          Use `AUTO_APPROVED` to run the job without an execution plan.
-                    returned: on success
-                    type: str
-                    sample: FROM_PLAN_JOB_ID
-                execution_plan_job_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the plan job that contains the execution
-                          plan used for this job,
-                          or `null` if no execution plan was used.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         apply_job_plan_resolution:
             description:
                 - ""
@@ -269,116 +379,6 @@ jobs:
             returned: on success
             type: str
             sample: ACCEPTED
-        failure_details:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                code:
-                    description:
-                        - Job failure reason.
-                    returned: on success
-                    type: str
-                    sample: INTERNAL_SERVICE_ERROR
-                message:
-                    description:
-                        - A human-readable error string.
-                    returned: on success
-                    type: str
-                    sample: message_example
-        cancellation_details:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                is_forced:
-                    description:
-                        - Indicates whether a forced cancellation was requested for the job while it was running.
-                          A forced cancellation can result in an incorrect state file.
-                          For example, the state file might not reflect the exact state of the provisioned resources.
-                    returned: on success
-                    type: bool
-                    sample: true
-        working_directory:
-            description:
-                - File path to the directory from which Terraform runs.
-                  If not specified, the root directory is used.
-                  This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: working_directory_example
-        variables:
-            description:
-                - "Terraform variables associated with this resource.
-                  Maximum number of variables supported is 250.
-                  The maximum size of each variable, including both name and value, is 8192 bytes.
-                  Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
-        config_source:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                config_source_record_type:
-                    description:
-                        - The type of configuration source to use for the Terraform configuration.
-                    returned: on success
-                    type: str
-                    sample: ZIP_UPLOAD
-                configuration_source_provider_id:
-                    description:
-                        - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
-                          for the Git configuration source.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
-                repository_url:
-                    description:
-                        - The URL of the Git repository.
-                    returned: on success
-                    type: str
-                    sample: repository_url_example
-                branch_name:
-                    description:
-                        - The name of the branch within the Git repository.
-                    returned: on success
-                    type: str
-                    sample: branch_name_example
-                commit_id:
-                    description:
-                        - The unique identifier (SHA-1 hash) of the individual change to the Git repository.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
-                region:
-                    description:
-                        - "The name of the bucket's region.
-                          Example: `PHX`"
-                    returned: on success
-                    type: str
-                    sample: us-phoenix-1
-                namespace:
-                    description:
-                        - The Object Storage namespace that contains the bucket.
-                    returned: on success
-                    type: str
-                    sample: namespace_example
-                bucket_name:
-                    description:
-                        - The name of the bucket that contains the Terraform configuration files.
-                    returned: on success
-                    type: str
-                    sample: bucket_name_example
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -396,30 +396,6 @@ jobs:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "stack_id": "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "operation": "PLAN",
-        "job_operation_details": {
-            "operation": "APPLY",
-            "terraform_advanced_options": {
-                "is_refresh_required": true,
-                "parallelism": 56,
-                "detailed_log_level": "ERROR"
-            },
-            "execution_plan_strategy": "FROM_PLAN_JOB_ID",
-            "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
-        },
-        "apply_job_plan_resolution": {
-            "plan_job_id": "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx",
-            "is_use_latest_job_id": true,
-            "is_auto_approved": true
-        },
-        "resolved_plan_job_id": "ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "time_finished": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACCEPTED",
         "failure_details": {
             "code": "INTERNAL_SERVICE_ERROR",
             "message": "message_example"
@@ -430,15 +406,39 @@ jobs:
         "working_directory": "working_directory_example",
         "variables": {},
         "config_source": {
-            "config_source_record_type": "ZIP_UPLOAD",
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
             "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
-            "bucket_name": "bucket_name_example"
+            "bucket_name": "bucket_name_example",
+            "config_source_record_type": "ZIP_UPLOAD"
         },
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "stack_id": "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "operation": "PLAN",
+        "job_operation_details": {
+            "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx",
+            "execution_plan_strategy": "FROM_PLAN_JOB_ID",
+            "operation": "APPLY",
+            "terraform_advanced_options": {
+                "is_refresh_required": true,
+                "parallelism": 56,
+                "detailed_log_level": "ERROR"
+            }
+        },
+        "apply_job_plan_resolution": {
+            "plan_job_id": "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx",
+            "is_use_latest_job_id": true,
+            "is_auto_approved": true
+        },
+        "resolved_plan_job_id": "ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_finished": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "ACCEPTED",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

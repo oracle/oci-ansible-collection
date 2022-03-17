@@ -242,7 +242,7 @@ class AppCatalogSubscriptionHelperGen(OCIResourceHelperBase):
         return CreateAppCatalogSubscriptionDetails
 
     def get_exclude_attributes(self):
-        return ["oracle_terms_of_use_link", "eula_link", "time_retrieved", "signature"]
+        return ["signature", "time_retrieved", "oracle_terms_of_use_link", "eula_link"]
 
     def create_resource(self):
         create_details = self.get_create_model()

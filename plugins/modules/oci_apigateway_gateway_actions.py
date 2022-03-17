@@ -164,12 +164,6 @@ gateway:
             returned: on success
             type: complex
             contains:
-                type:
-                    description:
-                        - Type of the Response Cache.
-                    returned: on success
-                    type: str
-                    sample: EXTERNAL_RESP_CACHE
                 servers:
                     description:
                         - The set of cache store members to connect to. At present only a single server is supported.
@@ -230,6 +224,12 @@ gateway:
                     returned: on success
                     type: int
                     sample: 56
+                type:
+                    description:
+                        - Type of the Response Cache.
+                    returned: on success
+                    type: str
+                    sample: EXTERNAL_RESP_CACHE
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -254,18 +254,18 @@ gateway:
             returned: on success
             type: complex
             contains:
-                type:
-                    description:
-                        - Type of the CA bundle
-                    returned: on success
-                    type: str
-                    sample: CA_BUNDLE
                 ca_bundle_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
                     returned: on success
                     type: str
                     sample: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
+                type:
+                    description:
+                        - Type of the CA bundle
+                    returned: on success
+                    type: str
+                    sample: CA_BUNDLE
                 certificate_authority_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
@@ -289,7 +289,6 @@ gateway:
             "ip_address": "ip_address_example"
         }],
         "response_cache_details": {
-            "type": "EXTERNAL_RESP_CACHE",
             "servers": [{
                 "host": "host_example",
                 "port": 56
@@ -300,13 +299,14 @@ gateway:
             "is_ssl_verify_disabled": true,
             "connect_timeout_in_ms": 56,
             "read_timeout_in_ms": 56,
-            "send_timeout_in_ms": 56
+            "send_timeout_in_ms": 56,
+            "type": "EXTERNAL_RESP_CACHE"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "ca_bundles": [{
-            "type": "CA_BUNDLE",
             "ca_bundle_id": "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx",
+            "type": "CA_BUNDLE",
             "certificate_authority_id": "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
         }]
     }

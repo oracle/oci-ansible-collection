@@ -111,30 +111,6 @@ models:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model's compartment.
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        project_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the model.
-            returned: on success
-            type: str
-            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
-            returned: on success
-            type: str
-            sample: display_name_example
         description:
             description:
                 - A short description of the model.
@@ -142,41 +118,6 @@ models:
             returned: on success
             type: str
             sample: description_example
-        lifecycle_state:
-            description:
-                - The state of the model.
-            returned: on success
-            type: str
-            sample: ACTIVE
-        time_created:
-            description:
-                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                  Example: 2019-08-25T21:10:29.41Z"
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
-        created_by:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the model.
-            returned: on success
-            type: str
-            sample: created_by_example
-        freeform_tags:
-            description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
         custom_metadata_list:
             description:
                 - An array of custom metadata details for the model.
@@ -283,17 +224,67 @@ models:
             returned: on success
             type: str
             sample: output_schema_example
+        compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model's compartment.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        project_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the model.
+            returned: on success
+            type: str
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
+            returned: on success
+            type: str
+            sample: display_name_example
+        created_by:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the model.
+            returned: on success
+            type: str
+            sample: created_by_example
+        time_created:
+            description:
+                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                  Example: 2019-08-25T21:10:29.41Z"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_state:
+            description:
+                - The state of the model.
+            returned: on success
+            type: str
+            sample: ACTIVE
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
         "description": "description_example",
-        "lifecycle_state": "ACTIVE",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "created_by": "created_by_example",
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "custom_metadata_list": [{
             "key": "key_example",
             "value": "value_example",
@@ -307,7 +298,16 @@ models:
             "category": "category_example"
         }],
         "input_schema": "input_schema_example",
-        "output_schema": "output_schema_example"
+        "output_schema": "output_schema_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "created_by": "created_by_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "ACTIVE",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

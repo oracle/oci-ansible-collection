@@ -25,6 +25,24 @@ class ScriptHelperCustom:
             resource_dict["parameters"] = parameters
         return resource_dict
 
+    def get_exclude_attributes(self):
+        """
+        parameters.param_value, parameters.is_secret, parameters.param_name are not present in the
+        GET return model so these properties are added as exclude_attributes in the generated module. but we are setting
+        these properties  in the get_existing_resource_dict_for_idempotence_check() to the existing resource dict
+        so these properties can be compared during idempotence check
+        """
+        exclude_attributes = super(ScriptHelperCustom, self).get_exclude_attributes()
+        remove_exclude_attributes = [
+            "parameters.param_value",
+            "parameters.is_secret",
+            "parameters.param_name",
+        ]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+        return exclude_attributes
+
     # if a script parameter is marked as secret, it would just contain "*****" in the get model.
     # So there is no reliable way for us to check it. So exclude that parameter for idempotence check.
     def get_create_model_dict_for_idempotence_check(self, existing_resource):
@@ -51,6 +69,23 @@ class MonitorHelperCustom:
                 parameters.append(existing_parameter.get("monitor_script_parameter"))
             resource_dict["script_parameters"] = parameters
         return resource_dict
+
+    def get_exclude_attributes(self):
+        """
+        script_parameters.param_value, script_parameters.param_name are not present in the
+        GET return model so these properties are added as exclude_attributes in the generated module. but we are setting
+        these properties  in the get_existing_resource_dict_for_idempotence_check() to the existing resource dict
+        so these properties can be compared during idempotence check
+        """
+        exclude_attributes = super(MonitorHelperCustom, self).get_exclude_attributes()
+        remove_exclude_attributes = [
+            "script_parameters.param_value",
+            "script_parameters.param_name",
+        ]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+        return exclude_attributes
 
     def get_existing_resource_dict_for_update(self):
         resource_dict = super(

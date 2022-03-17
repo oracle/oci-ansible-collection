@@ -751,17 +751,6 @@ class DatabaseHelperCustom:
                 create_model_dict[k] = v
         return create_model_dict
 
-    # attributes `new_admin_password`, `old_tde_wallet_password`, "new_tde_wallet_password" are not returned in GET model
-    # for security reasons.
-    def get_update_model_dict_for_idempotence_check(self, update_model):
-        update_model_dict = super(
-            DatabaseHelperCustom, self
-        ).get_update_model_dict_for_idempotence_check(update_model)
-        update_model_dict.pop("new_admin_password", None)
-        update_model_dict.pop("old_tde_wallet_password", None)
-        update_model_dict.pop("new_tde_wallet_password", None)
-        return update_model_dict
-
     def get_exclude_attributes(self):
         exclude_attributes = super(DatabaseHelperCustom, self).get_exclude_attributes()
 
@@ -829,14 +818,6 @@ class BackupDestinationHelperCustom:
             "nfs_server_export": resource_dict.get("nfs_server_export", None),
         }
         return resource_dict
-
-    def get_update_model_dict_for_idempotence_check(self, update_model):
-        update_model_dict = super(
-            BackupDestinationHelperCustom, self
-        ).get_update_model_dict_for_idempotence_check(update_model)
-        if "vpc_users" in update_model_dict:
-            del update_model_dict["vpc_users"]
-        return update_model_dict
 
     def is_update_necessary(self, existing_resource_dict):
         vpc_users_source_list = self.module.params.get("vpc_users")
@@ -930,13 +911,6 @@ class CloudVmClusterIormConfigHelperCustom:
         return super(CloudVmClusterIormConfigHelperCustom, self).is_update_necessary(
             existing_resource_dict
         )
-
-    def get_update_model_dict_for_idempotence_check(self, update_model):
-        update_model_dict = super(
-            CloudVmClusterIormConfigHelperCustom, self
-        ).get_update_model_dict_for_idempotence_check(update_model)
-        update_model_dict.pop("db_plans", None)
-        return update_model_dict
 
 
 class DbSystemActionsHelperCustom:

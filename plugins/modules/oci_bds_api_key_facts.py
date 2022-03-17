@@ -104,12 +104,6 @@ bds_api_keys:
     returned: on success
     type: complex
     contains:
-        id:
-            description:
-                - Identifier of the user's API key.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The user OCID for which this API key was created.
@@ -117,19 +111,6 @@ bds_api_keys:
             returned: on success
             type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-        key_alias:
-            description:
-                - User friendly identifier used to uniquely differentiate between different API keys.
-                  Only ASCII alphanumeric characters with no spaces allowed.
-            returned: on success
-            type: str
-            sample: key_alias_example
-        default_region:
-            description:
-                - The name of the region to establish the Object Storage endpoint. Example us-phoenix-1 .
-            returned: on success
-            type: str
-            sample: us-phoenix-1
         tenant_id:
             description:
                 - The OCID of your tenancy.
@@ -152,28 +133,47 @@ bds_api_keys:
             returned: on success
             type: str
             sample: pemfilepath_example
-        time_created:
+        id:
             description:
-                - The time the API key was created, shown as an RFC 3339 formatted datetime string.
+                - Identifier of the user's API key.
             returned: on success
             type: str
-            sample: "2013-10-20T19:20:30+01:00"
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        key_alias:
+            description:
+                - User friendly identifier used to uniquely differentiate between different API keys.
+                  Only ASCII alphanumeric characters with no spaces allowed.
+            returned: on success
+            type: str
+            sample: key_alias_example
         lifecycle_state:
             description:
                 - The state of the key.
             returned: on success
             type: str
             sample: CREATING
+        default_region:
+            description:
+                - The name of the region to establish the Object Storage endpoint. Example us-phoenix-1 .
+            returned: on success
+            type: str
+            sample: us-phoenix-1
+        time_created:
+            description:
+                - The time the API key was created, shown as an RFC 3339 formatted datetime string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
-        "key_alias": "key_alias_example",
-        "default_region": "us-phoenix-1",
         "tenant_id": "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx",
         "fingerprint": "fingerprint_example",
         "pemfilepath": "pemfilepath_example",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "CREATING"
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_alias": "key_alias_example",
+        "lifecycle_state": "CREATING",
+        "default_region": "us-phoenix-1",
+        "time_created": "2013-10-20T19:20:30+01:00"
     }]
 """
 
