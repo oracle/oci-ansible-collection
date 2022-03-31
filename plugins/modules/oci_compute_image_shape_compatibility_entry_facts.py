@@ -28,16 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    image_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
-        type: str
-        required: true
     shape_name:
         description:
             - Shape name.
             - Required to get a specific image_shape_compatibility_entry.
         type: str
+    image_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -45,8 +45,8 @@ EXAMPLES = """
 - name: Get a specific image_shape_compatibility_entry
   oci_compute_image_shape_compatibility_entry_facts:
     # required
-    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List image_shape_compatibility_entries
   oci_compute_image_shape_compatibility_entry_facts:
@@ -189,7 +189,7 @@ class ResourceFactsHelper(
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
-        dict(image_id=dict(type="str", required=True), shape_name=dict(type="str"),)
+        dict(shape_name=dict(type="str"), image_id=dict(type="str", required=True),)
     )
 
     module = AnsibleModule(argument_spec=module_args)

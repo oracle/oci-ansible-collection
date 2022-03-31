@@ -29,6 +29,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    statement_ids:
+        description:
+            - The Oracle-assigned ID of each route distribution to remove.
+            - Applicable only for I(action=remove).
+        type: list
+        elements: str
     drg_route_distribution_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route distribution.
@@ -42,21 +48,22 @@ options:
         type: list
         elements: dict
         suboptions:
+            action:
+                description:
+                    - "Accept: import/export the route \\"as is\\""
+                type: str
+                choices:
+                    - "ACCEPT"
+            id:
+                description:
+                    - The Oracle-assigned ID of each route distribution statement to be updated.
+                type: str
             match_criteria:
                 description:
                     - The action is applied only if all of the match criteria is met.
                 type: list
                 elements: dict
                 suboptions:
-                    match_type:
-                        description:
-                            - The type of the match criteria for a route distribution statement.
-                        type: str
-                        choices:
-                            - "DRG_ATTACHMENT_ID"
-                            - "DRG_ATTACHMENT_TYPE"
-                            - "MATCH_ALL"
-                        required: true
                     drg_attachment_id:
                         description:
                             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG attachment.
@@ -73,12 +80,15 @@ options:
                             - "VIRTUAL_CIRCUIT"
                             - "REMOTE_PEERING_CONNECTION"
                             - "IPSEC_TUNNEL"
-            action:
-                description:
-                    - "Accept: import/export the route \\"as is\\""
-                type: str
-                choices:
-                    - "ACCEPT"
+                    match_type:
+                        description:
+                            - The type of the match criteria for a route distribution statement.
+                        type: str
+                        choices:
+                            - "DRG_ATTACHMENT_ID"
+                            - "DRG_ATTACHMENT_TYPE"
+                            - "MATCH_ALL"
+                        required: true
             priority:
                 description:
                     - This field is used to specify the priority of each statement in a route distribution.
@@ -87,16 +97,6 @@ options:
                       defined by their priority. The first matching rule dictates the action that will be taken
                       on the route.
                 type: int
-            id:
-                description:
-                    - The Oracle-assigned ID of each route distribution statement to be updated.
-                type: str
-    statement_ids:
-        description:
-            - The Oracle-assigned ID of each route distribution to remove.
-            - Applicable only for I(action=remove).
-        type: list
-        elements: str
     action:
         description:
             - The action to perform on the DrgRouteDistributionStatements.
@@ -116,13 +116,13 @@ EXAMPLES = """
     drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     statements:
     - # optional
+      action: ACCEPT
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       match_criteria:
       - # required
-        match_type: DRG_ATTACHMENT_ID
         drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
-      action: ACCEPT
+        match_type: DRG_ATTACHMENT_ID
       priority: 56
-      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     action: add
 
 - name: Perform action remove on drg_route_distribution_statements
@@ -140,13 +140,13 @@ EXAMPLES = """
     drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     statements:
     - # optional
+      action: ACCEPT
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       match_criteria:
       - # required
-        match_type: DRG_ATTACHMENT_ID
         drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
-      action: ACCEPT
+        match_type: DRG_ATTACHMENT_ID
       priority: 56
-      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     action: update
 
 """
@@ -349,24 +349,18 @@ def main():
     )
     module_args.update(
         dict(
+            statement_ids=dict(type="list", elements="str"),
             drg_route_distribution_id=dict(aliases=["id"], type="str", required=True),
             statements=dict(
                 type="list",
                 elements="dict",
                 options=dict(
+                    action=dict(type="str", choices=["ACCEPT"]),
+                    id=dict(type="str"),
                     match_criteria=dict(
                         type="list",
                         elements="dict",
                         options=dict(
-                            match_type=dict(
-                                type="str",
-                                required=True,
-                                choices=[
-                                    "DRG_ATTACHMENT_ID",
-                                    "DRG_ATTACHMENT_TYPE",
-                                    "MATCH_ALL",
-                                ],
-                            ),
                             drg_attachment_id=dict(type="str"),
                             attachment_type=dict(
                                 type="str",
@@ -377,14 +371,20 @@ def main():
                                     "IPSEC_TUNNEL",
                                 ],
                             ),
+                            match_type=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "DRG_ATTACHMENT_ID",
+                                    "DRG_ATTACHMENT_TYPE",
+                                    "MATCH_ALL",
+                                ],
+                            ),
                         ),
                     ),
-                    action=dict(type="str", choices=["ACCEPT"]),
                     priority=dict(type="int"),
-                    id=dict(type="str"),
                 ),
             ),
-            statement_ids=dict(type="list", elements="str"),
             action=dict(type="str", required=True, choices=["add", "remove", "update"]),
         )
     )

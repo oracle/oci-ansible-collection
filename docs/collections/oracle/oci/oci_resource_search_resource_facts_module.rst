@@ -30,7 +30,7 @@ oracle.oci.oci_resource_search_resource_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -355,8 +355,8 @@ Examples
     - name: List resources with type = Structured
       oci_resource_search_resource_facts:
         # required
-        type: Structured
         query: query_example
+        type: Structured
 
         # optional
         matching_context_type: NONE
@@ -405,10 +405,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Resource resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;identifier&#x27;: &#x27;identifier_example&#x27;, &#x27;identity_context&#x27;: {}, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;search_context&#x27;: {&#x27;highlights&#x27;: {}}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: {}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;identifier&#x27;: &#x27;identifier_example&#x27;, &#x27;identity_context&#x27;: {}, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;search_context&#x27;: {&#x27;highlights&#x27;: {}}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resources/additional_details"></div>
+                    <b>additional_details</b>
+                    <a class="ansibleOptionLink" href="#return-resources/additional_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Additional resource attribute fields of this resource that match queries with a return clause, if any. For example, if you ran a query to find the private IP addresses, public IP addresses, and isPrimary field of the VNIC attachment on instance resources, that field would be included in the ResourceSummary object as: {&quot;additionalDetails&quot;: {&quot;attachedVnic&quot;: [{&quot;publicIP&quot; : &quot;172.110.110.110&quot;,&quot;privateIP&quot; : &quot;10.10.10.10&quot;,&quot;isPrimary&quot; : true}, {&quot;publicIP&quot; : &quot;172.110.110.111&quot;,&quot;privateIP&quot; : &quot;10.10.10.11&quot;,&quot;isPrimary&quot; : false}]}. The structure of the additional details attribute fields depends on the matching resource.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resources/availability_domain"></div>

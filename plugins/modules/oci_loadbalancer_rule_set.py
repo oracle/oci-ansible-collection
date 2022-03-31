@@ -28,18 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
-        type: str
-        required: true
-    name:
-        description:
-            - The name for this set of rules. It must be unique and it cannot be changed. Avoid entering
-              confidential information.
-            - "Example: `example_rule_set`"
-        type: str
-        required: true
     items:
         description:
             - An array of rules that compose the rule set.
@@ -47,37 +35,6 @@ options:
         type: list
         elements: dict
         suboptions:
-            action:
-                description:
-                    - ""
-                type: str
-                choices:
-                    - "ADD_HTTP_REQUEST_HEADER"
-                    - "REDIRECT"
-                    - "REMOVE_HTTP_REQUEST_HEADER"
-                    - "EXTEND_HTTP_REQUEST_HEADER_VALUE"
-                    - "REMOVE_HTTP_RESPONSE_HEADER"
-                    - "CONTROL_ACCESS_USING_HTTP_METHODS"
-                    - "ALLOW"
-                    - "HTTP_HEADER"
-                    - "ADD_HTTP_RESPONSE_HEADER"
-                    - "EXTEND_HTTP_RESPONSE_HEADER_VALUE"
-                required: true
-            header:
-                description:
-                    - A header name that conforms to RFC 7230.
-                    - "Example: `example_header_name`"
-                    - Required when action is one of ['REMOVE_HTTP_REQUEST_HEADER', 'EXTEND_HTTP_REQUEST_HEADER_VALUE', 'ADD_HTTP_RESPONSE_HEADER',
-                      'ADD_HTTP_REQUEST_HEADER', 'REMOVE_HTTP_RESPONSE_HEADER', 'EXTEND_HTTP_RESPONSE_HEADER_VALUE']
-                type: str
-            value:
-                description:
-                    - "A header value that conforms to RFC 7230. With the following exceptions:
-                      *  value cannot contain `$`
-                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
-                    - "Example: `example_value`"
-                    - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'ADD_HTTP_REQUEST_HEADER']
-                type: str
             response_code:
                 description:
                     - The HTTP status code to return when the incoming request is redirected.
@@ -92,50 +49,6 @@ options:
                     - "Example: `301`"
                     - Applicable when action is 'REDIRECT'
                 type: int
-            conditions:
-                description:
-                    - ""
-                    - Required when action is one of ['REDIRECT', 'ALLOW']
-                type: list
-                elements: dict
-                suboptions:
-                    attribute_name:
-                        description:
-                            - ""
-                        type: str
-                        choices:
-                            - "SOURCE_VCN_ID"
-                            - "SOURCE_IP_ADDRESS"
-                            - "PATH"
-                            - "SOURCE_VCN_IP_ADDRESS"
-                        required: true
-                    attribute_value:
-                        description:
-                            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the originating VCN that an incoming packet
-                              must match.
-                            - You can use this condition in conjunction with `SourceVcnIpAddressCondition`.
-                            - "**NOTE:** If you define this condition for a rule without a `SourceVcnIpAddressCondition`, this condition
-                              matches all incoming traffic in the specified VCN."
-                        type: str
-                        required: true
-                    operator:
-                        description:
-                            - A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
-                              incoming URI.
-                            - "*  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string."
-                            - "*  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best,
-                                 longest match of the beginning portion of the incoming URI path."
-                            - "*  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the
-                                 `attributeValue` string."
-                            - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
-                                 string."
-                            - Required when attribute_name is 'PATH'
-                        type: str
-                        choices:
-                            - "EXACT_MATCH"
-                            - "FORCE_LONGEST_PREFIX_MATCH"
-                            - "PREFIX_MATCH"
-                            - "SUFFIX_MATCH"
             redirect_uri:
                 description:
                     - ""
@@ -228,24 +141,6 @@ options:
                                  port is `8080` and the hostname is `example.com` in the incoming HTTP request URI."
                             - Applicable when action is 'REDIRECT'
                         type: str
-            prefix:
-                description:
-                    - "A string to prepend to the header value. The resulting header value must conform to RFC 7230.
-                      With the following exceptions:
-                      *  value cannot contain `$`
-                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
-                    - "Example: `example_prefix_value`"
-                    - Applicable when action is one of ['EXTEND_HTTP_REQUEST_HEADER_VALUE', 'EXTEND_HTTP_RESPONSE_HEADER_VALUE']
-                type: str
-            suffix:
-                description:
-                    - "A string to append to the header value. The resulting header value must conform to RFC 7230.
-                      With the following exceptions:
-                      *  value cannot contain `$`
-                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
-                    - "Example: `example_suffix_value`"
-                    - Applicable when action is one of ['EXTEND_HTTP_REQUEST_HEADER_VALUE', 'EXTEND_HTTP_RESPONSE_HEADER_VALUE']
-                type: str
             allowed_methods:
                 description:
                     - The list of HTTP methods allowed for this listener.
@@ -268,6 +163,50 @@ options:
                     - "Example: 403"
                     - Applicable when action is 'CONTROL_ACCESS_USING_HTTP_METHODS'
                 type: int
+            conditions:
+                description:
+                    - ""
+                    - Required when action is one of ['REDIRECT', 'ALLOW']
+                type: list
+                elements: dict
+                suboptions:
+                    operator:
+                        description:
+                            - A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
+                              incoming URI.
+                            - "*  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string."
+                            - "*  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best,
+                                 longest match of the beginning portion of the incoming URI path."
+                            - "*  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the
+                                 `attributeValue` string."
+                            - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
+                                 string."
+                            - Required when attribute_name is 'PATH'
+                        type: str
+                        choices:
+                            - "EXACT_MATCH"
+                            - "FORCE_LONGEST_PREFIX_MATCH"
+                            - "PREFIX_MATCH"
+                            - "SUFFIX_MATCH"
+                    attribute_name:
+                        description:
+                            - ""
+                        type: str
+                        choices:
+                            - "SOURCE_VCN_ID"
+                            - "SOURCE_IP_ADDRESS"
+                            - "PATH"
+                            - "SOURCE_VCN_IP_ADDRESS"
+                        required: true
+                    attribute_value:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the originating VCN that an incoming packet
+                              must match.
+                            - You can use this condition in conjunction with `SourceVcnIpAddressCondition`.
+                            - "**NOTE:** If you define this condition for a rule without a `SourceVcnIpAddressCondition`, this condition
+                              matches all incoming traffic in the specified VCN."
+                        type: str
+                        required: true
             description:
                 description:
                     - A brief description of the access control rule. Avoid entering confidential information.
@@ -289,6 +228,67 @@ options:
                       The allowed values for buffer size are 8, 16, 32 and 64.
                     - Applicable when action is 'HTTP_HEADER'
                 type: int
+            value:
+                description:
+                    - "A header value that conforms to RFC 7230. With the following exceptions:
+                      *  value cannot contain `$`
+                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
+                    - "Example: `example_value`"
+                    - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'ADD_HTTP_REQUEST_HEADER']
+                type: str
+            action:
+                description:
+                    - ""
+                type: str
+                choices:
+                    - "ADD_HTTP_REQUEST_HEADER"
+                    - "REDIRECT"
+                    - "REMOVE_HTTP_REQUEST_HEADER"
+                    - "EXTEND_HTTP_REQUEST_HEADER_VALUE"
+                    - "REMOVE_HTTP_RESPONSE_HEADER"
+                    - "CONTROL_ACCESS_USING_HTTP_METHODS"
+                    - "ALLOW"
+                    - "HTTP_HEADER"
+                    - "ADD_HTTP_RESPONSE_HEADER"
+                    - "EXTEND_HTTP_RESPONSE_HEADER_VALUE"
+                required: true
+            header:
+                description:
+                    - A header name that conforms to RFC 7230.
+                    - "Example: `example_header_name`"
+                    - Required when action is one of ['REMOVE_HTTP_REQUEST_HEADER', 'EXTEND_HTTP_REQUEST_HEADER_VALUE', 'ADD_HTTP_RESPONSE_HEADER',
+                      'ADD_HTTP_REQUEST_HEADER', 'REMOVE_HTTP_RESPONSE_HEADER', 'EXTEND_HTTP_RESPONSE_HEADER_VALUE']
+                type: str
+            prefix:
+                description:
+                    - "A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                      With the following exceptions:
+                      *  value cannot contain `$`
+                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
+                    - "Example: `example_prefix_value`"
+                    - Applicable when action is one of ['EXTEND_HTTP_REQUEST_HEADER_VALUE', 'EXTEND_HTTP_RESPONSE_HEADER_VALUE']
+                type: str
+            suffix:
+                description:
+                    - "A string to append to the header value. The resulting header value must conform to RFC 7230.
+                      With the following exceptions:
+                      *  value cannot contain `$`
+                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
+                    - "Example: `example_suffix_value`"
+                    - Applicable when action is one of ['EXTEND_HTTP_REQUEST_HEADER_VALUE', 'EXTEND_HTTP_RESPONSE_HEADER_VALUE']
+                type: str
+    load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
+        type: str
+        required: true
+    name:
+        description:
+            - The name for this set of rules. It must be unique and it cannot be changed. Avoid entering
+              confidential information.
+            - "Example: `example_rule_set`"
+        type: str
+        required: true
     state:
         description:
             - The state of the RuleSet.
@@ -305,24 +305,24 @@ EXAMPLES = """
 - name: Create rule_set
   oci_loadbalancer_rule_set:
     # required
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     items:
     - # required
+      value: value_example
       action: ADD_HTTP_REQUEST_HEADER
       header: header_example
-      value: value_example
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
 - name: Update rule_set
   oci_loadbalancer_rule_set:
     # required
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     items:
     - # required
+      value: value_example
       action: ADD_HTTP_REQUEST_HEADER
       header: header_example
-      value: value_example
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
 - name: Delete rule_set
   oci_loadbalancer_rule_set:
@@ -767,12 +767,53 @@ def main():
     )
     module_args.update(
         dict(
-            load_balancer_id=dict(type="str", required=True),
-            name=dict(type="str", required=True),
             items=dict(
                 type="list",
                 elements="dict",
                 options=dict(
+                    response_code=dict(type="int"),
+                    redirect_uri=dict(
+                        type="dict",
+                        options=dict(
+                            protocol=dict(type="str"),
+                            host=dict(type="str"),
+                            port=dict(type="int"),
+                            path=dict(type="str"),
+                            query=dict(type="str"),
+                        ),
+                    ),
+                    allowed_methods=dict(type="list", elements="str"),
+                    status_code=dict(type="int"),
+                    conditions=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            operator=dict(
+                                type="str",
+                                choices=[
+                                    "EXACT_MATCH",
+                                    "FORCE_LONGEST_PREFIX_MATCH",
+                                    "PREFIX_MATCH",
+                                    "SUFFIX_MATCH",
+                                ],
+                            ),
+                            attribute_name=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "SOURCE_VCN_ID",
+                                    "SOURCE_IP_ADDRESS",
+                                    "PATH",
+                                    "SOURCE_VCN_IP_ADDRESS",
+                                ],
+                            ),
+                            attribute_value=dict(type="str", required=True),
+                        ),
+                    ),
+                    description=dict(type="str"),
+                    are_invalid_characters_allowed=dict(type="bool"),
+                    http_large_header_size_in_kb=dict(type="int"),
+                    value=dict(type="str"),
                     action=dict(
                         type="str",
                         required=True,
@@ -790,53 +831,12 @@ def main():
                         ],
                     ),
                     header=dict(type="str"),
-                    value=dict(type="str"),
-                    response_code=dict(type="int"),
-                    conditions=dict(
-                        type="list",
-                        elements="dict",
-                        options=dict(
-                            attribute_name=dict(
-                                type="str",
-                                required=True,
-                                choices=[
-                                    "SOURCE_VCN_ID",
-                                    "SOURCE_IP_ADDRESS",
-                                    "PATH",
-                                    "SOURCE_VCN_IP_ADDRESS",
-                                ],
-                            ),
-                            attribute_value=dict(type="str", required=True),
-                            operator=dict(
-                                type="str",
-                                choices=[
-                                    "EXACT_MATCH",
-                                    "FORCE_LONGEST_PREFIX_MATCH",
-                                    "PREFIX_MATCH",
-                                    "SUFFIX_MATCH",
-                                ],
-                            ),
-                        ),
-                    ),
-                    redirect_uri=dict(
-                        type="dict",
-                        options=dict(
-                            protocol=dict(type="str"),
-                            host=dict(type="str"),
-                            port=dict(type="int"),
-                            path=dict(type="str"),
-                            query=dict(type="str"),
-                        ),
-                    ),
                     prefix=dict(type="str"),
                     suffix=dict(type="str"),
-                    allowed_methods=dict(type="list", elements="str"),
-                    status_code=dict(type="int"),
-                    description=dict(type="str"),
-                    are_invalid_characters_allowed=dict(type="bool"),
-                    http_large_header_size_in_kb=dict(type="int"),
                 ),
             ),
+            load_balancer_id=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

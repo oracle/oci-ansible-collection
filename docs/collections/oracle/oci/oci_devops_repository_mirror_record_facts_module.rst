@@ -30,7 +30,7 @@ oracle.oci.oci_devops_repository_mirror_record_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -310,8 +310,8 @@ Examples
     - name: Get a specific repository_mirror_record
       oci_devops_repository_mirror_record_facts:
         # required
-        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         mirror_record_type: current
+        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List repository_mirror_records
       oci_devops_repository_mirror_record_facts:

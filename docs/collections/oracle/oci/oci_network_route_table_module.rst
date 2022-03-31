@@ -30,7 +30,7 @@ oracle.oci.oci_network_route_table -- Manage a RouteTable resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -604,6 +604,7 @@ Examples
       oci_network_route_table:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         route_rules:
         - # required
           network_entity_id: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
@@ -613,7 +614,6 @@ Examples
           destination: destination_example
           destination_type: CIDR_BLOCK
           description: description_example
-        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -626,6 +626,8 @@ Examples
         rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        purge_route_rules: false
+        delete_route_rules: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -638,8 +640,6 @@ Examples
           destination: destination_example
           destination_type: CIDR_BLOCK
           description: description_example
-        purge_route_rules: false
-        delete_route_rules: true
 
     - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_route_table:
@@ -648,6 +648,8 @@ Examples
         display_name: display_name_example
 
         # optional
+        purge_route_rules: false
+        delete_route_rules: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
         route_rules:
@@ -659,8 +661,6 @@ Examples
           destination: destination_example
           destination_type: CIDR_BLOCK
           description: description_example
-        purge_route_rules: false
-        delete_route_rules: true
 
     - name: Delete route_table
       oci_network_route_table:

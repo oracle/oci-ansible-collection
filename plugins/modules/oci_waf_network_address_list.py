@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - NetworkAddressList display name, can be renamed.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -42,6 +35,21 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    addresses:
+        description:
+            - "A list of IP address prefixes in CIDR notation.
+              To specify all addresses, use \\"0.0.0.0/0\\" for IPv4 and \\"::/0\\" for IPv6."
+            - This parameter is updatable.
+            - Required when type is 'ADDRESSES'
+        type: list
+        elements: str
+    display_name:
+        description:
+            - NetworkAddressList display name, can be renamed.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     type:
         description:
             - Type of NetworkAddressList.
@@ -89,14 +97,6 @@ options:
                     - Required when type is 'VCN_ADDRESSES'
                 type: str
                 required: true
-    addresses:
-        description:
-            - "A list of IP address prefixes in CIDR notation.
-              To specify all addresses, use \\"0.0.0.0/0\\" for IPv4 and \\"::/0\\" for IPv6."
-            - This parameter is updatable.
-            - Required when type is 'ADDRESSES'
-        type: list
-        elements: str
     network_address_list_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the NetworkAddressList.
@@ -140,11 +140,11 @@ EXAMPLES = """
     type: ADDRESSES
 
     # optional
+    addresses: [ "addresses_example" ]
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
-    addresses: [ "addresses_example" ]
 
 - name: Update network_address_list with type = VCN_ADDRESSES
   oci_waf_network_address_list:
@@ -167,11 +167,11 @@ EXAMPLES = """
     type: ADDRESSES
 
     # optional
+    addresses: [ "addresses_example" ]
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
-    addresses: [ "addresses_example" ]
 
 - name: Update network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = VCN_ADDRESSES
   oci_waf_network_address_list:
@@ -196,11 +196,11 @@ EXAMPLES = """
     type: ADDRESSES
 
     # optional
+    addresses: [ "addresses_example" ]
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     system_tags: null
-    addresses: [ "addresses_example" ]
 
 - name: Delete network_address_list
   oci_waf_network_address_list:
@@ -211,8 +211,8 @@ EXAMPLES = """
 - name: Delete network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waf_network_address_list:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -502,8 +502,9 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            addresses=dict(type="list", elements="str"),
+            display_name=dict(aliases=["name"], type="str"),
             type=dict(type="str", choices=["VCN_ADDRESSES", "ADDRESSES"]),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
@@ -516,7 +517,6 @@ def main():
                     addresses=dict(type="str", required=True),
                 ),
             ),
-            addresses=dict(type="list", elements="str"),
             network_address_list_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

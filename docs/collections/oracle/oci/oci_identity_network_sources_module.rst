@@ -30,7 +30,7 @@ oracle.oci.oci_identity_network_sources -- Manage a NetworkSources resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -552,13 +552,13 @@ Examples
         network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        description: description_example
         public_source_list: [ "public_source_list_example" ]
         virtual_source_list:
         - # optional
           vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
           ip_ranges: [ "ip_ranges_example" ]
         services: [ "services_example" ]
-        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -569,13 +569,13 @@ Examples
         name: name_example
 
         # optional
+        description: description_example
         public_source_list: [ "public_source_list_example" ]
         virtual_source_list:
         - # optional
           vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
           ip_ranges: [ "ip_ranges_example" ]
         services: [ "services_example" ]
-        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

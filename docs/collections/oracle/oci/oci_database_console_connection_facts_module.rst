@@ -30,7 +30,7 @@ oracle.oci.oci_database_console_connection_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -288,8 +288,8 @@ Examples
     - name: Get a specific console_connection
       oci_database_console_connection_facts:
         # required
-        db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
         console_connection_id: "ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
+        db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List console_connections
       oci_database_console_connection_facts:

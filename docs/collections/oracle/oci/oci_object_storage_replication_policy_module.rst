@@ -30,7 +30,7 @@ oracle.oci.oci_object_storage_replication_policy -- Manage a ReplicationPolicy r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -406,11 +406,11 @@ Examples
     - name: Create replication_policy
       oci_object_storage_replication_policy:
         # required
-        namespace_name: namespace_name_example
-        bucket_name: bucket_name_example
         name: name_example
         destination_region_name: us-phoenix-1
         destination_bucket_name: destination_bucket_name_example
+        namespace_name: namespace_name_example
+        bucket_name: bucket_name_example
 
     - name: Delete replication_policy
       oci_object_storage_replication_policy:
@@ -423,9 +423,9 @@ Examples
     - name: Delete replication_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_object_storage_replication_policy:
         # required
+        name: name_example
         namespace_name: namespace_name_example
         bucket_name: bucket_name_example
-        name: name_example
         state: absent
 
 

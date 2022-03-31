@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    publication_id:
-        description:
-            - The unique identifier for the publication.
-            - Required to get a specific publication.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The unique identifier for the compartment.
@@ -53,6 +47,12 @@ options:
             - The name of the publication.
         type: list
         elements: str
+    publication_id:
+        description:
+            - The unique identifier for the publication.
+            - Required to get a specific publication.
+        type: str
+        aliases: ["id"]
     operating_systems:
         description:
             - The operating system of the listing.
@@ -89,8 +89,8 @@ EXAMPLES = """
     listing_type: COMMUNITY
 
     # optional
-    publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
     name: [ "name_example" ]
+    publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
     operating_systems: [ "operating_systems_example" ]
     sort_by: TIMERELEASED
     sort_order: ASC
@@ -350,10 +350,10 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            publication_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             listing_type=dict(type="str", choices=["COMMUNITY", "PARTNER", "PRIVATE"]),
             name=dict(type="list", elements="str"),
+            publication_id=dict(aliases=["id"], type="str"),
             operating_systems=dict(type="list", elements="str"),
             sort_by=dict(type="str", choices=["TIMERELEASED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

@@ -42,17 +42,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Object Storage namespace used for the request.
-        type: str
-        required: true
-    bucket_name:
-        description:
-            - "The name of the bucket. Avoid entering confidential information.
-              Example: `my-new-bucket1`"
-        type: str
-        required: true
     source_object_name:
         description:
             - The name of the object to be copied.
@@ -168,12 +157,6 @@ options:
               Management service to generate a data encryption key or to encrypt or decrypt a data encryption key.
             - Applicable only for I(action=copy).
         type: str
-    object_name:
-        description:
-            - "The name of the object. Avoid entering confidential information.
-              Example: `test/object1.log`"
-            - Required for I(action=reencrypt), I(action=restore), I(action=update_object_storage_tier).
-        type: str
     kms_key_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the master encryption key used to call the Vault
@@ -230,11 +213,6 @@ options:
                       of the encryption key.
                 type: str
                 required: true
-    version_id:
-        description:
-            - VersionId used to identify a particular version of the object
-            - Applicable only for I(action=reencrypt)I(action=restore)I(action=update_object_storage_tier).
-        type: str
     source_name:
         description:
             - The name of the source object to be renamed.
@@ -267,6 +245,23 @@ options:
               By default objects will be restored for 24 hours. You can instead configure the duration using the hours parameter.
             - Applicable only for I(action=restore).
         type: int
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    bucket_name:
+        description:
+            - "The name of the bucket. Avoid entering confidential information.
+              Example: `my-new-bucket1`"
+        type: str
+        required: true
+    object_name:
+        description:
+            - "The name of the object. Avoid entering confidential information.
+              Example: `test/object1.log`"
+            - Required for I(action=reencrypt), I(action=restore), I(action=update_object_storage_tier).
+        type: str
     storage_tier:
         description:
             - The storage tier that the object should be moved to.
@@ -276,6 +271,11 @@ options:
             - "Standard"
             - "InfrequentAccess"
             - "Archive"
+    version_id:
+        description:
+            - VersionId used to identify a particular version of the object
+            - Applicable only for I(action=reencrypt)I(action=restore)I(action=update_object_storage_tier).
+        type: str
     action:
         description:
             - The action to perform on the Object.
@@ -294,13 +294,13 @@ EXAMPLES = """
 - name: Perform action copy on object
   oci_object_storage_object_actions:
     # required
-    namespace_name: namespace_name_example
-    bucket_name: bucket_name_example
     source_object_name: source_object_name_example
     destination_region: us-phoenix-1
     destination_namespace: destination_namespace_example
     destination_bucket: destination_bucket_example
     destination_object_name: destination_object_name_example
+    namespace_name: namespace_name_example
+    bucket_name: bucket_name_example
     action: copy
 
     # optional
@@ -343,10 +343,10 @@ EXAMPLES = """
 - name: Perform action rename on object
   oci_object_storage_object_actions:
     # required
-    namespace_name: namespace_name_example
-    bucket_name: bucket_name_example
     source_name: source_name_example
     new_name: new_name_example
+    namespace_name: namespace_name_example
+    bucket_name: bucket_name_example
     action: rename
 
     # optional
@@ -363,8 +363,8 @@ EXAMPLES = """
     action: restore
 
     # optional
-    version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
     hours: 56
+    version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action update_object_storage_tier on object
   oci_object_storage_object_actions:
@@ -657,8 +657,6 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            bucket_name=dict(type="str", required=True),
             source_object_name=dict(type="str"),
             source_object_if_match_e_tag=dict(type="str"),
             source_version_id=dict(type="str"),
@@ -679,7 +677,6 @@ def main():
             opc_source_sse_customer_key=dict(type="str", no_log=True),
             opc_source_sse_customer_key_sha256=dict(type="str", no_log=True),
             opc_sse_kms_key_id=dict(type="str"),
-            object_name=dict(type="str"),
             kms_key_id=dict(type="str"),
             sse_customer_key=dict(
                 type="dict",
@@ -699,16 +696,19 @@ def main():
                     key_sha256=dict(type="str", required=True, no_log=True),
                 ),
             ),
-            version_id=dict(type="str"),
             source_name=dict(type="str"),
             new_name=dict(type="str"),
             src_obj_if_match_e_tag=dict(type="str"),
             new_obj_if_match_e_tag=dict(type="str"),
             new_obj_if_none_match_e_tag=dict(type="str"),
             hours=dict(type="int"),
+            namespace_name=dict(type="str", required=True),
+            bucket_name=dict(type="str", required=True),
+            object_name=dict(type="str"),
             storage_tier=dict(
                 type="str", choices=["Standard", "InfrequentAccess", "Archive"]
             ),
+            version_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

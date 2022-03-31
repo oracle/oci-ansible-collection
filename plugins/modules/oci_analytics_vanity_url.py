@@ -29,11 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    analytics_instance_id:
-        description:
-            - The OCID of the AnalyticsInstance.
-        type: str
-        required: true
     description:
         description:
             - Optional description.
@@ -64,6 +59,11 @@ options:
             - PEM CA certificate(s) for HTTPS connections. This may include multiple PEM certificates.
             - Required for create using I(state=present), update using I(state=present) with vanity_url_key present.
         type: str
+    analytics_instance_id:
+        description:
+            - The OCID of the AnalyticsInstance.
+        type: str
+        required: true
     vanity_url_key:
         description:
             - Specify unique identifier key of a vanity url to update or delete.
@@ -86,11 +86,11 @@ EXAMPLES = """
 - name: Create vanity_url
   oci_analytics_vanity_url:
     # required
-    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     hosts: [ "hosts_example" ]
     private_key: private_key_example
     public_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     ca_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
@@ -99,10 +99,10 @@ EXAMPLES = """
 - name: Update vanity_url
   oci_analytics_vanity_url:
     # required
-    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     private_key: private_key_example
     public_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     ca_certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     vanity_url_key: vanity_url_key_example
 
     # optional
@@ -271,13 +271,13 @@ def main():
     )
     module_args.update(
         dict(
-            analytics_instance_id=dict(type="str", required=True),
             description=dict(type="str"),
             hosts=dict(type="list", elements="str"),
             passphrase=dict(type="str", no_log=True),
             private_key=dict(type="str", no_log=True),
             public_certificate=dict(type="str"),
             ca_certificate=dict(type="str"),
+            analytics_instance_id=dict(type="str", required=True),
             vanity_url_key=dict(type="str", no_log=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

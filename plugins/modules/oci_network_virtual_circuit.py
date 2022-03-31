@@ -46,6 +46,64 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the virtual circuit.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    provider_name:
+        description:
+            - Deprecated. Instead use `providerServiceId`.
+              To get a list of the provider names, see
+              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
+        type: str
+    provider_service_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service offered by the provider (if you're
+              connecting
+              via a provider). To get a list of the available service offerings, see
+              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
+        type: str
+    provider_service_name:
+        description:
+            - Deprecated. Instead use `providerServiceId`.
+              To get a list of the provider names, see
+              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
+        type: str
+    public_prefixes:
+        description:
+            - For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to
+              advertise across the connection.
+        type: list
+        elements: dict
+        suboptions:
+            cidr_block:
+                description:
+                    - An individual public IP prefix (CIDR) to add to the public virtual circuit.
+                      All prefix sizes are allowed.
+                type: str
+                required: true
+    region:
+        description:
+            - "The Oracle Cloud Infrastructure region where this virtual
+              circuit is located.
+              Example: `phx`"
+        type: str
+    type:
+        description:
+            - The type of IP addresses used in this virtual circuit. PRIVATE
+              means L(RFC 1918,https://tools.ietf.org/html/rfc1918) addresses
+              (10.0.0.0/8, 172.16/12, and 192.168/16).
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "PUBLIC"
+            - "PRIVATE"
     bandwidth_shape_name:
         description:
             - The provisioned data rate of the connection. To get a list of the
@@ -54,13 +112,6 @@ options:
               us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
             - "Example: `10 Gbps`"
             - This parameter is updatable.
-        type: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the virtual circuit.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     cross_connect_mappings:
         description:
@@ -193,62 +244,31 @@ options:
               that this virtual circuit uses.
             - This parameter is updatable.
         type: str
-    provider_name:
+    provider_state:
         description:
-            - Deprecated. Instead use `providerServiceId`.
-              To get a list of the provider names, see
-              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
+            - The provider's state in relation to this virtual circuit. Relevant only
+              if the customer is using FastConnect via a provider. ACTIVE
+              means the provider has provisioned the virtual circuit from their
+              end. INACTIVE means the provider has not yet provisioned the virtual
+              circuit, or has de-provisioned it.
+            - To be updated only by the provider.
+            - This parameter is updatable.
         type: str
-    provider_service_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service offered by the provider (if you're
-              connecting
-              via a provider). To get a list of the available service offerings, see
-              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
-        type: str
+        choices:
+            - "ACTIVE"
+            - "INACTIVE"
     provider_service_key_name:
         description:
             - The service key name offered by the provider (if the customer is connecting via a provider).
             - This parameter is updatable.
         type: str
-    provider_service_name:
+    reference_comment:
         description:
-            - Deprecated. Instead use `providerServiceId`.
-              To get a list of the provider names, see
-              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
+            - Provider-supplied reference information about this virtual circuit.
+              Relevant only if the customer is using FastConnect via a provider.
+            - To be updated only by the provider.
+            - This parameter is updatable.
         type: str
-    public_prefixes:
-        description:
-            - For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to
-              advertise across the connection.
-        type: list
-        elements: dict
-        suboptions:
-            cidr_block:
-                description:
-                    - An individual public IP prefix (CIDR) to add to the public virtual circuit.
-                      All prefix sizes are allowed.
-                type: str
-                required: true
-    region:
-        description:
-            - "The Oracle Cloud Infrastructure region where this virtual
-              circuit is located.
-              Example: `phx`"
-        type: str
-    type:
-        description:
-            - The type of IP addresses used in this virtual circuit. PRIVATE
-              means L(RFC 1918,https://tools.ietf.org/html/rfc1918) addresses
-              (10.0.0.0/8, 172.16/12, and 192.168/16).
-            - Required for create using I(state=present).
-        type: str
-        choices:
-            - "PUBLIC"
-            - "PRIVATE"
     ip_mtu:
         description:
             - The layer 3 IP MTU to use with this virtual circuit.
@@ -264,26 +284,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    provider_state:
-        description:
-            - The provider's state in relation to this virtual circuit. Relevant only
-              if the customer is using FastConnect via a provider. ACTIVE
-              means the provider has provisioned the virtual circuit from their
-              end. INACTIVE means the provider has not yet provisioned the virtual
-              circuit, or has de-provisioned it.
-            - To be updated only by the provider.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "ACTIVE"
-            - "INACTIVE"
-    reference_comment:
-        description:
-            - Provider-supplied reference information about this virtual circuit.
-              Relevant only if the customer is using FastConnect via a provider.
-            - To be updated only by the provider.
-            - This parameter is updatable.
-        type: str
     state:
         description:
             - The state of the VirtualCircuit.
@@ -304,6 +304,13 @@ EXAMPLES = """
     type: PUBLIC
 
     # optional
+    provider_name: provider_name_example
+    provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
+    provider_service_name: provider_service_name_example
+    public_prefixes:
+    - # required
+      cidr_block: cidr_block_example
+    region: us-phoenix-1
     bandwidth_shape_name: bandwidth_shape_name_example
     cross_connect_mappings:
     - # optional
@@ -321,14 +328,7 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
-    provider_name: provider_name_example
-    provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
     provider_service_key_name: provider_service_key_name_example
-    provider_service_name: provider_service_name_example
-    public_prefixes:
-    - # required
-      cidr_block: cidr_block_example
-    region: us-phoenix-1
     ip_mtu: MTU_1500
 
 - name: Update virtual_circuit
@@ -354,10 +354,10 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
-    provider_service_key_name: provider_service_key_name_example
-    ip_mtu: MTU_1500
     provider_state: ACTIVE
+    provider_service_key_name: provider_service_key_name_example
     reference_comment: reference_comment_example
+    ip_mtu: MTU_1500
 
 - name: Update virtual_circuit using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_virtual_circuit:
@@ -382,10 +382,10 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
-    provider_service_key_name: provider_service_key_name_example
-    ip_mtu: MTU_1500
     provider_state: ACTIVE
+    provider_service_key_name: provider_service_key_name_example
     reference_comment: reference_comment_example
+    ip_mtu: MTU_1500
 
 - name: Delete virtual_circuit
   oci_network_virtual_circuit:
@@ -884,8 +884,18 @@ def main():
     )
     module_args.update(
         dict(
-            bandwidth_shape_name=dict(type="str"),
             compartment_id=dict(type="str"),
+            provider_name=dict(type="str"),
+            provider_service_id=dict(type="str"),
+            provider_service_name=dict(type="str"),
+            public_prefixes=dict(
+                type="list",
+                elements="dict",
+                options=dict(cidr_block=dict(type="str", required=True)),
+            ),
+            region=dict(type="str"),
+            type=dict(type="str", choices=["PUBLIC", "PRIVATE"]),
+            bandwidth_shape_name=dict(type="str"),
             cross_connect_mappings=dict(
                 type="list",
                 elements="dict",
@@ -915,21 +925,11 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             gateway_id=dict(type="str"),
-            provider_name=dict(type="str"),
-            provider_service_id=dict(type="str"),
+            provider_state=dict(type="str", choices=["ACTIVE", "INACTIVE"]),
             provider_service_key_name=dict(type="str"),
-            provider_service_name=dict(type="str"),
-            public_prefixes=dict(
-                type="list",
-                elements="dict",
-                options=dict(cidr_block=dict(type="str", required=True)),
-            ),
-            region=dict(type="str"),
-            type=dict(type="str", choices=["PUBLIC", "PRIVATE"]),
+            reference_comment=dict(type="str"),
             ip_mtu=dict(type="str", choices=["MTU_1500", "MTU_9000"]),
             virtual_circuit_id=dict(aliases=["id"], type="str"),
-            provider_state=dict(type="str", choices=["ACTIVE", "INACTIVE"]),
-            reference_comment=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

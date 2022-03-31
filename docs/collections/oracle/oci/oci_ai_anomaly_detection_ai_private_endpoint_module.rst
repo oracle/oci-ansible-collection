@@ -30,7 +30,7 @@ oracle.oci.oci_ai_anomaly_detection_ai_private_endpoint -- Manage an AiPrivateEn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -464,9 +464,9 @@ Examples
     - name: Create ai_private_endpoint
       oci_ai_anomaly_detection_ai_private_endpoint:
         # required
-        dns_zones: [ "dns_zones_example" ]
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        dns_zones: [ "dns_zones_example" ]
 
         # optional
         freeform_tags: {'Department': 'Finance'}

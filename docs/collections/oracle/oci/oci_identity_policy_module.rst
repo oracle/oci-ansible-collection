@@ -30,7 +30,7 @@ oracle.oci.oci_identity_policy -- Manage a Policy resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -486,8 +486,8 @@ Examples
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
-        statements: [ "statements_example" ]
         description: description_example
+        statements: [ "statements_example" ]
 
         # optional
         version_date: version_date_example
@@ -500,8 +500,8 @@ Examples
         policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        statements: [ "statements_example" ]
         description: description_example
+        statements: [ "statements_example" ]
         version_date: version_date_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -513,8 +513,8 @@ Examples
         name: name_example
 
         # optional
-        statements: [ "statements_example" ]
         description: description_example
+        statements: [ "statements_example" ]
         version_date: version_date_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

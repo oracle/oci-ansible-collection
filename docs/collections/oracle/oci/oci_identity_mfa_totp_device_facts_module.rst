@@ -30,7 +30,7 @@ oracle.oci.oci_identity_mfa_totp_device_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -327,8 +327,8 @@ Examples
     - name: Get a specific mfa_totp_device
       oci_identity_mfa_totp_device_facts:
         # required
-        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List mfa_totp_devices
       oci_identity_mfa_totp_device_facts:

@@ -30,7 +30,7 @@ oracle.oci.oci_announcements_service_announcement_subscription -- Manage an Anno
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -541,18 +541,18 @@ Examples
     - name: Create announcement_subscription
       oci_announcements_service_announcement_subscription:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         ons_topic_id: "ocid1.onstopic.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        description: description_example
         filter_groups:
           # required
           filters:
           - # required
             type: COMPARTMENT_ID
             value: value_example
+        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -571,8 +571,8 @@ Examples
     - name: Update announcement_subscription using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_announcements_service_announcement_subscription:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -589,8 +589,8 @@ Examples
     - name: Delete announcement_subscription using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_announcements_service_announcement_subscription:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

@@ -30,7 +30,7 @@ oracle.oci.oci_apigateway_sdk -- Manage a Sdk resource in Oracle Cloud Infrastru
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -467,10 +467,10 @@ Examples
         api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        parameters: null
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        parameters: null
 
     - name: Update sdk
       oci_apigateway_sdk:

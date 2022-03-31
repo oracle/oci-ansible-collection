@@ -30,6 +30,20 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    drg_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG the DRG route table belongs to.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    distribution_type:
+        description:
+            - Whether this distribution defines how routes get imported into route tables or exported through DRG Attachments
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "IMPORT"
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -53,20 +67,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    drg_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG the DRG route table belongs to.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
-    distribution_type:
-        description:
-            - Whether this distribution defines how routes get imported into route tables or exported through DRG Attachments
-            - Required for create using I(state=present).
-        type: str
-        choices:
-            - "IMPORT"
     drg_route_distribution_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route distribution.
@@ -111,8 +111,8 @@ EXAMPLES = """
 - name: Update drg_route_distribution using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_route_distribution:
     # required
-    display_name: display_name_example
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -127,8 +127,8 @@ EXAMPLES = """
 - name: Delete drg_route_distribution using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_route_distribution:
     # required
-    display_name: display_name_example
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -374,11 +374,11 @@ def main():
     )
     module_args.update(
         dict(
+            drg_id=dict(type="str"),
+            distribution_type=dict(type="str", choices=["IMPORT"]),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            drg_id=dict(type="str"),
-            distribution_type=dict(type="str", choices=["IMPORT"]),
             drg_route_distribution_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

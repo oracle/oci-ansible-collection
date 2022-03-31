@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_connection -- Manage a Connection resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -578,11 +578,11 @@ Examples
     - name: Create connection
       oci_data_catalog_connection:
         # required
+        type_key: type_key_example
+        display_name: display_name_example
+        properties: null
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
-        display_name: display_name_example
-        type_key: type_key_example
-        properties: null
 
         # optional
         description: description_example
@@ -618,9 +618,9 @@ Examples
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_connection:
         # required
+        display_name: display_name_example
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
-        display_name: display_name_example
 
         # optional
         description: description_example
@@ -645,9 +645,9 @@ Examples
     - name: Delete connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_connection:
         # required
+        display_name: display_name_example
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
-        display_name: display_name_example
         state: absent
 
 

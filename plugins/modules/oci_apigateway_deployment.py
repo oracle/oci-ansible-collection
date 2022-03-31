@@ -28,15 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - "Example: `My new resource`"
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     gateway_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
@@ -58,6 +49,15 @@ options:
               Deployment,https://docs.cloud.oracle.com/iaas/Content/APIGateway/Tasks/apigatewaycreatingdeployment.htm).
             - Required for create using I(state=present).
         type: str
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - "Example: `My new resource`"
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     specification:
         description:
             - ""
@@ -74,27 +74,6 @@ options:
                             - ""
                         type: dict
                         suboptions:
-                            is_anonymous_access_allowed:
-                                description:
-                                    - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
-                                      route authorization."
-                                type: bool
-                            type:
-                                description:
-                                    - Type of the authentication policy to use.
-                                type: str
-                                choices:
-                                    - "JWT_AUTHENTICATION"
-                                    - "CUSTOM_AUTHENTICATION"
-                                required: true
-                            token_header:
-                                description:
-                                    - The name of the header containing the authentication token.
-                                type: str
-                            token_query_param:
-                                description:
-                                    - The name of the query parameter containing the authentication token.
-                                type: str
                             token_auth_scheme:
                                 description:
                                     - "The authentication scheme that is to be used when authenticating
@@ -153,14 +132,6 @@ options:
                                     - Required when type is 'JWT_AUTHENTICATION'
                                 type: dict
                                 suboptions:
-                                    type:
-                                        description:
-                                            - Type of the public key set.
-                                        type: str
-                                        choices:
-                                            - "STATIC_KEYS"
-                                            - "REMOTE_JWKS"
-                                        required: true
                                     keys:
                                         description:
                                             - The set of static public keys.
@@ -168,20 +139,6 @@ options:
                                         type: list
                                         elements: dict
                                         suboptions:
-                                            kid:
-                                                description:
-                                                    - "A unique key ID. This key will be used to verify the signature of a
-                                                      JWT with matching \\"kid\\"."
-                                                type: str
-                                                required: true
-                                            format:
-                                                description:
-                                                    - The format of the public key.
-                                                type: str
-                                                choices:
-                                                    - "JSON_WEB_KEY"
-                                                    - "PEM"
-                                                required: true
                                             kty:
                                                 description:
                                                     - The key type.
@@ -221,11 +178,33 @@ options:
                                                       by this key.
                                                     - Required when format is 'JSON_WEB_KEY'
                                                 type: str
+                                            kid:
+                                                description:
+                                                    - "A unique key ID. This key will be used to verify the signature of a
+                                                      JWT with matching \\"kid\\"."
+                                                type: str
+                                                required: true
+                                            format:
+                                                description:
+                                                    - The format of the public key.
+                                                type: str
+                                                choices:
+                                                    - "JSON_WEB_KEY"
+                                                    - "PEM"
+                                                required: true
                                             key:
                                                 description:
                                                     - The content of the PEM-encoded public key.
                                                     - Required when format is 'PEM'
                                                 type: str
+                                    type:
+                                        description:
+                                            - Type of the public key set.
+                                        type: str
+                                        choices:
+                                            - "STATIC_KEYS"
+                                            - "REMOTE_JWKS"
+                                        required: true
                                     uri:
                                         description:
                                             - The uri from which to retrieve the key. It must be accessible
@@ -243,11 +222,32 @@ options:
                                               fetched again.
                                             - Applicable when type is 'REMOTE_JWKS'
                                         type: int
+                            is_anonymous_access_allowed:
+                                description:
+                                    - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
+                                      route authorization."
+                                type: bool
+                            type:
+                                description:
+                                    - Type of the authentication policy to use.
+                                type: str
+                                choices:
+                                    - "JWT_AUTHENTICATION"
+                                    - "CUSTOM_AUTHENTICATION"
+                                required: true
                             function_id:
                                 description:
                                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function
                                       resource.
                                     - Required when type is 'CUSTOM_AUTHENTICATION'
+                                type: str
+                            token_header:
+                                description:
+                                    - The name of the header containing the authentication token.
+                                type: str
+                            token_query_param:
+                                description:
+                                    - The name of the query parameter containing the authentication token.
                                 type: str
                     rate_limiting:
                         description:
@@ -402,6 +402,13 @@ options:
                                     - ""
                                 type: dict
                                 suboptions:
+                                    allowed_scope:
+                                        description:
+                                            - A user whose scope includes any of these access ranges is allowed on
+                                              this route. Access ranges are case-sensitive.
+                                            - Required when type is 'ANY_OF'
+                                        type: list
+                                        elements: str
                                     type:
                                         description:
                                             - "Indicates how authorization should be applied. For a type of ANY_OF, an \\"allowedScope\\"
@@ -414,13 +421,6 @@ options:
                                             - "ANONYMOUS"
                                             - "AUTHENTICATION_ONLY"
                                         default: "AUTHENTICATION_ONLY"
-                                    allowed_scope:
-                                        description:
-                                            - A user whose scope includes any of these access ranges is allowed on
-                                              this route. Access ranges are case-sensitive.
-                                            - Required when type is 'ANY_OF'
-                                        type: list
-                                        elements: str
                             cors:
                                 description:
                                     - ""
@@ -941,15 +941,6 @@ options:
                         type: dict
                         required: true
                         suboptions:
-                            type:
-                                description:
-                                    - Type of the API backend.
-                                type: str
-                                choices:
-                                    - "HTTP_BACKEND"
-                                    - "ORACLE_FUNCTIONS_BACKEND"
-                                    - "STOCK_RESPONSE_BACKEND"
-                                required: true
                             url:
                                 description:
                                     - ""
@@ -981,6 +972,15 @@ options:
                                       resource.
                                     - Required when type is 'ORACLE_FUNCTIONS_BACKEND'
                                 type: str
+                            type:
+                                description:
+                                    - Type of the API backend.
+                                type: str
+                                choices:
+                                    - "HTTP_BACKEND"
+                                    - "ORACLE_FUNCTIONS_BACKEND"
+                                    - "STOCK_RESPONSE_BACKEND"
+                                required: true
                             body:
                                 description:
                                     - The body of the stock response from the mock backend.
@@ -1059,7 +1059,6 @@ EXAMPLES = """
         # optional
         authentication:
           # required
-          type: JWT_AUTHENTICATION
           issuers: [ "issuers_example" ]
           audiences: [ "audiences_example" ]
           public_keys:
@@ -1069,21 +1068,19 @@ EXAMPLES = """
             # optional
             keys:
             - # required
-              kid: kid_example
-              format: JSON_WEB_KEY
               kty: RSA
               alg: alg_example
               n: n_example
               e: e_example
+              kid: kid_example
+              format: JSON_WEB_KEY
 
               # optional
               use: sig
               key_ops: [ "verify" ]
+          type: JWT_AUTHENTICATION
 
               # optional
-          is_anonymous_access_allowed: true
-          token_header: token_header_example
-          token_query_param: token_query_param_example
           token_auth_scheme: token_auth_scheme_example
           verify_claims:
           - # required
@@ -1093,6 +1090,9 @@ EXAMPLES = """
             values: [ "values_example" ]
             is_required: true
           max_clock_skew_in_seconds: 3.4
+          is_anonymous_access_allowed: true
+          token_header: token_header_example
+          token_query_param: token_query_param_example
         rate_limiting:
           # required
           rate_in_requests_per_second: 56
@@ -1125,8 +1125,8 @@ EXAMPLES = """
         path: path_example
         backend:
           # required
-          type: HTTP_BACKEND
           url: url_example
+          type: HTTP_BACKEND
 
           # optional
           connect_timeout_in_seconds: 3.4
@@ -1140,8 +1140,8 @@ EXAMPLES = """
           # optional
           authorization:
             # required
-            type: ANY_OF
             allowed_scope: [ "allowed_scope_example" ]
+            type: ANY_OF
           cors:
             # required
             allowed_origins: [ "allowed_origins_example" ]
@@ -1286,7 +1286,6 @@ EXAMPLES = """
         # optional
         authentication:
           # required
-          type: JWT_AUTHENTICATION
           issuers: [ "issuers_example" ]
           audiences: [ "audiences_example" ]
           public_keys:
@@ -1296,21 +1295,19 @@ EXAMPLES = """
             # optional
             keys:
             - # required
-              kid: kid_example
-              format: JSON_WEB_KEY
               kty: RSA
               alg: alg_example
               n: n_example
               e: e_example
+              kid: kid_example
+              format: JSON_WEB_KEY
 
               # optional
               use: sig
               key_ops: [ "verify" ]
+          type: JWT_AUTHENTICATION
 
               # optional
-          is_anonymous_access_allowed: true
-          token_header: token_header_example
-          token_query_param: token_query_param_example
           token_auth_scheme: token_auth_scheme_example
           verify_claims:
           - # required
@@ -1320,6 +1317,9 @@ EXAMPLES = """
             values: [ "values_example" ]
             is_required: true
           max_clock_skew_in_seconds: 3.4
+          is_anonymous_access_allowed: true
+          token_header: token_header_example
+          token_query_param: token_query_param_example
         rate_limiting:
           # required
           rate_in_requests_per_second: 56
@@ -1352,8 +1352,8 @@ EXAMPLES = """
         path: path_example
         backend:
           # required
-          type: HTTP_BACKEND
           url: url_example
+          type: HTTP_BACKEND
 
           # optional
           connect_timeout_in_seconds: 3.4
@@ -1367,8 +1367,8 @@ EXAMPLES = """
           # optional
           authorization:
             # required
-            type: ANY_OF
             allowed_scope: [ "allowed_scope_example" ]
+            type: ANY_OF
           cors:
             # required
             allowed_origins: [ "allowed_origins_example" ]
@@ -1503,8 +1503,8 @@ EXAMPLES = """
 - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     specification:
@@ -1513,7 +1513,6 @@ EXAMPLES = """
         # optional
         authentication:
           # required
-          type: JWT_AUTHENTICATION
           issuers: [ "issuers_example" ]
           audiences: [ "audiences_example" ]
           public_keys:
@@ -1523,21 +1522,19 @@ EXAMPLES = """
             # optional
             keys:
             - # required
-              kid: kid_example
-              format: JSON_WEB_KEY
               kty: RSA
               alg: alg_example
               n: n_example
               e: e_example
+              kid: kid_example
+              format: JSON_WEB_KEY
 
               # optional
               use: sig
               key_ops: [ "verify" ]
+          type: JWT_AUTHENTICATION
 
               # optional
-          is_anonymous_access_allowed: true
-          token_header: token_header_example
-          token_query_param: token_query_param_example
           token_auth_scheme: token_auth_scheme_example
           verify_claims:
           - # required
@@ -1547,6 +1544,9 @@ EXAMPLES = """
             values: [ "values_example" ]
             is_required: true
           max_clock_skew_in_seconds: 3.4
+          is_anonymous_access_allowed: true
+          token_header: token_header_example
+          token_query_param: token_query_param_example
         rate_limiting:
           # required
           rate_in_requests_per_second: 56
@@ -1579,8 +1579,8 @@ EXAMPLES = """
         path: path_example
         backend:
           # required
-          type: HTTP_BACKEND
           url: url_example
+          type: HTTP_BACKEND
 
           # optional
           connect_timeout_in_seconds: 3.4
@@ -1594,8 +1594,8 @@ EXAMPLES = """
           # optional
           authorization:
             # required
-            type: ANY_OF
             allowed_scope: [ "allowed_scope_example" ]
+            type: ANY_OF
           cors:
             # required
             allowed_origins: [ "allowed_origins_example" ]
@@ -1736,8 +1736,8 @@ EXAMPLES = """
 - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -3217,10 +3217,10 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             gateway_id=dict(type="str"),
             compartment_id=dict(type="str"),
             path_prefix=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             specification=dict(
                 type="dict",
                 options=dict(
@@ -3230,17 +3230,6 @@ def main():
                             authentication=dict(
                                 type="dict",
                                 options=dict(
-                                    is_anonymous_access_allowed=dict(type="bool"),
-                                    type=dict(
-                                        type="str",
-                                        required=True,
-                                        choices=[
-                                            "JWT_AUTHENTICATION",
-                                            "CUSTOM_AUTHENTICATION",
-                                        ],
-                                    ),
-                                    token_header=dict(type="str", no_log=True),
-                                    token_query_param=dict(type="str", no_log=True),
                                     token_auth_scheme=dict(type="str", no_log=True),
                                     issuers=dict(type="list", elements="str"),
                                     audiences=dict(type="list", elements="str"),
@@ -3260,22 +3249,11 @@ def main():
                                         type="dict",
                                         no_log=False,
                                         options=dict(
-                                            type=dict(
-                                                type="str",
-                                                required=True,
-                                                choices=["STATIC_KEYS", "REMOTE_JWKS"],
-                                            ),
                                             keys=dict(
                                                 type="list",
                                                 elements="dict",
                                                 no_log=False,
                                                 options=dict(
-                                                    kid=dict(type="str", required=True),
-                                                    format=dict(
-                                                        type="str",
-                                                        required=True,
-                                                        choices=["JSON_WEB_KEY", "PEM"],
-                                                    ),
                                                     kty=dict(
                                                         type="str", choices=["RSA"]
                                                     ),
@@ -3291,8 +3269,19 @@ def main():
                                                     alg=dict(type="str"),
                                                     n=dict(type="str"),
                                                     e=dict(type="str"),
+                                                    kid=dict(type="str", required=True),
+                                                    format=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=["JSON_WEB_KEY", "PEM"],
+                                                    ),
                                                     key=dict(type="str", no_log=True),
                                                 ),
+                                            ),
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["STATIC_KEYS", "REMOTE_JWKS"],
                                             ),
                                             uri=dict(type="str"),
                                             is_ssl_verify_disabled=dict(type="bool"),
@@ -3301,7 +3290,18 @@ def main():
                                             ),
                                         ),
                                     ),
+                                    is_anonymous_access_allowed=dict(type="bool"),
+                                    type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=[
+                                            "JWT_AUTHENTICATION",
+                                            "CUSTOM_AUTHENTICATION",
+                                        ],
+                                    ),
                                     function_id=dict(type="str"),
+                                    token_header=dict(type="str", no_log=True),
+                                    token_query_param=dict(type="str", no_log=True),
                                 ),
                             ),
                             rate_limiting=dict(
@@ -3382,6 +3382,9 @@ def main():
                                     authorization=dict(
                                         type="dict",
                                         options=dict(
+                                            allowed_scope=dict(
+                                                type="list", elements="str"
+                                            ),
                                             type=dict(
                                                 type="str",
                                                 default="AUTHENTICATION_ONLY",
@@ -3390,9 +3393,6 @@ def main():
                                                     "ANONYMOUS",
                                                     "AUTHENTICATION_ONLY",
                                                 ],
-                                            ),
-                                            allowed_scope=dict(
-                                                type="list", elements="str"
                                             ),
                                         ),
                                     ),
@@ -3765,6 +3765,12 @@ def main():
                                 type="dict",
                                 required=True,
                                 options=dict(
+                                    url=dict(type="str"),
+                                    connect_timeout_in_seconds=dict(type="float"),
+                                    read_timeout_in_seconds=dict(type="float"),
+                                    send_timeout_in_seconds=dict(type="float"),
+                                    is_ssl_verify_disabled=dict(type="bool"),
+                                    function_id=dict(type="str"),
                                     type=dict(
                                         type="str",
                                         required=True,
@@ -3774,12 +3780,6 @@ def main():
                                             "STOCK_RESPONSE_BACKEND",
                                         ],
                                     ),
-                                    url=dict(type="str"),
-                                    connect_timeout_in_seconds=dict(type="float"),
-                                    read_timeout_in_seconds=dict(type="float"),
-                                    send_timeout_in_seconds=dict(type="float"),
-                                    is_ssl_verify_disabled=dict(type="bool"),
-                                    function_id=dict(type="str"),
                                     body=dict(type="str"),
                                     status=dict(type="int"),
                                     headers=dict(

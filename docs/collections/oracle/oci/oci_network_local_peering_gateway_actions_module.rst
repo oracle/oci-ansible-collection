@@ -30,7 +30,7 @@ oracle.oci.oci_network_local_peering_gateway_actions -- Perform actions on a Loc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -323,8 +323,8 @@ Examples
     - name: Perform action change_compartment on local_peering_gateway
       oci_network_local_peering_gateway_actions:
         # required
-        local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action connect on local_peering_gateway

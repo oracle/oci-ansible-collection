@@ -30,7 +30,7 @@ oracle.oci.oci_dns_steering_policy -- Manage a SteeringPolicy resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -986,17 +986,17 @@ Examples
           description: description_example
           cases:
           - # optional
+            count: 56
             case_condition: case_condition_example
             answer_data:
             - # optional
-              answer_condition: answer_condition_example
               should_keep: true
+              answer_condition: answer_condition_example
               value: 56
-            count: 56
           default_answer_data:
           - # optional
-            answer_condition: answer_condition_example
             should_keep: true
+            answer_condition: answer_condition_example
             value: 56
         scope: GLOBAL
 
@@ -1029,20 +1029,20 @@ Examples
           description: description_example
           cases:
           - # optional
+            count: 56
             case_condition: case_condition_example
             answer_data:
             - # optional
-              answer_condition: answer_condition_example
               should_keep: true
+              answer_condition: answer_condition_example
               value: 56
-            count: 56
           default_answer_data:
           - # optional
-            answer_condition: answer_condition_example
             should_keep: true
+            answer_condition: answer_condition_example
             value: 56
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Update steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_steering_policy:
@@ -1073,20 +1073,20 @@ Examples
           description: description_example
           cases:
           - # optional
+            count: 56
             case_condition: case_condition_example
             answer_data:
             - # optional
-              answer_condition: answer_condition_example
               should_keep: true
+              answer_condition: answer_condition_example
               value: 56
-            count: 56
           default_answer_data:
           - # optional
-            answer_condition: answer_condition_example
             should_keep: true
+            answer_condition: answer_condition_example
             value: 56
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Delete steering_policy
       oci_dns_steering_policy:
@@ -1095,8 +1095,8 @@ Examples
         state: absent
 
         # optional
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Delete steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_steering_policy:

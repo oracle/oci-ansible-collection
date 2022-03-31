@@ -31,17 +31,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the volume group backup to.
+            - Required for I(action=change_compartment).
+        type: str
     volume_group_backup_id:
         description:
             - The Oracle Cloud ID (OCID) that uniquely identifies the volume group backup.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the volume group backup to.
-            - Required for I(action=change_compartment).
-        type: str
     destination_region:
         description:
             - The name of the destination region.
@@ -81,8 +81,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on volume_group_backup
   oci_blockstorage_volume_group_backup_actions:
     # required
-    volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action copy on volume_group_backup
@@ -359,8 +359,8 @@ def main():
     )
     module_args.update(
         dict(
-            volume_group_backup_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            volume_group_backup_id=dict(aliases=["id"], type="str", required=True),
             destination_region=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             kms_key_id=dict(type="str"),

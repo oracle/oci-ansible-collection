@@ -28,11 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    bds_instance_id:
-        description:
-            - The OCID of the cluster.
-        type: str
-        required: true
     user_id:
         description:
             - The OCID of the user for whom this new generated API key pair will be created.
@@ -54,6 +49,11 @@ options:
               Only ASCII alphanumeric characters with no spaces allowed.
             - Required for create using I(state=present).
         type: str
+    bds_instance_id:
+        description:
+            - The OCID of the cluster.
+        type: str
+        required: true
     api_key_id:
         description:
             - The API key identifier.
@@ -76,10 +76,10 @@ EXAMPLES = """
 - name: Create bds_api_key
   oci_bds_api_key:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     passphrase: passphrase_example
     key_alias: key_alias_example
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     default_region: us-phoenix-1
@@ -314,11 +314,11 @@ def main():
     )
     module_args.update(
         dict(
-            bds_instance_id=dict(type="str", required=True),
             user_id=dict(type="str"),
             passphrase=dict(type="str", no_log=True),
             default_region=dict(type="str"),
             key_alias=dict(type="str", no_log=True),
+            bds_instance_id=dict(type="str", required=True),
             api_key_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

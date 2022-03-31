@@ -53,17 +53,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    vcn_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
-        type: str
-        aliases: ["id"]
-        required: true
-    cidr_block:
-        description:
-            - The CIDR block to add.
-            - Required for I(action=add_vcn_cidr), I(action=remove_vcn_cidr).
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
@@ -79,6 +68,17 @@ options:
         description:
             - The new CIDR IP address.
             - Required for I(action=modify_vcn_cidr).
+        type: str
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
+        type: str
+        aliases: ["id"]
+        required: true
+    cidr_block:
+        description:
+            - The CIDR block to add.
+            - Required for I(action=add_vcn_cidr), I(action=remove_vcn_cidr).
         type: str
     action:
         description:
@@ -111,16 +111,16 @@ EXAMPLES = """
 - name: Perform action change_compartment on vcn
   oci_network_vcn_actions:
     # required
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action modify_vcn_cidr on vcn
   oci_network_vcn_actions:
     # required
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     original_cidr_block: original_cidr_block_example
     new_cidr_block: new_cidr_block_example
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     action: modify_vcn_cidr
 
 - name: Perform action remove_vcn_cidr on vcn
@@ -437,11 +437,11 @@ def main():
     )
     module_args.update(
         dict(
-            vcn_id=dict(aliases=["id"], type="str", required=True),
-            cidr_block=dict(type="str"),
             compartment_id=dict(type="str"),
             original_cidr_block=dict(type="str"),
             new_cidr_block=dict(type="str"),
+            vcn_id=dict(aliases=["id"], type="str", required=True),
+            cidr_block=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

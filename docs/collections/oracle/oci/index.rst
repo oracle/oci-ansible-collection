@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.46.0
+Collection version 2.47.0
 
 .. toctree::
     :maxdepth: 1
@@ -41,6 +41,19 @@ Modules
 * :ref:`oci_ai_speech_transcription_job_facts <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_facts_module>` -- Fetches details about one or multiple TranscriptionJob resources in Oracle Cloud Infrastructure
 * :ref:`oci_ai_speech_transcription_task_actions <ansible_collections.oracle.oci.oci_ai_speech_transcription_task_actions_module>` -- Perform actions on a TranscriptionTask resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_speech_transcription_task_facts <ansible_collections.oracle.oci.oci_ai_speech_transcription_task_facts_module>` -- Fetches details about one or multiple TranscriptionTask resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_analyze_image_result_actions <ansible_collections.oracle.oci.oci_ai_vision_analyze_image_result_actions_module>` -- Perform actions on an AnalyzeImageResult resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_document_job <ansible_collections.oracle.oci.oci_ai_vision_document_job_module>` -- Manage a DocumentJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_document_job_actions <ansible_collections.oracle.oci.oci_ai_vision_document_job_actions_module>` -- Perform actions on a DocumentJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_document_job_facts <ansible_collections.oracle.oci.oci_ai_vision_document_job_facts_module>` -- Fetches details about a DocumentJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_image_job <ansible_collections.oracle.oci.oci_ai_vision_image_job_module>` -- Manage an ImageJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_image_job_actions <ansible_collections.oracle.oci.oci_ai_vision_image_job_actions_module>` -- Perform actions on an ImageJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_image_job_facts <ansible_collections.oracle.oci.oci_ai_vision_image_job_facts_module>` -- Fetches details about a ImageJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_model <ansible_collections.oracle.oci.oci_ai_vision_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_model_actions <ansible_collections.oracle.oci.oci_ai_vision_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_model_facts <ansible_collections.oracle.oci.oci_ai_vision_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_project <ansible_collections.oracle.oci.oci_ai_vision_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_project_actions <ansible_collections.oracle.oci.oci_ai_vision_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_vision_project_facts <ansible_collections.oracle.oci.oci_ai_vision_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance <ansible_collections.oracle.oci.oci_analytics_instance_module>` -- Manage an AnalyticsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance_actions <ansible_collections.oracle.oci.oci_analytics_instance_actions_module>` -- Perform actions on an AnalyticsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance_facts <ansible_collections.oracle.oci.oci_analytics_instance_facts_module>` -- Fetches details about one or multiple AnalyticsInstance resources in Oracle Cloud Infrastructure
@@ -304,6 +317,32 @@ Modules
 * :ref:`oci_data_catalog_namespace_facts <ansible_collections.oracle.oci.oci_data_catalog_namespace_facts_module>` -- Fetches details about one or multiple Namespace resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_type_actions <ansible_collections.oracle.oci.oci_data_catalog_type_actions_module>` -- Perform actions on a Type resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_type_facts <ansible_collections.oracle.oci.oci_data_catalog_type_facts_module>` -- Fetches details about one or multiple Type resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_attach_data_asset_info_actions <ansible_collections.oracle.oci.oci_data_connectivity_attach_data_asset_info_actions_module>` -- Perform actions on an AttachDataAssetInfo resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_connection <ansible_collections.oracle.oci.oci_data_connectivity_connection_module>` -- Manage a Connection resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_connection_facts <ansible_collections.oracle.oci.oci_data_connectivity_connection_facts_module>` -- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_connection_validation <ansible_collections.oracle.oci.oci_data_connectivity_connection_validation_module>` -- Manage a ConnectionValidation resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_connection_validation_facts <ansible_collections.oracle.oci.oci_data_connectivity_connection_validation_facts_module>` -- Fetches details about one or multiple ConnectionValidation resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_data_asset <ansible_collections.oracle.oci.oci_data_connectivity_data_asset_module>` -- Manage a DataAsset resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_data_asset_facts <ansible_collections.oracle.oci.oci_data_connectivity_data_asset_facts_module>` -- Fetches details about one or multiple DataAsset resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_data_entity_actions <ansible_collections.oracle.oci.oci_data_connectivity_data_entity_actions_module>` -- Perform actions on a DataEntity resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_data_entity_facts <ansible_collections.oracle.oci.oci_data_connectivity_data_entity_facts_module>` -- Fetches details about one or multiple DataEntity resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_data_preview_actions <ansible_collections.oracle.oci.oci_data_connectivity_data_preview_actions_module>` -- Perform actions on a DataPreview resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_data_profile_actions <ansible_collections.oracle.oci.oci_data_connectivity_data_profile_actions_module>` -- Perform actions on a DataProfile resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_detach_data_asset_info_actions <ansible_collections.oracle.oci.oci_data_connectivity_detach_data_asset_info_actions_module>` -- Perform actions on a DetachDataAssetInfo resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_endpoint <ansible_collections.oracle.oci.oci_data_connectivity_endpoint_module>` -- Manage an Endpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_endpoint_actions <ansible_collections.oracle.oci.oci_data_connectivity_endpoint_actions_module>` -- Perform actions on an Endpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_endpoint_facts <ansible_collections.oracle.oci.oci_data_connectivity_endpoint_facts_module>` -- Fetches details about one or multiple Endpoint resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_execute_operation_job_facts <ansible_collections.oracle.oci.oci_data_connectivity_execute_operation_job_facts_module>` -- Fetches details about a ExecuteOperationJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_folder <ansible_collections.oracle.oci.oci_data_connectivity_folder_module>` -- Manage a Folder resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_folder_facts <ansible_collections.oracle.oci.oci_data_connectivity_folder_facts_module>` -- Fetches details about one or multiple Folder resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_operation_facts <ansible_collections.oracle.oci.oci_data_connectivity_operation_facts_module>` -- Fetches details about one or multiple Operation resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_reference_artifact_facts <ansible_collections.oracle.oci.oci_data_connectivity_reference_artifact_facts_module>` -- Fetches details about one or multiple ReferenceArtifact resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_reference_info_actions <ansible_collections.oracle.oci.oci_data_connectivity_reference_info_actions_module>` -- Perform actions on a ReferenceInfo resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_registry <ansible_collections.oracle.oci.oci_data_connectivity_registry_module>` -- Manage a Registry resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_registry_actions <ansible_collections.oracle.oci.oci_data_connectivity_registry_actions_module>` -- Perform actions on a Registry resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_registry_facts <ansible_collections.oracle.oci.oci_data_connectivity_registry_facts_module>` -- Fetches details about one or multiple Registry resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_schema_facts <ansible_collections.oracle.oci.oci_data_connectivity_schema_facts_module>` -- Fetches details about one or multiple Schema resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_connectivity_test_network_connectivity_actions <ansible_collections.oracle.oci.oci_data_connectivity_test_network_connectivity_actions_module>` -- Perform actions on a TestNetworkConnectivity resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_flow_application <ansible_collections.oracle.oci.oci_data_flow_application_module>` -- Manage an Application resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_flow_application_actions <ansible_collections.oracle.oci.oci_data_flow_application_actions_module>` -- Perform actions on an Application resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_flow_application_facts <ansible_collections.oracle.oci.oci_data_flow_application_facts_module>` -- Fetches details about one or multiple Application resources in Oracle Cloud Infrastructure
@@ -1378,6 +1417,19 @@ Modules
     oci_ai_speech_transcription_job_facts_module
     oci_ai_speech_transcription_task_actions_module
     oci_ai_speech_transcription_task_facts_module
+    oci_ai_vision_analyze_image_result_actions_module
+    oci_ai_vision_document_job_module
+    oci_ai_vision_document_job_actions_module
+    oci_ai_vision_document_job_facts_module
+    oci_ai_vision_image_job_module
+    oci_ai_vision_image_job_actions_module
+    oci_ai_vision_image_job_facts_module
+    oci_ai_vision_model_module
+    oci_ai_vision_model_actions_module
+    oci_ai_vision_model_facts_module
+    oci_ai_vision_project_module
+    oci_ai_vision_project_actions_module
+    oci_ai_vision_project_facts_module
     oci_analytics_instance_module
     oci_analytics_instance_actions_module
     oci_analytics_instance_facts_module
@@ -1641,6 +1693,32 @@ Modules
     oci_data_catalog_namespace_facts_module
     oci_data_catalog_type_actions_module
     oci_data_catalog_type_facts_module
+    oci_data_connectivity_attach_data_asset_info_actions_module
+    oci_data_connectivity_connection_module
+    oci_data_connectivity_connection_facts_module
+    oci_data_connectivity_connection_validation_module
+    oci_data_connectivity_connection_validation_facts_module
+    oci_data_connectivity_data_asset_module
+    oci_data_connectivity_data_asset_facts_module
+    oci_data_connectivity_data_entity_actions_module
+    oci_data_connectivity_data_entity_facts_module
+    oci_data_connectivity_data_preview_actions_module
+    oci_data_connectivity_data_profile_actions_module
+    oci_data_connectivity_detach_data_asset_info_actions_module
+    oci_data_connectivity_endpoint_module
+    oci_data_connectivity_endpoint_actions_module
+    oci_data_connectivity_endpoint_facts_module
+    oci_data_connectivity_execute_operation_job_facts_module
+    oci_data_connectivity_folder_module
+    oci_data_connectivity_folder_facts_module
+    oci_data_connectivity_operation_facts_module
+    oci_data_connectivity_reference_artifact_facts_module
+    oci_data_connectivity_reference_info_actions_module
+    oci_data_connectivity_registry_module
+    oci_data_connectivity_registry_actions_module
+    oci_data_connectivity_registry_facts_module
+    oci_data_connectivity_schema_facts_module
+    oci_data_connectivity_test_network_connectivity_actions_module
     oci_data_flow_application_module
     oci_data_flow_application_actions_module
     oci_data_flow_application_facts_module

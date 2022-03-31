@@ -43,12 +43,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    managed_instance_id:
-        description:
-            - OCID for the managed instance
-        type: str
-        aliases: ["id"]
-        required: true
     software_source_id:
         description:
             - OCID for the Software Source
@@ -67,17 +61,23 @@ options:
             - "OTHER"
             - "KSPLICE"
             - "ALL"
-    software_package_name:
-        description:
-            - Package name
-            - Required for I(action=install_package), I(action=install_package_update), I(action=remove_package).
-        type: str
     windows_update_name:
         description:
             - "Unique identifier for the Windows update. NOTE - This is not an OCID,
               but is a unique identifier assigned by Microsoft.
               Example: `6981d463-cd91-4a26-b7c4-ea4ded9183ed`"
             - Required for I(action=install_windows_update).
+        type: str
+    managed_instance_id:
+        description:
+            - OCID for the managed instance
+        type: str
+        aliases: ["id"]
+        required: true
+    software_package_name:
+        description:
+            - Package name
+            - Required for I(action=install_package), I(action=install_package_update), I(action=remove_package).
         type: str
     action:
         description:
@@ -102,29 +102,29 @@ EXAMPLES = """
 - name: Perform action attach_child_software_source on managed_instance
   oci_os_management_managed_instance_actions:
     # required
-    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_child_software_source
 
 - name: Perform action attach_parent_software_source on managed_instance
   oci_os_management_managed_instance_actions:
     # required
-    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_parent_software_source
 
 - name: Perform action detach_child_software_source on managed_instance
   oci_os_management_managed_instance_actions:
     # required
-    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_child_software_source
 
 - name: Perform action detach_parent_software_source on managed_instance
   oci_os_management_managed_instance_actions:
     # required
-    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_parent_software_source
 
 - name: Perform action install_all_package_updates on managed_instance
@@ -162,8 +162,8 @@ EXAMPLES = """
 - name: Perform action install_windows_update on managed_instance
   oci_os_management_managed_instance_actions:
     # required
-    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     windows_update_name: windows_update_name_example
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: install_windows_update
 
 - name: Perform action remove_package on managed_instance
@@ -701,7 +701,6 @@ def main():
     )
     module_args.update(
         dict(
-            managed_instance_id=dict(aliases=["id"], type="str", required=True),
             software_source_id=dict(type="str"),
             update_type=dict(
                 type="str",
@@ -714,8 +713,9 @@ def main():
                     "ALL",
                 ],
             ),
-            software_package_name=dict(type="str"),
             windows_update_name=dict(type="str"),
+            managed_instance_id=dict(aliases=["id"], type="str", required=True),
+            software_package_name=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

@@ -63,73 +63,11 @@ options:
               us/iaas/api/#/en/iaas/latest/Cpe/) object.
             - Required for create using I(state=present).
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     drg_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
             - Required for create using I(state=present).
         type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    cpe_local_identifier:
-        description:
-            - Your identifier for your CPE device. Can be either an IP address or a hostname (specifically, the
-              fully qualified domain name (FQDN)). The type of identifier you provide here must correspond
-              to the value for `cpeLocalIdentifierType`.
-            - If you don't provide a value, the `ipAddress` attribute for the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/)
-              object specified by `cpeId` is used as the `cpeLocalIdentifier`.
-            - For information about why you'd provide this value, see
-              L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm#nat).
-            - "Example IP address: `10.0.3.3`"
-            - "Example hostname: `cpe.example.com`"
-            - This parameter is updatable.
-        type: str
-    cpe_local_identifier_type:
-        description:
-            - The type of identifier for your CPE device. The value you provide here must correspond to the value
-              for `cpeLocalIdentifier`.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "IP_ADDRESS"
-            - "HOSTNAME"
-    static_routes:
-        description:
-            - Static routes to the CPE. A static route's CIDR must not be a
-              multicast address or class E address.
-            - Used for routing a given IPSec tunnel's traffic only if the tunnel
-              is using static routing. If you configure at least one tunnel to use static routing, then
-              you must provide at least one valid static route. If you configure both
-              tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.
-              For more information, see the important note in L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/).
-            - The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions.
-              See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
-            - "Example: `10.0.1.0/24`"
-            - "Example: `2001:db8::/32`"
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: list
-        elements: str
     tunnel_configuration:
         description:
             - Information for creating the individual tunnels in the IPSec connection. You can provide a
@@ -369,6 +307,68 @@ options:
                             - Lists IPv4 or IPv6-enabled subnets in your on-premises network.
                         type: list
                         elements: str
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    cpe_local_identifier:
+        description:
+            - Your identifier for your CPE device. Can be either an IP address or a hostname (specifically, the
+              fully qualified domain name (FQDN)). The type of identifier you provide here must correspond
+              to the value for `cpeLocalIdentifierType`.
+            - If you don't provide a value, the `ipAddress` attribute for the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/)
+              object specified by `cpeId` is used as the `cpeLocalIdentifier`.
+            - For information about why you'd provide this value, see
+              L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm#nat).
+            - "Example IP address: `10.0.3.3`"
+            - "Example hostname: `cpe.example.com`"
+            - This parameter is updatable.
+        type: str
+    cpe_local_identifier_type:
+        description:
+            - The type of identifier for your CPE device. The value you provide here must correspond to the value
+              for `cpeLocalIdentifier`.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "IP_ADDRESS"
+            - "HOSTNAME"
+    static_routes:
+        description:
+            - Static routes to the CPE. A static route's CIDR must not be a
+              multicast address or class E address.
+            - Used for routing a given IPSec tunnel's traffic only if the tunnel
+              is using static routing. If you configure at least one tunnel to use static routing, then
+              you must provide at least one valid static route. If you configure both
+              tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.
+              For more information, see the important note in L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/).
+            - The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions.
+              See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+            - "Example: `10.0.1.0/24`"
+            - "Example: `2001:db8::/32`"
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: list
+        elements: str
     ipsc_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
@@ -398,11 +398,6 @@ EXAMPLES = """
     static_routes: [ "static_routes_example" ]
 
     # optional
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
-    cpe_local_identifier: cpe_local_identifier_example
-    cpe_local_identifier_type: IP_ADDRESS
     tunnel_configuration:
     - # optional
       display_name: display_name_example
@@ -441,6 +436,11 @@ EXAMPLES = """
         # optional
         oracle_traffic_selector: [ "oracle_traffic_selector_example" ]
         cpe_traffic_selector: [ "cpe_traffic_selector_example" ]
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    cpe_local_identifier: cpe_local_identifier_example
+    cpe_local_identifier_type: IP_ADDRESS
 
 - name: Update ip_sec_connection
   oci_network_ip_sec_connection:
@@ -760,15 +760,7 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             cpe_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
             drg_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            cpe_local_identifier=dict(type="str"),
-            cpe_local_identifier_type=dict(
-                type="str", choices=["IP_ADDRESS", "HOSTNAME"]
-            ),
-            static_routes=dict(type="list", elements="str"),
             tunnel_configuration=dict(
                 type="list",
                 elements="dict",
@@ -871,6 +863,14 @@ def main():
                     ),
                 ),
             ),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            cpe_local_identifier=dict(type="str"),
+            cpe_local_identifier_type=dict(
+                type="str", choices=["IP_ADDRESS", "HOSTNAME"]
+            ),
+            static_routes=dict(type="list", elements="str"),
             ipsc_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

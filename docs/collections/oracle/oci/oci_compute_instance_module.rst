@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance -- Manage an Instance resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1683,7 +1683,6 @@ Examples
         shape: shape_example
 
         # optional
-        capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         create_vnic_details:
           # optional
           assign_public_ip: true
@@ -1698,29 +1697,9 @@ Examples
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
           vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
-        extended_metadata: null
-        fault_domain: FAULT-DOMAIN-1
-        freeform_tags: {'Department': 'Finance'}
         hostname_label: hostname_label_example
         image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         ipxe_script: ipxe_script_example
-        launch_options:
-          # optional
-          boot_volume_type: ISCSI
-          firmware: BIOS
-          network_type: E1000
-          remote_data_volume_type: ISCSI
-          is_pv_encryption_in_transit_enabled: true
-          is_consistent_volume_naming_enabled: true
-        instance_options:
-          # optional
-          are_legacy_imds_endpoints_disabled: true
-        availability_config:
-          # optional
-          is_live_migration_preferred: true
-          recovery_action: RESTORE_INSTANCE
         preemptible_instance_config:
           # required
           preemption_action:
@@ -1729,25 +1708,10 @@ Examples
 
             # optional
             preserve_boot_volume: true
-        metadata: null
-        agent_config:
-          # optional
-          is_monitoring_disabled: true
-          is_management_disabled: true
-          are_all_plugins_disabled: true
-          plugins_config:
-          - # required
-            name: name_example
-            desired_state: ENABLED
-        shape_config:
-          # optional
-          ocpus: 3.4
-          memory_in_gbs: 3.4
-          baseline_ocpu_utilization: BASELINE_1_8
         source_details:
           # required
-          source_type: image
           image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+          source_type: image
 
           # optional
           boot_volume_size_in_gbs: 56
@@ -1762,6 +1726,42 @@ Examples
           is_secure_boot_enabled: true
           is_trusted_platform_module_enabled: true
           is_measured_boot_enabled: true
+        capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        agent_config:
+          # optional
+          is_monitoring_disabled: true
+          is_management_disabled: true
+          are_all_plugins_disabled: true
+          plugins_config:
+          - # required
+            name: name_example
+            desired_state: ENABLED
+        metadata: null
+        extended_metadata: null
+        shape_config:
+          # optional
+          ocpus: 3.4
+          memory_in_gbs: 3.4
+          baseline_ocpu_utilization: BASELINE_1_8
+        instance_options:
+          # optional
+          are_legacy_imds_endpoints_disabled: true
+        fault_domain: FAULT-DOMAIN-1
+        launch_options:
+          # optional
+          firmware: BIOS
+          remote_data_volume_type: ISCSI
+          is_consistent_volume_naming_enabled: true
+          boot_volume_type: ISCSI
+          network_type: E1000
+          is_pv_encryption_in_transit_enabled: true
+        availability_config:
+          # optional
+          is_live_migration_preferred: true
+          recovery_action: RESTORE_INSTANCE
 
     - name: Update instance
       oci_compute_instance:
@@ -1772,25 +1772,7 @@ Examples
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        extended_metadata: null
-        fault_domain: FAULT-DOMAIN-1
         freeform_tags: {'Department': 'Finance'}
-        launch_options:
-          # optional
-          boot_volume_type: ISCSI
-          firmware: BIOS
-          network_type: E1000
-          remote_data_volume_type: ISCSI
-          is_pv_encryption_in_transit_enabled: true
-          is_consistent_volume_naming_enabled: true
-        instance_options:
-          # optional
-          are_legacy_imds_endpoints_disabled: true
-        availability_config:
-          # optional
-          is_live_migration_preferred: true
-          recovery_action: RESTORE_INSTANCE
-        metadata: null
         agent_config:
           # optional
           is_monitoring_disabled: true
@@ -1800,12 +1782,30 @@ Examples
           - # required
             name: name_example
             desired_state: ENABLED
+        metadata: null
+        extended_metadata: null
         shape: shape_example
         shape_config:
           # optional
           ocpus: 3.4
           memory_in_gbs: 3.4
           baseline_ocpu_utilization: BASELINE_1_8
+        instance_options:
+          # optional
+          are_legacy_imds_endpoints_disabled: true
+        fault_domain: FAULT-DOMAIN-1
+        launch_options:
+          # optional
+          firmware: BIOS
+          remote_data_volume_type: ISCSI
+          is_consistent_volume_naming_enabled: true
+          boot_volume_type: ISCSI
+          network_type: E1000
+          is_pv_encryption_in_transit_enabled: true
+        availability_config:
+          # optional
+          is_live_migration_preferred: true
+          recovery_action: RESTORE_INSTANCE
 
     - name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_instance:
@@ -1816,25 +1816,7 @@ Examples
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        extended_metadata: null
-        fault_domain: FAULT-DOMAIN-1
         freeform_tags: {'Department': 'Finance'}
-        launch_options:
-          # optional
-          boot_volume_type: ISCSI
-          firmware: BIOS
-          network_type: E1000
-          remote_data_volume_type: ISCSI
-          is_pv_encryption_in_transit_enabled: true
-          is_consistent_volume_naming_enabled: true
-        instance_options:
-          # optional
-          are_legacy_imds_endpoints_disabled: true
-        availability_config:
-          # optional
-          is_live_migration_preferred: true
-          recovery_action: RESTORE_INSTANCE
-        metadata: null
         agent_config:
           # optional
           is_monitoring_disabled: true
@@ -1844,12 +1826,30 @@ Examples
           - # required
             name: name_example
             desired_state: ENABLED
+        metadata: null
+        extended_metadata: null
         shape: shape_example
         shape_config:
           # optional
           ocpus: 3.4
           memory_in_gbs: 3.4
           baseline_ocpu_utilization: BASELINE_1_8
+        instance_options:
+          # optional
+          are_legacy_imds_endpoints_disabled: true
+        fault_domain: FAULT-DOMAIN-1
+        launch_options:
+          # optional
+          firmware: BIOS
+          remote_data_volume_type: ISCSI
+          is_consistent_volume_naming_enabled: true
+          boot_volume_type: ISCSI
+          network_type: E1000
+          is_pv_encryption_in_transit_enabled: true
+        availability_config:
+          # optional
+          is_live_migration_preferred: true
+          recovery_action: RESTORE_INSTANCE
 
     - name: Delete instance
       oci_compute_instance:

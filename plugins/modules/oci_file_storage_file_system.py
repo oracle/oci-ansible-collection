@@ -66,6 +66,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    source_snapshot_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot used to create a cloned file system.
+              See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+        type: str
     display_name:
         description:
             - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -96,11 +101,6 @@ options:
               with this file system.
             - This parameter is updatable.
         type: str
-    source_snapshot_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot used to create a cloned file system.
-              See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
-        type: str
     file_system_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
@@ -128,11 +128,11 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    source_snapshot_id: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-    source_snapshot_id: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update file_system
   oci_file_storage_file_system:
@@ -484,11 +484,11 @@ def main():
         dict(
             availability_domain=dict(type="str"),
             compartment_id=dict(type="str"),
+            source_snapshot_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
-            source_snapshot_id=dict(type="str"),
             file_system_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

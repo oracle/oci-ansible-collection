@@ -29,35 +29,15 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    entity_source:
-        description:
-            - Source of the host entity.
-            - Required for create using I(state=present), update using I(state=present) with host_insight_id present.
-        type: str
-        choices:
-            - "MACS_MANAGED_EXTERNAL_HOST"
-            - "EM_MANAGED_EXTERNAL_HOST"
-    compartment_id:
-        description:
-            - Compartment Identifier of host
-            - Required for create using I(state=present).
-        type: str
-    freeform_tags:
-        description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            - This parameter is updatable.
-        type: dict
     management_agent_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
             - Required when entity_source is 'MACS_MANAGED_EXTERNAL_HOST'
+        type: str
+    compartment_id:
+        description:
+            - Compartment Identifier of host
+            - Required for create using I(state=present).
         type: str
     enterprise_manager_identifier:
         description:
@@ -79,6 +59,26 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
             - Applicable when entity_source is 'EM_MANAGED_EXTERNAL_HOST'
         type: str
+    entity_source:
+        description:
+            - Source of the host entity.
+            - Required for create using I(state=present), update using I(state=present) with host_insight_id present.
+        type: str
+        choices:
+            - "MACS_MANAGED_EXTERNAL_HOST"
+            - "EM_MANAGED_EXTERNAL_HOST"
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
+        type: dict
     host_insight_id:
         description:
             - Unique host insight identifier
@@ -102,9 +102,9 @@ EXAMPLES = """
 - name: Create host_insight with entity_source = MACS_MANAGED_EXTERNAL_HOST
   oci_opsi_host_insight:
     # required
-    entity_source: MACS_MANAGED_EXTERNAL_HOST
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    entity_source: MACS_MANAGED_EXTERNAL_HOST
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -113,16 +113,16 @@ EXAMPLES = """
 - name: Create host_insight with entity_source = EM_MANAGED_EXTERNAL_HOST
   oci_opsi_host_insight:
     # required
-    entity_source: EM_MANAGED_EXTERNAL_HOST
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_identifier: enterprise_manager_identifier_example
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
+    entity_source: EM_MANAGED_EXTERNAL_HOST
 
     # optional
+    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update host_insight with entity_source = MACS_MANAGED_EXTERNAL_HOST
   oci_opsi_host_insight:
@@ -496,18 +496,18 @@ def main():
     )
     module_args.update(
         dict(
-            entity_source=dict(
-                type="str",
-                choices=["MACS_MANAGED_EXTERNAL_HOST", "EM_MANAGED_EXTERNAL_HOST"],
-            ),
-            compartment_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
             management_agent_id=dict(type="str"),
+            compartment_id=dict(type="str"),
             enterprise_manager_identifier=dict(type="str"),
             enterprise_manager_bridge_id=dict(type="str"),
             enterprise_manager_entity_identifier=dict(type="str"),
             exadata_insight_id=dict(type="str"),
+            entity_source=dict(
+                type="str",
+                choices=["MACS_MANAGED_EXTERNAL_HOST", "EM_MANAGED_EXTERNAL_HOST"],
+            ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             host_insight_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

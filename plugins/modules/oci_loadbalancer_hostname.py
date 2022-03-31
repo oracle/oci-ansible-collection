@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    name:
-        description:
-            - A friendly name for the hostname resource. It must be unique and it cannot be changed. Avoid entering confidential
-              information.
-            - "Example: `example_hostname_001`"
-        type: str
-        required: true
     hostname:
         description:
             - A virtual hostname. For more information about virtual hostname string construction, see
@@ -48,6 +41,13 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer to add the hostname to.
         type: str
         aliases: ["id"]
+        required: true
+    name:
+        description:
+            - A friendly name for the hostname resource. It must be unique and it cannot be changed. Avoid entering confidential
+              information.
+            - "Example: `example_hostname_001`"
+        type: str
         required: true
     state:
         description:
@@ -65,15 +65,15 @@ EXAMPLES = """
 - name: Create hostname
   oci_loadbalancer_hostname:
     # required
-    name: name_example
     hostname: hostname_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
 - name: Update hostname
   oci_loadbalancer_hostname:
     # required
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     hostname: hostname_example
@@ -81,8 +81,8 @@ EXAMPLES = """
 - name: Delete hostname
   oci_loadbalancer_hostname:
     # required
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -265,9 +265,9 @@ def main():
     )
     module_args.update(
         dict(
-            name=dict(type="str", required=True),
             hostname=dict(type="str"),
             load_balancer_id=dict(aliases=["id"], type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

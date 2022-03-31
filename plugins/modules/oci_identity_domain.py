@@ -49,20 +49,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - The mutable display name of the domain.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    description:
-        description:
-            - Domain entity description
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     home_region:
         description:
             - The region's name identifier. See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
@@ -75,11 +61,6 @@ options:
             - The License type of Domain
             - Required for create using I(state=present).
         type: str
-    is_hidden_on_login:
-        description:
-            - Indicates whether domain is hidden on login screen or not.
-            - This parameter is updatable.
-        type: bool
     admin_first_name:
         description:
             - The admin first name
@@ -106,6 +87,25 @@ options:
         description:
             - Optional field to indicate whether users in the domain are required to have a primary email address or not
               Defaults to true
+        type: bool
+    description:
+        description:
+            - Domain entity description
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    display_name:
+        description:
+            - The mutable display name of the domain.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    is_hidden_on_login:
+        description:
+            - Indicates whether domain is hidden on login screen or not.
+            - This parameter is updatable.
         type: bool
     freeform_tags:
         description:
@@ -145,19 +145,19 @@ EXAMPLES = """
   oci_identity_domain:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
-    description: description_example
     home_region: us-phoenix-1
     license_type: license_type_example
+    description: description_example
+    display_name: display_name_example
 
     # optional
-    is_hidden_on_login: true
     admin_first_name: admin_first_name_example
     admin_last_name: admin_last_name_example
     admin_user_name: admin_user_name_example
     admin_email: admin_email_example
     is_notification_bypassed: true
     is_primary_email_required: true
+    is_hidden_on_login: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -167,8 +167,8 @@ EXAMPLES = """
     domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     description: description_example
+    display_name: display_name_example
     is_hidden_on_login: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -516,17 +516,17 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             home_region=dict(type="str"),
             license_type=dict(type="str"),
-            is_hidden_on_login=dict(type="bool"),
             admin_first_name=dict(type="str"),
             admin_last_name=dict(type="str"),
             admin_user_name=dict(type="str"),
             admin_email=dict(type="str"),
             is_notification_bypassed=dict(type="bool", no_log=True),
             is_primary_email_required=dict(type="bool"),
+            description=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            is_hidden_on_login=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             domain_id=dict(aliases=["id"], type="str"),

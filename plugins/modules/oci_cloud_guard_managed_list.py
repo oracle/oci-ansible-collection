@@ -28,15 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - Managed list display name.
-            - Avoid entering confidential information.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - Compartment Identifier
@@ -47,12 +38,6 @@ options:
     source_managed_list_id:
         description:
             - OCID of the Source ManagedList
-        type: str
-    description:
-        description:
-            - Managed list description.
-            - Avoid entering confidential information.
-            - This parameter is updatable.
         type: str
     list_type:
         description:
@@ -71,6 +56,21 @@ options:
             - "CITY"
             - "TAGS"
             - "GENERIC"
+    display_name:
+        description:
+            - Managed list display name.
+            - Avoid entering confidential information.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - Managed list description.
+            - Avoid entering confidential information.
+            - This parameter is updatable.
+        type: str
     list_items:
         description:
             - List of ManagedListItem
@@ -113,13 +113,13 @@ EXAMPLES = """
 - name: Create managed_list
   oci_cloud_guard_managed_list:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     source_managed_list_id: "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx"
-    description: description_example
     list_type: CIDR_BLOCK
+    description: description_example
     list_items: [ "list_items_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -139,8 +139,8 @@ EXAMPLES = """
 - name: Update managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_managed_list:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -157,8 +157,8 @@ EXAMPLES = """
 - name: Delete managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_managed_list:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -456,10 +456,8 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
             source_managed_list_id=dict(type="str"),
-            description=dict(type="str"),
             list_type=dict(
                 type="str",
                 choices=[
@@ -477,6 +475,8 @@ def main():
                     "GENERIC",
                 ],
             ),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             list_items=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

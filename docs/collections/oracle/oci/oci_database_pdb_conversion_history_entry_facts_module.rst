@@ -30,7 +30,7 @@ oracle.oci.oci_database_pdb_conversion_history_entry_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -366,8 +366,8 @@ Examples
     - name: Get a specific pdb_conversion_history_entry
       oci_database_pdb_conversion_history_entry_facts:
         # required
-        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_conversion_history_entry_id: "ocid1.pdbconversionhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List pdb_conversion_history_entries
       oci_database_pdb_conversion_history_entry_facts:

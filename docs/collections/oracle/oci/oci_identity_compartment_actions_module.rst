@@ -30,7 +30,7 @@ oracle.oci.oci_identity_compartment_actions -- Perform actions on a Compartment 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -423,7 +423,6 @@ Examples
     - name: Perform action bulk_delete_resources on compartment
       oci_identity_compartment_actions:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resources:
         - # required
           identifier: identifier_example
@@ -431,12 +430,12 @@ Examples
 
           # optional
           metadata: null
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: bulk_delete_resources
 
     - name: Perform action bulk_move_resources on compartment
       oci_identity_compartment_actions:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resources:
         - # required
           identifier: identifier_example
@@ -445,13 +444,14 @@ Examples
           # optional
           metadata: null
         target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: bulk_move_resources
 
     - name: Perform action move on compartment
       oci_identity_compartment_actions:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: move
 
     - name: Perform action recover on compartment

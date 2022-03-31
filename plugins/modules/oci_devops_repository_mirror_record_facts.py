@@ -28,11 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    repository_id:
-        description:
-            - Unique repository identifier.
-        type: str
-        required: true
     mirror_record_type:
         description:
             - "The field of mirror record type. Only one mirror record type can be provided:
@@ -43,6 +38,11 @@ options:
         choices:
             - "current"
             - "lastSuccessful"
+    repository_id:
+        description:
+            - Unique repository identifier.
+        type: str
+        required: true
     sort_order:
         description:
             - The sort order to use. Use either ascending or descending.
@@ -57,8 +57,8 @@ EXAMPLES = """
 - name: Get a specific repository_mirror_record
   oci_devops_repository_mirror_record_facts:
     # required
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     mirror_record_type: current
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List repository_mirror_records
   oci_devops_repository_mirror_record_facts:
@@ -214,8 +214,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            repository_id=dict(type="str", required=True),
             mirror_record_type=dict(type="str", choices=["current", "lastSuccessful"]),
+            repository_id=dict(type="str", required=True),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )
     )

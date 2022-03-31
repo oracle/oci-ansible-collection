@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_tablespace_actions -- Perform actions on a Ta
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -775,23 +775,23 @@ Examples
         tablespace_name: tablespace_name_example
         credential_details:
           # required
+          password: example-password
           tablespace_admin_credential_type: PASSWORD
           username: username_example
           role: NORMAL
-          password: example-password
         file_type: DATAFILE
         action: add_data_files
 
         # optional
         data_files: [ "data_files_example" ]
         file_count: 56
+        is_reusable: true
         file_size:
           # required
           size: 3.4
 
           # optional
           unit: BYTES
-        is_reusable: true
         is_auto_extensible: true
         auto_extend_next_size:
           # required
@@ -814,10 +814,10 @@ Examples
         tablespace_name: tablespace_name_example
         credential_details:
           # required
+          password: example-password
           tablespace_admin_credential_type: PASSWORD
           username: username_example
           role: NORMAL
-          password: example-password
         action: drop
 
         # optional
@@ -832,10 +832,10 @@ Examples
         tablespace_name: tablespace_name_example
         credential_details:
           # required
+          password: example-password
           tablespace_admin_credential_type: PASSWORD
           username: username_example
           role: NORMAL
-          password: example-password
         file_type: DATAFILE
         data_file: data_file_example
         action: remove_data_file
@@ -847,10 +847,10 @@ Examples
         tablespace_name: tablespace_name_example
         credential_details:
           # required
+          password: example-password
           tablespace_admin_credential_type: PASSWORD
           username: username_example
           role: NORMAL
-          password: example-password
         file_type: DATAFILE
         data_file: data_file_example
         action: resize_data_file

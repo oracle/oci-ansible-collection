@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    blockchain_platform_id:
-        description:
-            - Unique service identifier.
-        type: str
-        required: true
     osn_id:
         description:
             - OSN identifier.
             - Required to get a specific blockchain_platform_osn.
         type: str
         aliases: ["id"]
+    blockchain_platform_id:
+        description:
+            - Unique service identifier.
+        type: str
+        required: true
     display_name:
         description:
             - "A user-friendly name. Does not have to be unique, and it's changeable.
@@ -67,8 +67,8 @@ EXAMPLES = """
 - name: Get a specific blockchain_platform_osn
   oci_blockchain_platform_osn_facts:
     # required
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List blockchain_platform_osns
   oci_blockchain_platform_osn_facts:
@@ -200,8 +200,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            blockchain_platform_id=dict(type="str", required=True),
             osn_id=dict(aliases=["id"], type="str"),
+            blockchain_platform_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),

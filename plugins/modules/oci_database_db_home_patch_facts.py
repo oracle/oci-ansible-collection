@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    db_home_id:
-        description:
-            - The Database Home L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     patch_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
             - Required to get a specific db_home_patch.
         type: str
         aliases: ["id"]
+    db_home_id:
+        description:
+            - The Database Home L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -46,8 +46,8 @@ EXAMPLES = """
 - name: Get a specific db_home_patch
   oci_database_db_home_patch_facts:
     # required
-    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List db_home_patches
   oci_database_db_home_patch_facts:
@@ -185,8 +185,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            db_home_id=dict(type="str", required=True),
             patch_id=dict(aliases=["id"], type="str"),
+            db_home_id=dict(type="str", required=True),
         )
     )
 

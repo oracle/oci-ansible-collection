@@ -34,11 +34,6 @@ options:
             - Required to get a specific computed_usage.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The OCID of the root compartment.
-        type: str
-        required: true
     fields:
         description:
             - Partial response refers to an optimization technique offered
@@ -47,10 +42,11 @@ options:
               return.
         type: list
         elements: str
-    x_one_origin_region:
+    compartment_id:
         description:
-            - The OCI home region name in case home region is not us-ashburn-1 (IAD), e.g. ap-mumbai-1, us-phoenix-1 etc.
+            - The OCID of the root compartment.
         type: str
+        required: true
     subscription_id:
         description:
             - Subscription Id is an identifier associated to the service used for filter the Computed Usage in SPM.
@@ -90,6 +86,10 @@ options:
             - "timeCreated"
             - "timeOfArrival"
             - "timeMeteredOn"
+    x_one_origin_region:
+        description:
+            - The OCI home region name in case home region is not us-ashburn-1 (IAD), e.g. ap-mumbai-1, us-phoenix-1 etc.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -113,11 +113,11 @@ EXAMPLES = """
     time_to: 2013-10-20T19:20:30+01:00
 
     # optional
-    x_one_origin_region: us-phoenix-1
     parent_product: parent_product_example
     computed_product: computed_product_example
     sort_order: ASC
     sort_by: timeCreated
+    x_one_origin_region: us-phoenix-1
 
 """
 
@@ -501,9 +501,8 @@ def main():
     module_args.update(
         dict(
             computed_usage_id=dict(aliases=["id"], type="str"),
-            compartment_id=dict(type="str", required=True),
             fields=dict(type="list", elements="str"),
-            x_one_origin_region=dict(type="str"),
+            compartment_id=dict(type="str", required=True),
             subscription_id=dict(type="str"),
             time_from=dict(type="str"),
             time_to=dict(type="str"),
@@ -513,6 +512,7 @@ def main():
             sort_by=dict(
                 type="str", choices=["timeCreated", "timeOfArrival", "timeMeteredOn"]
             ),
+            x_one_origin_region=dict(type="str"),
         )
     )
 

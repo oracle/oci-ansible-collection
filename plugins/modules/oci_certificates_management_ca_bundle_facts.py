@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    ca_bundle_id:
-        description:
-            - The OCID of the CA bundle.
-            - Required to get a specific ca_bundle.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - A filter that returns only resources that match the given compartment OCID.
@@ -69,6 +63,12 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    ca_bundle_id:
+        description:
+            - The OCID of the CA bundle.
+            - Required to get a specific ca_bundle.
+        type: str
+        aliases: ["id"]
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -82,12 +82,12 @@ EXAMPLES = """
   oci_certificates_management_ca_bundle_facts:
 
     # optional
-    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: CREATING
     name: name_example
     sort_by: NAME
     sort_order: ASC
+    ca_bundle_id: "ocid1.cabundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -233,7 +233,6 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            ca_bundle_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
@@ -249,6 +248,7 @@ def main():
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["NAME", "TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            ca_bundle_id=dict(aliases=["id"], type="str"),
         )
     )
 

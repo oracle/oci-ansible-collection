@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    repository_id:
-        description:
-            - Unique repository identifier.
-            - Required to get a specific repository.
-        type: str
-        aliases: ["id"]
     fields:
         description:
             - Fields parameter can contain multiple flags useful in deciding the API functionality.
@@ -51,6 +45,12 @@ options:
         description:
             - unique project identifier
         type: str
+    repository_id:
+        description:
+            - Unique repository identifier.
+            - Required to get a specific repository.
+        type: str
+        aliases: ["id"]
     lifecycle_state:
         description:
             - A filter to return only resources whose lifecycle state matches the given lifecycle state.
@@ -94,9 +94,9 @@ EXAMPLES = """
   oci_devops_repository_facts:
 
     # optional
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: ACTIVE
     name: name_example
     sort_order: ASC
@@ -415,7 +415,6 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            repository_id=dict(aliases=["id"], type="str"),
             fields=dict(
                 type="list",
                 elements="str",
@@ -423,6 +422,7 @@ def main():
             ),
             compartment_id=dict(type="str"),
             project_id=dict(type="str"),
+            repository_id=dict(aliases=["id"], type="str"),
             lifecycle_state=dict(type="str", choices=["ACTIVE", "CREATING", "DELETED"]),
             name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

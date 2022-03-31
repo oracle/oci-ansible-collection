@@ -30,7 +30,7 @@ oracle.oci.oci_os_management_software_source -- Manage a SoftwareSource resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -557,16 +557,16 @@ Examples
       oci_os_management_software_source:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
         arch_type: IA_32
+        display_name: display_name_example
 
         # optional
+        parent_id: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
         description: description_example
         maintainer_name: maintainer_name_example
         maintainer_email: maintainer_email_example
         maintainer_phone: maintainer_phone_example
         checksum_type: SHA1
-        parent_id: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

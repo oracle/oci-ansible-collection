@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_backend_set -- Manage a BackendSet resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -796,8 +796,6 @@ Examples
     - name: Create backend_set
       oci_network_load_balancer_backend_set:
         # required
-        network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        name: name_example
         policy: TWO_TUPLE
         health_checker:
           # required
@@ -813,6 +811,8 @@ Examples
           return_code: 56
           request_data: request_data_example
           response_data: response_data_example
+        network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
         is_preserve_source: true

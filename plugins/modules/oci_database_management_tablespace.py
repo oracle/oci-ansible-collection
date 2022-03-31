@@ -29,6 +29,79 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    is_bigfile:
+        description:
+            - Specifies whether the tablespace is a bigfile or smallfile tablespace.
+              A bigfile tablespace contains only one data file or temp file, which can contain up to approximately 4 billion (232) blocks.
+              A smallfile tablespace is a traditional Oracle tablespace, which can contain 1022 data files or temp files, each of which can contain up to
+              approximately 4 million (222) blocks.
+        type: bool
+    data_files:
+        description:
+            - The list of data files or temp files created for the tablespace.
+        type: list
+        elements: str
+    file_count:
+        description:
+            - The number of data files or temp files created for the tablespace. This is for Oracle Managed Files only.
+        type: int
+    is_reusable:
+        description:
+            - Specifies whether Oracle can reuse the data file or temp file. Reuse is only allowed when the file name is provided.
+        type: bool
+    block_size_in_kilobytes:
+        description:
+            - Block size for the tablespace.
+        type: int
+    is_encrypted:
+        description:
+            - Indicates whether the tablespace is encrypted.
+        type: bool
+    encryption_algorithm:
+        description:
+            - The name of the encryption algorithm to be used for tablespace encryption.
+        type: str
+    default_compress:
+        description:
+            - The default compression of data for all tables created in the tablespace.
+        type: str
+        choices:
+            - "NO_COMPRESS"
+            - "BASIC_COMPRESS"
+    extent_management:
+        description:
+            - Specifies how the extents of the tablespace should be managed.
+        type: str
+        choices:
+            - "AUTOALLOCATE"
+            - "UNIFORM"
+    extent_uniform_size:
+        description:
+            - The size of the extent when the tablespace is managed with uniform extents of a specific size.
+        type: dict
+        suboptions:
+            size:
+                description:
+                    - Storage size number in bytes, kilobytes, megabytes, gigabytes, or terabytes.
+                type: float
+                required: true
+            unit:
+                description:
+                    - "Storage size unit: bytes, kilobytes, megabytes, gigabytes, or terabytes."
+                type: str
+                choices:
+                    - "BYTES"
+                    - "KILOBYTES"
+                    - "MEGABYTES"
+                    - "GIGABYTES"
+                    - "TERABYTES"
+    segment_management:
+        description:
+            - Specifies whether tablespace segment management should be automatic or manual.
+        type: str
+        choices:
+            - "AUTO"
+            - "MANUAL"
     managed_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
@@ -40,6 +113,11 @@ options:
         type: dict
         required: true
         suboptions:
+            password:
+                description:
+                    - The database user's password encoded using BASE64 scheme.
+                    - Required when tablespace_admin_credential_type is 'PASSWORD'
+                type: str
             tablespace_admin_credential_type:
                 description:
                     - The type of the credential for tablespace administration tasks.
@@ -61,11 +139,6 @@ options:
                     - "NORMAL"
                     - "SYSDBA"
                 required: true
-            password:
-                description:
-                    - The database user's password encoded using BASE64 scheme.
-                    - Required when tablespace_admin_credential_type is 'PASSWORD'
-                type: str
             password_secret_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret
@@ -85,22 +158,6 @@ options:
         choices:
             - "PERMANENT"
             - "TEMPORARY"
-    is_bigfile:
-        description:
-            - Specifies whether the tablespace is a bigfile or smallfile tablespace.
-              A bigfile tablespace contains only one data file or temp file, which can contain up to approximately 4 billion (232) blocks.
-              A smallfile tablespace is a traditional Oracle tablespace, which can contain 1022 data files or temp files, each of which can contain up to
-              approximately 4 million (222) blocks.
-        type: bool
-    data_files:
-        description:
-            - The list of data files or temp files created for the tablespace.
-        type: list
-        elements: str
-    file_count:
-        description:
-            - The number of data files or temp files created for the tablespace. This is for Oracle Managed Files only.
-        type: int
     file_size:
         description:
             - The size of each data file or temp file.
@@ -122,10 +179,14 @@ options:
                     - "MEGABYTES"
                     - "GIGABYTES"
                     - "TERABYTES"
-    is_reusable:
+    status:
         description:
-            - Specifies whether Oracle can reuse the data file or temp file. Reuse is only allowed when the file name is provided.
-        type: bool
+            - The status of the tablespace.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "READ_ONLY"
+            - "READ_WRITE"
     is_auto_extensible:
         description:
             - Specifies whether the data file or temp file can be extended automatically.
@@ -178,67 +239,6 @@ options:
             - Specifies whether the disk space of the data file or temp file can be limited.
             - This parameter is updatable.
         type: bool
-    block_size_in_kilobytes:
-        description:
-            - Block size for the tablespace.
-        type: int
-    is_encrypted:
-        description:
-            - Indicates whether the tablespace is encrypted.
-        type: bool
-    encryption_algorithm:
-        description:
-            - The name of the encryption algorithm to be used for tablespace encryption.
-        type: str
-    default_compress:
-        description:
-            - The default compression of data for all tables created in the tablespace.
-        type: str
-        choices:
-            - "NO_COMPRESS"
-            - "BASIC_COMPRESS"
-    status:
-        description:
-            - The status of the tablespace.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "READ_ONLY"
-            - "READ_WRITE"
-    extent_management:
-        description:
-            - Specifies how the extents of the tablespace should be managed.
-        type: str
-        choices:
-            - "AUTOALLOCATE"
-            - "UNIFORM"
-    extent_uniform_size:
-        description:
-            - The size of the extent when the tablespace is managed with uniform extents of a specific size.
-        type: dict
-        suboptions:
-            size:
-                description:
-                    - Storage size number in bytes, kilobytes, megabytes, gigabytes, or terabytes.
-                type: float
-                required: true
-            unit:
-                description:
-                    - "Storage size unit: bytes, kilobytes, megabytes, gigabytes, or terabytes."
-                type: str
-                choices:
-                    - "BYTES"
-                    - "KILOBYTES"
-                    - "MEGABYTES"
-                    - "GIGABYTES"
-                    - "TERABYTES"
-    segment_management:
-        description:
-            - Specifies whether tablespace segment management should be automatic or manual.
-        type: str
-        choices:
-            - "AUTO"
-            - "MANUAL"
     is_default:
         description:
             - Specifies whether the tablespace is the default tablespace.
@@ -262,43 +262,21 @@ EXAMPLES = """
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     credential_details:
       # required
+      password: example-password
       tablespace_admin_credential_type: PASSWORD
       username: username_example
       role: NORMAL
-      password: example-password
     name: name_example
 
     # optional
-    type: PERMANENT
     is_bigfile: true
     data_files: [ "data_files_example" ]
     file_count: 56
-    file_size:
-      # required
-      size: 3.4
-
-      # optional
-      unit: BYTES
     is_reusable: true
-    is_auto_extensible: true
-    auto_extend_next_size:
-      # required
-      size: 3.4
-
-      # optional
-      unit: BYTES
-    auto_extend_max_size:
-      # required
-      size: 3.4
-
-      # optional
-      unit: BYTES
-    is_max_size_unlimited: true
     block_size_in_kilobytes: 56
     is_encrypted: true
     encryption_algorithm: encryption_algorithm_example
     default_compress: NO_COMPRESS
-    status: READ_ONLY
     extent_management: AUTOALLOCATE
     extent_uniform_size:
       # required
@@ -307,21 +285,6 @@ EXAMPLES = """
       # optional
       unit: BYTES
     segment_management: AUTO
-    is_default: true
-
-- name: Update tablespace
-  oci_database_management_tablespace:
-    # required
-    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
-    credential_details:
-      # required
-      tablespace_admin_credential_type: PASSWORD
-      username: username_example
-      role: NORMAL
-      password: example-password
-    name: name_example
-
-    # optional
     type: PERMANENT
     file_size:
       # required
@@ -329,6 +292,7 @@ EXAMPLES = """
 
       # optional
       unit: BYTES
+    status: READ_ONLY
     is_auto_extensible: true
     auto_extend_next_size:
       # required
@@ -343,7 +307,43 @@ EXAMPLES = """
       # optional
       unit: BYTES
     is_max_size_unlimited: true
+    is_default: true
+
+- name: Update tablespace
+  oci_database_management_tablespace:
+    # required
+    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    credential_details:
+      # required
+      password: example-password
+      tablespace_admin_credential_type: PASSWORD
+      username: username_example
+      role: NORMAL
+    name: name_example
+
+    # optional
+    type: PERMANENT
+    file_size:
+      # required
+      size: 3.4
+
+      # optional
+      unit: BYTES
     status: READ_ONLY
+    is_auto_extensible: true
+    auto_extend_next_size:
+      # required
+      size: 3.4
+
+      # optional
+      unit: BYTES
+    auto_extend_max_size:
+      # required
+      size: 3.4
+
+      # optional
+      unit: BYTES
+    is_max_size_unlimited: true
     is_default: true
 
 """
@@ -847,21 +847,21 @@ class TablespaceHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
-            "credential_details",
-            "data_files",
             "file_count",
-            "file_size",
-            "is_reusable",
-            "is_auto_extensible",
-            "auto_extend_next_size",
-            "auto_extend_max_size",
-            "is_max_size_unlimited",
             "block_size_in_kilobytes",
-            "encryption_algorithm",
-            "default_compress",
-            "extent_management",
-            "extent_uniform_size",
+            "auto_extend_next_size",
             "segment_management",
+            "is_auto_extensible",
+            "is_max_size_unlimited",
+            "extent_management",
+            "data_files",
+            "auto_extend_max_size",
+            "file_size",
+            "default_compress",
+            "is_reusable",
+            "extent_uniform_size",
+            "encryption_algorithm",
+            "credential_details",
         ]
 
     def is_update(self):
@@ -930,25 +930,50 @@ def main():
     )
     module_args.update(
         dict(
+            is_bigfile=dict(type="bool"),
+            data_files=dict(type="list", elements="str"),
+            file_count=dict(type="int"),
+            is_reusable=dict(type="bool"),
+            block_size_in_kilobytes=dict(type="int"),
+            is_encrypted=dict(type="bool"),
+            encryption_algorithm=dict(type="str"),
+            default_compress=dict(
+                type="str", choices=["NO_COMPRESS", "BASIC_COMPRESS"]
+            ),
+            extent_management=dict(type="str", choices=["AUTOALLOCATE", "UNIFORM"]),
+            extent_uniform_size=dict(
+                type="dict",
+                options=dict(
+                    size=dict(type="float", required=True),
+                    unit=dict(
+                        type="str",
+                        choices=[
+                            "BYTES",
+                            "KILOBYTES",
+                            "MEGABYTES",
+                            "GIGABYTES",
+                            "TERABYTES",
+                        ],
+                    ),
+                ),
+            ),
+            segment_management=dict(type="str", choices=["AUTO", "MANUAL"]),
             managed_database_id=dict(type="str", required=True),
             credential_details=dict(
                 type="dict",
                 required=True,
                 options=dict(
+                    password=dict(type="str", no_log=True),
                     tablespace_admin_credential_type=dict(
                         type="str", required=True, choices=["PASSWORD", "SECRET"]
                     ),
                     username=dict(type="str", required=True),
                     role=dict(type="str", required=True, choices=["NORMAL", "SYSDBA"]),
-                    password=dict(type="str", no_log=True),
                     password_secret_id=dict(type="str"),
                 ),
             ),
             name=dict(type="str", required=True),
             type=dict(type="str", choices=["PERMANENT", "TEMPORARY"]),
-            is_bigfile=dict(type="bool"),
-            data_files=dict(type="list", elements="str"),
-            file_count=dict(type="int"),
             file_size=dict(
                 type="dict",
                 options=dict(
@@ -965,7 +990,7 @@ def main():
                     ),
                 ),
             ),
-            is_reusable=dict(type="bool"),
+            status=dict(type="str", choices=["READ_ONLY", "READ_WRITE"]),
             is_auto_extensible=dict(type="bool"),
             auto_extend_next_size=dict(
                 type="dict",
@@ -1000,31 +1025,6 @@ def main():
                 ),
             ),
             is_max_size_unlimited=dict(type="bool"),
-            block_size_in_kilobytes=dict(type="int"),
-            is_encrypted=dict(type="bool"),
-            encryption_algorithm=dict(type="str"),
-            default_compress=dict(
-                type="str", choices=["NO_COMPRESS", "BASIC_COMPRESS"]
-            ),
-            status=dict(type="str", choices=["READ_ONLY", "READ_WRITE"]),
-            extent_management=dict(type="str", choices=["AUTOALLOCATE", "UNIFORM"]),
-            extent_uniform_size=dict(
-                type="dict",
-                options=dict(
-                    size=dict(type="float", required=True),
-                    unit=dict(
-                        type="str",
-                        choices=[
-                            "BYTES",
-                            "KILOBYTES",
-                            "MEGABYTES",
-                            "GIGABYTES",
-                            "TERABYTES",
-                        ],
-                    ),
-                ),
-            ),
-            segment_management=dict(type="str", choices=["AUTO", "MANUAL"]),
             is_default=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present"]),
         )

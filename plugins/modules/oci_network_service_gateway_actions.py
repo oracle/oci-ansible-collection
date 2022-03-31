@@ -51,6 +51,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
+              service gateway to.
+            - Required for I(action=change_compartment).
+        type: str
     service_gateway_id:
         description:
             - The service gateway's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -62,12 +68,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(Service,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/iaas/latest/Service/).
             - Required for I(action=attach_service_id), I(action=detach_service_id).
-        type: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
-              service gateway to.
-            - Required for I(action=change_compartment).
         type: str
     action:
         description:
@@ -92,8 +92,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on service_gateway
   oci_network_service_gateway_actions:
     # required
-    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action detach_service_id on service_gateway
@@ -354,9 +354,9 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             service_gateway_id=dict(aliases=["id"], type="str", required=True),
             service_id=dict(type="str"),
-            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

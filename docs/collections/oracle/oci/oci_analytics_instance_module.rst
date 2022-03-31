@@ -30,7 +30,7 @@ oracle.oci.oci_analytics_instance -- Manage an AnalyticsInstance resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -739,17 +739,17 @@ Examples
         license_type: LICENSE_INCLUDED
 
         # optional
-        description: description_example
-        email_notification: email_notification_example
         network_endpoint_details:
           # required
-          network_endpoint_type: PRIVATE
           vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+          network_endpoint_type: PRIVATE
         idcs_access_token: idcs_access_token_example
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        description: description_example
+        email_notification: email_notification_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
-        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update analytics_instance
       oci_analytics_instance:
@@ -758,8 +758,8 @@ Examples
 
         # optional
         description: description_example
-        license_type: LICENSE_INCLUDED
         email_notification: email_notification_example
+        license_type: LICENSE_INCLUDED
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
 
@@ -771,8 +771,8 @@ Examples
 
         # optional
         description: description_example
-        license_type: LICENSE_INCLUDED
         email_notification: email_notification_example
+        license_type: LICENSE_INCLUDED
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
 

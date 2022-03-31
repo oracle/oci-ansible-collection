@@ -29,6 +29,20 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    ip_address:
+        description:
+            - A private IP address of your choice. Must be an available IP address within
+              the subnet's CIDR. If you don't specify a value, Oracle automatically
+              assigns a private IP address from the subnet.
+            - "Example: `10.0.3.3`"
+        type: str
+    vlan_id:
+        description:
+            - Use this attribute only with the Oracle Cloud VMware Solution.
+            - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN from which the private IP is to be drawn. The
+              IP address,
+              *if supplied*, must be valid for the given VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan)."
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -65,25 +79,11 @@ options:
             - "Example: `bminstance-1`"
             - This parameter is updatable.
         type: str
-    ip_address:
-        description:
-            - A private IP address of your choice. Must be an available IP address within
-              the subnet's CIDR. If you don't specify a value, Oracle automatically
-              assigns a private IP address from the subnet.
-            - "Example: `10.0.3.3`"
-        type: str
     vnic_id:
         description:
             - The OCID of the VNIC to assign the private IP to. The VNIC and private IP must be in the same subnet. This parameter is updatable when
               C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - This parameter is updatable.
-        type: str
-    vlan_id:
-        description:
-            - Use this attribute only with the Oracle Cloud VMware Solution.
-            - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN from which the private IP is to be drawn. The
-              IP address,
-              *if supplied*, must be valid for the given VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan)."
         type: str
     private_ip_id:
         description:
@@ -109,13 +109,13 @@ EXAMPLES = """
   oci_network_private_ip:
 
     # optional
+    ip_address: ip_address_example
+    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     hostname_label: hostname_label_example
-    ip_address: ip_address_example
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
-    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update private_ip
   oci_network_private_ip:
@@ -437,13 +437,13 @@ def main():
     )
     module_args.update(
         dict(
+            ip_address=dict(type="str"),
+            vlan_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             hostname_label=dict(type="str"),
-            ip_address=dict(type="str"),
             vnic_id=dict(type="str"),
-            vlan_id=dict(type="str"),
             private_ip_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

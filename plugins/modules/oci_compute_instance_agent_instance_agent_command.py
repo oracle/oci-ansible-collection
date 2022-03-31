@@ -73,20 +73,6 @@ options:
                 type: dict
                 required: true
                 suboptions:
-                    source_type:
-                        description:
-                            - "The source type for the command. The following values are supported:"
-                            - "- `TEXT` - uses a plain text command that is specified inline with the request.
-                              - `OBJECT_STORAGE_URI` - imports a command from an Object Storage URL.
-                              - `OBJECT_STORAGE_TUPLE` - imports a command from an Object Storage bucket."
-                            - For background information about Object Storage buckets and URLs, see
-                              L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
-                        type: str
-                        choices:
-                            - "OBJECT_STORAGE_TUPLE"
-                            - "OBJECT_STORAGE_URI"
-                            - "TEXT"
-                        default: "TEXT"
                     bucket_name:
                         description:
                             - The Object Storage bucket for the command.
@@ -107,6 +93,20 @@ options:
                             - The Object Storage URL or pre-authenticated request (PAR) for the command.
                             - Required when source_type is 'OBJECT_STORAGE_URI'
                         type: str
+                    source_type:
+                        description:
+                            - "The source type for the command. The following values are supported:"
+                            - "- `TEXT` - uses a plain text command that is specified inline with the request.
+                              - `OBJECT_STORAGE_URI` - imports a command from an Object Storage URL.
+                              - `OBJECT_STORAGE_TUPLE` - imports a command from an Object Storage bucket."
+                            - For background information about Object Storage buckets and URLs, see
+                              L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
+                        type: str
+                        choices:
+                            - "OBJECT_STORAGE_TUPLE"
+                            - "OBJECT_STORAGE_URI"
+                            - "TEXT"
+                        default: "TEXT"
                     text:
                         description:
                             - The plain text command.
@@ -122,20 +122,6 @@ options:
                     - The output destination for the command.
                 type: dict
                 suboptions:
-                    output_type:
-                        description:
-                            - "The output type for the command. The following values are supported:"
-                            - "- `TEXT` - the command output is returned as plain text.
-                              - `OBJECT_STORAGE_URI` - the command output is saved to an Object Storage URL.
-                              - `OBJECT_STORAGE_TUPLE` - the command output is saved to an Object Storage bucket."
-                            - For background information about Object Storage buckets and URLs, see
-                              L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
-                        type: str
-                        choices:
-                            - "OBJECT_STORAGE_URI"
-                            - "OBJECT_STORAGE_TUPLE"
-                            - "TEXT"
-                        default: "TEXT"
                     output_uri:
                         description:
                             - The Object Storage URL or pre-authenticated request (PAR) for the command output.
@@ -156,6 +142,20 @@ options:
                             - The Object Storage object name for the command output.
                             - Required when output_type is 'OBJECT_STORAGE_TUPLE'
                         type: str
+                    output_type:
+                        description:
+                            - "The output type for the command. The following values are supported:"
+                            - "- `TEXT` - the command output is returned as plain text.
+                              - `OBJECT_STORAGE_URI` - the command output is saved to an Object Storage URL.
+                              - `OBJECT_STORAGE_TUPLE` - the command output is saved to an Object Storage bucket."
+                            - For background information about Object Storage buckets and URLs, see
+                              L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
+                        type: str
+                        choices:
+                            - "OBJECT_STORAGE_URI"
+                            - "OBJECT_STORAGE_TUPLE"
+                            - "TEXT"
+                        default: "TEXT"
     instance_agent_command_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
@@ -187,16 +187,16 @@ EXAMPLES = """
       # required
       source:
         # required
-        source_type: OBJECT_STORAGE_TUPLE
         bucket_name: bucket_name_example
         namespace_name: namespace_name_example
         object_name: object_name_example
+        source_type: OBJECT_STORAGE_TUPLE
 
         # optional
       output:
         # required
-        output_type: OBJECT_STORAGE_URI
         output_uri: output_uri_example
+        output_type: OBJECT_STORAGE_URI
 
     # optional
     display_name: display_name_example
@@ -552,6 +552,10 @@ def main():
                         type="dict",
                         required=True,
                         options=dict(
+                            bucket_name=dict(type="str"),
+                            namespace_name=dict(type="str"),
+                            object_name=dict(type="str"),
+                            source_uri=dict(type="str"),
                             source_type=dict(
                                 type="str",
                                 default="TEXT",
@@ -561,10 +565,6 @@ def main():
                                     "TEXT",
                                 ],
                             ),
-                            bucket_name=dict(type="str"),
-                            namespace_name=dict(type="str"),
-                            object_name=dict(type="str"),
-                            source_uri=dict(type="str"),
                             text=dict(type="str"),
                             text_sha256=dict(type="str"),
                         ),
@@ -572,6 +572,10 @@ def main():
                     output=dict(
                         type="dict",
                         options=dict(
+                            output_uri=dict(type="str"),
+                            bucket_name=dict(type="str"),
+                            namespace_name=dict(type="str"),
+                            object_name=dict(type="str"),
                             output_type=dict(
                                 type="str",
                                 default="TEXT",
@@ -581,10 +585,6 @@ def main():
                                     "TEXT",
                                 ],
                             ),
-                            output_uri=dict(type="str"),
-                            bucket_name=dict(type="str"),
-                            namespace_name=dict(type="str"),
-                            object_name=dict(type="str"),
                         ),
                     ),
                 ),

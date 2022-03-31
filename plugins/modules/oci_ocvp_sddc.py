@@ -39,25 +39,6 @@ options:
             - The availability domain to create the SDDC's ESXi hosts in. For multi-AD SDDC deployment, set to `multi-AD`.
             - Required for create using I(state=present).
         type: str
-    display_name:
-        description:
-            - "A descriptive name for the SDDC.
-              SDDC name requirements are 1-16 character length limit, Must start with a letter, Must be English letters, numbers, - only, No repeating hyphens,
-              Must be unique within the region.
-              Avoid entering confidential information."
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    vmware_software_version:
-        description:
-            - The VMware software bundle to install on the ESXi hosts in the SDDC. To get a
-              list of the available versions, use
-              L(ListSupportedVmwareSoftwareVersions,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/vmware/20200501/SupportedVmwareSoftwareVersionSummary/ListSupportedVmwareSoftwareVersions).
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the SDDC.
@@ -96,24 +77,10 @@ options:
         description:
             - Indicates whether to enable HCX for this SDDC.
         type: bool
-    hcx_vlan_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN to use for the HCX
-              component of the VMware environment. This value is required only when `isHcxEnabled` is true.
-            - This parameter is updatable.
-        type: str
     is_hcx_enterprise_enabled:
         description:
             - Indicates whether to enable HCX Enterprise for this SDDC.
         type: bool
-    ssh_authorized_keys:
-        description:
-            - One or more public SSH keys to be included in the `~/.ssh/authorized_keys` file for
-              the default user on each ESXi host. Use a newline character to separate multiple keys.
-              The SSH keys must be in the format required for the `authorized_keys` file
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     workload_network_cidr:
         description:
             - The CIDR block for the IP addresses that VMware VMs in the SDDC use to run application
@@ -124,6 +91,33 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the management subnet to use
               for provisioning the SDDC.
             - Required for create using I(state=present).
+        type: str
+    display_name:
+        description:
+            - "A descriptive name for the SDDC.
+              SDDC name requirements are 1-16 character length limit, Must start with a letter, Must be English letters, numbers, - only, No repeating hyphens,
+              Must be unique within the region.
+              Avoid entering confidential information."
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    vmware_software_version:
+        description:
+            - The VMware software bundle to install on the ESXi hosts in the SDDC. To get a
+              list of the available versions, use
+              L(ListSupportedVmwareSoftwareVersions,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/vmware/20200501/SupportedVmwareSoftwareVersionSummary/ListSupportedVmwareSoftwareVersions).
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    ssh_authorized_keys:
+        description:
+            - One or more public SSH keys to be included in the `~/.ssh/authorized_keys` file for
+              the default user on each ESXi host. Use a newline character to separate multiple keys.
+              The SSH keys must be in the format required for the `authorized_keys` file
+            - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     vsphere_vlan_id:
         description:
@@ -187,6 +181,12 @@ options:
               for the Provisioning component of the VMware environment.
             - This parameter is updatable.
         type: str
+    hcx_vlan_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN to use for the HCX
+              component of the VMware environment. This value is required only when `isHcxEnabled` is true.
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -226,11 +226,11 @@ EXAMPLES = """
   oci_ocvp_sddc:
     # required
     compute_availability_domain: Uocm:PHX-AD-1
-    vmware_software_version: vmware_software_version_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     esxi_hosts_count: 56
-    ssh_authorized_keys: ssh_authorized_keys_example
     provisioning_subnet_id: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+    vmware_software_version: vmware_software_version_example
+    ssh_authorized_keys: ssh_authorized_keys_example
     vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
     vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
     vsan_vlan_id: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -240,15 +240,15 @@ EXAMPLES = """
     nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     instance_display_name_prefix: instance_display_name_prefix_example
     initial_sku: HOUR
     is_hcx_enabled: true
-    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
     is_hcx_enterprise_enabled: true
     workload_network_cidr: workload_network_cidr_example
+    display_name: display_name_example
     replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
     provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -260,7 +260,6 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     vmware_software_version: vmware_software_version_example
-    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
     ssh_authorized_keys: ssh_authorized_keys_example
     vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
     vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -271,18 +270,18 @@ EXAMPLES = """
     nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
     replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
     provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_sddc:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     vmware_software_version: vmware_software_version_example
-    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
     ssh_authorized_keys: ssh_authorized_keys_example
     vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
     vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -293,6 +292,7 @@ EXAMPLES = """
     nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
     replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
     provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -305,8 +305,8 @@ EXAMPLES = """
 - name: Delete sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_sddc:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -971,8 +971,6 @@ def main():
     module_args.update(
         dict(
             compute_availability_domain=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            vmware_software_version=dict(type="str"),
             compartment_id=dict(type="str"),
             instance_display_name_prefix=dict(type="str"),
             esxi_hosts_count=dict(type="int"),
@@ -980,11 +978,12 @@ def main():
                 type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
             ),
             is_hcx_enabled=dict(type="bool"),
-            hcx_vlan_id=dict(type="str"),
             is_hcx_enterprise_enabled=dict(type="bool"),
-            ssh_authorized_keys=dict(type="str", no_log=True),
             workload_network_cidr=dict(type="str"),
             provisioning_subnet_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            vmware_software_version=dict(type="str"),
+            ssh_authorized_keys=dict(type="str", no_log=True),
             vsphere_vlan_id=dict(type="str"),
             vmotion_vlan_id=dict(type="str"),
             vsan_vlan_id=dict(type="str"),
@@ -994,6 +993,7 @@ def main():
             nsx_edge_uplink2_vlan_id=dict(type="str"),
             replication_vlan_id=dict(type="str"),
             provisioning_vlan_id=dict(type="str"),
+            hcx_vlan_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             sddc_id=dict(aliases=["id"], type="str"),

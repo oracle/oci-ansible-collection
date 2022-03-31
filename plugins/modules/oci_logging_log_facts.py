@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    log_group_id:
-        description:
-            - OCID of a log group to work with.
-        type: str
-        required: true
     log_id:
         description:
             - OCID of a log to work with.
             - Required to get a specific log.
         type: str
         aliases: ["id"]
+    log_group_id:
+        description:
+            - OCID of a log group to work with.
+        type: str
+        required: true
     log_type:
         description:
             - The logType that the log object is for, whether custom or service.
@@ -92,8 +92,8 @@ EXAMPLES = """
 - name: Get a specific log
   oci_logging_log_facts:
     # required
-    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List logs
   oci_logging_log_facts:
@@ -363,8 +363,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            log_group_id=dict(type="str", required=True),
             log_id=dict(aliases=["id"], type="str"),
+            log_group_id=dict(type="str", required=True),
             log_type=dict(type="str", choices=["CUSTOM", "SERVICE"]),
             source_service=dict(type="str"),
             source_resource=dict(type="str"),

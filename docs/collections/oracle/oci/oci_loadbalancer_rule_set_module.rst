@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_rule_set -- Manage a RuleSet resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -839,24 +839,24 @@ Examples
     - name: Create rule_set
       oci_loadbalancer_rule_set:
         # required
-        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        name: name_example
         items:
         - # required
+          value: value_example
           action: ADD_HTTP_REQUEST_HEADER
           header: header_example
-          value: value_example
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
     - name: Update rule_set
       oci_loadbalancer_rule_set:
         # required
-        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        name: name_example
         items:
         - # required
+          value: value_example
           action: ADD_HTTP_REQUEST_HEADER
           header: header_example
-          value: value_example
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
     - name: Delete rule_set
       oci_loadbalancer_rule_set:

@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure -- Manage an Autonomou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -714,10 +714,9 @@ Examples
         shape: shape_example
 
         # optional
-        display_name: display_name_example
-        nsg_ids: [ "nsg_ids_example" ]
         domain: domain_example
         license_model: LICENSE_INCLUDED
+        display_name: display_name_example
         maintenance_window_details:
           # required
           preference: NO_PREFERENCE
@@ -732,6 +731,7 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        nsg_ids: [ "nsg_ids_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -742,7 +742,6 @@ Examples
 
         # optional
         display_name: display_name_example
-        nsg_ids: [ "nsg_ids_example" ]
         maintenance_window_details:
           # required
           preference: NO_PREFERENCE
@@ -757,6 +756,7 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        nsg_ids: [ "nsg_ids_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -767,7 +767,6 @@ Examples
         display_name: display_name_example
 
         # optional
-        nsg_ids: [ "nsg_ids_example" ]
         maintenance_window_details:
           # required
           preference: NO_PREFERENCE
@@ -782,6 +781,7 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        nsg_ids: [ "nsg_ids_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

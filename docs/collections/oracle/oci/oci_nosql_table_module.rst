@@ -30,7 +30,7 @@ oracle.oci.oci_nosql_table -- Manage a Table resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -573,7 +573,6 @@ Examples
       oci_nosql_table:
         # required
         name: name_example
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         ddl_statement: ddl_statement_example
         table_limits:
           # required
@@ -583,6 +582,7 @@ Examples
 
           # optional
           capacity_mode: PROVISIONED
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         is_auto_reclaimable: true
@@ -595,7 +595,6 @@ Examples
         table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         ddl_statement: ddl_statement_example
         table_limits:
           # required
@@ -607,6 +606,7 @@ Examples
           capacity_mode: PROVISIONED
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_nosql_table:

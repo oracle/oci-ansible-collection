@@ -35,15 +35,15 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - A brief description of the CA bundle.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The OCID of the compartment for the CA bundle.
             - Required for create using I(state=present).
+        type: str
+    description:
+        description:
+            - A brief description of the CA bundle.
+            - This parameter is updatable.
         type: str
     ca_bundle_pem:
         description:
@@ -366,8 +366,8 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
+            description=dict(type="str"),
             ca_bundle_pem=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

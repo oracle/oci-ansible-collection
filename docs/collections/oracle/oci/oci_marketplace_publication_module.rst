@@ -30,7 +30,7 @@ oracle.oci.oci_marketplace_publication -- Manage a Publication resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -746,14 +746,6 @@ Examples
       oci_marketplace_publication:
         # required
         listing_type: COMMUNITY
-        name: name_example
-        short_description: short_description_example
-        support_contacts:
-        - # optional
-          name: name_example
-          phone: phone_example
-          email: email_example
-          subject: subject_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         package_details:
           # required
@@ -772,6 +764,14 @@ Examples
             # optional
           image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         is_agreement_acknowledged: true
+        name: name_example
+        short_description: short_description_example
+        support_contacts:
+        - # optional
+          name: name_example
+          phone: phone_example
+          email: email_example
+          subject: subject_example
 
         # optional
         long_description: long_description_example
@@ -800,8 +800,8 @@ Examples
       oci_marketplace_publication:
         # required
         listing_type: COMMUNITY
-        name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
         short_description: short_description_example
@@ -825,8 +825,8 @@ Examples
       oci_marketplace_publication:
         # required
         listing_type: COMMUNITY
-        name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
         state: absent
 
 

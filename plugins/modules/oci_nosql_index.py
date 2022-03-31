@@ -27,24 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    table_name_or_id:
-        description:
-            - A table name within the compartment, or a table OCID.
-        type: str
-        required: true
-    name:
-        description:
-            - Index name.
-        type: str
-        required: true
-    compartment_id:
-        description:
-            - The OCID of the table's compartment.  Required
-              if the tableNameOrId path parameter is a table name.
-              Optional if tableNameOrId is an OCID.  If tableNameOrId
-              is an OCID, and compartmentId is supplied, the latter
-              must match the identified table's compartmentId.
-        type: str
     keys:
         description:
             - A set of keys for a secondary index.
@@ -74,6 +56,24 @@ options:
               index exists.  Otherwise, an attempt to create an index
               that already exists will return an error.
         type: bool
+    table_name_or_id:
+        description:
+            - A table name within the compartment, or a table OCID.
+        type: str
+        required: true
+    name:
+        description:
+            - Index name.
+        type: str
+        required: true
+    compartment_id:
+        description:
+            - The OCID of the table's compartment.  Required
+              if the tableNameOrId path parameter is a table name.
+              Optional if tableNameOrId is an OCID.  If tableNameOrId
+              is an OCID, and compartmentId is supplied, the latter
+              must match the identified table's compartmentId.
+        type: str
     is_if_exists:
         description:
             - "Set as true to select \\"if exists\\" behavior."
@@ -94,8 +94,6 @@ EXAMPLES = """
 - name: Create index
   oci_nosql_index:
     # required
-    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     keys:
     - # required
       column_name: column_name_example
@@ -103,10 +101,12 @@ EXAMPLES = """
       # optional
       json_path: json_path_example
       json_field_type: json_field_type_example
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     is_if_not_exists: true
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete index
   oci_nosql_index:
@@ -361,9 +361,6 @@ def main():
     )
     module_args.update(
         dict(
-            table_name_or_id=dict(type="str", required=True),
-            name=dict(type="str", required=True),
-            compartment_id=dict(type="str"),
             keys=dict(
                 type="list",
                 elements="dict",
@@ -375,6 +372,9 @@ def main():
                 ),
             ),
             is_if_not_exists=dict(type="bool"),
+            table_name_or_id=dict(type="str", required=True),
+            name=dict(type="str", required=True),
+            compartment_id=dict(type="str"),
             is_if_exists=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

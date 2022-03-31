@@ -44,21 +44,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    name:
+        description:
+            - The name of the listing.
+        type: list
+        elements: str
     listing_id:
         description:
             - The unique identifier for the listing.
             - Required to get a specific listing.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The unique identifier for the compartment.
-        type: str
-    name:
-        description:
-            - The name of the listing.
-        type: list
-        elements: str
     image_id:
         description:
             - Image ID of the listing
@@ -120,6 +116,10 @@ options:
             - The operating system of the listing.
         type: list
         elements: str
+    compartment_id:
+        description:
+            - The unique identifier for the compartment.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -136,9 +136,8 @@ EXAMPLES = """
   oci_marketplace_listing_facts:
 
     # optional
-    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: [ "name_example" ]
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     publisher_id: "ocid1.publisher.oc1..xxxxxxEXAMPLExxxxxx"
     package_type: package_type_example
@@ -149,6 +148,7 @@ EXAMPLES = """
     is_featured: true
     listing_types: [ "COMMUNITY" ]
     operating_systems: [ "operating_systems_example" ]
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -842,9 +842,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            listing_id=dict(aliases=["id"], type="str"),
-            compartment_id=dict(type="str"),
             name=dict(type="list", elements="str"),
+            listing_id=dict(aliases=["id"], type="str"),
             image_id=dict(type="str"),
             publisher_id=dict(type="str"),
             package_type=dict(type="str"),
@@ -859,6 +858,7 @@ def main():
                 type="list", elements="str", choices=["COMMUNITY", "PARTNER", "PRIVATE"]
             ),
             operating_systems=dict(type="list", elements="str"),
+            compartment_id=dict(type="str"),
         )
     )
 

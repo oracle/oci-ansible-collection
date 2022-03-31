@@ -28,6 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    totp_token:
+        description:
+            - The Totp token for MFA.
+            - Applicable only for I(action=activate).
+        type: str
     user_id:
         description:
             - The OCID of the user.
@@ -39,11 +44,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-    totp_token:
-        description:
-            - The Totp token for MFA.
-            - Applicable only for I(action=activate).
-        type: str
     action:
         description:
             - The action to perform on the MfaTotpDevice.
@@ -244,9 +244,9 @@ def main():
     )
     module_args.update(
         dict(
+            totp_token=dict(type="str", no_log=True),
             user_id=dict(type="str", required=True),
             mfa_totp_device_id=dict(aliases=["id"], type="str", required=True),
-            totp_token=dict(type="str", no_log=True),
             action=dict(
                 type="str", required=True, choices=["activate", "generate_totp_seed"]
             ),

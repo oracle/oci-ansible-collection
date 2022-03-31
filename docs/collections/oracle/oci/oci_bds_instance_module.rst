@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance -- Manage a BdsInstance resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -654,7 +654,6 @@ Examples
       oci_bds_instance:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
         cluster_version: cluster_version_example
         cluster_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         cluster_admin_password: example-password
@@ -666,6 +665,7 @@ Examples
           shape: shape_example
           block_volume_size_in_gbs: 56
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         network_config:

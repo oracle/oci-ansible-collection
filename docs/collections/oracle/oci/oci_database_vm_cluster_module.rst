@@ -30,7 +30,7 @@ oracle.oci.oci_database_vm_cluster -- Manage a VmCluster resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -813,22 +813,22 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-        cpu_core_count: 56
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         gi_version: gi_version_example
+        cpu_core_count: 56
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
 
         # optional
+        is_sparse_diskgroup_enabled: true
+        is_local_backup_enabled: true
+        time_zone: time_zone_example
+        db_servers: [ "db_servers_example" ]
         ocpu_count: 3.4
         memory_size_in_gbs: 56
         db_node_storage_size_in_gbs: 56
         data_storage_size_in_tbs: 3.4
         data_storage_size_in_gbs: 3.4
         license_model: LICENSE_INCLUDED
-        is_sparse_diskgroup_enabled: true
-        is_local_backup_enabled: true
-        time_zone: time_zone_example
-        db_servers: [ "db_servers_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -844,10 +844,8 @@ Examples
         db_node_storage_size_in_gbs: 56
         data_storage_size_in_tbs: 3.4
         data_storage_size_in_gbs: 3.4
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         license_model: LICENSE_INCLUDED
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         version:
           # optional
           patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
@@ -857,6 +855,8 @@ Examples
           # optional
           update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
           update_action: ROLLING_APPLY
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_vm_cluster:
@@ -871,10 +871,8 @@ Examples
         db_node_storage_size_in_gbs: 56
         data_storage_size_in_tbs: 3.4
         data_storage_size_in_gbs: 3.4
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         license_model: LICENSE_INCLUDED
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         version:
           # optional
           patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
@@ -884,6 +882,8 @@ Examples
           # optional
           update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
           update_action: ROLLING_APPLY
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete vm_cluster
       oci_database_vm_cluster:

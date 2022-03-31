@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A display name for the accepted agreement.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The unique identifier for the compartment where the agreement will be accepted.
@@ -57,12 +50,13 @@ options:
             - The agreement to accept.
             - Required for create using I(state=present).
         type: str
-    signature:
+    display_name:
         description:
-            - A signature generated for the listing package agreements that you can retrieve
-              with L(GetAgreement,https://docs.cloud.oracle.com/api/#/en/marketplace/20181001/Agreement/GetAgreement).
-            - Required for create using I(state=present).
+            - A display name for the accepted agreement.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
+        aliases: ["name"]
     defined_tags:
         description:
             - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
@@ -85,6 +79,12 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    signature:
+        description:
+            - A signature generated for the listing package agreements that you can retrieve
+              with L(GetAgreement,https://docs.cloud.oracle.com/api/#/en/marketplace/20181001/Agreement/GetAgreement).
+            - Required for create using I(state=present).
+        type: str
     state:
         description:
             - The state of the AcceptedAgreement.
@@ -125,8 +125,8 @@ EXAMPLES = """
 - name: Update accepted_agreement using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_marketplace_accepted_agreement:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -144,8 +144,8 @@ EXAMPLES = """
 - name: Delete accepted_agreement using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_marketplace_accepted_agreement:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -395,15 +395,15 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
             listing_id=dict(type="str"),
             package_version=dict(type="str"),
             agreement_id=dict(type="str"),
-            signature=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             accepted_agreement_id=dict(aliases=["id"], type="str"),
+            signature=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

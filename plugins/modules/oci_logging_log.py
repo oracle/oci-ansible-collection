@@ -29,11 +29,14 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    log_group_id:
+    log_type:
         description:
-            - OCID of a log group to work with.
+            - The logType that the log object is for, whether custom or service.
+            - Required for create using I(state=present).
         type: str
-        required: true
+        choices:
+            - "CUSTOM"
+            - "SERVICE"
     display_name:
         description:
             - The user-friendly display name. This must be unique within the enclosing resource,
@@ -43,14 +46,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    log_type:
-        description:
-            - The logType that the log object is for, whether custom or service.
-            - Required for create using I(state=present).
-        type: str
-        choices:
-            - "CUSTOM"
-            - "SERVICE"
     is_enabled:
         description:
             - Whether or not this resource is currently enabled.
@@ -71,6 +66,11 @@ options:
               Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
+    retention_duration:
+        description:
+            - Log retention duration in 30-day increments (30, 60, 90 and so on).
+            - This parameter is updatable.
+        type: int
     configuration:
         description:
             - ""
@@ -120,11 +120,11 @@ options:
                         description:
                             - True if archiving enabled. This field is now decrecated, you should use cloud flow to enable archiving.
                         type: bool
-    retention_duration:
+    log_group_id:
         description:
-            - Log retention duration in 30-day increments (30, 60, 90 and so on).
-            - This parameter is updatable.
-        type: int
+            - OCID of a log group to work with.
+        type: str
+        required: true
     log_id:
         description:
             - OCID of a log to work with.
@@ -148,14 +148,15 @@ EXAMPLES = """
 - name: Create log
   oci_logging_log:
     # required
-    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     log_type: CUSTOM
+    display_name: display_name_example
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     is_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    retention_duration: 56
     configuration:
       # required
       source:
@@ -173,7 +174,6 @@ EXAMPLES = """
       archiving:
         # optional
         is_enabled: true
-    retention_duration: 56
 
 - name: Update log
   oci_logging_log:
@@ -186,6 +186,7 @@ EXAMPLES = """
     is_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    retention_duration: 56
     configuration:
       # required
       source:
@@ -203,18 +204,18 @@ EXAMPLES = """
       archiving:
         # optional
         is_enabled: true
-    retention_duration: 56
 
 - name: Update log using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log:
     # required
-    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     is_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    retention_duration: 56
     configuration:
       # required
       source:
@@ -232,7 +233,6 @@ EXAMPLES = """
       archiving:
         # optional
         is_enabled: true
-    retention_duration: 56
 
 - name: Delete log
   oci_logging_log:
@@ -244,8 +244,8 @@ EXAMPLES = """
 - name: Delete log using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log:
     # required
-    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -589,12 +589,12 @@ def main():
     )
     module_args.update(
         dict(
-            log_group_id=dict(type="str", required=True),
-            display_name=dict(aliases=["name"], type="str"),
             log_type=dict(type="str", choices=["CUSTOM", "SERVICE"]),
+            display_name=dict(aliases=["name"], type="str"),
             is_enabled=dict(type="bool"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
+            retention_duration=dict(type="int"),
             configuration=dict(
                 type="dict",
                 options=dict(
@@ -615,7 +615,7 @@ def main():
                     ),
                 ),
             ),
-            retention_duration=dict(type="int"),
+            log_group_id=dict(type="str", required=True),
             log_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

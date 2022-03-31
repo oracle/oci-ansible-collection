@@ -30,7 +30,7 @@ oracle.oci.oci_dns_resolver_endpoint -- Manage a ResolverEndpoint resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -531,15 +531,15 @@ Examples
     - name: Create resolver_endpoint with endpoint_type = VNIC
       oci_dns_resolver_endpoint:
         # required
-        name: name_example
         is_forwarding: true
         is_listening: true
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
-        endpoint_type: VNIC
         forwarding_address: forwarding_address_example
         listening_address: listening_address_example
+        endpoint_type: VNIC
         nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update resolver_endpoint with endpoint_type = VNIC
@@ -559,8 +559,8 @@ Examples
         state: absent
 
         # optional
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
 
 

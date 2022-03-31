@@ -69,14 +69,6 @@ options:
             - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
-    scope:
-        description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
     tsig_key_id:
         description:
             - The OCID of the target TSIG key.
@@ -93,6 +85,14 @@ options:
               agent does not have an entity-tag for the representation.
             - This parameter is updatable.
         type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     state:
         description:
             - The state of the TsigKey.
@@ -127,8 +127,8 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Update tsig_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_tsig_key:
@@ -139,8 +139,8 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Delete tsig_key
   oci_dns_tsig_key:
@@ -149,8 +149,8 @@ EXAMPLES = """
     state: absent
 
     # optional
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Delete tsig_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_tsig_key:
@@ -453,9 +453,9 @@ def main():
             secret=dict(type="str", no_log=True),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             tsig_key_id=dict(aliases=["id"], type="str"),
             if_unmodified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

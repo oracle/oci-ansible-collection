@@ -42,13 +42,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - The user-friendly name for the Autonomous Exadata Infrastructure. It does not have to be unique.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     availability_domain:
         description:
             - The availability domain where the Autonomous Exadata Infrastructure is located.
@@ -65,16 +58,6 @@ options:
               This restriction applies to both the client subnet and backup subnet.
             - Required for create using I(state=present).
         type: str
-    nsg_ids:
-        description:
-            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
-              resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
-              see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
-              **NsgIds restrictions:**
-              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
-            - This parameter is updatable.
-        type: list
-        elements: str
     shape:
         description:
             - The shape of the Autonomous Exadata Infrastructure. The shape determines resources allocated to the Autonomous Exadata Infrastructure (CPU cores,
@@ -94,6 +77,13 @@ options:
         choices:
             - "LICENSE_INCLUDED"
             - "BRING_YOUR_OWN_LICENSE"
+    display_name:
+        description:
+            - The user-friendly name for the Autonomous Exadata Infrastructure. It does not have to be unique.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     maintenance_window_details:
         description:
             - ""
@@ -172,6 +162,16 @@ options:
                 description:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
                 type: int
+    nsg_ids:
+        description:
+            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
+              resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
+              see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+              **NsgIds restrictions:**
+              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+            - This parameter is updatable.
+        type: list
+        elements: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -214,10 +214,9 @@ EXAMPLES = """
     shape: shape_example
 
     # optional
-    display_name: display_name_example
-    nsg_ids: [ "nsg_ids_example" ]
     domain: domain_example
     license_model: LICENSE_INCLUDED
+    display_name: display_name_example
     maintenance_window_details:
       # required
       preference: NO_PREFERENCE
@@ -232,6 +231,7 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -242,7 +242,6 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
-    nsg_ids: [ "nsg_ids_example" ]
     maintenance_window_details:
       # required
       preference: NO_PREFERENCE
@@ -257,6 +256,7 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -267,7 +267,6 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    nsg_ids: [ "nsg_ids_example" ]
     maintenance_window_details:
       # required
       preference: NO_PREFERENCE
@@ -282,6 +281,7 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -710,15 +710,14 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             availability_domain=dict(type="str"),
             subnet_id=dict(type="str"),
-            nsg_ids=dict(type="list", elements="str"),
             shape=dict(type="str"),
             domain=dict(type="str"),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
             ),
+            display_name=dict(aliases=["name"], type="str"),
             maintenance_window_details=dict(
                 type="dict",
                 options=dict(
@@ -775,6 +774,7 @@ def main():
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),
+            nsg_ids=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             autonomous_exadata_infrastructure_id=dict(aliases=["id"], type="str"),

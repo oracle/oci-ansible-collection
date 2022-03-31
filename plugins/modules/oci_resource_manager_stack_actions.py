@@ -28,18 +28,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    stack_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
               into which the Stack should be moved.
             - Required for I(action=change_compartment).
         type: str
+    stack_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack.
+        type: str
+        aliases: ["id"]
+        required: true
     resource_addresses:
         description:
             - "The list of resources in the specified stack to detect drift for. Each resource is identified by a resource address,
@@ -65,8 +65,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on stack
   oci_resource_manager_stack_actions:
     # required
-    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action detect_stack_drift on stack
@@ -201,7 +201,11 @@ stack:
                     description:
                         - File path to the directory to use for running Terraform.
                           If not specified, the root directory is used.
-                          This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                          Required when using a zip Terraform configuration (`configSourceType` value of `ZIP_UPLOAD`) that contains folders.
+                          Ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                          For more information about required and recommended file structure, see
+                          L(File Structure (Terraform Configurations for Resource
+                          Manager),https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#filestructure).
                     returned: on success
                     type: str
                     sample: working_directory_example
@@ -377,8 +381,8 @@ def main():
     )
     module_args.update(
         dict(
-            stack_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            stack_id=dict(aliases=["id"], type="str", required=True),
             resource_addresses=dict(type="list", elements="str"),
             action=dict(
                 type="str",

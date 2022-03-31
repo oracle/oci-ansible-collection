@@ -28,16 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    compartment_id:
-        description:
-            - The OCID of the compartment (remember that the tenancy is simply the root compartment).
-        type: str
-        required: true
     standard_tag_namespace_name:
         description:
             - The name of the standard tag namespace tempate that is requested
             - Required to get a specific standard_tag_namespace_template.
         type: str
+    compartment_id:
+        description:
+            - The OCID of the compartment (remember that the tenancy is simply the root compartment).
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -45,8 +45,8 @@ EXAMPLES = """
 - name: Get a specific standard_tag_namespace_template
   oci_identity_standard_tag_namespace_template_facts:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     standard_tag_namespace_name: standard_tag_namespace_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List standard_tag_namespace_templates
   oci_identity_standard_tag_namespace_template_facts:
@@ -206,8 +206,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            compartment_id=dict(type="str", required=True),
             standard_tag_namespace_name=dict(type="str"),
+            compartment_id=dict(type="str", required=True),
         )
     )
 

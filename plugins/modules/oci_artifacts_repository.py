@@ -28,6 +28,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the repository's compartment.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    is_immutable:
+        description:
+            - Whether to make the repository immutable. The artifacts of an immutable repository cannot be overwritten.
+            - Required for create using I(state=present).
+        type: bool
     display_name:
         description:
             - A user-friendly display name for the repository. If not present, will be auto-generated. It can be modified later. Avoid entering confidential
@@ -36,13 +48,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the repository's compartment.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     repository_type:
         description:
             - The repository's supported artifact type.
@@ -55,11 +60,6 @@ options:
             - A short description of the repository. It can be updated later.
             - This parameter is updatable.
         type: str
-    is_immutable:
-        description:
-            - Whether to make the repository immutable. The artifacts of an immutable repository cannot be overwritten.
-            - Required for create using I(state=present).
-        type: bool
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -100,8 +100,8 @@ EXAMPLES = """
   oci_artifacts_repository:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    repository_type: GENERIC
     is_immutable: true
+    repository_type: GENERIC
 
     # optional
     display_name: display_name_example
@@ -141,8 +141,8 @@ EXAMPLES = """
 - name: Delete repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_artifacts_repository:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -389,11 +389,11 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            is_immutable=dict(type="bool"),
+            display_name=dict(aliases=["name"], type="str"),
             repository_type=dict(type="str", choices=["GENERIC"]),
             description=dict(type="str"),
-            is_immutable=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             repository_id=dict(aliases=["id"], type="str"),

@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_private_endpoint -- Manage a DataSafePrivateEndpoint re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -512,10 +512,10 @@ Examples
     - name: Create data_safe_private_endpoint
       oci_data_safe_private_endpoint:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         private_endpoint_ip: private_endpoint_ip_example
@@ -539,8 +539,8 @@ Examples
     - name: Update data_safe_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_safe_private_endpoint:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -557,8 +557,8 @@ Examples
     - name: Delete data_safe_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_safe_private_endpoint:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

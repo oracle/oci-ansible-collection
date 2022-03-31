@@ -30,7 +30,7 @@ oracle.oci.oci_identity_compartment -- Manage a Compartment resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -454,8 +454,8 @@ Examples
       oci_identity_compartment:
         # required
         parent_compartment_id: "ocid1.parentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
-        name: name_example
         description: description_example
+        name: name_example
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -467,8 +467,8 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        name: name_example
         description: description_example
+        name: name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

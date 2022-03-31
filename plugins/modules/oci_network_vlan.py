@@ -39,16 +39,6 @@ options:
               Resources created in this VLAN must be in that availability domain.
             - "Example: `Uocm:PHX-AD-1`"
         type: str
-    cidr_block:
-        description:
-            - The range of IPv4 addresses that will be used for layer 3 communication with
-              hosts outside the VLAN. The CIDR must maintain the following rules -
-            - 1. The CIDR block is valid and correctly formatted.
-              2. The new range is within one of the parent VCN ranges.
-            - "Example: `192.0.2.0/24`"
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the VLAN.
@@ -56,6 +46,17 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN to contain the VLAN.
+            - Required for create using I(state=present).
+        type: str
+    vlan_tag:
+        description:
+            - The IEEE 802.1Q VLAN tag for this VLAN. The value must be unique across all
+              VLANs in the VCN. If you don't provide a value, Oracle assigns one.
+              You cannot change the value later. VLAN tag 0 is reserved for use by Oracle.
+        type: int
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -94,17 +95,16 @@ options:
               the VLAN uses the VCN's default route table.
             - This parameter is updatable.
         type: str
-    vcn_id:
+    cidr_block:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN to contain the VLAN.
+            - The range of IPv4 addresses that will be used for layer 3 communication with
+              hosts outside the VLAN. The CIDR must maintain the following rules -
+            - 1. The CIDR block is valid and correctly formatted.
+              2. The new range is within one of the parent VCN ranges.
+            - "Example: `192.0.2.0/24`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
-    vlan_tag:
-        description:
-            - The IEEE 802.1Q VLAN tag for this VLAN. The value must be unique across all
-              VLANs in the VCN. If you don't provide a value, Oracle assigns one.
-              You cannot change the value later. VLAN tag 0 is reserved for use by Oracle.
-        type: int
     vlan_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN.
@@ -128,18 +128,18 @@ EXAMPLES = """
 - name: Create vlan
   oci_network_vlan:
     # required
-    cidr_block: cidr_block_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    cidr_block: cidr_block_example
 
     # optional
     availability_domain: Uocm:PHX-AD-1
+    vlan_tag: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     nsg_ids: [ "nsg_ids_example" ]
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
-    vlan_tag: 56
 
 - name: Update vlan
   oci_network_vlan:
@@ -147,12 +147,12 @@ EXAMPLES = """
     vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    cidr_block: cidr_block_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     nsg_ids: [ "nsg_ids_example" ]
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    cidr_block: cidr_block_example
 
 - name: Update vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vlan:
@@ -161,11 +161,11 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    cidr_block: cidr_block_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     nsg_ids: [ "nsg_ids_example" ]
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    cidr_block: cidr_block_example
 
 - name: Delete vlan
   oci_network_vlan:
@@ -447,15 +447,15 @@ def main():
     module_args.update(
         dict(
             availability_domain=dict(type="str"),
-            cidr_block=dict(type="str"),
             compartment_id=dict(type="str"),
+            vcn_id=dict(type="str"),
+            vlan_tag=dict(type="int"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             nsg_ids=dict(type="list", elements="str"),
             route_table_id=dict(type="str"),
-            vcn_id=dict(type="str"),
-            vlan_tag=dict(type="int"),
+            cidr_block=dict(type="str"),
             vlan_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

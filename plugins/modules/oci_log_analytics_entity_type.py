@@ -27,16 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Logging Analytics namespace used for the request.
-        type: str
-        required: true
-    name:
-        description:
-            - Log analytics entity type name.
-        type: str
-        required: true
     category:
         description:
             - Log analytics entity type category. Category will be used for grouping and filtering.
@@ -58,6 +48,16 @@ options:
                 description:
                     - Description for the log analytics entity type property.
                 type: str
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
+    name:
+        description:
+            - Log analytics entity type name.
+        type: str
+        required: true
     state:
         description:
             - The state of the LogAnalyticsEntityType.
@@ -389,8 +389,6 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            name=dict(type="str", required=True),
             category=dict(type="str"),
             properties=dict(
                 type="list",
@@ -399,6 +397,8 @@ def main():
                     name=dict(type="str", required=True), description=dict(type="str")
                 ),
             ),
+            namespace_name=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

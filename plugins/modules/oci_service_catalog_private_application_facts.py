@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The unique identifier for the compartment.
+            - Required to list multiple private_applications.
+        type: str
     private_application_id:
         description:
             - The unique identifier for the private application.
             - Required to get a specific private_application.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The unique identifier for the compartment.
-            - Required to list multiple private_applications.
-        type: str
     sort_by:
         description:
             - The field to use to sort listed results. You can only specify one field to sort by.
@@ -276,8 +276,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            private_application_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            private_application_id=dict(aliases=["id"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "LIFECYCLESTATE"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             display_name=dict(aliases=["name"], type="str"),

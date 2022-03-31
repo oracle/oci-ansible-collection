@@ -55,16 +55,16 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    description:
+        description:
+            - The description you assign to the group during creation. Does not have to be unique, and it's changeable.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
     matching_rule:
         description:
             - The matching rule to dynamically match an instance certificate to this dynamic group.
               For rule syntax, see L(Managing Dynamic Groups,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingdynamicgroups.htm).
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-    description:
-        description:
-            - The description you assign to the group during creation. Does not have to be unique, and it's changeable.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -107,8 +107,8 @@ EXAMPLES = """
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
-    matching_rule: matching_rule_example
     description: description_example
+    matching_rule: matching_rule_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -120,8 +120,8 @@ EXAMPLES = """
     dynamic_group_id: "ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    matching_rule: matching_rule_example
     description: description_example
+    matching_rule: matching_rule_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -132,8 +132,8 @@ EXAMPLES = """
     name: name_example
 
     # optional
-    matching_rule: matching_rule_example
     description: description_example
+    matching_rule: matching_rule_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -395,8 +395,8 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             name=dict(type="str"),
-            matching_rule=dict(type="str"),
             description=dict(type="str"),
+            matching_rule=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             dynamic_group_id=dict(aliases=["id"], type="str"),

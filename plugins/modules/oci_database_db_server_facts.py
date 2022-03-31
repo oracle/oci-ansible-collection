@@ -28,11 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    exadata_infrastructure_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ExadataInfrastructure.
-        type: str
-        required: true
     db_server_id:
         description:
             - The DB server L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -44,6 +39,11 @@ options:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required to list multiple db_servers.
         type: str
+    exadata_infrastructure_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ExadataInfrastructure.
+        type: str
+        required: true
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -80,14 +80,14 @@ EXAMPLES = """
 - name: Get a specific db_server
   oci_database_db_server_facts:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List db_servers
   oci_database_db_server_facts:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     sort_order: ASC
@@ -302,9 +302,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            exadata_infrastructure_id=dict(type="str", required=True),
             db_server_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            exadata_infrastructure_id=dict(type="str", required=True),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["TIMECREATED"]),
             lifecycle_state=dict(

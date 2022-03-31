@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Logging Analytics namespace used for the request.
-        type: str
-        required: true
     log_analytics_object_collection_rule_id:
         description:
             - The Logging Analytics Object Collection Rule L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             - Required to get a specific log_analytics_object_collection_rule.
         type: str
         aliases: ["id"]
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
     compartment_id:
         description:
             - The ID of the compartment in which to list resources.
@@ -78,8 +78,8 @@ EXAMPLES = """
 - name: Get a specific log_analytics_object_collection_rule
   oci_log_analytics_object_collection_rule_facts:
     # required
-    namespace_name: namespace_name_example
     log_analytics_object_collection_rule_id: "ocid1.loganalyticsobjectcollectionrule.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace_name: namespace_name_example
 
 - name: List log_analytics_object_collection_rules
   oci_log_analytics_object_collection_rule_facts:
@@ -357,8 +357,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
             log_analytics_object_collection_rule_id=dict(aliases=["id"], type="str"),
+            namespace_name=dict(type="str", required=True),
             compartment_id=dict(type="str"),
             name=dict(type="str"),
             lifecycle_state=dict(type="str", choices=["ACTIVE", "DELETED"]),

@@ -34,15 +34,6 @@ options:
             - Required to get a specific commitment.
         type: str
         aliases: ["id"]
-    x_one_gateway_subscription_id:
-        description:
-            - This header is meant to be used only for internal purposes and will be ignored on any public request. The purpose of this header is
-              to help on Gateway to API calls identification.
-        type: str
-    x_one_origin_region:
-        description:
-            - The OCI home region name in case home region is not us-ashburn-1 (IAD), e.g. ap-mumbai-1, us-phoenix-1 etc.
-        type: str
     subscribed_service_id:
         description:
             - This param is used to get the commitments for a particular subscribed service
@@ -67,6 +58,15 @@ options:
         choices:
             - "TIMECREATED"
             - "TIMESTART"
+    x_one_gateway_subscription_id:
+        description:
+            - This header is meant to be used only for internal purposes and will be ignored on any public request. The purpose of this header is
+              to help on Gateway to API calls identification.
+        type: str
+    x_one_origin_region:
+        description:
+            - The OCI home region name in case home region is not us-ashburn-1 (IAD), e.g. ap-mumbai-1, us-phoenix-1 etc.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -87,10 +87,10 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    x_one_gateway_subscription_id: "ocid1.xonegatewaysubscription.oc1..xxxxxxEXAMPLExxxxxx"
-    x_one_origin_region: us-phoenix-1
     sort_order: ASC
     sort_by: TIMECREATED
+    x_one_gateway_subscription_id: "ocid1.xonegatewaysubscription.oc1..xxxxxxEXAMPLExxxxxx"
+    x_one_origin_region: us-phoenix-1
 
 """
 
@@ -232,12 +232,12 @@ def main():
     module_args.update(
         dict(
             commitment_id=dict(aliases=["id"], type="str"),
-            x_one_gateway_subscription_id=dict(type="str"),
-            x_one_origin_region=dict(type="str"),
             subscribed_service_id=dict(type="str"),
             compartment_id=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["TIMECREATED", "TIMESTART"]),
+            x_one_gateway_subscription_id=dict(type="str"),
+            x_one_origin_region=dict(type="str"),
         )
     )
 

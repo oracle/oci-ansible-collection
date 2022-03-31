@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_boot_volume -- Manage a BootVolume resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -652,10 +652,10 @@ Examples
 
         # optional
         backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         size_in_gbs: 56
         vpus_per_gb: 56
         is_auto_tune_enabled: true

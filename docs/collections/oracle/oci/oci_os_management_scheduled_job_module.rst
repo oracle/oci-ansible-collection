@@ -30,7 +30,7 @@ oracle.oci.oci_os_management_scheduled_job -- Manage a ScheduledJob resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -745,9 +745,6 @@ Examples
         operation_type: INSTALL
 
         # optional
-        description: description_example
-        interval_type: HOUR
-        interval_value: interval_value_example
         managed_instances:
         - # required
           id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -756,14 +753,17 @@ Examples
         - # required
           id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
           display_name: display_name_example
+        os_family: LINUX
+        description: description_example
+        interval_type: HOUR
+        interval_value: interval_value_example
         update_type: SECURITY
         package_names:
         - # required
           name: name_example
+        update_names: [ "update_names_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        update_names: [ "update_names_example" ]
-        os_family: LINUX
 
     - name: Update scheduled_job
       oci_os_management_scheduled_job:
@@ -782,9 +782,9 @@ Examples
         package_names:
         - # required
           name: name_example
+        update_names: [ "update_names_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        update_names: [ "update_names_example" ]
 
     - name: Update scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_os_management_scheduled_job:
@@ -803,9 +803,9 @@ Examples
         package_names:
         - # required
           name: name_example
+        update_names: [ "update_names_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        update_names: [ "update_names_example" ]
 
     - name: Delete scheduled_job
       oci_os_management_scheduled_job:

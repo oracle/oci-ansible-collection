@@ -30,7 +30,7 @@ oracle.oci.oci_network_internet_gateway -- Manage an InternetGateway resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -475,8 +475,8 @@ Examples
       oci_network_internet_gateway:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        is_enabled: true
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        is_enabled: true
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}

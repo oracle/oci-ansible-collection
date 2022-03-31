@@ -38,6 +38,18 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    type:
+        description:
+            - The type of backup to create. If omitted, defaults to incremental.
+        type: str
+        choices:
+            - "FULL"
+            - "INCREMENTAL"
+    volume_group_id:
+        description:
+            - The OCID of the volume group that needs to be backed up.
+            - Required for create using I(state=present).
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -61,18 +73,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    type:
-        description:
-            - The type of backup to create. If omitted, defaults to incremental.
-        type: str
-        choices:
-            - "FULL"
-            - "INCREMENTAL"
-    volume_group_id:
-        description:
-            - The OCID of the volume group that needs to be backed up.
-            - Required for create using I(state=present).
-        type: str
     volume_group_backup_id:
         description:
             - The Oracle Cloud ID (OCID) that uniquely identifies the volume group backup.
@@ -100,10 +100,10 @@ EXAMPLES = """
     volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    type: FULL
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    type: FULL
 
 - name: Update volume_group_backup
   oci_blockstorage_volume_group_backup:
@@ -447,11 +447,11 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            type=dict(type="str", choices=["FULL", "INCREMENTAL"]),
+            volume_group_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            type=dict(type="str", choices=["FULL", "INCREMENTAL"]),
-            volume_group_id=dict(type="str"),
             volume_group_backup_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

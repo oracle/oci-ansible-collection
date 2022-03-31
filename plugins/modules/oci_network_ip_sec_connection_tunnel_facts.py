@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    ipsc_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
-        type: str
-        required: true
     tunnel_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
             - Required to get a specific ip_sec_connection_tunnel.
         type: str
         aliases: ["id"]
+    ipsc_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -46,8 +46,8 @@ EXAMPLES = """
 - name: Get a specific ip_sec_connection_tunnel
   oci_network_ip_sec_connection_tunnel_facts:
     # required
-    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
     tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List ip_sec_connection_tunnels
   oci_network_ip_sec_connection_tunnel_facts:
@@ -553,8 +553,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            ipsc_id=dict(type="str", required=True),
             tunnel_id=dict(aliases=["id"], type="str"),
+            ipsc_id=dict(type="str", required=True),
             display_name=dict(type="str"),
         )
     )

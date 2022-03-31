@@ -29,17 +29,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the resource should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     notebook_session_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the resource should be moved.
-            - Required for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the NotebookSession.
@@ -62,8 +62,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on notebook_session
   oci_data_science_notebook_session_actions:
     # required
-    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on notebook_session
@@ -397,8 +397,8 @@ def main():
     )
     module_args.update(
         dict(
-            notebook_session_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            notebook_session_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

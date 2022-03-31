@@ -27,6 +27,127 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    build_pipeline_id:
+        description:
+            - The OCID of the build pipeline.
+            - Required for create using I(state=present).
+        type: str
+    wait_criteria:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'WAIT'
+            - Required when build_pipeline_stage_type is 'WAIT'
+        type: dict
+        suboptions:
+            wait_type:
+                description:
+                    - Wait criteria type.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "ABSOLUTE_WAIT"
+                required: true
+            wait_duration:
+                description:
+                    - The absolute wait duration.
+                      Minimum wait duration must be 5 seconds.
+                      Maximum wait duration can be up to 2 days.
+                    - This parameter is updatable.
+                    - Applicable when wait_type is 'ABSOLUTE_WAIT'
+                type: str
+    image:
+        description:
+            - Image name for the build environment
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'BUILD'
+            - Required when build_pipeline_stage_type is 'BUILD'
+        type: str
+    build_spec_file:
+        description:
+            - The path to the build specification file for this environment. The default location of the file if not specified is build_spec.yaml.
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'BUILD'
+        type: str
+    stage_execution_timeout_in_seconds:
+        description:
+            - Timeout for the build stage execution. Specify value in seconds.
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'BUILD'
+        type: int
+    build_source_collection:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'BUILD'
+            - Required when build_pipeline_stage_type is 'BUILD'
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - Collection of build sources. In case of UPDATE operation, replaces existing build sources list. Merging with existing build sources is not
+                      supported.
+                    - Required when build_pipeline_stage_type is 'BUILD'
+                type: list
+                elements: dict
+                required: true
+                suboptions:
+                    repository_id:
+                        description:
+                            - The DevOps code repository ID.
+                            - Required when connection_type is 'DEVOPS_CODE_REPOSITORY'
+                        type: str
+                    name:
+                        description:
+                            - Name of the build source. This must be unique within a build source collection. The name can be used by customers to locate the
+                              working directory pertinent to this repository.
+                        type: str
+                        required: true
+                    connection_type:
+                        description:
+                            - The type of source provider.
+                        type: str
+                        choices:
+                            - "GITHUB"
+                            - "DEVOPS_CODE_REPOSITORY"
+                            - "GITLAB"
+                        required: true
+                    repository_url:
+                        description:
+                            - URL for the repository.
+                        type: str
+                        required: true
+                    branch:
+                        description:
+                            - Branch name.
+                        type: str
+                        required: true
+                    connection_id:
+                        description:
+                            - Connection identifier pertinent to GitHub source provider.
+                            - Required when connection_type is one of ['GITHUB', 'GITLAB']
+                        type: str
+    primary_build_source:
+        description:
+            - Name of the build source where the build_spec.yml file is located. If not specified, the first entry in the build source collection is chosen as
+              primary build source.
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'BUILD'
+        type: str
+    deploy_pipeline_id:
+        description:
+            - A target deployment pipeline OCID that will run in this stage.
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'TRIGGER_DEPLOYMENT_PIPELINE'
+            - Required when build_pipeline_stage_type is 'TRIGGER_DEPLOYMENT_PIPELINE'
+        type: str
+    is_pass_all_parameters_enabled:
+        description:
+            - A boolean flag that specifies whether all the parameters must be passed when the deployment is triggered.
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'TRIGGER_DEPLOYMENT_PIPELINE'
+            - Required when build_pipeline_stage_type is 'TRIGGER_DEPLOYMENT_PIPELINE'
+        type: bool
     display_name:
         description:
             - Stage display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
@@ -49,11 +170,6 @@ options:
             - "TRIGGER_DEPLOYMENT_PIPELINE"
             - "WAIT"
             - "BUILD"
-    build_pipeline_id:
-        description:
-            - The OCID of the build pipeline.
-            - Required for create using I(state=present).
-        type: str
     build_pipeline_stage_predecessor_collection:
         description:
             - ""
@@ -117,122 +233,6 @@ options:
                             - Required when build_pipeline_stage_type is 'DELIVER_ARTIFACT'
                         type: str
                         required: true
-    deploy_pipeline_id:
-        description:
-            - A target deployment pipeline OCID that will run in this stage.
-            - This parameter is updatable.
-            - Applicable when build_pipeline_stage_type is 'TRIGGER_DEPLOYMENT_PIPELINE'
-            - Required when build_pipeline_stage_type is 'TRIGGER_DEPLOYMENT_PIPELINE'
-        type: str
-    is_pass_all_parameters_enabled:
-        description:
-            - A boolean flag that specifies whether all the parameters must be passed when the deployment is triggered.
-            - This parameter is updatable.
-            - Applicable when build_pipeline_stage_type is 'TRIGGER_DEPLOYMENT_PIPELINE'
-            - Required when build_pipeline_stage_type is 'TRIGGER_DEPLOYMENT_PIPELINE'
-        type: bool
-    wait_criteria:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when build_pipeline_stage_type is 'WAIT'
-            - Required when build_pipeline_stage_type is 'WAIT'
-        type: dict
-        suboptions:
-            wait_type:
-                description:
-                    - Wait criteria type.
-                    - This parameter is updatable.
-                type: str
-                choices:
-                    - "ABSOLUTE_WAIT"
-                required: true
-            wait_duration:
-                description:
-                    - The absolute wait duration.
-                      Minimum wait duration must be 5 seconds.
-                      Maximum wait duration can be up to 2 days.
-                    - This parameter is updatable.
-                    - Applicable when wait_type is 'ABSOLUTE_WAIT'
-                type: str
-    image:
-        description:
-            - Image name for the build environment
-            - This parameter is updatable.
-            - Applicable when build_pipeline_stage_type is 'BUILD'
-            - Required when build_pipeline_stage_type is 'BUILD'
-        type: str
-    build_spec_file:
-        description:
-            - The path to the build specification file for this environment. The default location of the file if not specified is build_spec.yaml.
-            - This parameter is updatable.
-            - Applicable when build_pipeline_stage_type is 'BUILD'
-        type: str
-    stage_execution_timeout_in_seconds:
-        description:
-            - Timeout for the build stage execution. Specify value in seconds.
-            - This parameter is updatable.
-            - Applicable when build_pipeline_stage_type is 'BUILD'
-        type: int
-    build_source_collection:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when build_pipeline_stage_type is 'BUILD'
-            - Required when build_pipeline_stage_type is 'BUILD'
-        type: dict
-        suboptions:
-            items:
-                description:
-                    - Collection of build sources. In case of UPDATE operation, replaces existing build sources list. Merging with existing build sources is not
-                      supported.
-                    - Required when build_pipeline_stage_type is 'BUILD'
-                type: list
-                elements: dict
-                required: true
-                suboptions:
-                    name:
-                        description:
-                            - Name of the build source. This must be unique within a build source collection. The name can be used by customers to locate the
-                              working directory pertinent to this repository.
-                        type: str
-                        required: true
-                    connection_type:
-                        description:
-                            - The type of source provider.
-                        type: str
-                        choices:
-                            - "GITHUB"
-                            - "DEVOPS_CODE_REPOSITORY"
-                            - "GITLAB"
-                        required: true
-                    repository_url:
-                        description:
-                            - URL for the repository.
-                        type: str
-                        required: true
-                    branch:
-                        description:
-                            - Branch name.
-                        type: str
-                        required: true
-                    connection_id:
-                        description:
-                            - Connection identifier pertinent to GitHub source provider.
-                            - Required when connection_type is one of ['GITHUB', 'GITLAB']
-                        type: str
-                    repository_id:
-                        description:
-                            - The DevOps code repository ID.
-                            - Required when connection_type is 'DEVOPS_CODE_REPOSITORY'
-                        type: str
-    primary_build_source:
-        description:
-            - Name of the build source where the build_spec.yml file is located. If not specified, the first entry in the build source collection is chosen as
-              primary build source.
-            - This parameter is updatable.
-            - Applicable when build_pipeline_stage_type is 'BUILD'
-        type: str
     build_pipeline_stage_id:
         description:
             - Unique stage identifier.
@@ -256,8 +256,8 @@ EXAMPLES = """
 - name: Create build_pipeline_stage with build_pipeline_stage_type = DELIVER_ARTIFACT
   oci_devops_build_pipeline_stage:
     # required
-    build_pipeline_stage_type: DELIVER_ARTIFACT
     build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    build_pipeline_stage_type: DELIVER_ARTIFACT
 
     # optional
     display_name: display_name_example
@@ -279,10 +279,12 @@ EXAMPLES = """
 - name: Create build_pipeline_stage with build_pipeline_stage_type = TRIGGER_DEPLOYMENT_PIPELINE
   oci_devops_build_pipeline_stage:
     # required
-    build_pipeline_stage_type: TRIGGER_DEPLOYMENT_PIPELINE
     build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    build_pipeline_stage_type: TRIGGER_DEPLOYMENT_PIPELINE
 
     # optional
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    is_pass_all_parameters_enabled: true
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -292,37 +294,18 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    is_pass_all_parameters_enabled: true
 
 - name: Create build_pipeline_stage with build_pipeline_stage_type = WAIT
   oci_devops_build_pipeline_stage:
     # required
-    build_pipeline_stage_type: WAIT
     build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    build_pipeline_stage_type: WAIT
 
     # optional
-    display_name: display_name_example
-    description: description_example
-    build_pipeline_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     wait_criteria:
       # required
       wait_type: ABSOLUTE_WAIT
       wait_duration: wait_duration_example
-
-- name: Create build_pipeline_stage with build_pipeline_stage_type = BUILD
-  oci_devops_build_pipeline_stage:
-    # required
-    build_pipeline_stage_type: BUILD
-    build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
-
-    # optional
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -332,6 +315,14 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create build_pipeline_stage with build_pipeline_stage_type = BUILD
+  oci_devops_build_pipeline_stage:
+    # required
+    build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    build_pipeline_stage_type: BUILD
+
+    # optional
     image: image_example
     build_spec_file: build_spec_file_example
     stage_execution_timeout_in_seconds: 56
@@ -345,6 +336,15 @@ EXAMPLES = """
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    display_name: display_name_example
+    description: description_example
+    build_pipeline_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update build_pipeline_stage with build_pipeline_stage_type = DELIVER_ARTIFACT
   oci_devops_build_pipeline_stage:
@@ -374,6 +374,8 @@ EXAMPLES = """
     build_pipeline_stage_type: TRIGGER_DEPLOYMENT_PIPELINE
 
     # optional
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    is_pass_all_parameters_enabled: true
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -383,8 +385,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    is_pass_all_parameters_enabled: true
 
 - name: Update build_pipeline_stage with build_pipeline_stage_type = WAIT
   oci_devops_build_pipeline_stage:
@@ -392,6 +392,10 @@ EXAMPLES = """
     build_pipeline_stage_type: WAIT
 
     # optional
+    wait_criteria:
+      # required
+      wait_type: ABSOLUTE_WAIT
+      wait_duration: wait_duration_example
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -401,10 +405,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    wait_criteria:
-      # required
-      wait_type: ABSOLUTE_WAIT
-      wait_duration: wait_duration_example
 
 - name: Update build_pipeline_stage with build_pipeline_stage_type = BUILD
   oci_devops_build_pipeline_stage:
@@ -412,15 +412,6 @@ EXAMPLES = """
     build_pipeline_stage_type: BUILD
 
     # optional
-    display_name: display_name_example
-    description: description_example
-    build_pipeline_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     image: image_example
     build_spec_file: build_spec_file_example
     stage_execution_timeout_in_seconds: 56
@@ -434,6 +425,15 @@ EXAMPLES = """
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    display_name: display_name_example
+    description: description_example
+    build_pipeline_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update build_pipeline_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with build_pipeline_stage_type = DELIVER_ARTIFACT
   oci_devops_build_pipeline_stage:
@@ -465,6 +465,8 @@ EXAMPLES = """
     build_pipeline_stage_type: TRIGGER_DEPLOYMENT_PIPELINE
 
     # optional
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    is_pass_all_parameters_enabled: true
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -474,8 +476,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    is_pass_all_parameters_enabled: true
 
 - name: Update build_pipeline_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with build_pipeline_stage_type = WAIT
   oci_devops_build_pipeline_stage:
@@ -483,6 +483,10 @@ EXAMPLES = """
     build_pipeline_stage_type: WAIT
 
     # optional
+    wait_criteria:
+      # required
+      wait_type: ABSOLUTE_WAIT
+      wait_duration: wait_duration_example
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -492,10 +496,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    wait_criteria:
-      # required
-      wait_type: ABSOLUTE_WAIT
-      wait_duration: wait_duration_example
 
 - name: Update build_pipeline_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with build_pipeline_stage_type = BUILD
   oci_devops_build_pipeline_stage:
@@ -503,15 +503,6 @@ EXAMPLES = """
     build_pipeline_stage_type: BUILD
 
     # optional
-    display_name: display_name_example
-    description: description_example
-    build_pipeline_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     image: image_example
     build_spec_file: build_spec_file_example
     stage_execution_timeout_in_seconds: 56
@@ -525,6 +516,15 @@ EXAMPLES = """
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    display_name: display_name_example
+    description: description_example
+    build_pipeline_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete build_pipeline_stage
   oci_devops_build_pipeline_stage:
@@ -988,6 +988,44 @@ def main():
     )
     module_args.update(
         dict(
+            build_pipeline_id=dict(type="str"),
+            wait_criteria=dict(
+                type="dict",
+                options=dict(
+                    wait_type=dict(
+                        type="str", required=True, choices=["ABSOLUTE_WAIT"]
+                    ),
+                    wait_duration=dict(type="str"),
+                ),
+            ),
+            image=dict(type="str"),
+            build_spec_file=dict(type="str"),
+            stage_execution_timeout_in_seconds=dict(type="int"),
+            build_source_collection=dict(
+                type="dict",
+                options=dict(
+                    items=dict(
+                        type="list",
+                        elements="dict",
+                        required=True,
+                        options=dict(
+                            repository_id=dict(type="str"),
+                            name=dict(type="str", required=True),
+                            connection_type=dict(
+                                type="str",
+                                required=True,
+                                choices=["GITHUB", "DEVOPS_CODE_REPOSITORY", "GITLAB"],
+                            ),
+                            repository_url=dict(type="str", required=True),
+                            branch=dict(type="str", required=True),
+                            connection_id=dict(type="str"),
+                        ),
+                    )
+                ),
+            ),
+            primary_build_source=dict(type="str"),
+            deploy_pipeline_id=dict(type="str"),
+            is_pass_all_parameters_enabled=dict(type="bool", no_log=True),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             build_pipeline_stage_type=dict(
@@ -999,7 +1037,6 @@ def main():
                     "BUILD",
                 ],
             ),
-            build_pipeline_id=dict(type="str"),
             build_pipeline_stage_predecessor_collection=dict(
                 type="dict",
                 options=dict(
@@ -1027,43 +1064,6 @@ def main():
                     )
                 ),
             ),
-            deploy_pipeline_id=dict(type="str"),
-            is_pass_all_parameters_enabled=dict(type="bool", no_log=True),
-            wait_criteria=dict(
-                type="dict",
-                options=dict(
-                    wait_type=dict(
-                        type="str", required=True, choices=["ABSOLUTE_WAIT"]
-                    ),
-                    wait_duration=dict(type="str"),
-                ),
-            ),
-            image=dict(type="str"),
-            build_spec_file=dict(type="str"),
-            stage_execution_timeout_in_seconds=dict(type="int"),
-            build_source_collection=dict(
-                type="dict",
-                options=dict(
-                    items=dict(
-                        type="list",
-                        elements="dict",
-                        required=True,
-                        options=dict(
-                            name=dict(type="str", required=True),
-                            connection_type=dict(
-                                type="str",
-                                required=True,
-                                choices=["GITHUB", "DEVOPS_CODE_REPOSITORY", "GITLAB"],
-                            ),
-                            repository_url=dict(type="str", required=True),
-                            branch=dict(type="str", required=True),
-                            connection_id=dict(type="str"),
-                            repository_id=dict(type="str"),
-                        ),
-                    )
-                ),
-            ),
-            primary_build_source=dict(type="str"),
             build_pipeline_stage_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

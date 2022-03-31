@@ -27,6 +27,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    project_id:
+        description:
+            - The OCID of a project.
+            - Required for create using I(state=present).
+        type: str
     description:
         description:
             - Optional description about the deployment artifact.
@@ -52,15 +57,6 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            deploy_artifact_source_type:
-                description:
-                    - Specifies types of artifact sources.
-                type: str
-                choices:
-                    - "GENERIC_ARTIFACT"
-                    - "OCIR"
-                    - "INLINE"
-                required: true
             repository_id:
                 description:
                     - The OCID of a repository
@@ -86,6 +82,15 @@ options:
                     - Specifies image digest for the version of the image.
                     - Applicable when deploy_artifact_source_type is 'OCIR'
                 type: str
+            deploy_artifact_source_type:
+                description:
+                    - Specifies types of artifact sources.
+                type: str
+                choices:
+                    - "GENERIC_ARTIFACT"
+                    - "OCIR"
+                    - "INLINE"
+                required: true
             base64_encoded_content:
                 description:
                     - base64 Encoded String
@@ -96,11 +101,6 @@ options:
             - Mode for artifact parameter substitution.
             - Required for create using I(state=present).
             - This parameter is updatable.
-        type: str
-    project_id:
-        description:
-            - The OCID of a project.
-            - Required for create using I(state=present).
         type: str
     freeform_tags:
         description:
@@ -137,15 +137,15 @@ EXAMPLES = """
 - name: Create deploy_artifact
   oci_devops_deploy_artifact:
     # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_artifact_type: deploy_artifact_type_example
     deploy_artifact_source:
       # required
-      deploy_artifact_source_type: GENERIC_ARTIFACT
       repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
       deploy_artifact_path: deploy_artifact_path_example
       deploy_artifact_version: deploy_artifact_version_example
+      deploy_artifact_source_type: GENERIC_ARTIFACT
     argument_substitution_mode: argument_substitution_mode_example
-    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
@@ -164,10 +164,10 @@ EXAMPLES = """
     deploy_artifact_type: deploy_artifact_type_example
     deploy_artifact_source:
       # required
-      deploy_artifact_source_type: GENERIC_ARTIFACT
       repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
       deploy_artifact_path: deploy_artifact_path_example
       deploy_artifact_version: deploy_artifact_version_example
+      deploy_artifact_source_type: GENERIC_ARTIFACT
     argument_substitution_mode: argument_substitution_mode_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -182,10 +182,10 @@ EXAMPLES = """
     deploy_artifact_type: deploy_artifact_type_example
     deploy_artifact_source:
       # required
-      deploy_artifact_source_type: GENERIC_ARTIFACT
       repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
       deploy_artifact_path: deploy_artifact_path_example
       deploy_artifact_version: deploy_artifact_version_example
+      deploy_artifact_source_type: GENERIC_ARTIFACT
     argument_substitution_mode: argument_substitution_mode_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -524,27 +524,27 @@ def main():
     )
     module_args.update(
         dict(
+            project_id=dict(type="str"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             deploy_artifact_type=dict(type="str"),
             deploy_artifact_source=dict(
                 type="dict",
                 options=dict(
-                    deploy_artifact_source_type=dict(
-                        type="str",
-                        required=True,
-                        choices=["GENERIC_ARTIFACT", "OCIR", "INLINE"],
-                    ),
                     repository_id=dict(type="str"),
                     deploy_artifact_path=dict(type="str"),
                     deploy_artifact_version=dict(type="str"),
                     image_uri=dict(type="str"),
                     image_digest=dict(type="str"),
+                    deploy_artifact_source_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["GENERIC_ARTIFACT", "OCIR", "INLINE"],
+                    ),
                     base64_encoded_content=dict(type="str"),
                 ),
             ),
             argument_substitution_mode=dict(type="str"),
-            project_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             deploy_artifact_id=dict(aliases=["id"], type="str"),

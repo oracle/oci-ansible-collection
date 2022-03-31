@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_target -- Manage a Target resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1354,16 +1354,18 @@ Examples
     - name: Create target
       oci_cloud_guard_target:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_resource_type: COMPARTMENT
         target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
+        lifecycle_state: CREATING
         target_detector_recipes:
         - # optional
           detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+          target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
           detector_rules:
           - # required
             detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1381,10 +1383,10 @@ Examples
                   operator: IN
                   value: value_example
                   value_type: MANAGED
-          target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         target_responder_recipes:
         - # optional
           responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+          target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
           responder_rules:
           - # required
             responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1405,8 +1407,6 @@ Examples
                 name: name_example
                 value: value_example
               mode: AUTOACTION
-          target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state: CREATING
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1417,9 +1417,11 @@ Examples
 
         # optional
         display_name: display_name_example
+        lifecycle_state: CREATING
         target_detector_recipes:
         - # optional
           detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+          target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
           detector_rules:
           - # required
             detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1437,10 +1439,10 @@ Examples
                   operator: IN
                   value: value_example
                   value_type: MANAGED
-          target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         target_responder_recipes:
         - # optional
           responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+          target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
           responder_rules:
           - # required
             responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1461,21 +1463,21 @@ Examples
                 name: name_example
                 value: value_example
               mode: AUTOACTION
-          target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state: CREATING
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_target:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
+        lifecycle_state: CREATING
         target_detector_recipes:
         - # optional
           detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+          target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
           detector_rules:
           - # required
             detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1493,10 +1495,10 @@ Examples
                   operator: IN
                   value: value_example
                   value_type: MANAGED
-          target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         target_responder_recipes:
         - # optional
           responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+          target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
           responder_rules:
           - # required
             responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1517,8 +1519,6 @@ Examples
                 name: name_example
                 value: value_example
               mode: AUTOACTION
-          target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state: CREATING
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1531,8 +1531,8 @@ Examples
     - name: Delete target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_target:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

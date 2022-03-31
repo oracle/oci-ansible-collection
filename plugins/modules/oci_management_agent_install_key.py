@@ -27,14 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - Management Agent install Key Name
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     allowed_key_install_count:
         description:
             - Total number of install for this keys
@@ -50,6 +42,19 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    is_key_active:
+        description:
+            - if set to true the install key state would be set to Active and if false to Inactive
+            - This parameter is updatable.
+        type: bool
+    display_name:
+        description:
+            - Management Agent install Key Name
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     management_agent_install_key_id:
         description:
             - Unique Management Agent Install Key identifier
@@ -57,11 +62,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    is_key_active:
-        description:
-            - if set to true the install key state would be set to Active and if false to Inactive
-            - This parameter is updatable.
-        type: bool
     state:
         description:
             - The state of the ManagementAgentInstallKey.
@@ -78,8 +78,8 @@ EXAMPLES = """
 - name: Create management_agent_install_key
   oci_management_agent_install_key:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     allowed_key_install_count: 56
@@ -91,14 +91,14 @@ EXAMPLES = """
     management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     is_key_active: true
+    display_name: display_name_example
 
 - name: Update management_agent_install_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_management_agent_install_key:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     is_key_active: true
@@ -112,8 +112,8 @@ EXAMPLES = """
 - name: Delete management_agent_install_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_management_agent_install_key:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -386,12 +386,12 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             allowed_key_install_count=dict(type="int"),
             time_expires=dict(type="str"),
             compartment_id=dict(type="str"),
-            management_agent_install_key_id=dict(aliases=["id"], type="str"),
             is_key_active=dict(type="bool", no_log=True),
+            display_name=dict(aliases=["name"], type="str"),
+            management_agent_install_key_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

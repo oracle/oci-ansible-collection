@@ -28,11 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    bds_instance_id:
-        description:
-            - The OCID of the cluster.
-        type: str
-        required: true
     auto_scaling_configuration_id:
         description:
             - Unique Oracle-assigned identifier of the autoscale configuration.
@@ -44,6 +39,11 @@ options:
             - The OCID of the compartment.
             - Required to list multiple bds_auto_scale_configs.
         type: str
+    bds_instance_id:
+        description:
+            - The OCID of the cluster.
+        type: str
+        required: true
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is
@@ -82,14 +82,14 @@ EXAMPLES = """
 - name: Get a specific bds_auto_scale_config
   oci_bds_auto_scale_config_facts:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List bds_auto_scale_configs
   oci_bds_auto_scale_config_facts:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     sort_by: timeCreated
@@ -301,9 +301,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            bds_instance_id=dict(type="str", required=True),
             auto_scaling_configuration_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            bds_instance_id=dict(type="str", required=True),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             display_name=dict(aliases=["name"], type="str"),

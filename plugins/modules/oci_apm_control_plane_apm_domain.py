@@ -28,6 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment corresponding to the APM domain.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    is_free_tier:
+        description:
+            - "Indicates whether this is an \\"Always Free\\" resource. The default value is false."
+        type: bool
     display_name:
         description:
             - Display name of the APM domain.
@@ -41,13 +52,6 @@ options:
             - Description of the APM domain.
             - This parameter is updatable.
         type: str
-    compartment_id:
-        description:
-            - The OCID of the compartment corresponding to the APM domain.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -60,10 +64,6 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    is_free_tier:
-        description:
-            - "Indicates whether this is an \\"Always Free\\" resource. The default value is false."
-        type: bool
     apm_domain_id:
         description:
             - The OCID of the APM domain.
@@ -87,14 +87,14 @@ EXAMPLES = """
 - name: Create apm_domain
   oci_apm_control_plane_apm_domain:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
+    is_free_tier: true
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    is_free_tier: true
 
 - name: Update apm_domain
   oci_apm_control_plane_apm_domain:
@@ -110,8 +110,8 @@ EXAMPLES = """
 - name: Update apm_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_control_plane_apm_domain:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -127,8 +127,8 @@ EXAMPLES = """
 - name: Delete apm_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_control_plane_apm_domain:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -372,12 +372,12 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            is_free_tier=dict(type="bool"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            is_free_tier=dict(type="bool"),
             apm_domain_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

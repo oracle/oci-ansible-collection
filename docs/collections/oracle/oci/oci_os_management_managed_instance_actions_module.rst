@@ -30,7 +30,7 @@ oracle.oci.oci_os_management_managed_instance_actions -- Perform actions on a Ma
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -413,29 +413,29 @@ Examples
     - name: Perform action attach_child_software_source on managed_instance
       oci_os_management_managed_instance_actions:
         # required
-        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: attach_child_software_source
 
     - name: Perform action attach_parent_software_source on managed_instance
       oci_os_management_managed_instance_actions:
         # required
-        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: attach_parent_software_source
 
     - name: Perform action detach_child_software_source on managed_instance
       oci_os_management_managed_instance_actions:
         # required
-        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_child_software_source
 
     - name: Perform action detach_parent_software_source on managed_instance
       oci_os_management_managed_instance_actions:
         # required
-        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_parent_software_source
 
     - name: Perform action install_all_package_updates on managed_instance
@@ -473,8 +473,8 @@ Examples
     - name: Perform action install_windows_update on managed_instance
       oci_os_management_managed_instance_actions:
         # required
-        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         windows_update_name: windows_update_name_example
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: install_windows_update
 
     - name: Perform action remove_package on managed_instance

@@ -30,12 +30,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    host_insight_id:
-        description:
-            - Unique host insight identifier
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The OCID of the compartment into which the resource should be moved.
@@ -49,6 +43,12 @@ options:
         choices:
             - "MACS_MANAGED_EXTERNAL_HOST"
             - "EM_MANAGED_EXTERNAL_HOST"
+    host_insight_id:
+        description:
+            - Unique host insight identifier
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the HostInsight.
@@ -65,8 +65,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on host_insight
   oci_opsi_host_insight_actions:
     # required
-    host_insight_id: "ocid1.hostinsight.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    host_insight_id: "ocid1.hostinsight.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action disable on host_insight
@@ -401,12 +401,12 @@ def main():
     )
     module_args.update(
         dict(
-            host_insight_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             entity_source=dict(
                 type="str",
                 choices=["MACS_MANAGED_EXTERNAL_HOST", "EM_MANAGED_EXTERNAL_HOST"],
             ),
+            host_insight_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    analytics_instance_id:
-        description:
-            - The OCID of the AnalyticsInstance.
-        type: str
-        aliases: ["id"]
-        required: true
     display_name:
         description:
             - Display Name of the Private Access Channel.
@@ -78,6 +72,12 @@ options:
             - Required for update using I(state=present) with analytics_instance_id present.
             - Required for delete using I(state=absent).
         type: str
+    analytics_instance_id:
+        description:
+            - The OCID of the AnalyticsInstance.
+        type: str
+        aliases: ["id"]
+        required: true
     state:
         description:
             - The state of the PrivateAccessChannel.
@@ -94,7 +94,6 @@ EXAMPLES = """
 - name: Create private_access_channel
   oci_analytics_private_access_channel:
     # required
-    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -104,12 +103,13 @@ EXAMPLES = """
 
       # optional
       description: description_example
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update private_access_channel
   oci_analytics_private_access_channel:
     # required
-    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     private_access_channel_key: private_access_channel_key_example
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     display_name: display_name_example
@@ -125,8 +125,8 @@ EXAMPLES = """
 - name: Delete private_access_channel
   oci_analytics_private_access_channel:
     # required
-    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     private_access_channel_key: private_access_channel_key_example
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -335,7 +335,6 @@ def main():
     )
     module_args.update(
         dict(
-            analytics_instance_id=dict(aliases=["id"], type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             vcn_id=dict(type="str"),
             subnet_id=dict(type="str"),
@@ -348,6 +347,7 @@ def main():
                 ),
             ),
             private_access_channel_key=dict(type="str", no_log=True),
+            analytics_instance_id=dict(aliases=["id"], type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

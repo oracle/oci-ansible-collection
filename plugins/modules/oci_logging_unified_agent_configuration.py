@@ -28,6 +28,13 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment that the resource belongs to.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - The user-friendly display name. This must be unique within the enclosing resource,
@@ -41,6 +48,26 @@ options:
             - Whether or not this resource is currently enabled.
             - Required for create using I(state=present), update using I(state=present) with unified_agent_configuration_id present.
         type: bool
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    freeform_tags:
+        description:
+            - "Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    description:
+        description:
+            - Description for this resource.
+            - This parameter is updatable.
+        type: str
     service_configuration:
         description:
             - ""
@@ -60,6 +87,12 @@ options:
                 type: list
                 elements: dict
                 suboptions:
+                    channels:
+                        description:
+                            - ""
+                            - Applicable when source_type is 'WINDOWS_EVENT_LOG'
+                        type: list
+                        elements: str
                     name:
                         description:
                             - unique name for the source
@@ -73,12 +106,6 @@ options:
                             - "WINDOWS_EVENT_LOG"
                             - "LOG_TAIL"
                         required: true
-                    channels:
-                        description:
-                            - ""
-                            - Applicable when source_type is 'WINDOWS_EVENT_LOG'
-                        type: list
-                        elements: str
                     paths:
                         description:
                             - ""
@@ -91,6 +118,121 @@ options:
                             - Applicable when source_type is 'LOG_TAIL'
                         type: dict
                         suboptions:
+                            multi_line_start_regexp:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'MULTILINE_GROK'
+                                type: str
+                            time_type:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'JSON'
+                                type: str
+                                choices:
+                                    - "FLOAT"
+                                    - "UNIXTIME"
+                                    - "STRING"
+                            grok_name_key:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
+                                type: str
+                            grok_failure_key:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
+                                type: str
+                            patterns:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
+                                type: list
+                                elements: dict
+                                suboptions:
+                                    pattern:
+                                        description:
+                                            - The grok pattern.
+                                            - Required when parser_type is 'MULTILINE_GROK'
+                                        type: str
+                                        required: true
+                                    name:
+                                        description:
+                                            - The name key to tag this grok pattern.
+                                            - Applicable when parser_type is 'MULTILINE_GROK'
+                                        type: str
+                                    field_time_key:
+                                        description:
+                                            - Specify the time field for the event time. If the event doesn't have this field, the current time is used.
+                                            - Applicable when parser_type is 'MULTILINE_GROK'
+                                        type: str
+                                    field_time_format:
+                                        description:
+                                            - Process value using the specified format. This is available only when time_type is a string.
+                                            - Applicable when parser_type is 'MULTILINE_GROK'
+                                        type: str
+                                    field_time_zone:
+                                        description:
+                                            - Use the specified time zone. The time value can be parsed or formatted in the specified time zone.
+                                            - Applicable when parser_type is 'MULTILINE_GROK'
+                                        type: str
+                            message_key:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'NONE'
+                                type: str
+                            rfc5424_time_format:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'SYSLOG'
+                                type: str
+                            message_format:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'SYSLOG'
+                                type: str
+                                choices:
+                                    - "RFC3164"
+                                    - "RFC5424"
+                                    - "AUTO"
+                            is_with_priority:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'SYSLOG'
+                                type: bool
+                            is_support_colonless_ident:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'SYSLOG'
+                                type: bool
+                            syslog_parser_type:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'SYSLOG'
+                                type: str
+                                choices:
+                                    - "STRING"
+                                    - "REGEXP"
+                            expression:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'REGEXP'
+                                type: str
+                            time_format:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is one of ['REGEXP', 'SYSLOG', 'JSON']
+                                type: str
+                            format_firstline:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'MULTILINE'
+                                type: str
+                            format:
+                                description:
+                                    - ""
+                                    - Applicable when parser_type is 'MULTILINE'
+                                type: list
+                                elements: str
                             parser_type:
                                 description:
                                     - Type of fluent parser.
@@ -138,121 +280,6 @@ options:
                                 description:
                                     - Specify the timeout for parse processing. This is mainly for detecting an incorrect regexp pattern.
                                 type: int
-                            grok_name_key:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
-                                type: str
-                            grok_failure_key:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
-                                type: str
-                            multi_line_start_regexp:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'MULTILINE_GROK'
-                                type: str
-                            patterns:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
-                                type: list
-                                elements: dict
-                                suboptions:
-                                    pattern:
-                                        description:
-                                            - The grok pattern.
-                                            - Required when parser_type is 'MULTILINE_GROK'
-                                        type: str
-                                        required: true
-                                    name:
-                                        description:
-                                            - The name key to tag this grok pattern.
-                                            - Applicable when parser_type is 'MULTILINE_GROK'
-                                        type: str
-                                    field_time_key:
-                                        description:
-                                            - Specify the time field for the event time. If the event doesn't have this field, the current time is used.
-                                            - Applicable when parser_type is 'MULTILINE_GROK'
-                                        type: str
-                                    field_time_format:
-                                        description:
-                                            - Process value using the specified format. This is available only when time_type is a string.
-                                            - Applicable when parser_type is 'MULTILINE_GROK'
-                                        type: str
-                                    field_time_zone:
-                                        description:
-                                            - Use the specified time zone. The time value can be parsed or formatted in the specified time zone.
-                                            - Applicable when parser_type is 'MULTILINE_GROK'
-                                        type: str
-                            time_type:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'JSON'
-                                type: str
-                                choices:
-                                    - "FLOAT"
-                                    - "UNIXTIME"
-                                    - "STRING"
-                            time_format:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is one of ['REGEXP', 'SYSLOG', 'JSON']
-                                type: str
-                            message_key:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'NONE'
-                                type: str
-                            rfc5424_time_format:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'SYSLOG'
-                                type: str
-                            message_format:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'SYSLOG'
-                                type: str
-                                choices:
-                                    - "RFC3164"
-                                    - "RFC5424"
-                                    - "AUTO"
-                            is_with_priority:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'SYSLOG'
-                                type: bool
-                            is_support_colonless_ident:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'SYSLOG'
-                                type: bool
-                            syslog_parser_type:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'SYSLOG'
-                                type: str
-                                choices:
-                                    - "STRING"
-                                    - "REGEXP"
-                            expression:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'REGEXP'
-                                type: str
-                            format_firstline:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'MULTILINE'
-                                type: str
-                            format:
-                                description:
-                                    - ""
-                                    - Applicable when parser_type is 'MULTILINE'
-                                type: list
-                                elements: str
                             delimiter:
                                 description:
                                     - ""
@@ -274,33 +301,6 @@ options:
                             - The OCID of the resource.
                         type: str
                         required: true
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    freeform_tags:
-        description:
-            - "Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    compartment_id:
-        description:
-            - The OCID of the compartment that the resource belongs to.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
-    description:
-        description:
-            - Description for this resource.
-            - This parameter is updatable.
-        type: str
     group_association:
         description:
             - ""
@@ -335,6 +335,7 @@ EXAMPLES = """
 - name: Create unified_agent_configuration
   oci_logging_unified_agent_configuration:
     # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     is_enabled: true
     service_configuration:
       # required
@@ -351,7 +352,6 @@ EXAMPLES = """
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     display_name: display_name_example
@@ -395,11 +395,14 @@ EXAMPLES = """
 - name: Update unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_unified_agent_configuration:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     is_enabled: true
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    description: description_example
     service_configuration:
       # required
       configuration_type: LOGGING
@@ -415,9 +418,6 @@ EXAMPLES = """
       destination:
         # required
         log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    freeform_tags: {'Department': 'Finance'}
-    description: description_example
     group_association:
       # optional
       group_list: [ "group_list_example" ]
@@ -431,8 +431,8 @@ EXAMPLES = """
 - name: Delete unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_unified_agent_configuration:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -997,8 +997,12 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             is_enabled=dict(type="bool"),
+            defined_tags=dict(type="dict"),
+            freeform_tags=dict(type="dict"),
+            description=dict(type="str"),
             service_configuration=dict(
                 type="dict",
                 options=dict(
@@ -1009,17 +1013,52 @@ def main():
                         type="list",
                         elements="dict",
                         options=dict(
+                            channels=dict(type="list", elements="str"),
                             name=dict(type="str", required=True),
                             source_type=dict(
                                 type="str",
                                 required=True,
                                 choices=["WINDOWS_EVENT_LOG", "LOG_TAIL"],
                             ),
-                            channels=dict(type="list", elements="str"),
                             paths=dict(type="list", elements="str"),
                             parser=dict(
                                 type="dict",
                                 options=dict(
+                                    multi_line_start_regexp=dict(type="str"),
+                                    time_type=dict(
+                                        type="str",
+                                        choices=["FLOAT", "UNIXTIME", "STRING"],
+                                    ),
+                                    grok_name_key=dict(type="str", no_log=True),
+                                    grok_failure_key=dict(type="str", no_log=True),
+                                    patterns=dict(
+                                        type="list",
+                                        elements="dict",
+                                        options=dict(
+                                            pattern=dict(type="str", required=True),
+                                            name=dict(type="str"),
+                                            field_time_key=dict(
+                                                type="str", no_log=True
+                                            ),
+                                            field_time_format=dict(type="str"),
+                                            field_time_zone=dict(type="str"),
+                                        ),
+                                    ),
+                                    message_key=dict(type="str", no_log=True),
+                                    rfc5424_time_format=dict(type="str"),
+                                    message_format=dict(
+                                        type="str",
+                                        choices=["RFC3164", "RFC5424", "AUTO"],
+                                    ),
+                                    is_with_priority=dict(type="bool"),
+                                    is_support_colonless_ident=dict(type="bool"),
+                                    syslog_parser_type=dict(
+                                        type="str", choices=["STRING", "REGEXP"]
+                                    ),
+                                    expression=dict(type="str"),
+                                    time_format=dict(type="str"),
+                                    format_firstline=dict(type="str"),
+                                    format=dict(type="list", elements="str"),
                                     parser_type=dict(
                                         type="str",
                                         required=True,
@@ -1046,41 +1085,6 @@ def main():
                                     is_estimate_current_event=dict(type="bool"),
                                     is_keep_time_key=dict(type="bool", no_log=True),
                                     timeout_in_milliseconds=dict(type="int"),
-                                    grok_name_key=dict(type="str", no_log=True),
-                                    grok_failure_key=dict(type="str", no_log=True),
-                                    multi_line_start_regexp=dict(type="str"),
-                                    patterns=dict(
-                                        type="list",
-                                        elements="dict",
-                                        options=dict(
-                                            pattern=dict(type="str", required=True),
-                                            name=dict(type="str"),
-                                            field_time_key=dict(
-                                                type="str", no_log=True
-                                            ),
-                                            field_time_format=dict(type="str"),
-                                            field_time_zone=dict(type="str"),
-                                        ),
-                                    ),
-                                    time_type=dict(
-                                        type="str",
-                                        choices=["FLOAT", "UNIXTIME", "STRING"],
-                                    ),
-                                    time_format=dict(type="str"),
-                                    message_key=dict(type="str", no_log=True),
-                                    rfc5424_time_format=dict(type="str"),
-                                    message_format=dict(
-                                        type="str",
-                                        choices=["RFC3164", "RFC5424", "AUTO"],
-                                    ),
-                                    is_with_priority=dict(type="bool"),
-                                    is_support_colonless_ident=dict(type="bool"),
-                                    syslog_parser_type=dict(
-                                        type="str", choices=["STRING", "REGEXP"]
-                                    ),
-                                    expression=dict(type="str"),
-                                    format_firstline=dict(type="str"),
-                                    format=dict(type="list", elements="str"),
                                     delimiter=dict(type="str"),
                                     keys=dict(type="list", elements="str", no_log=True),
                                 ),
@@ -1093,10 +1097,6 @@ def main():
                     ),
                 ),
             ),
-            defined_tags=dict(type="dict"),
-            freeform_tags=dict(type="dict"),
-            compartment_id=dict(type="str"),
-            description=dict(type="str"),
             group_association=dict(
                 type="dict", options=dict(group_list=dict(type="list", elements="str"))
             ),

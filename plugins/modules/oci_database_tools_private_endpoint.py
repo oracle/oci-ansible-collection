@@ -35,6 +35,20 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    endpoint_service_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsEndpointService.
+            - Required for create using I(state=present).
+        type: str
+    subnet_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet that the private endpoint belongs to.
+            - Required for create using I(state=present).
+        type: str
+    private_endpoint_ip:
+        description:
+            - The private IP address that represents the access point for the associated endpoint service.
+        type: str
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -59,20 +73,6 @@ options:
         description:
             - A description of the DatabaseToolsPrivateEndpoint.
             - This parameter is updatable.
-        type: str
-    endpoint_service_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsEndpointService.
-            - Required for create using I(state=present).
-        type: str
-    subnet_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet that the private endpoint belongs to.
-            - Required for create using I(state=present).
-        type: str
-    private_endpoint_ip:
-        description:
-            - The private IP address that represents the access point for the associated endpoint service.
         type: str
     nsg_ids:
         description:
@@ -106,15 +106,15 @@ EXAMPLES = """
   oci_database_tools_private_endpoint:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     endpoint_service_id: "ocid1.endpointservice.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
+    private_endpoint_ip: private_endpoint_ip_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     description: description_example
-    private_endpoint_ip: private_endpoint_ip_example
     nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update database_tools_private_endpoint
@@ -502,13 +502,13 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            endpoint_service_id=dict(type="str"),
+            subnet_id=dict(type="str"),
+            private_endpoint_ip=dict(type="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            endpoint_service_id=dict(type="str"),
-            subnet_id=dict(type="str"),
-            private_endpoint_ip=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),
             database_tools_private_endpoint_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

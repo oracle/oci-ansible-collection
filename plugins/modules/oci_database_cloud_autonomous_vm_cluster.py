@@ -37,16 +37,21 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - User defined description of the cloud Autonomous VM cluster.
-            - This parameter is updatable.
-        type: str
     subnet_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the cloud Autonomous VM Cluster is associated
               with.
             - Required for create using I(state=present).
+        type: str
+    cloud_exadata_infrastructure_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
+            - Required for create using I(state=present).
+        type: str
+    description:
+        description:
+            - User defined description of the cloud Autonomous VM cluster.
+            - This parameter is updatable.
         type: str
     display_name:
         description:
@@ -56,11 +61,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    cloud_exadata_infrastructure_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
-            - Required for create using I(state=present).
-        type: str
     license_model:
         description:
             - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
@@ -123,8 +123,8 @@ EXAMPLES = """
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -571,10 +571,10 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            description=dict(type="str"),
             subnet_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             cloud_exadata_infrastructure_id=dict(type="str"),
+            description=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
             ),

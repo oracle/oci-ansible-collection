@@ -37,6 +37,13 @@ options:
               file already exists, the content will be overwritten. I(validation_report_dest) is required if I(action=download_validation_report).
             - Required for I(action=download_validation_report).
         type: str
+    config_file_dest:
+        description:
+            - The destination file path to write the config file to when I(action=download_vm_cluster_network_config_file). The file will be created if it does
+              not exist. If the file already exists, the content will be overwritten. I(config_file_dest) is required if
+              I(action=download_vm_cluster_network_config_file).
+            - Required for I(action=download_vm_cluster_network_config_file).
+        type: str
     exadata_infrastructure_id:
         description:
             - The Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -48,13 +55,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-    config_file_dest:
-        description:
-            - The destination file path to write the config file to when I(action=download_vm_cluster_network_config_file). The file will be created if it does
-              not exist. If the file already exists, the content will be overwritten. I(config_file_dest) is required if
-              I(action=download_vm_cluster_network_config_file).
-            - Required for I(action=download_vm_cluster_network_config_file).
-        type: str
     action:
         description:
             - The action to perform on the VmClusterNetwork.
@@ -79,9 +79,9 @@ EXAMPLES = """
 - name: Perform action download_vm_cluster_network_config_file on vm_cluster_network
   oci_database_vm_cluster_network_actions:
     # required
+    config_file_dest: /tmp/exadata_config_file.zip
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
-    config_file_dest: /tmp/exadata_config_file.zip
     action: download_vm_cluster_network_config_file
 
 - name: Perform action validate on vm_cluster_network
@@ -461,9 +461,9 @@ def main():
     module_args.update(
         dict(
             validation_report_dest=dict(type="str"),
+            config_file_dest=dict(type="str"),
             exadata_infrastructure_id=dict(type="str", required=True),
             vm_cluster_network_id=dict(aliases=["id"], type="str", required=True),
-            config_file_dest=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

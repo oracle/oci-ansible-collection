@@ -39,6 +39,12 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    availability_domain:
+        description:
+            - The availability domain of this compute capacity reservation.
+            - "Example: `Uocm:PHX-AD-1`"
+            - Required for create using I(state=present).
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -62,12 +68,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    availability_domain:
-        description:
-            - The availability domain of this compute capacity reservation.
-            - "Example: `Uocm:PHX-AD-1`"
-            - Required for create using I(state=present).
-        type: str
     is_default_reservation:
         description:
             - Whether this capacity reservation is the default.
@@ -579,10 +579,10 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            availability_domain=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            availability_domain=dict(type="str"),
             is_default_reservation=dict(type="bool"),
             instance_reservation_configs=dict(
                 type="list",

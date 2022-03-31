@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_ssl_cipher_suite -- Manage a SslCipherSuite resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -399,22 +399,22 @@ Examples
     - name: Create ssl_cipher_suite
       oci_loadbalancer_ssl_cipher_suite:
         # required
-        name: name_example
         ciphers: [ "ciphers_example" ]
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
     - name: Update ssl_cipher_suite
       oci_loadbalancer_ssl_cipher_suite:
         # required
-        name: name_example
         ciphers: [ "ciphers_example" ]
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
     - name: Delete ssl_cipher_suite
       oci_loadbalancer_ssl_cipher_suite:
         # required
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
         state: absent
 
 

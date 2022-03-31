@@ -32,6 +32,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    target_container_database_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the target CDB
+            - Required for I(action=remote_clone).
+        type: str
+    source_container_db_admin_password:
+        description:
+            - The DB system administrator password of the source CDB.
+            - Required for I(action=remote_clone).
+        type: str
     cloned_pdb_name:
         description:
             - The name for the pluggable database (PDB). The name is unique in the context of a L(container database,https://docs.cloud.oracle.com/en-
@@ -62,16 +72,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-    target_container_database_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the target CDB
-            - Required for I(action=remote_clone).
-        type: str
-    source_container_db_admin_password:
-        description:
-            - The DB system administrator password of the source CDB.
-            - Required for I(action=remote_clone).
-        type: str
     action:
         description:
             - The action to perform on the PluggableDatabase.
@@ -101,10 +101,10 @@ EXAMPLES = """
 - name: Perform action remote_clone on pluggable_database
   oci_database_pluggable_database_actions:
     # required
-    cloned_pdb_name: cloned_pdb_name_example
-    pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     target_container_database_id: "ocid1.targetcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     source_container_db_admin_password: example-password
+    cloned_pdb_name: cloned_pdb_name_example
+    pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: remote_clone
 
     # optional
@@ -396,13 +396,13 @@ def main():
     )
     module_args.update(
         dict(
+            target_container_database_id=dict(type="str"),
+            source_container_db_admin_password=dict(type="str", no_log=True),
             cloned_pdb_name=dict(type="str"),
             pdb_admin_password=dict(type="str", no_log=True),
             target_tde_wallet_password=dict(type="str", no_log=True),
             should_pdb_admin_account_be_locked=dict(type="bool"),
             pluggable_database_id=dict(aliases=["id"], type="str", required=True),
-            target_container_database_id=dict(type="str"),
-            source_container_db_admin_password=dict(type="str", no_log=True),
             action=dict(
                 type="str",
                 required=True,

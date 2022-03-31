@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_pool -- Manage an InstancePool resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -692,15 +692,15 @@ Examples
         size: 56
 
         # optional
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
-        freeform_tags: {'Department': 'Finance'}
         load_balancers:
         - # required
           load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
           backend_set_name: backend_set_name_example
           port: 56
           vnic_selection: vnic_selection_example
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
 
     - name: Update instance_pool
       oci_compute_management_instance_pool:

@@ -28,14 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    dns_zones:
-        description:
-            - "List of DNS zones to be used by the data assets.
-              Example: custpvtsubnet.oraclevcn.com for data asset: db.custpvtsubnet.oraclevcn.com"
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: list
-        elements: str
     subnet_id:
         description:
             - The OCID of subnet to which the reverse connection is to be created.
@@ -48,6 +40,14 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    dns_zones:
+        description:
+            - "List of DNS zones to be used by the data assets.
+              Example: custpvtsubnet.oraclevcn.com for data asset: db.custpvtsubnet.oraclevcn.com"
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: list
+        elements: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -90,9 +90,9 @@ EXAMPLES = """
 - name: Create ai_private_endpoint
   oci_ai_anomaly_detection_ai_private_endpoint:
     # required
-    dns_zones: [ "dns_zones_example" ]
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    dns_zones: [ "dns_zones_example" ]
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -401,9 +401,9 @@ def main():
     )
     module_args.update(
         dict(
-            dns_zones=dict(type="list", elements="str"),
             subnet_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            dns_zones=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),

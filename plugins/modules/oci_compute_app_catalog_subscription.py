@@ -27,21 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    compartment_id:
-        description:
-            - The compartmentID for the subscription.
-        type: str
-        required: true
-    listing_id:
-        description:
-            - The OCID of the listing.
-        type: str
-        required: true
-    listing_resource_version:
-        description:
-            - Listing resource version.
-        type: str
-        required: true
     oracle_terms_of_use_link:
         description:
             - Oracle TOU link
@@ -62,6 +47,21 @@ options:
             - A generated signature for this listing resource version retrieved the agreements API.
             - Required for create using I(state=present).
         type: str
+    listing_resource_version:
+        description:
+            - Listing resource version.
+        type: str
+        required: true
+    listing_id:
+        description:
+            - The OCID of the listing.
+        type: str
+        required: true
+    compartment_id:
+        description:
+            - The compartmentID for the subscription.
+        type: str
+        required: true
     state:
         description:
             - The state of the AppCatalogSubscription.
@@ -78,12 +78,12 @@ EXAMPLES = """
 - name: Create app_catalog_subscription
   oci_compute_app_catalog_subscription:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-    listing_resource_version: listing_resource_version_example
     oracle_terms_of_use_link: oracle_terms_of_use_link_example
     time_retrieved: time_retrieved_example
     signature: signature_example
+    listing_resource_version: listing_resource_version_example
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     eula_link: eula_link_example
@@ -91,9 +91,9 @@ EXAMPLES = """
 - name: Delete app_catalog_subscription
   oci_compute_app_catalog_subscription:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     listing_resource_version: listing_resource_version_example
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -297,13 +297,13 @@ def main():
     )
     module_args.update(
         dict(
-            compartment_id=dict(type="str", required=True),
-            listing_id=dict(type="str", required=True),
-            listing_resource_version=dict(type="str", required=True),
             oracle_terms_of_use_link=dict(type="str"),
             eula_link=dict(type="str"),
             time_retrieved=dict(type="str"),
             signature=dict(type="str"),
+            listing_resource_version=dict(type="str", required=True),
+            listing_id=dict(type="str", required=True),
+            compartment_id=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

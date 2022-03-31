@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    db_home_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     db_version:
         description:
             - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
@@ -67,16 +61,6 @@ options:
             - Required for create using I(state=present).
         type: dict
         suboptions:
-            db_name:
-                description:
-                    - The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special
-                      characters are not permitted.
-                    - Required when source is 'NONE'
-                type: str
-            db_unique_name:
-                description:
-                    - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
-                type: str
             database_software_image_id:
                 description:
                     - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
@@ -88,12 +72,6 @@ options:
                       characters. Special characters are not permitted. Pluggable database should not be same as database name.
                     - Applicable when source is 'NONE'
                 type: str
-            admin_password:
-                description:
-                    - "A strong password for SYS, SYSTEM, and PDB Admin. The password must be at least nine characters and contain at least two uppercase, two
-                      lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
-                type: str
-                required: true
             tde_wallet_password:
                 description:
                     - "The optional password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase, two
@@ -224,10 +202,6 @@ options:
                       For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                     - Applicable when source is 'NONE'
                 type: dict
-            sid_prefix:
-                description:
-                    - Specifies a prefix for the `Oracle SID` of the database to be created.
-                type: str
             backup_id:
                 description:
                     - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -238,13 +212,26 @@ options:
                     - The password to open the TDE wallet.
                     - Applicable when source is 'DB_BACKUP'
                 type: str
-    database_id:
-        description:
-            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required for update using I(state=present).
-            - Required for delete using I(state=absent).
-        type: str
-        aliases: ["id"]
+            admin_password:
+                description:
+                    - "A strong password for SYS, SYSTEM, and PDB Admin. The password must be at least nine characters and contain at least two uppercase, two
+                      lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
+                type: str
+                required: true
+            db_unique_name:
+                description:
+                    - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+                type: str
+            db_name:
+                description:
+                    - The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special
+                      characters are not permitted.
+                    - Required when source is 'NONE'
+                type: str
+            sid_prefix:
+                description:
+                    - Specifies a prefix for the `Oracle SID` of the database to be created.
+                type: str
     db_backup_config:
         description:
             - ""
@@ -324,6 +311,12 @@ options:
                             - Proxy URL to connect to object store.
                             - This parameter is updatable.
                         type: str
+    db_home_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
     new_admin_password:
         description:
             - "A new strong password for SYS, SYSTEM, and the plugbable database ADMIN user. The password must be at least nine characters and contain at least
@@ -354,6 +347,13 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - This parameter is updatable.
         type: dict
+    database_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required for update using I(state=present).
+            - Required for delete using I(state=absent).
+        type: str
+        aliases: ["id"]
     perform_final_backup:
         description:
             - Whether to perform a final backup of the database or not. Default is false.
@@ -383,14 +383,11 @@ EXAMPLES = """
 - name: Create database with source = NONE
   oci_database_database:
     # required
-    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     database:
       # required
       admin_password: example-password
 
       # optional
-      db_name: db_name_example
-      db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
       tde_wallet_password: example-password
@@ -413,9 +410,12 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-      sid_prefix: sid_prefix_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
+      db_unique_name: db_unique_name_example
+      db_name: db_name_example
+      sid_prefix: sid_prefix_example
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     db_version: db_version_example
@@ -426,15 +426,12 @@ EXAMPLES = """
 - name: Create database with source = DB_BACKUP
   oci_database_database:
     # required
-    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     source: DB_BACKUP
     database:
       # required
       admin_password: example-password
 
       # optional
-      db_name: db_name_example
-      db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
       tde_wallet_password: example-password
@@ -457,9 +454,12 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-      sid_prefix: sid_prefix_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
+      db_unique_name: db_unique_name_example
+      db_name: db_name_example
+      sid_prefix: sid_prefix_example
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     db_version: db_version_example
@@ -472,7 +472,6 @@ EXAMPLES = """
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     db_backup_config:
       # optional
       auto_backup_enabled: true
@@ -487,6 +486,7 @@ EXAMPLES = """
         vpc_user: vpc_user_example
         vpc_password: example-password
         internet_proxy: internet_proxy_example
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     new_admin_password: example-password
     old_tde_wallet_password: example-password
     new_tde_wallet_password: example-password
@@ -966,7 +966,6 @@ def main():
     )
     module_args.update(
         dict(
-            db_home_id=dict(type="str"),
             db_version=dict(type="str"),
             source=dict(type="str", default="NONE", choices=["NONE", "DB_BACKUP"]),
             kms_key_id=dict(type="str"),
@@ -974,11 +973,8 @@ def main():
             database=dict(
                 type="dict",
                 options=dict(
-                    db_name=dict(type="str"),
-                    db_unique_name=dict(type="str"),
                     database_software_image_id=dict(type="str"),
                     pdb_name=dict(type="str"),
-                    admin_password=dict(type="str", required=True, no_log=True),
                     tde_wallet_password=dict(type="str", no_log=True),
                     character_set=dict(type="str"),
                     ncharacter_set=dict(type="str"),
@@ -1029,12 +1025,14 @@ def main():
                     ),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),
-                    sid_prefix=dict(type="str"),
                     backup_id=dict(type="str"),
                     backup_tde_password=dict(type="str", no_log=True),
+                    admin_password=dict(type="str", required=True, no_log=True),
+                    db_unique_name=dict(type="str"),
+                    db_name=dict(type="str"),
+                    sid_prefix=dict(type="str"),
                 ),
             ),
-            database_id=dict(aliases=["id"], type="str"),
             db_backup_config=dict(
                 type="dict",
                 options=dict(
@@ -1079,11 +1077,13 @@ def main():
                     ),
                 ),
             ),
+            db_home_id=dict(type="str"),
             new_admin_password=dict(type="str", no_log=True),
             old_tde_wallet_password=dict(type="str", no_log=True),
             new_tde_wallet_password=dict(type="str", no_log=True),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            database_id=dict(aliases=["id"], type="str"),
             perform_final_backup=dict(type="bool"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

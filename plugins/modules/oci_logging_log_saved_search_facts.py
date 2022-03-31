@@ -28,18 +28,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    log_saved_search_id:
-        description:
-            - OCID of the logSavedSearch
-            - Required to get a specific log_saved_search.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - Compartment OCID to list resources in. See compartmentIdInSubtree
                    for nested compartments traversal.
             - Required to list multiple log_saved_searches.
         type: str
+    log_saved_search_id:
+        description:
+            - OCID of the logSavedSearch
+            - Required to get a specific log_saved_search.
+        type: str
+        aliases: ["id"]
     name:
         description:
             - Resource name
@@ -234,8 +234,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            log_saved_search_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            log_saved_search_id=dict(aliases=["id"], type="str"),
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

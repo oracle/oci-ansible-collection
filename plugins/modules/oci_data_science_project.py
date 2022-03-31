@@ -28,6 +28,13 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to create the project in.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
@@ -39,13 +46,6 @@ options:
         description:
             - A short description of the project.
             - This parameter is updatable.
-        type: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to create the project in.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     freeform_tags:
         description:
@@ -106,8 +106,8 @@ EXAMPLES = """
 - name: Update project using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_project:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -123,8 +123,8 @@ EXAMPLES = """
 - name: Delete project using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_project:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -364,9 +364,9 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             project_id=dict(aliases=["id"], type="str"),

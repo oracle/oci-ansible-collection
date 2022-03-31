@@ -28,16 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    software_source_id:
-        description:
-            - The OCID of the software source.
-        type: str
-        required: true
     software_package_name:
         description:
             - The id of the software package.
             - Required to get a specific software_package.
         type: str
+    software_source_id:
+        description:
+            - The OCID of the software source.
+        type: str
+        required: true
     compartment_id:
         description:
             - The ID of the compartment in which to list resources. This parameter is optional and in some cases may have no effect.
@@ -69,8 +69,8 @@ EXAMPLES = """
 - name: Get a specific software_package
   oci_os_management_software_package_facts:
     # required
-    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     software_package_name: software_package_name_example
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List software_packages
   oci_os_management_software_package_facts:
@@ -342,8 +342,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            software_source_id=dict(type="str", required=True),
             software_package_name=dict(type="str"),
+            software_source_id=dict(type="str", required=True),
             compartment_id=dict(type="str"),
             display_name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

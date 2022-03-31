@@ -30,7 +30,7 @@ oracle.oci.oci_service_manager_proxy_service_environment_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -357,8 +357,8 @@ Examples
     - name: Get a specific service_environment
       oci_service_manager_proxy_service_environment_facts:
         # required
-        service_environment_id: "ocid1.serviceenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        service_environment_id: "ocid1.serviceenvironment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List service_environments
       oci_service_manager_proxy_service_environment_facts:

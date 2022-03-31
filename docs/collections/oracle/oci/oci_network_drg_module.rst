@@ -30,7 +30,7 @@ oracle.oci.oci_network_drg -- Manage a Drg resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -534,14 +534,14 @@ Examples
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
-        freeform_tags: {'Department': 'Finance'}
         default_drg_route_tables:
           # optional
           vcn: vcn_example
           ipsec_tunnel: ipsec_tunnel_example
           virtual_circuit: virtual_circuit_example
           remote_peering_connection: remote_peering_connection_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
 
     - name: Update drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_drg:
@@ -551,13 +551,13 @@ Examples
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        freeform_tags: {'Department': 'Finance'}
         default_drg_route_tables:
           # optional
           vcn: vcn_example
           ipsec_tunnel: ipsec_tunnel_example
           virtual_circuit: virtual_circuit_example
           remote_peering_connection: remote_peering_connection_example
+        freeform_tags: {'Department': 'Finance'}
 
     - name: Delete drg
       oci_network_drg:

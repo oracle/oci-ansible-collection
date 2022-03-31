@@ -28,6 +28,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    source_detector_recipe_id:
+        description:
+            - The id of the source detector recipe.
+            - Required for create using I(state=present).
+        type: str
+    compartment_id:
+        description:
+            - Compartment Identifier
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - Detector recipe display name.
@@ -42,18 +54,6 @@ options:
             - Detector recipe description.
             - Avoid entering confidential information.
             - This parameter is updatable.
-        type: str
-    source_detector_recipe_id:
-        description:
-            - The id of the source detector recipe.
-            - Required for create using I(state=present).
-        type: str
-    compartment_id:
-        description:
-            - Compartment Identifier
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     detector_rules:
         description:
@@ -141,14 +141,6 @@ options:
                             - ""
                         type: dict
                         suboptions:
-                            kind:
-                                description:
-                                    - Type of condition object
-                                type: str
-                                choices:
-                                    - "SIMPLE"
-                                    - "COMPOSITE"
-                                required: true
                             parameter:
                                 description:
                                     - parameter Key
@@ -177,6 +169,14 @@ options:
                                 choices:
                                     - "MANAGED"
                                     - "CUSTOM"
+                            kind:
+                                description:
+                                    - Type of condition object
+                                type: str
+                                choices:
+                                    - "SIMPLE"
+                                    - "COMPOSITE"
+                                required: true
                             left_operand:
                                 description:
                                     - ""
@@ -254,9 +254,9 @@ EXAMPLES = """
 - name: Create detector_recipe
   oci_cloud_guard_detector_recipe:
     # required
-    display_name: display_name_example
     source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -341,8 +341,8 @@ EXAMPLES = """
 - name: Update detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_detector_recipe:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -390,8 +390,8 @@ EXAMPLES = """
 - name: Delete detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_detector_recipe:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -1408,10 +1408,10 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             source_detector_recipe_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             detector_rules=dict(
                 type="list",
                 elements="dict",
@@ -1456,11 +1456,6 @@ def main():
                             condition=dict(
                                 type="dict",
                                 options=dict(
-                                    kind=dict(
-                                        type="str",
-                                        required=True,
-                                        choices=["SIMPLE", "COMPOSITE"],
-                                    ),
                                     parameter=dict(type="str"),
                                     operator=dict(
                                         type="str",
@@ -1474,6 +1469,11 @@ def main():
                                     value=dict(type="str"),
                                     value_type=dict(
                                         type="str", choices=["MANAGED", "CUSTOM"]
+                                    ),
+                                    kind=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=["SIMPLE", "COMPOSITE"],
                                     ),
                                     left_operand=dict(
                                         type="dict",

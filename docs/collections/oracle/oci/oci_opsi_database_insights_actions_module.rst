@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_database_insights_actions -- Perform actions on a DatabaseIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -2648,16 +2648,16 @@ Examples
         # required
         items:
         - # required
+          host_name: host_name_example
           metric_name: DB_OS_CONFIG_INSTANCE
           instance_name: instance_name_example
-          host_name: host_name_example
 
           # optional
-          time_collected: time_collected_example
           num_cp_us: 56
           num_cpu_cores: 56
           num_cpu_sockets: 56
           physical_memory_bytes: 3.4
+          time_collected: time_collected_example
         action: ingest_database_configuration
 
         # optional
@@ -2670,19 +2670,19 @@ Examples
         action: ingest_sql_bucket
 
         # optional
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         items:
         - # required
+          host_name: host_name_example
           metric_name: DB_OS_CONFIG_INSTANCE
           instance_name: instance_name_example
-          host_name: host_name_example
 
           # optional
-          time_collected: time_collected_example
           num_cp_us: 56
           num_cpu_cores: 56
           num_cpu_sockets: 56
           physical_memory_bytes: 3.4
+          time_collected: time_collected_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -2692,19 +2692,19 @@ Examples
         action: ingest_sql_plan_lines
 
         # optional
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         items:
         - # required
+          host_name: host_name_example
           metric_name: DB_OS_CONFIG_INSTANCE
           instance_name: instance_name_example
-          host_name: host_name_example
 
           # optional
-          time_collected: time_collected_example
           num_cp_us: 56
           num_cpu_cores: 56
           num_cpu_sockets: 56
           physical_memory_bytes: 3.4
+          time_collected: time_collected_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -2716,16 +2716,16 @@ Examples
         # optional
         items:
         - # required
+          host_name: host_name_example
           metric_name: DB_OS_CONFIG_INSTANCE
           instance_name: instance_name_example
-          host_name: host_name_example
 
           # optional
-          time_collected: time_collected_example
           num_cp_us: 56
           num_cpu_cores: 56
           num_cpu_sockets: 56
           physical_memory_bytes: 3.4
+          time_collected: time_collected_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -2735,19 +2735,19 @@ Examples
         action: ingest_sql_text
 
         # optional
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         items:
         - # required
+          host_name: host_name_example
           metric_name: DB_OS_CONFIG_INSTANCE
           instance_name: instance_name_example
-          host_name: host_name_example
 
           # optional
-          time_collected: time_collected_example
           num_cp_us: 56
           num_cpu_cores: 56
           num_cpu_sockets: 56
           physical_memory_bytes: 3.4
+          time_collected: time_collected_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 

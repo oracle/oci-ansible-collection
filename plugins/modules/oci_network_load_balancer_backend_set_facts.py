@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    network_load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
-        type: str
-        aliases: ["id"]
-        required: true
     backend_set_name:
         description:
             - The name of the backend set to retrieve.
@@ -41,6 +35,12 @@ options:
             - Required to get a specific backend_set.
         type: str
         aliases: ["name"]
+    network_load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
+        type: str
+        aliases: ["id"]
+        required: true
     sort_order:
         description:
             - The sort order to use, either 'asc' (ascending) or 'desc' (descending).
@@ -63,8 +63,8 @@ EXAMPLES = """
 - name: Get a specific backend_set
   oci_network_load_balancer_backend_set_facts:
     # required
-    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
+    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List backend_sets
   oci_network_load_balancer_backend_set_facts:
@@ -364,8 +364,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            network_load_balancer_id=dict(aliases=["id"], type="str", required=True),
             backend_set_name=dict(aliases=["name"], type="str"),
+            network_load_balancer_id=dict(aliases=["id"], type="str", required=True),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
         )

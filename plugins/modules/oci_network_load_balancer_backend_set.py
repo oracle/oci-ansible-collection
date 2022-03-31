@@ -27,20 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    network_load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
-        type: str
-        aliases: ["id"]
-        required: true
-    name:
-        description:
-            - A user-friendly name for the backend set that must be unique and cannot be changed.
-            - Valid backend set names include only alphanumeric characters, dashes, and underscores. Backend set names cannot
-              contain spaces. Avoid entering confidential information.
-            - "Example: `example_backend_set`"
-        type: str
-        required: true
     policy:
         description:
             - The network load balancer policy for the backend set.
@@ -189,6 +175,20 @@ options:
                 description:
                     - Base64 encoded pattern to be validated as UDP or TCP health check probe response.
                 type: str
+    network_load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
+        type: str
+        aliases: ["id"]
+        required: true
+    name:
+        description:
+            - A user-friendly name for the backend set that must be unique and cannot be changed.
+            - Valid backend set names include only alphanumeric characters, dashes, and underscores. Backend set names cannot
+              contain spaces. Avoid entering confidential information.
+            - "Example: `example_backend_set`"
+        type: str
+        required: true
     state:
         description:
             - The state of the BackendSet.
@@ -205,8 +205,6 @@ EXAMPLES = """
 - name: Create backend_set
   oci_network_load_balancer_backend_set:
     # required
-    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     policy: TWO_TUPLE
     health_checker:
       # required
@@ -222,6 +220,8 @@ EXAMPLES = """
       return_code: 56
       request_data: request_data_example
       response_data: response_data_example
+    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     is_preserve_source: true
@@ -673,8 +673,6 @@ def main():
     )
     module_args.update(
         dict(
-            network_load_balancer_id=dict(aliases=["id"], type="str", required=True),
-            name=dict(type="str", required=True),
             policy=dict(type="str", choices=["TWO_TUPLE", "THREE_TUPLE", "FIVE_TUPLE"]),
             is_preserve_source=dict(type="bool"),
             ip_version=dict(type="str", choices=["IPV4", "IPV6"]),
@@ -711,6 +709,8 @@ def main():
                     response_data=dict(type="str"),
                 ),
             ),
+            network_load_balancer_id=dict(aliases=["id"], type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

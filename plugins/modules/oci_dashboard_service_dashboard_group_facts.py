@@ -34,14 +34,6 @@ options:
             - Required to get a specific dashboard_group.
         type: str
         aliases: ["id"]
-    opc_cross_region:
-        description:
-            - "To identify if the call is cross-regional. In CRUD calls for a resource, to
-              identify that the call originates from different region, set the
-              `CrossRegionIdentifierHeader` parameter to a region name (ex - `US-ASHBURN-1`)
-              The call will be served from a Replicated bucket.
-              For same-region calls, the value is unassigned."
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
@@ -80,6 +72,14 @@ options:
         choices:
             - "timeCreated"
             - "displayName"
+    opc_cross_region:
+        description:
+            - "To identify if the call is cross-regional. In CRUD calls for a resource, to
+              identify that the call originates from different region, set the
+              `CrossRegionIdentifierHeader` parameter to a region name (ex - `US-ASHBURN-1`)
+              The call will be served from a Replicated bucket.
+              For same-region calls, the value is unassigned."
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -98,11 +98,11 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    opc_cross_region: us-phoenix-1
     lifecycle_state: CREATING
     display_name: display_name_example
     sort_order: ASC
     sort_by: timeCreated
+    opc_cross_region: us-phoenix-1
 
 """
 
@@ -271,7 +271,6 @@ def main():
     module_args.update(
         dict(
             dashboard_group_id=dict(aliases=["id"], type="str"),
-            opc_cross_region=dict(type="str"),
             compartment_id=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
@@ -287,6 +286,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
+            opc_cross_region=dict(type="str"),
         )
     )
 

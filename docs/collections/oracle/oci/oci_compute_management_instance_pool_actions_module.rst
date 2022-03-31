@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_pool_actions -- Perform actions on an
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -415,26 +415,26 @@ Examples
     - name: Perform action attach_load_balancer on instance_pool
       oci_compute_management_instance_pool_actions:
         # required
-        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
-        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        backend_set_name: backend_set_name_example
         port: 56
         vnic_selection: vnic_selection_example
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        backend_set_name: backend_set_name_example
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         action: attach_load_balancer
 
     - name: Perform action change_compartment on instance_pool
       oci_compute_management_instance_pool_actions:
         # required
-        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action detach_load_balancer on instance_pool
       oci_compute_management_instance_pool_actions:
         # required
-        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: backend_set_name_example
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_load_balancer
 
     - name: Perform action reset on instance_pool

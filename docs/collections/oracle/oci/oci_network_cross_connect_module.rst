@@ -30,7 +30,7 @@ oracle.oci.oci_network_cross_connect -- Manage a CrossConnect resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -710,11 +710,11 @@ Examples
 
         # optional
         cross_connect_group_id: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
+        far_cross_connect_or_cross_connect_group_id: "ocid1.farcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
+        near_cross_connect_or_cross_connect_group_id: "ocid1.nearcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        far_cross_connect_or_cross_connect_group_id: "ocid1.farcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
-        near_cross_connect_or_cross_connect_group_id: "ocid1.nearcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
         customer_reference_name: customer_reference_name_example
         macsec_properties:
           # required
@@ -740,6 +740,7 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
+        is_active: true
         customer_reference_name: customer_reference_name_example
         macsec_properties:
           # required
@@ -755,7 +756,6 @@ Examples
             connectivity_association_name_secret_version: 56
             connectivity_association_key_secret_version: 56
           encryption_cipher: AES128_GCM
-        is_active: true
 
     - name: Update cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_cross_connect:
@@ -766,6 +766,7 @@ Examples
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
+        is_active: true
         customer_reference_name: customer_reference_name_example
         macsec_properties:
           # required
@@ -781,7 +782,6 @@ Examples
             connectivity_association_name_secret_version: 56
             connectivity_association_key_secret_version: 56
           encryption_cipher: AES128_GCM
-        is_active: true
 
     - name: Delete cross_connect
       oci_network_cross_connect:

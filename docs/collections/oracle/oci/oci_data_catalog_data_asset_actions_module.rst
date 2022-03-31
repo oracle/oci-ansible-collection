@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_data_asset_actions -- Perform actions on a DataAsset
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1145,9 +1145,9 @@ Examples
     - name: Perform action add_data_selector_patterns on data_asset
       oci_data_catalog_data_asset_actions:
         # required
+        items: [ "items_example" ]
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
-        items: [ "items_example" ]
         action: add_data_selector_patterns
 
     - name: Perform action import_connection on data_asset
@@ -1161,17 +1161,22 @@ Examples
         # optional
         connection_detail:
           # optional
+          enc_properties: null
+          key: key_example
           description: description_example
           display_name: display_name_example
-          type_key: type_key_example
+          time_created: time_created_example
+          time_updated: time_updated_example
+          created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+          updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
           custom_property_members:
           - # optional
             key: key_example
             display_name: display_name_example
-            value: value_example
-            namespace_name: namespace_name_example
             description: description_example
+            value: value_example
             data_type: TEXT
+            namespace_name: namespace_name_example
             namespace_key: namespace_key_example
             is_multi_valued: true
             is_hidden: true
@@ -1181,26 +1186,21 @@ Examples
             is_list_type: true
             allowed_values: [ "allowed_values_example" ]
           properties: null
-          enc_properties: null
-          is_default: true
-          key: key_example
-          time_created: time_created_example
-          time_updated: time_updated_example
-          created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
-          updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
           external_key: external_key_example
           time_status_updated: time_status_updated_example
           lifecycle_state: CREATING
+          is_default: true
           data_asset_key: data_asset_key_example
+          type_key: type_key_example
           uri: uri_example
 
     - name: Perform action import_data_asset on data_asset
       oci_data_catalog_data_asset_actions:
         # required
-        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-        data_asset_key: data_asset_key_example
         import_file_contents: import_file_contents_example
         import_type: [ "CUSTOM_PROPERTY_VALUES" ]
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        data_asset_key: data_asset_key_example
         action: import_data_asset
 
         # optional
@@ -1214,19 +1214,27 @@ Examples
         action: parse_connection
 
         # optional
+        wallet_secret_id: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
+        wallet_secret_name: wallet_secret_name_example
+        connection_key: connection_key_example
         connection_detail:
           # optional
+          enc_properties: null
+          key: key_example
           description: description_example
           display_name: display_name_example
-          type_key: type_key_example
+          time_created: time_created_example
+          time_updated: time_updated_example
+          created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+          updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
           custom_property_members:
           - # optional
             key: key_example
             display_name: display_name_example
-            value: value_example
-            namespace_name: namespace_name_example
             description: description_example
+            value: value_example
             data_type: TEXT
+            namespace_name: namespace_name_example
             namespace_key: namespace_key_example
             is_multi_valued: true
             is_hidden: true
@@ -1236,38 +1244,30 @@ Examples
             is_list_type: true
             allowed_values: [ "allowed_values_example" ]
           properties: null
-          enc_properties: null
-          is_default: true
-          key: key_example
-          time_created: time_created_example
-          time_updated: time_updated_example
-          created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
-          updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
           external_key: external_key_example
           time_status_updated: time_status_updated_example
           lifecycle_state: CREATING
+          is_default: true
           data_asset_key: data_asset_key_example
+          type_key: type_key_example
           uri: uri_example
         connection_payload: connection_payload_example
-        wallet_secret_id: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
-        wallet_secret_name: wallet_secret_name_example
-        connection_key: connection_key_example
 
     - name: Perform action remove_data_selector_patterns on data_asset
       oci_data_catalog_data_asset_actions:
         # required
+        items: [ "items_example" ]
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
-        items: [ "items_example" ]
         action: remove_data_selector_patterns
 
     - name: Perform action synchronous_export on data_asset
       oci_data_catalog_data_asset_actions:
         # required
-        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-        data_asset_key: data_asset_key_example
         dest: /tmp/myfile
         export_type: [ "CUSTOM_PROPERTY_VALUES" ]
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        data_asset_key: data_asset_key_example
         action: synchronous_export
 
         # optional
@@ -1286,17 +1286,22 @@ Examples
         # optional
         connection_detail:
           # optional
+          enc_properties: null
+          key: key_example
           description: description_example
           display_name: display_name_example
-          type_key: type_key_example
+          time_created: time_created_example
+          time_updated: time_updated_example
+          created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+          updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
           custom_property_members:
           - # optional
             key: key_example
             display_name: display_name_example
-            value: value_example
-            namespace_name: namespace_name_example
             description: description_example
+            value: value_example
             data_type: TEXT
+            namespace_name: namespace_name_example
             namespace_key: namespace_key_example
             is_multi_valued: true
             is_hidden: true
@@ -1306,17 +1311,12 @@ Examples
             is_list_type: true
             allowed_values: [ "allowed_values_example" ]
           properties: null
-          enc_properties: null
-          is_default: true
-          key: key_example
-          time_created: time_created_example
-          time_updated: time_updated_example
-          created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
-          updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
           external_key: external_key_example
           time_status_updated: time_status_updated_example
           lifecycle_state: CREATING
+          is_default: true
           data_asset_key: data_asset_key_example
+          type_key: type_key_example
           uri: uri_example
         connection_payload: connection_payload_example
 

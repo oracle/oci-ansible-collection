@@ -30,7 +30,7 @@ oracle.oci.oci_bds_metastore_configuration -- Manage a BdsMetastoreConfiguration
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -463,11 +463,11 @@ Examples
     - name: Create bds_metastore_configuration
       oci_bds_metastore_configuration:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         bds_api_key_id: "ocid1.bdsapikey.oc1..xxxxxxEXAMPLExxxxxx"
         bds_api_key_passphrase: bds_api_key_passphrase_example
         cluster_admin_password: example-password
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
@@ -487,8 +487,8 @@ Examples
     - name: Update bds_metastore_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bds_metastore_configuration:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         bds_api_key_id: "ocid1.bdsapikey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -505,8 +505,8 @@ Examples
     - name: Delete bds_metastore_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bds_metastore_configuration:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

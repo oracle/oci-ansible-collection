@@ -50,16 +50,16 @@ options:
         description:
             - The OCID of the compartment that contains the stream.
         type: str
-    stream_pool_id:
-        description:
-            - The OCID of the stream pool that contains the stream.
-            - This parameter is updatable.
-        type: str
     retention_in_hours:
         description:
             - The retention period of the stream, in hours. Accepted values are between 24 and 168 (7 days).
               If not specified, the stream will have a retention period of 24 hours.
         type: int
+    stream_pool_id:
+        description:
+            - The OCID of the stream pool that contains the stream.
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair that is applied with no predefined name, type, or namespace. Exists for
@@ -103,8 +103,8 @@ EXAMPLES = """
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
     retention_in_hours: 56
+    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -399,8 +399,8 @@ def main():
             name=dict(type="str"),
             partitions=dict(type="int"),
             compartment_id=dict(type="str"),
-            stream_pool_id=dict(type="str"),
             retention_in_hours=dict(type="int"),
+            stream_pool_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             stream_id=dict(aliases=["id"], type="str"),

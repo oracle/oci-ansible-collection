@@ -28,11 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    description:
-        description:
-            - OceInstance description
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - Compartment Identifier
@@ -78,14 +73,6 @@ options:
             - Tenancy Name
             - Required for create using I(state=present).
         type: str
-    instance_usage_type:
-        description:
-            - Instance type based on its usage
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "PRIMARY"
-            - "NONPRIMARY"
     object_storage_namespace:
         description:
             - Object Storage Namespace of Tenancy
@@ -101,11 +88,6 @@ options:
             - Upgrade schedule type representing service to be upgraded immediately whenever latest version is released
               or delay upgrade of the service to previous released version
         type: str
-    waf_primary_domain:
-        description:
-            - Web Application Firewall(WAF) primary domain
-            - This parameter is updatable.
-        type: str
     instance_access_type:
         description:
             - Flag indicating whether the instance access is private or public
@@ -113,6 +95,16 @@ options:
         choices:
             - "PUBLIC"
             - "PRIVATE"
+    description:
+        description:
+            - OceInstance description
+            - This parameter is updatable.
+        type: str
+    waf_primary_domain:
+        description:
+            - Web Application Firewall(WAF) primary domain
+            - This parameter is updatable.
+        type: str
     instance_license_type:
         description:
             - Flag indicating whether the instance license is new cloud or bring your own license
@@ -123,6 +115,14 @@ options:
             - "BYOL"
             - "PREMIUM"
             - "STARTER"
+    instance_usage_type:
+        description:
+            - Instance type based on its usage
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "PRIMARY"
+            - "NONPRIMARY"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -167,16 +167,16 @@ EXAMPLES = """
     admin_email: admin_email_example
 
     # optional
-    description: description_example
     identity_stripe:
       # required
       service_name: service_name_example
       tenancy: tenancy_example
-    instance_usage_type: PRIMARY
     upgrade_schedule: upgrade_schedule_example
-    waf_primary_domain: waf_primary_domain_example
     instance_access_type: PUBLIC
+    description: description_example
+    waf_primary_domain: waf_primary_domain_example
     instance_license_type: NEW
+    instance_usage_type: PRIMARY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -187,9 +187,9 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    instance_usage_type: PRIMARY
     waf_primary_domain: waf_primary_domain_example
     instance_license_type: NEW
+    instance_usage_type: PRIMARY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -201,9 +201,9 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    instance_usage_type: PRIMARY
     waf_primary_domain: waf_primary_domain_example
     instance_license_type: NEW
+    instance_usage_type: PRIMARY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -578,7 +578,6 @@ def main():
     )
     module_args.update(
         dict(
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
             name=dict(type="str"),
             tenancy_id=dict(type="str"),
@@ -591,15 +590,16 @@ def main():
                 ),
             ),
             tenancy_name=dict(type="str"),
-            instance_usage_type=dict(type="str", choices=["PRIMARY", "NONPRIMARY"]),
             object_storage_namespace=dict(type="str"),
             admin_email=dict(type="str"),
             upgrade_schedule=dict(type="str"),
-            waf_primary_domain=dict(type="str"),
             instance_access_type=dict(type="str", choices=["PUBLIC", "PRIVATE"]),
+            description=dict(type="str"),
+            waf_primary_domain=dict(type="str"),
             instance_license_type=dict(
                 type="str", choices=["NEW", "BYOL", "PREMIUM", "STARTER"]
             ),
+            instance_usage_type=dict(type="str", choices=["PRIMARY", "NONPRIMARY"]),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             oce_instance_id=dict(aliases=["id"], type="str"),

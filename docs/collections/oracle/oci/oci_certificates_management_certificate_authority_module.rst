@@ -30,7 +30,7 @@ oracle.oci.oci_certificates_management_certificate_authority -- Manage a Certifi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1138,9 +1138,9 @@ Examples
         # required
         name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         certificate_authority_config:
           # required
-          config_type: ROOT_CA_GENERATED_INTERNALLY
           subject:
             # required
             common_name: common_name_example
@@ -1162,28 +1162,21 @@ Examples
             surname: surname_example
             title: title_example
             user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+          config_type: ROOT_CA_GENERATED_INTERNALLY
 
             # optional
+          signing_algorithm: SHA256_WITH_RSA
           version_name: version_name_example
+          stage: CURRENT
           validity:
             # required
             time_of_validity_not_after: time_of_validity_not_after_example
 
             # optional
             time_of_validity_not_before: time_of_validity_not_before_example
-          signing_algorithm: SHA256_WITH_RSA
-          stage: CURRENT
-        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         description: description_example
-        certificate_authority_rules:
-        - # required
-          rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
-
-          # optional
-          leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
-          certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
         certificate_revocation_list_details:
           # required
           object_storage_config:
@@ -1198,6 +1191,13 @@ Examples
           custom_formatted_urls: [ "custom_formatted_urls_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        certificate_authority_rules:
+        - # required
+          rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
+
+          # optional
+          leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+          certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
 
     - name: Update certificate_authority
       oci_certificates_management_certificate_authority:
@@ -1206,16 +1206,9 @@ Examples
 
         # optional
         description: description_example
-        certificate_authority_rules:
-        - # required
-          rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
-
-          # optional
-          leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
-          certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
+        current_version_number: 56
         certificate_authority_config:
           # required
-          config_type: ROOT_CA_GENERATED_INTERNALLY
           subject:
             # required
             common_name: common_name_example
@@ -1237,17 +1230,18 @@ Examples
             surname: surname_example
             title: title_example
             user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+          config_type: ROOT_CA_GENERATED_INTERNALLY
 
             # optional
+          signing_algorithm: SHA256_WITH_RSA
           version_name: version_name_example
+          stage: CURRENT
           validity:
             # required
             time_of_validity_not_after: time_of_validity_not_after_example
 
             # optional
             time_of_validity_not_before: time_of_validity_not_before_example
-          signing_algorithm: SHA256_WITH_RSA
-          stage: CURRENT
         certificate_revocation_list_details:
           # required
           object_storage_config:
@@ -1262,7 +1256,13 @@ Examples
           custom_formatted_urls: [ "custom_formatted_urls_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        current_version_number: 56
+        certificate_authority_rules:
+        - # required
+          rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
+
+          # optional
+          leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+          certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
 
     - name: Update certificate_authority using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_certificates_management_certificate_authority:
@@ -1271,16 +1271,9 @@ Examples
 
         # optional
         description: description_example
-        certificate_authority_rules:
-        - # required
-          rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
-
-          # optional
-          leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
-          certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
+        current_version_number: 56
         certificate_authority_config:
           # required
-          config_type: ROOT_CA_GENERATED_INTERNALLY
           subject:
             # required
             common_name: common_name_example
@@ -1302,17 +1295,18 @@ Examples
             surname: surname_example
             title: title_example
             user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+          config_type: ROOT_CA_GENERATED_INTERNALLY
 
             # optional
+          signing_algorithm: SHA256_WITH_RSA
           version_name: version_name_example
+          stage: CURRENT
           validity:
             # required
             time_of_validity_not_after: time_of_validity_not_after_example
 
             # optional
             time_of_validity_not_before: time_of_validity_not_before_example
-          signing_algorithm: SHA256_WITH_RSA
-          stage: CURRENT
         certificate_revocation_list_details:
           # required
           object_storage_config:
@@ -1327,7 +1321,13 @@ Examples
           custom_formatted_urls: [ "custom_formatted_urls_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        current_version_number: 56
+        certificate_authority_rules:
+        - # required
+          rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
+
+          # optional
+          leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+          certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
 
 
 

@@ -33,11 +33,6 @@ options:
             - Unique repository identifier.
         type: str
         required: true
-    ref_name:
-        description:
-            - A filter to return only resources that match the given reference name.
-            - Required to get a specific repository_ref.
-        type: str
     ref_type:
         description:
             - Reference type to distinguish between branch and tag. If it is not specified, all references are returned.
@@ -48,6 +43,11 @@ options:
     commit_id:
         description:
             - Commit ID in a repository.
+        type: str
+    ref_name:
+        description:
+            - A filter to return only resources that match the given reference name.
+            - Required to get a specific repository_ref.
         type: str
     sort_order:
         description:
@@ -80,9 +80,9 @@ EXAMPLES = """
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    ref_name: ref_name_example
     ref_type: BRANCH
     commit_id: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+    ref_name: ref_name_example
     sort_order: ASC
     sort_by: refType
 
@@ -229,9 +229,9 @@ def main():
     module_args.update(
         dict(
             repository_id=dict(type="str", required=True),
-            ref_name=dict(type="str"),
             ref_type=dict(type="str", choices=["BRANCH", "TAG"]),
             commit_id=dict(type="str"),
+            ref_name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["refType", "refName"]),
         )

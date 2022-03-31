@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_backup_actions -- Perform actions on a Dep
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -367,8 +367,8 @@ Examples
     - name: Perform action change_compartment on deployment_backup
       oci_golden_gate_deployment_backup_actions:
         # required
-        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action restore_deployment on deployment_backup with type = DEFAULT

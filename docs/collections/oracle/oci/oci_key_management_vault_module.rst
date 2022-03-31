@@ -30,7 +30,7 @@ oracle.oci.oci_key_management_vault -- Manage a Vault resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -450,8 +450,8 @@ Examples
       oci_key_management_vault:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
         vault_type: VIRTUAL_PRIVATE
+        display_name: display_name_example
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}

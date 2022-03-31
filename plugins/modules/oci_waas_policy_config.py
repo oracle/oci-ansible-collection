@@ -131,6 +131,26 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            name:
+                description:
+                    - The name of the cookie used to track the persistence.
+                      Can contain any US-ASCII character except separator or control character.
+                    - This parameter is updatable.
+                    - Applicable when method is 'STICKY_COOKIE'
+                type: str
+            domain:
+                description:
+                    - The domain for which the cookie is set, defaults to WAAS policy domain.
+                    - This parameter is updatable.
+                    - Applicable when method is 'STICKY_COOKIE'
+                type: str
+            expiration_time_in_seconds:
+                description:
+                    - The time for which a browser should keep the cookie in seconds.
+                      Empty value will cause the cookie to expire at the end of a browser session.
+                    - This parameter is updatable.
+                    - Applicable when method is 'STICKY_COOKIE'
+                type: int
             method:
                 description:
                     - Load balancing methods are algorithms used to efficiently distribute traffic among origin servers.
@@ -153,26 +173,6 @@ options:
                     - "STICKY_COOKIE"
                     - "IP_HASH"
                 required: true
-            name:
-                description:
-                    - The name of the cookie used to track the persistence.
-                      Can contain any US-ASCII character except separator or control character.
-                    - This parameter is updatable.
-                    - Applicable when method is 'STICKY_COOKIE'
-                type: str
-            domain:
-                description:
-                    - The domain for which the cookie is set, defaults to WAAS policy domain.
-                    - This parameter is updatable.
-                    - Applicable when method is 'STICKY_COOKIE'
-                type: str
-            expiration_time_in_seconds:
-                description:
-                    - The time for which a browser should keep the cookie in seconds.
-                      Empty value will cause the cookie to expire at the end of a browser session.
-                    - This parameter is updatable.
-                    - Applicable when method is 'STICKY_COOKIE'
-                type: int
     websocket_path_prefixes:
         description:
             - ModSecurity is not capable to inspect WebSockets. Therefore paths specified here have WAF disabled if Connection request header from the client
@@ -697,14 +697,14 @@ def main():
             load_balancing_method=dict(
                 type="dict",
                 options=dict(
+                    name=dict(type="str"),
+                    domain=dict(type="str"),
+                    expiration_time_in_seconds=dict(type="int"),
                     method=dict(
                         type="str",
                         required=True,
                         choices=["ROUND_ROBIN", "STICKY_COOKIE", "IP_HASH"],
                     ),
-                    name=dict(type="str"),
-                    domain=dict(type="str"),
-                    expiration_time_in_seconds=dict(type="int"),
                 ),
             ),
             websocket_path_prefixes=dict(type="list", elements="str"),

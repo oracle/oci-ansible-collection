@@ -28,22 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Logging Analytics namespace used for the request.
-        type: str
-        required: true
     name:
         description:
             - A unique name given to the rule. The name must be unique within the tenancy, and cannot be modified.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
-    description:
-        description:
-            - A string that describes the details of the rule. It does not have to be unique, and can be changed.
-              Avoid entering confidential information.
-            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -82,6 +71,12 @@ options:
             - "The newest time of the file in the bucket to consider for collection.
               Accepted values are: CURRENT_TIME or RFC3339 formatted datetime string.
               Use this for HISTORIC collection type. When collectionType is LIVE or HISTORIC_LIVE, specifying pollTill will result in error."
+        type: str
+    description:
+        description:
+            - A string that describes the details of the rule. It does not have to be unique, and can be changed.
+              Avoid entering confidential information.
+            - This parameter is updatable.
         type: str
     log_group_id:
         description:
@@ -140,6 +135,11 @@ options:
               Example: `{\\"bar-key\\": \\"value\\"}`"
             - This parameter is updatable.
         type: dict
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
     log_analytics_object_collection_rule_id:
         description:
             - The Logging Analytics Object Collection Rule L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -163,19 +163,19 @@ EXAMPLES = """
 - name: Create log_analytics_object_collection_rule
   oci_log_analytics_object_collection_rule:
     # required
-    namespace_name: namespace_name_example
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     os_namespace: os_namespace_example
     os_bucket_name: os_bucket_name_example
     log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     log_source_name: log_source_name_example
+    namespace_name: namespace_name_example
 
     # optional
-    description: description_example
     collection_type: LIVE
     poll_since: poll_since_example
     poll_till: poll_till_example
+    description: description_example
     entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
     char_encoding: char_encoding_example
     is_enabled: true
@@ -205,9 +205,9 @@ EXAMPLES = """
 - name: Update log_analytics_object_collection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_object_collection_rule:
     # required
-    namespace_name: namespace_name_example
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace_name: namespace_name_example
 
     # optional
     description: description_example
@@ -231,9 +231,9 @@ EXAMPLES = """
 - name: Delete log_analytics_object_collection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_object_collection_rule:
     # required
-    namespace_name: namespace_name_example
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace_name: namespace_name_example
     state: absent
 
 """
@@ -600,9 +600,7 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
             name=dict(type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
             os_namespace=dict(type="str"),
             os_bucket_name=dict(type="str"),
@@ -611,6 +609,7 @@ def main():
             ),
             poll_since=dict(type="str"),
             poll_till=dict(type="str"),
+            description=dict(type="str"),
             log_group_id=dict(type="str"),
             log_source_name=dict(type="str"),
             entity_id=dict(type="str"),
@@ -620,6 +619,7 @@ def main():
             object_name_filters=dict(type="list", elements="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
+            namespace_name=dict(type="str", required=True),
             log_analytics_object_collection_rule_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -29,6 +29,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the compartment.
+        type: str
+        required: true
     service_environment_id:
         description:
             - The unique identifier associated with the service environment.
@@ -36,11 +41,6 @@ options:
             - Required to get a specific service_environment.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the compartment.
-        type: str
-        required: true
     service_environment_type:
         description:
             - "The environment's service definition type.
@@ -71,8 +71,8 @@ EXAMPLES = """
 - name: Get a specific service_environment
   oci_service_manager_proxy_service_environment_facts:
     # required
-    service_environment_id: "ocid1.serviceenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    service_environment_id: "ocid1.serviceenvironment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List service_environments
   oci_service_manager_proxy_service_environment_facts:
@@ -287,8 +287,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            service_environment_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str", required=True),
+            service_environment_id=dict(aliases=["id"], type="str"),
             service_environment_type=dict(type="str"),
             sort_by=dict(type="str", choices=["ID"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

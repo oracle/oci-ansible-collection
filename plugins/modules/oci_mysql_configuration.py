@@ -34,18 +34,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - User-provided data about the Configuration.
-            - This parameter is updatable.
-        type: str
-    display_name:
-        description:
-            - The display name of the Configuration.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     shape_name:
         description:
             - The name of the associated Shape.
@@ -339,6 +327,18 @@ options:
             - The OCID of the Configuration from which the new Configuration is derived. The values in CreateConfigurationDetails.variables supersede the
               variables of the parent Configuration.
         type: str
+    description:
+        description:
+            - User-provided data about the Configuration.
+            - This parameter is updatable.
+        type: str
+    display_name:
+        description:
+            - The display name of the Configuration.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -378,8 +378,6 @@ EXAMPLES = """
     shape_name: shape_name_example
 
     # optional
-    description: description_example
-    display_name: display_name_example
     variables:
       # optional
       completion_type: NO_CHAIN
@@ -437,6 +435,8 @@ EXAMPLES = """
       mysqlx_zstd_default_compression_level: 56
       mysql_zstd_default_compression_level: 56
     parent_configuration_id: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    description: description_example
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1166,8 +1166,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            description=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             shape_name=dict(type="str"),
             variables=dict(
                 type="dict",
@@ -1256,6 +1254,8 @@ def main():
                 ),
             ),
             parent_configuration_id=dict(type="str"),
+            description=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             configuration_id=dict(aliases=["id"], type="str"),

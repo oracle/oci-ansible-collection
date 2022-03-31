@@ -29,14 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - The display name for the Autonomous Container Database.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     db_unique_name:
         description:
             - "**Deprecated.** The `DB_UNIQUE_NAME` value is set by Oracle Cloud Infrastructure.  Do not specify a value for this parameter. Specifying a value
@@ -155,6 +147,32 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+        type: str
+    kms_key_version_id:
+        description:
+            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+        type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+        type: str
+    key_store_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+        type: str
+    display_name:
+        description:
+            - The display name for the Autonomous Container Database.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     patch_model:
         description:
             - Database Patch model preference.
@@ -306,24 +324,6 @@ options:
                       created before the window.
                       When the value is updated, it is applied to all existing automatic backups.
                 type: int
-    kms_key_id:
-        description:
-            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
-        type: str
-    kms_key_version_id:
-        description:
-            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
-              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
-        type: str
-    vault_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
-              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
-        type: str
-    key_store_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
-        type: str
     autonomous_container_database_id:
         description:
             - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -347,8 +347,8 @@ EXAMPLES = """
 - name: Create autonomous_container_database
   oci_database_autonomous_container_database:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     patch_model: RELEASE_UPDATES
 
     # optional
@@ -377,6 +377,10 @@ EXAMPLES = """
     peer_db_unique_name: peer_db_unique_name_example
     autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     cloud_autonomous_vm_cluster_id: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
     maintenance_window_details:
       # required
       preference: NO_PREFERENCE
@@ -406,10 +410,6 @@ EXAMPLES = """
         vpc_password: example-password
         internet_proxy: internet_proxy_example
       recovery_window_in_days: 56
-    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-    kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update autonomous_container_database
   oci_database_autonomous_container_database:
@@ -452,8 +452,8 @@ EXAMPLES = """
 - name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_container_database:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     patch_model: RELEASE_UPDATES
@@ -496,8 +496,8 @@ EXAMPLES = """
 - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_container_database:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -1078,7 +1078,6 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             db_unique_name=dict(type="str"),
             service_level_agreement_type=dict(
                 type="str", choices=["STANDARD", "AUTONOMOUS_DATAGUARD"]
@@ -1123,6 +1122,11 @@ def main():
             autonomous_vm_cluster_id=dict(type="str"),
             cloud_autonomous_vm_cluster_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            kms_key_id=dict(type="str"),
+            kms_key_version_id=dict(type="str"),
+            vault_id=dict(type="str"),
+            key_store_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             patch_model=dict(
                 type="str", choices=["RELEASE_UPDATES", "RELEASE_UPDATE_REVISIONS"]
             ),
@@ -1211,10 +1215,6 @@ def main():
                     recovery_window_in_days=dict(type="int"),
                 ),
             ),
-            kms_key_id=dict(type="str"),
-            kms_key_version_id=dict(type="str"),
-            vault_id=dict(type="str"),
-            key_store_id=dict(type="str"),
             autonomous_container_database_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

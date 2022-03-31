@@ -27,6 +27,20 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    use_chap:
+        description:
+            - Whether to use CHAP authentication for the volume attachment. Defaults to false.
+            - Applicable when type is 'iscsi'
+        type: bool
+    encryption_in_transit_type:
+        description:
+            - Refer the top-level definition of encryptionInTransitType.
+              The default value is NONE.
+            - Applicable when type is 'iscsi'
+        type: str
+        choices:
+            - "NONE"
+            - "BM_ENCRYPTION_IN_TRANSIT"
     device:
         description:
             - The device name. To retrieve a list of devices for a given instance, see L(ListInstanceDevices,https://docs.cloud.oracle.com/en-
@@ -70,32 +84,11 @@ options:
             - The OCID of the volume.
             - Required for create using I(state=present).
         type: str
-    use_chap:
-        description:
-            - Whether to use CHAP authentication for the volume attachment. Defaults to false.
-            - Applicable when type is 'iscsi'
-        type: bool
-    encryption_in_transit_type:
-        description:
-            - Refer the top-level definition of encryptionInTransitType.
-              The default value is NONE.
-            - Applicable when type is 'iscsi'
-        type: str
-        choices:
-            - "NONE"
-            - "BM_ENCRYPTION_IN_TRANSIT"
     is_pv_encryption_in_transit_enabled:
         description:
             - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
             - Applicable when type is 'paravirtualized'
         type: bool
-    volume_attachment_id:
-        description:
-            - The OCID of the volume attachment.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     iscsi_login_state:
         description:
             - The iscsi login state of the volume attachment. For a multipath volume attachment,
@@ -110,6 +103,13 @@ options:
             - "LOGGING_OUT"
             - "LOGOUT_SUCCEEDED"
             - "LOGOUT_FAILED"
+    volume_attachment_id:
+        description:
+            - The OCID of the volume attachment.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -164,12 +164,12 @@ EXAMPLES = """
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    use_chap: true
+    encryption_in_transit_type: NONE
     device: device_example
     display_name: display_name_example
     is_read_only: true
     is_shareable: true
-    use_chap: true
-    encryption_in_transit_type: NONE
 
 - name: Create volume_attachment with type = paravirtualized
   oci_compute_volume_attachment:
@@ -593,6 +593,10 @@ def main():
     )
     module_args.update(
         dict(
+            use_chap=dict(type="bool"),
+            encryption_in_transit_type=dict(
+                type="str", choices=["NONE", "BM_ENCRYPTION_IN_TRANSIT"]
+            ),
             device=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             instance_id=dict(type="str"),
@@ -603,12 +607,7 @@ def main():
                 choices=["service_determined", "emulated", "iscsi", "paravirtualized"],
             ),
             volume_id=dict(type="str"),
-            use_chap=dict(type="bool"),
-            encryption_in_transit_type=dict(
-                type="str", choices=["NONE", "BM_ENCRYPTION_IN_TRANSIT"]
-            ),
             is_pv_encryption_in_transit_enabled=dict(type="bool"),
-            volume_attachment_id=dict(aliases=["id"], type="str"),
             iscsi_login_state=dict(
                 type="str",
                 choices=[
@@ -621,6 +620,7 @@ def main():
                     "LOGOUT_FAILED",
                 ],
             ),
+            volume_attachment_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

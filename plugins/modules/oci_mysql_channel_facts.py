@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    channel_id:
-        description:
-            - The Channel L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required to get a specific channel.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -43,6 +37,12 @@ options:
         description:
             - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: str
+    channel_id:
+        description:
+            - The Channel L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required to get a specific channel.
+        type: str
+        aliases: ["id"]
     display_name:
         description:
             - A filter to return only the resource matching the given display name exactly.
@@ -96,8 +96,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     lifecycle_state: CREATING
     is_enabled: true
@@ -368,9 +368,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            channel_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             db_system_id=dict(type="str"),
+            channel_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",

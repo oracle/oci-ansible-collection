@@ -29,13 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    name:
-        description:
-            - The display name of the Database Management private endpoint.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -51,6 +44,13 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
             - Required for create using I(state=present).
+        type: str
+    name:
+        description:
+            - The display name of the Database Management private endpoint.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
     description:
         description:
@@ -86,9 +86,9 @@ EXAMPLES = """
 - name: Create db_management_private_endpoint
   oci_database_management_db_management_private_endpoint:
     # required
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     is_cluster: true
@@ -108,8 +108,8 @@ EXAMPLES = """
 - name: Update db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_management_db_management_private_endpoint:
     # required
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     description: description_example
@@ -124,8 +124,8 @@ EXAMPLES = """
 - name: Delete db_management_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_management_db_management_private_endpoint:
     # required
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -387,10 +387,10 @@ def main():
     )
     module_args.update(
         dict(
-            name=dict(type="str"),
             compartment_id=dict(type="str"),
             is_cluster=dict(type="bool"),
             subnet_id=dict(type="str"),
+            name=dict(type="str"),
             description=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),
             db_management_private_endpoint_id=dict(aliases=["id"], type="str"),

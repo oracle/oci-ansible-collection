@@ -28,22 +28,10 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - Transcription job name.
-            - Required for create, update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The OCID of the compartment that contains the transcriptionJob.
             - Required for create using I(state=present).
-        type: str
-    description:
-        description:
-            - Transcription job description.
-            - This parameter is updatable.
         type: str
     model_details:
         description:
@@ -103,17 +91,6 @@ options:
             - Required for create using I(state=present).
         type: dict
         suboptions:
-            location_type:
-                description:
-                    - "The type of input location.
-                      Allowed values are:
-                      - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.
-                      - `OBJECT_LIST_FILE_INPUT_LOCATION`: An object in Object Storage that contains a list of input files."
-                type: str
-                choices:
-                    - "OBJECT_LIST_FILE_INPUT_LOCATION"
-                    - "OBJECT_LIST_INLINE_INPUT_LOCATION"
-                required: true
             object_location:
                 description:
                     - ""
@@ -139,6 +116,17 @@ options:
                         type: list
                         elements: str
                         required: true
+            location_type:
+                description:
+                    - "The type of input location.
+                      Allowed values are:
+                      - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.
+                      - `OBJECT_LIST_FILE_INPUT_LOCATION`: An object in Object Storage that contains a list of input files."
+                type: str
+                choices:
+                    - "OBJECT_LIST_FILE_INPUT_LOCATION"
+                    - "OBJECT_LIST_INLINE_INPUT_LOCATION"
+                required: true
             object_locations:
                 description:
                     - A list of ObjectLocations.
@@ -186,6 +174,24 @@ options:
                     - Object Storage folder name.
                 type: str
                 required: true
+    transcription_job_id:
+        description:
+            - Unique Transcription Job identifier.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
+    display_name:
+        description:
+            - Transcription job name.
+            - Required for create, update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - Transcription job description.
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -198,12 +204,6 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    transcription_job_id:
-        description:
-            - Unique Transcription Job identifier.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     state:
         description:
             - The state of the TranscriptionJob.
@@ -222,12 +222,12 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     input_location:
       # required
-      location_type: OBJECT_LIST_FILE_INPUT_LOCATION
       object_location:
         # required
         namespace_name: namespace_name_example
         bucket_name: bucket_name_example
         object_names: [ "object_names_example" ]
+      location_type: OBJECT_LIST_FILE_INPUT_LOCATION
     output_location:
       # required
       namespace_name: namespace_name_example
@@ -235,8 +235,6 @@ EXAMPLES = """
       prefix: prefix_example
 
     # optional
-    display_name: display_name_example
-    description: description_example
     model_details:
       # optional
       domain: GENERIC
@@ -247,6 +245,8 @@ EXAMPLES = """
       - # required
         type: PROFANITY
         mode: MASK
+    display_name: display_name_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -718,9 +718,7 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
-            description=dict(type="str"),
             model_details=dict(
                 type="dict",
                 options=dict(
@@ -748,14 +746,6 @@ def main():
             input_location=dict(
                 type="dict",
                 options=dict(
-                    location_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "OBJECT_LIST_FILE_INPUT_LOCATION",
-                            "OBJECT_LIST_INLINE_INPUT_LOCATION",
-                        ],
-                    ),
                     object_location=dict(
                         type="dict",
                         options=dict(
@@ -765,6 +755,14 @@ def main():
                                 type="list", elements="str", required=True
                             ),
                         ),
+                    ),
+                    location_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "OBJECT_LIST_FILE_INPUT_LOCATION",
+                            "OBJECT_LIST_INLINE_INPUT_LOCATION",
+                        ],
                     ),
                     object_locations=dict(
                         type="list",
@@ -787,9 +785,11 @@ def main():
                     prefix=dict(type="str", required=True),
                 ),
             ),
+            transcription_job_id=dict(aliases=["id"], type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            transcription_job_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

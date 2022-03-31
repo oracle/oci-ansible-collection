@@ -38,11 +38,6 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - The description of the job.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the job resides.
@@ -72,6 +67,16 @@ options:
         description:
             - The schedule type of the job.
             - Required for create using I(state=present).
+        type: str
+    operation_type:
+        description:
+            - The SQL operation type.
+            - Required for create using I(state=present).
+        type: str
+    description:
+        description:
+            - The description of the job.
+            - This parameter is updatable.
         type: str
     job_type:
         description:
@@ -145,11 +150,6 @@ options:
             - ""
             - This parameter is updatable.
         type: str
-    operation_type:
-        description:
-            - The SQL operation type.
-            - Required for create using I(state=present).
-        type: str
     user_name:
         description:
             - The database user name used to execute the SQL job. If the job is being executed on a
@@ -198,14 +198,14 @@ EXAMPLES = """
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     schedule_type: schedule_type_example
-    job_type: SQL
     operation_type: operation_type_example
+    job_type: SQL
 
     # optional
-    description: description_example
     managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     database_sub_type: CDB
+    description: description_example
     timeout: timeout_example
     result_location:
       # required
@@ -729,7 +729,6 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
             managed_database_group_id=dict(type="str"),
             managed_database_id=dict(type="str"),
@@ -737,6 +736,8 @@ def main():
                 type="str", choices=["CDB", "PDB", "NON_CDB", "ACD", "ADB"]
             ),
             schedule_type=dict(type="str"),
+            operation_type=dict(type="str"),
+            description=dict(type="str"),
             job_type=dict(type="str", choices=["SQL"]),
             timeout=dict(type="str"),
             result_location=dict(
@@ -761,7 +762,6 @@ def main():
             ),
             sql_text=dict(type="str"),
             sql_type=dict(type="str"),
-            operation_type=dict(type="str"),
             user_name=dict(type="str"),
             password=dict(type="str", no_log=True),
             secret_id=dict(type="str"),

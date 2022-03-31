@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    db_node_id:
-        description:
-            - The database node L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     console_connection_id:
         description:
             - The OCID of the console connection.
             - Required to get a specific console_connection.
         type: str
         aliases: ["id"]
+    db_node_id:
+        description:
+            - The database node L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -46,8 +46,8 @@ EXAMPLES = """
 - name: Get a specific console_connection
   oci_database_console_connection_facts:
     # required
-    db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
     console_connection_id: "ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List console_connections
   oci_database_console_connection_facts:
@@ -174,8 +174,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            db_node_id=dict(type="str", required=True),
             console_connection_id=dict(aliases=["id"], type="str"),
+            db_node_id=dict(type="str", required=True),
         )
     )
 

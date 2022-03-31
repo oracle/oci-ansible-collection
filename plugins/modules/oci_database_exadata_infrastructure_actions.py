@@ -35,12 +35,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    exadata_infrastructure_id:
-        description:
-            - The Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        aliases: ["id"]
-        required: true
     activation_file:
         description:
             - "The base 64 encoded contents of the activation zip file. You can use the ansible 'lookup' and 'b64encode' functionality to read a file and base
@@ -59,6 +53,12 @@ options:
               I(action=download_exadata_infrastructure_config_file).
             - Required for I(action=download_exadata_infrastructure_config_file).
         type: str
+    exadata_infrastructure_id:
+        description:
+            - The Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the ExadataInfrastructure.
@@ -76,8 +76,8 @@ EXAMPLES = """
 - name: Perform action activate on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     activation_file: activation_file_example
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
 
 - name: Perform action add_storage_capacity on exadata_infrastructure
@@ -89,15 +89,15 @@ EXAMPLES = """
 - name: Perform action change_compartment on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action download_exadata_infrastructure_config_file on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     config_file_dest: /tmp/exadata_config_file.zip
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: download_exadata_infrastructure_config_file
 
 """
@@ -647,10 +647,10 @@ def main():
     )
     module_args.update(
         dict(
-            exadata_infrastructure_id=dict(aliases=["id"], type="str", required=True),
             activation_file=dict(type="str"),
             compartment_id=dict(type="str"),
             config_file_dest=dict(type="str"),
+            exadata_infrastructure_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

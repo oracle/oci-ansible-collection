@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_artifact -- Manage a DeployArtifact resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -619,15 +619,15 @@ Examples
     - name: Create deploy_artifact
       oci_devops_deploy_artifact:
         # required
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_type: deploy_artifact_type_example
         deploy_artifact_source:
           # required
-          deploy_artifact_source_type: GENERIC_ARTIFACT
           repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
           deploy_artifact_path: deploy_artifact_path_example
           deploy_artifact_version: deploy_artifact_version_example
+          deploy_artifact_source_type: GENERIC_ARTIFACT
         argument_substitution_mode: argument_substitution_mode_example
-        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         description: description_example
@@ -646,10 +646,10 @@ Examples
         deploy_artifact_type: deploy_artifact_type_example
         deploy_artifact_source:
           # required
-          deploy_artifact_source_type: GENERIC_ARTIFACT
           repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
           deploy_artifact_path: deploy_artifact_path_example
           deploy_artifact_version: deploy_artifact_version_example
+          deploy_artifact_source_type: GENERIC_ARTIFACT
         argument_substitution_mode: argument_substitution_mode_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -664,10 +664,10 @@ Examples
         deploy_artifact_type: deploy_artifact_type_example
         deploy_artifact_source:
           # required
-          deploy_artifact_source_type: GENERIC_ARTIFACT
           repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
           deploy_artifact_path: deploy_artifact_path_example
           deploy_artifact_version: deploy_artifact_version_example
+          deploy_artifact_source_type: GENERIC_ARTIFACT
         argument_substitution_mode: argument_substitution_mode_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

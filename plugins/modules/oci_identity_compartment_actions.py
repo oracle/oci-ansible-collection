@@ -47,12 +47,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    compartment_id:
-        description:
-            - The OCID of the compartment.
-        type: str
-        aliases: ["id"]
-        required: true
     resources:
         description:
             - The resources to be deleted.
@@ -104,6 +98,12 @@ options:
               into which to move the resources.
             - Required for I(action=bulk_move_resources), I(action=move).
         type: str
+    compartment_id:
+        description:
+            - The OCID of the compartment.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the Compartment.
@@ -121,7 +121,6 @@ EXAMPLES = """
 - name: Perform action bulk_delete_resources on compartment
   oci_identity_compartment_actions:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
     - # required
       identifier: identifier_example
@@ -129,12 +128,12 @@ EXAMPLES = """
 
       # optional
       metadata: null
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: bulk_delete_resources
 
 - name: Perform action bulk_move_resources on compartment
   oci_identity_compartment_actions:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
     - # required
       identifier: identifier_example
@@ -143,13 +142,14 @@ EXAMPLES = """
       # optional
       metadata: null
     target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: bulk_move_resources
 
 - name: Perform action move on compartment
   oci_identity_compartment_actions:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: move
 
 - name: Perform action recover on compartment
@@ -392,7 +392,6 @@ def main():
     )
     module_args.update(
         dict(
-            compartment_id=dict(aliases=["id"], type="str", required=True),
             resources=dict(
                 type="list",
                 elements="dict",
@@ -403,6 +402,7 @@ def main():
                 ),
             ),
             target_compartment_id=dict(type="str"),
+            compartment_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

@@ -30,7 +30,7 @@ oracle.oci.oci_logging_unified_agent_configuration -- Manage an UnifiedAgentConf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1298,6 +1298,7 @@ Examples
     - name: Create unified_agent_configuration
       oci_logging_unified_agent_configuration:
         # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_enabled: true
         service_configuration:
           # required
@@ -1314,7 +1315,6 @@ Examples
           destination:
             # required
             log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
@@ -1358,11 +1358,14 @@ Examples
     - name: Update unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_unified_agent_configuration:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         is_enabled: true
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
+        description: description_example
         service_configuration:
           # required
           configuration_type: LOGGING
@@ -1378,9 +1381,6 @@ Examples
           destination:
             # required
             log_object_id: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        freeform_tags: {'Department': 'Finance'}
-        description: description_example
         group_association:
           # optional
           group_list: [ "group_list_example" ]
@@ -1394,8 +1394,8 @@ Examples
     - name: Delete unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_unified_agent_configuration:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

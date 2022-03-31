@@ -30,7 +30,7 @@ oracle.oci.oci_network_drg_route_distribution_statements_actions -- Perform acti
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -461,13 +461,13 @@ Examples
         drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
         statements:
         - # optional
+          action: ACCEPT
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
           match_criteria:
           - # required
-            match_type: DRG_ATTACHMENT_ID
             drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
-          action: ACCEPT
+            match_type: DRG_ATTACHMENT_ID
           priority: 56
-          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         action: add
 
     - name: Perform action remove on drg_route_distribution_statements
@@ -485,13 +485,13 @@ Examples
         drg_route_distribution_id: "ocid1.drgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
         statements:
         - # optional
+          action: ACCEPT
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
           match_criteria:
           - # required
-            match_type: DRG_ATTACHMENT_ID
             drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
-          action: ACCEPT
+            match_type: DRG_ATTACHMENT_ID
           priority: 56
-          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         action: update
 
 

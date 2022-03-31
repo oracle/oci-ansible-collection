@@ -30,7 +30,7 @@ oracle.oci.oci_compute_image_capability_schema -- Manage a ComputeImageCapabilit
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -582,16 +582,16 @@ Examples
         image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         schema_data:
           # required
+          enum_string_values: [ "enum_string_values_example" ]
           descriptor_type: enumstring
           source: GLOBAL
-          enum_string_values: [ "enum_string_values_example" ]
 
           # optional
           enum_string_default_value: enum_string_default_value_example
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
         display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update compute_image_capability_schema
@@ -600,17 +600,17 @@ Examples
         compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
         display_name: display_name_example
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
         schema_data:
           # required
+          enum_string_values: [ "enum_string_values_example" ]
           descriptor_type: enumstring
           source: GLOBAL
-          enum_string_values: [ "enum_string_values_example" ]
 
           # optional
           enum_string_default_value: enum_string_default_value_example
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_image_capability_schema:
@@ -619,15 +619,15 @@ Examples
 
         # optional
         freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         schema_data:
           # required
+          enum_string_values: [ "enum_string_values_example" ]
           descriptor_type: enumstring
           source: GLOBAL
-          enum_string_values: [ "enum_string_values_example" ]
 
           # optional
           enum_string_default_value: enum_string_default_value_example
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete compute_image_capability_schema
       oci_compute_image_capability_schema:

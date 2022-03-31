@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    auto_scaling_configuration_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
-        type: str
-        required: true
     auto_scaling_policy_id:
         description:
             - The ID of the autoscaling policy.
             - Required to get a specific auto_scaling_configuration_policy.
         type: str
         aliases: ["id"]
+    auto_scaling_configuration_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
+        type: str
+        required: true
     display_name:
         description:
             - A filter to return only resources that match the given display name exactly.
@@ -68,8 +68,8 @@ EXAMPLES = """
 - name: Get a specific auto_scaling_configuration_policy
   oci_autoscaling_auto_scaling_configuration_policy_facts:
     # required
-    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     auto_scaling_policy_id: "ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List auto_scaling_configuration_policies
   oci_autoscaling_auto_scaling_configuration_policy_facts:
@@ -385,8 +385,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            auto_scaling_configuration_id=dict(type="str", required=True),
             auto_scaling_policy_id=dict(aliases=["id"], type="str"),
+            auto_scaling_configuration_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

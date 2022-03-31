@@ -30,7 +30,7 @@ oracle.oci.oci_data_flow_application -- Manage an Application resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -769,18 +769,19 @@ Examples
       oci_data_flow_application:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        file_uri: file_uri_example
+        spark_version: spark_version_example
+        language: SCALA
         display_name: display_name_example
         driver_shape: driver_shape_example
         executor_shape: executor_shape_example
-        file_uri: file_uri_example
-        language: SCALA
         num_executors: 56
-        spark_version: spark_version_example
 
         # optional
+        type: BATCH
+        class_name: class_name_example
         archive_uri: archive_uri_example
         arguments: [ "arguments_example" ]
-        class_name: class_name_example
         configuration: null
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         description: description_example
@@ -793,7 +794,6 @@ Examples
           name: name_example
           value: value_example
         private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-        type: BATCH
         warehouse_bucket_uri: warehouse_bucket_uri_example
 
     - name: Update application
@@ -802,9 +802,12 @@ Examples
         application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        class_name: class_name_example
+        file_uri: file_uri_example
+        spark_version: spark_version_example
+        language: SCALA
         archive_uri: archive_uri_example
         arguments: [ "arguments_example" ]
-        class_name: class_name_example
         configuration: null
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         description: description_example
@@ -812,9 +815,7 @@ Examples
         driver_shape: driver_shape_example
         execute: execute_example
         executor_shape: executor_shape_example
-        file_uri: file_uri_example
         freeform_tags: {'Department': 'Finance'}
-        language: SCALA
         logs_bucket_uri: logs_bucket_uri_example
         metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors: 56
@@ -823,7 +824,6 @@ Examples
           name: name_example
           value: value_example
         private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-        spark_version: spark_version_example
         warehouse_bucket_uri: warehouse_bucket_uri_example
 
     - name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -833,18 +833,19 @@ Examples
         display_name: display_name_example
 
         # optional
+        class_name: class_name_example
+        file_uri: file_uri_example
+        spark_version: spark_version_example
+        language: SCALA
         archive_uri: archive_uri_example
         arguments: [ "arguments_example" ]
-        class_name: class_name_example
         configuration: null
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         description: description_example
         driver_shape: driver_shape_example
         execute: execute_example
         executor_shape: executor_shape_example
-        file_uri: file_uri_example
         freeform_tags: {'Department': 'Finance'}
-        language: SCALA
         logs_bucket_uri: logs_bucket_uri_example
         metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors: 56
@@ -853,7 +854,6 @@ Examples
           name: name_example
           value: value_example
         private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-        spark_version: spark_version_example
         warehouse_bucket_uri: warehouse_bucket_uri_example
 
     - name: Delete application

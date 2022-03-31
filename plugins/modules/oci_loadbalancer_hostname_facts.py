@@ -28,18 +28,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
-        type: str
-        aliases: ["id"]
-        required: true
     name:
         description:
             - The name of the hostname resource to retrieve.
             - "Example: `example_hostname_001`"
             - Required to get a specific hostname.
         type: str
+    load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
+        type: str
+        aliases: ["id"]
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -47,8 +47,8 @@ EXAMPLES = """
 - name: Get a specific hostname
   oci_loadbalancer_hostname_facts:
     # required
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List hostnames
   oci_loadbalancer_hostname_facts:
@@ -147,8 +147,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            load_balancer_id=dict(aliases=["id"], type="str", required=True),
             name=dict(type="str"),
+            load_balancer_id=dict(aliases=["id"], type="str", required=True),
         )
     )
 

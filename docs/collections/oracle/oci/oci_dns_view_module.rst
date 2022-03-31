@@ -30,7 +30,7 @@ oracle.oci.oci_dns_view -- Manage a View resource in Oracle Cloud Infrastructure
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -486,8 +486,8 @@ Examples
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Update view using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_view:
@@ -498,8 +498,8 @@ Examples
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Delete view
       oci_dns_view:
@@ -508,8 +508,8 @@ Examples
         state: absent
 
         # optional
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Delete view using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_view:

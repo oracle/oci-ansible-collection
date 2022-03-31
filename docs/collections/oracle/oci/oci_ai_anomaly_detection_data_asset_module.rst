@@ -30,7 +30,7 @@ oracle.oci.oci_ai_anomaly_detection_data_asset -- Manage a DataAsset resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -945,9 +945,9 @@ Examples
           object_name: object_name_example
 
         # optional
+        private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
-        private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -965,8 +965,8 @@ Examples
     - name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_ai_anomaly_detection_data_asset:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -982,8 +982,8 @@ Examples
     - name: Delete data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_ai_anomaly_detection_data_asset:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

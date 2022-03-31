@@ -30,6 +30,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    preference_id:
+        description:
+            - The ID of the preference.
+            - Required for update using I(state=present).
+        type: str
+        aliases: ["id"]
     type:
         description:
             - The entity type, which specifies a model that either creates new announcement email preferences or updates existing preferences.
@@ -58,12 +64,6 @@ options:
             - "OPT_IN_TENANT_AND_INFORMATIONAL_ANNOUNCEMENTS"
             - "OPT_OUT_ALL_ANNOUNCEMENTS"
         required: true
-    preference_id:
-        description:
-            - The ID of the preference.
-            - Required for update using I(state=present).
-        type: str
-        aliases: ["id"]
     state:
         description:
             - The state of the AnnouncementsPreferences.
@@ -89,9 +89,9 @@ EXAMPLES = """
 - name: Update announcements_preferences
   oci_announcements_service_announcements_preferences:
     # required
+    preference_id: "ocid1.preference.oc1..xxxxxxEXAMPLExxxxxx"
     type: type_example
     preference_type: OPT_IN_TENANT_ANNOUNCEMENTS
-    preference_id: "ocid1.preference.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     is_unsubscribed: true
@@ -295,6 +295,7 @@ def main():
     )
     module_args.update(
         dict(
+            preference_id=dict(aliases=["id"], type="str"),
             type=dict(type="str", required=True),
             is_unsubscribed=dict(type="bool"),
             compartment_id=dict(type="str"),
@@ -307,7 +308,6 @@ def main():
                     "OPT_OUT_ALL_ANNOUNCEMENTS",
                 ],
             ),
-            preference_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

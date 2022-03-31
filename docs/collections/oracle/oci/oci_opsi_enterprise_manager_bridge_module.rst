@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_enterprise_manager_bridge -- Manage an EnterpriseManagerBrid
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -463,8 +463,8 @@ Examples
       oci_opsi_enterprise_manager_bridge:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
         object_storage_bucket_name: object_storage_bucket_name_example
+        display_name: display_name_example
 
         # optional
         description: description_example

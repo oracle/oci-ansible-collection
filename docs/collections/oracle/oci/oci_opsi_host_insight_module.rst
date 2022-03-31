@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_insight -- Manage a HostInsight resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -511,9 +511,9 @@ Examples
     - name: Create host_insight with entity_source = MACS_MANAGED_EXTERNAL_HOST
       oci_opsi_host_insight:
         # required
-        entity_source: MACS_MANAGED_EXTERNAL_HOST
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        entity_source: MACS_MANAGED_EXTERNAL_HOST
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -522,16 +522,16 @@ Examples
     - name: Create host_insight with entity_source = EM_MANAGED_EXTERNAL_HOST
       oci_opsi_host_insight:
         # required
-        entity_source: EM_MANAGED_EXTERNAL_HOST
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         enterprise_manager_identifier: enterprise_manager_identifier_example
         enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
         enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
+        entity_source: EM_MANAGED_EXTERNAL_HOST
 
         # optional
+        exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update host_insight with entity_source = MACS_MANAGED_EXTERNAL_HOST
       oci_opsi_host_insight:

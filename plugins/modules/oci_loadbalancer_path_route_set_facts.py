@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
-        type: str
-        aliases: ["id"]
-        required: true
     path_route_set_name:
         description:
             - The name of the path route set to retrieve.
@@ -41,6 +35,12 @@ options:
             - Required to get a specific path_route_set.
         type: str
         aliases: ["name"]
+    load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
+        type: str
+        aliases: ["id"]
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -48,8 +48,8 @@ EXAMPLES = """
 - name: Get a specific path_route_set
   oci_loadbalancer_path_route_set_facts:
     # required
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     path_route_set_name: path_route_set_name_example
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List path_route_sets
   oci_loadbalancer_path_route_set_facts:
@@ -189,8 +189,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            load_balancer_id=dict(aliases=["id"], type="str", required=True),
             path_route_set_name=dict(aliases=["name"], type="str"),
+            load_balancer_id=dict(aliases=["id"], type="str", required=True),
         )
     )
 

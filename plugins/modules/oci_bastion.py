@@ -56,6 +56,11 @@ options:
         description:
             - The phonebook entry of the customer's team, which can't be changed after creation. Not applicable to `standard` bastions.
         type: str
+    max_session_ttl_in_seconds:
+        description:
+            - The maximum amount of time that any session on the bastion can remain active.
+            - This parameter is updatable.
+        type: int
     static_jump_host_ip_addresses:
         description:
             - A list of IP addresses of the hosts that the bastion has access to. Not applicable to `standard` bastions.
@@ -68,11 +73,6 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
-    max_session_ttl_in_seconds:
-        description:
-            - The maximum amount of time that any session on the bastion can remain active.
-            - This parameter is updatable.
-        type: int
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -115,9 +115,9 @@ EXAMPLES = """
     # optional
     name: name_example
     phone_book_entry: phone_book_entry_example
+    max_session_ttl_in_seconds: 56
     static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
     client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
-    max_session_ttl_in_seconds: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -127,9 +127,9 @@ EXAMPLES = """
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    max_session_ttl_in_seconds: 56
     static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
     client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
-    max_session_ttl_in_seconds: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -140,9 +140,9 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    max_session_ttl_in_seconds: 56
     static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
     client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
-    max_session_ttl_in_seconds: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -460,9 +460,9 @@ def main():
             compartment_id=dict(type="str"),
             target_subnet_id=dict(type="str"),
             phone_book_entry=dict(type="str"),
+            max_session_ttl_in_seconds=dict(type="int"),
             static_jump_host_ip_addresses=dict(type="list", elements="str"),
             client_cidr_block_allow_list=dict(type="list", elements="str"),
-            max_session_ttl_in_seconds=dict(type="int"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             bastion_id=dict(aliases=["id"], type="str"),

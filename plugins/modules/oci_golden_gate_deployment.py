@@ -111,9 +111,7 @@ options:
         type: bool
     deployment_type:
         description:
-            - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained for
-              backward compatibility purposes.  Its use is discouraged
-                    in favor of the equivalent DATABASE_ORACLE value."
+            - The deployment type.
             - Required for create using I(state=present).
         type: str
         choices:
@@ -436,11 +434,22 @@ deployment:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        storage_utilization_in_bytes:
+            description:
+                - The amount of storage being utilized (in bytes)
+            returned: on success
+            type: int
+            sample: 56
+        is_storage_utilization_limit_exceeded:
+            description:
+                - Indicator will be true if the amount of storage being utilized exceeds the allowable storage utilization limit.  Exceeding the limit may be an
+                  indication of a misconfiguration of the deployment's GoldenGate service.
+            returned: on success
+            type: bool
+            sample: true
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
-                  for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent DATABASE_ORACLE value."
+                - The deployment type.
             returned: on success
             type: str
             sample: OGG
@@ -502,6 +511,8 @@ deployment:
         "system_tags": {},
         "is_latest_version": true,
         "time_upgrade_required": "2013-10-20T19:20:30+01:00",
+        "storage_utilization_in_bytes": 56,
+        "is_storage_utilization_limit_exceeded": true,
         "deployment_type": "OGG",
         "ogg_data": {
             "deployment_name": "deployment_name_example",

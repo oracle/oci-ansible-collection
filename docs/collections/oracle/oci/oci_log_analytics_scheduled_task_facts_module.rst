@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_scheduled_task_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -411,8 +411,8 @@ Examples
     - name: Get a specific scheduled_task
       oci_log_analytics_scheduled_task_facts:
         # required
-        namespace_name: namespace_name_example
         scheduled_task_id: "ocid1.scheduledtask.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_name: namespace_name_example
 
     - name: List scheduled_tasks
       oci_log_analytics_scheduled_task_facts:

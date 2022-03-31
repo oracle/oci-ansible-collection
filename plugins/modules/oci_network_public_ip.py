@@ -54,6 +54,20 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    lifetime:
+        description:
+            - Defines when the public IP is deleted and released back to the Oracle Cloud
+              Infrastructure public IP pool. For more information, see
+              L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm).
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "EPHEMERAL"
+            - "RESERVED"
+    public_ip_pool_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP pool.
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -77,16 +91,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    lifetime:
-        description:
-            - Defines when the public IP is deleted and released back to the Oracle Cloud
-              Infrastructure public IP pool. For more information, see
-              L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm).
-            - Required for create using I(state=present).
-        type: str
-        choices:
-            - "EPHEMERAL"
-            - "RESERVED"
     private_ip_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the private IP to assign the public IP to.
@@ -96,10 +100,6 @@ options:
               assigned to a private IP. You can later assign the public IP with
               L(UpdatePublicIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PublicIp/UpdatePublicIp).
             - This parameter is updatable.
-        type: str
-    public_ip_pool_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP pool.
         type: str
     public_ip_id:
         description:
@@ -145,11 +145,11 @@ EXAMPLES = """
     lifetime: EPHEMERAL
 
     # optional
+    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
-    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update public_ip
   oci_network_public_ip:
@@ -498,12 +498,12 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            lifetime=dict(type="str", choices=["EPHEMERAL", "RESERVED"]),
+            public_ip_pool_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            lifetime=dict(type="str", choices=["EPHEMERAL", "RESERVED"]),
             private_ip_id=dict(type="str"),
-            public_ip_pool_id=dict(type="str"),
             public_ip_id=dict(aliases=["id"], type="str"),
             scope=dict(type="str", choices=["REGION", "AVAILABILITY_DOMAIN"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),

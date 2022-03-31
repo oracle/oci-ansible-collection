@@ -30,7 +30,7 @@ oracle.oci.oci_blockchain_platform_osn_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -342,8 +342,8 @@ Examples
     - name: Get a specific blockchain_platform_osn
       oci_blockchain_platform_osn_facts:
         # required
-        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List blockchain_platform_osns
       oci_blockchain_platform_osn_facts:

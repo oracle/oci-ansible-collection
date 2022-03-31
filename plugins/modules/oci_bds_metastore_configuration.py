@@ -28,11 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    bds_instance_id:
+    metastore_id:
         description:
-            - The OCID of the cluster.
+            - The OCID of the Data Catalog metastore.
+            - Required for create using I(state=present).
         type: str
-        required: true
     display_name:
         description:
             - The display name of the metastore configuration
@@ -40,11 +40,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    metastore_id:
-        description:
-            - The OCID of the Data Catalog metastore.
-            - Required for create using I(state=present).
-        type: str
     bds_api_key_id:
         description:
             - The ID of BDS Api Key used for Data Catalog metastore integration.
@@ -63,6 +58,11 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    bds_instance_id:
+        description:
+            - The OCID of the cluster.
+        type: str
+        required: true
     metastore_config_id:
         description:
             - The metastore configuration ID
@@ -86,11 +86,11 @@ EXAMPLES = """
 - name: Create bds_metastore_configuration
   oci_bds_metastore_configuration:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
     bds_api_key_id: "ocid1.bdsapikey.oc1..xxxxxxEXAMPLExxxxxx"
     bds_api_key_passphrase: bds_api_key_passphrase_example
     cluster_admin_password: example-password
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     display_name: display_name_example
@@ -110,8 +110,8 @@ EXAMPLES = """
 - name: Update bds_metastore_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_metastore_configuration:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     bds_api_key_id: "ocid1.bdsapikey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -128,8 +128,8 @@ EXAMPLES = """
 - name: Delete bds_metastore_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_metastore_configuration:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -379,12 +379,12 @@ def main():
     )
     module_args.update(
         dict(
-            bds_instance_id=dict(type="str", required=True),
-            display_name=dict(aliases=["name"], type="str"),
             metastore_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             bds_api_key_id=dict(type="str"),
             bds_api_key_passphrase=dict(type="str", no_log=True),
             cluster_admin_password=dict(type="str", no_log=True),
+            bds_instance_id=dict(type="str", required=True),
             metastore_config_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

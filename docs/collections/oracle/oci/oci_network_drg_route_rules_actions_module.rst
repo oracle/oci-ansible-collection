@@ -30,7 +30,7 @@ oracle.oci.oci_network_drg_route_rules_actions -- Perform actions on a DrgRouteR
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -400,10 +400,10 @@ Examples
         # optional
         route_rules:
         - # optional
-          destination_type: CIDR_BLOCK
-          destination: destination_example
-          next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
           id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          destination: destination_example
+          destination_type: CIDR_BLOCK
+          next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Perform action remove on drg_route_rules
       oci_network_drg_route_rules_actions:
@@ -423,10 +423,10 @@ Examples
         # optional
         route_rules:
         - # optional
-          destination_type: CIDR_BLOCK
-          destination: destination_example
-          next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
           id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          destination: destination_example
+          destination_type: CIDR_BLOCK
+          next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

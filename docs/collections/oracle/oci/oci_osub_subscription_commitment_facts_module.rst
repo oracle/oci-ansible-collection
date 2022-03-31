@@ -30,7 +30,7 @@ oracle.oci.oci_osub_subscription_commitment_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -386,10 +386,10 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        x_one_gateway_subscription_id: "ocid1.xonegatewaysubscription.oc1..xxxxxxEXAMPLExxxxxx"
-        x_one_origin_region: us-phoenix-1
         sort_order: ASC
         sort_by: TIMECREATED
+        x_one_gateway_subscription_id: "ocid1.xonegatewaysubscription.oc1..xxxxxxEXAMPLExxxxxx"
+        x_one_origin_region: us-phoenix-1
 
 
 

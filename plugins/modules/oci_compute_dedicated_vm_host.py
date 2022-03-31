@@ -50,6 +50,16 @@ options:
               other resources available for VM instances launched on the dedicated virtual machine host.
             - Required for create using I(state=present).
         type: str
+    fault_domain:
+        description:
+            - The fault domain for the dedicated virtual machine host's assigned instances.
+              For more information, see L(Fault Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#fault).
+              If you do not specify the fault domain, the system selects one for you. To change the fault domain for a dedicated virtual machine host,
+              delete it and create a new dedicated virtual machine host in the preferred fault domain.
+            - To get a list of fault domains, use the `ListFaultDomains` operation in
+              the L(Identity and Access Management Service API,https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/).
+            - "Example: `FAULT-DOMAIN-1`"
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -65,16 +75,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    fault_domain:
-        description:
-            - The fault domain for the dedicated virtual machine host's assigned instances.
-              For more information, see L(Fault Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#fault).
-              If you do not specify the fault domain, the system selects one for you. To change the fault domain for a dedicated virtual machine host,
-              delete it and create a new dedicated virtual machine host in the preferred fault domain.
-            - To get a list of fault domains, use the `ListFaultDomains` operation in
-              the L(Identity and Access Management Service API,https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/).
-            - "Example: `FAULT-DOMAIN-1`"
-        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -111,9 +111,9 @@ EXAMPLES = """
     dedicated_vm_host_shape: dedicated_vm_host_shape_example
 
     # optional
+    fault_domain: FAULT-DOMAIN-1
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    fault_domain: FAULT-DOMAIN-1
     freeform_tags: {'Department': 'Finance'}
 
 - name: Update dedicated_vm_host
@@ -438,9 +438,9 @@ def main():
             availability_domain=dict(type="str"),
             compartment_id=dict(type="str"),
             dedicated_vm_host_shape=dict(type="str"),
+            fault_domain=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
-            fault_domain=dict(type="str"),
             freeform_tags=dict(type="dict"),
             dedicated_vm_host_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

@@ -30,7 +30,7 @@ oracle.oci.oci_blockchain_platform -- Manage a BlockchainPlatform resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -682,11 +682,11 @@ Examples
         idcs_access_token: idcs_access_token_example
 
         # optional
-        description: description_example
         is_byol: true
         platform_version: platform_version_example
         federated_user_id: "ocid1.federateduser.oc1..xxxxxxEXAMPLExxxxxx"
         ca_cert_archive_text: ca_cert_archive_text_example
+        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -697,8 +697,6 @@ Examples
 
         # optional
         description: description_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         storage_size_in_tbs: 3.4
         replicas:
           # optional
@@ -707,6 +705,8 @@ Examples
           console_count: 56
         total_ocpu_capacity: 56
         load_balancer_shape: load_balancer_shape_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockchain_platform:
@@ -716,8 +716,6 @@ Examples
 
         # optional
         description: description_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         storage_size_in_tbs: 3.4
         replicas:
           # optional
@@ -726,6 +724,8 @@ Examples
           console_count: 56
         total_ocpu_capacity: 56
         load_balancer_shape: load_balancer_shape_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete blockchain_platform
       oci_blockchain_platform:

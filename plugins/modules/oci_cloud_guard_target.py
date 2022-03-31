@@ -27,15 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - DetectorTemplate identifier.
-            - Avoid entering confidential information.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - Compartment Identifier where the resource is created
@@ -62,6 +53,28 @@ options:
             - Resource ID which the target uses to monitor
             - Required for create using I(state=present).
         type: str
+    display_name:
+        description:
+            - DetectorTemplate identifier.
+            - Avoid entering confidential information.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    lifecycle_state:
+        description:
+            - The current state of the DetectorRule.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "CREATING"
+            - "UPDATING"
+            - "ACTIVE"
+            - "INACTIVE"
+            - "DELETING"
+            - "DELETED"
+            - "FAILED"
     target_detector_recipes:
         description:
             - List of detector recipes to associate with target
@@ -72,6 +85,11 @@ options:
             detector_recipe_id:
                 description:
                     - Identifier for DetectorRecipe.
+                type: str
+            target_detector_recipe_id:
+                description:
+                    - Identifier for DetectorRecipe.
+                    - This parameter is updatable.
                 type: str
             detector_rules:
                 description:
@@ -107,14 +125,6 @@ options:
                                         type: dict
                                         required: true
                                         suboptions:
-                                            kind:
-                                                description:
-                                                    - Type of condition object
-                                                type: str
-                                                choices:
-                                                    - "SIMPLE"
-                                                    - "COMPOSITE"
-                                                required: true
                                             parameter:
                                                 description:
                                                     - parameter Key
@@ -143,6 +153,14 @@ options:
                                                 choices:
                                                     - "MANAGED"
                                                     - "CUSTOM"
+                                            kind:
+                                                description:
+                                                    - Type of condition object
+                                                type: str
+                                                choices:
+                                                    - "SIMPLE"
+                                                    - "COMPOSITE"
+                                                required: true
                                             left_operand:
                                                 description:
                                                     - ""
@@ -179,11 +197,6 @@ options:
                                                             - "COMPOSITE"
                                                             - "SIMPLE"
                                                         required: true
-            target_detector_recipe_id:
-                description:
-                    - Identifier for DetectorRecipe.
-                    - This parameter is updatable.
-                type: str
     target_responder_recipes:
         description:
             - List of responder recipes to associate with target
@@ -194,6 +207,11 @@ options:
             responder_recipe_id:
                 description:
                     - Identifier for ResponderRecipe.
+                type: str
+            target_responder_recipe_id:
+                description:
+                    - Identifier for ResponderRecipe.
+                    - This parameter is updatable.
                 type: str
             responder_rules:
                 description:
@@ -217,14 +235,6 @@ options:
                                     - ""
                                 type: dict
                                 suboptions:
-                                    kind:
-                                        description:
-                                            - Type of condition object
-                                        type: str
-                                        choices:
-                                            - "SIMPLE"
-                                            - "COMPOSITE"
-                                        required: true
                                     parameter:
                                         description:
                                             - parameter Key
@@ -253,6 +263,14 @@ options:
                                         choices:
                                             - "MANAGED"
                                             - "CUSTOM"
+                                    kind:
+                                        description:
+                                            - Type of condition object
+                                        type: str
+                                        choices:
+                                            - "SIMPLE"
+                                            - "COMPOSITE"
+                                        required: true
                                     left_operand:
                                         description:
                                             - ""
@@ -317,24 +335,6 @@ options:
                                 choices:
                                     - "AUTOACTION"
                                     - "USERACTION"
-            target_responder_recipe_id:
-                description:
-                    - Identifier for ResponderRecipe.
-                    - This parameter is updatable.
-                type: str
-    lifecycle_state:
-        description:
-            - The current state of the DetectorRule.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "CREATING"
-            - "UPDATING"
-            - "ACTIVE"
-            - "INACTIVE"
-            - "DELETING"
-            - "DELETED"
-            - "FAILED"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -371,16 +371,18 @@ EXAMPLES = """
 - name: Create target
   oci_cloud_guard_target:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     target_resource_type: COMPARTMENT
     target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
+    lifecycle_state: CREATING
     target_detector_recipes:
     - # optional
       detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+      target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
       detector_rules:
       - # required
         detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -398,10 +400,10 @@ EXAMPLES = """
               operator: IN
               value: value_example
               value_type: MANAGED
-      target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     target_responder_recipes:
     - # optional
       responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+      target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
       responder_rules:
       - # required
         responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -422,8 +424,6 @@ EXAMPLES = """
             name: name_example
             value: value_example
           mode: AUTOACTION
-      target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: CREATING
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -434,9 +434,11 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
+    lifecycle_state: CREATING
     target_detector_recipes:
     - # optional
       detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+      target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
       detector_rules:
       - # required
         detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -454,10 +456,10 @@ EXAMPLES = """
               operator: IN
               value: value_example
               value_type: MANAGED
-      target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     target_responder_recipes:
     - # optional
       responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+      target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
       responder_rules:
       - # required
         responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -478,21 +480,21 @@ EXAMPLES = """
             name: name_example
             value: value_example
           mode: AUTOACTION
-      target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: CREATING
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_target:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
+    lifecycle_state: CREATING
     target_detector_recipes:
     - # optional
       detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+      target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
       detector_rules:
       - # required
         detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -510,10 +512,10 @@ EXAMPLES = """
               operator: IN
               value: value_example
               value_type: MANAGED
-      target_detector_recipe_id: "ocid1.targetdetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     target_responder_recipes:
     - # optional
       responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+      target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
       responder_rules:
       - # required
         responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
@@ -534,8 +536,6 @@ EXAMPLES = """
             name: name_example
             value: value_example
           mode: AUTOACTION
-      target_responder_recipe_id: "ocid1.targetresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: CREATING
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -548,8 +548,8 @@ EXAMPLES = """
 - name: Delete target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_target:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -2128,18 +2128,31 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
             description=dict(type="str"),
             target_resource_type=dict(
                 type="str", choices=["COMPARTMENT", "ERPCLOUD", "HCMCLOUD"]
             ),
             target_resource_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            lifecycle_state=dict(
+                type="str",
+                choices=[
+                    "CREATING",
+                    "UPDATING",
+                    "ACTIVE",
+                    "INACTIVE",
+                    "DELETING",
+                    "DELETED",
+                    "FAILED",
+                ],
+            ),
             target_detector_recipes=dict(
                 type="list",
                 elements="dict",
                 options=dict(
                     detector_recipe_id=dict(type="str"),
+                    target_detector_recipe_id=dict(type="str"),
                     detector_rules=dict(
                         type="list",
                         elements="dict",
@@ -2160,11 +2173,6 @@ def main():
                                                 type="dict",
                                                 required=True,
                                                 options=dict(
-                                                    kind=dict(
-                                                        type="str",
-                                                        required=True,
-                                                        choices=["SIMPLE", "COMPOSITE"],
-                                                    ),
                                                     parameter=dict(type="str"),
                                                     operator=dict(
                                                         type="str",
@@ -2179,6 +2187,11 @@ def main():
                                                     value_type=dict(
                                                         type="str",
                                                         choices=["MANAGED", "CUSTOM"],
+                                                    ),
+                                                    kind=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=["SIMPLE", "COMPOSITE"],
                                                     ),
                                                     left_operand=dict(
                                                         type="dict",
@@ -2218,7 +2231,6 @@ def main():
                             ),
                         ),
                     ),
-                    target_detector_recipe_id=dict(type="str"),
                 ),
             ),
             target_responder_recipes=dict(
@@ -2226,6 +2238,7 @@ def main():
                 elements="dict",
                 options=dict(
                     responder_recipe_id=dict(type="str"),
+                    target_responder_recipe_id=dict(type="str"),
                     responder_rules=dict(
                         type="list",
                         elements="dict",
@@ -2238,11 +2251,6 @@ def main():
                                     condition=dict(
                                         type="dict",
                                         options=dict(
-                                            kind=dict(
-                                                type="str",
-                                                required=True,
-                                                choices=["SIMPLE", "COMPOSITE"],
-                                            ),
                                             parameter=dict(type="str"),
                                             operator=dict(
                                                 type="str",
@@ -2257,6 +2265,11 @@ def main():
                                             value_type=dict(
                                                 type="str",
                                                 choices=["MANAGED", "CUSTOM"],
+                                            ),
+                                            kind=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["SIMPLE", "COMPOSITE"],
                                             ),
                                             left_operand=dict(
                                                 type="dict",
@@ -2301,20 +2314,7 @@ def main():
                             ),
                         ),
                     ),
-                    target_responder_recipe_id=dict(type="str"),
                 ),
-            ),
-            lifecycle_state=dict(
-                type="str",
-                choices=[
-                    "CREATING",
-                    "UPDATING",
-                    "ACTIVE",
-                    "INACTIVE",
-                    "DELETING",
-                    "DELETED",
-                    "FAILED",
-                ],
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

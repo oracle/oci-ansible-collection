@@ -43,14 +43,6 @@ options:
             - The ocid of the image
             - Required for create using I(state=present).
         type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -59,11 +51,12 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    defined_tags:
+    freeform_tags:
         description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
     schema_data:
@@ -73,23 +66,6 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            descriptor_type:
-                description:
-                    - The image capability schema descriptor type for the capability
-                type: str
-                choices:
-                    - "enumstring"
-                    - "enuminteger"
-                    - "boolean"
-                required: true
-            source:
-                description:
-                    - ""
-                type: str
-                choices:
-                    - "GLOBAL"
-                    - "IMAGE"
-                required: true
             enum_string_values:
                 description:
                     - the list of values for the enum
@@ -112,11 +88,35 @@ options:
                     - the default value
                     - Applicable when descriptor_type is 'enuminteger'
                 type: int
+            descriptor_type:
+                description:
+                    - The image capability schema descriptor type for the capability
+                type: str
+                choices:
+                    - "enumstring"
+                    - "enuminteger"
+                    - "boolean"
+                required: true
+            source:
+                description:
+                    - ""
+                type: str
+                choices:
+                    - "GLOBAL"
+                    - "IMAGE"
+                required: true
             boolean_default_value:
                 description:
                     - the default value
                     - Applicable when descriptor_type is 'boolean'
                 type: bool
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
     compute_image_capability_schema_id:
         description:
             - The id of the compute image capability schema or the image ocid
@@ -145,16 +145,16 @@ EXAMPLES = """
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     schema_data:
       # required
+      enum_string_values: [ "enum_string_values_example" ]
       descriptor_type: enumstring
       source: GLOBAL
-      enum_string_values: [ "enum_string_values_example" ]
 
       # optional
       enum_string_default_value: enum_string_default_value_example
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
     display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update compute_image_capability_schema
@@ -163,17 +163,17 @@ EXAMPLES = """
     compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
     display_name: display_name_example
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
     schema_data:
       # required
+      enum_string_values: [ "enum_string_values_example" ]
       descriptor_type: enumstring
       source: GLOBAL
-      enum_string_values: [ "enum_string_values_example" ]
 
       # optional
       enum_string_default_value: enum_string_default_value_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image_capability_schema:
@@ -182,15 +182,15 @@ EXAMPLES = """
 
     # optional
     freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     schema_data:
       # required
+      enum_string_values: [ "enum_string_values_example" ]
       descriptor_type: enumstring
       source: GLOBAL
-      enum_string_values: [ "enum_string_values_example" ]
 
       # optional
       enum_string_default_value: enum_string_default_value_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete compute_image_capability_schema
   oci_compute_image_capability_schema:
@@ -508,10 +508,10 @@ def main():
             compartment_id=dict(type="str"),
             compute_global_image_capability_schema_version_name=dict(type="str"),
             image_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
-            defined_tags=dict(type="dict"),
+            freeform_tags=dict(type="dict"),
             schema_data=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             compute_image_capability_schema_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

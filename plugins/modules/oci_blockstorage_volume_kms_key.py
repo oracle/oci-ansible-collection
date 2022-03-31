@@ -26,12 +26,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    volume_id:
-        description:
-            - The OCID of the volume.
-        type: str
-        aliases: ["id"]
-        required: true
     kms_key_id:
         description:
             - The OCID of the new Key Management key to assign to protect the specified volume.
@@ -39,6 +33,12 @@ options:
               If you specify the same OCID as the previous key's OCID, the Block Volume service will use it to regenerate a volume encryption key.
             - This parameter is updatable.
         type: str
+    volume_id:
+        description:
+            - The OCID of the volume.
+        type: str
+        aliases: ["id"]
+        required: true
     state:
         description:
             - The state of the VolumeKmsKey.
@@ -190,8 +190,8 @@ def main():
     )
     module_args.update(
         dict(
-            volume_id=dict(aliases=["id"], type="str", required=True),
             kms_key_id=dict(type="str"),
+            volume_id=dict(aliases=["id"], type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

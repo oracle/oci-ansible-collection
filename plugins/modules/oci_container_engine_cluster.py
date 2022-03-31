@@ -29,13 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    name:
-        description:
-            - The name of the cluster. Avoid entering confidential information.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
     compartment_id:
         description:
             - The OCID of the compartment in which to create the cluster.
@@ -68,31 +61,24 @@ options:
             - The OCID of the virtual cloud network (VCN) in which to create the cluster.
             - Required for create using I(state=present).
         type: str
+    kms_key_id:
+        description:
+            - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
+              When used, `kubernetesVersion` must be at least `v1.13.0`.
+        type: str
+    name:
+        description:
+            - The name of the cluster. Avoid entering confidential information.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
     kubernetes_version:
         description:
             - The version of Kubernetes to install into the cluster masters.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
-    kms_key_id:
-        description:
-            - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
-              When used, `kubernetesVersion` must be at least `v1.13.0`.
-        type: str
-    freeform_tags:
-        description:
-            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
     options:
         description:
             - Optional attributes for the cluster.
@@ -173,6 +159,20 @@ options:
                               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                         type: dict
+    freeform_tags:
+        description:
+            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
     image_policy_config:
         description:
             - The image verification policy for signature validation. Once a policy is created and enabled with
@@ -220,9 +220,9 @@ EXAMPLES = """
 - name: Create cluster
   oci_container_engine_cluster:
     # required
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     kubernetes_version: kubernetes_version_example
 
     # optional
@@ -232,8 +232,6 @@ EXAMPLES = """
       nsg_ids: [ "nsg_ids_example" ]
       is_public_ip_enabled: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     options:
       # optional
       service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
@@ -256,6 +254,8 @@ EXAMPLES = """
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -271,8 +271,6 @@ EXAMPLES = """
     # optional
     name: name_example
     kubernetes_version: kubernetes_version_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     options:
       # optional
       service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
@@ -295,6 +293,8 @@ EXAMPLES = """
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -305,13 +305,11 @@ EXAMPLES = """
 - name: Update cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_cluster:
     # required
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     kubernetes_version: kubernetes_version_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     options:
       # optional
       service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
@@ -334,6 +332,8 @@ EXAMPLES = """
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     image_policy_config:
       # optional
       is_policy_enabled: true
@@ -350,8 +350,8 @@ EXAMPLES = """
 - name: Delete cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_cluster:
     # required
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -648,6 +648,13 @@ cluster:
                     returned: on success
                     type: str
                     sample: private_endpoint_example
+                vcn_hostname_endpoint:
+                    description:
+                        - "The FQDN assigned to the Kubernetes API private endpoint.
+                          Example: 'https://yourVcnHostnameEndpoint'"
+                    returned: on success
+                    type: str
+                    sample: vcn_hostname_endpoint_example
         available_kubernetes_upgrades:
             description:
                 - Available Kubernetes versions to which the clusters masters may be upgraded.
@@ -732,7 +739,8 @@ cluster:
         "endpoints": {
             "kubernetes": "kubernetes_example",
             "public_endpoint": "public_endpoint_example",
-            "private_endpoint": "private_endpoint_example"
+            "private_endpoint": "private_endpoint_example",
+            "vcn_hostname_endpoint": "vcn_hostname_endpoint_example"
         },
         "available_kubernetes_upgrades": [],
         "image_policy_config": {
@@ -890,7 +898,6 @@ def main():
     )
     module_args.update(
         dict(
-            name=dict(type="str"),
             compartment_id=dict(type="str"),
             endpoint_config=dict(
                 type="dict",
@@ -901,10 +908,9 @@ def main():
                 ),
             ),
             vcn_id=dict(type="str"),
-            kubernetes_version=dict(type="str"),
             kms_key_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
+            name=dict(type="str"),
+            kubernetes_version=dict(type="str"),
             options=dict(
                 type="dict",
                 options=dict(
@@ -942,6 +948,8 @@ def main():
                     ),
                 ),
             ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             image_policy_config=dict(
                 type="dict",
                 options=dict(

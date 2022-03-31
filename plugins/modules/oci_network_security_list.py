@@ -47,6 +47,31 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the security list belongs to.
+            - Required for create using I(state=present).
+        type: str
+    purge_security_rules:
+        description:
+            - Purge security rules  from security list which are not present in the provided group security list.
+              If I(purge_security_rules=no), provided security rules would be appended to existing security
+              rules. I(purge_security_rules) and I(delete_security_rules) are mutually exclusive.
+            - This parameter is updatable.
+        type: bool
+        default: "true"
+    delete_security_rules:
+        description:
+            - Delete security rules from existing security list which are present in the
+              security rules provided by I(ingress_security_rules) and/or I(egress_security_rules).
+              If I(delete_security_rules=yes), security rules provided by I(ingress_security_rules)
+              and/or I(egress_security_rules) would be deleted to existing security list, if they
+              are part of existing security list. If they are not part of existing security list,
+              they will be ignored. I(purge_security_rules) and I(delete_security_rules) are mutually
+              exclusive.
+            - This parameter is updatable.
+        type: bool
+        default: "false"
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -351,31 +376,6 @@ options:
                 description:
                     - An optional description of your choice for the rule.
                 type: str
-    vcn_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the security list belongs to.
-            - Required for create using I(state=present).
-        type: str
-    purge_security_rules:
-        description:
-            - Purge security rules  from security list which are not present in the provided group security list.
-              If I(purge_security_rules=no), provided security rules would be appended to existing security
-              rules. I(purge_security_rules) and I(delete_security_rules) are mutually exclusive.
-            - This parameter is updatable.
-        type: bool
-        default: "true"
-    delete_security_rules:
-        description:
-            - Delete security rules from existing security list which are present in the
-              security rules provided by I(ingress_security_rules) and/or I(egress_security_rules).
-              If I(delete_security_rules=yes), security rules provided by I(ingress_security_rules)
-              and/or I(egress_security_rules) would be deleted to existing security list, if they
-              are part of existing security list. If they are not part of existing security list,
-              they will be ignored. I(purge_security_rules) and I(delete_security_rules) are mutually
-              exclusive.
-            - This parameter is updatable.
-        type: bool
-        default: "false"
     security_list_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the security list.
@@ -400,6 +400,7 @@ EXAMPLES = """
   oci_network_security_list:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     egress_security_rules:
     - # required
       destination: destination_example
@@ -470,7 +471,6 @@ EXAMPLES = """
           max: 56
           min: 56
       description: description_example
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -483,6 +483,8 @@ EXAMPLES = """
     security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    purge_security_rules: false
+    delete_security_rules: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     egress_security_rules:
@@ -556,8 +558,6 @@ EXAMPLES = """
           max: 56
           min: 56
       description: description_example
-    purge_security_rules: false
-    delete_security_rules: true
 
 - name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_list:
@@ -566,6 +566,8 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    purge_security_rules: false
+    delete_security_rules: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     egress_security_rules:
     - # required
@@ -638,8 +640,6 @@ EXAMPLES = """
           max: 56
           min: 56
       description: description_example
-    purge_security_rules: false
-    delete_security_rules: true
 
 - name: Delete security_list
   oci_network_security_list:
@@ -1268,6 +1268,9 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            vcn_id=dict(type="str"),
+            purge_security_rules=dict(type="bool", default="true"),
+            delete_security_rules=dict(type="bool", default="false"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             egress_security_rules=dict(
@@ -1385,9 +1388,6 @@ def main():
                     description=dict(type="str"),
                 ),
             ),
-            vcn_id=dict(type="str"),
-            purge_security_rules=dict(type="bool", default="true"),
-            delete_security_rules=dict(type="bool", default="false"),
             security_list_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

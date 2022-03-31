@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_tablespace -- Manage a Tablespace resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -945,43 +945,21 @@ Examples
         managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
         credential_details:
           # required
+          password: example-password
           tablespace_admin_credential_type: PASSWORD
           username: username_example
           role: NORMAL
-          password: example-password
         name: name_example
 
         # optional
-        type: PERMANENT
         is_bigfile: true
         data_files: [ "data_files_example" ]
         file_count: 56
-        file_size:
-          # required
-          size: 3.4
-
-          # optional
-          unit: BYTES
         is_reusable: true
-        is_auto_extensible: true
-        auto_extend_next_size:
-          # required
-          size: 3.4
-
-          # optional
-          unit: BYTES
-        auto_extend_max_size:
-          # required
-          size: 3.4
-
-          # optional
-          unit: BYTES
-        is_max_size_unlimited: true
         block_size_in_kilobytes: 56
         is_encrypted: true
         encryption_algorithm: encryption_algorithm_example
         default_compress: NO_COMPRESS
-        status: READ_ONLY
         extent_management: AUTOALLOCATE
         extent_uniform_size:
           # required
@@ -990,21 +968,6 @@ Examples
           # optional
           unit: BYTES
         segment_management: AUTO
-        is_default: true
-
-    - name: Update tablespace
-      oci_database_management_tablespace:
-        # required
-        managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
-        credential_details:
-          # required
-          tablespace_admin_credential_type: PASSWORD
-          username: username_example
-          role: NORMAL
-          password: example-password
-        name: name_example
-
-        # optional
         type: PERMANENT
         file_size:
           # required
@@ -1012,6 +975,7 @@ Examples
 
           # optional
           unit: BYTES
+        status: READ_ONLY
         is_auto_extensible: true
         auto_extend_next_size:
           # required
@@ -1026,7 +990,43 @@ Examples
           # optional
           unit: BYTES
         is_max_size_unlimited: true
+        is_default: true
+
+    - name: Update tablespace
+      oci_database_management_tablespace:
+        # required
+        managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        credential_details:
+          # required
+          password: example-password
+          tablespace_admin_credential_type: PASSWORD
+          username: username_example
+          role: NORMAL
+        name: name_example
+
+        # optional
+        type: PERMANENT
+        file_size:
+          # required
+          size: 3.4
+
+          # optional
+          unit: BYTES
         status: READ_ONLY
+        is_auto_extensible: true
+        auto_extend_next_size:
+          # required
+          size: 3.4
+
+          # optional
+          unit: BYTES
+        auto_extend_max_size:
+          # required
+          size: 3.4
+
+          # optional
+          unit: BYTES
+        is_max_size_unlimited: true
         is_default: true
 
 

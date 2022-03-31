@@ -30,7 +30,7 @@ oracle.oci.oci_announcements_service_announcements_preferences -- Manage an Anno
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -408,9 +408,9 @@ Examples
     - name: Update announcements_preferences
       oci_announcements_service_announcements_preferences:
         # required
+        preference_id: "ocid1.preference.oc1..xxxxxxEXAMPLExxxxxx"
         type: type_example
         preference_type: OPT_IN_TENANT_ANNOUNCEMENTS
-        preference_id: "ocid1.preference.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         is_unsubscribed: true

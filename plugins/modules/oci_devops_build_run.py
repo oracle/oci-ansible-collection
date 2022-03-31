@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - Build run display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
-            - Required for create, update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     build_pipeline_id:
         description:
             - The OCID of the build pipeline.
@@ -83,6 +76,19 @@ options:
                             - Value of the argument.
                         type: str
                         required: true
+    build_run_id:
+        description:
+            - Unique build run identifier.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
+    display_name:
+        description:
+            - Build run display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
+            - Required for create, update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -95,12 +101,6 @@ options:
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    build_run_id:
-        description:
-            - Unique build run identifier.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     state:
         description:
             - The state of the BuildRun.
@@ -119,7 +119,6 @@ EXAMPLES = """
     build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     commit_info:
       # required
       repository_url: repository_url_example
@@ -131,6 +130,7 @@ EXAMPLES = """
       - # required
         name: name_example
         value: value_example
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1121,7 +1121,6 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             build_pipeline_id=dict(type="str"),
             commit_info=dict(
                 type="dict",
@@ -1145,9 +1144,10 @@ def main():
                     )
                 ),
             ),
+            build_run_id=dict(aliases=["id"], type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            build_run_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

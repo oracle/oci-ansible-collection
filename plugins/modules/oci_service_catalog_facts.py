@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The unique identifier for the compartment.
+            - Required to list multiple service_catalogs.
+        type: str
     service_catalog_id:
         description:
             - The unique identifier for the service catalog.
             - Required to get a specific service_catalog.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The unique identifier for the compartment.
-            - Required to list multiple service_catalogs.
-        type: str
     sort_by:
         description:
             - Default is `TIMECREATED`
@@ -221,8 +221,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            service_catalog_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            service_catalog_id=dict(aliases=["id"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             display_name=dict(aliases=["name"], type="str"),

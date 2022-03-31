@@ -27,11 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    blockchain_platform_id:
-        description:
-            - Unique service identifier.
-        type: str
-        required: true
     ad:
         description:
             - Availability Domain to place new OSN
@@ -48,6 +43,11 @@ options:
                     - Number of OCPU allocation
                 type: float
                 required: true
+    blockchain_platform_id:
+        description:
+            - Unique service identifier.
+        type: str
+        required: true
     osn_id:
         description:
             - OSN identifier.
@@ -71,8 +71,8 @@ EXAMPLES = """
 - name: Create blockchain_platform_osn
   oci_blockchain_platform_osn:
     # required
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     ad: Uocm:PHX-AD-1
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     ocpu_allocation_param:
@@ -82,10 +82,10 @@ EXAMPLES = """
 - name: Update blockchain_platform_osn
   oci_blockchain_platform_osn:
     # required
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     ocpu_allocation_param:
       # required
       ocpu_allocation_number: 3.4
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete blockchain_platform_osn
@@ -298,12 +298,12 @@ def main():
     )
     module_args.update(
         dict(
-            blockchain_platform_id=dict(type="str", required=True),
             ad=dict(type="str"),
             ocpu_allocation_param=dict(
                 type="dict",
                 options=dict(ocpu_allocation_number=dict(type="float", required=True)),
             ),
+            blockchain_platform_id=dict(type="str", required=True),
             osn_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

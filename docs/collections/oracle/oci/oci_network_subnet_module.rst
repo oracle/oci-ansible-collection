@@ -30,7 +30,7 @@ oracle.oci.oci_network_subnet -- Manage a Subnet resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -619,22 +619,22 @@ Examples
     - name: Create subnet
       oci_network_subnet:
         # required
-        cidr_block: cidr_block_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        cidr_block: cidr_block_example
 
         # optional
         availability_domain: Uocm:PHX-AD-1
+        dns_label: dns_label_example
+        prohibit_internet_ingress: true
+        prohibit_public_ip_on_vnic: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         dhcp_options_id: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
-        dns_label: dns_label_example
         freeform_tags: {'Department': 'Finance'}
-        ipv6_cidr_block: ipv6_cidr_block_example
-        prohibit_internet_ingress: true
-        prohibit_public_ip_on_vnic: true
         route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         security_list_ids: [ "security_list_ids_example" ]
+        ipv6_cidr_block: ipv6_cidr_block_example
 
     - name: Update subnet
       oci_network_subnet:
@@ -642,14 +642,14 @@ Examples
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        cidr_block: cidr_block_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         dhcp_options_id: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        ipv6_cidr_block: ipv6_cidr_block_example
         route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         security_list_ids: [ "security_list_ids_example" ]
+        cidr_block: cidr_block_example
+        ipv6_cidr_block: ipv6_cidr_block_example
 
     - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_subnet:
@@ -658,13 +658,13 @@ Examples
         display_name: display_name_example
 
         # optional
-        cidr_block: cidr_block_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         dhcp_options_id: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
-        ipv6_cidr_block: ipv6_cidr_block_example
         route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         security_list_ids: [ "security_list_ids_example" ]
+        cidr_block: cidr_block_example
+        ipv6_cidr_block: ipv6_cidr_block_example
 
     - name: Delete subnet
       oci_network_subnet:

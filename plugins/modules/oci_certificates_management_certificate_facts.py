@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    certificate_id:
-        description:
-            - The OCID of the certificate.
-            - Required to get a specific certificate.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - A filter that returns only resources that match the given compartment OCID.
@@ -78,6 +72,12 @@ options:
         description:
             - The OCID of the certificate authority (CA). If the parameter is set to null, the service lists all CAs.
         type: str
+    certificate_id:
+        description:
+            - The OCID of the certificate.
+            - Required to get a specific certificate.
+        type: str
+        aliases: ["id"]
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -91,13 +91,13 @@ EXAMPLES = """
   oci_certificates_management_certificate_facts:
 
     # optional
-    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: CREATING
     name: name_example
     sort_by: NAME
     sort_order: ASC
     issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -779,7 +779,6 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            certificate_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
@@ -799,6 +798,7 @@ def main():
             sort_by=dict(type="str", choices=["NAME", "EXPIRATIONDATE", "TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             issuer_certificate_authority_id=dict(type="str"),
+            certificate_id=dict(aliases=["id"], type="str"),
         )
     )
 

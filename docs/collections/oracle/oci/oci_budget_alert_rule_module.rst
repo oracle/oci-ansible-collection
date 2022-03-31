@@ -30,7 +30,7 @@ oracle.oci.oci_budget_alert_rule -- Manage a BudgetAlertRule resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -537,15 +537,15 @@ Examples
     - name: Create budget_alert_rule
       oci_budget_alert_rule:
         # required
-        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         type: ACTUAL
         threshold: 3.4
         threshold_type: PERCENTAGE
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
-        description: description_example
         recipients: recipients_example
+        description: description_example
         msg: msg_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -558,11 +558,11 @@ Examples
 
         # optional
         display_name: display_name_example
-        description: description_example
         type: ACTUAL
         threshold: 3.4
         threshold_type: PERCENTAGE
         recipients: recipients_example
+        description: description_example
         msg: msg_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -570,15 +570,15 @@ Examples
     - name: Update budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget_alert_rule:
         # required
-        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        description: description_example
         type: ACTUAL
         threshold: 3.4
         threshold_type: PERCENTAGE
         recipients: recipients_example
+        description: description_example
         msg: msg_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -593,8 +593,8 @@ Examples
     - name: Delete budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget_alert_rule:
         # required
-        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

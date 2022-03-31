@@ -29,6 +29,24 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    original_task_id:
+        description:
+            - The identifier of the SQL tuning task being cloned. This is not the
+              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+              It can be retrieved from the following endpoint
+              L(ListSqlTuningAdvisorTasks,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database-
+              management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks).
+            - Required for I(action=clone_sql_tuning_task).
+        type: int
+    task_id:
+        description:
+            - The identifier of the SQL tuning task being dropped. This is not the
+              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+              It can be retrieved from the following endpoint
+              L(ListSqlTuningAdvisorTasks,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database-
+              management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks).
+            - Required for I(action=drop_sql_tuning_task).
+        type: int
     managed_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
@@ -40,15 +58,6 @@ options:
             - The name of the SQL tuning task. The name is unique per user in a database, and it is case-sensitive.
             - Required for I(action=clone_sql_tuning_task), I(action=start_sql_tuning_task).
         type: str
-    original_task_id:
-        description:
-            - The identifier of the SQL tuning task being cloned. This is not the
-              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-              It can be retrieved from the following endpoint
-              L(ListSqlTuningAdvisorTasks,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database-
-              management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks).
-            - Required for I(action=clone_sql_tuning_task).
-        type: int
     task_description:
         description:
             - The description of the SQL tuning task.
@@ -60,6 +69,12 @@ options:
         type: dict
         required: true
         suboptions:
+            password_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret
+                      where the database password is stored.
+                    - Required when sql_tuning_task_credential_type is 'SECRET'
+                type: str
             sql_tuning_task_credential_type:
                 description:
                     - The type of credential for the SQL tuning task.
@@ -81,26 +96,11 @@ options:
                     - "NORMAL"
                     - "SYSDBA"
                 required: true
-            password_secret_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret
-                      where the database password is stored.
-                    - Required when sql_tuning_task_credential_type is 'SECRET'
-                type: str
             password:
                 description:
                     - The database user's password encoded using BASE64 scheme.
                     - Required when sql_tuning_task_credential_type is 'PASSWORD'
                 type: str
-    task_id:
-        description:
-            - The identifier of the SQL tuning task being dropped. This is not the
-              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-              It can be retrieved from the following endpoint
-              L(ListSqlTuningAdvisorTasks,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database-
-              management/latest/ManagedDatabase/ListSqlTuningAdvisorTasks).
-            - Required for I(action=drop_sql_tuning_task).
-        type: int
     total_time_limit_in_minutes:
         description:
             - The time limit for running the SQL tuning task.
@@ -160,15 +160,15 @@ EXAMPLES = """
 - name: Perform action clone_sql_tuning_task on managed_database
   oci_database_management_managed_database_actions:
     # required
+    original_task_id: 56
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     task_name: task_name_example
-    original_task_id: 56
     credential_details:
       # required
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
       sql_tuning_task_credential_type: SECRET
       username: username_example
       role: NORMAL
-      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
     action: clone_sql_tuning_task
 
     # optional
@@ -177,14 +177,14 @@ EXAMPLES = """
 - name: Perform action drop_sql_tuning_task on managed_database
   oci_database_management_managed_database_actions:
     # required
+    task_id: 56
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     credential_details:
       # required
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
       sql_tuning_task_credential_type: SECRET
       username: username_example
       role: NORMAL
-      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
-    task_id: 56
     action: drop_sql_tuning_task
 
 - name: Perform action start_sql_tuning_task on managed_database
@@ -194,10 +194,10 @@ EXAMPLES = """
     task_name: task_name_example
     credential_details:
       # required
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
       sql_tuning_task_credential_type: SECRET
       username: username_example
       role: NORMAL
-      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
     total_time_limit_in_minutes: 56
     scope: LIMITED
     sql_details:
@@ -569,24 +569,24 @@ def main():
     )
     module_args.update(
         dict(
+            original_task_id=dict(type="int"),
+            task_id=dict(type="int"),
             managed_database_id=dict(aliases=["id"], type="str", required=True),
             task_name=dict(type="str"),
-            original_task_id=dict(type="int"),
             task_description=dict(type="str"),
             credential_details=dict(
                 type="dict",
                 required=True,
                 options=dict(
+                    password_secret_id=dict(type="str"),
                     sql_tuning_task_credential_type=dict(
                         type="str", required=True, choices=["SECRET", "PASSWORD"]
                     ),
                     username=dict(type="str", required=True),
                     role=dict(type="str", required=True, choices=["NORMAL", "SYSDBA"]),
-                    password_secret_id=dict(type="str"),
                     password=dict(type="str", no_log=True),
                 ),
             ),
-            task_id=dict(type="int"),
             total_time_limit_in_minutes=dict(type="int"),
             scope=dict(type="str", choices=["LIMITED", "COMPREHENSIVE"]),
             statement_time_limit_in_minutes=dict(type="int"),

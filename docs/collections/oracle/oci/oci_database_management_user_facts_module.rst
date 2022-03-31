@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_user_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -340,8 +340,8 @@ Examples
     - name: Get a specific user
       oci_database_management_user_facts:
         # required
-        managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
         user_name: user_name_example
+        managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List users
       oci_database_management_user_facts:

@@ -30,7 +30,7 @@ oracle.oci.oci_dns_zone -- Manage a Zone resource in Oracle Cloud Infrastructure
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -685,12 +685,10 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        zone_type: PRIMARY
         migration_source: NONE
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        zone_type: PRIMARY
-        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-        scope: GLOBAL
         external_masters:
         - # required
           address: address_example
@@ -698,6 +696,8 @@ Examples
           # optional
           port: 56
           tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+        scope: GLOBAL
+        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Create zone with migration_source = DYNECT
       oci_dns_zone:
@@ -707,8 +707,6 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         dynect_migration_details:
           # required
           customer_name: customer_name_example
@@ -717,6 +715,8 @@ Examples
 
           # optional
           http_redirect_replacements: null
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update zone
       oci_dns_zone:
@@ -724,11 +724,8 @@ Examples
         zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-        scope: GLOBAL
         external_masters:
         - # required
           address: address_example
@@ -737,6 +734,9 @@ Examples
           port: 56
           tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
+        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_zone:
@@ -747,8 +747,6 @@ Examples
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-        scope: GLOBAL
         external_masters:
         - # required
           address: address_example
@@ -757,6 +755,8 @@ Examples
           port: 56
           tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
+        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete zone
       oci_dns_zone:
@@ -765,10 +765,10 @@ Examples
         state: absent
 
         # optional
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
+        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_zone:

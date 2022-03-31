@@ -30,7 +30,7 @@ oracle.oci.oci_apigateway_gateway -- Manage a Gateway resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -798,13 +798,13 @@ Examples
         certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         response_cache_details:
           # required
-          type: EXTERNAL_RESP_CACHE
           servers:
           - # required
             host: host_example
             port: 56
           authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
           authentication_secret_version_number: 56
+          type: EXTERNAL_RESP_CACHE
 
             # optional
           is_ssl_enabled: true
@@ -832,13 +832,13 @@ Examples
         certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         response_cache_details:
           # required
-          type: EXTERNAL_RESP_CACHE
           servers:
           - # required
             host: host_example
             port: 56
           authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
           authentication_secret_version_number: 56
+          type: EXTERNAL_RESP_CACHE
 
             # optional
           is_ssl_enabled: true
@@ -858,21 +858,21 @@ Examples
     - name: Update gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_gateway:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         network_security_group_ids: [ "network_security_group_ids_example" ]
         certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         response_cache_details:
           # required
-          type: EXTERNAL_RESP_CACHE
           servers:
           - # required
             host: host_example
             port: 56
           authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
           authentication_secret_version_number: 56
+          type: EXTERNAL_RESP_CACHE
 
             # optional
           is_ssl_enabled: true
@@ -898,8 +898,8 @@ Examples
     - name: Delete gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_gateway:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

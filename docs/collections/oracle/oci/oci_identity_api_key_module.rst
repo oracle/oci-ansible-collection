@@ -30,7 +30,7 @@ oracle.oci.oci_identity_api_key -- Manage an ApiKey resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -394,8 +394,8 @@ Examples
     - name: Create api_key
       oci_identity_api_key:
         # required
-        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         key: key_example
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete api_key
       oci_identity_api_key:

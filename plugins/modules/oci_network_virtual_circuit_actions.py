@@ -37,12 +37,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    virtual_circuit_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the virtual circuit.
-        type: str
-        aliases: ["id"]
-        required: true
     public_prefixes:
         description:
             - The public IP prefixes (CIDRs) to add to the public virtual circuit.
@@ -56,6 +50,12 @@ options:
                       All prefix sizes are allowed.
                 type: str
                 required: true
+    virtual_circuit_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the virtual circuit.
+        type: str
+        aliases: ["id"]
+        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
@@ -78,19 +78,19 @@ EXAMPLES = """
 - name: Perform action bulk_add_virtual_circuit_public_prefixes on virtual_circuit
   oci_network_virtual_circuit_actions:
     # required
-    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     public_prefixes:
     - # required
       cidr_block: cidr_block_example
+    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     action: bulk_add_virtual_circuit_public_prefixes
 
 - name: Perform action bulk_delete_virtual_circuit_public_prefixes on virtual_circuit
   oci_network_virtual_circuit_actions:
     # required
-    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     public_prefixes:
     - # required
       cidr_block: cidr_block_example
+    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     action: bulk_delete_virtual_circuit_public_prefixes
 
 - name: Perform action change_compartment on virtual_circuit
@@ -259,12 +259,12 @@ def main():
     )
     module_args.update(
         dict(
-            virtual_circuit_id=dict(aliases=["id"], type="str", required=True),
             public_prefixes=dict(
                 type="list",
                 elements="dict",
                 options=dict(cidr_block=dict(type="str", required=True)),
             ),
+            virtual_circuit_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             action=dict(
                 type="str",

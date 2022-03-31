@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    private_application_id:
+        description:
+            - The unique identifier for the private application.
+            - Required to list multiple private_application_packages.
+        type: str
     private_application_package_id:
         description:
             - The unique identifier for the private application package.
             - Required to get a specific private_application_package.
         type: str
         aliases: ["id"]
-    private_application_id:
-        description:
-            - The unique identifier for the private application.
-            - Required to list multiple private_application_packages.
-        type: str
     package_type:
         description:
             - Name of the package type. If multiple package types are provided, then any resource with
@@ -233,8 +233,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            private_application_package_id=dict(aliases=["id"], type="str"),
             private_application_id=dict(type="str"),
+            private_application_package_id=dict(aliases=["id"], type="str"),
             package_type=dict(type="list", elements="str", choices=["STACK"]),
             sort_by=dict(type="str", choices=["TIMECREATED", "VERSION"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

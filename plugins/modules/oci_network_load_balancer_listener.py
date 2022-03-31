@@ -27,17 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    network_load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
-        type: str
-        required: true
-    name:
-        description:
-            - A friendly name for the listener. It must be unique and it cannot be changed.
-            - "Example: `example_listener`"
-        type: str
-        required: true
     default_backend_set_name:
         description:
             - The name of the associated backend set.
@@ -77,6 +66,17 @@ options:
         choices:
             - "IPV4"
             - "IPV6"
+    network_load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
+        type: str
+        required: true
+    name:
+        description:
+            - A friendly name for the listener. It must be unique and it cannot be changed.
+            - "Example: `example_listener`"
+        type: str
+        required: true
     state:
         description:
             - The state of the Listener.
@@ -93,11 +93,11 @@ EXAMPLES = """
 - name: Create listener
   oci_network_load_balancer_listener:
     # required
-    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     default_backend_set_name: default_backend_set_name_example
     port: 56
     protocol: ANY
+    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     ip_version: IPV4
@@ -352,12 +352,12 @@ def main():
     )
     module_args.update(
         dict(
-            network_load_balancer_id=dict(type="str", required=True),
-            name=dict(type="str", required=True),
             default_backend_set_name=dict(type="str"),
             port=dict(type="int"),
             protocol=dict(type="str", choices=["ANY", "TCP", "UDP", "TCP_AND_UDP"]),
             ip_version=dict(type="str", choices=["IPV4", "IPV6"]),
+            network_load_balancer_id=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

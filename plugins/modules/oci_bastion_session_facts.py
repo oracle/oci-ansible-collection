@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    session_id:
-        description:
-            - The unique identifier (OCID) of the session.
-            - Required to get a specific session.
-        type: str
-        aliases: ["id"]
     bastion_id:
         description:
             - The unique identifier (OCID) of the bastion in which to list sessions.
@@ -55,6 +49,12 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+    session_id:
+        description:
+            - The unique identifier (OCID) of the session.
+            - Required to get a specific session.
+        type: str
+        aliases: ["id"]
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -85,9 +85,9 @@ EXAMPLES = """
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    session_id: "ocid1.session.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     session_lifecycle_state: CREATING
+    session_id: "ocid1.session.oc1..xxxxxxEXAMPLExxxxxx"
     sort_order: ASC
     sort_by: timeCreated
 
@@ -333,13 +333,13 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            session_id=dict(aliases=["id"], type="str"),
             bastion_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             session_lifecycle_state=dict(
                 type="str",
                 choices=["CREATING", "ACTIVE", "DELETING", "DELETED", "FAILED"],
             ),
+            session_id=dict(aliases=["id"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
         )

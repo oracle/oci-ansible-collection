@@ -30,7 +30,7 @@ oracle.oci.oci_database_exadata_infrastructure -- Manage an ExadataInfrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -947,7 +947,6 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         shape: shape_example
-        time_zone: time_zone_example
         cloud_control_plane_server1: cloud_control_plane_server1_example
         cloud_control_plane_server2: cloud_control_plane_server2_example
         netmask: netmask_example
@@ -956,8 +955,11 @@ Examples
         infini_band_network_cidr: infini_band_network_cidr_example
         dns_server: [ "dns_server_example" ]
         ntp_server: [ "ntp_server_example" ]
+        time_zone: time_zone_example
 
         # optional
+        storage_count: 56
+        compute_count: 56
         corporate_proxy: corporate_proxy_example
         contacts:
         - # required
@@ -982,8 +984,6 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
-        storage_count: 56
-        compute_count: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -993,7 +993,6 @@ Examples
         exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        time_zone: time_zone_example
         cloud_control_plane_server1: cloud_control_plane_server1_example
         cloud_control_plane_server2: cloud_control_plane_server2_example
         netmask: netmask_example
@@ -1024,11 +1023,12 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        additional_storage_count: 56
         dns_server: [ "dns_server_example" ]
         ntp_server: [ "ntp_server_example" ]
+        time_zone: time_zone_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        additional_storage_count: 56
 
     - name: Update exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_exadata_infrastructure:
@@ -1037,7 +1037,6 @@ Examples
         display_name: display_name_example
 
         # optional
-        time_zone: time_zone_example
         cloud_control_plane_server1: cloud_control_plane_server1_example
         cloud_control_plane_server2: cloud_control_plane_server2_example
         netmask: netmask_example
@@ -1068,11 +1067,12 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        additional_storage_count: 56
         dns_server: [ "dns_server_example" ]
         ntp_server: [ "ntp_server_example" ]
+        time_zone: time_zone_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        additional_storage_count: 56
 
     - name: Delete exadata_infrastructure
       oci_database_exadata_infrastructure:

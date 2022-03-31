@@ -30,7 +30,7 @@ oracle.oci.oci_network_ip_sec_connection -- Manage an IpSecConnection resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1168,11 +1168,6 @@ Examples
         static_routes: [ "static_routes_example" ]
 
         # optional
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
-        freeform_tags: {'Department': 'Finance'}
-        cpe_local_identifier: cpe_local_identifier_example
-        cpe_local_identifier_type: IP_ADDRESS
         tunnel_configuration:
         - # optional
           display_name: display_name_example
@@ -1211,6 +1206,11 @@ Examples
             # optional
             oracle_traffic_selector: [ "oracle_traffic_selector_example" ]
             cpe_traffic_selector: [ "cpe_traffic_selector_example" ]
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        cpe_local_identifier: cpe_local_identifier_example
+        cpe_local_identifier_type: IP_ADDRESS
 
     - name: Update ip_sec_connection
       oci_network_ip_sec_connection:

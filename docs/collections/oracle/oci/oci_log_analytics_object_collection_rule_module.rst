@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_object_collection_rule -- Manage a LogAnalyticsObje
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -661,19 +661,19 @@ Examples
     - name: Create log_analytics_object_collection_rule
       oci_log_analytics_object_collection_rule:
         # required
-        namespace_name: namespace_name_example
         name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         os_namespace: os_namespace_example
         os_bucket_name: os_bucket_name_example
         log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         log_source_name: log_source_name_example
+        namespace_name: namespace_name_example
 
         # optional
-        description: description_example
         collection_type: LIVE
         poll_since: poll_since_example
         poll_till: poll_till_example
+        description: description_example
         entity_id: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
         char_encoding: char_encoding_example
         is_enabled: true
@@ -703,9 +703,9 @@ Examples
     - name: Update log_analytics_object_collection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_log_analytics_object_collection_rule:
         # required
-        namespace_name: namespace_name_example
         name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_name: namespace_name_example
 
         # optional
         description: description_example
@@ -729,9 +729,9 @@ Examples
     - name: Delete log_analytics_object_collection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_log_analytics_object_collection_rule:
         # required
-        namespace_name: namespace_name_example
         name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_name: namespace_name_example
         state: absent
 
 

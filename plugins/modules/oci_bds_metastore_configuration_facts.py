@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    bds_instance_id:
-        description:
-            - The OCID of the cluster.
-        type: str
-        required: true
     metastore_config_id:
         description:
             - The metastore configuration ID
             - Required to get a specific bds_metastore_configuration.
         type: str
         aliases: ["id"]
+    bds_instance_id:
+        description:
+            - The OCID of the cluster.
+        type: str
+        required: true
     metastore_type:
         description:
             - The type of the metastore in the metastore configuration
@@ -94,8 +94,8 @@ EXAMPLES = """
 - name: Get a specific bds_metastore_configuration
   oci_bds_metastore_configuration_facts:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     metastore_config_id: "ocid1.metastoreconfig.oc1..xxxxxxEXAMPLExxxxxx"
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List bds_metastore_configurations
   oci_bds_metastore_configuration_facts:
@@ -253,8 +253,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            bds_instance_id=dict(type="str", required=True),
             metastore_config_id=dict(aliases=["id"], type="str"),
+            bds_instance_id=dict(type="str", required=True),
             metastore_type=dict(type="str", choices=["LOCAL", "EXTERNAL"]),
             metastore_id=dict(type="str"),
             lifecycle_state=dict(

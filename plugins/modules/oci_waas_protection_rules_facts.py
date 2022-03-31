@@ -31,16 +31,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    waas_policy_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
-        type: str
-        required: true
     protection_rule_key:
         description:
             - The protection rule key.
             - Required to get a specific protection_rules.
         type: str
+    waas_policy_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
+        type: str
+        required: true
     mod_security_rule_id:
         description:
             - Filter rules using a list of ModSecurity rule IDs.
@@ -62,8 +62,8 @@ EXAMPLES = """
 - name: Get a specific protection_rules
   oci_waas_protection_rules_facts:
     # required
-    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     protection_rule_key: protection_rule_key_example
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List protection_rules
   oci_waas_protection_rules_facts:
@@ -222,8 +222,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            waas_policy_id=dict(type="str", required=True),
             protection_rule_key=dict(type="str", no_log=True),
+            waas_policy_id=dict(type="str", required=True),
             mod_security_rule_id=dict(type="list", elements="str"),
             action=dict(
                 type="list", elements="str", choices=["OFF", "DETECT", "BLOCK"]

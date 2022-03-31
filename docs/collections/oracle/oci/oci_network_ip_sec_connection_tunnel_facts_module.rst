@@ -30,7 +30,7 @@ oracle.oci.oci_network_ip_sec_connection_tunnel_facts -- Fetches details about o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -303,8 +303,8 @@ Examples
     - name: Get a specific ip_sec_connection_tunnel
       oci_network_ip_sec_connection_tunnel_facts:
         # required
-        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
         tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List ip_sec_connection_tunnels
       oci_network_ip_sec_connection_tunnel_facts:

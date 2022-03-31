@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_container_database -- Manage an AutonomousCon
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1194,8 +1194,8 @@ Examples
     - name: Create autonomous_container_database
       oci_database_autonomous_container_database:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         patch_model: RELEASE_UPDATES
 
         # optional
@@ -1224,6 +1224,10 @@ Examples
         peer_db_unique_name: peer_db_unique_name_example
         autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         cloud_autonomous_vm_cluster_id: "ocid1.cloudautonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_window_details:
           # required
           preference: NO_PREFERENCE
@@ -1253,10 +1257,6 @@ Examples
             vpc_password: example-password
             internet_proxy: internet_proxy_example
           recovery_window_in_days: 56
-        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
-        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update autonomous_container_database
       oci_database_autonomous_container_database:
@@ -1299,8 +1299,8 @@ Examples
     - name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_container_database:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         patch_model: RELEASE_UPDATES
@@ -1343,8 +1343,8 @@ Examples
     - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_container_database:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

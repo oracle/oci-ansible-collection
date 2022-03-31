@@ -385,6 +385,13 @@ clusters:
                     returned: on success
                     type: str
                     sample: private_endpoint_example
+                vcn_hostname_endpoint:
+                    description:
+                        - "The FQDN assigned to the Kubernetes API private endpoint.
+                          Example: 'https://yourVcnHostnameEndpoint'"
+                    returned: on success
+                    type: str
+                    sample: vcn_hostname_endpoint_example
         available_kubernetes_upgrades:
             description:
                 - Available Kubernetes versions to which the clusters masters may be upgraded.
@@ -469,7 +476,8 @@ clusters:
         "endpoints": {
             "kubernetes": "kubernetes_example",
             "public_endpoint": "public_endpoint_example",
-            "private_endpoint": "private_endpoint_example"
+            "private_endpoint": "private_endpoint_example",
+            "vcn_hostname_endpoint": "vcn_hostname_endpoint_example"
         },
         "available_kubernetes_upgrades": [],
         "image_policy_config": {

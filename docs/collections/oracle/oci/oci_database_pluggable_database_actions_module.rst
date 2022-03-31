@@ -30,7 +30,7 @@ oracle.oci.oci_database_pluggable_database_actions -- Perform actions on a Plugg
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -441,10 +441,10 @@ Examples
     - name: Perform action remote_clone on pluggable_database
       oci_database_pluggable_database_actions:
         # required
-        cloned_pdb_name: cloned_pdb_name_example
-        pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
         target_container_database_id: "ocid1.targetcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         source_container_db_admin_password: example-password
+        cloned_pdb_name: cloned_pdb_name_example
+        pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: remote_clone
 
         # optional

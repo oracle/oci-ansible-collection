@@ -27,19 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    apm_domain_id:
-        description:
-            - The APM domain ID the request is intended for.
-        type: str
-        required: true
-    display_name:
-        description:
-            - Unique name that can be edited. The name should not contain any confidential information.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     monitor_type:
         description:
             - Type of monitor.
@@ -50,6 +37,14 @@ options:
             - "BROWSER"
             - "SCRIPTED_REST"
             - "REST"
+    display_name:
+        description:
+            - Unique name that can be edited. The name should not contain any confidential information.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     vantage_points:
         description:
             - A list of vantage points from which to execute the monitor.
@@ -126,61 +121,6 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            config_type:
-                description:
-                    - Type of configuration.
-                type: str
-                choices:
-                    - "SCRIPTED_REST_CONFIG"
-                    - "SCRIPTED_BROWSER_CONFIG"
-                    - "REST_CONFIG"
-                    - "BROWSER_CONFIG"
-                required: true
-            is_failure_retried:
-                description:
-                    - If isFailureRetried is enabled, then a failed call will be retried.
-                type: bool
-            network_configuration:
-                description:
-                    - ""
-                type: dict
-                suboptions:
-                    number_of_hops:
-                        description:
-                            - Number of hops.
-                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
-                        type: int
-                    probe_per_hop:
-                        description:
-                            - Number of probes per hop.
-                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
-                        type: int
-                    transmission_rate:
-                        description:
-                            - Number of probe packets sent out simultaneously.
-                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
-                        type: int
-                    protocol:
-                        description:
-                            - Type of protocol.
-                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
-                        type: str
-                        choices:
-                            - "ICMP"
-                            - "TCP"
-                    probe_mode:
-                        description:
-                            - Type of probe mode when TCP protocol is selected.
-                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
-                        type: str
-                        choices:
-                            - "SACK"
-                            - "SYN"
-            is_certificate_validation_enabled:
-                description:
-                    - If certificate validation is enabled, then the call will fail in case of certification errors.
-                    - Applicable when config_type is one of ['SCRIPTED_BROWSER_CONFIG', 'REST_CONFIG', 'BROWSER_CONFIG']
-                type: bool
             is_redirection_enabled:
                 description:
                     - If redirection enabled, then redirects will be allowed while accessing target URL.
@@ -322,6 +262,25 @@ options:
                     - Applicable when config_type is 'REST_CONFIG'
                 type: list
                 elements: str
+            config_type:
+                description:
+                    - Type of configuration.
+                type: str
+                choices:
+                    - "SCRIPTED_REST_CONFIG"
+                    - "SCRIPTED_BROWSER_CONFIG"
+                    - "REST_CONFIG"
+                    - "BROWSER_CONFIG"
+                required: true
+            is_failure_retried:
+                description:
+                    - If isFailureRetried is enabled, then a failed call will be retried.
+                type: bool
+            is_certificate_validation_enabled:
+                description:
+                    - If certificate validation is enabled, then the call will fail in case of certification errors.
+                    - Applicable when config_type is one of ['SCRIPTED_BROWSER_CONFIG', 'REST_CONFIG', 'BROWSER_CONFIG']
+                type: bool
             verify_texts:
                 description:
                     - Verify all the search strings present in response.
@@ -335,6 +294,42 @@ options:
                             - Verification text in the response.
                             - Applicable when config_type is 'BROWSER_CONFIG'
                         type: str
+            network_configuration:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    number_of_hops:
+                        description:
+                            - Number of hops.
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: int
+                    probe_per_hop:
+                        description:
+                            - Number of probes per hop.
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: int
+                    transmission_rate:
+                        description:
+                            - Number of probe packets sent out simultaneously.
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: int
+                    protocol:
+                        description:
+                            - Type of protocol.
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: str
+                        choices:
+                            - "ICMP"
+                            - "TCP"
+                    probe_mode:
+                        description:
+                            - Type of probe mode when TCP protocol is selected.
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: str
+                        choices:
+                            - "SACK"
+                            - "SYN"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -347,6 +342,11 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    apm_domain_id:
+        description:
+            - The APM domain ID the request is intended for.
+        type: str
+        required: true
     monitor_id:
         description:
             - The OCID of the monitor.
@@ -370,11 +370,11 @@ EXAMPLES = """
 - name: Create monitor
   oci_apm_synthetics_monitor:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     monitor_type: SCRIPTED_BROWSER
+    display_name: display_name_example
     vantage_points: [ "vantage_points_example" ]
     repeat_interval_in_seconds: 56
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
@@ -440,8 +440,8 @@ EXAMPLES = """
 - name: Update monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_synthetics_monitor:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     vantage_points: [ "vantage_points_example" ]
@@ -481,8 +481,8 @@ EXAMPLES = """
 - name: Delete monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_synthetics_monitor:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -1102,12 +1102,11 @@ def main():
     )
     module_args.update(
         dict(
-            apm_domain_id=dict(type="str", required=True),
-            display_name=dict(aliases=["name"], type="str"),
             monitor_type=dict(
                 type="str",
                 choices=["SCRIPTED_BROWSER", "BROWSER", "SCRIPTED_REST", "REST"],
             ),
+            display_name=dict(aliases=["name"], type="str"),
             vantage_points=dict(type="list", elements="str"),
             script_id=dict(type="str"),
             status=dict(type="str", choices=["ENABLED", "DISABLED", "INVALID"]),
@@ -1126,28 +1125,6 @@ def main():
             configuration=dict(
                 type="dict",
                 options=dict(
-                    config_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "SCRIPTED_REST_CONFIG",
-                            "SCRIPTED_BROWSER_CONFIG",
-                            "REST_CONFIG",
-                            "BROWSER_CONFIG",
-                        ],
-                    ),
-                    is_failure_retried=dict(type="bool"),
-                    network_configuration=dict(
-                        type="dict",
-                        options=dict(
-                            number_of_hops=dict(type="int"),
-                            probe_per_hop=dict(type="int"),
-                            transmission_rate=dict(type="int"),
-                            protocol=dict(type="str", choices=["ICMP", "TCP"]),
-                            probe_mode=dict(type="str", choices=["SACK", "SYN"]),
-                        ),
-                    ),
-                    is_certificate_validation_enabled=dict(type="bool"),
                     is_redirection_enabled=dict(type="bool"),
                     request_method=dict(type="str", choices=["GET", "POST"]),
                     req_authentication_scheme=dict(
@@ -1194,15 +1171,38 @@ def main():
                     request_post_body=dict(type="str"),
                     verify_response_content=dict(type="str"),
                     verify_response_codes=dict(type="list", elements="str"),
+                    config_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "SCRIPTED_REST_CONFIG",
+                            "SCRIPTED_BROWSER_CONFIG",
+                            "REST_CONFIG",
+                            "BROWSER_CONFIG",
+                        ],
+                    ),
+                    is_failure_retried=dict(type="bool"),
+                    is_certificate_validation_enabled=dict(type="bool"),
                     verify_texts=dict(
                         type="list",
                         elements="dict",
                         options=dict(text=dict(type="str")),
                     ),
+                    network_configuration=dict(
+                        type="dict",
+                        options=dict(
+                            number_of_hops=dict(type="int"),
+                            probe_per_hop=dict(type="int"),
+                            transmission_rate=dict(type="int"),
+                            protocol=dict(type="str", choices=["ICMP", "TCP"]),
+                            probe_mode=dict(type="str", choices=["SACK", "SYN"]),
+                        ),
+                    ),
                 ),
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            apm_domain_id=dict(type="str", required=True),
             monitor_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

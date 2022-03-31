@@ -30,7 +30,7 @@ oracle.oci.oci_database_vm_cluster_update_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -329,8 +329,8 @@ Examples
     - name: Get a specific vm_cluster_update
       oci_database_vm_cluster_update_facts:
         # required
-        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List vm_cluster_updates
       oci_database_vm_cluster_update_facts:

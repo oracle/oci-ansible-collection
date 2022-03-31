@@ -48,6 +48,7 @@ options:
             - "LEGACY_KUBERNETES"
             - "PUBLIC_ENDPOINT"
             - "PRIVATE_ENDPOINT"
+            - "VCN_HOSTNAME"
     state:
         description:
             - The state of the Kubeconfig.
@@ -173,7 +174,12 @@ def main():
             expiration=dict(type="int"),
             endpoint=dict(
                 type="str",
-                choices=["LEGACY_KUBERNETES", "PUBLIC_ENDPOINT", "PRIVATE_ENDPOINT"],
+                choices=[
+                    "LEGACY_KUBERNETES",
+                    "PUBLIC_ENDPOINT",
+                    "PRIVATE_ENDPOINT",
+                    "VCN_HOSTNAME",
+                ],
             ),
             state=dict(type="str", default="present", choices=["present"]),
         )

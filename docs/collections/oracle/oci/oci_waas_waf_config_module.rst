@@ -30,7 +30,7 @@ oracle.oci.oci_waas_waf_config -- Manage a WafConfig resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -3284,9 +3284,9 @@ Examples
           captcha_submit_label: captcha_submit_label_example
           response_header_manipulation:
           - # required
+            value: value_example
             action: EXTEND_HTTP_RESPONSE_HEADER
             header: header_example
-            value: value_example
         address_rate_limiting:
           # required
           is_enabled: true

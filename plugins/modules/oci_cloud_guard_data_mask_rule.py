@@ -27,6 +27,23 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    description:
+        description:
+            - The data mask rule description.
+              Avoid entering confidential information.
+        type: str
+    lifecycle_state:
+        description:
+            - The current state of the DataMaskRule.
+        type: str
+        choices:
+            - "CREATING"
+            - "UPDATING"
+            - "ACTIVE"
+            - "INACTIVE"
+            - "DELETING"
+            - "DELETED"
+            - "FAILED"
     display_name:
         description:
             - Data mask rule name.
@@ -43,11 +60,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable.
-        type: str
-    description:
-        description:
-            - The data mask rule description.
-              Avoid entering confidential information.
         type: str
     iam_group_id:
         description:
@@ -103,18 +115,6 @@ options:
         choices:
             - "ENABLED"
             - "DISABLED"
-    lifecycle_state:
-        description:
-            - The current state of the DataMaskRule.
-        type: str
-        choices:
-            - "CREATING"
-            - "UPDATING"
-            - "ACTIVE"
-            - "INACTIVE"
-            - "DELETING"
-            - "DELETED"
-            - "FAILED"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -161,8 +161,8 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    data_mask_rule_status: ENABLED
     lifecycle_state: CREATING
+    data_mask_rule_status: ENABLED
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -524,9 +524,21 @@ def main():
     )
     module_args.update(
         dict(
+            description=dict(type="str"),
+            lifecycle_state=dict(
+                type="str",
+                choices=[
+                    "CREATING",
+                    "UPDATING",
+                    "ACTIVE",
+                    "INACTIVE",
+                    "DELETING",
+                    "DELETED",
+                    "FAILED",
+                ],
+            ),
             display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
-            description=dict(type="str"),
             iam_group_id=dict(type="str"),
             target_selected=dict(
                 type="dict",
@@ -549,18 +561,6 @@ def main():
                 choices=["ACTOR", "PII", "PHI", "FINANCIAL", "LOCATION", "CUSTOM"],
             ),
             data_mask_rule_status=dict(type="str", choices=["ENABLED", "DISABLED"]),
-            lifecycle_state=dict(
-                type="str",
-                choices=[
-                    "CREATING",
-                    "UPDATING",
-                    "ACTIVE",
-                    "INACTIVE",
-                    "DELETING",
-                    "DELETED",
-                    "FAILED",
-                ],
-            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             data_mask_rule_id=dict(aliases=["id"], type="str"),

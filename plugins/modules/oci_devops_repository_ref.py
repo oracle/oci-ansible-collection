@@ -26,6 +26,26 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    object_id:
+        description:
+            - SHA-1 hash value of the object pointed to by the tag.
+            - This parameter is updatable.
+            - Required when ref_type is 'TAG'
+        type: str
+    ref_type:
+        description:
+            - The type of reference (Branch or Tag).
+            - Required for update using I(state=present) with ref_name present.
+        type: str
+        choices:
+            - "TAG"
+            - "BRANCH"
+    commit_id:
+        description:
+            - Commit ID pointed to by the new branch.
+            - This parameter is updatable.
+            - Required when ref_type is 'BRANCH'
+        type: str
     repository_id:
         description:
             - Unique repository identifier.
@@ -36,26 +56,6 @@ options:
             - A filter to return only resources that match the given reference name.
         type: str
         required: true
-    ref_type:
-        description:
-            - The type of reference (Branch or Tag).
-            - Required for update using I(state=present) with ref_name present.
-        type: str
-        choices:
-            - "TAG"
-            - "BRANCH"
-    object_id:
-        description:
-            - SHA-1 hash value of the object pointed to by the tag.
-            - This parameter is updatable.
-            - Required when ref_type is 'TAG'
-        type: str
-    commit_id:
-        description:
-            - Commit ID pointed to by the new branch.
-            - This parameter is updatable.
-            - Required when ref_type is 'BRANCH'
-        type: str
     state:
         description:
             - The state of the RepositoryRef.
@@ -72,8 +72,8 @@ EXAMPLES = """
 - name: Update repository_ref with ref_type = TAG
   oci_devops_repository_ref:
     # required
-    ref_type: TAG
     object_id: "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
+    ref_type: TAG
 
 - name: Update repository_ref with ref_type = BRANCH
   oci_devops_repository_ref:
@@ -298,11 +298,11 @@ def main():
     )
     module_args.update(
         dict(
+            object_id=dict(type="str"),
+            ref_type=dict(type="str", choices=["TAG", "BRANCH"]),
+            commit_id=dict(type="str"),
             repository_id=dict(type="str", required=True),
             ref_name=dict(type="str", required=True),
-            ref_type=dict(type="str", choices=["TAG", "BRANCH"]),
-            object_id=dict(type="str"),
-            commit_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

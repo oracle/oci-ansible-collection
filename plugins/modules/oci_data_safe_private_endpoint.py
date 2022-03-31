@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - The display name for the private endpoint. The name does not have to be unique, and it's changeable.
-            - Required for create using I(state=present), update using I(state=present) with data_safe_private_endpoint_id present.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The OCID of the compartment.
@@ -56,6 +49,13 @@ options:
         description:
             - The private IP address of the private endpoint.
         type: str
+    display_name:
+        description:
+            - The display name for the private endpoint. The name does not have to be unique, and it's changeable.
+            - Required for create using I(state=present), update using I(state=present) with data_safe_private_endpoint_id present.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+        aliases: ["name"]
     description:
         description:
             - The description of the private endpoint.
@@ -104,10 +104,10 @@ EXAMPLES = """
 - name: Create data_safe_private_endpoint
   oci_data_safe_private_endpoint:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     private_endpoint_ip: private_endpoint_ip_example
@@ -131,8 +131,8 @@ EXAMPLES = """
 - name: Update data_safe_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_private_endpoint:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -149,8 +149,8 @@ EXAMPLES = """
 - name: Delete data_safe_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_private_endpoint:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -442,11 +442,11 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
             vcn_id=dict(type="str"),
             subnet_id=dict(type="str"),
             private_endpoint_ip=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),

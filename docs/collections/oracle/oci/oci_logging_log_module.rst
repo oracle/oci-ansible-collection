@@ -30,7 +30,7 @@ oracle.oci.oci_logging_log -- Manage a Log resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -663,14 +663,15 @@ Examples
     - name: Create log
       oci_logging_log:
         # required
-        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
         log_type: CUSTOM
+        display_name: display_name_example
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         is_enabled: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
+        retention_duration: 56
         configuration:
           # required
           source:
@@ -688,7 +689,6 @@ Examples
           archiving:
             # optional
             is_enabled: true
-        retention_duration: 56
 
     - name: Update log
       oci_logging_log:
@@ -701,6 +701,7 @@ Examples
         is_enabled: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
+        retention_duration: 56
         configuration:
           # required
           source:
@@ -718,18 +719,18 @@ Examples
           archiving:
             # optional
             is_enabled: true
-        retention_duration: 56
 
     - name: Update log using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_log:
         # required
-        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         is_enabled: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
+        retention_duration: 56
         configuration:
           # required
           source:
@@ -747,7 +748,6 @@ Examples
           archiving:
             # optional
             is_enabled: true
-        retention_duration: 56
 
     - name: Delete log
       oci_logging_log:
@@ -759,8 +759,8 @@ Examples
     - name: Delete log using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_log:
         # required
-        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

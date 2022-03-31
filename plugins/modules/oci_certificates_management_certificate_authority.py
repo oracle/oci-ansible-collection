@@ -36,42 +36,32 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - A brief description of the CA.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The compartment in which you want to create the CA.
             - Required for create using I(state=present).
         type: str
-    certificate_authority_rules:
+    kms_key_id:
         description:
-            - A list of rules that control how the CA is used and managed.
+            - The OCID of the Oracle Cloud Infrastructure Vault key used to encrypt the CA.
+            - Required for create using I(state=present).
+        type: str
+    certificate_authority_id:
+        description:
+            - The OCID of the certificate authority (CA).
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
+    description:
+        description:
+            - A brief description of the CA.
             - This parameter is updatable.
-        type: list
-        elements: dict
-        suboptions:
-            rule_type:
-                description:
-                    - The type of rule, whether a renewal rule regarding when to renew the CA or an issuance expiry rule that governs how long the certificates
-                      and CAs issued by the CA are valid. (For internal use only) An internal issuance rule defines the number and type of certificates that the
-                      CA can issue.
-                type: str
-                choices:
-                    - "CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE"
-                required: true
-            leaf_certificate_max_validity_duration:
-                description:
-                    - A property indicating the maximum validity duration, in days, of leaf certificates issued by this CA.
-                      Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
-                type: str
-            certificate_authority_max_validity_duration:
-                description:
-                    - A property indicating the maximum validity duration, in days, of subordinate CA's issued by this CA.
-                      Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
-                type: str
+        type: str
+    current_version_number:
+        description:
+            - Makes this version the current version. This property cannot be updated in combination with any other properties.
+            - This parameter is updatable.
+        type: int
     certificate_authority_config:
         description:
             - ""
@@ -79,40 +69,11 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            config_type:
+            issuer_certificate_authority_id:
                 description:
-                    - The origin of the CA.
-                    - This parameter is updatable.
+                    - The OCID of the private CA.
+                    - Required when config_type is 'SUBORDINATE_CA_ISSUED_BY_INTERNAL_CA'
                 type: str
-                choices:
-                    - "ROOT_CA_GENERATED_INTERNALLY"
-                    - "SUBORDINATE_CA_ISSUED_BY_INTERNAL_CA"
-                required: true
-            version_name:
-                description:
-                    - The name of the CA version. When the value is not null, a name is unique across versions of a given CA.
-                    - This parameter is updatable.
-                type: str
-            validity:
-                description:
-                    - ""
-                type: dict
-                suboptions:
-                    time_of_validity_not_before:
-                        description:
-                            - "The date on which the certificate validity period begins, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
-                              format.
-                              Example: `2019-04-03T21:10:29.600Z`"
-                            - Applicable when config_type is 'ROOT_CA_GENERATED_INTERNALLY'
-                        type: str
-                    time_of_validity_not_after:
-                        description:
-                            - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
-                              format.
-                              Example: `2019-04-03T21:10:29.600Z`"
-                            - Required when config_type is 'ROOT_CA_GENERATED_INTERNALLY'
-                        type: str
-                        required: true
             signing_algorithm:
                 description:
                     - The algorithm used to sign public key certificates that the CA issues.
@@ -215,10 +176,19 @@ options:
                             - User ID (RDN UID).
                             - Applicable when config_type is 'ROOT_CA_GENERATED_INTERNALLY'
                         type: str
-            issuer_certificate_authority_id:
+            config_type:
                 description:
-                    - The OCID of the private CA.
-                    - Required when config_type is 'SUBORDINATE_CA_ISSUED_BY_INTERNAL_CA'
+                    - The origin of the CA.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "ROOT_CA_GENERATED_INTERNALLY"
+                    - "SUBORDINATE_CA_ISSUED_BY_INTERNAL_CA"
+                required: true
+            version_name:
+                description:
+                    - The name of the CA version. When the value is not null, a name is unique across versions of a given CA.
+                    - This parameter is updatable.
                 type: str
             stage:
                 description:
@@ -230,6 +200,26 @@ options:
                 choices:
                     - "CURRENT"
                     - "PENDING"
+            validity:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    time_of_validity_not_before:
+                        description:
+                            - "The date on which the certificate validity period begins, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
+                              format.
+                              Example: `2019-04-03T21:10:29.600Z`"
+                            - Applicable when config_type is 'ROOT_CA_GENERATED_INTERNALLY'
+                        type: str
+                    time_of_validity_not_after:
+                        description:
+                            - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
+                              format.
+                              Example: `2019-04-03T21:10:29.600Z`"
+                            - Required when config_type is 'ROOT_CA_GENERATED_INTERNALLY'
+                        type: str
+                        required: true
     certificate_revocation_list_details:
         description:
             - ""
@@ -266,11 +256,6 @@ options:
                       myCrlFileIssuedFromCAVersion{}.crl becomes myCrlFileIssuedFromCAVersion2.crl for CA version 2.
                 type: list
                 elements: str
-    kms_key_id:
-        description:
-            - The OCID of the Oracle Cloud Infrastructure Vault key used to encrypt the CA.
-            - Required for create using I(state=present).
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -283,17 +268,32 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    certificate_authority_id:
+    certificate_authority_rules:
         description:
-            - The OCID of the certificate authority (CA).
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
-    current_version_number:
-        description:
-            - Makes this version the current version. This property cannot be updated in combination with any other properties.
+            - A list of rules that control how the CA is used and managed.
             - This parameter is updatable.
-        type: int
+        type: list
+        elements: dict
+        suboptions:
+            rule_type:
+                description:
+                    - The type of rule, whether a renewal rule regarding when to renew the CA or an issuance expiry rule that governs how long the certificates
+                      and CAs issued by the CA are valid. (For internal use only) An internal issuance rule defines the number and type of certificates that the
+                      CA can issue.
+                type: str
+                choices:
+                    - "CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE"
+                required: true
+            leaf_certificate_max_validity_duration:
+                description:
+                    - A property indicating the maximum validity duration, in days, of leaf certificates issued by this CA.
+                      Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
+                type: str
+            certificate_authority_max_validity_duration:
+                description:
+                    - A property indicating the maximum validity duration, in days, of subordinate CA's issued by this CA.
+                      Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
+                type: str
     state:
         description:
             - The state of the CertificateAuthority.
@@ -311,9 +311,9 @@ EXAMPLES = """
     # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     certificate_authority_config:
       # required
-      config_type: ROOT_CA_GENERATED_INTERNALLY
       subject:
         # required
         common_name: common_name_example
@@ -335,28 +335,21 @@ EXAMPLES = """
         surname: surname_example
         title: title_example
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+      config_type: ROOT_CA_GENERATED_INTERNALLY
 
         # optional
+      signing_algorithm: SHA256_WITH_RSA
       version_name: version_name_example
+      stage: CURRENT
       validity:
         # required
         time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
         time_of_validity_not_before: time_of_validity_not_before_example
-      signing_algorithm: SHA256_WITH_RSA
-      stage: CURRENT
-    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
-    certificate_authority_rules:
-    - # required
-      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
-
-      # optional
-      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
-      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
     certificate_revocation_list_details:
       # required
       object_storage_config:
@@ -371,6 +364,13 @@ EXAMPLES = """
       custom_formatted_urls: [ "custom_formatted_urls_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    certificate_authority_rules:
+    - # required
+      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
+
+      # optional
+      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
 
 - name: Update certificate_authority
   oci_certificates_management_certificate_authority:
@@ -379,16 +379,9 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    certificate_authority_rules:
-    - # required
-      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
-
-      # optional
-      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
-      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
+    current_version_number: 56
     certificate_authority_config:
       # required
-      config_type: ROOT_CA_GENERATED_INTERNALLY
       subject:
         # required
         common_name: common_name_example
@@ -410,17 +403,18 @@ EXAMPLES = """
         surname: surname_example
         title: title_example
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+      config_type: ROOT_CA_GENERATED_INTERNALLY
 
         # optional
+      signing_algorithm: SHA256_WITH_RSA
       version_name: version_name_example
+      stage: CURRENT
       validity:
         # required
         time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
         time_of_validity_not_before: time_of_validity_not_before_example
-      signing_algorithm: SHA256_WITH_RSA
-      stage: CURRENT
     certificate_revocation_list_details:
       # required
       object_storage_config:
@@ -435,7 +429,13 @@ EXAMPLES = """
       custom_formatted_urls: [ "custom_formatted_urls_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    current_version_number: 56
+    certificate_authority_rules:
+    - # required
+      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
+
+      # optional
+      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
 
 - name: Update certificate_authority using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_certificates_management_certificate_authority:
@@ -444,16 +444,9 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    certificate_authority_rules:
-    - # required
-      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
-
-      # optional
-      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
-      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
+    current_version_number: 56
     certificate_authority_config:
       # required
-      config_type: ROOT_CA_GENERATED_INTERNALLY
       subject:
         # required
         common_name: common_name_example
@@ -475,17 +468,18 @@ EXAMPLES = """
         surname: surname_example
         title: title_example
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+      config_type: ROOT_CA_GENERATED_INTERNALLY
 
         # optional
+      signing_algorithm: SHA256_WITH_RSA
       version_name: version_name_example
+      stage: CURRENT
       validity:
         # required
         time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
         time_of_validity_not_before: time_of_validity_not_before_example
-      signing_algorithm: SHA256_WITH_RSA
-      stage: CURRENT
     certificate_revocation_list_details:
       # required
       object_storage_config:
@@ -500,7 +494,13 @@ EXAMPLES = """
       custom_formatted_urls: [ "custom_formatted_urls_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    current_version_number: 56
+    certificate_authority_rules:
+    - # required
+      rule_type: CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE
+
+      # optional
+      leaf_certificate_max_validity_duration: leaf_certificate_max_validity_duration_example
+      certificate_authority_max_validity_duration: certificate_authority_max_validity_duration_example
 
 """
 
@@ -1093,40 +1093,15 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
-            certificate_authority_rules=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    rule_type=dict(
-                        type="str",
-                        required=True,
-                        choices=["CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE"],
-                    ),
-                    leaf_certificate_max_validity_duration=dict(type="str"),
-                    certificate_authority_max_validity_duration=dict(type="str"),
-                ),
-            ),
+            kms_key_id=dict(type="str"),
+            certificate_authority_id=dict(aliases=["id"], type="str"),
+            description=dict(type="str"),
+            current_version_number=dict(type="int"),
             certificate_authority_config=dict(
                 type="dict",
                 options=dict(
-                    config_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "ROOT_CA_GENERATED_INTERNALLY",
-                            "SUBORDINATE_CA_ISSUED_BY_INTERNAL_CA",
-                        ],
-                    ),
-                    version_name=dict(type="str"),
-                    validity=dict(
-                        type="dict",
-                        options=dict(
-                            time_of_validity_not_before=dict(type="str"),
-                            time_of_validity_not_after=dict(type="str", required=True),
-                        ),
-                    ),
+                    issuer_certificate_authority_id=dict(type="str"),
                     signing_algorithm=dict(
                         type="str",
                         choices=[
@@ -1160,8 +1135,23 @@ def main():
                             user_id=dict(type="str"),
                         ),
                     ),
-                    issuer_certificate_authority_id=dict(type="str"),
+                    config_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "ROOT_CA_GENERATED_INTERNALLY",
+                            "SUBORDINATE_CA_ISSUED_BY_INTERNAL_CA",
+                        ],
+                    ),
+                    version_name=dict(type="str"),
                     stage=dict(type="str", choices=["CURRENT", "PENDING"]),
+                    validity=dict(
+                        type="dict",
+                        options=dict(
+                            time_of_validity_not_before=dict(type="str"),
+                            time_of_validity_not_after=dict(type="str", required=True),
+                        ),
+                    ),
                 ),
             ),
             certificate_revocation_list_details=dict(
@@ -1181,11 +1171,21 @@ def main():
                     custom_formatted_urls=dict(type="list", elements="str"),
                 ),
             ),
-            kms_key_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            certificate_authority_id=dict(aliases=["id"], type="str"),
-            current_version_number=dict(type="int"),
+            certificate_authority_rules=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    rule_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["CERTIFICATE_AUTHORITY_ISSUANCE_EXPIRY_RULE"],
+                    ),
+                    leaf_certificate_max_validity_duration=dict(type="str"),
+                    certificate_authority_max_validity_duration=dict(type="str"),
+                ),
+            ),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

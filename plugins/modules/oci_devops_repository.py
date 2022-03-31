@@ -28,6 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    project_id:
+        description:
+            - The OCID of the DevOps project containing the repository.
+            - Required for create using I(state=present).
+        type: str
     name:
         description:
             - Unique name of a repository.
@@ -35,10 +40,10 @@ options:
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
-    project_id:
+    description:
         description:
-            - The OCID of the DevOps project containing the repository.
-            - Required for create using I(state=present).
+            - Details of the repository. Avoid entering confidential information.
+            - This parameter is updatable.
         type: str
     default_branch:
         description:
@@ -89,11 +94,6 @@ options:
                               window.
                               You can control the start time with BYHOUR, BYMINUTE and BYSECONDS. It is followed by the interval size.
                         type: str
-    description:
-        description:
-            - Details of the repository. Avoid entering confidential information.
-            - This parameter is updatable.
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -129,10 +129,11 @@ EXAMPLES = """
 - name: Create repository
   oci_devops_repository:
     # required
-    name: name_example
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
+    description: description_example
     default_branch: default_branch_example
     repository_type: repository_type_example
     mirror_repository_config:
@@ -145,7 +146,6 @@ EXAMPLES = """
 
         # optional
         custom_schedule: custom_schedule_example
-    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -156,6 +156,7 @@ EXAMPLES = """
 
     # optional
     name: name_example
+    description: description_example
     default_branch: default_branch_example
     repository_type: repository_type_example
     mirror_repository_config:
@@ -168,7 +169,6 @@ EXAMPLES = """
 
         # optional
         custom_schedule: custom_schedule_example
-    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -178,6 +178,7 @@ EXAMPLES = """
     name: name_example
 
     # optional
+    description: description_example
     default_branch: default_branch_example
     repository_type: repository_type_example
     mirror_repository_config:
@@ -190,7 +191,6 @@ EXAMPLES = """
 
         # optional
         custom_schedule: custom_schedule_example
-    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -575,8 +575,9 @@ def main():
     )
     module_args.update(
         dict(
-            name=dict(type="str"),
             project_id=dict(type="str"),
+            name=dict(type="str"),
+            description=dict(type="str"),
             default_branch=dict(type="str"),
             repository_type=dict(type="str"),
             mirror_repository_config=dict(
@@ -597,7 +598,6 @@ def main():
                     ),
                 ),
             ),
-            description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             repository_id=dict(aliases=["id"], type="str"),

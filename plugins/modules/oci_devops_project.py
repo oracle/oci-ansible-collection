@@ -34,6 +34,13 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    compartment_id:
+        description:
+            - The OCID of the compartment where the project is created.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     description:
         description:
             - Project description.
@@ -51,13 +58,6 @@ options:
                     - The topic ID for notifications.
                 type: str
                 required: true
-    compartment_id:
-        description:
-            - The OCID of the compartment where the project is created.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -94,10 +94,10 @@ EXAMPLES = """
   oci_devops_project:
     # required
     name: name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     notification_config:
       # required
       topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
@@ -412,11 +412,11 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str"),
+            compartment_id=dict(type="str"),
             description=dict(type="str"),
             notification_config=dict(
                 type="dict", options=dict(topic_id=dict(type="str", required=True))
             ),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             project_id=dict(aliases=["id"], type="str"),

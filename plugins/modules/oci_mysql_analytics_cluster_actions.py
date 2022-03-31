@@ -34,12 +34,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    db_system_id:
-        description:
-            - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        aliases: ["id"]
-        required: true
     shape_name:
         description:
             - "The shape determines resources to allocate to the Analytics
@@ -52,6 +46,12 @@ options:
               Analytics Cluster.
             - Required for I(action=add).
         type: int
+    db_system_id:
+        description:
+            - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the AnalyticsCluster.
@@ -69,9 +69,9 @@ EXAMPLES = """
 - name: Perform action add on analytics_cluster
   oci_mysql_analytics_cluster_actions:
     # required
-    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
     cluster_size: 56
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: add
 
 - name: Perform action restart on analytics_cluster
@@ -325,9 +325,9 @@ def main():
     )
     module_args.update(
         dict(
-            db_system_id=dict(aliases=["id"], type="str", required=True),
             shape_name=dict(type="str"),
             cluster_size=dict(type="int"),
+            db_system_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str", required=True, choices=["add", "restart", "start", "stop"]
             ),

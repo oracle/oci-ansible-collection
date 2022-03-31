@@ -32,6 +32,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    type:
+        description:
+            - The type of backup to create. If omitted, defaults to INCREMENTAL.
+        type: str
+        choices:
+            - "FULL"
+            - "INCREMENTAL"
+    volume_id:
+        description:
+            - The OCID of the volume that needs to be backed up.
+            - Required for create using I(state=present).
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -55,18 +67,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    type:
-        description:
-            - The type of backup to create. If omitted, defaults to INCREMENTAL.
-        type: str
-        choices:
-            - "FULL"
-            - "INCREMENTAL"
-    volume_id:
-        description:
-            - The OCID of the volume that needs to be backed up.
-            - Required for create using I(state=present).
-        type: str
     volume_backup_id:
         description:
             - The OCID of the volume backup.
@@ -100,10 +100,10 @@ EXAMPLES = """
     volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    type: FULL
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    type: FULL
 
 - name: Update volume_backup
   oci_blockstorage_volume_backup:
@@ -455,11 +455,11 @@ def main():
     )
     module_args.update(
         dict(
+            type=dict(type="str", choices=["FULL", "INCREMENTAL"]),
+            volume_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            type=dict(type="str", choices=["FULL", "INCREMENTAL"]),
-            volume_id=dict(type="str"),
             volume_backup_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

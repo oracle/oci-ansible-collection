@@ -30,7 +30,7 @@ oracle.oci.oci_devops_repository_ref -- Manage a RepositoryRef resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -393,8 +393,8 @@ Examples
     - name: Update repository_ref with ref_type = TAG
       oci_devops_repository_ref:
         # required
-        ref_type: TAG
         object_id: "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
+        ref_type: TAG
 
     - name: Update repository_ref with ref_type = BRANCH
       oci_devops_repository_ref:

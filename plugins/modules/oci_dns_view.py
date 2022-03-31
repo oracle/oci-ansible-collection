@@ -56,14 +56,6 @@ options:
             - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
-    scope:
-        description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
     view_id:
         description:
             - The OCID of the target view.
@@ -80,6 +72,14 @@ options:
               agent does not have an entity-tag for the representation.
             - This parameter is updatable.
         type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     state:
         description:
             - The state of the View.
@@ -113,8 +113,8 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Update view using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_view:
@@ -125,8 +125,8 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Delete view
   oci_dns_view:
@@ -135,8 +135,8 @@ EXAMPLES = """
     state: absent
 
     # optional
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Delete view using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_view:
@@ -429,9 +429,9 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             view_id=dict(aliases=["id"], type="str"),
             if_unmodified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

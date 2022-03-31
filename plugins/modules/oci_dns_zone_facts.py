@@ -42,17 +42,6 @@ options:
               recent than the date provided in the field-value.  Transfer of the
               selected representation's data is avoided if that data has not changed.
         type: str
-    scope:
-        description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
-    view_id:
-        description:
-            - The OCID of the view the resource is associated with.
-        type: str
     compartment_id:
         description:
             - The OCID of the compartment the resource belongs to.
@@ -113,6 +102,17 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
+    view_id:
+        description:
+            - The OCID of the view the resource is associated with.
+        type: str
     tsig_key_id:
         description:
             - Search for zones that are associated with a TSIG key.
@@ -128,9 +128,9 @@ EXAMPLES = """
 
     # optional
     if_modified_since: if_modified_since_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     scope: GLOBAL
     view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List zones
   oci_dns_zone_facts:
@@ -138,8 +138,6 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    scope: GLOBAL
-    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     name_contains: name_contains_example
     zone_type: PRIMARY
@@ -148,6 +146,8 @@ EXAMPLES = """
     lifecycle_state: ACTIVE
     sort_by: name
     sort_order: ASC
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
     tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -441,8 +441,6 @@ def main():
         dict(
             zone_name_or_id=dict(aliases=["zone_id", "id"], type="str"),
             if_modified_since=dict(type="str"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
-            view_id=dict(type="str"),
             compartment_id=dict(type="str"),
             name=dict(aliases=["zone_name"], type="str"),
             name_contains=dict(type="str"),
@@ -462,6 +460,8 @@ def main():
             ),
             sort_by=dict(type="str", choices=["name", "zoneType", "timeCreated"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            view_id=dict(type="str"),
             tsig_key_id=dict(type="str"),
         )
     )

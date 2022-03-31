@@ -365,6 +365,32 @@ backup:
                             returned: on success
                             type: str
                             sample: window_start_time_example
+                deletion_policy:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        automatic_backup_retention:
+                            description:
+                                - Specifies if any automatic backups created for a DB System should be retained or deleted when the DB System is deleted.
+                            returned: on success
+                            type: str
+                            sample: DELETE
+                        final_backup:
+                            description:
+                                - "Specifies whether or not a backup is taken when the DB System is deleted.
+                                    REQUIRE_FINAL_BACKUP: a backup is taken if the DB System is deleted.
+                                    SKIP_FINAL_BACKUP: a backup is not taken if the DB System is deleted."
+                            returned: on success
+                            type: str
+                            sample: SKIP_FINAL_BACKUP
+                        is_delete_protected:
+                            description:
+                                - Specifies whether the DB System can be deleted. Set to true to prevent deletion, false (default) to allow.
+                            returned: on success
+                            type: bool
+                            sample: true
                 freeform_tags:
                     description:
                         - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -478,6 +504,11 @@ backup:
             }],
             "maintenance": {
                 "window_start_time": "window_start_time_example"
+            },
+            "deletion_policy": {
+                "automatic_backup_retention": "DELETE",
+                "final_backup": "SKIP_FINAL_BACKUP",
+                "is_delete_protected": true
             },
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}},

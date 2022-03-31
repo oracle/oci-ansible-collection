@@ -38,6 +38,28 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    change_parameters:
+        description:
+            - A list of database parameters and their values.
+            - Required for I(action=change).
+        type: list
+        elements: dict
+        suboptions:
+            name:
+                description:
+                    - The parameter name.
+                type: str
+                required: true
+            value:
+                description:
+                    - The parameter value.
+                type: str
+                required: true
+            update_comment:
+                description:
+                    - A comment string to associate with the change in parameter value.
+                      It cannot contain control characters or a line break.
+                type: str
     managed_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
@@ -84,28 +106,6 @@ options:
             - "SPFILE"
             - "BOTH"
         required: true
-    change_parameters:
-        description:
-            - A list of database parameters and their values.
-            - Required for I(action=change).
-        type: list
-        elements: dict
-        suboptions:
-            name:
-                description:
-                    - The parameter name.
-                type: str
-                required: true
-            value:
-                description:
-                    - The parameter value.
-                type: str
-                required: true
-            update_comment:
-                description:
-                    - A comment string to associate with the change in parameter value.
-                      It cannot contain control characters or a line break.
-                type: str
     reset_parameters:
         description:
             - A list of database parameter names.
@@ -127,6 +127,13 @@ EXAMPLES = """
 - name: Perform action change on database_parameter
   oci_database_management_database_parameter_actions:
     # required
+    change_parameters:
+    - # required
+      name: name_example
+      value: value_example
+
+      # optional
+      update_comment: update_comment_example
     managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     credentials:
       # optional
@@ -135,13 +142,6 @@ EXAMPLES = """
       secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
       role: NORMAL
     scope: MEMORY
-    change_parameters:
-    - # required
-      name: name_example
-      value: value_example
-
-      # optional
-      update_comment: update_comment_example
     action: change
 
 - name: Perform action reset on database_parameter
@@ -300,6 +300,15 @@ def main():
     )
     module_args.update(
         dict(
+            change_parameters=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    name=dict(type="str", required=True),
+                    value=dict(type="str", required=True),
+                    update_comment=dict(type="str"),
+                ),
+            ),
             managed_database_id=dict(aliases=["id"], type="str", required=True),
             credentials=dict(
                 type="dict",
@@ -312,15 +321,6 @@ def main():
                 ),
             ),
             scope=dict(type="str", required=True, choices=["MEMORY", "SPFILE", "BOTH"]),
-            change_parameters=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    name=dict(type="str", required=True),
-                    value=dict(type="str", required=True),
-                    update_comment=dict(type="str"),
-                ),
-            ),
             reset_parameters=dict(type="list", elements="str"),
             action=dict(type="str", required=True, choices=["change", "reset"]),
         )

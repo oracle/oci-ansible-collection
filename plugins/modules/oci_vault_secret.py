@@ -35,6 +35,34 @@ options:
             - The OCID of the compartment where you want to create the secret.
             - Required for create using I(state=present).
         type: str
+    key_id:
+        description:
+            - The OCID of the master encryption key that is used to encrypt the secret.
+        type: str
+    secret_name:
+        description:
+            - A user-friendly name for the secret. Secret names should be unique within a vault. Avoid entering confidential information. Valid characters are
+              uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
+            - Required for create using I(state=present).
+        type: str
+    vault_id:
+        description:
+            - The OCID of the vault where you want to create the secret.
+            - Required for create using I(state=present).
+        type: str
+    secret_id:
+        description:
+            - The OCID of the secret.
+            - Required for update using I(state=present).
+        type: str
+        aliases: ["id"]
+    current_version_number:
+        description:
+            - Details to update the secret version of the specified secret. The secret contents,
+              version number, and rules can't be specified at the same time.
+              Updating the secret contents automatically creates a new secret version.
+            - This parameter is updatable.
+        type: int
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -54,10 +82,6 @@ options:
               Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    key_id:
-        description:
-            - The OCID of the master encryption key that is used to encrypt the secret.
-        type: str
     metadata:
         description:
             - Additional metadata that you can use to provide context about how to use the secret during rotation or
@@ -98,12 +122,6 @@ options:
                 description:
                     - The base64-encoded content of the secret.
                 type: str
-    secret_name:
-        description:
-            - A user-friendly name for the secret. Secret names should be unique within a vault. Avoid entering confidential information. Valid characters are
-              uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
-            - Required for create using I(state=present).
-        type: str
     secret_rules:
         description:
             - A list of rules to control how the secret is used and managed.
@@ -111,14 +129,6 @@ options:
         type: list
         elements: dict
         suboptions:
-            rule_type:
-                description:
-                    - The type of rule, which either controls when the secret contents expire or whether they can be reused.
-                type: str
-                choices:
-                    - "SECRET_EXPIRY_RULE"
-                    - "SECRET_REUSE_RULE"
-                required: true
             secret_version_expiry_interval:
                 description:
                     - A property indicating how long the secret contents will be considered valid, expressed in
@@ -145,29 +155,19 @@ options:
                       you need to edit the secret rule to disable this property, to allow reading the secret content.
                     - Applicable when rule_type is 'SECRET_EXPIRY_RULE'
                 type: bool
+            rule_type:
+                description:
+                    - The type of rule, which either controls when the secret contents expire or whether they can be reused.
+                type: str
+                choices:
+                    - "SECRET_EXPIRY_RULE"
+                    - "SECRET_REUSE_RULE"
+                required: true
             is_enforced_on_deleted_secret_versions:
                 description:
                     - A property indicating whether the rule is applied even if the secret version with the content you are trying to reuse was deleted.
                     - Applicable when rule_type is 'SECRET_REUSE_RULE'
                 type: bool
-    vault_id:
-        description:
-            - The OCID of the vault where you want to create the secret.
-            - Required for create using I(state=present).
-        type: str
-    secret_id:
-        description:
-            - The OCID of the secret.
-            - Required for update using I(state=present).
-        type: str
-        aliases: ["id"]
-    current_version_number:
-        description:
-            - Details to update the secret version of the specified secret. The secret contents,
-              version number, and rules can't be specified at the same time.
-              Updating the secret contents automatically creates a new secret version.
-            - This parameter is updatable.
-        type: int
     state:
         description:
             - The state of the Secret.
@@ -184,6 +184,8 @@ EXAMPLES = """
   oci_vault_secret:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_name: secret_name_example
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     secret_content:
       # required
       content_type: BASE64
@@ -192,14 +194,12 @@ EXAMPLES = """
       name: name_example
       stage: CURRENT
       content: content_example
-    secret_name: secret_name_example
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
     freeform_tags: {'Department': 'Finance'}
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     metadata: null
     secret_rules:
     - # required
@@ -216,6 +216,7 @@ EXAMPLES = """
     secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    current_version_number: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -236,7 +237,6 @@ EXAMPLES = """
       secret_version_expiry_interval: secret_version_expiry_interval_example
       time_of_absolute_expiry: time_of_absolute_expiry_example
       is_secret_content_retrieval_blocked_on_expiry: true
-    current_version_number: 56
 
 """
 
@@ -563,10 +563,14 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            key_id=dict(type="str"),
+            secret_name=dict(type="str"),
+            vault_id=dict(type="str"),
+            secret_id=dict(aliases=["id"], type="str"),
+            current_version_number=dict(type="int"),
             defined_tags=dict(type="dict"),
             description=dict(type="str"),
             freeform_tags=dict(type="dict"),
-            key_id=dict(type="str"),
             metadata=dict(type="dict"),
             secret_content=dict(
                 type="dict",
@@ -578,30 +582,26 @@ def main():
                     content=dict(type="str"),
                 ),
             ),
-            secret_name=dict(type="str"),
             secret_rules=dict(
                 type="list",
                 elements="dict",
                 no_log=False,
                 options=dict(
-                    rule_type=dict(
-                        type="str",
-                        required=True,
-                        choices=["SECRET_EXPIRY_RULE", "SECRET_REUSE_RULE"],
-                    ),
                     secret_version_expiry_interval=dict(type="str", no_log=True),
                     time_of_absolute_expiry=dict(type="str"),
                     is_secret_content_retrieval_blocked_on_expiry=dict(
                         type="bool", no_log=True
+                    ),
+                    rule_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["SECRET_EXPIRY_RULE", "SECRET_REUSE_RULE"],
                     ),
                     is_enforced_on_deleted_secret_versions=dict(
                         type="bool", no_log=True
                     ),
                 ),
             ),
-            vault_id=dict(type="str"),
-            secret_id=dict(aliases=["id"], type="str"),
-            current_version_number=dict(type="int"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

@@ -30,7 +30,7 @@ oracle.oci.oci_identity_tag_actions -- Perform actions on a Tag resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -486,7 +486,6 @@ Examples
     - name: Perform action bulk_edit on tag
       oci_identity_tag_actions:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resources:
         - # required
           id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -498,6 +497,7 @@ Examples
         - # required
           operation_type: ADD_WHERE_ABSENT
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: bulk_edit
 
     - name: Perform action import_standard_tags on tag

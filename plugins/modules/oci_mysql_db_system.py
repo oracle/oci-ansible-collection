@@ -28,6 +28,37 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    source:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            backup_id:
+                description:
+                    - The OCID of the backup to be used as the source for the new DB System.
+                    - Required when source_type is 'BACKUP'
+                type: str
+            source_type:
+                description:
+                    - The specific source identifier.
+                type: str
+                choices:
+                    - "BACKUP"
+                    - "NONE"
+                    - "IMPORTURL"
+                default: "NONE"
+            source_url:
+                description:
+                    - The Pre-Authenticated Request (PAR) URL of the file you want to import from Object Storage.
+                    - Required when source_type is 'IMPORTURL'
+                type: str
     display_name:
         description:
             - The user-friendly name for the DB System. It does not have to be unique.
@@ -40,12 +71,11 @@ options:
             - User-provided data about the DB System.
             - This parameter is updatable.
         type: str
-    compartment_id:
+    subnet_id:
         description:
-            - The OCID of the compartment.
+            - The OCID of the subnet the DB System is associated with.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable.
         type: str
     is_highly_available:
         description:
@@ -75,11 +105,6 @@ options:
             - For a standalone DB System, this defines the fault domain in which the DB System is placed.
             - This parameter is updatable.
         type: str
-    configuration_id:
-        description:
-            - The OCID of the Configuration to be used for this DB System.
-            - This parameter is updatable.
-        type: str
     shape_name:
         description:
             - "The name of the shape. The shape determines the resources allocated
@@ -94,16 +119,14 @@ options:
             - The specific MySQL version identifier.
             - This parameter is updatable.
         type: str
-    subnet_id:
+    configuration_id:
         description:
-            - The OCID of the subnet the DB System is associated with.
-            - Required for create using I(state=present).
+            - The OCID of the Configuration to be used for this DB System.
             - This parameter is updatable.
         type: str
     admin_username:
         description:
             - The username for the administrative user.
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     admin_password:
@@ -112,7 +135,6 @@ options:
               between 8 and 32 characters long, and must contain at least 1
               numeric character, 1 lowercase character, 1 uppercase character, and
               1 special (nonalphanumeric) character.
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     data_storage_size_in_gbs:
@@ -187,30 +209,6 @@ options:
                     - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
                     - This parameter is updatable.
                 type: dict
-    source:
-        description:
-            - ""
-        type: dict
-        suboptions:
-            source_type:
-                description:
-                    - The specific source identifier.
-                type: str
-                choices:
-                    - "BACKUP"
-                    - "NONE"
-                    - "IMPORTURL"
-                default: "NONE"
-            backup_id:
-                description:
-                    - The OCID of the backup to be used as the source for the new DB System.
-                    - Required when source_type is 'BACKUP'
-                type: str
-            source_url:
-                description:
-                    - The Pre-Authenticated Request (PAR) URL of the file you want to import from Object Storage.
-                    - Required when source_type is 'IMPORTURL'
-                type: str
     maintenance:
         description:
             - ""
@@ -238,6 +236,35 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    deletion_policy:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            automatic_backup_retention:
+                description:
+                    - Specifies if any automatic backups created for a DB System should be retained or deleted when the DB System is deleted.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "DELETE"
+                    - "RETAIN"
+            final_backup:
+                description:
+                    - "Specifies whether or not a backup is taken when the DB System is deleted.
+                        REQUIRE_FINAL_BACKUP: a backup is taken if the DB System is deleted.
+                        SKIP_FINAL_BACKUP: a backup is not taken if the DB System is deleted."
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "SKIP_FINAL_BACKUP"
+                    - "REQUIRE_FINAL_BACKUP"
+            is_delete_protected:
+                description:
+                    - Specifies whether the DB System can be deleted. Set to true to prevent deletion, false (default) to allow.
+                    - This parameter is updatable.
+                type: bool
     crash_recovery:
         description:
             - Whether to run the DB System with InnoDB Redo Logs and the Double Write Buffer enabled or disabled,
@@ -271,19 +298,23 @@ EXAMPLES = """
   oci_mysql_db_system:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    shape_name: shape_name_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    admin_username: admin_username_example
-    admin_password: example-password
+    shape_name: shape_name_example
 
     # optional
+    source:
+      # required
+      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+      source_type: BACKUP
     display_name: display_name_example
     description: description_example
     is_highly_available: true
     availability_domain: Uocm:PHX-AD-1
     fault_domain: FAULT-DOMAIN-1
-    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     mysql_version: mysql_version_example
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
+    admin_username: admin_username_example
+    admin_password: example-password
     data_storage_size_in_gbs: 56
     hostname_label: hostname_label_example
     ip_address: ip_address_example
@@ -296,15 +327,16 @@ EXAMPLES = """
       retention_in_days: 56
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    source:
-      # required
-      source_type: BACKUP
-      backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
     maintenance:
       # optional
       window_start_time: window_start_time_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    deletion_policy:
+      # optional
+      automatic_backup_retention: DELETE
+      final_backup: SKIP_FINAL_BACKUP
+      is_delete_protected: true
     crash_recovery: ENABLED
 
 - name: Update db_system
@@ -315,13 +347,13 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_highly_available: true
     availability_domain: Uocm:PHX-AD-1
     fault_domain: FAULT-DOMAIN-1
-    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
     mysql_version: mysql_version_example
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     admin_username: admin_username_example
     admin_password: example-password
     data_storage_size_in_gbs: 56
@@ -341,23 +373,28 @@ EXAMPLES = """
       window_start_time: window_start_time_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    deletion_policy:
+      # optional
+      automatic_backup_retention: DELETE
+      final_backup: SKIP_FINAL_BACKUP
+      is_delete_protected: true
     crash_recovery: ENABLED
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_highly_available: true
     availability_domain: Uocm:PHX-AD-1
     fault_domain: FAULT-DOMAIN-1
-    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
     mysql_version: mysql_version_example
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     admin_username: admin_username_example
     admin_password: example-password
     data_storage_size_in_gbs: 56
@@ -377,6 +414,11 @@ EXAMPLES = """
       window_start_time: window_start_time_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    deletion_policy:
+      # optional
+      automatic_backup_retention: DELETE
+      final_backup: SKIP_FINAL_BACKUP
+      is_delete_protected: true
     crash_recovery: ENABLED
 
 - name: Delete db_system
@@ -388,8 +430,8 @@ EXAMPLES = """
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -925,6 +967,32 @@ db_system:
                     returned: on success
                     type: str
                     sample: window_start_time_example
+        deletion_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                automatic_backup_retention:
+                    description:
+                        - Specifies if any automatic backups created for a DB System should be retained or deleted when the DB System is deleted.
+                    returned: on success
+                    type: str
+                    sample: DELETE
+                final_backup:
+                    description:
+                        - "Specifies whether or not a backup is taken when the DB System is deleted.
+                            REQUIRE_FINAL_BACKUP: a backup is taken if the DB System is deleted.
+                            SKIP_FINAL_BACKUP: a backup is not taken if the DB System is deleted."
+                    returned: on success
+                    type: str
+                    sample: SKIP_FINAL_BACKUP
+                is_delete_protected:
+                    description:
+                        - Specifies whether the DB System can be deleted. Set to true to prevent deletion, false (default) to allow.
+                    returned: on success
+                    type: bool
+                    sample: true
         time_created:
             description:
                 - The date and time the DB System was created.
@@ -1048,6 +1116,11 @@ db_system:
         "lifecycle_details": "lifecycle_details_example",
         "maintenance": {
             "window_start_time": "window_start_time_example"
+        },
+        "deletion_policy": {
+            "automatic_backup_retention": "DELETE",
+            "final_backup": "SKIP_FINAL_BACKUP",
+            "is_delete_protected": true
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
@@ -1218,16 +1291,28 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            source=dict(
+                type="dict",
+                options=dict(
+                    backup_id=dict(type="str"),
+                    source_type=dict(
+                        type="str",
+                        default="NONE",
+                        choices=["BACKUP", "NONE", "IMPORTURL"],
+                    ),
+                    source_url=dict(type="str"),
+                ),
+            ),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
+            subnet_id=dict(type="str"),
             is_highly_available=dict(type="bool"),
             availability_domain=dict(type="str"),
             fault_domain=dict(type="str"),
-            configuration_id=dict(type="str"),
             shape_name=dict(type="str"),
             mysql_version=dict(type="str"),
-            subnet_id=dict(type="str"),
+            configuration_id=dict(type="str"),
             admin_username=dict(type="str"),
             admin_password=dict(type="str", no_log=True),
             data_storage_size_in_gbs=dict(type="int"),
@@ -1245,23 +1330,24 @@ def main():
                     defined_tags=dict(type="dict"),
                 ),
             ),
-            source=dict(
-                type="dict",
-                options=dict(
-                    source_type=dict(
-                        type="str",
-                        default="NONE",
-                        choices=["BACKUP", "NONE", "IMPORTURL"],
-                    ),
-                    backup_id=dict(type="str"),
-                    source_url=dict(type="str"),
-                ),
-            ),
             maintenance=dict(
                 type="dict", options=dict(window_start_time=dict(type="str"))
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            deletion_policy=dict(
+                type="dict",
+                options=dict(
+                    automatic_backup_retention=dict(
+                        type="str", choices=["DELETE", "RETAIN"]
+                    ),
+                    final_backup=dict(
+                        type="str",
+                        choices=["SKIP_FINAL_BACKUP", "REQUIRE_FINAL_BACKUP"],
+                    ),
+                    is_delete_protected=dict(type="bool"),
+                ),
+            ),
             crash_recovery=dict(type="str", choices=["ENABLED", "DISABLED"]),
             db_system_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

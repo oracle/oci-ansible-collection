@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - WebAppFirewall display name, can be renamed.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     backend_type:
         description:
             - Type of the WebAppFirewall, as example LOAD_BALANCER.
@@ -49,6 +42,18 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    load_balancer_id:
+        description:
+            - LoadBalancer L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) to which the WebAppFirewallPolicy is attached to.
+            - Required for create using I(state=present).
+        type: str
+    display_name:
+        description:
+            - WebAppFirewall display name, can be renamed.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     web_app_firewall_policy_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of WebAppFirewallPolicy, which is attached to the resource.
@@ -73,11 +78,6 @@ options:
               Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
             - This parameter is updatable.
         type: dict
-    load_balancer_id:
-        description:
-            - LoadBalancer L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) to which the WebAppFirewallPolicy is attached to.
-            - Required for create using I(state=present).
-        type: str
     web_app_firewall_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WebAppFirewall.
@@ -103,8 +103,8 @@ EXAMPLES = """
     # required
     backend_type: LOAD_BALANCER
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     display_name: display_name_example
@@ -127,8 +127,8 @@ EXAMPLES = """
 - name: Update web_app_firewall using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waf_web_app_firewall:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
@@ -145,8 +145,8 @@ EXAMPLES = """
 - name: Delete web_app_firewall using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waf_web_app_firewall:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -412,14 +412,14 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             backend_type=dict(type="str", choices=["LOAD_BALANCER"]),
             compartment_id=dict(type="str"),
+            load_balancer_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             web_app_firewall_policy_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             system_tags=dict(type="dict"),
-            load_balancer_id=dict(type="str"),
             web_app_firewall_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

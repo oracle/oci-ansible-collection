@@ -28,6 +28,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    agreement_id:
+        description:
+            - The unique identifier for the agreement.
+            - Required to get a specific agreement.
+        type: str
+        aliases: ["id"]
     listing_id:
         description:
             - The unique identifier for the listing.
@@ -38,12 +44,6 @@ options:
             - The version of the package. Package versions are unique within a listing.
         type: str
         required: true
-    agreement_id:
-        description:
-            - The unique identifier for the agreement.
-            - Required to get a specific agreement.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The unique identifier for the compartment.
@@ -55,9 +55,9 @@ EXAMPLES = """
 - name: Get a specific agreement
   oci_marketplace_agreement_facts:
     # required
+    agreement_id: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
-    agreement_id: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -205,9 +205,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            agreement_id=dict(aliases=["id"], type="str"),
             listing_id=dict(type="str", required=True),
             package_version=dict(type="str", required=True),
-            agreement_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
         )
     )

@@ -28,35 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    catalog_id:
-        description:
-            - Unique catalog identifier.
-        type: str
-        required: true
     data_asset_key:
         description:
             - Unique data asset key.
             - Required to get a specific data_asset.
         type: str
-    fields:
+    catalog_id:
         description:
-            - Specifies the fields to return in a data asset response.
-        type: list
-        elements: str
-        choices:
-            - "key"
-            - "displayName"
-            - "description"
-            - "catalogId"
-            - "externalKey"
-            - "typeKey"
-            - "lifecycleState"
-            - "timeCreated"
-            - "timeUpdated"
-            - "createdById"
-            - "updatedById"
-            - "uri"
-            - "properties"
+            - Unique catalog identifier.
+        type: str
+        required: true
     display_name:
         description:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -105,6 +86,25 @@ options:
         description:
             - The key of the object type.
         type: str
+    fields:
+        description:
+            - Specifies the fields to return in a data asset response.
+        type: list
+        elements: str
+        choices:
+            - "key"
+            - "displayName"
+            - "description"
+            - "catalogId"
+            - "externalKey"
+            - "typeKey"
+            - "lifecycleState"
+            - "timeCreated"
+            - "timeUpdated"
+            - "createdById"
+            - "updatedById"
+            - "uri"
+            - "properties"
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is
@@ -127,8 +127,8 @@ EXAMPLES = """
 - name: Get a specific data_asset
   oci_data_catalog_data_asset_facts:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     fields: [ "key" ]
@@ -139,7 +139,6 @@ EXAMPLES = """
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "key" ]
     display_name: display_name_example
     display_name_contains: display_name_contains_example
     lifecycle_state: CREATING
@@ -149,6 +148,7 @@ EXAMPLES = """
     updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
     external_key: external_key_example
     type_key: type_key_example
+    fields: [ "key" ]
     sort_by: TIMECREATED
     sort_order: ASC
 
@@ -539,27 +539,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            catalog_id=dict(type="str", required=True),
             data_asset_key=dict(type="str", no_log=True),
-            fields=dict(
-                type="list",
-                elements="str",
-                choices=[
-                    "key",
-                    "displayName",
-                    "description",
-                    "catalogId",
-                    "externalKey",
-                    "typeKey",
-                    "lifecycleState",
-                    "timeCreated",
-                    "timeUpdated",
-                    "createdById",
-                    "updatedById",
-                    "uri",
-                    "properties",
-                ],
-            ),
+            catalog_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             display_name_contains=dict(type="str"),
             lifecycle_state=dict(
@@ -581,6 +562,25 @@ def main():
             updated_by_id=dict(type="str"),
             external_key=dict(type="str", no_log=True),
             type_key=dict(type="str", no_log=True),
+            fields=dict(
+                type="list",
+                elements="str",
+                choices=[
+                    "key",
+                    "displayName",
+                    "description",
+                    "catalogId",
+                    "externalKey",
+                    "typeKey",
+                    "lifecycleState",
+                    "timeCreated",
+                    "timeUpdated",
+                    "createdById",
+                    "updatedById",
+                    "uri",
+                    "properties",
+                ],
+            ),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

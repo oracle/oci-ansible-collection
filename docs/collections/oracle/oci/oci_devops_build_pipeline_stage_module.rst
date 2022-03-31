@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_pipeline_stage -- Manage a BuildPipelineStage resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -906,8 +906,8 @@ Examples
     - name: Create build_pipeline_stage with build_pipeline_stage_type = DELIVER_ARTIFACT
       oci_devops_build_pipeline_stage:
         # required
-        build_pipeline_stage_type: DELIVER_ARTIFACT
         build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        build_pipeline_stage_type: DELIVER_ARTIFACT
 
         # optional
         display_name: display_name_example
@@ -929,10 +929,12 @@ Examples
     - name: Create build_pipeline_stage with build_pipeline_stage_type = TRIGGER_DEPLOYMENT_PIPELINE
       oci_devops_build_pipeline_stage:
         # required
-        build_pipeline_stage_type: TRIGGER_DEPLOYMENT_PIPELINE
         build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        build_pipeline_stage_type: TRIGGER_DEPLOYMENT_PIPELINE
 
         # optional
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        is_pass_all_parameters_enabled: true
         display_name: display_name_example
         description: description_example
         build_pipeline_stage_predecessor_collection:
@@ -942,37 +944,18 @@ Examples
             id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-        is_pass_all_parameters_enabled: true
 
     - name: Create build_pipeline_stage with build_pipeline_stage_type = WAIT
       oci_devops_build_pipeline_stage:
         # required
-        build_pipeline_stage_type: WAIT
         build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        build_pipeline_stage_type: WAIT
 
         # optional
-        display_name: display_name_example
-        description: description_example
-        build_pipeline_stage_predecessor_collection:
-          # required
-          items:
-          - # required
-            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         wait_criteria:
           # required
           wait_type: ABSOLUTE_WAIT
           wait_duration: wait_duration_example
-
-    - name: Create build_pipeline_stage with build_pipeline_stage_type = BUILD
-      oci_devops_build_pipeline_stage:
-        # required
-        build_pipeline_stage_type: BUILD
-        build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
-
-        # optional
         display_name: display_name_example
         description: description_example
         build_pipeline_stage_predecessor_collection:
@@ -982,6 +965,14 @@ Examples
             id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create build_pipeline_stage with build_pipeline_stage_type = BUILD
+      oci_devops_build_pipeline_stage:
+        # required
+        build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        build_pipeline_stage_type: BUILD
+
+        # optional
         image: image_example
         build_spec_file: build_spec_file_example
         stage_execution_timeout_in_seconds: 56
@@ -995,6 +986,15 @@ Examples
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         primary_build_source: primary_build_source_example
+        display_name: display_name_example
+        description: description_example
+        build_pipeline_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update build_pipeline_stage with build_pipeline_stage_type = DELIVER_ARTIFACT
       oci_devops_build_pipeline_stage:
@@ -1024,6 +1024,8 @@ Examples
         build_pipeline_stage_type: TRIGGER_DEPLOYMENT_PIPELINE
 
         # optional
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        is_pass_all_parameters_enabled: true
         display_name: display_name_example
         description: description_example
         build_pipeline_stage_predecessor_collection:
@@ -1033,8 +1035,6 @@ Examples
             id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-        is_pass_all_parameters_enabled: true
 
     - name: Update build_pipeline_stage with build_pipeline_stage_type = WAIT
       oci_devops_build_pipeline_stage:
@@ -1042,6 +1042,10 @@ Examples
         build_pipeline_stage_type: WAIT
 
         # optional
+        wait_criteria:
+          # required
+          wait_type: ABSOLUTE_WAIT
+          wait_duration: wait_duration_example
         display_name: display_name_example
         description: description_example
         build_pipeline_stage_predecessor_collection:
@@ -1051,10 +1055,6 @@ Examples
             id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        wait_criteria:
-          # required
-          wait_type: ABSOLUTE_WAIT
-          wait_duration: wait_duration_example
 
     - name: Update build_pipeline_stage with build_pipeline_stage_type = BUILD
       oci_devops_build_pipeline_stage:
@@ -1062,15 +1062,6 @@ Examples
         build_pipeline_stage_type: BUILD
 
         # optional
-        display_name: display_name_example
-        description: description_example
-        build_pipeline_stage_predecessor_collection:
-          # required
-          items:
-          - # required
-            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         image: image_example
         build_spec_file: build_spec_file_example
         stage_execution_timeout_in_seconds: 56
@@ -1084,6 +1075,15 @@ Examples
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         primary_build_source: primary_build_source_example
+        display_name: display_name_example
+        description: description_example
+        build_pipeline_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update build_pipeline_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with build_pipeline_stage_type = DELIVER_ARTIFACT
       oci_devops_build_pipeline_stage:
@@ -1115,6 +1115,8 @@ Examples
         build_pipeline_stage_type: TRIGGER_DEPLOYMENT_PIPELINE
 
         # optional
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        is_pass_all_parameters_enabled: true
         display_name: display_name_example
         description: description_example
         build_pipeline_stage_predecessor_collection:
@@ -1124,8 +1126,6 @@ Examples
             id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-        is_pass_all_parameters_enabled: true
 
     - name: Update build_pipeline_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with build_pipeline_stage_type = WAIT
       oci_devops_build_pipeline_stage:
@@ -1133,6 +1133,10 @@ Examples
         build_pipeline_stage_type: WAIT
 
         # optional
+        wait_criteria:
+          # required
+          wait_type: ABSOLUTE_WAIT
+          wait_duration: wait_duration_example
         display_name: display_name_example
         description: description_example
         build_pipeline_stage_predecessor_collection:
@@ -1142,10 +1146,6 @@ Examples
             id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        wait_criteria:
-          # required
-          wait_type: ABSOLUTE_WAIT
-          wait_duration: wait_duration_example
 
     - name: Update build_pipeline_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with build_pipeline_stage_type = BUILD
       oci_devops_build_pipeline_stage:
@@ -1153,15 +1153,6 @@ Examples
         build_pipeline_stage_type: BUILD
 
         # optional
-        display_name: display_name_example
-        description: description_example
-        build_pipeline_stage_predecessor_collection:
-          # required
-          items:
-          - # required
-            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         image: image_example
         build_spec_file: build_spec_file_example
         stage_execution_timeout_in_seconds: 56
@@ -1175,6 +1166,15 @@ Examples
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         primary_build_source: primary_build_source_example
+        display_name: display_name_example
+        description: description_example
+        build_pipeline_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete build_pipeline_stage
       oci_devops_build_pipeline_stage:

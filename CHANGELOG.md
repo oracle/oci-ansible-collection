@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.47.0]
+
+## Added
+- Support for the AI Vision service
+- Support for Data Connectivity service
+- Support for optionally specifying an admin username and password when creating a database system during a restore operation in the MySQL Database service
+- Support for setting deletion policies on database systems in the MySQL Database service
+- Support for returning storage utilization details for `Deployment` modules in Golden Gate service
+- Support for VCN hostname cluster endpoints in the Container Engine service
+- Support for querying additional fields of a resource using return clauses in the Resource Search service
+- Sample to create an Autonomous Transaction Processing Database on dedicated infrastructure
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.62.0
+
 ## [2.46.0]
 
 ## Added

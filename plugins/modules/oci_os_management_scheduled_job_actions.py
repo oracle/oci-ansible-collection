@@ -32,18 +32,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    scheduled_job_id:
-        description:
-            - The ID of the scheduled job.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
               compartment into which the resource should be moved.
             - Applicable only for I(action=change_compartment).
         type: str
+    scheduled_job_id:
+        description:
+            - The ID of the scheduled job.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the ScheduledJob.
@@ -412,8 +412,8 @@ def main():
     )
     module_args.update(
         dict(
-            scheduled_job_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            scheduled_job_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

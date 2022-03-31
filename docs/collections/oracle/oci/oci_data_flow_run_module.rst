@@ -30,7 +30,7 @@ oracle.oci.oci_data_flow_run -- Manage a Run resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -680,12 +680,10 @@ Examples
         archive_uri: archive_uri_example
         arguments: [ "arguments_example" ]
         configuration: null
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         driver_shape: driver_shape_example
         execute: execute_example
         executor_shape: executor_shape_example
-        freeform_tags: {'Department': 'Finance'}
         logs_bucket_uri: logs_bucket_uri_example
         metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors: 56
@@ -696,6 +694,8 @@ Examples
         spark_version: spark_version_example
         type: BATCH
         warehouse_bucket_uri: warehouse_bucket_uri_example
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
 
     - name: Update run
       oci_data_flow_run:

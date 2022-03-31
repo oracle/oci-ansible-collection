@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    instance_pool_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
-        type: str
-        aliases: ["id"]
-        required: true
     instance_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
@@ -44,6 +38,12 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple instance_pool_instances.
         type: str
+    instance_pool_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
+        type: str
+        aliases: ["id"]
+        required: true
     display_name:
         description:
             - A filter to return only resources that match the given display name exactly.
@@ -77,14 +77,14 @@ EXAMPLES = """
 - name: Get a specific instance_pool_instance
   oci_compute_management_instance_pool_instance_facts:
     # required
-    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List instance_pool_instances
   oci_compute_management_instance_pool_instance_facts:
     # required
-    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     display_name: display_name_example
@@ -303,9 +303,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            instance_pool_id=dict(aliases=["id"], type="str", required=True),
             instance_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            instance_pool_id=dict(aliases=["id"], type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

@@ -53,10 +53,6 @@ options:
             - The version of the package. Package versions are unique within a listing.
             - Required to get a specific listing_package.
         type: str
-    compartment_id:
-        description:
-            - The unique identifier for the compartment.
-        type: str
     package_type:
         description:
             - A filter to return only packages that match the given package type exactly.
@@ -76,6 +72,10 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    compartment_id:
+        description:
+            - The unique identifier for the compartment.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -96,10 +96,10 @@ EXAMPLES = """
 
     # optional
     package_version: package_version_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     package_type: package_type_example
     sort_by: TIMERELEASED
     sort_order: ASC
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -429,10 +429,10 @@ def main():
         dict(
             listing_id=dict(type="str", required=True),
             package_version=dict(type="str"),
-            compartment_id=dict(type="str"),
             package_type=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMERELEASED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            compartment_id=dict(type="str"),
         )
     )
 

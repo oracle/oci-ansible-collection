@@ -30,7 +30,7 @@ oracle.oci.oci_database_update_history_entry_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -308,8 +308,8 @@ Examples
     - name: Get a specific update_history_entry
       oci_database_update_history_entry_facts:
         # required
-        cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         update_history_entry_id: "ocid1.updatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+        cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List update_history_entries
       oci_database_update_history_entry_facts:

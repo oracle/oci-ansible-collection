@@ -31,11 +31,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    exadata_infrastructure_id:
-        description:
-            - The Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -168,6 +163,11 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - This parameter is updatable.
         type: dict
+    exadata_infrastructure_id:
+        description:
+            - The Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
     vm_cluster_network_id:
         description:
             - The VM cluster network L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -191,7 +191,6 @@ EXAMPLES = """
 - name: Create vm_cluster_network
   oci_database_vm_cluster_network:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     scans:
@@ -218,6 +217,7 @@ EXAMPLES = """
         # optional
         vip_hostname: vip_hostname_example
         vip: vip_example
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     dns: [ "dns_example" ]
@@ -264,9 +264,9 @@ EXAMPLES = """
 - name: Update vm_cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster_network:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     scans:
@@ -308,9 +308,9 @@ EXAMPLES = """
 - name: Delete vm_cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster_network:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -712,7 +712,6 @@ def main():
     )
     module_args.update(
         dict(
-            exadata_infrastructure_id=dict(type="str", required=True),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             scans=dict(
@@ -754,6 +753,7 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            exadata_infrastructure_id=dict(type="str", required=True),
             vm_cluster_network_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

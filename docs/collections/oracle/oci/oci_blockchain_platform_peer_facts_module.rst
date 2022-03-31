@@ -30,7 +30,7 @@ oracle.oci.oci_blockchain_platform_peer_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -342,8 +342,8 @@ Examples
     - name: Get a specific blockchain_platform_peer
       oci_blockchain_platform_peer_facts:
         # required
-        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List blockchain_platform_peers
       oci_blockchain_platform_peer_facts:

@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_object_collection_rule_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -377,8 +377,8 @@ Examples
     - name: Get a specific log_analytics_object_collection_rule
       oci_log_analytics_object_collection_rule_facts:
         # required
-        namespace_name: namespace_name_example
         log_analytics_object_collection_rule_id: "ocid1.loganalyticsobjectcollectionrule.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_name: namespace_name_example
 
     - name: List log_analytics_object_collection_rules
       oci_log_analytics_object_collection_rule_facts:

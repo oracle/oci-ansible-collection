@@ -40,6 +40,14 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the model.
             - Required for create using I(state=present).
         type: str
+    input_schema:
+        description:
+            - Input schema file content in String format
+        type: str
+    output_schema:
+        description:
+            - Output schema file content in String format
+        type: str
     display_name:
         description:
             - "A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
@@ -143,14 +151,6 @@ options:
                     - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
                       \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
                 type: str
-    input_schema:
-        description:
-            - Input schema file content in String format
-        type: str
-    output_schema:
-        description:
-            - Output schema file content in String format
-        type: str
     model_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
@@ -178,6 +178,8 @@ EXAMPLES = """
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    input_schema: input_schema_example
+    output_schema: output_schema_example
     display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -194,8 +196,6 @@ EXAMPLES = """
       value: value_example
       description: description_example
       category: category_example
-    input_schema: input_schema_example
-    output_schema: output_schema_example
 
 - name: Update model
   oci_data_science_model:
@@ -614,6 +614,8 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             project_id=dict(type="str"),
+            input_schema=dict(type="str"),
+            output_schema=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             freeform_tags=dict(type="dict"),
@@ -638,8 +640,6 @@ def main():
                     category=dict(type="str"),
                 ),
             ),
-            input_schema=dict(type="str"),
-            output_schema=dict(type="str"),
             model_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

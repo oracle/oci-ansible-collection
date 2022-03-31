@@ -30,7 +30,7 @@ oracle.oci.oci_bastion_facts -- Fetches details about one or multiple Bastion re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -373,8 +373,8 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
         bastion_lifecycle_state: CREATING
+        bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         sort_order: ASC
         sort_by: timeCreated

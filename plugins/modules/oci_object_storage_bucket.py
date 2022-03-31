@@ -29,18 +29,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
+    storage_tier:
         description:
-            - The Object Storage namespace used for the request.
+            - The type of storage tier of this bucket.
+              A bucket is set to 'Standard' tier by default, which means the bucket will be put in the standard storage tier.
+              When 'Archive' tier type is set explicitly, the bucket is put in the Archive Storage tier. The 'storageTier'
+              property is immutable after bucket is created.
         type: str
-        required: true
-    name:
-        description:
-            - "The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
-              Bucket names must be unique within an Object Storage namespace. Avoid entering confidential information.
-              example: Example: my-new-bucket1"
-        type: str
-        required: true
+        choices:
+            - "Standard"
+            - "Archive"
     compartment_id:
         description:
             - The ID of the compartment in which to create the bucket.
@@ -65,16 +63,6 @@ options:
             - "NoPublicAccess"
             - "ObjectRead"
             - "ObjectReadWithoutList"
-    storage_tier:
-        description:
-            - The type of storage tier of this bucket.
-              A bucket is set to 'Standard' tier by default, which means the bucket will be put in the standard storage tier.
-              When 'Archive' tier type is set explicitly, the bucket is put in the Archive Storage tier. The 'storageTier'
-              property is immutable after bucket is created.
-        type: str
-        choices:
-            - "Standard"
-            - "Archive"
     object_events_enabled:
         description:
             - Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
@@ -126,6 +114,18 @@ options:
             - Force delete a bucket along with all the objects contained in it. Use with (state=absent).
         type: bool
         default: "false"
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    name:
+        description:
+            - "The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
+              Bucket names must be unique within an Object Storage namespace. Avoid entering confidential information.
+              example: Example: my-new-bucket1"
+        type: str
+        required: true
     state:
         description:
             - The state of the Bucket.
@@ -142,14 +142,14 @@ EXAMPLES = """
 - name: Create bucket
   oci_object_storage_bucket:
     # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_name: namespace_name_example
     name: name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    storage_tier: Standard
     metadata: null
     public_access_type: NoPublicAccess
-    storage_tier: Standard
     object_events_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -529,15 +529,13 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            name=dict(type="str", required=True),
+            storage_tier=dict(type="str", choices=["Standard", "Archive"]),
             compartment_id=dict(type="str"),
             metadata=dict(type="dict"),
             public_access_type=dict(
                 type="str",
                 choices=["NoPublicAccess", "ObjectRead", "ObjectReadWithoutList"],
             ),
-            storage_tier=dict(type="str", choices=["Standard", "Archive"]),
             object_events_enabled=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
@@ -545,6 +543,8 @@ def main():
             versioning=dict(type="str", choices=["Enabled", "Disabled", "Suspended"]),
             auto_tiering=dict(type="str"),
             force=dict(type="bool", default="false"),
+            namespace_name=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

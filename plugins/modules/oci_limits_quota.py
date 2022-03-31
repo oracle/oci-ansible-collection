@@ -34,18 +34,18 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - The description you assign to the quota.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     name:
         description:
             - The name you assign to the quota during creation. The name must be unique across all quotas
               in the tenancy and cannot be changed.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    description:
+        description:
+            - The description you assign to the quota.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     statements:
         description:
@@ -92,8 +92,8 @@ EXAMPLES = """
   oci_limits_quota:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    description: description_example
     name: name_example
+    description: description_example
     statements: [ "statements_example" ]
 
     # optional
@@ -372,8 +372,8 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            description=dict(type="str"),
             name=dict(type="str"),
+            description=dict(type="str"),
             statements=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

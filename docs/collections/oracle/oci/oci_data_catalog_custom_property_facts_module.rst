@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_custom_property_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -566,9 +566,9 @@ Examples
     - name: Get a specific custom_property
       oci_data_catalog_custom_property_facts:
         # required
+        custom_property_key: custom_property_key_example
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-        custom_property_key: custom_property_key_example
 
         # optional
         fields: [ "key" ]
@@ -580,7 +580,6 @@ Examples
         namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        fields: [ "key" ]
         display_name: display_name_example
         display_name_contains: display_name_contains_example
         data_types: [ "TEXT" ]
@@ -590,6 +589,7 @@ Examples
         time_updated: 2013-10-20T19:20:30+01:00
         created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+        fields: [ "key" ]
         sort_order: ASC
         sort_by: DISPLAYNAME
 

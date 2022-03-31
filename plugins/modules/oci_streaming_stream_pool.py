@@ -37,6 +37,32 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    private_endpoint_details:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            subnet_id:
+                description:
+                    - If specified, the stream pool will be private and only accessible from inside that subnet.
+                      Producing-to and consuming-from a stream inside a private stream pool can also only be done from inside the subnet.
+                      That value cannot be changed.
+                type: str
+            private_endpoint_ip:
+                description:
+                    - The optional private IP you want to be associated with your private stream pool.
+                      That parameter can only be specified when the subnetId parameter is set. It cannot be changed.
+                      The private IP needs to be part of the CIDR range of the specified subnetId or the creation will fail.
+                      If not specified a random IP inside the subnet will be chosen.
+                      After the stream pool is created, a custom FQDN, pointing to this private IP, is created.
+                      The FQDN is then used to access the service instead of the private IP.
+                type: str
+            nsg_ids:
+                description:
+                    - The optional list of network security groups to be used with the private endpoint of the stream pool.
+                      That value cannot be changed.
+                type: list
+                elements: str
     name:
         description:
             - The name of the stream pool. Avoid entering confidential information.
@@ -78,32 +104,6 @@ options:
                     - Custom Encryption Key (Master Key) ocid.
                 type: str
                 required: true
-    private_endpoint_details:
-        description:
-            - ""
-        type: dict
-        suboptions:
-            subnet_id:
-                description:
-                    - If specified, the stream pool will be private and only accessible from inside that subnet.
-                      Producing-to and consuming-from a stream inside a private stream pool can also only be done from inside the subnet.
-                      That value cannot be changed.
-                type: str
-            private_endpoint_ip:
-                description:
-                    - The optional private IP you want to be associated with your private stream pool.
-                      That parameter can only be specified when the subnetId parameter is set. It cannot be changed.
-                      The private IP needs to be part of the CIDR range of the specified subnetId or the creation will fail.
-                      If not specified a random IP inside the subnet will be chosen.
-                      After the stream pool is created, a custom FQDN, pointing to this private IP, is created.
-                      The FQDN is then used to access the service instead of the private IP.
-                type: str
-            nsg_ids:
-                description:
-                    - The optional list of network security groups to be used with the private endpoint of the stream pool.
-                      That value cannot be changed.
-                type: list
-                elements: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair that is applied with no predefined name, type, or namespace. Exists for
@@ -146,6 +146,11 @@ EXAMPLES = """
     name: name_example
 
     # optional
+    private_endpoint_details:
+      # optional
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      private_endpoint_ip: private_endpoint_ip_example
+      nsg_ids: [ "nsg_ids_example" ]
     kafka_settings:
       # optional
       bootstrap_servers: bootstrap_servers_example
@@ -155,11 +160,6 @@ EXAMPLES = """
     custom_encryption_key_details:
       # required
       kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-    private_endpoint_details:
-      # optional
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-      private_endpoint_ip: private_endpoint_ip_example
-      nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -558,6 +558,14 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            private_endpoint_details=dict(
+                type="dict",
+                options=dict(
+                    subnet_id=dict(type="str"),
+                    private_endpoint_ip=dict(type="str"),
+                    nsg_ids=dict(type="list", elements="str"),
+                ),
+            ),
             name=dict(type="str"),
             kafka_settings=dict(
                 type="dict",
@@ -572,14 +580,6 @@ def main():
                 type="dict",
                 no_log=False,
                 options=dict(kms_key_id=dict(type="str", required=True)),
-            ),
-            private_endpoint_details=dict(
-                type="dict",
-                options=dict(
-                    subnet_id=dict(type="str"),
-                    private_endpoint_ip=dict(type="str"),
-                    nsg_ids=dict(type="list", elements="str"),
-                ),
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

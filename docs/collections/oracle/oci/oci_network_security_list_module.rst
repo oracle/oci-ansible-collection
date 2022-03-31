@@ -30,7 +30,7 @@ oracle.oci.oci_network_security_list -- Manage a SecurityList resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1319,6 +1319,7 @@ Examples
       oci_network_security_list:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         egress_security_rules:
         - # required
           destination: destination_example
@@ -1389,7 +1390,6 @@ Examples
               max: 56
               min: 56
           description: description_example
-        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1402,6 +1402,8 @@ Examples
         security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        purge_security_rules: false
+        delete_security_rules: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         egress_security_rules:
@@ -1475,8 +1477,6 @@ Examples
               max: 56
               min: 56
           description: description_example
-        purge_security_rules: false
-        delete_security_rules: true
 
     - name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_security_list:
@@ -1485,6 +1485,8 @@ Examples
         display_name: display_name_example
 
         # optional
+        purge_security_rules: false
+        delete_security_rules: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         egress_security_rules:
         - # required
@@ -1557,8 +1559,6 @@ Examples
               max: 56
               min: 56
           description: description_example
-        purge_security_rules: false
-        delete_security_rules: true
 
     - name: Delete security_list
       oci_network_security_list:

@@ -30,7 +30,7 @@ oracle.oci.oci_data_integration_workspace -- Manage a Workspace resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -561,18 +561,18 @@ Examples
     - name: Create workspace
       oci_data_integration_workspace:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         dns_server_ip: dns_server_ip_example
         dns_server_zone: dns_server_zone_example
+        is_private_network_enabled: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         description: description_example
-        is_private_network_enabled: true
 
     - name: Update workspace
       oci_data_integration_workspace:
@@ -588,8 +588,8 @@ Examples
     - name: Update workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_integration_workspace:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -609,8 +609,8 @@ Examples
     - name: Delete workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_integration_workspace:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

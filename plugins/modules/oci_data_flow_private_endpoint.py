@@ -35,6 +35,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    subnet_id:
+        description:
+            - The OCID of a subnet.
+            - Required for create using I(state=present).
+        type: str
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
@@ -83,11 +88,6 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
-    subnet_id:
-        description:
-            - The OCID of a subnet.
-            - Required for create using I(state=present).
-        type: str
     private_endpoint_id:
         description:
             - The unique ID for a private endpoint.
@@ -112,8 +112,8 @@ EXAMPLES = """
   oci_data_flow_private_endpoint:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    dns_zones: [ "dns_zones_example" ]
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    dns_zones: [ "dns_zones_example" ]
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -464,6 +464,7 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            subnet_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
@@ -471,7 +472,6 @@ def main():
             freeform_tags=dict(type="dict"),
             max_host_count=dict(type="int"),
             nsg_ids=dict(type="list", elements="str"),
-            subnet_id=dict(type="str"),
             private_endpoint_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

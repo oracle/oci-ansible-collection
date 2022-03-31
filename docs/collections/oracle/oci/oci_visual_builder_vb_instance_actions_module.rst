@@ -30,7 +30,7 @@ oracle.oci.oci_visual_builder_vb_instance_actions -- Perform actions on a VbInst
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -343,8 +343,8 @@ Examples
     - name: Perform action change_compartment on vb_instance
       oci_visual_builder_vb_instance_actions:
         # required
-        vb_instance_id: "ocid1.vbinstance.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vb_instance_id: "ocid1.vbinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action start on vb_instance

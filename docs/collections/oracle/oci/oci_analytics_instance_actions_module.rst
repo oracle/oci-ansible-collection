@@ -30,7 +30,7 @@ oracle.oci.oci_analytics_instance_actions -- Perform actions on an AnalyticsInst
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -560,36 +560,36 @@ Examples
     - name: Perform action change_compartment on analytics_instance
       oci_analytics_instance_actions:
         # required
-        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action change_analytics_instance_network_endpoint on analytics_instance
       oci_analytics_instance_actions:
         # required
-        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         network_endpoint_details:
           # required
-          network_endpoint_type: PRIVATE
           vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+          network_endpoint_type: PRIVATE
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_analytics_instance_network_endpoint
 
     - name: Perform action scale on analytics_instance
       oci_analytics_instance_actions:
         # required
-        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         capacity:
           # required
           capacity_type: OLPU_COUNT
           capacity_value: 56
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: scale
 
     - name: Perform action set_kms_key on analytics_instance
       oci_analytics_instance_actions:
         # required
-        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: set_kms_key
 
     - name: Perform action start on analytics_instance

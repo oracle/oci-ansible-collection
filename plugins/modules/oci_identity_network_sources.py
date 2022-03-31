@@ -58,6 +58,12 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    description:
+        description:
+            - The description you assign to the network source during creation. Does not have to be unique, and it's changeable.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
     public_source_list:
         description:
             - A list of allowed public IP addresses and CIDR ranges.
@@ -89,12 +95,6 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
-    description:
-        description:
-            - The description you assign to the network source during creation. Does not have to be unique, and it's changeable.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -152,13 +152,13 @@ EXAMPLES = """
     network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    description: description_example
     public_source_list: [ "public_source_list_example" ]
     virtual_source_list:
     - # optional
       vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
       ip_ranges: [ "ip_ranges_example" ]
     services: [ "services_example" ]
-    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -169,13 +169,13 @@ EXAMPLES = """
     name: name_example
 
     # optional
+    description: description_example
     public_source_list: [ "public_source_list_example" ]
     virtual_source_list:
     - # optional
       vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
       ip_ranges: [ "ip_ranges_example" ]
     services: [ "services_example" ]
-    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -473,6 +473,7 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             name=dict(type="str"),
+            description=dict(type="str"),
             public_source_list=dict(type="list", elements="str"),
             virtual_source_list=dict(
                 type="list",
@@ -482,7 +483,6 @@ def main():
                 ),
             ),
             services=dict(type="list", elements="str"),
-            description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             network_source_id=dict(aliases=["id"], type="str"),

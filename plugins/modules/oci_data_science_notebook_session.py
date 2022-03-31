@@ -29,14 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - "A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
-              Example: `My NotebookSession`"
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     project_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the notebook session.
@@ -50,6 +42,49 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    notebook_session_config_details:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            shape:
+                description:
+                    - The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved
+                      using the `ListNotebookSessionShapes` endpoint.
+                type: str
+                required: true
+            block_storage_size_in_gbs:
+                description:
+                    - A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.
+                type: int
+            subnet_id:
+                description:
+                    - A notebook session instance is provided with a VNIC for network access.  This specifies the
+                      L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet should
+                      be in a VCN with a NAT gateway for egress to the internet.
+                type: str
+            notebook_session_shape_config_details:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                        type: float
+                    memory_in_gbs:
+                        description:
+                            - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in
+                              GBs.
+                        type: float
+    display_name:
+        description:
+            - "A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
+              Example: `My NotebookSession`"
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     notebook_session_configuration_details:
         description:
             - ""
@@ -73,41 +108,6 @@ options:
                       be in a VCN with a NAT gateway for egress to the internet.
                 type: str
                 required: true
-            notebook_session_shape_config_details:
-                description:
-                    - ""
-                type: dict
-                suboptions:
-                    ocpus:
-                        description:
-                            - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
-                        type: float
-                    memory_in_gbs:
-                        description:
-                            - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in
-                              GBs.
-                        type: float
-    notebook_session_config_details:
-        description:
-            - ""
-        type: dict
-        suboptions:
-            shape:
-                description:
-                    - The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved
-                      using the `ListNotebookSessionShapes` endpoint.
-                type: str
-                required: true
-            block_storage_size_in_gbs:
-                description:
-                    - A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.
-                type: int
-            subnet_id:
-                description:
-                    - A notebook session instance is provided with a VNIC for network access.  This specifies the
-                      L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet should
-                      be in a VCN with a NAT gateway for egress to the internet.
-                type: str
             notebook_session_shape_config_details:
                 description:
                     - ""
@@ -163,6 +163,17 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    notebook_session_config_details:
+      # required
+      shape: shape_example
+
+      # optional
+      block_storage_size_in_gbs: 56
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      notebook_session_shape_config_details:
+        # optional
+        ocpus: 3.4
+        memory_in_gbs: 3.4
     display_name: display_name_example
     notebook_session_configuration_details:
       # required
@@ -171,17 +182,6 @@ EXAMPLES = """
 
       # optional
       block_storage_size_in_gbs: 56
-      notebook_session_shape_config_details:
-        # optional
-        ocpus: 3.4
-        memory_in_gbs: 3.4
-    notebook_session_config_details:
-      # required
-      shape: shape_example
-
-      # optional
-      block_storage_size_in_gbs: 56
-      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       notebook_session_shape_config_details:
         # optional
         ocpus: 3.4
@@ -213,8 +213,8 @@ EXAMPLES = """
 - name: Update notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_notebook_session:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     notebook_session_configuration_details:
@@ -240,8 +240,8 @@ EXAMPLES = """
 - name: Delete notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_notebook_session:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -609,15 +609,14 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             project_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            notebook_session_configuration_details=dict(
+            notebook_session_config_details=dict(
                 type="dict",
                 options=dict(
                     shape=dict(type="str", required=True),
                     block_storage_size_in_gbs=dict(type="int"),
-                    subnet_id=dict(type="str", required=True),
+                    subnet_id=dict(type="str"),
                     notebook_session_shape_config_details=dict(
                         type="dict",
                         options=dict(
@@ -626,12 +625,13 @@ def main():
                     ),
                 ),
             ),
-            notebook_session_config_details=dict(
+            display_name=dict(aliases=["name"], type="str"),
+            notebook_session_configuration_details=dict(
                 type="dict",
                 options=dict(
                     shape=dict(type="str", required=True),
                     block_storage_size_in_gbs=dict(type="int"),
-                    subnet_id=dict(type="str"),
+                    subnet_id=dict(type="str", required=True),
                     notebook_session_shape_config_details=dict(
                         type="dict",
                         options=dict(

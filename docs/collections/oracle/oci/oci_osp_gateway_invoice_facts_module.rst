@@ -30,7 +30,7 @@ oracle.oci.oci_osp_gateway_invoice_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -484,9 +484,9 @@ Examples
     - name: Get a specific invoice
       oci_osp_gateway_invoice_facts:
         # required
+        internal_invoice_id: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
         osp_home_region: us-phoenix-1
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        internal_invoice_id: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List invoices
       oci_osp_gateway_invoice_facts:

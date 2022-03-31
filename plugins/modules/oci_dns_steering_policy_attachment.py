@@ -55,14 +55,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    scope:
-        description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
     steering_policy_attachment_id:
         description:
             - The OCID of the target steering policy attachment.
@@ -79,6 +71,14 @@ options:
               agent does not have an entity-tag for the representation.
             - This parameter is updatable.
         type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     compartment_id:
         description:
             - The OCID of the compartment the resource belongs to.
@@ -117,8 +117,8 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Update steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy_attachment:
@@ -127,8 +127,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Delete steering_policy_attachment
   oci_dns_steering_policy_attachment:
@@ -137,8 +137,8 @@ EXAMPLES = """
     state: absent
 
     # optional
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Delete steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy_attachment:
@@ -448,9 +448,9 @@ def main():
             zone_id=dict(type="str"),
             domain_name=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             steering_policy_attachment_id=dict(aliases=["id"], type="str"),
             if_unmodified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

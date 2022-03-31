@@ -30,7 +30,7 @@ oracle.oci.oci_ai_speech_transcription_job -- Manage a TranscriptionJob resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -822,12 +822,12 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         input_location:
           # required
-          location_type: OBJECT_LIST_FILE_INPUT_LOCATION
           object_location:
             # required
             namespace_name: namespace_name_example
             bucket_name: bucket_name_example
             object_names: [ "object_names_example" ]
+          location_type: OBJECT_LIST_FILE_INPUT_LOCATION
         output_location:
           # required
           namespace_name: namespace_name_example
@@ -835,8 +835,6 @@ Examples
           prefix: prefix_example
 
         # optional
-        display_name: display_name_example
-        description: description_example
         model_details:
           # optional
           domain: GENERIC
@@ -847,6 +845,8 @@ Examples
           - # required
             type: PROFANITY
             mode: MASK
+        display_name: display_name_example
+        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

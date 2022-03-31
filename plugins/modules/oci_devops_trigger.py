@@ -27,6 +27,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    project_id:
+        description:
+            - The OCID of the DevOps project to which the trigger belongs to.
+            - Required for create using I(state=present).
+        type: str
+    repository_id:
+        description:
+            - The OCID of the DevOps code repository.
+            - This parameter is updatable.
+            - Applicable when trigger_source is 'DEVOPS_CODE_REPOSITORY'
+        type: str
     display_name:
         description:
             - Trigger display name. Avoid entering confidential information.
@@ -38,11 +49,6 @@ options:
         description:
             - Optional description about the trigger.
             - This parameter is updatable.
-        type: str
-    project_id:
-        description:
-            - The OCID of the DevOps project to which the trigger belongs to.
-            - Required for create using I(state=present).
         type: str
     trigger_source:
         description:
@@ -125,12 +131,6 @@ options:
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    repository_id:
-        description:
-            - The OCID of the DevOps code repository.
-            - This parameter is updatable.
-            - Applicable when trigger_source is 'DEVOPS_CODE_REPOSITORY'
-        type: str
     trigger_id:
         description:
             - Unique trigger identifier.
@@ -186,6 +186,7 @@ EXAMPLES = """
     trigger_source: DEVOPS_CODE_REPOSITORY
 
     # optional
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     actions:
@@ -206,7 +207,6 @@ EXAMPLES = """
           base_ref: base_ref_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Create trigger with trigger_source = GITLAB
   oci_devops_trigger:
@@ -269,6 +269,7 @@ EXAMPLES = """
     trigger_source: DEVOPS_CODE_REPOSITORY
 
     # optional
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     actions:
@@ -289,7 +290,6 @@ EXAMPLES = """
           base_ref: base_ref_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update trigger with trigger_source = GITLAB
   oci_devops_trigger:
@@ -351,6 +351,7 @@ EXAMPLES = """
     trigger_source: DEVOPS_CODE_REPOSITORY
 
     # optional
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     actions:
@@ -371,7 +372,6 @@ EXAMPLES = """
           base_ref: base_ref_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = GITLAB
   oci_devops_trigger:
@@ -741,9 +741,10 @@ def main():
     )
     module_args.update(
         dict(
+            project_id=dict(type="str"),
+            repository_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            project_id=dict(type="str"),
             trigger_source=dict(
                 type="str", choices=["GITHUB", "DEVOPS_CODE_REPOSITORY", "GITLAB"]
             ),
@@ -786,7 +787,6 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            repository_id=dict(type="str"),
             trigger_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

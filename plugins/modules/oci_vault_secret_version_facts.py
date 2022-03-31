@@ -28,16 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    secret_id:
-        description:
-            - The OCID of the secret.
-        type: str
-        required: true
     secret_version_number:
         description:
             - The version number of the secret.
             - Required to get a specific secret_version.
         type: int
+    secret_id:
+        description:
+            - The OCID of the secret.
+        type: str
+        required: true
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Time created is default ordered as descending. Display name is default ordered as
@@ -59,8 +59,8 @@ EXAMPLES = """
 - name: Get a specific secret_version
   oci_vault_secret_version_facts:
     # required
-    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     secret_version_number: 56
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List secret_versions
   oci_vault_secret_version_facts:
@@ -227,8 +227,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            secret_id=dict(type="str", required=True),
             secret_version_number=dict(type="int", no_log=True),
+            secret_id=dict(type="str", required=True),
             sort_by=dict(type="str", choices=["VERSION_NUMBER"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             name=dict(type="str"),

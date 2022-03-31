@@ -49,6 +49,12 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    description:
+        description:
+            - The description you assign to the compartment during creation. Does not have to be unique, and it's changeable.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
     name:
         description:
             - The name you assign to the compartment during creation. The name must be unique across all compartments
@@ -56,12 +62,6 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-    description:
-        description:
-            - The description you assign to the compartment during creation. Does not have to be unique, and it's changeable.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
@@ -101,8 +101,8 @@ EXAMPLES = """
   oci_identity_compartment:
     # required
     parent_compartment_id: "ocid1.parentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     description: description_example
+    name: name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -114,8 +114,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    name: name_example
     description: description_example
+    name: name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -386,8 +386,8 @@ def main():
     module_args.update(
         dict(
             parent_compartment_id=dict(type="str"),
-            name=dict(type="str"),
             description=dict(type="str"),
+            name=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             compartment_id=dict(aliases=["id"], type="str"),

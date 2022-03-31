@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    image_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container image.
-            - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
-            - Required to get a specific container_image.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -53,6 +46,13 @@ options:
             - A filter to return only resources that match the given display name exactly.
         type: str
         aliases: ["name"]
+    image_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container image.
+            - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
+            - Required to get a specific container_image.
+        type: str
+        aliases: ["id"]
     is_versioned:
         description:
             - A filter to return container images based on whether there are any associated versions.
@@ -111,9 +111,9 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
     display_name: display_name_example
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     is_versioned: true
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     repository_name: repository_name_example
@@ -374,10 +374,10 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            image_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             compartment_id_in_subtree=dict(type="bool"),
             display_name=dict(aliases=["name"], type="str"),
+            image_id=dict(aliases=["id"], type="str"),
             is_versioned=dict(type="bool"),
             repository_id=dict(type="str"),
             repository_name=dict(type="str"),

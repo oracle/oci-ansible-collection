@@ -32,17 +32,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
+            - Required for I(action=change_compartment).
+        type: str
     deployment_id:
         description:
             - A unique Deployment identifier.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
-            - Required for I(action=change_compartment).
-        type: str
     type:
         description:
             - The type of a deployment start
@@ -68,8 +68,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on deployment
   oci_golden_gate_deployment_actions:
     # required
-    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action start on deployment with type = DEFAULT
@@ -278,11 +278,22 @@ deployment:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        storage_utilization_in_bytes:
+            description:
+                - The amount of storage being utilized (in bytes)
+            returned: on success
+            type: int
+            sample: 56
+        is_storage_utilization_limit_exceeded:
+            description:
+                - Indicator will be true if the amount of storage being utilized exceeds the allowable storage utilization limit.  Exceeding the limit may be an
+                  indication of a misconfiguration of the deployment's GoldenGate service.
+            returned: on success
+            type: bool
+            sample: true
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
-                  for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent DATABASE_ORACLE value."
+                - The deployment type.
             returned: on success
             type: str
             sample: OGG
@@ -344,6 +355,8 @@ deployment:
         "system_tags": {},
         "is_latest_version": true,
         "time_upgrade_required": "2013-10-20T19:20:30+01:00",
+        "storage_utilization_in_bytes": 56,
+        "is_storage_utilization_limit_exceeded": true,
         "deployment_type": "OGG",
         "ogg_data": {
             "deployment_name": "deployment_name_example",
@@ -499,8 +512,8 @@ def main():
     )
     module_args.update(
         dict(
-            deployment_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            deployment_id=dict(aliases=["id"], type="str", required=True),
             type=dict(type="str", choices=["DEFAULT", "CURRENT_RELEASE"]),
             action=dict(
                 type="str",

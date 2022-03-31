@@ -27,16 +27,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    catalog_id:
+    data_type:
         description:
-            - Unique catalog identifier.
+            - The data type of the custom property
         type: str
-        required: true
-    namespace_id:
-        description:
-            - Unique namespace identifier.
-        type: str
-        required: true
+        choices:
+            - "TEXT"
+            - "RICH_TEXT"
+            - "BOOLEAN"
+            - "NUMBER"
+            - "DATE"
     display_name:
         description:
             - A user-friendly display name. Does not have to be unique, and it's changeable.
@@ -51,16 +51,6 @@ options:
             - Detailed description of the custom property.
             - This parameter is updatable.
         type: str
-    data_type:
-        description:
-            - The data type of the custom property
-        type: str
-        choices:
-            - "TEXT"
-            - "RICH_TEXT"
-            - "BOOLEAN"
-            - "NUMBER"
-            - "DATE"
     is_sortable:
         description:
             - If this field allows to sort from UI
@@ -119,6 +109,16 @@ options:
               Example: `{\\"properties\\": { \\"default\\": { \\"host\\": \\"host1\\", \\"port\\": \\"1521\\", \\"database\\": \\"orcl\\"}}}`"
             - This parameter is updatable.
         type: dict
+    catalog_id:
+        description:
+            - Unique catalog identifier.
+        type: str
+        required: true
+    namespace_id:
+        description:
+            - Unique namespace identifier.
+        type: str
+        required: true
     custom_property_key:
         description:
             - Unique Custom Property key
@@ -141,13 +141,13 @@ EXAMPLES = """
 - name: Create custom_property
   oci_data_catalog_custom_property:
     # required
+    display_name: display_name_example
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
 
     # optional
-    description: description_example
     data_type: TEXT
+    description: description_example
     is_sortable: true
     is_filterable: true
     is_multi_valued: true
@@ -183,9 +183,9 @@ EXAMPLES = """
 - name: Update custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_custom_property:
     # required
+    display_name: display_name_example
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
 
     # optional
     description: description_example
@@ -211,9 +211,9 @@ EXAMPLES = """
 - name: Delete custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_custom_property:
     # required
+    display_name: display_name_example
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     state: absent
 
 """
@@ -673,13 +673,11 @@ def main():
     )
     module_args.update(
         dict(
-            catalog_id=dict(type="str", required=True),
-            namespace_id=dict(type="str", required=True),
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             data_type=dict(
                 type="str", choices=["TEXT", "RICH_TEXT", "BOOLEAN", "NUMBER", "DATE"]
             ),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             is_sortable=dict(type="bool"),
             is_filterable=dict(type="bool"),
             is_multi_valued=dict(type="bool"),
@@ -690,6 +688,8 @@ def main():
             is_event_enabled=dict(type="bool"),
             allowed_values=dict(type="list", elements="str"),
             properties=dict(type="dict"),
+            catalog_id=dict(type="str", required=True),
+            namespace_id=dict(type="str", required=True),
             custom_property_key=dict(type="str", no_log=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

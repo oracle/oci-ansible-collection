@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_managed_database_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -580,15 +580,15 @@ Examples
     - name: Perform action clone_sql_tuning_task on managed_database
       oci_database_management_managed_database_actions:
         # required
+        original_task_id: 56
         managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
         task_name: task_name_example
-        original_task_id: 56
         credential_details:
           # required
+          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
           sql_tuning_task_credential_type: SECRET
           username: username_example
           role: NORMAL
-          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
         action: clone_sql_tuning_task
 
         # optional
@@ -597,14 +597,14 @@ Examples
     - name: Perform action drop_sql_tuning_task on managed_database
       oci_database_management_managed_database_actions:
         # required
+        task_id: 56
         managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
         credential_details:
           # required
+          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
           sql_tuning_task_credential_type: SECRET
           username: username_example
           role: NORMAL
-          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
-        task_id: 56
         action: drop_sql_tuning_task
 
     - name: Perform action start_sql_tuning_task on managed_database
@@ -614,10 +614,10 @@ Examples
         task_name: task_name_example
         credential_details:
           # required
+          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
           sql_tuning_task_credential_type: SECRET
           username: username_example
           role: NORMAL
-          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
         total_time_limit_in_minutes: 56
         scope: LIMITED
         sql_details:

@@ -39,29 +39,6 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name for the key. It does not have to be unique, and it is changeable.
-              Avoid entering confidential information.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    freeform_tags:
-        description:
-            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
     key_shape:
         description:
             - ""
@@ -110,6 +87,29 @@ options:
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name for the key. It does not have to be unique, and it is changeable.
+              Avoid entering confidential information.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
     service_endpoint:
         description:
             - The endpoint of the service to call using this client. For example 'https://kms.{region}.{secondLevelDomain}'.
@@ -131,7 +131,6 @@ EXAMPLES = """
   oci_key_management_key:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     key_shape:
       # required
       algorithm: AES
@@ -139,11 +138,12 @@ EXAMPLES = """
 
       # optional
       curve_id: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
+    protection_mode: HSM
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    protection_mode: HSM
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Update key
@@ -466,9 +466,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
             key_shape=dict(
                 type="dict",
                 no_log=False,
@@ -484,6 +481,9 @@ def main():
             ),
             protection_mode=dict(type="str", choices=["HSM", "SOFTWARE"]),
             key_id=dict(aliases=["id"], type="str"),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
             service_endpoint=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )

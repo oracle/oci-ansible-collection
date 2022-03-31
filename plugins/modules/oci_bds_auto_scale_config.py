@@ -27,11 +27,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    bds_instance_id:
+    node_type:
         description:
-            - The OCID of the cluster.
+            - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
+            - Required for create using I(state=present).
         type: str
-        required: true
     display_name:
         description:
             - A user-friendly name. The name does not have to be unique, and it may be changed. Avoid entering confidential information.
@@ -39,24 +39,12 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    node_type:
-        description:
-            - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
-            - Required for create using I(state=present).
-        type: str
     is_enabled:
         description:
             - Whether the autoscale configuration is enabled.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: bool
-    cluster_admin_password:
-        description:
-            - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
-            - Required for create using I(state=present).
-            - Required for delete using I(state=absent).
-            - This parameter is updatable.
-        type: str
     policy:
         description:
             - ""
@@ -125,6 +113,11 @@ options:
                                             - Integer non-negative value. 0 < value < 100
                                         type: int
                                         required: true
+    bds_instance_id:
+        description:
+            - The OCID of the cluster.
+        type: str
+        required: true
     auto_scaling_configuration_id:
         description:
             - Unique Oracle-assigned identifier of the autoscale configuration.
@@ -132,6 +125,13 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    cluster_admin_password:
+        description:
+            - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
+            - Required for create using I(state=present).
+            - Required for delete using I(state=absent).
+            - This parameter is updatable.
+        type: str
     compartment_id:
         description:
             - The OCID of the compartment.
@@ -155,10 +155,8 @@ EXAMPLES = """
 - name: Create bds_auto_scale_config
   oci_bds_auto_scale_config:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     node_type: node_type_example
     is_enabled: true
-    cluster_admin_password: example-password
     policy:
       # required
       policy_type: THRESHOLD_BASED
@@ -173,6 +171,8 @@ EXAMPLES = """
             duration_in_minutes: 56
             operator: GT
             value: 56
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
 
     # optional
     display_name: display_name_example
@@ -186,7 +186,6 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     is_enabled: true
-    cluster_admin_password: example-password
     policy:
       # required
       policy_type: THRESHOLD_BASED
@@ -201,17 +200,17 @@ EXAMPLES = """
             duration_in_minutes: 56
             operator: GT
             value: 56
+    cluster_admin_password: example-password
 
 - name: Update bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_auto_scale_config:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     is_enabled: true
-    cluster_admin_password: example-password
     policy:
       # required
       policy_type: THRESHOLD_BASED
@@ -226,20 +225,21 @@ EXAMPLES = """
             duration_in_minutes: 56
             operator: GT
             value: 56
+    cluster_admin_password: example-password
 
 - name: Delete bds_auto_scale_config
   oci_bds_auto_scale_config:
     # required
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    cluster_admin_password: example-password
     auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
     state: absent
 
 - name: Delete bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_auto_scale_config:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -550,11 +550,9 @@ def main():
     )
     module_args.update(
         dict(
-            bds_instance_id=dict(type="str", required=True),
-            display_name=dict(aliases=["name"], type="str"),
             node_type=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             is_enabled=dict(type="bool"),
-            cluster_admin_password=dict(type="str", no_log=True),
             policy=dict(
                 type="dict",
                 options=dict(
@@ -606,7 +604,9 @@ def main():
                     ),
                 ),
             ),
+            bds_instance_id=dict(type="str", required=True),
             auto_scaling_configuration_id=dict(aliases=["id"], type="str"),
+            cluster_admin_password=dict(type="str", no_log=True),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

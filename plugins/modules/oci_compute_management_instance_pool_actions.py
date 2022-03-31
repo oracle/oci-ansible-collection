@@ -43,22 +43,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    instance_pool_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
-        type: str
-        aliases: ["id"]
-        required: true
-    load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer to attach to the instance pool.
-            - Required for I(action=attach_load_balancer), I(action=detach_load_balancer).
-        type: str
-    backend_set_name:
-        description:
-            - The name of the backend set on the load balancer to add instances to.
-            - Required for I(action=attach_load_balancer), I(action=detach_load_balancer).
-        type: str
     port:
         description:
             - The port value to use when creating the backend set.
@@ -77,6 +61,22 @@ options:
               move the instance pool to.
             - Required for I(action=change_compartment).
         type: str
+    load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer to attach to the instance pool.
+            - Required for I(action=attach_load_balancer), I(action=detach_load_balancer).
+        type: str
+    backend_set_name:
+        description:
+            - The name of the backend set on the load balancer to add instances to.
+            - Required for I(action=attach_load_balancer), I(action=detach_load_balancer).
+        type: str
+    instance_pool_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the InstancePool.
@@ -97,26 +97,26 @@ EXAMPLES = """
 - name: Perform action attach_load_balancer on instance_pool
   oci_compute_management_instance_pool_actions:
     # required
-    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    backend_set_name: backend_set_name_example
     port: 56
     vnic_selection: vnic_selection_example
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    backend_set_name: backend_set_name_example
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_load_balancer
 
 - name: Perform action change_compartment on instance_pool
   oci_compute_management_instance_pool_actions:
     # required
-    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action detach_load_balancer on instance_pool
   oci_compute_management_instance_pool_actions:
     # required
-    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_load_balancer
 
 - name: Perform action reset on instance_pool
@@ -559,12 +559,12 @@ def main():
     )
     module_args.update(
         dict(
-            instance_pool_id=dict(aliases=["id"], type="str", required=True),
-            load_balancer_id=dict(type="str"),
-            backend_set_name=dict(type="str"),
             port=dict(type="int"),
             vnic_selection=dict(type="str"),
             compartment_id=dict(type="str"),
+            load_balancer_id=dict(type="str"),
+            backend_set_name=dict(type="str"),
+            instance_pool_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

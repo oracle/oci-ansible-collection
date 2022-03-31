@@ -92,12 +92,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    domain_id:
-        description:
-            - The OCID of the domain
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the destination compartment
@@ -109,6 +103,12 @@ options:
             - The License type of Domain
             - Applicable only for I(action=change_domain_license_type).
         type: str
+    domain_id:
+        description:
+            - The OCID of the domain
+        type: str
+        aliases: ["id"]
+        required: true
     replica_region:
         description:
             - A region for which domain replication is requested for.
@@ -141,8 +141,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on domain
   oci_identity_domain_actions:
     # required
-    domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action change_domain_license_type on domain
@@ -479,9 +479,9 @@ def main():
     )
     module_args.update(
         dict(
-            domain_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             license_type=dict(type="str"),
+            domain_id=dict(aliases=["id"], type="str", required=True),
             replica_region=dict(type="str"),
             action=dict(
                 type="str",

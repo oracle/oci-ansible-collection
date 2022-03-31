@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_exadata_infrastructure -- Manage a CloudExadataInf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -727,12 +727,10 @@ Examples
         # required
         availability_domain: Uocm:PHX-AD-1
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
         shape: shape_example
+        display_name: display_name_example
 
         # optional
-        compute_count: 56
-        storage_count: 56
         maintenance_window:
           # required
           preference: NO_PREFERENCE
@@ -747,6 +745,8 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        compute_count: 56
+        storage_count: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         customer_contacts:
@@ -760,8 +760,6 @@ Examples
 
         # optional
         display_name: display_name_example
-        compute_count: 56
-        storage_count: 56
         maintenance_window:
           # required
           preference: NO_PREFERENCE
@@ -776,6 +774,8 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        compute_count: 56
+        storage_count: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         customer_contacts:
@@ -789,8 +789,6 @@ Examples
         display_name: display_name_example
 
         # optional
-        compute_count: 56
-        storage_count: 56
         maintenance_window:
           # required
           preference: NO_PREFERENCE
@@ -805,6 +803,8 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        compute_count: 56
+        storage_count: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         customer_contacts:

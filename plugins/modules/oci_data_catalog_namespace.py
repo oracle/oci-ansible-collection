@@ -27,11 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    catalog_id:
-        description:
-            - Unique catalog identifier.
-        type: str
-        required: true
     display_name:
         description:
             - A user-friendly display name. Does not have to be unique, and it's changeable.
@@ -51,6 +46,11 @@ options:
             - If this field is defined by service or by a user
             - This parameter is updatable.
         type: bool
+    catalog_id:
+        description:
+            - Unique catalog identifier.
+        type: str
+        required: true
     namespace_id:
         description:
             - Unique namespace identifier.
@@ -74,8 +74,8 @@ EXAMPLES = """
 - name: Create namespace
   oci_data_catalog_namespace:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
@@ -95,8 +95,8 @@ EXAMPLES = """
 - name: Update namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_namespace:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
@@ -112,8 +112,8 @@ EXAMPLES = """
 - name: Delete namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_namespace:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -353,10 +353,10 @@ def main():
     )
     module_args.update(
         dict(
-            catalog_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             is_service_defined=dict(type="bool"),
+            catalog_id=dict(type="str", required=True),
             namespace_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

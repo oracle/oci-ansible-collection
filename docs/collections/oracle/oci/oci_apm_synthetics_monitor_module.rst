@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_monitor -- Manage a Monitor resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1252,11 +1252,11 @@ Examples
     - name: Create monitor
       oci_apm_synthetics_monitor:
         # required
-        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
         monitor_type: SCRIPTED_BROWSER
+        display_name: display_name_example
         vantage_points: [ "vantage_points_example" ]
         repeat_interval_in_seconds: 56
+        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1322,8 +1322,8 @@ Examples
     - name: Update monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apm_synthetics_monitor:
         # required
-        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         vantage_points: [ "vantage_points_example" ]
@@ -1363,8 +1363,8 @@ Examples
     - name: Delete monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apm_synthetics_monitor:
         # required
-        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

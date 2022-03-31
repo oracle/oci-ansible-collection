@@ -27,6 +27,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    project_id:
+        description:
+            - The OCID of the DevOps project.
+            - Required for create using I(state=present).
+        type: str
     description:
         description:
             - Optional description about the connection.
@@ -39,11 +44,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    project_id:
-        description:
-            - The OCID of the DevOps project.
-            - Required for create using I(state=present).
-        type: str
     connection_type:
         description:
             - The type of connection.
@@ -436,9 +436,9 @@ def main():
     )
     module_args.update(
         dict(
+            project_id=dict(type="str"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            project_id=dict(type="str"),
             connection_type=dict(
                 type="str", choices=["GITHUB_ACCESS_TOKEN", "GITLAB_ACCESS_TOKEN"]
             ),

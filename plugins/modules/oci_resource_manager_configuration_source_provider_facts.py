@@ -30,17 +30,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - A filter to return only resources that exist in the compartment, identified by
+              L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+        type: str
     configuration_source_provider_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the configuration source provider.
             - Required to get a specific configuration_source_provider.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - A filter to return only resources that exist in the compartment, identified by
-              L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
-        type: str
     display_name:
         description:
             - A filter to return only resources that match the given display name exactly.
@@ -82,8 +82,8 @@ EXAMPLES = """
   oci_resource_manager_configuration_source_provider_facts:
 
     # optional
-    configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
@@ -254,8 +254,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            configuration_source_provider_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            configuration_source_provider_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

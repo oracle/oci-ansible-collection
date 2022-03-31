@@ -65,13 +65,6 @@ options:
               Note: Not all Spark properties are permitted to be set.  Attempting to set a property that is
               not allowed to be overwritten will cause a 400 status to be returned."
         type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
     display_name:
         description:
             - A user-friendly name that does not have to be unique. Avoid entering confidential information. If this value is not specified, it will be derived
@@ -99,13 +92,6 @@ options:
         description:
             - The VM shape for the executors. Sets the executor cores and memory.
         type: str
-    freeform_tags:
-        description:
-            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
     logs_bucket_uri:
         description:
             - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
@@ -160,6 +146,20 @@ options:
               for BATCH SQL runs.
               See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
         type: str
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    freeform_tags:
+        description:
+            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+              Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
     run_id:
         description:
             - The unique ID for the run
@@ -188,12 +188,10 @@ EXAMPLES = """
     archive_uri: archive_uri_example
     arguments: [ "arguments_example" ]
     configuration: null
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     driver_shape: driver_shape_example
     execute: execute_example
     executor_shape: executor_shape_example
-    freeform_tags: {'Department': 'Finance'}
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
     num_executors: 56
@@ -204,6 +202,8 @@ EXAMPLES = """
     spark_version: spark_version_example
     type: BATCH
     warehouse_bucket_uri: warehouse_bucket_uri_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Update run
   oci_data_flow_run:
@@ -711,12 +711,10 @@ def main():
             arguments=dict(type="list", elements="str"),
             compartment_id=dict(type="str"),
             configuration=dict(type="dict"),
-            defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             driver_shape=dict(type="str"),
             execute=dict(type="str"),
             executor_shape=dict(type="str"),
-            freeform_tags=dict(type="dict"),
             logs_bucket_uri=dict(type="str"),
             metastore_id=dict(type="str"),
             num_executors=dict(type="int"),
@@ -731,6 +729,8 @@ def main():
             spark_version=dict(type="str"),
             type=dict(type="str", choices=["BATCH", "STREAMING"]),
             warehouse_bucket_uri=dict(type="str"),
+            defined_tags=dict(type="dict"),
+            freeform_tags=dict(type="dict"),
             run_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )

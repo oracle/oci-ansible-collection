@@ -36,6 +36,35 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    load_balancers:
+        description:
+            - The load balancers to attach to the instance pool.
+        type: list
+        elements: dict
+        suboptions:
+            load_balancer_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer to attach to the instance
+                      pool.
+                type: str
+                required: true
+            backend_set_name:
+                description:
+                    - The name of the backend set on the load balancer to add instances to.
+                type: str
+                required: true
+            port:
+                description:
+                    - The port value to use when creating the backend set.
+                type: int
+                required: true
+            vnic_selection:
+                description:
+                    - "Indicates which VNIC on each instance in the pool should be used to associate with the load balancer.
+                      Possible values are \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration
+                      that is associated with the instance pool."
+                type: str
+                required: true
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -129,35 +158,6 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
-    load_balancers:
-        description:
-            - The load balancers to attach to the instance pool.
-        type: list
-        elements: dict
-        suboptions:
-            load_balancer_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer to attach to the instance
-                      pool.
-                type: str
-                required: true
-            backend_set_name:
-                description:
-                    - The name of the backend set on the load balancer to add instances to.
-                type: str
-                required: true
-            port:
-                description:
-                    - The port value to use when creating the backend set.
-                type: int
-                required: true
-            vnic_selection:
-                description:
-                    - "Indicates which VNIC on each instance in the pool should be used to associate with the load balancer.
-                      Possible values are \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration
-                      that is associated with the instance pool."
-                type: str
-                required: true
     instance_pool_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
@@ -199,15 +199,15 @@ EXAMPLES = """
     size: 56
 
     # optional
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
     load_balancers:
     - # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
       backend_set_name: backend_set_name_example
       port: 56
       vnic_selection: vnic_selection_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Update instance_pool
   oci_compute_management_instance_pool:
@@ -638,6 +638,16 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            load_balancers=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    load_balancer_id=dict(type="str", required=True),
+                    backend_set_name=dict(type="str", required=True),
+                    port=dict(type="int", required=True),
+                    vnic_selection=dict(type="str", required=True),
+                ),
+            ),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
@@ -660,16 +670,6 @@ def main():
                 ),
             ),
             size=dict(type="int"),
-            load_balancers=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    load_balancer_id=dict(type="str", required=True),
-                    backend_set_name=dict(type="str", required=True),
-                    port=dict(type="int", required=True),
-                    vnic_selection=dict(type="str", required=True),
-                ),
-            ),
             instance_pool_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

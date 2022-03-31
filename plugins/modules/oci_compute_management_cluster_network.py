@@ -37,76 +37,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    instance_pools:
-        description:
-            - The data to create the instance pools in the cluster network.
-            - Each cluster network can have one instance pool.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: list
-        elements: dict
-        suboptions:
-            defined_tags:
-                description:
-                    - Defined tags for this resource. Each key is predefined and scoped to a
-                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                    - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    - This parameter is updatable.
-                type: dict
-            display_name:
-                description:
-                    - A user-friendly name. Does not have to be unique, and it's changeable.
-                      Avoid entering confidential information.
-                    - This parameter is updatable.
-                type: str
-                aliases: ["name"]
-            freeform_tags:
-                description:
-                    - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                      predefined name, type, or namespace. For more information, see L(Resource
-                      Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                    - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                    - This parameter is updatable.
-                type: dict
-            instance_configuration_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration
-                      associated with the instance pool.
-                    - This parameter is updatable.
-                type: str
-            size:
-                description:
-                    - The number of instances that should be in the instance pool.
-                    - This parameter is updatable.
-                type: int
-            id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
-                    - This parameter is updatable.
-                type: str
     placement_configuration:
         description:
             - ""
@@ -142,6 +72,76 @@ options:
                             - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                         type: str
                         required: true
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    instance_pools:
+        description:
+            - The data to create the instance pools in the cluster network.
+            - Each cluster network can have one instance pool.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
+                    - This parameter is updatable.
+                type: str
+            defined_tags:
+                description:
+                    - Defined tags for this resource. Each key is predefined and scoped to a
+                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                    - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                    - This parameter is updatable.
+                type: dict
+            display_name:
+                description:
+                    - A user-friendly name. Does not have to be unique, and it's changeable.
+                      Avoid entering confidential information.
+                    - This parameter is updatable.
+                type: str
+                aliases: ["name"]
+            freeform_tags:
+                description:
+                    - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                      predefined name, type, or namespace. For more information, see L(Resource
+                      Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                    - "Example: `{\\"Department\\": \\"Finance\\"}`"
+                    - This parameter is updatable.
+                type: dict
+            size:
+                description:
+                    - The number of instances that should be in the instance pool.
+                    - This parameter is updatable.
+                type: int
+            instance_configuration_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration
+                      associated with the instance pool.
+                    - This parameter is updatable.
+                type: str
     cluster_network_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cluster network.
@@ -166,14 +166,6 @@ EXAMPLES = """
   oci_compute_management_cluster_network:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    instance_pools:
-    - # optional
-      defined_tags: {'Operations': {'CostCenter': 'US'}}
-      display_name: display_name_example
-      freeform_tags: {'Department': 'Finance'}
-      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
-      size: 56
-      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     placement_configuration:
       # required
       availability_domain: Uocm:PHX-AD-1
@@ -186,6 +178,14 @@ EXAMPLES = """
 
         # optional
         display_name: display_name_example
+    instance_pools:
+    - # optional
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      freeform_tags: {'Department': 'Finance'}
+      size: 56
+      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -203,12 +203,12 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     instance_pools:
     - # optional
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       defined_tags: {'Operations': {'CostCenter': 'US'}}
       display_name: display_name_example
       freeform_tags: {'Department': 'Finance'}
-      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
       size: 56
-      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_cluster_network:
@@ -221,12 +221,12 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     instance_pools:
     - # optional
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       defined_tags: {'Operations': {'CostCenter': 'US'}}
       display_name: display_name_example
       freeform_tags: {'Department': 'Finance'}
-      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
       size: 56
-      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cluster_network
   oci_compute_management_cluster_network:
@@ -731,21 +731,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
-            instance_pools=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    defined_tags=dict(type="dict"),
-                    display_name=dict(aliases=["name"], type="str"),
-                    freeform_tags=dict(type="dict"),
-                    instance_configuration_id=dict(type="str"),
-                    size=dict(type="int"),
-                    id=dict(type="str"),
-                ),
-            ),
             placement_configuration=dict(
                 type="dict",
                 options=dict(
@@ -759,6 +744,21 @@ def main():
                             subnet_id=dict(type="str", required=True),
                         ),
                     ),
+                ),
+            ),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            instance_pools=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    id=dict(type="str"),
+                    defined_tags=dict(type="dict"),
+                    display_name=dict(aliases=["name"], type="str"),
+                    freeform_tags=dict(type="dict"),
+                    size=dict(type="int"),
+                    instance_configuration_id=dict(type="str"),
                 ),
             ),
             cluster_network_id=dict(aliases=["id"], type="str"),

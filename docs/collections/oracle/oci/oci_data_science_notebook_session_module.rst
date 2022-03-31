@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_notebook_session -- Manage a NotebookSession resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -682,6 +682,17 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        notebook_session_config_details:
+          # required
+          shape: shape_example
+
+          # optional
+          block_storage_size_in_gbs: 56
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+          notebook_session_shape_config_details:
+            # optional
+            ocpus: 3.4
+            memory_in_gbs: 3.4
         display_name: display_name_example
         notebook_session_configuration_details:
           # required
@@ -690,17 +701,6 @@ Examples
 
           # optional
           block_storage_size_in_gbs: 56
-          notebook_session_shape_config_details:
-            # optional
-            ocpus: 3.4
-            memory_in_gbs: 3.4
-        notebook_session_config_details:
-          # required
-          shape: shape_example
-
-          # optional
-          block_storage_size_in_gbs: 56
-          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
           notebook_session_shape_config_details:
             # optional
             ocpus: 3.4
@@ -732,8 +732,8 @@ Examples
     - name: Update notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_science_notebook_session:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         notebook_session_configuration_details:
@@ -759,8 +759,8 @@ Examples
     - name: Delete notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_science_notebook_session:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

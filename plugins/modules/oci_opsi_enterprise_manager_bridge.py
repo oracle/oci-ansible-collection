@@ -33,6 +33,11 @@ options:
             - Compartment identifier of the Enterprise Manager bridge
             - Required for create using I(state=present).
         type: str
+    object_storage_bucket_name:
+        description:
+            - Object Storage Bucket Name
+            - Required for create using I(state=present).
+        type: str
     display_name:
         description:
             - User-friedly name of Enterprise Manager Bridge that does not have to be unique.
@@ -45,11 +50,6 @@ options:
         description:
             - Description of Enterprise Manager Bridge
             - This parameter is updatable.
-        type: str
-    object_storage_bucket_name:
-        description:
-            - Object Storage Bucket Name
-            - Required for create using I(state=present).
         type: str
     freeform_tags:
         description:
@@ -87,8 +87,8 @@ EXAMPLES = """
   oci_opsi_enterprise_manager_bridge:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     object_storage_bucket_name: object_storage_bucket_name_example
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -405,9 +405,9 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            object_storage_bucket_name=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            object_storage_bucket_name=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             enterprise_manager_bridge_id=dict(aliases=["id"], type="str"),

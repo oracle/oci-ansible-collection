@@ -30,7 +30,7 @@ oracle.oci.oci_integration_instance -- Manage an IntegrationInstance resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -790,31 +790,15 @@ Examples
     - name: Create integration_instance
       oci_integration_instance:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         integration_instance_type: STANDARD
         is_byol: true
         message_packs: 56
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         idcs_at: idcs_at_example
-        is_visual_builder_enabled: true
-        custom_endpoint:
-          # required
-          hostname: hostname_example
-
-          # optional
-          certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
-        alternate_custom_endpoints:
-        - # required
-          hostname: hostname_example
-
-          # optional
-          certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
         consumption_model: UCM
-        is_file_server_enabled: true
         network_endpoint_details:
           # required
           network_endpoint_type: PUBLIC
@@ -828,6 +812,22 @@ Examples
             # optional
             allowlisted_ips: [ "allowlisted_ips_example" ]
           is_integration_vcn_allowlisted: true
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        is_file_server_enabled: true
+        is_visual_builder_enabled: true
+        custom_endpoint:
+          # required
+          hostname: hostname_example
+
+          # optional
+          certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
+        alternate_custom_endpoints:
+        - # required
+          hostname: hostname_example
+
+          # optional
+          certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update integration_instance
       oci_integration_instance:
@@ -841,6 +841,7 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         is_byol: true
         message_packs: 56
+        is_file_server_enabled: true
         is_visual_builder_enabled: true
         custom_endpoint:
           # required
@@ -854,13 +855,12 @@ Examples
 
           # optional
           certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
-        is_file_server_enabled: true
 
     - name: Update integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_integration_instance:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         integration_instance_type: STANDARD
@@ -868,6 +868,7 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         is_byol: true
         message_packs: 56
+        is_file_server_enabled: true
         is_visual_builder_enabled: true
         custom_endpoint:
           # required
@@ -881,7 +882,6 @@ Examples
 
           # optional
           certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
-        is_file_server_enabled: true
 
     - name: Delete integration_instance
       oci_integration_instance:
@@ -892,8 +892,8 @@ Examples
     - name: Delete integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_integration_instance:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

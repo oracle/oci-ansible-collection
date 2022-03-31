@@ -27,11 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    budget_id:
-        description:
-            - The unique Budget OCID
-        type: str
-        required: true
     display_name:
         description:
             - The name of the alert rule.
@@ -39,11 +34,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    description:
-        description:
-            - The description of the alert rule.
-            - This parameter is updatable.
-        type: str
     type:
         description:
             - Type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or
@@ -76,6 +66,11 @@ options:
             - The audience that will receive the alert when it triggers. An empty string is interpreted as null.
             - This parameter is updatable.
         type: str
+    description:
+        description:
+            - The description of the alert rule.
+            - This parameter is updatable.
+        type: str
     msg:
         description:
             - The message to be sent to the recipients when alert rule is triggered.
@@ -96,6 +91,11 @@ options:
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
+    budget_id:
+        description:
+            - The unique Budget OCID
+        type: str
+        required: true
     alert_rule_id:
         description:
             - The unique Alert Rule OCID
@@ -119,15 +119,15 @@ EXAMPLES = """
 - name: Create budget_alert_rule
   oci_budget_alert_rule:
     # required
-    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     type: ACTUAL
     threshold: 3.4
     threshold_type: PERCENTAGE
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     display_name: display_name_example
-    description: description_example
     recipients: recipients_example
+    description: description_example
     msg: msg_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -140,11 +140,11 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
-    description: description_example
     type: ACTUAL
     threshold: 3.4
     threshold_type: PERCENTAGE
     recipients: recipients_example
+    description: description_example
     msg: msg_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -152,15 +152,15 @@ EXAMPLES = """
 - name: Update budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget_alert_rule:
     # required
-    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    description: description_example
     type: ACTUAL
     threshold: 3.4
     threshold_type: PERCENTAGE
     recipients: recipients_example
+    description: description_example
     msg: msg_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -175,8 +175,8 @@ EXAMPLES = """
 - name: Delete budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget_alert_rule:
     # required
-    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -482,16 +482,16 @@ def main():
     )
     module_args.update(
         dict(
-            budget_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             type=dict(type="str", choices=["ACTUAL", "FORECAST"]),
             threshold=dict(type="float"),
             threshold_type=dict(type="str", choices=["PERCENTAGE", "ABSOLUTE"]),
             recipients=dict(type="str"),
+            description=dict(type="str"),
             msg=dict(aliases=["message"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            budget_id=dict(type="str", required=True),
             alert_rule_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

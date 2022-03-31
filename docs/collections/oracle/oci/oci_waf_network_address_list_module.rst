@@ -30,7 +30,7 @@ oracle.oci.oci_waf_network_address_list -- Manage a NetworkAddressList resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -556,11 +556,11 @@ Examples
         type: ADDRESSES
 
         # optional
+        addresses: [ "addresses_example" ]
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         system_tags: null
-        addresses: [ "addresses_example" ]
 
     - name: Update network_address_list with type = VCN_ADDRESSES
       oci_waf_network_address_list:
@@ -583,11 +583,11 @@ Examples
         type: ADDRESSES
 
         # optional
+        addresses: [ "addresses_example" ]
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         system_tags: null
-        addresses: [ "addresses_example" ]
 
     - name: Update network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = VCN_ADDRESSES
       oci_waf_network_address_list:
@@ -612,11 +612,11 @@ Examples
         type: ADDRESSES
 
         # optional
+        addresses: [ "addresses_example" ]
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         system_tags: null
-        addresses: [ "addresses_example" ]
 
     - name: Delete network_address_list
       oci_waf_network_address_list:
@@ -627,8 +627,8 @@ Examples
     - name: Delete network_address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waf_network_address_list:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

@@ -29,13 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - The name of the session.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     bastion_id:
         description:
             - The unique identifier (OCID) of the bastion on which to create this session.
@@ -49,6 +42,11 @@ options:
             - Required for create using I(state=present).
         type: dict
         suboptions:
+            target_resource_operating_system_user_name:
+                description:
+                    - The name of the user on the target resource operating system that the session uses for the connection.
+                    - Required when session_type is 'MANAGED_SSH'
+                type: str
             session_type:
                 description:
                     - The session type.
@@ -61,11 +59,6 @@ options:
                 description:
                     - The port number to connect to on the target resource.
                 type: int
-            target_resource_operating_system_user_name:
-                description:
-                    - The name of the user on the target resource operating system that the session uses for the connection.
-                    - Required when session_type is 'MANAGED_SSH'
-                type: str
             target_resource_id:
                 description:
                     - The unique identifier (OCID) of the target resource (a Compute instance, for example) that the session connects to.
@@ -97,6 +90,13 @@ options:
         description:
             - The amount of time the session can remain active.
         type: int
+    display_name:
+        description:
+            - The name of the session.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     session_id:
         description:
             - The unique identifier (OCID) of the session.
@@ -123,8 +123,8 @@ EXAMPLES = """
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
     target_resource_details:
       # required
-      session_type: MANAGED_SSH
       target_resource_operating_system_user_name: target_resource_operating_system_user_name_example
+      session_type: MANAGED_SSH
       target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
@@ -135,9 +135,9 @@ EXAMPLES = """
       public_key_content: public_key_content_example
 
     # optional
-    display_name: display_name_example
     key_type: PUB
     session_ttl_in_seconds: 56
+    display_name: display_name_example
 
 - name: Update session
   oci_bastion_session:
@@ -150,8 +150,8 @@ EXAMPLES = """
 - name: Update session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bastion_session:
     # required
-    display_name: display_name_example
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
 - name: Delete session
   oci_bastion_session:
@@ -162,8 +162,8 @@ EXAMPLES = """
 - name: Delete session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bastion_session:
     # required
-    display_name: display_name_example
     bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -487,18 +487,17 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             bastion_id=dict(type="str"),
             target_resource_details=dict(
                 type="dict",
                 options=dict(
+                    target_resource_operating_system_user_name=dict(type="str"),
                     session_type=dict(
                         type="str",
                         required=True,
                         choices=["MANAGED_SSH", "PORT_FORWARDING"],
                     ),
                     target_resource_port=dict(type="int"),
-                    target_resource_operating_system_user_name=dict(type="str"),
                     target_resource_id=dict(type="str"),
                     target_resource_private_ip_address=dict(type="str"),
                 ),
@@ -512,6 +511,7 @@ def main():
                 ),
             ),
             session_ttl_in_seconds=dict(type="int"),
+            display_name=dict(aliases=["name"], type="str"),
             session_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

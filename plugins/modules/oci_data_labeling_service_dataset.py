@@ -28,18 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A user-friendly display name for the resource.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    description:
-        description:
-            - A user provided description of the dataset
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The OCID of the compartment of the resource.
@@ -121,6 +109,18 @@ options:
                         description:
                             - An unique name for a label within its dataset.
                         type: str
+    display_name:
+        description:
+            - A user-friendly display name for the resource.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - A user provided description of the dataset
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
@@ -176,11 +176,11 @@ EXAMPLES = """
         name: name_example
 
     # optional
-    display_name: display_name_example
-    description: description_example
     initial_record_generation_configuration:
       # optional
       limit: 3.4
+    display_name: display_name_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -198,8 +198,8 @@ EXAMPLES = """
 - name: Update dataset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_labeling_service_dataset:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -215,8 +215,8 @@ EXAMPLES = """
 - name: Delete dataset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_labeling_service_dataset:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -572,8 +572,6 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
             annotation_format=dict(type="str"),
             dataset_source_details=dict(
@@ -608,6 +606,8 @@ def main():
                     )
                 ),
             ),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             dataset_id=dict(aliases=["id"], type="str"),

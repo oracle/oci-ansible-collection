@@ -53,29 +53,6 @@ options:
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    drg_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     default_drg_route_tables:
         description:
             - ""
@@ -110,6 +87,29 @@ options:
                       of type REMOTE_PEERING_CONNECTION on creation.
                     - This parameter is updatable.
                 type: str
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    drg_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the Drg.
@@ -140,14 +140,14 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
     default_drg_route_tables:
       # optional
       vcn: vcn_example
       ipsec_tunnel: ipsec_tunnel_example
       virtual_circuit: virtual_circuit_example
       remote_peering_connection: remote_peering_connection_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Update drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg:
@@ -157,13 +157,13 @@ EXAMPLES = """
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    freeform_tags: {'Department': 'Finance'}
     default_drg_route_tables:
       # optional
       vcn: vcn_example
       ipsec_tunnel: ipsec_tunnel_example
       virtual_circuit: virtual_circuit_example
       remote_peering_connection: remote_peering_connection_example
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Delete drg
   oci_network_drg:
@@ -435,9 +435,6 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
-            drg_id=dict(aliases=["id"], type="str"),
             default_drg_route_tables=dict(
                 type="dict",
                 options=dict(
@@ -447,6 +444,9 @@ def main():
                     remote_peering_connection=dict(type="str"),
                 ),
             ),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            drg_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -28,6 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    bds_api_key_passphrase:
+        description:
+            - Base-64 encoded passphrase of the BDS Api Key. Set only if metastore's type is EXTERNAL.
+            - Applicable only for I(action=activate).
+        type: str
     bds_instance_id:
         description:
             - The OCID of the cluster.
@@ -39,11 +44,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-    bds_api_key_passphrase:
-        description:
-            - Base-64 encoded passphrase of the BDS Api Key. Set only if metastore's type is EXTERNAL.
-            - Applicable only for I(action=activate).
-        type: str
     cluster_admin_password:
         description:
             - Base-64 encoded password for the cluster admin user.
@@ -256,9 +256,9 @@ def main():
     )
     module_args.update(
         dict(
+            bds_api_key_passphrase=dict(type="str", no_log=True),
             bds_instance_id=dict(type="str", required=True),
             metastore_config_id=dict(aliases=["id"], type="str", required=True),
-            bds_api_key_passphrase=dict(type="str", no_log=True),
             cluster_admin_password=dict(type="str", required=True, no_log=True),
             action=dict(type="str", required=True, choices=["activate", "test"]),
         )

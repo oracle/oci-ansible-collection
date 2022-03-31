@@ -27,14 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    name:
-        description:
-            - A friendly name for the backend set. It must be unique and it cannot be changed.
-            - Valid backend set names include only alphanumeric characters, dashes, and underscores. Backend set names cannot
-              contain spaces. Avoid entering confidential information.
-            - "Example: `example_backend_set`"
-        type: str
-        required: true
     policy:
         description:
             - The load balancer policy for the backend set. To get a list of available policies, use the
@@ -336,6 +328,14 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    name:
+        description:
+            - A friendly name for the backend set. It must be unique and it cannot be changed.
+            - Valid backend set names include only alphanumeric characters, dashes, and underscores. Backend set names cannot
+              contain spaces. Avoid entering confidential information.
+            - "Example: `example_backend_set`"
+        type: str
+        required: true
     state:
         description:
             - The state of the BackendSet.
@@ -352,7 +352,6 @@ EXAMPLES = """
 - name: Create backend_set
   oci_loadbalancer_backend_set:
     # required
-    name: name_example
     policy: policy_example
     health_checker:
       # required
@@ -367,6 +366,7 @@ EXAMPLES = """
       interval_in_millis: 56
       response_body_regex: response_body_regex_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     backends:
@@ -408,7 +408,6 @@ EXAMPLES = """
 - name: Update backend_set
   oci_loadbalancer_backend_set:
     # required
-    name: name_example
     policy: policy_example
     backends:
     - # required
@@ -433,6 +432,7 @@ EXAMPLES = """
       interval_in_millis: 56
       response_body_regex: response_body_regex_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     ssl_configuration:
@@ -464,8 +464,8 @@ EXAMPLES = """
 - name: Delete backend_set
   oci_loadbalancer_backend_set:
     # required
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -1040,7 +1040,6 @@ def main():
     )
     module_args.update(
         dict(
-            name=dict(type="str", required=True),
             policy=dict(type="str"),
             backends=dict(
                 type="list",
@@ -1102,6 +1101,7 @@ def main():
                 ),
             ),
             load_balancer_id=dict(aliases=["id"], type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

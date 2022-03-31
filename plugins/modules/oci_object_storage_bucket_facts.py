@@ -34,16 +34,21 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Object Storage namespace used for the request.
-        type: str
-        required: true
     bucket_name:
         description:
             - "The name of the bucket. Avoid entering confidential information.
               Example: `my-new-bucket1`"
             - Required to get a specific bucket.
+        type: str
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    compartment_id:
+        description:
+            - The ID of the compartment in which to list buckets.
+            - Required to list multiple buckets.
         type: str
     fields:
         description:
@@ -58,11 +63,6 @@ options:
             - "approximateSize"
             - "autoTiering"
             - "tags"
-    compartment_id:
-        description:
-            - The ID of the compartment in which to list buckets.
-            - Required to list multiple buckets.
-        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -70,8 +70,8 @@ EXAMPLES = """
 - name: Get a specific bucket
   oci_object_storage_bucket_facts:
     # required
-    namespace_name: namespace_name_example
     bucket_name: bucket_name_example
+    namespace_name: namespace_name_example
 
     # optional
     fields: [ "approximateCount" ]
@@ -355,14 +355,14 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
             bucket_name=dict(type="str"),
+            namespace_name=dict(type="str", required=True),
+            compartment_id=dict(type="str"),
             fields=dict(
                 type="list",
                 elements="str",
                 choices=["approximateCount", "approximateSize", "autoTiering", "tags"],
             ),
-            compartment_id=dict(type="str"),
         )
     )
 

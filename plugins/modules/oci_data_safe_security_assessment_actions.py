@@ -35,12 +35,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    security_assessment_id:
-        description:
-            - The OCID of the security assessment.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The OCID of the compartment where you want to move the security assessment.
@@ -52,6 +46,12 @@ options:
             - Applicable only for I(action=set_security_assessment_baseline).
         type: list
         elements: str
+    security_assessment_id:
+        description:
+            - The OCID of the security assessment.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the SecurityAssessment.
@@ -68,8 +68,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on security_assessment
   oci_data_safe_security_assessment_actions:
     # required
-    security_assessment_id: "ocid1.securityassessment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    security_assessment_id: "ocid1.securityassessment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action set_security_assessment_baseline on security_assessment
@@ -812,9 +812,9 @@ def main():
     )
     module_args.update(
         dict(
-            security_assessment_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             assessment_ids=dict(type="list", elements="str"),
+            security_assessment_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

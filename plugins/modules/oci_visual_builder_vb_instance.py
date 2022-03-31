@@ -28,6 +28,21 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - Compartment Identifier.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    consumption_model:
+        description:
+            - Optional parameter specifying which entitlement to use for billing purposes. Only required if the account possesses more than one entitlement.
+        type: str
+        choices:
+            - "UCM"
+            - "GOV"
+            - "VB4SAAS"
     display_name:
         description:
             - Vb Instance Identifier.
@@ -36,13 +51,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - Compartment Identifier.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name,
@@ -113,14 +121,6 @@ options:
                       Note the update will fail if this is not a valid certificate.
                     - This parameter is updatable.
                 type: str
-    consumption_model:
-        description:
-            - Optional parameter specifying which entitlement to use for billing purposes. Only required if the account possesses more than one entitlement.
-        type: str
-        choices:
-            - "UCM"
-            - "GOV"
-            - "VB4SAAS"
     vb_instance_id:
         description:
             - Unique Vb Instance identifier.
@@ -144,11 +144,12 @@ EXAMPLES = """
 - name: Create vb_instance
   oci_visual_builder_vb_instance:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     node_count: 56
 
     # optional
+    consumption_model: UCM
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     idcs_open_id: "ocid1.idcsopen.oc1..xxxxxxEXAMPLExxxxxx"
@@ -165,7 +166,6 @@ EXAMPLES = """
 
       # optional
       certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
-    consumption_model: UCM
 
 - name: Update vb_instance
   oci_visual_builder_vb_instance:
@@ -195,8 +195,8 @@ EXAMPLES = """
 - name: Update vb_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_visual_builder_vb_instance:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -226,8 +226,8 @@ EXAMPLES = """
 - name: Delete vb_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_visual_builder_vb_instance:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -563,8 +563,9 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            consumption_model=dict(type="str", choices=["UCM", "GOV", "VB4SAAS"]),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             idcs_open_id=dict(type="str"),
@@ -585,7 +586,6 @@ def main():
                     certificate_secret_id=dict(type="str"),
                 ),
             ),
-            consumption_model=dict(type="str", choices=["UCM", "GOV", "VB4SAAS"]),
             vb_instance_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

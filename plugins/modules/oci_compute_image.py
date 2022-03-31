@@ -54,36 +54,26 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name for the image. It does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - You cannot use a platform image name as a custom image name.
-            - "Example: `My Oracle Linux image`"
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
     image_source_details:
         description:
             - ""
         type: dict
         suboptions:
+            bucket_name:
+                description:
+                    - The Object Storage bucket for the image.
+                    - Required when source_type is 'objectStorageTuple'
+                type: str
+            namespace_name:
+                description:
+                    - The Object Storage namespace for the image.
+                    - Required when source_type is 'objectStorageTuple'
+                type: str
+            object_name:
+                description:
+                    - The Object Storage name for the image.
+                    - Required when source_type is 'objectStorageTuple'
+                type: str
             operating_system:
                 description:
                     - ""
@@ -109,21 +99,6 @@ options:
                     - "objectStorageTuple"
                     - "objectStorageUri"
                 required: true
-            bucket_name:
-                description:
-                    - The Object Storage bucket for the image.
-                    - Required when source_type is 'objectStorageTuple'
-                type: str
-            namespace_name:
-                description:
-                    - The Object Storage namespace for the image.
-                    - Required when source_type is 'objectStorageTuple'
-                type: str
-            object_name:
-                description:
-                    - The Object Storage name for the image.
-                    - Required when source_type is 'objectStorageTuple'
-                type: str
             source_uri:
                 description:
                     - The Object Storage URL for the image.
@@ -146,13 +121,31 @@ options:
             - "EMULATED"
             - "PARAVIRTUALIZED"
             - "CUSTOM"
-    image_id:
+    defined_tags:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name for the image. It does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - You cannot use a platform image name as a custom image name.
+            - "Example: `My Oracle Linux image`"
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
-        aliases: ["id"]
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
     operating_system:
         description:
             - Operating system
@@ -165,6 +158,13 @@ options:
             - "Example: `7.4`"
             - This parameter is updatable.
         type: str
+    image_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the Image.
@@ -184,15 +184,12 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
     image_source_details:
       # required
-      source_type: objectStorageTuple
       bucket_name: bucket_name_example
       namespace_name: namespace_name_example
       object_name: object_name_example
+      source_type: objectStorageTuple
 
       # optional
       operating_system: operating_system_example
@@ -200,6 +197,9 @@ EXAMPLES = """
       source_image_type: QCOW2
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     launch_mode: NATIVE
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
 
 - name: Update image
   oci_compute_image:
@@ -631,12 +631,12 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
             image_source_details=dict(
                 type="dict",
                 options=dict(
+                    bucket_name=dict(type="str"),
+                    namespace_name=dict(type="str"),
+                    object_name=dict(type="str"),
                     operating_system=dict(type="str"),
                     operating_system_version=dict(type="str"),
                     source_image_type=dict(type="str", choices=["QCOW2", "VMDK"]),
@@ -645,9 +645,6 @@ def main():
                         required=True,
                         choices=["objectStorageTuple", "objectStorageUri"],
                     ),
-                    bucket_name=dict(type="str"),
-                    namespace_name=dict(type="str"),
-                    object_name=dict(type="str"),
                     source_uri=dict(type="str"),
                 ),
             ),
@@ -655,9 +652,12 @@ def main():
             launch_mode=dict(
                 type="str", choices=["NATIVE", "EMULATED", "PARAVIRTUALIZED", "CUSTOM"]
             ),
-            image_id=dict(aliases=["id"], type="str"),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
             operating_system=dict(type="str"),
             operating_system_version=dict(type="str"),
+            image_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

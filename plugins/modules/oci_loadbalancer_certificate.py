@@ -67,6 +67,12 @@ options:
                   ...
                   -----END CERTIFICATE-----"
         type: str
+    load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer on which to add the certificate bundle.
+        type: str
+        aliases: ["id"]
+        required: true
     certificate_name:
         description:
             - A friendly name for the certificate bundle. It must be unique and it cannot be changed.
@@ -75,12 +81,6 @@ options:
             - "Example: `example_certificate_bundle`"
         type: str
         aliases: ["name"]
-        required: true
-    load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer on which to add the certificate bundle.
-        type: str
-        aliases: ["id"]
         required: true
     state:
         description:
@@ -98,8 +98,8 @@ EXAMPLES = """
 - name: Create certificate
   oci_loadbalancer_certificate:
     # required
-    certificate_name: certificate_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_name: certificate_name_example
 
     # optional
     passphrase: passphrase_example
@@ -110,8 +110,8 @@ EXAMPLES = """
 - name: Delete certificate
   oci_loadbalancer_certificate:
     # required
-    certificate_name: certificate_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_name: certificate_name_example
     state: absent
 
 """
@@ -302,8 +302,8 @@ def main():
             private_key=dict(type="str", no_log=True),
             public_certificate=dict(type="str"),
             ca_certificate=dict(type="str"),
-            certificate_name=dict(aliases=["name"], type="str", required=True),
             load_balancer_id=dict(aliases=["id"], type="str", required=True),
+            certificate_name=dict(aliases=["name"], type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

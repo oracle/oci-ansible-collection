@@ -35,16 +35,16 @@ options:
             - Required to get a specific instance_agent_command_execution.
         type: str
         aliases: ["id"]
-    instance_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance.
-        type: str
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple instance_agent_command_executions.
         type: str
+    instance_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance.
+        type: str
+        required: true
     sort_by:
         description:
             - The field to sort by. You can provide one sort order (`sortOrder`). Default order for
@@ -89,8 +89,8 @@ EXAMPLES = """
 - name: List instance_agent_command_executions
   oci_compute_instance_agent_instance_agent_command_execution_facts:
     # required
-    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     sort_by: TIMECREATED
@@ -329,8 +329,8 @@ def main():
     module_args.update(
         dict(
             instance_agent_command_id=dict(aliases=["id"], type="str"),
-            instance_id=dict(type="str", required=True),
             compartment_id=dict(type="str"),
+            instance_id=dict(type="str", required=True),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             lifecycle_state=dict(

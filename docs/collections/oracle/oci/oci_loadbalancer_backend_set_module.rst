@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_backend_set -- Manage a BackendSet resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1065,7 +1065,6 @@ Examples
     - name: Create backend_set
       oci_loadbalancer_backend_set:
         # required
-        name: name_example
         policy: policy_example
         health_checker:
           # required
@@ -1080,6 +1079,7 @@ Examples
           interval_in_millis: 56
           response_body_regex: response_body_regex_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
         backends:
@@ -1121,7 +1121,6 @@ Examples
     - name: Update backend_set
       oci_loadbalancer_backend_set:
         # required
-        name: name_example
         policy: policy_example
         backends:
         - # required
@@ -1146,6 +1145,7 @@ Examples
           interval_in_millis: 56
           response_body_regex: response_body_regex_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
         ssl_configuration:
@@ -1177,8 +1177,8 @@ Examples
     - name: Delete backend_set
       oci_loadbalancer_backend_set:
         # required
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
         state: absent
 
 

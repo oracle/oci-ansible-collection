@@ -29,16 +29,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Logging Analytics namespace used for the request.
-        type: str
-        required: true
     category_name:
         description:
             - The category name.
             - Required to get a specific log_analytics_category.
         type: str
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
     category_type:
         description:
             - A comma-separated list of category types used for filtering. Only categories of the
@@ -75,8 +75,8 @@ EXAMPLES = """
 - name: Get a specific log_analytics_category
   oci_log_analytics_category_facts:
     # required
-    namespace_name: namespace_name_example
     category_name: category_name_example
+    namespace_name: namespace_name_example
 
 - name: List log_analytics_categories
   oci_log_analytics_category_facts:
@@ -211,8 +211,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
             category_name=dict(type="str"),
+            namespace_name=dict(type="str", required=True),
             category_type=dict(type="str"),
             category_display_text=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

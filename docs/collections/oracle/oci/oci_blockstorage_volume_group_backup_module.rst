@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_volume_group_backup -- Manage a VolumeGroupBackup re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -472,10 +472,10 @@ Examples
         volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        type: FULL
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        type: FULL
 
     - name: Update volume_group_backup
       oci_blockstorage_volume_group_backup:

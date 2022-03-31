@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_data_mask_rule -- Manage a DataMaskRule resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -606,8 +606,8 @@ Examples
 
         # optional
         description: description_example
-        data_mask_rule_status: ENABLED
         lifecycle_state: CREATING
+        data_mask_rule_status: ENABLED
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

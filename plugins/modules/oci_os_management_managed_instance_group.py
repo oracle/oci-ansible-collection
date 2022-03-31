@@ -31,6 +31,22 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - OCID for the Compartment
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    os_family:
+        description:
+            - The Operating System type of the managed instance(s) on which this scheduled job will operate.
+              If not specified, this defaults to Linux.
+        type: str
+        choices:
+            - "LINUX"
+            - "WINDOWS"
+            - "ALL"
     display_name:
         description:
             - Managed Instance Group identifier
@@ -44,13 +60,6 @@ options:
             - Information specified by the user about the managed instance group
             - This parameter is updatable.
         type: str
-    compartment_id:
-        description:
-            - OCID for the Compartment
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -63,15 +72,6 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    os_family:
-        description:
-            - The Operating System type of the managed instance(s) on which this scheduled job will operate.
-              If not specified, this defaults to Linux.
-        type: str
-        choices:
-            - "LINUX"
-            - "WINDOWS"
-            - "ALL"
     managed_instance_group_id:
         description:
             - OCID for the managed instance group
@@ -95,14 +95,14 @@ EXAMPLES = """
 - name: Create managed_instance_group
   oci_os_management_managed_instance_group:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
+    os_family: LINUX
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    os_family: LINUX
 
 - name: Update managed_instance_group
   oci_os_management_managed_instance_group:
@@ -118,8 +118,8 @@ EXAMPLES = """
 - name: Update managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_managed_instance_group:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -135,8 +135,8 @@ EXAMPLES = """
 - name: Delete managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_managed_instance_group:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -398,12 +398,12 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            os_family=dict(type="str", choices=["LINUX", "WINDOWS", "ALL"]),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            os_family=dict(type="str", choices=["LINUX", "WINDOWS", "ALL"]),
             managed_instance_group_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

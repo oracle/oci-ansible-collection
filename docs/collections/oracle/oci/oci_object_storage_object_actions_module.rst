@@ -30,7 +30,7 @@ oracle.oci.oci_object_storage_object_actions -- Perform actions on an Object res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -939,13 +939,13 @@ Examples
     - name: Perform action copy on object
       oci_object_storage_object_actions:
         # required
-        namespace_name: namespace_name_example
-        bucket_name: bucket_name_example
         source_object_name: source_object_name_example
         destination_region: us-phoenix-1
         destination_namespace: destination_namespace_example
         destination_bucket: destination_bucket_example
         destination_object_name: destination_object_name_example
+        namespace_name: namespace_name_example
+        bucket_name: bucket_name_example
         action: copy
 
         # optional
@@ -988,10 +988,10 @@ Examples
     - name: Perform action rename on object
       oci_object_storage_object_actions:
         # required
-        namespace_name: namespace_name_example
-        bucket_name: bucket_name_example
         source_name: source_name_example
         new_name: new_name_example
+        namespace_name: namespace_name_example
+        bucket_name: bucket_name_example
         action: rename
 
         # optional
@@ -1008,8 +1008,8 @@ Examples
         action: restore
 
         # optional
-        version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
         hours: 56
+        version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Perform action update_object_storage_tier on object
       oci_object_storage_object_actions:

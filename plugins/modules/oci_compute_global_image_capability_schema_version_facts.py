@@ -29,16 +29,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    compute_global_image_capability_schema_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute global image capability schema
-        type: str
-        required: true
     compute_global_image_capability_schema_version_name:
         description:
             - The name of the compute global image capability schema version
             - Required to get a specific compute_global_image_capability_schema_version.
         type: str
+    compute_global_image_capability_schema_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute global image capability schema
+        type: str
+        required: true
     display_name:
         description:
             - A filter to return only resources that match the given display name exactly.
@@ -71,8 +71,8 @@ EXAMPLES = """
 - name: Get a specific compute_global_image_capability_schema_version
   oci_compute_global_image_capability_schema_version_facts:
     # required
-    compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
     compute_global_image_capability_schema_version_name: compute_global_image_capability_schema_version_name_example
+    compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List compute_global_image_capability_schema_versions
   oci_compute_global_image_capability_schema_version_facts:
@@ -264,8 +264,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            compute_global_image_capability_schema_id=dict(type="str", required=True),
             compute_global_image_capability_schema_version_name=dict(type="str"),
+            compute_global_image_capability_schema_id=dict(type="str", required=True),
             display_name=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

@@ -46,6 +46,17 @@ options:
         description:
             - The DNS zone of the custom DNS to use to resolve names.
         type: str
+    compartment_id:
+        description:
+            - The OCID of the compartment containing the workspace.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    is_private_network_enabled:
+        description:
+            - Specifies whether the private network connection is enabled or disabled.
+        type: bool
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -73,17 +84,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - The OCID of the compartment containing the workspace.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
-    is_private_network_enabled:
-        description:
-            - Specifies whether the private network connection is enabled or disabled.
-        type: bool
     workspace_id:
         description:
             - The workspace ID.
@@ -115,18 +115,18 @@ EXAMPLES = """
 - name: Create workspace
   oci_data_integration_workspace:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     dns_server_ip: dns_server_ip_example
     dns_server_zone: dns_server_zone_example
+    is_private_network_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
-    is_private_network_enabled: true
 
 - name: Update workspace
   oci_data_integration_workspace:
@@ -142,8 +142,8 @@ EXAMPLES = """
 - name: Update workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_integration_workspace:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -163,8 +163,8 @@ EXAMPLES = """
 - name: Delete workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_integration_workspace:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -451,12 +451,12 @@ def main():
             subnet_id=dict(type="str"),
             dns_server_ip=dict(type="str"),
             dns_server_zone=dict(type="str"),
+            compartment_id=dict(type="str"),
+            is_private_network_enabled=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            compartment_id=dict(type="str"),
-            is_private_network_enabled=dict(type="bool"),
             workspace_id=dict(aliases=["id"], type="str"),
             quiesce_timeout=dict(type="int"),
             is_force_operation=dict(type="bool"),

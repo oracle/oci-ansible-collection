@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    cloud_vm_cluster_id:
-        description:
-            - The cloud VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     update_history_entry_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance update history entry.
             - Required to get a specific update_history_entry.
         type: str
         aliases: ["id"]
+    cloud_vm_cluster_id:
+        description:
+            - The cloud VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
     update_type:
         description:
             - A filter to return only resources that match the given update type exactly.
@@ -54,8 +54,8 @@ EXAMPLES = """
 - name: Get a specific update_history_entry
   oci_database_update_history_entry_facts:
     # required
-    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     update_history_entry_id: "ocid1.updatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List update_history_entries
   oci_database_update_history_entry_facts:
@@ -201,8 +201,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            cloud_vm_cluster_id=dict(type="str", required=True),
             update_history_entry_id=dict(aliases=["id"], type="str"),
+            cloud_vm_cluster_id=dict(type="str", required=True),
             update_type=dict(
                 type="str", choices=["GI_UPGRADE", "GI_PATCH", "OS_UPDATE"]
             ),

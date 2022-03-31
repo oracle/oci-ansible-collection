@@ -30,7 +30,7 @@ oracle.oci.oci_apm_config_config -- Manage a Config resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -802,9 +802,6 @@ Examples
         config_type: METRIC_GROUP
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
         filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
         namespace: namespace_example
         dimensions:
@@ -821,11 +818,13 @@ Examples
           value_source: value_source_example
           unit: unit_example
           description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
 
     - name: Create config with config_type = APDEX
       oci_apm_config_config:
         # required
-        config_type: APDEX
         rules:
         - # required
           filter_text: filter_text_example
@@ -837,6 +836,7 @@ Examples
           tolerating_response_time: 56
           is_apply_to_error_spans: true
           display_name: display_name_example
+        config_type: APDEX
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -861,9 +861,6 @@ Examples
         config_type: METRIC_GROUP
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
         filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
         namespace: namespace_example
         dimensions:
@@ -880,11 +877,13 @@ Examples
           value_source: value_source_example
           unit: unit_example
           description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
 
     - name: Update config with config_type = APDEX
       oci_apm_config_config:
         # required
-        config_type: APDEX
         rules:
         - # required
           filter_text: filter_text_example
@@ -896,6 +895,7 @@ Examples
           tolerating_response_time: 56
           is_apply_to_error_spans: true
           display_name: display_name_example
+        config_type: APDEX
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -920,9 +920,6 @@ Examples
         config_type: METRIC_GROUP
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
         filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
         namespace: namespace_example
         dimensions:
@@ -939,11 +936,13 @@ Examples
           value_source: value_source_example
           unit: unit_example
           description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
 
     - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = APDEX
       oci_apm_config_config:
         # required
-        config_type: APDEX
         rules:
         - # required
           filter_text: filter_text_example
@@ -955,6 +954,7 @@ Examples
           tolerating_response_time: 56
           is_apply_to_error_spans: true
           display_name: display_name_example
+        config_type: APDEX
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -971,8 +971,8 @@ Examples
     - name: Delete config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apm_config_config:
         # required
-        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

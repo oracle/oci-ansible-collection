@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The OCID for the data asset's compartment.
@@ -47,26 +40,12 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the data asset.
             - Required for create using I(state=present).
         type: str
-    description:
-        description:
-            - A short description of the Ai data asset
-            - This parameter is updatable.
-        type: str
     data_source_details:
         description:
             - ""
             - Required for create using I(state=present).
         type: dict
         suboptions:
-            data_source_type:
-                description:
-                    - Data source type where actually data asset is being stored
-                type: str
-                choices:
-                    - "ORACLE_OBJECT_STORAGE"
-                    - "INFLUX"
-                    - "ORACLE_ATP"
-                required: true
             namespace:
                 description:
                     - Object storage namespace
@@ -88,14 +67,6 @@ options:
                     - Required when data_source_type is 'INFLUX'
                 type: dict
                 suboptions:
-                    influx_version:
-                        description:
-                            - Data source type where actually data asset is being stored
-                        type: str
-                        choices:
-                            - "V_1_8"
-                            - "V_2_0"
-                        required: true
                     database_name:
                         description:
                             - DB Name for influx connection
@@ -106,6 +77,14 @@ options:
                             - retention policy is how long the bucket would last
                             - Applicable when influx_version is 'V_1_8'
                         type: str
+                    influx_version:
+                        description:
+                            - Data source type where actually data asset is being stored
+                        type: str
+                        choices:
+                            - "V_1_8"
+                            - "V_2_0"
+                        required: true
                     bucket_name:
                         description:
                             - Bucket Name for influx connection
@@ -136,6 +115,15 @@ options:
                     - public IP address and port to influx DB
                     - Required when data_source_type is 'INFLUX'
                 type: str
+            data_source_type:
+                description:
+                    - Data source type where actually data asset is being stored
+                type: str
+                choices:
+                    - "ORACLE_OBJECT_STORAGE"
+                    - "INFLUX"
+                    - "ORACLE_ATP"
+                required: true
             wallet_password_secret_id:
                 description:
                     - wallet password Secret ID in String format
@@ -195,6 +183,18 @@ options:
         description:
             - OCID of Private Endpoint.
         type: str
+    display_name:
+        description:
+            - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - A short description of the Ai data asset
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -242,9 +242,9 @@ EXAMPLES = """
       object_name: object_name_example
 
     # optional
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
-    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -262,8 +262,8 @@ EXAMPLES = """
 - name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ai_anomaly_detection_data_asset:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -279,8 +279,8 @@ EXAMPLES = """
 - name: Delete data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ai_anomaly_detection_data_asset:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -722,29 +722,22 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
             project_id=dict(type="str"),
-            description=dict(type="str"),
             data_source_details=dict(
                 type="dict",
                 options=dict(
-                    data_source_type=dict(
-                        type="str",
-                        required=True,
-                        choices=["ORACLE_OBJECT_STORAGE", "INFLUX", "ORACLE_ATP"],
-                    ),
                     namespace=dict(type="str"),
                     bucket_name=dict(type="str"),
                     object_name=dict(type="str"),
                     version_specific_details=dict(
                         type="dict",
                         options=dict(
+                            database_name=dict(type="str"),
+                            retention_policy_name=dict(type="str"),
                             influx_version=dict(
                                 type="str", required=True, choices=["V_1_8", "V_2_0"]
                             ),
-                            database_name=dict(type="str"),
-                            retention_policy_name=dict(type="str"),
                             bucket_name=dict(type="str"),
                             organization_name=dict(type="str"),
                         ),
@@ -753,6 +746,11 @@ def main():
                     password_secret_id=dict(type="str"),
                     measurement_name=dict(type="str"),
                     url=dict(type="str"),
+                    data_source_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["ORACLE_OBJECT_STORAGE", "INFLUX", "ORACLE_ATP"],
+                    ),
                     wallet_password_secret_id=dict(type="str"),
                     atp_user_name=dict(type="str"),
                     atp_password_secret_id=dict(type="str"),
@@ -767,6 +765,8 @@ def main():
                 ),
             ),
             private_endpoint_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             data_asset_id=dict(aliases=["id"], type="str"),

@@ -37,6 +37,31 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
               a new Autonomous Database. Required when source is 'BACKUP_FROM_TIMESTAMP'
         type: str
+    autonomous_database_backup_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database Backup that you will clone to
+              create a new Autonomous Database.
+            - Required when source is 'BACKUP_FROM_ID'
+        type: str
+    timestamp:
+        description:
+            - The timestamp specified for the point-in-time clone of the source Autonomous Database. The timestamp must be in the past.
+            - Required when source is 'BACKUP_FROM_TIMESTAMP'
+        type: str
+    clone_type:
+        description:
+            - The Autonomous Database clone type.
+            - Required when source is one of ['BACKUP_FROM_TIMESTAMP', 'DATABASE', 'BACKUP_FROM_ID']
+        type: str
+        choices:
+            - "FULL"
+            - "METADATA"
+    source_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
+              a new Autonomous Database.
+            - Required when source is one of ['DATABASE', 'CLONE_TO_REFRESHABLE', 'CROSS_REGION_DATAGUARD']
+        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the Autonomous Database.
@@ -44,13 +69,57 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    db_name:
+    kms_key_id:
         description:
-            - The database name. The name must begin with an alphabetic character and can contain a maximum of 14 alphanumeric characters. Special characters
-              are not permitted. The database name must be unique in the tenancy.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
         type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+        type: str
+    is_preview_version_with_service_terms_accepted:
+        description:
+            - If set to `TRUE`, indicates that an Autonomous Database preview version is being provisioned, and that the preview version's terms of service have
+              been accepted. Note that preview version software is only available for databases on L(shared Exadata
+              infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html).
+        type: bool
+    is_dedicated:
+        description:
+            - True if the database is on L(dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html).
+        type: bool
+    autonomous_container_database_id:
+        description:
+            - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+    source:
+        description:
+            - "The source of the database: Use `NONE` for creating a new Autonomous Database. Use `DATABASE` for creating a new Autonomous Database by cloning
+              an existing Autonomous Database. Use `CROSS_REGION_DATAGUARD` to create a standby Data Guard database in another region."
+            - "For Autonomous Databases on L(shared Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html), the following
+              cloning options are available: Use `BACKUP_FROM_ID` for creating a new Autonomous Database from a specified backup. Use `BACKUP_FROM_TIMESTAMP`
+              for creating a point-in-time Autonomous Database clone using backups. For more information, see L(Cloning and Moving an Autonomous
+              Database,https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/clone-autonomous-
+              database.html#GUID-D771796F-5081-4CFB-A7FF-0F893EABD7BC)."
+        type: str
+        choices:
+            - "DATABASE"
+            - "CLONE_TO_REFRESHABLE"
+            - "BACKUP_FROM_ID"
+            - "BACKUP_FROM_TIMESTAMP"
+            - "CROSS_REGION_DATAGUARD"
+            - "NONE"
+        default: "NONE"
+    autonomous_maintenance_schedule_type:
+        description:
+            - The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous
+              Database
+              follows a schedule that applies patches prior to the REGULAR schedule.The REGULAR maintenance schedule of this Autonomous Database follows the
+              normal cycle.
+        type: str
+        choices:
+            - "EARLY"
+            - "REGULAR"
     cpu_core_count:
         description:
             - The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of
@@ -76,20 +145,6 @@ options:
             - "**Note:** This parameter cannot be used with the `cpuCoreCount` parameter."
             - This parameter is updatable.
         type: float
-    db_workload:
-        description:
-            - "The Autonomous Database workload type. The following values are valid:"
-            - "- OLTP - indicates an Autonomous Transaction Processing database
-              - DW - indicates an Autonomous Data Warehouse database
-              - AJD - indicates an Autonomous JSON Database
-              - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "OLTP"
-            - "DW"
-            - "AJD"
-            - "APEX"
     data_storage_size_in_tbs:
         description:
             - The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed. For
@@ -110,27 +165,6 @@ options:
               - This parameter cannot be used with the `dataStorageSizeInTBs` parameter."
             - This parameter is updatable.
         type: int
-    is_free_tier:
-        description:
-            - Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of
-              memory. For Always Free databases, memory and CPU cannot be scaled.
-            - This parameter is updatable.
-        type: bool
-    kms_key_id:
-        description:
-            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
-        type: str
-    vault_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
-              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
-        type: str
-    admin_password:
-        description:
-            - "The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot
-              contain the double quote symbol (\\") or the username \\"admin\\", regardless of casing."
-            - This parameter is updatable.
-        type: str
     display_name:
         description:
             - The user-friendly name for the Autonomous Database. The name does not have to be unique.
@@ -138,6 +172,52 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
+    is_free_tier:
+        description:
+            - Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of
+              memory. For Always Free databases, memory and CPU cannot be scaled.
+            - This parameter is updatable.
+        type: bool
+    admin_password:
+        description:
+            - "The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot
+              contain the double quote symbol (\\") or the username \\"admin\\", regardless of casing."
+            - This parameter is updatable.
+        type: str
+    db_name:
+        description:
+            - The database name. The name must begin with an alphabetic character and can contain a maximum of 14 alphanumeric characters. Special characters
+              are not permitted. The database name must be unique in the tenancy.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
+        type: dict
+    db_workload:
+        description:
+            - "The Autonomous Database workload type. The following values are valid:"
+            - "- OLTP - indicates an Autonomous Transaction Processing database
+              - DW - indicates an Autonomous Data Warehouse database
+              - AJD - indicates an Autonomous JSON Database
+              - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "OLTP"
+            - "DW"
+            - "AJD"
+            - "APEX"
     license_model:
         description:
             - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
@@ -152,25 +232,6 @@ options:
         choices:
             - "LICENSE_INCLUDED"
             - "BRING_YOUR_OWN_LICENSE"
-    is_preview_version_with_service_terms_accepted:
-        description:
-            - If set to `TRUE`, indicates that an Autonomous Database preview version is being provisioned, and that the preview version's terms of service have
-              been accepted. Note that preview version software is only available for databases on L(shared Exadata
-              infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html).
-        type: bool
-    is_auto_scaling_enabled:
-        description:
-            - Indicates if auto scaling is enabled for the Autonomous Database OCPU core count. The default value is `FALSE`.
-            - This parameter is updatable.
-        type: bool
-    is_dedicated:
-        description:
-            - True if the database is on L(dedicated Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html).
-        type: bool
-    autonomous_container_database_id:
-        description:
-            - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
     is_access_control_enabled:
         description:
             - Indicates if the database-level access control is enabled.
@@ -223,6 +284,25 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    is_auto_scaling_enabled:
+        description:
+            - Indicates if auto scaling is enabled for the Autonomous Database OCPU core count. The default value is `FALSE`.
+            - This parameter is updatable.
+        type: bool
+    is_refreshable_clone:
+        description:
+            - Indicates whether the Autonomous Database is a refreshable clone.
+            - This parameter is updatable.
+        type: bool
+    refreshable_mode:
+        description:
+            - The refresh mode of the clone. AUTOMATIC indicates that the clone is automatically being refreshed with data from the source Autonomous Database.
+            - This parameter is updatable.
+            - Applicable when source is 'CLONE_TO_REFRESHABLE'
+        type: str
+        choices:
+            - "AUTOMATIC"
+            - "MANUAL"
     is_data_guard_enabled:
         description:
             - Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous Data Guard
@@ -230,6 +310,34 @@ options:
               Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
             - This parameter is updatable.
         type: bool
+    peer_db_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Data Guard standby database located in a
+              different (remote) region from the source primary Autonomous Database.
+            - To create or delete a local (in-region) standby, see the `isDataGuardEnabled` parameter.
+            - This parameter is updatable.
+        type: str
+    db_version:
+        description:
+            - A valid Oracle Database version for Autonomous Database.
+            - This parameter is updatable.
+        type: str
+    open_mode:
+        description:
+            - The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "READ_ONLY"
+            - "READ_WRITE"
+    permission_level:
+        description:
+            - The Autonomous Database permission level. Restricted mode allows access only to admin users.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "RESTRICTED"
+            - "UNRESTRICTED"
     subnet_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
@@ -242,6 +350,12 @@ options:
               This restriction applies to both the client subnet and the backup subnet.
             - This parameter is updatable.
         type: str
+    private_endpoint_label:
+        description:
+            - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change the
+              same private endpoint database to the public endpoint database.
+            - This parameter is updatable.
+        type: str
     nsg_ids:
         description:
             - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -252,48 +366,6 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
-    private_endpoint_label:
-        description:
-            - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change the
-              same private endpoint database to the public endpoint database.
-            - This parameter is updatable.
-        type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - This parameter is updatable.
-        type: dict
-    db_version:
-        description:
-            - A valid Oracle Database version for Autonomous Database.
-            - This parameter is updatable.
-        type: str
-    source:
-        description:
-            - "The source of the database: Use `NONE` for creating a new Autonomous Database. Use `DATABASE` for creating a new Autonomous Database by cloning
-              an existing Autonomous Database. Use `CROSS_REGION_DATAGUARD` to create a standby Data Guard database in another region."
-            - "For Autonomous Databases on L(shared Exadata infrastructure,https://docs.oracle.com/en/cloud/paas/autonomous-database/index.html), the following
-              cloning options are available: Use `BACKUP_FROM_ID` for creating a new Autonomous Database from a specified backup. Use `BACKUP_FROM_TIMESTAMP`
-              for creating a point-in-time Autonomous Database clone using backups. For more information, see L(Cloning and Moving an Autonomous
-              Database,https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/clone-autonomous-
-              database.html#GUID-D771796F-5081-4CFB-A7FF-0F893EABD7BC)."
-        type: str
-        choices:
-            - "DATABASE"
-            - "CLONE_TO_REFRESHABLE"
-            - "BACKUP_FROM_ID"
-            - "BACKUP_FROM_TIMESTAMP"
-            - "CROSS_REGION_DATAGUARD"
-            - "NONE"
-        default: "NONE"
     customer_contacts:
         description:
             - Customer Contacts.
@@ -311,16 +383,6 @@ options:
             - Indicates whether the Autonomous Database requires mTLS connections.
             - This parameter is updatable.
         type: bool
-    autonomous_maintenance_schedule_type:
-        description:
-            - The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous
-              Database
-              follows a schedule that applies patches prior to the REGULAR schedule.The REGULAR maintenance schedule of this Autonomous Database follows the
-              normal cycle.
-        type: str
-        choices:
-            - "EARLY"
-            - "REGULAR"
     scheduled_operations:
         description:
             - list of scheduled operations
@@ -364,35 +426,6 @@ options:
             - Indicates if auto scaling is enabled for the Autonomous Database storage. The default value is `FALSE`.
             - This parameter is updatable.
         type: bool
-    source_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
-              a new Autonomous Database.
-            - Required when source is one of ['DATABASE', 'CLONE_TO_REFRESHABLE', 'CROSS_REGION_DATAGUARD']
-        type: str
-    clone_type:
-        description:
-            - The Autonomous Database clone type.
-            - Required when source is one of ['BACKUP_FROM_TIMESTAMP', 'DATABASE', 'BACKUP_FROM_ID']
-        type: str
-        choices:
-            - "FULL"
-            - "METADATA"
-    refreshable_mode:
-        description:
-            - The refresh mode of the clone. AUTOMATIC indicates that the clone is automatically being refreshed with data from the source Autonomous Database.
-            - This parameter is updatable.
-            - Applicable when source is 'CLONE_TO_REFRESHABLE'
-        type: str
-        choices:
-            - "AUTOMATIC"
-            - "MANUAL"
-    autonomous_database_backup_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database Backup that you will clone to
-              create a new Autonomous Database.
-            - Required when source is 'BACKUP_FROM_ID'
-        type: str
     autonomous_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
@@ -402,39 +435,6 @@ options:
             - Required when source is 'BACKUP_FROM_TIMESTAMP'
         type: str
         aliases: ["id"]
-    timestamp:
-        description:
-            - The timestamp specified for the point-in-time clone of the source Autonomous Database. The timestamp must be in the past.
-            - Required when source is 'BACKUP_FROM_TIMESTAMP'
-        type: str
-    is_refreshable_clone:
-        description:
-            - Indicates whether the Autonomous Database is a refreshable clone.
-            - This parameter is updatable.
-        type: bool
-    peer_db_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Data Guard standby database located in a
-              different (remote) region from the source primary Autonomous Database.
-            - To create or delete a local (in-region) standby, see the `isDataGuardEnabled` parameter.
-            - This parameter is updatable.
-        type: str
-    open_mode:
-        description:
-            - The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "READ_ONLY"
-            - "READ_WRITE"
-    permission_level:
-        description:
-            - The Autonomous Database permission level. Restricted mode allows access only to admin users.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "RESTRICTED"
-            - "UNRESTRICTED"
     state:
         description:
             - The state of the AutonomousDatabase.
@@ -451,44 +451,44 @@ EXAMPLES = """
 - name: Create autonomous_database with source = DATABASE
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    db_name: db_name_example
-    source: DATABASE
-    source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
     clone_type: FULL
+    source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    source: DATABASE
+    db_name: db_name_example
 
     # optional
-    cpu_core_count: 56
-    ocpu_count: 3.4
-    db_workload: OLTP
-    data_storage_size_in_tbs: 56
-    data_storage_size_in_gbs: 56
-    is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    admin_password: example-password
-    display_name: display_name_example
-    license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
-    is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_maintenance_schedule_type: EARLY
+    cpu_core_count: 56
+    ocpu_count: 3.4
+    data_storage_size_in_tbs: 56
+    data_storage_size_in_gbs: 56
+    display_name: display_name_example
+    is_free_tier: true
+    admin_password: example-password
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
+    license_model: LICENSE_INCLUDED
     is_access_control_enabled: true
     whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
     standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
     is_data_guard_enabled: true
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    private_endpoint_label: private_endpoint_label_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     db_version: db_version_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
       email: email_example
     is_mtls_connection_required: true
-    autonomous_maintenance_schedule_type: EARLY
     scheduled_operations:
     - # required
       day_of_week:
@@ -503,43 +503,44 @@ EXAMPLES = """
 - name: Create autonomous_database with source = CLONE_TO_REFRESHABLE
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    db_name: db_name_example
-    source: CLONE_TO_REFRESHABLE
     source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    source: CLONE_TO_REFRESHABLE
+    db_name: db_name_example
 
     # optional
-    cpu_core_count: 56
-    ocpu_count: 3.4
-    db_workload: OLTP
-    data_storage_size_in_tbs: 56
-    data_storage_size_in_gbs: 56
-    is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    admin_password: example-password
-    display_name: display_name_example
-    license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
-    is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_maintenance_schedule_type: EARLY
+    cpu_core_count: 56
+    ocpu_count: 3.4
+    data_storage_size_in_tbs: 56
+    data_storage_size_in_gbs: 56
+    display_name: display_name_example
+    is_free_tier: true
+    admin_password: example-password
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
+    license_model: LICENSE_INCLUDED
     is_access_control_enabled: true
     whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
     standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
+    refreshable_mode: AUTOMATIC
     is_data_guard_enabled: true
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    private_endpoint_label: private_endpoint_label_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     db_version: db_version_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
       email: email_example
     is_mtls_connection_required: true
-    autonomous_maintenance_schedule_type: EARLY
     scheduled_operations:
     - # required
       day_of_week:
@@ -550,49 +551,48 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
-    refreshable_mode: AUTOMATIC
 
 - name: Create autonomous_database with source = BACKUP_FROM_ID
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    db_name: db_name_example
-    source: BACKUP_FROM_ID
-    clone_type: FULL
     autonomous_database_backup_id: "ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx"
+    clone_type: FULL
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    source: BACKUP_FROM_ID
+    db_name: db_name_example
 
     # optional
-    cpu_core_count: 56
-    ocpu_count: 3.4
-    db_workload: OLTP
-    data_storage_size_in_tbs: 56
-    data_storage_size_in_gbs: 56
-    is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    admin_password: example-password
-    display_name: display_name_example
-    license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
-    is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_maintenance_schedule_type: EARLY
+    cpu_core_count: 56
+    ocpu_count: 3.4
+    data_storage_size_in_tbs: 56
+    data_storage_size_in_gbs: 56
+    display_name: display_name_example
+    is_free_tier: true
+    admin_password: example-password
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
+    license_model: LICENSE_INCLUDED
     is_access_control_enabled: true
     whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
     standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
     is_data_guard_enabled: true
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    private_endpoint_label: private_endpoint_label_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     db_version: db_version_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
       email: email_example
     is_mtls_connection_required: true
-    autonomous_maintenance_schedule_type: EARLY
     scheduled_operations:
     - # required
       day_of_week:
@@ -607,45 +607,45 @@ EXAMPLES = """
 - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    db_name: db_name_example
-    source: BACKUP_FROM_TIMESTAMP
-    clone_type: FULL
-    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     timestamp: timestamp_example
+    clone_type: FULL
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    source: BACKUP_FROM_TIMESTAMP
+    db_name: db_name_example
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    cpu_core_count: 56
-    ocpu_count: 3.4
-    db_workload: OLTP
-    data_storage_size_in_tbs: 56
-    data_storage_size_in_gbs: 56
-    is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    admin_password: example-password
-    display_name: display_name_example
-    license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
-    is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_maintenance_schedule_type: EARLY
+    cpu_core_count: 56
+    ocpu_count: 3.4
+    data_storage_size_in_tbs: 56
+    data_storage_size_in_gbs: 56
+    display_name: display_name_example
+    is_free_tier: true
+    admin_password: example-password
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
+    license_model: LICENSE_INCLUDED
     is_access_control_enabled: true
     whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
     standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
     is_data_guard_enabled: true
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    private_endpoint_label: private_endpoint_label_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     db_version: db_version_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
       email: email_example
     is_mtls_connection_required: true
-    autonomous_maintenance_schedule_type: EARLY
     scheduled_operations:
     - # required
       day_of_week:
@@ -660,43 +660,43 @@ EXAMPLES = """
 - name: Create autonomous_database with source = CROSS_REGION_DATAGUARD
   oci_database_autonomous_database:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    db_name: db_name_example
-    source: CROSS_REGION_DATAGUARD
     source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    source: CROSS_REGION_DATAGUARD
+    db_name: db_name_example
 
     # optional
-    cpu_core_count: 56
-    ocpu_count: 3.4
-    db_workload: OLTP
-    data_storage_size_in_tbs: 56
-    data_storage_size_in_gbs: 56
-    is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    admin_password: example-password
-    display_name: display_name_example
-    license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
-    is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_maintenance_schedule_type: EARLY
+    cpu_core_count: 56
+    ocpu_count: 3.4
+    data_storage_size_in_tbs: 56
+    data_storage_size_in_gbs: 56
+    display_name: display_name_example
+    is_free_tier: true
+    admin_password: example-password
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
+    license_model: LICENSE_INCLUDED
     is_access_control_enabled: true
     whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
     standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
     is_data_guard_enabled: true
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    private_endpoint_label: private_endpoint_label_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     db_version: db_version_example
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
       email: email_example
     is_mtls_connection_required: true
-    autonomous_maintenance_schedule_type: EARLY
     scheduled_operations:
     - # required
       day_of_week:
@@ -715,38 +715,38 @@ EXAMPLES = """
     db_name: db_name_example
 
     # optional
-    cpu_core_count: 56
-    ocpu_count: 3.4
-    db_workload: OLTP
-    data_storage_size_in_tbs: 56
-    data_storage_size_in_gbs: 56
-    is_free_tier: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-    admin_password: example-password
-    display_name: display_name_example
-    license_model: LICENSE_INCLUDED
     is_preview_version_with_service_terms_accepted: true
-    is_auto_scaling_enabled: true
     is_dedicated: true
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    source: NONE
+    autonomous_maintenance_schedule_type: EARLY
+    cpu_core_count: 56
+    ocpu_count: 3.4
+    data_storage_size_in_tbs: 56
+    data_storage_size_in_gbs: 56
+    display_name: display_name_example
+    is_free_tier: true
+    admin_password: example-password
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
+    license_model: LICENSE_INCLUDED
     is_access_control_enabled: true
     whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
     standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
     is_data_guard_enabled: true
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    private_endpoint_label: private_endpoint_label_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     db_version: db_version_example
-    source: NONE
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
       email: email_example
     is_mtls_connection_required: true
-    autonomous_maintenance_schedule_type: EARLY
     scheduled_operations:
     - # required
       day_of_week:
@@ -764,28 +764,33 @@ EXAMPLES = """
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    db_name: db_name_example
     cpu_core_count: 56
     ocpu_count: 3.4
-    db_workload: OLTP
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
+    display_name: display_name_example
     is_free_tier: true
     admin_password: example-password
-    display_name: display_name_example
+    db_name: db_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
     license_model: LICENSE_INCLUDED
-    is_auto_scaling_enabled: true
     is_access_control_enabled: true
     whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
     standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
+    is_refreshable_clone: true
+    refreshable_mode: AUTOMATIC
     is_data_guard_enabled: true
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    private_endpoint_label: private_endpoint_label_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
     db_version: db_version_example
+    open_mode: READ_ONLY
+    permission_level: RESTRICTED
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
       email: email_example
@@ -800,11 +805,6 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
-    refreshable_mode: AUTOMATIC
-    is_refreshable_clone: true
-    peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
-    open_mode: READ_ONLY
-    permission_level: RESTRICTED
 
 - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_database:
@@ -813,27 +813,32 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    db_name: db_name_example
     cpu_core_count: 56
     ocpu_count: 3.4
-    db_workload: OLTP
     data_storage_size_in_tbs: 56
     data_storage_size_in_gbs: 56
     is_free_tier: true
     admin_password: example-password
+    db_name: db_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    db_workload: OLTP
     license_model: LICENSE_INCLUDED
-    is_auto_scaling_enabled: true
     is_access_control_enabled: true
     whitelisted_ips: [ "whitelisted_ips_example" ]
     are_primary_whitelisted_ips_used: true
     standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+    is_auto_scaling_enabled: true
+    is_refreshable_clone: true
+    refreshable_mode: AUTOMATIC
     is_data_guard_enabled: true
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    private_endpoint_label: private_endpoint_label_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
     db_version: db_version_example
+    open_mode: READ_ONLY
+    permission_level: RESTRICTED
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_label: private_endpoint_label_example
+    nsg_ids: [ "nsg_ids_example" ]
     customer_contacts:
     - # optional
       email: email_example
@@ -848,11 +853,6 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
-    refreshable_mode: AUTOMATIC
-    is_refreshable_clone: true
-    peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
-    open_mode: READ_ONLY
-    permission_level: RESTRICTED
 
 - name: Delete autonomous_database
   oci_database_autonomous_database:
@@ -2007,36 +2007,16 @@ def main():
     module_args.update(
         dict(
             source_autonomous_database_id=dict(type="str"),
+            autonomous_database_backup_id=dict(type="str"),
+            timestamp=dict(type="str"),
+            clone_type=dict(type="str", choices=["FULL", "METADATA"]),
+            source_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            db_name=dict(type="str"),
-            cpu_core_count=dict(type="int"),
-            ocpu_count=dict(type="float"),
-            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD", "APEX"]),
-            data_storage_size_in_tbs=dict(type="int"),
-            data_storage_size_in_gbs=dict(type="int"),
-            is_free_tier=dict(type="bool"),
             kms_key_id=dict(type="str"),
             vault_id=dict(type="str"),
-            admin_password=dict(type="str", no_log=True),
-            display_name=dict(aliases=["name"], type="str"),
-            license_model=dict(
-                type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
-            ),
             is_preview_version_with_service_terms_accepted=dict(type="bool"),
-            is_auto_scaling_enabled=dict(type="bool"),
             is_dedicated=dict(type="bool"),
             autonomous_container_database_id=dict(type="str"),
-            is_access_control_enabled=dict(type="bool"),
-            whitelisted_ips=dict(type="list", elements="str"),
-            are_primary_whitelisted_ips_used=dict(type="bool"),
-            standby_whitelisted_ips=dict(type="list", elements="str"),
-            is_data_guard_enabled=dict(type="bool"),
-            subnet_id=dict(type="str"),
-            nsg_ids=dict(type="list", elements="str"),
-            private_endpoint_label=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            db_version=dict(type="str"),
             source=dict(
                 type="str",
                 default="NONE",
@@ -2049,13 +2029,42 @@ def main():
                     "NONE",
                 ],
             ),
+            autonomous_maintenance_schedule_type=dict(
+                type="str", choices=["EARLY", "REGULAR"]
+            ),
+            cpu_core_count=dict(type="int"),
+            ocpu_count=dict(type="float"),
+            data_storage_size_in_tbs=dict(type="int"),
+            data_storage_size_in_gbs=dict(type="int"),
+            display_name=dict(aliases=["name"], type="str"),
+            is_free_tier=dict(type="bool"),
+            admin_password=dict(type="str", no_log=True),
+            db_name=dict(type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD", "APEX"]),
+            license_model=dict(
+                type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
+            ),
+            is_access_control_enabled=dict(type="bool"),
+            whitelisted_ips=dict(type="list", elements="str"),
+            are_primary_whitelisted_ips_used=dict(type="bool"),
+            standby_whitelisted_ips=dict(type="list", elements="str"),
+            is_auto_scaling_enabled=dict(type="bool"),
+            is_refreshable_clone=dict(type="bool"),
+            refreshable_mode=dict(type="str", choices=["AUTOMATIC", "MANUAL"]),
+            is_data_guard_enabled=dict(type="bool"),
+            peer_db_id=dict(type="str"),
+            db_version=dict(type="str"),
+            open_mode=dict(type="str", choices=["READ_ONLY", "READ_WRITE"]),
+            permission_level=dict(type="str", choices=["RESTRICTED", "UNRESTRICTED"]),
+            subnet_id=dict(type="str"),
+            private_endpoint_label=dict(type="str"),
+            nsg_ids=dict(type="list", elements="str"),
             customer_contacts=dict(
                 type="list", elements="dict", options=dict(email=dict(type="str"))
             ),
             is_mtls_connection_required=dict(type="bool"),
-            autonomous_maintenance_schedule_type=dict(
-                type="str", choices=["EARLY", "REGULAR"]
-            ),
             scheduled_operations=dict(
                 type="list",
                 elements="dict",
@@ -2084,16 +2093,7 @@ def main():
                 ),
             ),
             is_auto_scaling_for_storage_enabled=dict(type="bool"),
-            source_id=dict(type="str"),
-            clone_type=dict(type="str", choices=["FULL", "METADATA"]),
-            refreshable_mode=dict(type="str", choices=["AUTOMATIC", "MANUAL"]),
-            autonomous_database_backup_id=dict(type="str"),
             autonomous_database_id=dict(aliases=["id"], type="str"),
-            timestamp=dict(type="str"),
-            is_refreshable_clone=dict(type="bool"),
-            peer_db_id=dict(type="str"),
-            open_mode=dict(type="str", choices=["READ_ONLY", "READ_WRITE"]),
-            permission_level=dict(type="str", choices=["RESTRICTED", "UNRESTRICTED"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

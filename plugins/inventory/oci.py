@@ -349,12 +349,18 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "primary_vnic_only": False,
             "auth_type": "api_key",
             "delegation_token_file": None,
-            "default_groups": []
+            "default_groups": [],
         }
 
         self.group_prefix = "oci_"
         self.display = Display()
-        self.supported_default_groups = ["availability_domain", "compartment_name", "region", "freeform_tags", "defined_tags"]
+        self.supported_default_groups = [
+            "availability_domain",
+            "compartment_name",
+            "region",
+            "freeform_tags",
+            "defined_tags",
+        ]
 
     def _get_config_file(self):
         """
@@ -523,7 +529,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def setup_clients(self, regions):
         """
-            :param regions: A list of regions to create  clients
+            :param regions: A list of regions to create clients
 
         """
         self.regions = regions
@@ -701,6 +707,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         """
         gets the compartments from compartments_info which is passed in the option compartments
         """
+        self.debug(
+            ">> get_compartments_from_compartment_info >> include compartments : {0}".format(
+                str(compartments_info_items)
+            )
+        )
         compartments_result = dict()
         fetching_hosts_from_all_compartments = False
         for key, value in compartments_info_items:
@@ -731,6 +742,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 compartments_result[compartment.id] = compartment
             if fetching_hosts_from_all_compartments:
                 break
+
+        self.debug(
+            "<< get_compartments_from_compartment_info << include compartments result : {0}".format(
+                str(compartments_result)
+            )
+        )
         return compartments_result
 
     def get_compartments_from_exclude_compartment_info(self):
@@ -749,6 +766,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     exclude_compartments={},
                 )
                 exclude_compartments.update({compartment[0].id: value})
+
+        self.debug("exclude_compartments : {0}".format(str(exclude_compartments)))
         return exclude_compartments
 
     def get_all_compartments(self):
@@ -787,6 +806,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.debug("No compartments matching the criteria.")
             return
 
+        self.debug(
+            "List of compartments from which the hosts will be fetched : {0}".format(
+                str(self.compartments)
+            )
+        )
+
         instance_inventories = []
         self.debug(
             "Fetch compute hosts:{0}".format(self.get_option("fetch_compute_hosts"))
@@ -818,7 +843,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         :return: dict with region as key and list of instances of the region as value
         """
         instances = defaultdict(list)
-
+        self.debug(
+            ">> get_instances >> compartment_ocids : {0}".format(str(compartment_ocids))
+        )
         if self.get_option("enable_parallel_processing"):
             for region in self.regions:
                 num_threads = min(
@@ -847,6 +874,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         self.get_filtered_instances(compartment_ocid, region)
                     )
 
+        self.debug(
+            "<< get_instances << instances : {0}".format(
+                str(self.get_resource_for_logging(instances))
+            )
+        )
         return instances
 
     def get_db_hosts(self, compartment_ocids):
@@ -855,6 +887,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         :param compartment_ocids: List of compartment ocid's to fetch the instances from
         :return: dict with region as key and list of db nodes of the region as value
         """
+        self.debug(
+            ">> get_db_hosts >> compartment_ocids : {0}".format(str(compartment_ocids))
+        )
         db_hosts = defaultdict(list)
 
         if self.get_option("enable_parallel_processing"):
@@ -885,6 +920,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         self.get_filtered_db_hosts(compartment_ocid, region)
                     )
 
+        self.debug(
+            "<< get_db_hosts << db_hosts : {0}".format(
+                str(self.get_resource_for_logging(db_hosts))
+            )
+        )
         return db_hosts
 
     def get_compartment_from_compartment_name(
@@ -902,6 +942,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         The tenancy is returned when compartment_name is the tenancy name.
         """
+        self.debug(
+            ">>get_compartment_from_compartment_name >> compartment_name : {0} , parent_compartment_ocid : {1} , "
+            "fetch_hosts_from_subcompartments : {2} , exclude_compartments : {3}".format(
+                compartment_name,
+                parent_compartment_ocid,
+                fetch_hosts_from_subcompartments,
+                str(exclude_compartments),
+            )
+        )
         if not self.params["tenancy"]:
             raise Exception(
                 "Tenancy OCID required to get the compartments in the tenancy."
@@ -1029,11 +1078,17 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
     def get_compartment_including_sub_compartments(
         self, compartment_id, exclude_compartments=None, fetch_child_compartments=True
     ):
+        self.debug(
+            ">> get_compartment_including_sub_compartments >> compartment_id : {0} , exclude_compartments : {1} , fetch_child_compartments : {2}".format(
+                compartment_id, str(exclude_compartments), fetch_child_compartments
+            )
+        )
         # OCI SDK does not support fetching sub-compartments for non root compartments
         # So traverse the compartment tree to fetch all the sub compartments
         compartments = []
         queue = deque()
         try:
+            current_compartment_id = compartment_id
             exclude_compartments = (
                 exclude_compartments if exclude_compartments else dict()
             )
@@ -1043,6 +1098,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 compartment_id in exclude_compartments
                 and not exclude_compartments[compartment_id].get("skip_subcompartments")
             ):
+                self.debug(
+                    "getting the compartment for compartment_id : {0}".format(
+                        compartment_id
+                    )
+                )
                 root_compartment = oci_common_utils.call_with_backoff(
                     self.identity_client.get_compartment, compartment_id=compartment_id,
                 ).data
@@ -1062,6 +1122,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         )
                     )
                 ) and fetch_child_compartments:
+                    self.debug(
+                        "getting the list of compartments inside the compartment : {0}".format(
+                            parent_compartment.id
+                        )
+                    )
+                    current_compartment_id = parent_compartment.id
                     child_compartments = [
                         compartment
                         for compartment in oci_common_utils.list_all_resources(
@@ -1078,11 +1144,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         except ServiceError as se:
             if se.status == 404:
                 raise Exception(
-                    "Compartment either does not exist or you don't have permission to access it. complete error : {0}".format(
-                        str(se)
-                    )
+                    "Compartment {0} either does not exist or you don't have permission to access it. complete error "
+                    ": {1}".format(current_compartment_id, str(se))
                 )
             raise
+        self.debug(
+            "<< get_compartment_including_sub_compartments << compartments : {0}".format(
+                str(compartments)
+            )
+        )
         return compartments
 
     def get_common_groups(self, instance, region):
@@ -1134,6 +1204,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def build_inventory_for_instance(self, instance, region):
         """Build and return inventory for an instance"""
+        self.debug(
+            ">> build_inventory_for_instance >> instance : {0} , region : {1}".format(
+                str(self.get_resource_for_logging(instance)), region
+            )
+        )
         try:
             instance_inventory = {}
             compute_client = self.get_compute_client_for_region(region)
@@ -1229,20 +1304,28 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         instance_inventory, host_name, vars=instance_vars, groups=groups
                     )
             self.debug(
-                "Final inventory for {0}.".format(
-                    str(self.get_resource_for_logging(instance_inventory))
+                "Final inventory for instance {0}  is {1}.".format(
+                    instance.id, str(self.get_resource_for_logging(instance_inventory))
                 )
             )
             return instance_inventory
 
         except ServiceError as ex:
+            self.debug(
+                "Service error occoured while building inventory for instance : {0} , region : {1} , error : {2}".format(
+                    str(self.get_resource_for_logging(instance)), region, str(ex)
+                )
+            )
             if ex.status == 401:
-                self.debug(str(ex))
                 raise
-            self.debug(str(ex))
 
     def build_inventory_for_db_host(self, db_host, region):
         """Build and return inventory for a database host"""
+        self.debug(
+            ">> build_inventory_for_db_host >> db_host : {0} , region : {1}".format(
+                str(self.get_resource_for_logging(db_host)), region
+            )
+        )
         try:
             db_host_inventory = {}
             virtual_nw_client = self.get_virtual_nw_client_for_region(region)
@@ -1300,14 +1383,21 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.create_instance_inventory_for_host(
                 db_host_inventory, host_name, vars=db_host_vars, groups=groups
             )
-            self.debug("Final inventory for {0}.".format(str(db_host_inventory)))
+            self.debug(
+                "Final inventory for {0}.".format(
+                    str(self.get_resource_for_logging(db_host_inventory))
+                )
+            )
             return db_host_inventory
 
         except ServiceError as ex:
+            self.debug(
+                "Service error occourced while building inventory for db host : {0} , region : {1} , error : {2}".format(
+                    str(self.get_resource_for_logging(db_host)), region, str(ex)
+                )
+            )
             if ex.status == 401:
-                self.debug(str(ex))
                 raise
-            self.debug(str(ex))
 
     def create_instance_inventory_for_host(
         self, instance_inventory, host_name, vars, groups
@@ -1468,6 +1558,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         return resource
 
     def get_filtered_db_hosts(self, compartment_ocid, region):
+        self.debug(
+            ">> get_filtered_db_hosts >> compartment_ocid : {0} , region : {1}".format(
+                compartment_ocid, region
+            )
+        )
         try:
             database_client = self.get_database_client_for_region(region)
 
@@ -1496,13 +1591,21 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return db_hosts
 
         except ServiceError as ex:
+            self.debug(
+                "Service Error occoured while fetching db hosts in compartment : {0} , region : {1} , error : {2}".format(
+                    compartment_ocid, region, str(ex)
+                )
+            )
             if ex.status == 401:
-                self.debug(str(ex))
                 raise
-            self.debug(str(ex))
             return []
 
     def get_filtered_instances(self, compartment_ocid, region):
+        self.debug(
+            ">> get_filtered_instances >> compartment_ocid : {0} , region : {1}".format(
+                compartment_ocid, region
+            )
+        )
         try:
             compute_client = self.get_compute_client_for_region(region)
 
@@ -1516,10 +1619,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
             return instances
         except ServiceError as ex:
+            self.debug(
+                "Service Error occurred in get_filtered_instances for compartment_ocid :{0} , region : {1} with "
+                "error: {2} ".format(compartment_ocid, region, str(ex))
+            )
             if ex.status == 401:
-                self.debug(str(ex))
                 raise
-            self.debug(str(ex))
             return []
 
     def get_compute_client_for_region(self, region):
@@ -1606,11 +1711,29 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         """
             :param regions: a list of regions to query
         """
-        return self._get_instances_by_region(regions)
+        try:
+            return self._get_instances_by_region(regions)
+        except Exception as ex:
+            self.debug(
+                "Exception occoured while getting the instances from regions : {0} , exception : {1}".format(
+                    str(regions), str(ex)
+                )
+            )
+            self.debug(
+                "Check the trouble shooting guidelines for common failures "
+                "https://oci-ansible-collection.readthedocs.io/en/latest/guides/troubleshooting-guide.html#inventory-plugin-errors"
+            )
+            raise
 
     def _populate(self, instance_inventories, hostnames):
+        self.debug(">> _populate >> hostnames : {0}".format(hostnames))
         for instance_inventory in instance_inventories:
             if instance_inventory:
+                self.debug(
+                    "populate inventory for instance : {0}".format(
+                        str(self.get_resource_for_logging(instance_inventory))
+                    )
+                )
                 for host_name, host_inventory in six.iteritems(instance_inventory):
                     if not hostnames or host_name in hostnames:
                         for group in host_inventory["groups"]:
@@ -1679,8 +1802,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             },
             "default_groups": {
                 "type_to_be": list,
-                "value": config_data.get("default_groups", [])
-            }
+                "value": config_data.get("default_groups", []),
+            },
         }
 
         # validate the options

@@ -34,14 +34,10 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    compartment_id:
+    is_auto_reclaimable:
         description:
-            - Compartment Identifier.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable.
-        type: str
+            - True if table can be reclaimed after an idle period.
+        type: bool
     ddl_statement:
         description:
             - Complete CREATE TABLE DDL statement.
@@ -79,10 +75,6 @@ options:
                 choices:
                     - "PROVISIONED"
                     - "ON_DEMAND"
-    is_auto_reclaimable:
-        description:
-            - True if table can be reclaimed after an idle period.
-        type: bool
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined
@@ -104,6 +96,14 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    compartment_id:
+        description:
+            - Compartment Identifier.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable.
+        type: str
     is_if_exists:
         description:
             - "Set as true to select \\"if exists\\" behavior."
@@ -125,7 +125,6 @@ EXAMPLES = """
   oci_nosql_table:
     # required
     name: name_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     ddl_statement: ddl_statement_example
     table_limits:
       # required
@@ -135,6 +134,7 @@ EXAMPLES = """
 
       # optional
       capacity_mode: PROVISIONED
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     is_auto_reclaimable: true
@@ -147,7 +147,6 @@ EXAMPLES = """
     table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     ddl_statement: ddl_statement_example
     table_limits:
       # required
@@ -159,6 +158,7 @@ EXAMPLES = """
       capacity_mode: PROVISIONED
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_nosql_table:
@@ -571,7 +571,7 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str"),
-            compartment_id=dict(type="str"),
+            is_auto_reclaimable=dict(type="bool"),
             ddl_statement=dict(type="str"),
             table_limits=dict(
                 type="dict",
@@ -584,10 +584,10 @@ def main():
                     ),
                 ),
             ),
-            is_auto_reclaimable=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             table_name_or_id=dict(aliases=["id"], type="str"),
+            compartment_id=dict(type="str"),
             is_if_exists=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

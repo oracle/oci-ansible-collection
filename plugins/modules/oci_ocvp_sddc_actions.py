@@ -37,12 +37,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    sddc_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move
@@ -55,6 +49,12 @@ options:
             - Required for I(action=downgrade_hcx).
         type: list
         elements: str
+    sddc_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the Sddc.
@@ -79,15 +79,15 @@ EXAMPLES = """
 - name: Perform action change_compartment on sddc
   oci_ocvp_sddc_actions:
     # required
-    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action downgrade_hcx on sddc
   oci_ocvp_sddc_actions:
     # required
-    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     reserving_hcx_on_premise_license_keys: [ "reserving_hcx_on_premise_license_keys_example" ]
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     action: downgrade_hcx
 
 - name: Perform action refresh_hcx_license_status on sddc
@@ -757,11 +757,11 @@ def main():
     )
     module_args.update(
         dict(
-            sddc_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             reserving_hcx_on_premise_license_keys=dict(
                 type="list", elements="str", no_log=True
             ),
+            sddc_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

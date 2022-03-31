@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_vm_cluster -- Manage a CloudVmCluster resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -838,24 +838,24 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-        cpu_core_count: 56
-        display_name: display_name_example
         cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         hostname: hostname_example
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         gi_version: gi_version_example
+        display_name: display_name_example
+        cpu_core_count: 56
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
 
         # optional
-        ocpu_count: 3.4
         cluster_name: cluster_name_example
         data_storage_percentage: 56
         domain: domain_example
-        license_model: LICENSE_INCLUDED
         is_sparse_diskgroup_enabled: true
         is_local_backup_enabled: true
         time_zone: time_zone_example
         scan_listener_port_tcp: 56
         scan_listener_port_tcp_ssl: 56
+        ocpu_count: 3.4
+        license_model: LICENSE_INCLUDED
         nsg_ids: [ "nsg_ids_example" ]
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         freeform_tags: {'Department': 'Finance'}
@@ -867,21 +867,21 @@ Examples
         cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        display_name: display_name_example
         cpu_core_count: 56
         ocpu_count: 3.4
-        display_name: display_name_example
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         license_model: LICENSE_INCLUDED
-        nsg_ids: [ "nsg_ids_example" ]
-        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         update_details:
           # optional
           update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
           update_action: ROLLING_APPLY
+        nsg_ids: [ "nsg_ids_example" ]
+        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         compute_nodes: [ "compute_nodes_example" ]
         storage_size_in_gbs: 56
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_cloud_vm_cluster:
@@ -892,18 +892,18 @@ Examples
         # optional
         cpu_core_count: 56
         ocpu_count: 3.4
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         license_model: LICENSE_INCLUDED
-        nsg_ids: [ "nsg_ids_example" ]
-        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         update_details:
           # optional
           update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
           update_action: ROLLING_APPLY
+        nsg_ids: [ "nsg_ids_example" ]
+        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         compute_nodes: [ "compute_nodes_example" ]
         storage_size_in_gbs: 56
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete cloud_vm_cluster
       oci_database_cloud_vm_cluster:

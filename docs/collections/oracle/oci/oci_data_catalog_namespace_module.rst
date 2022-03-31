@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_namespace -- Manage a Namespace resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -432,8 +432,8 @@ Examples
     - name: Create namespace
       oci_data_catalog_namespace:
         # required
-        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         description: description_example
@@ -453,8 +453,8 @@ Examples
     - name: Update namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_namespace:
         # required
-        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         description: description_example
@@ -470,8 +470,8 @@ Examples
     - name: Delete namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_namespace:
         # required
-        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

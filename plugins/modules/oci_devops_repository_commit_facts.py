@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    repository_id:
-        description:
-            - Unique repository identifier.
-        type: str
-        required: true
     commit_id:
         description:
             - A filter to return only resources that match the given commit ID.
             - Required to get a specific repository_commit.
         type: str
         aliases: ["id"]
+    repository_id:
+        description:
+            - Unique repository identifier.
+        type: str
+        required: true
     ref_name:
         description:
             - A filter to return only resources that match the given reference name.
@@ -74,8 +74,8 @@ EXAMPLES = """
 - name: Get a specific repository_commit
   oci_devops_repository_commit_facts:
     # required
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     commit_id: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List repository_commits
   oci_devops_repository_commit_facts:
@@ -258,8 +258,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            repository_id=dict(type="str", required=True),
             commit_id=dict(aliases=["id"], type="str"),
+            repository_id=dict(type="str", required=True),
             ref_name=dict(type="str"),
             exclude_ref_name=dict(type="str"),
             file_path=dict(type="str"),

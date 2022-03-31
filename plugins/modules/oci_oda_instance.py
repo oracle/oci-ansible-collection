@@ -30,18 +30,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - User-friendly name for the instance. Avoid entering confidential information. You can change this value anytime.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    description:
-        description:
-            - Description of the Digital Assistant instance.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - Identifier of the compartment.
@@ -57,6 +45,18 @@ options:
         choices:
             - "DEVELOPMENT"
             - "PRODUCTION"
+    display_name:
+        description:
+            - User-friendly name for the instance. Avoid entering confidential information. You can change this value anytime.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - Description of the Digital Assistant instance.
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for
@@ -116,8 +116,8 @@ EXAMPLES = """
 - name: Update oda_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_oda_instance:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -133,8 +133,8 @@ EXAMPLES = """
 - name: Delete oda_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_oda_instance:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -407,10 +407,10 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
             shape_name=dict(type="str", choices=["DEVELOPMENT", "PRODUCTION"]),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             oda_instance_id=dict(aliases=["id"], type="str"),

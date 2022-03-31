@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    accepted_agreement_id:
-        description:
-            - The unique identifier for the accepted terms of use agreement.
-            - Required to get a specific accepted_agreement.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The unique identifier for the compartment.
@@ -53,6 +47,12 @@ options:
         description:
             - The version of the package. Package versions are unique within a listing.
         type: str
+    accepted_agreement_id:
+        description:
+            - The unique identifier for the accepted terms of use agreement.
+            - Required to get a specific accepted_agreement.
+        type: str
+        aliases: ["id"]
     sort_by:
         description:
             - The field to use to sort listed results. You can only specify one field to sort by.
@@ -83,10 +83,10 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
+    accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: TIMEACCEPTED
     sort_order: ASC
 
@@ -243,11 +243,11 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            accepted_agreement_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             listing_id=dict(type="str"),
             package_version=dict(type="str"),
+            accepted_agreement_id=dict(aliases=["id"], type="str"),
             sort_by=dict(type="str", choices=["TIMEACCEPTED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

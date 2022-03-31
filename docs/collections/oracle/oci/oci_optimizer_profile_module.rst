@@ -30,7 +30,7 @@ oracle.oci.oci_optimizer_profile -- Manage a Profile resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -676,7 +676,6 @@ Examples
       oci_optimizer_profile:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        name: name_example
         description: description_example
         levels_configuration:
           # optional
@@ -684,6 +683,7 @@ Examples
           - # optional
             recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
             level: level_example
+        name: name_example
 
         # optional
         aggregation_interval_in_days: 56
@@ -709,7 +709,6 @@ Examples
         profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        name: name_example
         description: description_example
         aggregation_interval_in_days: 56
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -733,6 +732,7 @@ Examples
 
             # optional
             tag_values: [ "tag_values_example" ]
+        name: name_example
 
     - name: Update profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_optimizer_profile:

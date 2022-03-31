@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    template_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the template.
-            - Required to get a specific template.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - A filter to return only resources that exist in the compartment, identified by
@@ -45,6 +39,12 @@ options:
             - Unique identifier of the template category.
               Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
         type: str
+    template_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the template.
+            - Required to get a specific template.
+        type: str
+        aliases: ["id"]
     display_name:
         description:
             - A filter to return only resources that match the given display name exactly.
@@ -82,9 +82,9 @@ EXAMPLES = """
   oci_resource_manager_template_facts:
 
     # optional
-    template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     template_category_id: "ocid1.templatecategory.oc1..xxxxxxEXAMPLExxxxxx"
+    template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
@@ -268,9 +268,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            template_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             template_category_id=dict(type="str"),
+            template_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

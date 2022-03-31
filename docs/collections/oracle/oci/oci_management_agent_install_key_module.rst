@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_install_key -- Manage a ManagementAgentInstallKe
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -449,8 +449,8 @@ Examples
     - name: Create management_agent_install_key
       oci_management_agent_install_key:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         allowed_key_install_count: 56
@@ -462,14 +462,14 @@ Examples
         management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: display_name_example
         is_key_active: true
+        display_name: display_name_example
 
     - name: Update management_agent_install_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_management_agent_install_key:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         is_key_active: true
@@ -483,8 +483,8 @@ Examples
     - name: Delete management_agent_install_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_management_agent_install_key:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

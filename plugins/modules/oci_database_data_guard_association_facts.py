@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    database_id:
-        description:
-            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     data_guard_association_id:
         description:
             - The Data Guard association's L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required to get a specific data_guard_association.
         type: str
         aliases: ["id"]
+    database_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -46,8 +46,8 @@ EXAMPLES = """
 - name: Get a specific data_guard_association
   oci_database_data_guard_association_facts:
     # required
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List data_guard_associations
   oci_database_data_guard_association_facts:
@@ -255,8 +255,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            database_id=dict(type="str", required=True),
             data_guard_association_id=dict(aliases=["id"], type="str"),
+            database_id=dict(type="str", required=True),
         )
     )
 

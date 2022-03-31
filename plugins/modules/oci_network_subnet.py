@@ -66,15 +66,6 @@ options:
               created in that availability domain.
             - "Example: `Uocm:PHX-AD-1`"
         type: str
-    cidr_block:
-        description:
-            - The CIDR IP address range of the subnet. The CIDR must maintain the following rules -
-            - a. The CIDR block is valid and correctly formatted.
-              b. The new range is within one of the parent VCN ranges.
-            - "Example: `10.0.1.0/24`"
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the subnet.
@@ -82,28 +73,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    dhcp_options_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the set of DHCP options the subnet will use. If you
-              don't
-              provide a value, the subnet uses the VCN's default set of DHCP options.
-            - This parameter is updatable.
-        type: str
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     dns_label:
         description:
             - A DNS label for the subnet, used in conjunction with the VNIC's hostname and
@@ -117,23 +86,6 @@ options:
             - For more information, see
               L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
             - "Example: `subnet123`"
-        type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    ipv6_cidr_block:
-        description:
-            - Use this to enable IPv6 addressing for this subnet. The VCN must be enabled for IPv6.
-              You can't change this subnet characteristic later. All subnets are /64 in size. The subnet
-              portion of the IPv6 address is the fourth hextet from the left (1111 in the following example).
-            - For important details about IPv6 addressing in a VCN, see L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
-            - "Example: `2001:0db8:0123:1111::/64`"
-            - This parameter is updatable.
         type: str
     prohibit_internet_ingress:
         description:
@@ -158,6 +110,41 @@ options:
               specify ingress internet traffic behavior of the subnet.
             - "Example: `true`"
         type: bool
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN to contain the subnet.
+            - Required for create using I(state=present).
+        type: str
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    dhcp_options_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the set of DHCP options the subnet will use. If you
+              don't
+              provide a value, the subnet uses the VCN's default set of DHCP options.
+            - This parameter is updatable.
+        type: str
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
     route_table_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the subnet will use. If you don't
@@ -174,10 +161,23 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
-    vcn_id:
+    cidr_block:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN to contain the subnet.
+            - The CIDR IP address range of the subnet. The CIDR must maintain the following rules -
+            - a. The CIDR block is valid and correctly formatted.
+              b. The new range is within one of the parent VCN ranges.
+            - "Example: `10.0.1.0/24`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    ipv6_cidr_block:
+        description:
+            - Use this to enable IPv6 addressing for this subnet. The VCN must be enabled for IPv6.
+              You can't change this subnet characteristic later. All subnets are /64 in size. The subnet
+              portion of the IPv6 address is the fourth hextet from the left (1111 in the following example).
+            - For important details about IPv6 addressing in a VCN, see L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+            - "Example: `2001:0db8:0123:1111::/64`"
+            - This parameter is updatable.
         type: str
     subnet_id:
         description:
@@ -202,22 +202,22 @@ EXAMPLES = """
 - name: Create subnet
   oci_network_subnet:
     # required
-    cidr_block: cidr_block_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    cidr_block: cidr_block_example
 
     # optional
     availability_domain: Uocm:PHX-AD-1
+    dns_label: dns_label_example
+    prohibit_internet_ingress: true
+    prohibit_public_ip_on_vnic: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     dhcp_options_id: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    dns_label: dns_label_example
     freeform_tags: {'Department': 'Finance'}
-    ipv6_cidr_block: ipv6_cidr_block_example
-    prohibit_internet_ingress: true
-    prohibit_public_ip_on_vnic: true
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     security_list_ids: [ "security_list_ids_example" ]
+    ipv6_cidr_block: ipv6_cidr_block_example
 
 - name: Update subnet
   oci_network_subnet:
@@ -225,14 +225,14 @@ EXAMPLES = """
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    cidr_block: cidr_block_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     dhcp_options_id: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    ipv6_cidr_block: ipv6_cidr_block_example
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     security_list_ids: [ "security_list_ids_example" ]
+    cidr_block: cidr_block_example
+    ipv6_cidr_block: ipv6_cidr_block_example
 
 - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
@@ -241,13 +241,13 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    cidr_block: cidr_block_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     dhcp_options_id: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
-    ipv6_cidr_block: ipv6_cidr_block_example
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     security_list_ids: [ "security_list_ids_example" ]
+    cidr_block: cidr_block_example
+    ipv6_cidr_block: ipv6_cidr_block_example
 
 - name: Delete subnet
   oci_network_subnet:
@@ -618,19 +618,19 @@ def main():
     module_args.update(
         dict(
             availability_domain=dict(type="str"),
-            cidr_block=dict(type="str"),
             compartment_id=dict(type="str"),
+            dns_label=dict(type="str"),
+            prohibit_internet_ingress=dict(type="bool"),
+            prohibit_public_ip_on_vnic=dict(type="bool"),
+            vcn_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             dhcp_options_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            dns_label=dict(type="str"),
             freeform_tags=dict(type="dict"),
-            ipv6_cidr_block=dict(type="str"),
-            prohibit_internet_ingress=dict(type="bool"),
-            prohibit_public_ip_on_vnic=dict(type="bool"),
             route_table_id=dict(type="str"),
             security_list_ids=dict(type="list", elements="str"),
-            vcn_id=dict(type="str"),
+            cidr_block=dict(type="str"),
+            ipv6_cidr_block=dict(type="str"),
             subnet_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

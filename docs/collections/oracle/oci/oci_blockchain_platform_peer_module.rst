@@ -30,7 +30,7 @@ oracle.oci.oci_blockchain_platform_peer -- Manage a BlockchainPlatformPeer resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -457,12 +457,12 @@ Examples
     - name: Create blockchain_platform_peer
       oci_blockchain_platform_peer:
         # required
-        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         role: role_example
+        ad: Uocm:PHX-AD-1
         ocpu_allocation_param:
           # required
           ocpu_allocation_number: 3.4
-        ad: Uocm:PHX-AD-1
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         alias: alias_example
@@ -470,10 +470,10 @@ Examples
     - name: Update blockchain_platform_peer
       oci_blockchain_platform_peer:
         # required
-        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         ocpu_allocation_param:
           # required
           ocpu_allocation_number: 3.4
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete blockchain_platform_peer

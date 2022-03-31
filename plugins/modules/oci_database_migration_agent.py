@@ -27,13 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    agent_id:
-        description:
-            - The OCID of the agent
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     display_name:
         description:
             - ODMS Agent name
@@ -68,6 +61,13 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    agent_id:
+        description:
+            - The OCID of the agent
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     compartment_id:
         description:
             - The ID of the compartment in which to list resources.
@@ -365,13 +365,13 @@ def main():
     )
     module_args.update(
         dict(
-            agent_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             stream_id=dict(type="str"),
             public_key=dict(type="str"),
             version=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            agent_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

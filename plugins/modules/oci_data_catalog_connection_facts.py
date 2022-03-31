@@ -28,6 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    connection_key:
+        description:
+            - Unique connection key.
+            - Required to get a specific connection.
+        type: str
     catalog_id:
         description:
             - Unique catalog identifier.
@@ -38,32 +43,6 @@ options:
             - Unique data asset key.
         type: str
         required: true
-    connection_key:
-        description:
-            - Unique connection key.
-            - Required to get a specific connection.
-        type: str
-    fields:
-        description:
-            - Specifies the fields to return in a connection response.
-        type: list
-        elements: str
-        choices:
-            - "key"
-            - "displayName"
-            - "description"
-            - "dataAssetKey"
-            - "typeKey"
-            - "timeCreated"
-            - "timeUpdated"
-            - "createdById"
-            - "updatedById"
-            - "properties"
-            - "externalKey"
-            - "timeStatusUpdated"
-            - "lifecycleState"
-            - "isDefault"
-            - "uri"
     display_name:
         description:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -116,6 +95,27 @@ options:
         description:
             - Indicates whether this connection is the default connection.
         type: bool
+    fields:
+        description:
+            - Specifies the fields to return in a connection response.
+        type: list
+        elements: str
+        choices:
+            - "key"
+            - "displayName"
+            - "description"
+            - "dataAssetKey"
+            - "typeKey"
+            - "timeCreated"
+            - "timeUpdated"
+            - "createdById"
+            - "updatedById"
+            - "properties"
+            - "externalKey"
+            - "timeStatusUpdated"
+            - "lifecycleState"
+            - "isDefault"
+            - "uri"
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is
@@ -138,9 +138,9 @@ EXAMPLES = """
 - name: Get a specific connection
   oci_data_catalog_connection_facts:
     # required
+    connection_key: connection_key_example
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    connection_key: connection_key_example
 
     # optional
     fields: [ "key" ]
@@ -152,7 +152,6 @@ EXAMPLES = """
     data_asset_key: data_asset_key_example
 
     # optional
-    fields: [ "key" ]
     display_name: display_name_example
     display_name_contains: display_name_contains_example
     lifecycle_state: CREATING
@@ -163,6 +162,7 @@ EXAMPLES = """
     external_key: external_key_example
     time_status_updated: 2013-10-20T19:20:30+01:00
     is_default: true
+    fields: [ "key" ]
     sort_by: TIMECREATED
     sort_order: ASC
 
@@ -494,30 +494,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            connection_key=dict(type="str", no_log=True),
             catalog_id=dict(type="str", required=True),
             data_asset_key=dict(type="str", required=True, no_log=True),
-            connection_key=dict(type="str", no_log=True),
-            fields=dict(
-                type="list",
-                elements="str",
-                choices=[
-                    "key",
-                    "displayName",
-                    "description",
-                    "dataAssetKey",
-                    "typeKey",
-                    "timeCreated",
-                    "timeUpdated",
-                    "createdById",
-                    "updatedById",
-                    "properties",
-                    "externalKey",
-                    "timeStatusUpdated",
-                    "lifecycleState",
-                    "isDefault",
-                    "uri",
-                ],
-            ),
             display_name=dict(aliases=["name"], type="str"),
             display_name_contains=dict(type="str"),
             lifecycle_state=dict(
@@ -540,6 +519,27 @@ def main():
             external_key=dict(type="str", no_log=True),
             time_status_updated=dict(type="str"),
             is_default=dict(type="bool"),
+            fields=dict(
+                type="list",
+                elements="str",
+                choices=[
+                    "key",
+                    "displayName",
+                    "description",
+                    "dataAssetKey",
+                    "typeKey",
+                    "timeCreated",
+                    "timeUpdated",
+                    "createdById",
+                    "updatedById",
+                    "properties",
+                    "externalKey",
+                    "timeStatusUpdated",
+                    "lifecycleState",
+                    "isDefault",
+                    "uri",
+                ],
+            ),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

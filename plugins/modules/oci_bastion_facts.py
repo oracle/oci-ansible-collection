@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    bastion_id:
-        description:
-            - The unique identifier (OCID) of the bastion.
-            - Required to get a specific bastion.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The unique identifier (OCID) of the compartment in which to list resources.
@@ -51,6 +45,12 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+    bastion_id:
+        description:
+            - The unique identifier (OCID) of the bastion.
+            - Required to get a specific bastion.
+        type: str
+        aliases: ["id"]
     name:
         description:
             - A filter to return only resources that match the entire name given.
@@ -85,8 +85,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
     bastion_lifecycle_state: CREATING
+    bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     sort_order: ASC
     sort_by: timeCreated
@@ -312,7 +312,6 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            bastion_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             bastion_lifecycle_state=dict(
                 type="str",
@@ -325,6 +324,7 @@ def main():
                     "FAILED",
                 ],
             ),
+            bastion_id=dict(aliases=["id"], type="str"),
             name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "name"]),

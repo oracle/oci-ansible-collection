@@ -33,17 +33,17 @@ options:
             - Instance Oracle Cloud identifier (ocid)
         type: str
         required: true
+    compartment_id:
+        description:
+            - The ID of the compartment in which to list resources.
+        type: str
+        required: true
     event_id:
         description:
             - Unique Event identifier (OCID)
             - Required to get a specific event.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The ID of the compartment in which to list resources.
-        type: str
-        required: true
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -92,8 +92,8 @@ EXAMPLES = """
   oci_os_management_event_facts:
     # required
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    event_id: "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    event_id: "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List events
   oci_os_management_event_facts:
@@ -413,8 +413,8 @@ def main():
     module_args.update(
         dict(
             managed_instance_id=dict(type="str", required=True),
-            event_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str", required=True),
+            event_id=dict(aliases=["id"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             event_type=dict(

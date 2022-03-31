@@ -35,19 +35,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - The user-friendly name for the Channel. It does not have to be unique.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    is_enabled:
-        description:
-            - Whether the Channel should be enabled upon creation. If set to true, the Channel
-              will be asynchronously started as a result of the create Channel operation.
-            - This parameter is updatable.
-        type: bool
     source:
         description:
             - ""
@@ -121,6 +108,10 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            db_system_id:
+                description:
+                    - The OCID of the target DB System.
+                type: str
             target_type:
                 description:
                     - The specific target identifier.
@@ -129,10 +120,6 @@ options:
                 choices:
                     - "DBSYSTEM"
                 required: true
-            db_system_id:
-                description:
-                    - The OCID of the target DB System.
-                type: str
             channel_name:
                 description:
                     - The case-insensitive name that identifies the replication channel. Channel names
@@ -145,6 +132,19 @@ options:
                     - The username for the replication applier of the target MySQL DB System.
                     - This parameter is updatable.
                 type: str
+    display_name:
+        description:
+            - The user-friendly name for the Channel. It does not have to be unique.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    is_enabled:
+        description:
+            - Whether the Channel should be enabled upon creation. If set to true, the Channel
+              will be asynchronously started as a result of the create Channel operation.
+            - This parameter is updatable.
+        type: bool
     description:
         description:
             - User provided information about the Channel.
@@ -202,8 +202,8 @@ EXAMPLES = """
         contents: contents_example
     target:
       # required
-      target_type: DBSYSTEM
       db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+      target_type: DBSYSTEM
 
       # optional
       channel_name: channel_name_example
@@ -222,8 +222,6 @@ EXAMPLES = """
     channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
-    is_enabled: true
     source:
       # required
       source_type: MYSQL
@@ -240,12 +238,14 @@ EXAMPLES = """
         contents: contents_example
     target:
       # required
-      target_type: DBSYSTEM
       db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+      target_type: DBSYSTEM
 
       # optional
       channel_name: channel_name_example
       applier_username: applier_username_example
+    display_name: display_name_example
+    is_enabled: true
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -257,7 +257,6 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    is_enabled: true
     source:
       # required
       source_type: MYSQL
@@ -274,12 +273,13 @@ EXAMPLES = """
         contents: contents_example
     target:
       # required
-      target_type: DBSYSTEM
       db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+      target_type: DBSYSTEM
 
       # optional
       channel_name: channel_name_example
       applier_username: applier_username_example
+    is_enabled: true
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -653,8 +653,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            is_enabled=dict(type="bool"),
             source=dict(
                 type="dict",
                 options=dict(
@@ -678,12 +676,14 @@ def main():
             target=dict(
                 type="dict",
                 options=dict(
-                    target_type=dict(type="str", required=True, choices=["DBSYSTEM"]),
                     db_system_id=dict(type="str"),
+                    target_type=dict(type="str", required=True, choices=["DBSYSTEM"]),
                     channel_name=dict(type="str"),
                     applier_username=dict(type="str"),
                 ),
             ),
+            display_name=dict(aliases=["name"], type="str"),
+            is_enabled=dict(type="bool"),
             description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

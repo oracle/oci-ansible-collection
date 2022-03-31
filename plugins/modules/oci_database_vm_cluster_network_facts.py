@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    exadata_infrastructure_id:
-        description:
-            - The Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     vm_cluster_network_id:
         description:
             - The VM cluster network L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required to get a specific vm_cluster_network.
         type: str
         aliases: ["id"]
+    exadata_infrastructure_id:
+        description:
+            - The Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
     compartment_id:
         description:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -86,8 +86,8 @@ EXAMPLES = """
 - name: Get a specific vm_cluster_network
   oci_database_vm_cluster_network_facts:
     # required
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List vm_cluster_networks
   oci_database_vm_cluster_network_facts:
@@ -399,8 +399,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            exadata_infrastructure_id=dict(type="str", required=True),
             vm_cluster_network_id=dict(aliases=["id"], type="str"),
+            exadata_infrastructure_id=dict(type="str", required=True),
             compartment_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

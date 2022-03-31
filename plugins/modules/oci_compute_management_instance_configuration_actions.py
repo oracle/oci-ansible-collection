@@ -43,18 +43,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    instance_configuration_id:
-        description:
-            - The OCID of the instance configuration.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to
               move the instance configuration to.
             - Required for I(action=change_compartment).
         type: str
+    instance_configuration_id:
+        description:
+            - The OCID of the instance configuration.
+        type: str
+        aliases: ["id"]
+        required: true
     instance_type:
         description:
             - The type of instance details. Supported instanceType is compute
@@ -74,6 +74,11 @@ options:
                     - ""
                 type: dict
                 suboptions:
+                    use_chap:
+                        description:
+                            - Whether to use CHAP authentication for the volume attachment. Defaults to false.
+                            - Applicable when type is 'iscsi'
+                        type: bool
                     display_name:
                         description:
                             - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -103,11 +108,6 @@ options:
                             - "iscsi"
                             - "paravirtualized"
                         required: true
-                    use_chap:
-                        description:
-                            - Whether to use CHAP authentication for the volume attachment. Defaults to false.
-                            - Applicable when type is 'iscsi'
-                        type: bool
                     is_pv_encryption_in_transit_enabled:
                         description:
                             - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
@@ -409,6 +409,16 @@ options:
                     - ""
                 type: dict
                 suboptions:
+                    numa_nodes_per_socket:
+                        description:
+                            - The number of NUMA nodes per socket (NPS).
+                            - Applicable when type is 'AMD_MILAN_BM'
+                        type: str
+                        choices:
+                            - "NPS0"
+                            - "NPS1"
+                            - "NPS2"
+                            - "NPS4"
                     type:
                         description:
                             - The type of platform being configured.
@@ -432,31 +442,11 @@ options:
                         description:
                             - Whether the Measured Boot feature is enabled on the instance.
                         type: bool
-                    numa_nodes_per_socket:
-                        description:
-                            - The number of NUMA nodes per socket (NPS).
-                            - Applicable when type is 'AMD_MILAN_BM'
-                        type: str
-                        choices:
-                            - "NPS0"
-                            - "NPS1"
-                            - "NPS2"
-                            - "NPS4"
             source_details:
                 description:
                     - ""
                 type: dict
                 suboptions:
-                    source_type:
-                        description:
-                            - The source type for the instance.
-                              Use `image` when specifying the image OCID. Use `bootVolume` when specifying
-                              the boot volume OCID.
-                        type: str
-                        choices:
-                            - "image"
-                            - "bootVolume"
-                        required: true
                     boot_volume_size_in_gbs:
                         description:
                             - The size of the boot volume in GBs. The minimum value is 50 GB and the maximum
@@ -468,6 +458,16 @@ options:
                             - The OCID of the image used to boot the instance.
                             - Applicable when source_type is 'image'
                         type: str
+                    source_type:
+                        description:
+                            - The source type for the instance.
+                              Use `image` when specifying the image OCID. Use `bootVolume` when specifying
+                              the boot volume OCID.
+                        type: str
+                        choices:
+                            - "image"
+                            - "bootVolume"
+                        required: true
                     boot_volume_id:
                         description:
                             - The OCID of the boot volume used to boot the instance.
@@ -811,8 +811,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on instance_configuration
   oci_compute_management_instance_configuration_actions:
     # required
-    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action launch on instance_configuration with instance_type = compute
@@ -828,11 +828,11 @@ EXAMPLES = """
         type: iscsi
 
         # optional
+        use_chap: true
         display_name: display_name_example
         is_read_only: true
         device: device_example
         is_shareable: true
-        use_chap: true
       create_details:
         # optional
         availability_domain: Uocm:PHX-AD-1
@@ -885,10 +885,10 @@ EXAMPLES = """
         type: AMD_MILAN_BM
 
         # optional
+        numa_nodes_per_socket: NPS0
         is_secure_boot_enabled: true
         is_trusted_platform_module_enabled: true
         is_measured_boot_enabled: true
-        numa_nodes_per_socket: NPS0
       source_details:
         # required
         source_type: image
@@ -1687,8 +1687,8 @@ def main():
     )
     module_args.update(
         dict(
-            instance_configuration_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            instance_configuration_id=dict(aliases=["id"], type="str", required=True),
             instance_type=dict(type="str", choices=["compute"]),
             block_volumes=dict(
                 type="list",
@@ -1697,6 +1697,7 @@ def main():
                     attach_details=dict(
                         type="dict",
                         options=dict(
+                            use_chap=dict(type="bool"),
                             display_name=dict(aliases=["name"], type="str"),
                             is_read_only=dict(type="bool"),
                             device=dict(type="str"),
@@ -1706,7 +1707,6 @@ def main():
                                 required=True,
                                 choices=["iscsi", "paravirtualized"],
                             ),
-                            use_chap=dict(type="bool"),
                             is_pv_encryption_in_transit_enabled=dict(type="bool"),
                         ),
                     ),
@@ -1784,6 +1784,9 @@ def main():
                     platform_config=dict(
                         type="dict",
                         options=dict(
+                            numa_nodes_per_socket=dict(
+                                type="str", choices=["NPS0", "NPS1", "NPS2", "NPS4"]
+                            ),
                             type=dict(
                                 type="str",
                                 required=True,
@@ -1798,21 +1801,18 @@ def main():
                             is_secure_boot_enabled=dict(type="bool"),
                             is_trusted_platform_module_enabled=dict(type="bool"),
                             is_measured_boot_enabled=dict(type="bool"),
-                            numa_nodes_per_socket=dict(
-                                type="str", choices=["NPS0", "NPS1", "NPS2", "NPS4"]
-                            ),
                         ),
                     ),
                     source_details=dict(
                         type="dict",
                         options=dict(
+                            boot_volume_size_in_gbs=dict(type="int"),
+                            image_id=dict(type="str"),
                             source_type=dict(
                                 type="str",
                                 required=True,
                                 choices=["image", "bootVolume"],
                             ),
-                            boot_volume_size_in_gbs=dict(type="int"),
-                            image_id=dict(type="str"),
                             boot_volume_id=dict(type="str"),
                         ),
                     ),

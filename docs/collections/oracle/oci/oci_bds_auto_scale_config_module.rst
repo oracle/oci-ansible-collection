@@ -30,7 +30,7 @@ oracle.oci.oci_bds_auto_scale_config -- Manage a BdsAutoScaleConfig resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -663,10 +663,8 @@ Examples
     - name: Create bds_auto_scale_config
       oci_bds_auto_scale_config:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         node_type: node_type_example
         is_enabled: true
-        cluster_admin_password: example-password
         policy:
           # required
           policy_type: THRESHOLD_BASED
@@ -681,6 +679,8 @@ Examples
                 duration_in_minutes: 56
                 operator: GT
                 value: 56
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
 
         # optional
         display_name: display_name_example
@@ -694,7 +694,6 @@ Examples
         # optional
         display_name: display_name_example
         is_enabled: true
-        cluster_admin_password: example-password
         policy:
           # required
           policy_type: THRESHOLD_BASED
@@ -709,17 +708,17 @@ Examples
                 duration_in_minutes: 56
                 operator: GT
                 value: 56
+        cluster_admin_password: example-password
 
     - name: Update bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bds_auto_scale_config:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         is_enabled: true
-        cluster_admin_password: example-password
         policy:
           # required
           policy_type: THRESHOLD_BASED
@@ -734,20 +733,21 @@ Examples
                 duration_in_minutes: 56
                 operator: GT
                 value: 56
+        cluster_admin_password: example-password
 
     - name: Delete bds_auto_scale_config
       oci_bds_auto_scale_config:
         # required
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-        cluster_admin_password: example-password
         auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
         state: absent
 
     - name: Delete bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bds_auto_scale_config:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 

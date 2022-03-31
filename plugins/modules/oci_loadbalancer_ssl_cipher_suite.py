@@ -27,19 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    name:
-        description:
-            - A friendly name for the SSL cipher suite. It must be unique and it cannot be changed.
-            - "**Note:** The name of your user-defined cipher suite must not be the same as any of Oracle's predefined or
-                        reserved SSL cipher suite names:"
-            - "* oci-default-ssl-cipher-suite-v1
-              * oci-modern-ssl-cipher-suite-v1
-              * oci-compatible-ssl-cipher-suite-v1
-              * oci-wider-compatible-ssl-cipher-suite-v1
-              * oci-customized-ssl-cipher-suite"
-            - "example: `example_cipher_suite`"
-        type: str
-        required: true
     ciphers:
         description:
             - A list of SSL ciphers the load balancer must support for HTTPS or SSL connections.
@@ -150,6 +137,19 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated load balancer.
         type: str
         required: true
+    name:
+        description:
+            - A friendly name for the SSL cipher suite. It must be unique and it cannot be changed.
+            - "**Note:** The name of your user-defined cipher suite must not be the same as any of Oracle's predefined or
+                        reserved SSL cipher suite names:"
+            - "* oci-default-ssl-cipher-suite-v1
+              * oci-modern-ssl-cipher-suite-v1
+              * oci-compatible-ssl-cipher-suite-v1
+              * oci-wider-compatible-ssl-cipher-suite-v1
+              * oci-customized-ssl-cipher-suite"
+            - "example: `example_cipher_suite`"
+        type: str
+        required: true
     state:
         description:
             - The state of the SslCipherSuite.
@@ -166,22 +166,22 @@ EXAMPLES = """
 - name: Create ssl_cipher_suite
   oci_loadbalancer_ssl_cipher_suite:
     # required
-    name: name_example
     ciphers: [ "ciphers_example" ]
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
 - name: Update ssl_cipher_suite
   oci_loadbalancer_ssl_cipher_suite:
     # required
-    name: name_example
     ciphers: [ "ciphers_example" ]
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
 - name: Delete ssl_cipher_suite
   oci_loadbalancer_ssl_cipher_suite:
     # required
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -469,9 +469,9 @@ def main():
     )
     module_args.update(
         dict(
-            name=dict(type="str", required=True),
             ciphers=dict(type="list", elements="str"),
             load_balancer_id=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -27,17 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    zone_name_or_id:
-        description:
-            - The name or OCID of the target zone.
-        type: str
-        aliases: ["zone_id", "name", "zone_name", "id"]
-        required: true
-    domain:
-        description:
-            - The target fully-qualified domain name (FQDN) within the target zone.
-        type: str
-        required: true
     update_items:
         description:
             - ""
@@ -91,33 +80,6 @@ options:
                     - This parameter is updatable.
                 type: int
                 required: true
-    if_unmodified_since:
-        description:
-            - The `If-Unmodified-Since` header field makes the request method
-              conditional on the selected representation's last modification date being
-              earlier than or equal to the date provided in the field-value.  This
-              field accomplishes the same purpose as If-Match for cases where the user
-              agent does not have an entity-tag for the representation.
-            - This parameter is updatable.
-        type: str
-    scope:
-        description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
-    view_id:
-        description:
-            - The OCID of the view the resource is associated with.
-            - This parameter is updatable.
-        type: str
-    compartment_id:
-        description:
-            - The OCID of the compartment the resource belongs to.
-            - This parameter is updatable.
-        type: str
     patch_items:
         description:
             - ""
@@ -179,6 +141,44 @@ options:
                     - "PROHIBIT"
                     - "ADD"
                     - "REMOVE"
+    zone_name_or_id:
+        description:
+            - The name or OCID of the target zone.
+        type: str
+        aliases: ["zone_id", "name", "zone_name", "id"]
+        required: true
+    domain:
+        description:
+            - The target fully-qualified domain name (FQDN) within the target zone.
+        type: str
+        required: true
+    if_unmodified_since:
+        description:
+            - The `If-Unmodified-Since` header field makes the request method
+              conditional on the selected representation's last modification date being
+              earlier than or equal to the date provided in the field-value.  This
+              field accomplishes the same purpose as If-Match for cases where the user
+              agent does not have an entity-tag for the representation.
+            - This parameter is updatable.
+        type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
+    view_id:
+        description:
+            - The OCID of the view the resource is associated with.
+            - This parameter is updatable.
+        type: str
+    compartment_id:
+        description:
+            - The OCID of the compartment the resource belongs to.
+            - This parameter is updatable.
+        type: str
     state:
         description:
             - The state of the DomainRecords.
@@ -483,12 +483,6 @@ def main():
     )
     module_args.update(
         dict(
-            zone_name_or_id=dict(
-                aliases=["zone_id", "name", "zone_name", "id"],
-                type="str",
-                required=True,
-            ),
-            domain=dict(type="str", required=True),
             update_items=dict(
                 type="list",
                 elements="dict",
@@ -502,10 +496,6 @@ def main():
                     ttl=dict(type="int", required=True),
                 ),
             ),
-            if_unmodified_since=dict(type="str"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
-            view_id=dict(type="str"),
-            compartment_id=dict(type="str"),
             patch_items=dict(
                 type="list",
                 elements="dict",
@@ -522,6 +512,16 @@ def main():
                     ),
                 ),
             ),
+            zone_name_or_id=dict(
+                aliases=["zone_id", "name", "zone_name", "id"],
+                type="str",
+                required=True,
+            ),
+            domain=dict(type="str", required=True),
+            if_unmodified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            view_id=dict(type="str"),
+            compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

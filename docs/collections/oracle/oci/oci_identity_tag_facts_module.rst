@@ -30,7 +30,7 @@ oracle.oci.oci_identity_tag_facts -- Fetches details about one or multiple Tag r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -308,8 +308,8 @@ Examples
     - name: Get a specific tag
       oci_identity_tag_facts:
         # required
-        tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_name: tag_name_example
+        tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List tags
       oci_identity_tag_facts:

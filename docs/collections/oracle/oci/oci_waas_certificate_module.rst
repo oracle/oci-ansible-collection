@@ -30,7 +30,7 @@ oracle.oci.oci_waas_certificate -- Manage a WaasCertificate resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -492,8 +492,8 @@ Examples
         private_key_data: this-is-not-the-secret
 
         # optional
-        display_name: display_name_example
         is_trust_verification_disabled: true
+        display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

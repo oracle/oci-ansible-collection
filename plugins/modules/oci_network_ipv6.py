@@ -27,6 +27,14 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    ip_address:
+        description:
+            - An IPv6 address of your choice. Must be an available IP address within
+              the subnet's CIDR. If you don't specify a value, Oracle automatically
+              assigns an IPv6 address from the subnet. The subnet is the one that
+              contains the VNIC you specify in `vnicId`.
+            - "Example: `2001:DB8::`"
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -50,14 +58,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    ip_address:
-        description:
-            - An IPv6 address of your choice. Must be an available IP address within
-              the subnet's CIDR. If you don't specify a value, Oracle automatically
-              assigns an IPv6 address from the subnet. The subnet is the one that
-              contains the VNIC you specify in `vnicId`.
-            - "Example: `2001:DB8::`"
-        type: str
     vnic_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC to assign the IPv6 to. The
@@ -91,10 +91,10 @@ EXAMPLES = """
     vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    ip_address: ip_address_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    ip_address: ip_address_example
 
 - name: Update ipv6
   oci_network_ipv6:
@@ -368,10 +368,10 @@ def main():
     )
     module_args.update(
         dict(
+            ip_address=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            ip_address=dict(type="str"),
             vnic_id=dict(type="str"),
             ipv6_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

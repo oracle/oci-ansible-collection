@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    network_load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
-        type: str
-        required: true
     listener_name:
         description:
             - The name of the listener to get.
             - "Example: `example_listener`"
             - Required to get a specific listener.
         type: str
+    network_load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
+        type: str
+        required: true
     sort_order:
         description:
             - The sort order to use, either 'asc' (ascending) or 'desc' (descending).
@@ -61,8 +61,8 @@ EXAMPLES = """
 - name: Get a specific listener
   oci_network_load_balancer_listener_facts:
     # required
-    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     listener_name: listener_name_example
+    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List listeners
   oci_network_load_balancer_listener_facts:
@@ -200,8 +200,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            network_load_balancer_id=dict(type="str", required=True),
             listener_name=dict(type="str"),
+            network_load_balancer_id=dict(type="str", required=True),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
         )

@@ -30,7 +30,7 @@ oracle.oci.oci_compute_dedicated_vm_host -- Manage a DedicatedVmHost resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -488,9 +488,9 @@ Examples
         dedicated_vm_host_shape: dedicated_vm_host_shape_example
 
         # optional
+        fault_domain: FAULT-DOMAIN-1
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        fault_domain: FAULT-DOMAIN-1
         freeform_tags: {'Department': 'Finance'}
 
     - name: Update dedicated_vm_host

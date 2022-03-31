@@ -37,16 +37,25 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the image to.
+            - Required for I(action=change_compartment).
+        type: str
     image_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
+    destination_uri:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the image to.
-            - Required for I(action=change_compartment).
+            - The Object Storage URL to export the image to. See L(Object
+              Storage URLs,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm#URLs)
+              and L(Using Pre-Authenticated Requests,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
+              for constructing URLs for image import/export.
+            - Applicable only for I(action=export).
+            - Required when destination_type is 'objectStorageUri'
         type: str
     destination_type:
         description:
@@ -75,15 +84,6 @@ options:
             - "OCI"
             - "VHD"
             - "VDI"
-    destination_uri:
-        description:
-            - The Object Storage URL to export the image to. See L(Object
-              Storage URLs,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm#URLs)
-              and L(Using Pre-Authenticated Requests,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
-              for constructing URLs for image import/export.
-            - Applicable only for I(action=export).
-            - Required when destination_type is 'objectStorageUri'
-        type: str
     bucket_name:
         description:
             - The Object Storage bucket to export the image to.
@@ -117,15 +117,15 @@ EXAMPLES = """
 - name: Perform action change_compartment on image
   oci_compute_image_actions:
     # required
-    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action export on image with destination_type = objectStorageUri
   oci_compute_image_actions:
     # required
-    destination_type: objectStorageUri
     destination_uri: destination_uri_example
+    destination_type: objectStorageUri
 
     # optional
     export_format: QCOW2
@@ -481,15 +481,15 @@ def main():
     )
     module_args.update(
         dict(
-            image_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            image_id=dict(aliases=["id"], type="str", required=True),
+            destination_uri=dict(type="str"),
             destination_type=dict(
                 type="str", choices=["objectStorageUri", "objectStorageTuple"]
             ),
             export_format=dict(
                 type="str", choices=["QCOW2", "VMDK", "OCI", "VHD", "VDI"]
             ),
-            destination_uri=dict(type="str"),
             bucket_name=dict(type="str"),
             namespace_name=dict(type="str"),
             object_name=dict(type="str"),

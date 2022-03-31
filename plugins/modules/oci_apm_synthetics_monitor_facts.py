@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    apm_domain_id:
-        description:
-            - The APM domain ID the request is intended for.
-        type: str
-        required: true
     monitor_id:
         description:
             - The OCID of the monitor.
             - Required to get a specific monitor.
         type: str
         aliases: ["id"]
+    apm_domain_id:
+        description:
+            - The APM domain ID the request is intended for.
+        type: str
+        required: true
     display_name:
         description:
             - A filter to return only resources that match the entire display name given.
@@ -88,8 +88,8 @@ EXAMPLES = """
 - name: Get a specific monitor
   oci_apm_synthetics_monitor_facts:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List monitors
   oci_apm_synthetics_monitor_facts:
@@ -628,8 +628,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            apm_domain_id=dict(type="str", required=True),
             monitor_id=dict(aliases=["id"], type="str"),
+            apm_domain_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             script_id=dict(type="str"),
             monitor_type=dict(type="str"),

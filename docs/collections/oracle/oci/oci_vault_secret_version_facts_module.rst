@@ -30,7 +30,7 @@ oracle.oci.oci_vault_secret_version_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -339,8 +339,8 @@ Examples
     - name: Get a specific secret_version
       oci_vault_secret_version_facts:
         # required
-        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         secret_version_number: 56
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List secret_versions
       oci_vault_secret_version_facts:

@@ -27,43 +27,20 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    previous_deployment_id:
+        description:
+            - Specifies the OCID of the previous deployment to be redeployed.
+            - Applicable when deployment_type is 'PIPELINE_REDEPLOYMENT'
+        type: str
     deploy_pipeline_id:
         description:
             - The OCID of a pipeline.
             - Required for create using I(state=present).
         type: str
-    deployment_type:
+    deploy_stage_id:
         description:
-            - Specifies type for this deployment.
-        type: str
-        choices:
-            - "PIPELINE_REDEPLOYMENT"
-            - "PIPELINE_DEPLOYMENT"
-            - "SINGLE_STAGE_DEPLOYMENT"
-        required: true
-    display_name:
-        description:
-            - Deployment display name. Avoid entering confidential information.
-            - Required for create, update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    freeform_tags:
-        description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    previous_deployment_id:
-        description:
-            - Specifies the OCID of the previous deployment to be redeployed.
-            - Applicable when deployment_type is 'PIPELINE_REDEPLOYMENT'
+            - Specifies the OCID of the stage to be redeployed.
+            - Applicable when deployment_type is 'SINGLE_STAGE_DEPLOYMENT'
         type: str
     deployment_arguments:
         description:
@@ -123,17 +100,40 @@ options:
                             - Required when deployment_type is 'PIPELINE_DEPLOYMENT'
                         type: str
                         required: true
-    deploy_stage_id:
-        description:
-            - Specifies the OCID of the stage to be redeployed.
-            - Applicable when deployment_type is 'SINGLE_STAGE_DEPLOYMENT'
-        type: str
     deployment_id:
         description:
             - Unique deployment identifier.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    deployment_type:
+        description:
+            - Specifies type for this deployment.
+        type: str
+        choices:
+            - "PIPELINE_REDEPLOYMENT"
+            - "PIPELINE_DEPLOYMENT"
+            - "SINGLE_STAGE_DEPLOYMENT"
+        required: true
+    display_name:
+        description:
+            - Deployment display name. Avoid entering confidential information.
+            - Required for create, update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
+              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
+              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
+        type: dict
     state:
         description:
             - The state of the Deployment.
@@ -153,10 +153,10 @@ EXAMPLES = """
     deployment_type: PIPELINE_REDEPLOYMENT
 
     # optional
+    previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Create deployment with deployment_type = PIPELINE_DEPLOYMENT
   oci_devops_deployment:
@@ -165,9 +165,6 @@ EXAMPLES = """
     deployment_type: PIPELINE_DEPLOYMENT
 
     # optional
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     deployment_arguments:
       # required
       items:
@@ -181,6 +178,9 @@ EXAMPLES = """
         deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         value: value_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Create deployment with deployment_type = SINGLE_STAGE_DEPLOYMENT
   oci_devops_deployment:
@@ -189,9 +189,7 @@ EXAMPLES = """
     deployment_type: SINGLE_STAGE_DEPLOYMENT
 
     # optional
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_arguments:
       # required
       items:
@@ -205,7 +203,9 @@ EXAMPLES = """
         deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         value: value_example
-    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deployment with deployment_type = PIPELINE_REDEPLOYMENT
   oci_devops_deployment:
@@ -928,20 +928,9 @@ def main():
     )
     module_args.update(
         dict(
-            deploy_pipeline_id=dict(type="str"),
-            deployment_type=dict(
-                type="str",
-                required=True,
-                choices=[
-                    "PIPELINE_REDEPLOYMENT",
-                    "PIPELINE_DEPLOYMENT",
-                    "SINGLE_STAGE_DEPLOYMENT",
-                ],
-            ),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
             previous_deployment_id=dict(type="str"),
+            deploy_pipeline_id=dict(type="str"),
+            deploy_stage_id=dict(type="str"),
             deployment_arguments=dict(
                 type="dict",
                 options=dict(
@@ -971,8 +960,19 @@ def main():
                     )
                 ),
             ),
-            deploy_stage_id=dict(type="str"),
             deployment_id=dict(aliases=["id"], type="str"),
+            deployment_type=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "PIPELINE_REDEPLOYMENT",
+                    "PIPELINE_DEPLOYMENT",
+                    "SINGLE_STAGE_DEPLOYMENT",
+                ],
+            ),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )
